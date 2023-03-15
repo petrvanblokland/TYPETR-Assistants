@@ -1,0 +1,151 @@
+
+Cheatsheet
+
+Quick examples of the text description syntax.
+
+Comments
+
+# Anything after a # will not be parsed.
+Label
+
+This is a label.
+
+! This is a label.
+!! This is a label.
+!!! This is a label.
+!!!! This is a label.
+!!!!! This is a label.
+!!!!!! This is a label.
+!!!!!!! This is a label.
+!!!!!!!! This is a label.
+!!!!!!!!! This is a label.
+!!!!!!!!!! This is a label.
+
+!¶ This is a header.
+!§ This is a section header.
+This is body text.
+!- This is caption text.
+!* This is footnote text.
+Line
+
+----------
+Any number of - is allowed.
+
+PushButton
+
+(Push Button) @identifier
+ImageButton
+
+({symbol name}) @identifier
+AddRemoveButton
+
+(+-) @identifier
+PopUpButton
+
+(Pop Up Button ...) @identifier
+Stepper
+
+(÷) @identifier
+SegmentButton
+
+(Segment 1 | X {symbol name} X | Segment 3) @identifier
+((X Segment 1 X | {symbol name} | X Segment 3 X)) @identifier
+(((Segment 1 | {symbol name} | Segment 3))) @identifier
+
+X Selected X
+~ Disabled ~
+RadioButtons
+
+( ) Radio Button @groupIdentifier
+(X) Radio Button
+Checkbox
+
+[X] Checkbox @identifier
+Checkboxes
+
+[ ] Checkbox 1 @identifier1
+[X] Checkbox 2 @identifier2
+[ ] Checkbox 3 @identifier3
+Slider
+
+---X--- @identifier
+SliderAndLabel
+
+---X--- Text @identifier
+SliderAndTextField
+
+---X--- [__] @identifier
+PullDownButton
+
+((Pull Down Button ...)) @identifier
+ActionButton
+
+(...) @identifier
+TextField
+
+[__]
+[_ Text Field _] @identifier
+Leading Text [_ Text Field _] Trailing Text @identifier
+{leading symbol name} [_ Text Field _] {trailing symbol name} @identifier
+TextFieldAndStepper
+
+[__](÷) @identifier
+[_ Text Field _](÷) @identifier
+ComboBox
+
+[_ ...]
+[_ Combo Box ...] @identifier
+SearchField
+
+[_ ?]
+[_ Search Field ?] @identifier
+TextEditor
+
+[[_ Text Editor _]] @identifier
+ProgressBar
+
+%%%%%%%%%%%%%%-------- @identifier
+%%%%%%%%%%%%%%%%%%%%%% @identifier
+ProgressSpinner
+
+%  @identifier
+%% @identifier
+Table
+
+| Table | Column 1 | Column 2 | @identifier
+Item Type
+
+* ItemTypeName @identifier
+Nesting
+
+Whitespace
+
+Whitespace is allowed for aligning the item descriptions into visual layouts.
+
+My Title
+---------------
+(My Button)         @myButton
+[My TextField]      @myTextField
+-X-------------     @mySlider
+[ ] My Checkbox
+( ) My Radio 1      @myRadioButtons
+(X) My Radio 2
+Whitespace within descriptions is permissible, but it is best practice to follow the examples.
+
+Developers Notes
+
+Currently used tokens, their meanings and other notes:
+
+() = push button
+[_] = keyboard input
+{} = image reference
+X = selected
+~ = disabled
+... = has a menu
+@ = identifier
+* = item type
+
+To indicate a different mode or similar
+control type, increase number of ( or [.
+ Previous
+© Copyright 2021, Tal Leming.
