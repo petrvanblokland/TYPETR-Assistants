@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="daggerdbl" format="2">
+  <advance width="456"/>
+  <unicode hex="2021"/>
+  <guideline x="-300" y="-10" angle="0" name="Overshoot (-10/10)"/>
+  <guideline x="-300" y="476" angle="0" name="Overshoot (476/10)"/>
+  <outline>
+    <contour>
+      <point x="187" y="0" type="line"/>
+      <point x="270" y="0" type="line"/>
+      <point x="266" y="199" type="line"/>
+      <point x="414" y="195" type="line"/>
+      <point x="414" y="270" type="line"/>
+      <point x="266" y="266" type="line"/>
+      <point x="266" y="461" type="line"/>
+      <point x="414" y="457" type="line"/>
+      <point x="414" y="532" type="line"/>
+      <point x="266" y="528" type="line"/>
+      <point x="270" y="720" type="line"/>
+      <point x="187" y="720" type="line"/>
+      <point x="191" y="528" type="line"/>
+      <point x="43" y="532" type="line"/>
+      <point x="43" y="457" type="line"/>
+      <point x="191" y="461" type="line"/>
+      <point x="191" y="266" type="line"/>
+      <point x="43" y="270" type="line"/>
+      <point x="43" y="195" type="line"/>
+      <point x="191" y="199" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>0,0.5,0.5,0.5</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <string>4</string>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.3125</real>
+          <key>interpolateX</key>
+          <real>130.54063415527344</real>
+          <key>interpolateY</key>
+          <real>130.54063415527344</real>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>72.5374984741211</real>
+          <key>scaleY</key>
+          <real>72.5374984741211</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

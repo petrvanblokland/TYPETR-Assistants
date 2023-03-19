@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="w.sups" format="2">
+  <advance width="593"/>
+  <guideline x="-200" y="440" angle="0" name="Baseline (440)"/>
+  <guideline x="-300" y="431" angle="0" name="Overshoot (431/9)"/>
+  <guideline x="-200" y="800" angle="0" name="xHeight (800)"/>
+  <guideline x="-300" y="809" angle="0" name="Overshoot (809/9)"/>
+  <guideline x="-300" y="993" angle="0" name="SUPS Ascender (993)"/>
+  <guideline x="-300" y="288" angle="0" name="SUPS Descender (288)"/>
+  <outline>
+    <contour>
+      <point x="129" y="440" type="line"/>
+      <point x="212" y="440" type="line"/>
+      <point x="279" y="647" type="line"/>
+      <point x="298" y="710" type="line"/>
+      <point x="316" y="647" type="line"/>
+      <point x="383" y="440" type="line"/>
+      <point x="466" y="440" type="line"/>
+      <point x="587" y="800" type="line"/>
+      <point x="517" y="800" type="line"/>
+      <point x="453" y="602" type="line"/>
+      <point x="428" y="515" type="line"/>
+      <point x="402" y="602" type="line"/>
+      <point x="338" y="800" type="line"/>
+      <point x="263" y="800" type="line"/>
+      <point x="200" y="602" type="line"/>
+      <point x="175" y="515" type="line"/>
+      <point x="149" y="602" type="line"/>
+      <point x="86" y="800" type="line"/>
+      <point x="10" y="800" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>0,0.5,0.5,0.5</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <integer>0</integer>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-169.7586669921875</real>
+          <key>glyphSource</key>
+          <string>n</string>
+          <key>interpolateX</key>
+          <real>139.87124633789062</real>
+          <key>interpolateY</key>
+          <real>139.87124633789062</real>
+          <key>lockInterpolationXY</key>
+          <integer>1</integer>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>76.15612030029297</real>
+          <key>scaleY</key>
+          <real>76.15612030029297</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

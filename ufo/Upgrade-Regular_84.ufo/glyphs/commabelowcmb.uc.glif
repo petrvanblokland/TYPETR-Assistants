@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="commabelowcmb.uc" format="2">
+  <guideline x="-300" y="-10" angle="0" name="Overshoot (-10/10)"/>
+  <guideline x="-300" y="476" angle="0" name="Overshoot (476/10)"/>
+  <guideline x="-300" y="850" angle="0" name="Top CMB (850)"/>
+  <guideline x="-300" y="720" angle="0" name="Bottom CMB (720)"/>
+  <guideline x="-300" y="334" angle="0" name="Middle+overshoot/2 CMB (334)"/>
+  <anchor x="0" y="16" name="_bottom"/>
+  <outline>
+    <component base="commabelowcmb"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>0,0.5,0.5,0.5</string>
+    </dict>
+  </lib>
+</glyph>

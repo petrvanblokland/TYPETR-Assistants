@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="four.tab" format="2">
+  <advance width="650"/>
+  <guideline x="-300" y="-14" angle="0" name="Overshoot (-14/14)"/>
+  <guideline x="-300" y="672" angle="0" name="Overshoot (672/14)"/>
+  <outline>
+    <contour>
+      <point x="386" y="0" type="line"/>
+      <point x="470" y="0" type="line"/>
+      <point x="470" y="172" type="line"/>
+      <point x="564" y="172" type="line"/>
+      <point x="564" y="247" type="line"/>
+      <point x="470" y="247" type="line"/>
+      <point x="470" y="658" type="line"/>
+      <point x="367" y="658" type="line"/>
+      <point x="87" y="231" type="line"/>
+      <point x="87" y="172" type="line"/>
+      <point x="386" y="172" type="line"/>
+    </contour>
+    <contour>
+      <point x="386" y="247" type="line"/>
+      <point x="180" y="247" type="line"/>
+      <point x="386" y="555" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>0,0.5,0.5,0.5</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <string>4</string>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.3125</real>
+          <key>interpolateX</key>
+          <real>130.54063415527344</real>
+          <key>interpolateY</key>
+          <real>130.54063415527344</real>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>72.5374984741211</real>
+          <key>scaleY</key>
+          <real>72.5374984741211</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

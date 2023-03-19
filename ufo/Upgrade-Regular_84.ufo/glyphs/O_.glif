@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="O" format="2">
+  <advance width="775"/>
+  <unicode hex="004F"/>
+  <guideline x="-300" y="-14" angle="0" name="Overshoot (-14/14)" identifier="WWI3XkebSK"/>
+  <guideline x="-300" y="672" angle="0" name="Overshoot (672/14)" identifier="rE8Oj5A3oX"/>
+  <anchor x="388.0" y="642" name="top"/>
+  <outline>
+    <contour>
+      <point x="388" y="-15" type="curve" smooth="yes"/>
+      <point x="575" y="-15"/>
+      <point x="727" y="68"/>
+      <point x="727" y="327" type="curve" smooth="yes"/>
+      <point x="727" y="535"/>
+      <point x="586" y="672"/>
+      <point x="388" y="672" type="curve" smooth="yes"/>
+      <point x="189" y="672"/>
+      <point x="48" y="534"/>
+      <point x="48" y="329" type="curve" smooth="yes"/>
+      <point x="48" y="125"/>
+      <point x="185" y="-15"/>
+    </contour>
+    <contour>
+      <point x="388" y="64" type="curve" smooth="yes"/>
+      <point x="238" y="64"/>
+      <point x="197" y="155"/>
+      <point x="197" y="337" type="curve" smooth="yes"/>
+      <point x="197" y="497"/>
+      <point x="238" y="594"/>
+      <point x="388" y="594" type="curve" smooth="yes"/>
+      <point x="538" y="594"/>
+      <point x="637" y="480"/>
+      <point x="637" y="320" type="curve" smooth="yes"/>
+      <point x="637" y="239"/>
+      <point x="605" y="64"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>0,0.5,0.5,0.5</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <integer>0</integer>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>autoGlyphSource</key>
+          <integer>1</integer>
+          <key>baseline</key>
+          <real>0.0</real>
+          <key>glyphSource</key>
+          <string></string>
+          <key>interpolateX</key>
+          <real>100.0</real>
+          <key>interpolateY</key>
+          <real>100.0</real>
+          <key>lockInterpolationXY</key>
+          <integer>1</integer>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>master1</key>
+          <string>Upgrade-Thin.ufo</string>
+          <key>master2</key>
+          <string>Upgrade-Middle.ufo</string>
+          <key>scaleX</key>
+          <real>100.0</real>
+          <key>scaleY</key>
+          <real>100.0</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

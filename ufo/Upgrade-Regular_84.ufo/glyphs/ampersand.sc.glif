@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="ampersand.sc" format="2">
+  <advance width="492"/>
+  <guideline x="-300" y="-13" angle="0" name="Overshoot (-13/13)"/>
+  <guideline x="-200" y="512" angle="0" name="xHeight (512)"/>
+  <guideline x="-300" y="525" angle="0" name="Overshoot (525/13)"/>
+  <outline>
+    <contour>
+      <point x="205" y="-13" type="curve" smooth="yes"/>
+      <point x="263" y="-13"/>
+      <point x="314" y="7"/>
+      <point x="345" y="42" type="curve"/>
+      <point x="381" y="0" type="line"/>
+      <point x="473" y="0" type="line"/>
+      <point x="386" y="99" type="line"/>
+      <point x="417" y="149"/>
+      <point x="434" y="216"/>
+      <point x="434" y="289" type="curve"/>
+      <point x="366" y="289" type="line"/>
+      <point x="366" y="236"/>
+      <point x="358" y="188"/>
+      <point x="339" y="152" type="curve"/>
+      <point x="222" y="285" type="line" smooth="yes"/>
+      <point x="186" y="326"/>
+      <point x="174" y="356"/>
+      <point x="174" y="388" type="curve" smooth="yes"/>
+      <point x="174" y="431"/>
+      <point x="208" y="459"/>
+      <point x="253" y="459" type="curve" smooth="yes"/>
+      <point x="298" y="459"/>
+      <point x="336" y="441"/>
+      <point x="371" y="407" type="curve"/>
+      <point x="371" y="483" type="line"/>
+      <point x="334" y="511"/>
+      <point x="290" y="525"/>
+      <point x="241" y="525" type="curve" smooth="yes"/>
+      <point x="155" y="525"/>
+      <point x="101" y="467"/>
+      <point x="101" y="391" type="curve" smooth="yes"/>
+      <point x="101" y="364"/>
+      <point x="110" y="335"/>
+      <point x="126" y="306" type="curve"/>
+      <point x="67" y="275"/>
+      <point x="27" y="216"/>
+      <point x="27" y="147" type="curve" smooth="yes"/>
+      <point x="27" y="54"/>
+      <point x="95" y="-13"/>
+    </contour>
+    <contour>
+      <point x="100" y="151" type="curve" smooth="yes"/>
+      <point x="100" y="193"/>
+      <point x="122" y="232"/>
+      <point x="161" y="256" type="curve"/>
+      <point x="300" y="94" type="line"/>
+      <point x="277" y="68"/>
+      <point x="248" y="54"/>
+      <point x="205" y="54" type="curve" smooth="yes"/>
+      <point x="143" y="54"/>
+      <point x="100" y="93"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>0,0.5,0.5,0.5</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <integer>0</integer>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.74363708496094</real>
+          <key>baselineMax</key>
+          <integer>750</integer>
+          <key>baselineMin</key>
+          <integer>-250</integer>
+          <key>glyphSource</key>
+          <string>a</string>
+          <key>interpolateX</key>
+          <real>119.42200469970703</real>
+          <key>interpolateXMax</key>
+          <integer>150</integer>
+          <key>interpolateXMin</key>
+          <integer>-50</integer>
+          <key>interpolateY</key>
+          <real>119.42200469970703</real>
+          <key>interpolateYMax</key>
+          <integer>150</integer>
+          <key>interpolateYMin</key>
+          <integer>-50</integer>
+          <key>lockInterpolationXY</key>
+          <integer>1</integer>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>81.88823699951172</real>
+          <key>scaleXMax</key>
+          <integer>200</integer>
+          <key>scaleXMin</key>
+          <integer>0</integer>
+          <key>scaleY</key>
+          <real>81.88823699951172</real>
+          <key>scaleYMax</key>
+          <integer>200</integer>
+          <key>scaleYMin</key>
+          <integer>0</integer>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

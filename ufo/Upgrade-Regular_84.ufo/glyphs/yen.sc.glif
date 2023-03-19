@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="yen.sc" format="2">
+  <advance width="466"/>
+  <guideline x="-300" y="-13" angle="0" name="Overshoot (-13/13)"/>
+  <guideline x="-200" y="512" angle="0" name="xHeight (512)"/>
+  <guideline x="-300" y="525" angle="0" name="Overshoot (525/13)"/>
+  <outline>
+    <contour>
+      <point x="93" y="181" type="line"/>
+      <point x="380" y="181" type="line"/>
+      <point x="380" y="236" type="line"/>
+      <point x="93" y="236" type="line"/>
+    </contour>
+    <contour>
+      <point x="93" y="81" type="line"/>
+      <point x="380" y="81" type="line"/>
+      <point x="380" y="135" type="line"/>
+      <point x="93" y="135" type="line"/>
+    </contour>
+    <component base="Y.sc"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>0,0.5,0.5,0.5</string>
+    </dict>
+  </lib>
+</glyph>

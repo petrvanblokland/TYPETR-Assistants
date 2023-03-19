@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="W.sc" format="2">
+  <advance width="753"/>
+  <guideline x="-300" y="-10" angle="0" name="Overshoot (-10/10)"/>
+  <guideline x="-200" y="512" angle="0" name="xHeight (512)"/>
+  <guideline x="-300" y="522" angle="0" name="Overshoot (522/10)"/>
+  <anchor x="376.0" y="496" name="top"/>
+  <outline>
+    <contour>
+      <point x="172" y="0" type="line"/>
+      <point x="254" y="0" type="line"/>
+      <point x="361" y="351" type="line"/>
+      <point x="376" y="408" type="line"/>
+      <point x="390" y="351" type="line"/>
+      <point x="498" y="0" type="line"/>
+      <point x="579" y="0" type="line"/>
+      <point x="741" y="512" type="line"/>
+      <point x="663" y="512" type="line"/>
+      <point x="557" y="166" type="line"/>
+      <point x="542" y="107" type="line"/>
+      <point x="526" y="166" type="line"/>
+      <point x="420" y="512" type="line"/>
+      <point x="340" y="512" type="line"/>
+      <point x="233" y="166" type="line"/>
+      <point x="219" y="112" type="line"/>
+      <point x="204" y="166" type="line"/>
+      <point x="98" y="512" type="line"/>
+      <point x="12" y="512" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>0,0.5,0.5,0.5</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <integer>0</integer>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.74363708496094</real>
+          <key>baselineMax</key>
+          <integer>750</integer>
+          <key>baselineMin</key>
+          <integer>-250</integer>
+          <key>glyphSource</key>
+          <string>a</string>
+          <key>interpolateX</key>
+          <real>119.42200469970703</real>
+          <key>interpolateXMax</key>
+          <integer>150</integer>
+          <key>interpolateXMin</key>
+          <integer>-50</integer>
+          <key>interpolateY</key>
+          <real>119.42200469970703</real>
+          <key>interpolateYMax</key>
+          <integer>150</integer>
+          <key>interpolateYMin</key>
+          <integer>-50</integer>
+          <key>lockInterpolationXY</key>
+          <integer>1</integer>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>81.88823699951172</real>
+          <key>scaleXMax</key>
+          <integer>200</integer>
+          <key>scaleXMin</key>
+          <integer>0</integer>
+          <key>scaleY</key>
+          <real>81.88823699951172</real>
+          <key>scaleYMax</key>
+          <integer>200</integer>
+          <key>scaleYMin</key>
+          <integer>0</integer>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

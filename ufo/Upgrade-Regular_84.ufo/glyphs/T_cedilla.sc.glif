@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Tcedilla.sc" format="2">
+  <advance width="441"/>
+  <guideline x="-300" y="-10" angle="0" name="Overshoot (-10/10)"/>
+  <guideline x="-200" y="512" angle="0" name="xHeight (512)"/>
+  <guideline x="-300" y="522" angle="0" name="Overshoot (522/10)"/>
+  <outline>
+    <component base="T.sc"/>
+    <component base="cedillacmb" xOffset="221"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>0,0.5,0.5,0.5</string>
+    </dict>
+  </lib>
+</glyph>

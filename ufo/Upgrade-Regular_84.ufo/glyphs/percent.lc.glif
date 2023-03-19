@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="percent.lc" format="2">
+  <advance width="741"/>
+  <guideline x="-300" y="-10" angle="0" name="Overshoot (-10/10)"/>
+  <guideline x="-300" y="476" angle="0" name="Overshoot (476/10)"/>
+  <guideline x="-300" y="-180" angle="0" name="Bottom lowercase figures (-180)"/>
+  <outline>
+    <contour>
+      <point x="171" y="205" type="curve" smooth="yes"/>
+      <point x="260" y="205"/>
+      <point x="309" y="264"/>
+      <point x="309" y="364" type="curve" smooth="yes"/>
+      <point x="309" y="462"/>
+      <point x="260" y="520"/>
+      <point x="171" y="520" type="curve" smooth="yes"/>
+      <point x="82" y="520"/>
+      <point x="32" y="462"/>
+      <point x="32" y="362" type="curve" smooth="yes"/>
+      <point x="32" y="263"/>
+      <point x="82" y="205"/>
+    </contour>
+    <contour>
+      <point x="229" y="0" type="line"/>
+      <point x="291" y="0" type="line"/>
+      <point x="517" y="512" type="line"/>
+      <point x="455" y="512" type="line"/>
+    </contour>
+    <contour>
+      <point x="171" y="263" type="curve" smooth="yes"/>
+      <point x="126" y="263"/>
+      <point x="97" y="295"/>
+      <point x="97" y="364" type="curve" smooth="yes"/>
+      <point x="97" y="431"/>
+      <point x="126" y="462"/>
+      <point x="171" y="462" type="curve" smooth="yes"/>
+      <point x="216" y="462"/>
+      <point x="245" y="430"/>
+      <point x="245" y="362" type="curve" smooth="yes"/>
+      <point x="245" y="295"/>
+      <point x="216" y="263"/>
+    </contour>
+    <contour>
+      <point x="573" y="-10" type="curve" smooth="yes"/>
+      <point x="659" y="-10"/>
+      <point x="708" y="49"/>
+      <point x="708" y="148" type="curve" smooth="yes"/>
+      <point x="708" y="246"/>
+      <point x="659" y="303"/>
+      <point x="573" y="303" type="curve" smooth="yes"/>
+      <point x="485" y="303"/>
+      <point x="435" y="245"/>
+      <point x="435" y="146" type="curve" smooth="yes"/>
+      <point x="435" y="48"/>
+      <point x="485" y="-10"/>
+    </contour>
+    <contour>
+      <point x="573" y="47" type="curve" smooth="yes"/>
+      <point x="528" y="47"/>
+      <point x="499" y="79"/>
+      <point x="499" y="148" type="curve" smooth="yes"/>
+      <point x="499" y="216"/>
+      <point x="528" y="247"/>
+      <point x="573" y="247" type="curve" smooth="yes"/>
+      <point x="618" y="247"/>
+      <point x="647" y="215"/>
+      <point x="647" y="146" type="curve" smooth="yes"/>
+      <point x="647" y="78"/>
+      <point x="618" y="47"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.petr.ptt</key>
+      <dict>
+        <key>winglabels</key>
+        <dict/>
+        <key>wings</key>
+        <dict/>
+      </dict>
+      <key>com.robofont.robohint</key>
+      <dict>
+        <key>wingcommands_json</key>
+        <string>{"aa": {"id": "aa", "name": "Anti-aliasing"}, "bw": {"id": "bw", "name": "Black &amp; white"}, "ct": {"id": "ct", "name": "Cleartype"}, "sp": {"id": "sp", "name": "Space constraint"}}</string>
+        <key>wingset_json</key>
+        <string>{"wings": {"78f4fa9b1aa5": {"id": "797ddac6bc8d", "name": "Testing IF-ELSE", "src": "/* Testing IF-ELSE */\nPUSHB[0] 1\nIF[] \nsrp0[] 24\nelse[]\nsrp0[] 11\neif[]\n"}, "78f4fa9b80d3": {}, "797d0c7721c2": {"id": "797d0c7721c2", "name": "(X) Horizontal hints for o", "src": "/* (X) Horizontal hints for o */\nSVTCA[X]\nSRP0[] 24\nMIRP[M&gt;RWh] 2 lsbRound\nMIRP[m&gt;rBl] 20 stemRound\nMDRP[M&gt;RGr] 8\nMIRP[m&gt;rBl] 14 stemRound\nSRP0[] 8\nMIRP[m&lt;RWh] 25 rsbRound\nIUP[X]\n/* (Y) Autohints for o */\nSVTCA[Y]\n/* ... */\nIUP[Y]"}, "797d108e34b0": {"id": "797d108e34b0", "name": "(X) Autohints for o", "src": "/* (X) Autohints for o */\nSVTCA[X]\nSRP0[] 24\nMIRP[M&gt;RWh] 2 lsbRound\nMIRP[m&gt;rBl] 20 stemRound\nMDRP[M&gt;RGr] 14\nMIRP[m&gt;rBl] 8 stemRound\nSRP0[] 8\nMIRP[m&lt;RWh] 25 rsbRound\n/* (Y) Autohints for o */\nSVTCA[Y]\n/* ... */\nIUP[X]\nIUP[Y]\n"}}}</string>
+      </dict>
+      <key>com.typemytype.roboFont.layerData</key>
+      <dict/>
+      <key>public.markColor</key>
+      <string>0,0.5,0.5,0.5</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <string>4</string>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.3125</real>
+          <key>interpolateX</key>
+          <real>130.54063415527344</real>
+          <key>interpolateY</key>
+          <real>130.54063415527344</real>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>72.5374984741211</real>
+          <key>scaleY</key>
+          <real>72.5374984741211</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

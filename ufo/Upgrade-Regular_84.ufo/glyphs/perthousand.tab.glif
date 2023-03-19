@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="perthousand.tab" format="2">
+  <advance width="650"/>
+  <guideline x="-300" y="-9" angle="0" name="Overshoot (-9/9)"/>
+  <guideline x="-300" y="667" angle="0" name="Overshoot (667/9)"/>
+  <outline>
+    <contour>
+      <point x="144" y="432" type="curve" smooth="yes"/>
+      <point x="209" y="432"/>
+      <point x="246" y="478"/>
+      <point x="246" y="551" type="curve" smooth="yes"/>
+      <point x="246" y="621"/>
+      <point x="209" y="667"/>
+      <point x="144" y="667" type="curve" smooth="yes"/>
+      <point x="80" y="667"/>
+      <point x="42" y="620"/>
+      <point x="42" y="549" type="curve" smooth="yes"/>
+      <point x="42" y="478"/>
+      <point x="80" y="432"/>
+    </contour>
+    <contour>
+      <point x="144" y="483" type="curve" smooth="yes"/>
+      <point x="115" y="483"/>
+      <point x="97" y="508"/>
+      <point x="97" y="551" type="curve" smooth="yes"/>
+      <point x="97" y="592"/>
+      <point x="115" y="616"/>
+      <point x="144" y="616" type="curve" smooth="yes"/>
+      <point x="174" y="616"/>
+      <point x="192" y="591"/>
+      <point x="192" y="549" type="curve" smooth="yes"/>
+      <point x="192" y="507"/>
+      <point x="174" y="483"/>
+    </contour>
+    <contour>
+      <point x="33" y="161" type="line"/>
+      <point x="74" y="125" type="line"/>
+      <point x="451" y="556" type="line"/>
+      <point x="410" y="592" type="line"/>
+    </contour>
+    <contour>
+      <point x="281" y="-9" type="curve" smooth="yes"/>
+      <point x="345" y="-9"/>
+      <point x="382" y="37"/>
+      <point x="382" y="110" type="curve" smooth="yes"/>
+      <point x="382" y="180"/>
+      <point x="345" y="226"/>
+      <point x="281" y="226" type="curve" smooth="yes"/>
+      <point x="216" y="226"/>
+      <point x="179" y="179"/>
+      <point x="179" y="108" type="curve" smooth="yes"/>
+      <point x="179" y="37"/>
+      <point x="216" y="-9"/>
+    </contour>
+    <contour>
+      <point x="516" y="-9" type="curve" smooth="yes"/>
+      <point x="581" y="-9"/>
+      <point x="618" y="37"/>
+      <point x="618" y="110" type="curve" smooth="yes"/>
+      <point x="618" y="180"/>
+      <point x="581" y="226"/>
+      <point x="516" y="226" type="curve" smooth="yes"/>
+      <point x="452" y="226"/>
+      <point x="414" y="179"/>
+      <point x="414" y="108" type="curve" smooth="yes"/>
+      <point x="414" y="37"/>
+      <point x="452" y="-9"/>
+    </contour>
+    <contour>
+      <point x="281" y="42" type="curve" smooth="yes"/>
+      <point x="251" y="42"/>
+      <point x="233" y="67"/>
+      <point x="233" y="110" type="curve" smooth="yes"/>
+      <point x="233" y="151"/>
+      <point x="251" y="175"/>
+      <point x="281" y="175" type="curve" smooth="yes"/>
+      <point x="310" y="175"/>
+      <point x="328" y="150"/>
+      <point x="328" y="108" type="curve" smooth="yes"/>
+      <point x="328" y="66"/>
+      <point x="310" y="42"/>
+    </contour>
+    <contour>
+      <point x="516" y="42" type="curve" smooth="yes"/>
+      <point x="487" y="42"/>
+      <point x="469" y="67"/>
+      <point x="469" y="110" type="curve" smooth="yes"/>
+      <point x="469" y="151"/>
+      <point x="487" y="175"/>
+      <point x="516" y="175" type="curve" smooth="yes"/>
+      <point x="546" y="175"/>
+      <point x="564" y="150"/>
+      <point x="564" y="108" type="curve" smooth="yes"/>
+      <point x="564" y="66"/>
+      <point x="546" y="42"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.petr.ptt</key>
+      <dict>
+        <key>winglabels</key>
+        <dict/>
+        <key>wings</key>
+        <dict/>
+      </dict>
+      <key>com.robofont.robohint</key>
+      <dict>
+        <key>wingcommands_json</key>
+        <string>{"aa": {"id": "aa", "name": "Anti-aliasing"}, "bw": {"id": "bw", "name": "Black &amp; white"}, "ct": {"id": "ct", "name": "Cleartype"}, "sp": {"id": "sp", "name": "Space constraint"}}</string>
+        <key>wingset_json</key>
+        <string>{"wings": {"78f4fa9b1aa5": {"id": "797ddac6bc8d", "name": "Testing IF-ELSE", "src": "/* Testing IF-ELSE */\nPUSHB[0] 1\nIF[] \nsrp0[] 24\nelse[]\nsrp0[] 11\neif[]\n"}, "78f4fa9b80d3": {}, "797d0c7721c2": {"id": "797d0c7721c2", "name": "(X) Horizontal hints for o", "src": "/* (X) Horizontal hints for o */\nSVTCA[X]\nSRP0[] 24\nMIRP[M&gt;RWh] 2 lsbRound\nMIRP[m&gt;rBl] 20 stemRound\nMDRP[M&gt;RGr] 8\nMIRP[m&gt;rBl] 14 stemRound\nSRP0[] 8\nMIRP[m&lt;RWh] 25 rsbRound\nIUP[X]\n/* (Y) Autohints for o */\nSVTCA[Y]\n/* ... */\nIUP[Y]"}, "797d108e34b0": {"id": "797d108e34b0", "name": "(X) Autohints for o", "src": "/* (X) Autohints for o */\nSVTCA[X]\nSRP0[] 24\nMIRP[M&gt;RWh] 2 lsbRound\nMIRP[m&gt;rBl] 20 stemRound\nMDRP[M&gt;RGr] 14\nMIRP[m&gt;rBl] 8 stemRound\nSRP0[] 8\nMIRP[m&lt;RWh] 25 rsbRound\n/* (Y) Autohints for o */\nSVTCA[Y]\n/* ... */\nIUP[X]\nIUP[Y]\n"}}}</string>
+      </dict>
+      <key>com.typemytype.roboFont.layerData</key>
+      <dict/>
+      <key>public.markColor</key>
+      <string>0,0.5,0.5,0.5</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <string>4</string>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.3125</real>
+          <key>interpolateX</key>
+          <real>130.54063415527344</real>
+          <key>interpolateY</key>
+          <real>130.54063415527344</real>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>72.5374984741211</real>
+          <key>scaleY</key>
+          <real>72.5374984741211</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

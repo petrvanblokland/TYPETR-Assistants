@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="gcaron" format="2">
+  <advance width="520"/>
+  <unicode hex="01E7"/>
+  <guideline x="-300" y="-10" angle="0" name="Overshoot (-10/10)"/>
+  <guideline x="-300" y="476" angle="0" name="Overshoot (476/10)"/>
+  <outline>
+    <component base="g"/>
+    <component base="caroncmb" xOffset="260"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>0,0.5,0.5,0.5</string>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="B.sc" format="2">
+  <advance width="446"/>
+  <guideline x="-300" y="-10" angle="0" name="Overshoot (-10/10)" identifier="dPCC2FWf0Q"/>
+  <guideline x="-200" y="512" angle="0" name="xHeight (512)" identifier="5ZlFJhjfOE"/>
+  <guideline x="-300" y="522" angle="0" name="Overshoot (522/10)" identifier="zGawYGhqks"/>
+  <outline>
+    <contour>
+      <point x="66" y="0" type="line"/>
+      <point x="234" y="0" type="line" smooth="yes"/>
+      <point x="347" y="0"/>
+      <point x="402" y="55"/>
+      <point x="402" y="138" type="curve" smooth="yes"/>
+      <point x="402" y="202"/>
+      <point x="365" y="249"/>
+      <point x="292" y="263" type="curve"/>
+      <point x="352" y="279"/>
+      <point x="388" y="325"/>
+      <point x="388" y="383" type="curve" smooth="yes"/>
+      <point x="388" y="462"/>
+      <point x="337" y="512"/>
+      <point x="228" y="512" type="curve" smooth="yes"/>
+      <point x="66" y="512" type="line"/>
+    </contour>
+    <contour>
+      <point x="148" y="291" type="line"/>
+      <point x="148" y="447" type="line"/>
+      <point x="214" y="447" type="line" smooth="yes"/>
+      <point x="270" y="447"/>
+      <point x="305" y="422"/>
+      <point x="305" y="371" type="curve" smooth="yes"/>
+      <point x="305" y="318"/>
+      <point x="269" y="291"/>
+      <point x="213" y="291" type="curve" smooth="yes"/>
+    </contour>
+    <contour>
+      <point x="148" y="66" type="line"/>
+      <point x="148" y="229" type="line"/>
+      <point x="222" y="229" type="line" smooth="yes"/>
+      <point x="281" y="229"/>
+      <point x="319" y="203"/>
+      <point x="319" y="148" type="curve" smooth="yes"/>
+      <point x="319" y="93"/>
+      <point x="282" y="66"/>
+      <point x="227" y="66" type="curve" smooth="yes"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>0,0.5,0.5,0.5</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <integer>0</integer>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.74363708496094</real>
+          <key>baselineMax</key>
+          <integer>750</integer>
+          <key>baselineMin</key>
+          <integer>-250</integer>
+          <key>glyphSource</key>
+          <string>a</string>
+          <key>interpolateX</key>
+          <real>119.42200469970703</real>
+          <key>interpolateXMax</key>
+          <integer>150</integer>
+          <key>interpolateXMin</key>
+          <integer>-50</integer>
+          <key>interpolateY</key>
+          <real>119.42200469970703</real>
+          <key>interpolateYMax</key>
+          <integer>150</integer>
+          <key>interpolateYMin</key>
+          <integer>-50</integer>
+          <key>lockInterpolationXY</key>
+          <integer>1</integer>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>81.88823699951172</real>
+          <key>scaleXMax</key>
+          <integer>200</integer>
+          <key>scaleXMin</key>
+          <integer>0</integer>
+          <key>scaleY</key>
+          <real>81.88823699951172</real>
+          <key>scaleYMax</key>
+          <integer>200</integer>
+          <key>scaleYMin</key>
+          <integer>0</integer>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

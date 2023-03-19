@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="s.sups" format="2">
+  <advance width="310"/>
+  <guideline x="-200" y="440" angle="0" name="Baseline (440)"/>
+  <guideline x="-300" y="431" angle="0" name="Overshoot (431/9)"/>
+  <guideline x="-200" y="800" angle="0" name="xHeight (800)"/>
+  <guideline x="-300" y="809" angle="0" name="Overshoot (809/9)"/>
+  <guideline x="-300" y="993" angle="0" name="SUPS Ascender (993)"/>
+  <guideline x="-300" y="288" angle="0" name="SUPS Descender (288)"/>
+  <outline>
+    <contour>
+      <point x="151" y="431" type="curve" smooth="yes"/>
+      <point x="232" y="431"/>
+      <point x="277" y="474"/>
+      <point x="277" y="543" type="curve" smooth="yes"/>
+      <point x="277" y="598"/>
+      <point x="244" y="636"/>
+      <point x="175" y="656" type="curve" smooth="yes"/>
+      <point x="161" y="660" type="line" smooth="yes"/>
+      <point x="125" y="670"/>
+      <point x="108" y="685"/>
+      <point x="108" y="710" type="curve" smooth="yes"/>
+      <point x="108" y="737"/>
+      <point x="127" y="753"/>
+      <point x="163" y="753" type="curve" smooth="yes"/>
+      <point x="197" y="753"/>
+      <point x="232" y="743"/>
+      <point x="264" y="724" type="curve"/>
+      <point x="264" y="787" type="line"/>
+      <point x="229" y="802"/>
+      <point x="190" y="809"/>
+      <point x="153" y="809" type="curve" smooth="yes"/>
+      <point x="75" y="809"/>
+      <point x="33" y="769"/>
+      <point x="33" y="704" type="curve" smooth="yes"/>
+      <point x="33" y="653"/>
+      <point x="64" y="613"/>
+      <point x="127" y="595" type="curve" smooth="yes"/>
+      <point x="141" y="591" type="line" smooth="yes"/>
+      <point x="183" y="579"/>
+      <point x="203" y="564"/>
+      <point x="203" y="536" type="curve" smooth="yes"/>
+      <point x="203" y="505"/>
+      <point x="181" y="488"/>
+      <point x="144" y="488" type="curve" smooth="yes"/>
+      <point x="105" y="488"/>
+      <point x="67" y="499"/>
+      <point x="36" y="522" type="curve"/>
+      <point x="36" y="457" type="line"/>
+      <point x="70" y="440"/>
+      <point x="111" y="431"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>0,0.5,0.5,0.5</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <integer>0</integer>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>0.0</real>
+          <key>glyphSource</key>
+          <string></string>
+          <key>interpolateX</key>
+          <real>100.0</real>
+          <key>interpolateY</key>
+          <real>100.0</real>
+          <key>lockInterpolationXY</key>
+          <integer>1</integer>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>100.0</real>
+          <key>scaleY</key>
+          <real>100.0</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

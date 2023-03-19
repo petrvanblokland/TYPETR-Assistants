@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="d.sups" format="2">
+  <advance width="398"/>
+  <guideline x="-200" y="440" angle="0" name="Baseline (440)"/>
+  <guideline x="-300" y="431" angle="0" name="Overshoot (431/9)"/>
+  <guideline x="-200" y="800" angle="0" name="xHeight (800)"/>
+  <guideline x="-300" y="809" angle="0" name="Overshoot (809/9)"/>
+  <guideline x="-300" y="993" angle="0" name="SUPS Ascender (993)"/>
+  <guideline x="-300" y="288" angle="0" name="SUPS Descender (288)"/>
+  <outline>
+    <contour>
+      <point x="179" y="431" type="curve" smooth="yes"/>
+      <point x="222" y="431"/>
+      <point x="260" y="451"/>
+      <point x="282" y="488" type="curve"/>
+      <point x="287" y="440" type="line"/>
+      <point x="354" y="440" type="line"/>
+      <point x="354" y="993" type="line"/>
+      <point x="281" y="993" type="line"/>
+      <point x="281" y="782" type="line"/>
+      <point x="255" y="799"/>
+      <point x="224" y="809"/>
+      <point x="194" y="809" type="curve" smooth="yes"/>
+      <point x="95" y="809"/>
+      <point x="28" y="737"/>
+      <point x="28" y="616" type="curve" smooth="yes"/>
+      <point x="28" y="497"/>
+      <point x="91" y="431"/>
+    </contour>
+    <contour>
+      <point x="199" y="495" type="curve" smooth="yes"/>
+      <point x="139" y="495"/>
+      <point x="102" y="543"/>
+      <point x="102" y="619" type="curve" smooth="yes"/>
+      <point x="102" y="694"/>
+      <point x="141" y="744"/>
+      <point x="205" y="744" type="curve" smooth="yes"/>
+      <point x="232" y="744"/>
+      <point x="260" y="734"/>
+      <point x="281" y="716" type="curve"/>
+      <point x="281" y="542" type="line"/>
+      <point x="265" y="513"/>
+      <point x="235" y="495"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>0,0.5,0.5,0.5</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <integer>0</integer>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>0.0</real>
+          <key>glyphSource</key>
+          <string></string>
+          <key>interpolateX</key>
+          <real>100.0</real>
+          <key>interpolateY</key>
+          <real>100.0</real>
+          <key>lockInterpolationXY</key>
+          <integer>1</integer>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>100.0</real>
+          <key>scaleY</key>
+          <real>100.0</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

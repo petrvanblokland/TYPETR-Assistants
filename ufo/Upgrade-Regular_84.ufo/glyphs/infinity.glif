@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="infinity" format="2">
+  <advance width="819"/>
+  <unicode hex="221E"/>
+  <guideline x="-300" y="-10" angle="0" name="Overshoot (-10/10)"/>
+  <guideline x="-300" y="476" angle="0" name="Overshoot (476/10)"/>
+  <outline>
+    <contour>
+      <point x="219" y="41" type="curve" smooth="yes"/>
+      <point x="287" y="41"/>
+      <point x="346" y="81"/>
+      <point x="401" y="168" type="curve"/>
+      <point x="452" y="82"/>
+      <point x="520" y="41"/>
+      <point x="594" y="41" type="curve" smooth="yes"/>
+      <point x="708" y="41"/>
+      <point x="782" y="115"/>
+      <point x="782" y="234" type="curve" smooth="yes"/>
+      <point x="782" y="352"/>
+      <point x="713" y="426"/>
+      <point x="605" y="426" type="curve" smooth="yes"/>
+      <point x="540" y="426"/>
+      <point x="475" y="387"/>
+      <point x="419" y="299" type="curve"/>
+      <point x="369" y="385"/>
+      <point x="303" y="427"/>
+      <point x="220" y="427" type="curve" smooth="yes"/>
+      <point x="112" y="427"/>
+      <point x="37" y="353"/>
+      <point x="37" y="234" type="curve" smooth="yes"/>
+      <point x="37" y="116"/>
+      <point x="107" y="41"/>
+    </contour>
+    <contour>
+      <point x="116" y="235" type="curve" smooth="yes"/>
+      <point x="116" y="307"/>
+      <point x="162" y="353"/>
+      <point x="229" y="353" type="curve" smooth="yes"/>
+      <point x="277" y="353"/>
+      <point x="317" y="326"/>
+      <point x="368" y="234" type="curve"/>
+      <point x="323" y="149"/>
+      <point x="275" y="115"/>
+      <point x="230" y="115" type="curve" smooth="yes"/>
+      <point x="162" y="115"/>
+      <point x="116" y="161"/>
+    </contour>
+    <contour>
+      <point x="591" y="352" type="curve" smooth="yes"/>
+      <point x="657" y="352"/>
+      <point x="703" y="306"/>
+      <point x="703" y="234" type="curve" smooth="yes"/>
+      <point x="703" y="161"/>
+      <point x="657" y="115"/>
+      <point x="594" y="115" type="curve" smooth="yes"/>
+      <point x="542" y="115"/>
+      <point x="498" y="153"/>
+      <point x="451" y="237" type="curve"/>
+      <point x="499" y="318"/>
+      <point x="546" y="352"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.robofont.robohint</key>
+      <dict>
+        <key>wingcommands_json</key>
+        <string>{"aa": {"id": "aa", "name": "Anti-aliasing", "wingorder": [["79298df909c3", false], ["79298defe255", false], ["79298df0a8b7", false]]}, "bw": {"id": "bw", "name": "Black &amp; white", "wingorder": [["79298df909c3", false], ["79298defe255", false], ["79298df0a8b7", false]]}, "ct": {"id": "ct", "name": "Cleartype", "wingorder": [["79298df909c3", false], ["79298defe255", false], ["79298df0a8b7", false]]}, "sp": {"id": "sp", "name": "Space constraint", "wingorder": [["79298df909c3", false], ["79298defe255", false], ["79298df0a8b7", false]]}}</string>
+        <key>wingset_json</key>
+        <string>{"wings": {"79298defe255": {"axis": "x", "id": "79298defe255", "name": "DB B", "src": "# DB B\ny\nindirect round @bottom capBaseline\nindirect min round black 24 capStem\nindirect round @top capHeight\nindirect min round black 23 capStem\nreference1 @bottom\nreference2 @top\ninterpolate 15\nround super 73\ndirect 15\nround grid\nindirect reference min round black 32 capStem\ninterpolate 8\nx\nreference0 @origin\nindirect reference round white @bottom capLsb\nindirect reference min round black 24 capStem\nshift 15\nround super 71\nreference round gray 28\nround grid\nindirect reference round black @right capStem\nindirect min round white @width capRsb\nreference round gray 5\nindirect reference round black 19 capStem\nreference1 @right\nreference2 15\ninterpolate 8\n# ---\ninterpolate x\ninterpolate y\n\n\n"}, "79298df909c3": {"id": "79298df909c3", "name": "(X) Autohints for B", "src": "/* (X) Autohints for B */\nSVTCA[X]\nSRP0[] 33\nMIRP[M&gt;RWh] 0 capLsb\nMIRP[m&gt;rBl] 24 capStem\nMIRP[m&gt;rBl] 24 capStem\nMDRP[M&gt;RGr] 19\nMIRP[m&gt;rBl] 5 capStem\nMDRP[M&gt;RGr] 28\nMIRP[m&gt;rBl] 5 capStem\nMIRP[m&gt;rBl] 11 capStem\nSRP0[] 11\nMIRP[m&lt;RWh] 34 capRsb\n/* (Y) Autohints for B */\nSVTCA[Y]\n/* ... */\nIUP[X]\nIUP[Y]"}, "7a1a168fa350": {"axis": "x", "id": "7a1a168fa350", "name": "Simple CT only B", "src": "# Simple CT only B\ny\nindirect round @bottom capBaseline\nreference black 24 # @capstemtop\n\nindirect round @top capHeight\nreference black 23 # @capstembottom\n\nreference1 @top\nreference2 @bottom\ninterpolate 15 # @capstemtop\n\ndirect round 15\nreference black 32 # @capstembottom\nreference0 15 # @capstemtop\nreference gray 8 # @crotch\n\ninterpolate y\n"}}}</string>
+      </dict>
+      <key>com.robofont.robohint.assembly</key>
+      <string>SVTCA[0]
+PUSHB[001] 0 8
+MIAP[1]
+PUSHB[001] 24 68
+MIRP[01101]
+PUSHB[001] 1 2
+MIAP[1]
+PUSHB[001] 23 68
+MIRP[01101]
+PUSHB[000] 0
+SRP1[]
+PUSHB[000] 1
+SRP2[]
+PUSHB[000] 15
+IP[]
+PUSHB[000] 73
+SROUND[]
+PUSHB[000] 15
+MDAP[0]
+RTG[]
+PUSHB[001] 32 68
+MIRP[11101]
+PUSHB[000] 8
+IP[]
+SVTCA[1]
+PUSHB[000] 33
+SRP0[]
+PUSHB[001] 0 160
+MIRP[10110]
+PUSHB[001] 24 68
+MIRP[11101]
+PUSHB[000] 15
+SHP[0]
+PUSHB[000] 71
+SROUND[]
+PUSHB[000] 28
+MDRP[10100]
+RTG[]
+PUSHB[001] 11 68
+MIRP[10101]
+PUSHB[001] 34 161
+MIRP[01110]
+PUSHB[000] 5
+MDRP[10100]
+PUSHB[001] 19 68
+MIRP[10101]
+PUSHB[000] 11
+SRP1[]
+PUSHB[000] 15
+SRP2[]
+PUSHB[000] 8
+IP[]
+IUP[1]
+IUP[0]</string>
+      <key>com.typemytype.roboFont.layerData</key>
+      <dict/>
+      <key>floqMemesList</key>
+      <array/>
+      <key>floqValues</key>
+      <dict>
+        <key>parentID</key>
+        <string>none</string>
+      </dict>
+      <key>public.markColor</key>
+      <string>0,0.5,0.5,0.5</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <string>4</string>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.18153381347656</real>
+          <key>baselineMax</key>
+          <string>-100</string>
+          <key>baselineMin</key>
+          <string>-250</string>
+          <key>interpolateX</key>
+          <real>130.54063415527344</real>
+          <key>interpolateXMax</key>
+          <string>300</string>
+          <key>interpolateXMin</key>
+          <string>0</string>
+          <key>interpolateY</key>
+          <real>130.54063415527344</real>
+          <key>interpolateYMax</key>
+          <string>300</string>
+          <key>interpolateYMin</key>
+          <string>0</string>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>72.5374984741211</real>
+          <key>scaleXMax</key>
+          <string>200</string>
+          <key>scaleXMin</key>
+          <string>0</string>
+          <key>scaleY</key>
+          <real>72.5374984741211</real>
+          <key>scaleYMax</key>
+          <string>200</string>
+          <key>scaleYMin</key>
+          <string>0</string>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

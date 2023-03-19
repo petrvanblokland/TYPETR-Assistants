@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="ordfeminine" format="2">
+  <advance width="353"/>
+  <unicode hex="00AA"/>
+  <guideline x="-200" y="360" angle="0" name="Baseline (360)"/>
+  <guideline x="-300" y="351" angle="0" name="Overshoot (351/9)"/>
+  <guideline x="-200" y="720" angle="0" name="xHeight (720)"/>
+  <guideline x="-300" y="729" angle="0" name="Overshoot (729/9)"/>
+  <outline>
+    <contour>
+      <point x="38" y="233" type="line"/>
+      <point x="313" y="233" type="line"/>
+      <point x="313" y="299" type="line"/>
+      <point x="38" y="299" type="line"/>
+    </contour>
+    <component base="a.sups" yOffset="-80"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>0,0.5,0.5,0.5</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <integer>0</integer>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-169.7586669921875</real>
+          <key>glyphSource</key>
+          <string>n</string>
+          <key>interpolateX</key>
+          <real>139.87124633789062</real>
+          <key>interpolateY</key>
+          <real>139.87124633789062</real>
+          <key>lockInterpolationXY</key>
+          <integer>1</integer>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>76.15612030029297</real>
+          <key>scaleY</key>
+          <real>76.15612030029297</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

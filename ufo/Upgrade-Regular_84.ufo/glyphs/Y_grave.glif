@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Ygrave" format="2">
+  <advance width="590"/>
+  <unicode hex="1EF2"/>
+  <guideline x="-300" y="-10" angle="0" name="Overshoot (-10/10)"/>
+  <guideline x="-300" y="668" angle="0" name="Overshoot (668/10)"/>
+  <outline>
+    <component base="Y"/>
+    <component base="gravecmb.uc" xOffset="295"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>0,0.5,0.5,0.5</string>
+    </dict>
+  </lib>
+</glyph>

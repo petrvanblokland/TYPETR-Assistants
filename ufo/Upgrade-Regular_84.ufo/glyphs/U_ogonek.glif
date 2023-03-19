@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Uogonek" format="2">
+  <advance width="665"/>
+  <unicode hex="0172"/>
+  <guideline x="-300" y="-14" angle="0" name="Overshoot (-14/14)"/>
+  <guideline x="-300" y="672" angle="0" name="Overshoot (672/14)"/>
+  <outline>
+    <contour>
+      <point x="506" y="-220" type="curve"/>
+      <point x="506" y="-153" type="line"/>
+      <point x="443" y="-153"/>
+      <point x="403" y="-119"/>
+      <point x="403" y="-68" type="curve" smooth="yes"/>
+      <point x="403" y="-31"/>
+      <point x="422" y="-4"/>
+      <point x="456" y="12" type="curve" smooth="yes"/>
+      <point x="545" y="50"/>
+      <point x="599" y="141"/>
+      <point x="599" y="258" type="curve" smooth="yes"/>
+      <point x="599" y="658" type="line"/>
+      <point x="517" y="658" type="line"/>
+      <point x="517" y="258" type="line" smooth="yes"/>
+      <point x="517" y="142"/>
+      <point x="447" y="66"/>
+      <point x="334" y="66" type="curve" smooth="yes"/>
+      <point x="223" y="66"/>
+      <point x="150" y="142"/>
+      <point x="150" y="258" type="curve" smooth="yes"/>
+      <point x="150" y="658" type="line"/>
+      <point x="66" y="658" type="line"/>
+      <point x="66" y="258" type="line" smooth="yes"/>
+      <point x="66" y="93"/>
+      <point x="170" y="-14"/>
+      <point x="333" y="-14" type="curve" smooth="yes"/>
+      <point x="339" y="-14"/>
+      <point x="344" y="-14"/>
+      <point x="350" y="-14" type="curve"/>
+      <point x="338" y="-33"/>
+      <point x="331" y="-56"/>
+      <point x="331" y="-83" type="curve" smooth="yes"/>
+      <point x="331" y="-165"/>
+      <point x="399" y="-220"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>0,0.5,0.5,0.5</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <string>4</string>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.3125</real>
+          <key>interpolateX</key>
+          <real>130.54063415527344</real>
+          <key>interpolateY</key>
+          <real>130.54063415527344</real>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>72.5374984741211</real>
+          <key>scaleY</key>
+          <real>72.5374984741211</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>
