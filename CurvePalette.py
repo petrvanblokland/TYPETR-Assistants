@@ -704,7 +704,10 @@ class CurvePaletteController(WindowController):
         if g is None:
             g = self.getCurrentGlyph()
         if g is not None:
-            for contour in g.con
+            for contour in g.contours:
+                for p in contour.points:
+                    p.selected = False
+                    
     def getSelectedCurvePoints(self, g):
         """Answer a tuple of 3 dictionaries of points that are selected/unselected in the glyph.
         """
