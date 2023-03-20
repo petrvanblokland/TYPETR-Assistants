@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="a.sinf" format="2">
   <advance width="353"/>
-  <guideline x="-200" y="-170" angle="0" name="Baseline (-170)"/>
-  <guideline x="-300" y="-179" angle="0" name="Overshoot (-179/9)"/>
-  <guideline x="-200" y="190" angle="0" name="xHeight (190)"/>
-  <guideline x="-300" y="199" angle="0" name="Overshoot (199/9)"/>
-  <guideline x="-300" y="383" angle="0" name="SINF Ascender (383)"/>
-  <guideline x="-300" y="-322" angle="0" name="SINF Descender (-322)"/>
+  <guideline x="-200" y="-170" angle="0" name="Baseline (-170)" identifier="QUsvzc9XV8"/>
+  <guideline x="-300" y="-179" angle="0" name="Overshoot (-179/9)" identifier="wavVmqi67C"/>
+  <guideline x="-200" y="190" angle="0" name="xHeight (190)" identifier="aNN0m4thDM"/>
+  <guideline x="-300" y="199" angle="0" name="Overshoot (199/9)" identifier="Upb5yCh0ZV"/>
+  <guideline x="-300" y="383" angle="0" name="SINF Ascender (383)" identifier="7qipyXcbVd"/>
+  <guideline x="-300" y="-322" angle="0" name="SINF Descender (-322)" identifier="2ISCKV89qX"/>
   <outline>
     <component base="a.sups" yOffset="-610"/>
   </outline>

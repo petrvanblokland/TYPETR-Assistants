@@ -1,22 +1,22 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="b.sups" format="2">
   <advance width="393"/>
-  <guideline x="-200" y="440" angle="0" name="Baseline (440)"/>
-  <guideline x="-300" y="431" angle="0" name="Overshoot (431/9)"/>
-  <guideline x="-200" y="800" angle="0" name="xHeight (800)"/>
-  <guideline x="-300" y="809" angle="0" name="Overshoot (809/9)"/>
-  <guideline x="-300" y="993" angle="0" name="SUPS Ascender (993)"/>
-  <guideline x="-300" y="288" angle="0" name="SUPS Descender (288)"/>
+  <guideline x="-200" y="440" angle="0" name="Baseline (440)" identifier="dJ6RqifbkE"/>
+  <guideline x="-300" y="431" angle="0" name="Overshoot (431/9)" identifier="6NaYzo2IB3"/>
+  <guideline x="-200" y="800" angle="0" name="xHeight (800)" identifier="YoXsZkcwhP"/>
+  <guideline x="-300" y="809" angle="0" name="Overshoot (809/9)" identifier="k3NviuAIf7"/>
+  <guideline x="-300" y="993" angle="0" name="SUPS Ascender (993)" identifier="7GFbVm7ZZZ"/>
+  <guideline x="-300" y="288" angle="0" name="SUPS Descender (288)" identifier="fOGG2n1O2p"/>
   <outline>
     <contour>
       <point x="179" y="431" type="curve" smooth="yes"/>
       <point x="292" y="431"/>
-      <point x="364" y="507"/>
-      <point x="364" y="626" type="curve" smooth="yes"/>
-      <point x="364" y="737"/>
-      <point x="304" y="809"/>
-      <point x="212" y="809" type="curve" smooth="yes"/>
-      <point x="176" y="809"/>
+      <point x="363" y="507"/>
+      <point x="363" y="626" type="curve" smooth="yes"/>
+      <point x="363" y="737"/>
+      <point x="303" y="809"/>
+      <point x="211" y="809" type="curve" smooth="yes"/>
+      <point x="175" y="809"/>
       <point x="140" y="795"/>
       <point x="115" y="771" type="curve"/>
       <point x="115" y="993" type="line"/>

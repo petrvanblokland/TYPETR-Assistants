@@ -10,6 +10,8 @@ import math
 from copy import copy
 from merz import MerzView
 from vanilla import Window, PopUpButton, CheckBox
+from AppKit import *
+
 from mojo.roboFont import OpenWindow
 from mojo.subscriber import WindowController
 from mojo.subscriber import Subscriber, WindowController, registerGlyphEditorSubscriber, unregisterGlyphEditorSubscriber
@@ -26,15 +28,17 @@ GRID_LINE = 0.25
 GRID_COLOR = (0.25, 0.25, 0.25, 1)
 DIAGONAL_COLOR = (0.85, 0.85, 0.85, 1)
 BEST_CIRCLE_CELL_COLOR = (0.15, 0.15, 0.15, 1)
+BEST_CIRCLE_FILL_COLOR = (1, 1, 1, 0.5)
+MARQUEE_COLOR = (0, 0, 0, 0.15)
 POINT_SIZE = 8
 INVISIBLE_BUTTON_COLOR = (1, 0, 0, 0.5)
 # Point-tension colors
 POINT_FILL_COLOR = (1, 1, 0, 1)
 POINT_STROKE_COLOR = (0, 0, 0, 1)
 # Cell colors
-ALL_SELECTED_COLOR = (1, 0, 0, 0.9)
-PART_SELECTED_COLOR = (0, 0, 1, 0.9)
-UNSELECTED_COLOR = (0, 0, 0, 0.9)
+ALL_SELECTED_COLOR = (1, 0, 0, 0.85)
+PART_SELECTED_COLOR = (0, 0, 1, 0.85)
+UNSELECTED_COLOR = (0, 0.5, 0, 0.85)
 
 MAX_CELLS = 80 # More?
 MAX_POINTS = 80 # More?
@@ -332,7 +336,10 @@ class CurvePaletteController(WindowController):
 
     def build(self):
         self.lastMouseGrid = None # Save the last mouse grid click
-        
+        self.lastMouse = None # Actual position of last mouse click
+        self.lastMouseDrag = None # Actual position of last mouse drag
+        self.selectedDragPoints = None # Storage of selected points, while dragging
+
         self.w = Window((W + ML + MR, H + MT + MB), "Curve Palette")
         self.w.view = MerzView(
             (ML, MT, -MR, -MB),
@@ -392,9 +399,15 @@ class CurvePaletteController(WindowController):
         self.bestCircleCell = container.appendOvalSublayer(
                 position=(FAR, 0),
                 size=(cw, cw),
-                fillColor=None,
+                fillColor=BEST_CIRCLE_FILL_COLOR,
                 strokeColor=BEST_CIRCLE_CELL_COLOR,
-                strokeWidth=1,
+                strokeWidth=2,
+            )    
+        self.selectionMarquee = container.appendRectangleSublayer(
+                position=(FAR, 0),
+                size=(cw, cw),
+                strokeColor=None,
+                fillColor=MARQUEE_COLOR,
             )    
         self.w.rMinPopup = PopUpButton((ML, H + POPUP_HEIGHT, POPUP_WIDTH, POPUP_HEIGHT),
                               [str(v) for v in MIN_RANGE],
@@ -466,18 +479,77 @@ class CurvePaletteController(WindowController):
         return int(x / cw), int(y / cw)
                      
     def mouseDown(self, view, event):
+        self.lastMouse = self.lastMouseDrag = self.getMousePosition(event)
         cx, cy = self.getMouseCellPosition(event)
         self.lastMouseGrid = cx, cy
-        self.updateCurves(cx, cy)
+        modifiers = event.modifierFlags()
+        alternateDown = modifiers & NSAlternateKeyMask
+        if alternateDown:
+            self.unselectPoints()
+        else:
+            self.updateCurves(cx, cy)
+            self.glyphChanged()
 
     def mouseDragged(self, view, event):
-        cx, cy = self.getMouseCellPosition(event)
-        if (cx, cy) != self.lastMouseGrid:
-            self.lastMouseGrid = cx, cy
-            self.updateCurves(cx, cy)
+        modifiers = event.modifierFlags()
+        shiftDown = modifiers & NSShiftKeyMask
+        alternateDown = modifiers & NSAlternateKeyMask
+        if alternateDown:
+            if self.selectedDragPoints is None: # Not selected yet
+                g = self.getCurrentGlyph()
+                if g is not None:
+                    _, _, self.selectedDragPoints = self.getSelectedCurvePoints(g)
+            x, y = self.getMousePosition(event)
+            if (x, y) != self.lastMouseDrag:
+                self.selectionMarquee.setPosition((
+                    min(self.lastMouse[0], self.lastMouseDrag[0]), 
+                    min(self.lastMouse[1], self.lastMouseDrag[1])
+                ))
+                self.selectionMarquee.setSize((
+                    self.lastMouseDrag[0] - self.lastMouse[0], 
+                    self.lastMouseDrag[1] - self.lastMouse[1]
+                ))
+                self.lastMouseDrag = (x, y)
+        #else:
+        #    cx, cy = self.getMouseCellPosition(event)
+        #    if (cx, cy) != self.lastMouseGrid:
+        #        self.lastMouseGrid = cx, cy
+        #        self.updateCurves(cx, cy)
+        #        self.glyphChanged()
 
     def mouseUp(self, view, event):
-        pass
+        print(self.lastMouseDrag, self.selectedDragPoints)
+        if self.lastMouseDrag is not None and self.selectedDragPoints is not None:
+            # Finishing drag: select the points in the marquee
+            marqueeX1 = min(self.lastMouseDrag[0], self.lastMouse[0])
+            marqueeY1 = min(self.lastMouseDrag[1], self.lastMouse[1])
+            marqueeX2 = max(self.lastMouseDrag[0], self.lastMouse[0])
+            marqueeY2 = max(self.lastMouseDrag[1], self.lastMouse[1])
+
+            rMin = self.preferences['minRange']/100
+            rMax = self.preferences['maxRange']/100
+            r = rMax - rMin
+
+            modifiers = event.modifierFlags()
+            shiftDown = modifiers & NSShiftKeyMask
+            #alternateDown = modifiers & NSAlternateKeyMask
+            #commandDown = modifiers & NSCommandKeyMask
+            #controlDown = modifiers & NSControlKeyMask
+            for segmentTensions in self.selectedDragPoints.values():
+                for points, tx, ty in segmentTensions: 
+                    x = (tx - rMin) / r * W - POINT_SIZE/2
+                    y = (ty - rMin) / r * H - POINT_SIZE/2
+                    for p in (points[0], points[-1]):
+                        if marqueeX1 <= x <= marqueeX2 and marqueeY1 <= y <= marqueeY2:
+                            if shiftDown:
+                                p.selected = not p.selected
+                            else:
+                                p.selected = True
+                        elif not shiftDown:
+                            p.selected = False
+
+        self.lastMouseDrag = self.selectedDragPoints = None # No longer marquee operating
+        self.selectionMarquee.setPosition((FAR, 0))
 
     def glyphEditorDidSetGlyph(self, info):
         # Passed this on from the subscriber. How to do this better?
@@ -510,11 +582,11 @@ class CurvePaletteController(WindowController):
     def updateCurves(self, cx, cy):
         g = self.getCurrentGlyph()
         if g is not None:
-            selected, _ = self.getSelectedPoints(g)
+            selected, _, _ = self.getSelectedCurvePoints(g)
             # Reverse direction of the y-axis.
             # Double short BCP is bottom-left and double long BCP is top-right
             g.prepareUndo()
-            self.adjustPoints(g, cx, cy) # Also do update the glyph, so we get an update event.
+            self.adjustPoints(g, cx, cy) # Does not update the glyph yet.
 
     def adjustPoints(self, g, vx, vy):
         # ----------------------------------------------------------------------------------
@@ -553,9 +625,8 @@ class CurvePaletteController(WindowController):
                         
         for p in smoothPoints:
             p.smooth = True
-        g.changed()
 
-    def adjustBCP( self, p0, p1, p2, p3, sv1, sv2):
+    def adjustBCP( self, p0, p1, p2, p3, svx, svy):
         """Adjust the BCP lengths of the point to the intended vector length.
         If doSelect is True, then just select the points that (closely) fit the new length.
         In that case the position of the BCP points is not changed.
@@ -564,19 +635,11 @@ class CurvePaletteController(WindowController):
         if intersection is not None:
             ix, iy = intersection
             if ix is not None and iy is not None:
-                if not ((p0.x > p3.x and p0.y < p3.y)\
-                    or (p0.x < p3.x and p0.y > p3.y)):
-                    sv1, sv2 = sv2, sv1 # Swap
 
-                p1x = round(sv1 * (ix - p0.x))
-                p1y = round(sv1 * (iy - p0.y))
-                p2x = round(sv2 * (ix - p3.x))
-                p2y = round(sv2 * (iy - p3.y))
-
-                p1.x = p0.x + p1x
-                p1.y = p0.y + p1y
-                p2.x = p3.x + p2x
-                p2.y = p3.y + p2y
+                p1.x = int(round(p0.x + svx * (ix - p0.x)))
+                p1.y = int(round(p0.y + svy * (iy - p0.y)))
+                p2.x = int(round(p3.x + svx * (ix - p3.x)))
+                p2.y = int(round(p3.y + svy * (iy - p3.y)))
 
 
     #   G R I D  M A R K E R S
@@ -594,8 +657,8 @@ class CurvePaletteController(WindowController):
         p1x, p1y = p1
         p2x, p2y = p2
         p3x, p3y = p3
-        v1 = Vector(p2x-p1x, p2y-p1y)
-        v2 = Vector(p3x-p1x, p3y-p1y)
+        v1 = Vector(p2x - p1x, p2y - p1y)
+        v2 = Vector(p3x - p1x, p3y - p1y)
         #return (t2 - t1) / v2.length() * v1.length()
         v2Length = v2.length()
         if v2Length == 0:
@@ -632,15 +695,22 @@ class CurvePaletteController(WindowController):
                 if rDiff: # Test on division by 0:
                     paletSize = self.preferences['gridSize']
                     x = max(0, min(paletSize, int(((presetx - rMin) * paletSize)/rDiff)))
-                    y = paletSize - max(0, min(paletSize, int(((presety - rMin) * paletSize)/rDiff)))
+                    y = max(0, min(paletSize, int(((presety - rMin) * paletSize)/rDiff)))
         return x, y, presetx, presety
          
     #   P O I N T S
 
-    def getSelectedPoints(self, g):
-        """Answer the a list of points that are selected in the glyph."""
+    def unselectPoints(self, g=None):
+        if g is None:
+            g = self.getCurrentGlyph()
+        if g is not None:
+            for contour in g.con
+    def getSelectedCurvePoints(self, g):
+        """Answer a tuple of 3 dictionaries of points that are selected/unselected in the glyph.
+        """
         selected = {}
         unselected = {}
+        allCurvePoints = {} # Combination of selected and unselected
         for contour in g:
             points = contour.points
             for pIndex in range(len(contour.points)):
@@ -662,13 +732,24 @@ class CurvePaletteController(WindowController):
                             unselected[(cx, cy)] = [d]
                         else:
                             unselected[(cx, cy)].append(d)
-        return selected, unselected
+                    # Also collect them all in points
+                    if not (cx, cy) in allCurvePoints: 
+                        allCurvePoints[(cx, cy)] = [d]
+                    else:
+                        allCurvePoints[(cx, cy)].append(d)
+                        
+        return selected, unselected, allCurvePoints
 
     #    U P D A T E  W I N D O W
     
     def getCurrentGlyph(self):
         return CurrentGlyph()
-        
+    
+    def glyphChanged(self):
+        g = self.getCurrentGlyph()
+        if g is not None:
+            g.changed()
+                
     def updateGridCallback(self, sender=None):
         self.preferences['minRange'] = int(self.w.rMinPopup.getItem())
         self.preferences['maxRange'] = int(self.w.rMaxPopup.getItem())
@@ -723,9 +804,12 @@ class CurvePaletteController(WindowController):
         
     def update(self, g):
         #self.getTensions(g)
-        selected, unselected = self.getSelectedPoints(g)
+        selected, unselected, _ = self.getSelectedCurvePoints(g)
         cellIndex = pointIndex = 0
         cw = self.getCellWidth()
+        rMin = self.preferences['minRange']/100
+        rMax = self.preferences['maxRange']/100
+        r = rMax - rMin
         for points, c in (selected, ALL_SELECTED_COLOR), (unselected, UNSELECTED_COLOR):
             for (cx, cy), tensions in points.items():
                 if None in (cx, cy):
@@ -737,10 +821,17 @@ class CurvePaletteController(WindowController):
                 cell.setFillColor(c)
                 cellIndex += 1
                 
+                originX = originY = cw/2 - POINT_SIZE/2
+                topX = topY = W - cw/2 - POINT_SIZE/2
                 if self.w.showPointsCheckBox.get():
                     for segment, tx, ty in tensions:
-                        tensionPoint = self.cellPoints[cellIndex]
-                        tensionPoint.setPosition((tx * W - POINT_SIZE/2, (1-ty) * H + cw - POINT_SIZE/2))
+                        tensionPoint = self.cellPoints[pointIndex]
+                        tensionPoint.setPosition((((tx - rMin) / r * W - POINT_SIZE/2, (ty - rMin) / r * H - POINT_SIZE/2)))
+                        if segment[0].selected:
+                            w = 3
+                        else:
+                            w = 1
+                        tensionPoint.setStrokeWidth(w)
                         pointIndex += 1
 
         for n in range(cellIndex, len(self.cellRects)):
@@ -752,7 +843,7 @@ class CurvePaletteController(WindowController):
         # Set the position of the best circle marker
         c = (4/3) * (math.tan(math.pi/8)) # 0.5522847498 or more common approximation 4/3 * (math.sqrt(2) - 1)
         self.bestCircleCell.setPosition((c * W, c * H))
-        self.bestCircleCell.setSize((cw, cw))
+        self.bestCircleCell.setSize((cw*1.2, cw*1.2))
                     
 if __name__ == '__main__':
     OpenWindow(CurvePaletteController)

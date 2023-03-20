@@ -2,8 +2,8 @@
 <glyph name="b" format="2">
   <advance width="515"/>
   <unicode hex="0062"/>
-  <guideline x="-300" y="-10" angle="0" name="Overshoot (-10/10)"/>
-  <guideline x="-300" y="476" angle="0" name="Overshoot (476/10)"/>
+  <guideline x="-300" y="-10" angle="0" name="Overshoot (-10/10)" identifier="SpMvb8Q986"/>
+  <guideline x="-300" y="476" angle="0" name="Overshoot (476/10)" identifier="GCMyNHaQrt"/>
   <outline>
     <contour>
       <point x="236" y="-10" type="curve" smooth="yes"/>

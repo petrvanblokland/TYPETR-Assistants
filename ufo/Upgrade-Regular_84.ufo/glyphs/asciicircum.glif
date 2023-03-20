@@ -2,8 +2,8 @@
 <glyph name="asciicircum" format="2">
   <advance width="400"/>
   <unicode hex="005E"/>
-  <guideline x="-300" y="-10" angle="0" name="Overshoot (-10/10)"/>
-  <guideline x="-300" y="476" angle="0" name="Overshoot (476/10)"/>
+  <guideline x="-300" y="-10" angle="0" name="Overshoot (-10/10)" identifier="Kerjcj4dQT"/>
+  <guideline x="-300" y="476" angle="0" name="Overshoot (476/10)" identifier="nHfDnDjsLt"/>
   <outline>
     <component base="circumflexcmb" xOffset="199"/>
   </outline>

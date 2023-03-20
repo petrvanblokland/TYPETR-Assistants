@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="bracketright.uc" format="2">
   <advance width="341"/>
-  <guideline x="-300" y="-10" angle="0" name="Overshoot (-10/10)"/>
-  <guideline x="-300" y="476" angle="0" name="Overshoot (476/10)"/>
+  <guideline x="-300" y="-10" angle="0" name="Overshoot (-10/10)" identifier="eMAZvZ72jF"/>
+  <guideline x="-300" y="476" angle="0" name="Overshoot (476/10)" identifier="tEM3VUgNiG"/>
   <outline>
     <contour>
       <point x="40" y="-61" type="line"/>

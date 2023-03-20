@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="S.sc" format="2">
   <advance width="439"/>
-  <guideline x="-300" y="-13" angle="0" name="Overshoot (-13/13)"/>
-  <guideline x="-200" y="512" angle="0" name="xHeight (512)"/>
-  <guideline x="-300" y="525" angle="0" name="Overshoot (525/13)"/>
+  <guideline x="-300" y="-13" angle="0" name="Overshoot (-13/13)" identifier="rTyNy2coOH"/>
+  <guideline x="-200" y="512" angle="0" name="xHeight (512)" identifier="g6VGlPsU5j"/>
+  <guideline x="-300" y="525" angle="0" name="Overshoot (525/13)" identifier="2J1byJN7rK"/>
   <anchor x="220.0" y="16" name="bottom"/>
   <anchor x="219.0" y="496" name="top"/>
   <outline>

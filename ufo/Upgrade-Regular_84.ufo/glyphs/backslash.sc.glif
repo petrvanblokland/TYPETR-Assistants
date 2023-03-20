@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <glyph name="backslash.sc" format="2">
   <advance width="372"/>
-  <guideline x="-300" y="-13" angle="0" name="Overshoot (-13/13)"/>
-  <guideline x="-200" y="512" angle="0" name="xHeight (512)"/>
-  <guideline x="-300" y="525" angle="0" name="Overshoot (525/13)"/>
+  <guideline x="-300" y="-13" angle="0" name="Overshoot (-13/13)" identifier="2Jxy7LlTfO"/>
+  <guideline x="-200" y="512" angle="0" name="xHeight (512)" identifier="8r4KOda3nA"/>
+  <guideline x="-300" y="525" angle="0" name="Overshoot (525/13)" identifier="amEs4ZLSJM"/>
   <outline>
     <contour>
       <point x="276" y="0" type="line"/>
