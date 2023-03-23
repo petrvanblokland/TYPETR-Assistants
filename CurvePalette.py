@@ -13,7 +13,6 @@ from vanilla import Window, PopUpButton, CheckBox
 from AppKit import *
 
 from mojo.roboFont import OpenWindow
-from mojo.subscriber import WindowController
 from mojo.subscriber import Subscriber, WindowController, registerGlyphEditorSubscriber, unregisterGlyphEditorSubscriber
 
 W = H = 300

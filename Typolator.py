@@ -23,25 +23,22 @@ from mojo.subscriber import Subscriber, WindowController, registerGlyphEditorSub
 
 from fontTools.misc.transform import Transform
 
-from typelib.toolset import interpolateGlyph, openFont, copyLayer, scaleGlyph
+from typelib.toolset import interpolateGlyph, copyLayer, scaleGlyph
 
 import scriptsLib
 
 importlib.reload(scriptsLib)
 
-W, H = 600, 600
+W, H = 500, 450
 L = 22
 M = 8 # Margin of UI and gutter of colums
-CW = (W-4*M)/3
+CW = (W-4*M)/2
 C0 = M
 C1 = C0 + CW + M
-C2 = C1 + CW + M
-VT = 150 # Vertical tab from bottom
+VT = 120 # Vertical tab from bottom
 
 WindowClass = vanilla.Window
 #WindowClass = vanilla.FloatingWindow
-
-openFonts = {} # Keep track of the open fonts (even when they are open in the background)
 
 def getUfoName(f):
     """Answer the file name of this font. Answer None if there is no path."""
@@ -60,94 +57,219 @@ def getCurrentDirectory(f):
     if f.path is None:
         return None
     return '/'.join(f.path.split('/')[:-1]) + '/'
+
+openFonts = {} # Keep track of the open fonts (even when they are open in the background)
     
-def getMaster(path, showInterface):
+def getMaster(path, showInterface=False):
+    """If there is an open font with @path, then answer it.
+    """
     global openFonts
-    # Check if the master is already open, by RoboFont or by self
+    # Check if the master is already open, by RoboFont. Then answer it.
     for f in AllFonts():
-        if f.path.endswith(path):
+        if f.path == path:
             #print('... Selecting open font', path)
             return f
-
-    root = getCurrentDirectory(CurrentFont())
-    rootPath = root + path
-    
-    if rootPath in openFonts:
-        return openFonts[rootPath]
-    # Not open yet, open it in the background and cache the master
-    
-    print('... Opening hidden font', root+path)
-    # In case "showUI" error here, then start venv
-    f = OpenFont(rootPath, showInterface=showInterface)
+    # If the font is open without interface, then it must be in the global openFonts dictionary. 
+    # This avoids the opening of hidden fonts more than once.   
+    if path in openFonts and not showInterface:
+        return openFonts[path]
+        
+    # Not open yet, open it in the background and cache the master    
+    print('... Opening hidden font', path)
+    # In case "showUI" error here, then start venv, because using the old FontParts
+    f = OpenFont(path, showInterface=showInterface) # Open in RoboFont
     if f is None:
-        print('### Cannot open font', rootPath)
+        print('### Cannot open font', path)
         return None
-    openFonts[rootPath] = f
+    openFonts[path] = f # Store with full path name as key
     return f
 
 assistant = None # Little cheat, to make the assistant available from the window
 
-class BaseTypolator:
-    
-    def __init__(self):
-        
-        y = M
-        self.w = WindowClass((W, H), self.__class__.__name__, minSize=(W, H))
+class Typolator(Subscriber):
 
-        self.w.filterPatternLabel1 = vanilla.TextBox((M, y, CW/2, 24), 'Filter 1')
-        self.w.filterPatternLabel2 = vanilla.TextBox((M+CW/2, y, CW/2, 24), 'Filter 2')
+    controller = None
+
+    def build(self):
+        global curvePaletteController
+        curvePaletteController = self
+
+        glyphEditor = self.getGlyphEditor()
+
+    def started(self):
+        pass
+            
+    def destroy(self):
+        pass
+
+    def glyphEditorDidSetGlyph(self, info):
+        # Pass this on to the window controller. How to do this better?
+        self.controller.glyphEditorDidSetGlyph(info)
+
+    def glyphEditorDidMouseUp(self, info):
+        # Pass this on to the window controller. How to do this better?
+        self.controller.glyphEditorDidMouseUp(info)
+
+    def glyphEditorDidMouseDrag(self, info):
+        # Pass this on to the window controller. How to do this better?
+        self.controller.glyphEditorDidMouseDrag(info)
+
+    def glyphEditorGlyphDidChangeSelection(self, info):
+        # Pass this on to the window controller. How to do this better?
+        self.controller.glyphEditorGlyphDidChangeSelection(info)
+
+    def fontDocumentDidOpen(self, info):
+        self.controller.updateRefPopup()
+        self.controller.updateUfoListCallback()
+        
+    def fontDocumentDidClose(self, info):
+        self.controller.updateRefPopup()
+        self.controller.updateUfoListCallback()
+        
+class TypolatorController(WindowController):
+
+    subscriberClass = Typolator
+
+    debug = True
+
+    def build(self):
+            
+        y = M
+        self.w = WindowClass((W, H), 'Typolator', minSize=(W, H))
+
+        self.w.filterPatternLabelStart = vanilla.TextBox((M, y, CW/3, 24), 'Starts')
+        self.w.filterPatternLabelHas = vanilla.TextBox((M+CW/3, y, CW/3, 24), 'Has')
+        self.w.filterPatternLabelEnd = vanilla.TextBox((M+2*CW/3, y, CW/3, 24), 'Ends')
         self.w.referenceUfo = vanilla.TextBox((C1, y, CW, 24), 'Reference UFO')
         #self.w.filterItalicUfo = vanilla.HorizontalRadioGroup((C2, y, CW, 24), ('Roman', 'Italic'), callback=self.updateUfoListCallback)
         #self.w.filterItalicUfo.set(0)
         y += L
-        self.w.filterPattern1 = vanilla.EditText((M, y, CW/2, 24), callback=self.filterNamesCallback)
-        self.w.filterPattern2 = vanilla.EditText((M+CW/2, y, CW/2, 24), callback=self.filterNamesCallback)
+        self.w.filterPatternStart = vanilla.EditText((M, y, CW/3, 24), continuous=True, callback=self.filterNamesCallback)
+        self.w.filterPatternHas = vanilla.EditText((M+CW/3, y, CW/3, 24), continuous=True, callback=self.filterNamesCallback)
+        self.w.filterPatternEnd = vanilla.EditText((M+2*CW/3, y, CW/3, 24), continuous=True, callback=self.filterNamesCallback)
 
-        refNames = []
-        for f in AllFonts(): # Use open fonts as seed to find the folders. 
-            refNames.append(getUfoName(f))
-        self.w.referenceSelection = vanilla.PopUpButton((C1, y, CW*2, 24), items=sorted(refNames), callback=self.updateUfoListCallback)
+        # List of currently open fonts, that can be used as reference.
+        self.w.referenceSelection = vanilla.PopUpButton((C1, y, CW, 24), [], callback=self.updateUfoListCallback)
         
         y += L*1.2
-        self.w.glyphNames = vanilla.List((M, y, CW, -VT), items=[])
-        self.w.ufoNames = vanilla.List((M+M+CW, y, CW+M+CW, -VT), items=[])
+        self.w.glyphNames = vanilla.List((M, y, CW, -VT), items=[], doubleClickCallback=self.dblClickGlyphNamesCallback)
+        self.w.ufoNames = vanilla.List((M+M+CW, y, CW, -VT), items=[], doubleClickCallback=self.dblClickUfoNamesCallback)
         y = -VT
-        self.w.openGlyphWindow = vanilla.CheckBox((C2, y, CW, 24), 'Open GlyphEditor', value=True, sizeStyle='small')
+        self.w.openGlyphWindow = vanilla.CheckBox((C1, y, CW, 24), 'Open GlyphEditor', value=True, sizeStyle='small')
         y += L
-        self.w.updateUfoList = vanilla.Button((C1, y, CW, 32), 'Update UFO list', callback=self.updateUfoListCallback)
-        self.w.checkInterpolation = vanilla.Button((C2, y, CW, 32), 'Check/Fix', callback=self.checkInterpolationCallback)
-        y += L*1.2
+        #self.w.checkInterpolation = vanilla.Button((C1, y, CW, 32), 'Check/Fix', callback=self.checkInterpolationCallback)
+        #y += L*1.1
         self.w.saveCloseAll = vanilla.Button((C1, y, CW, 32), 'Save/Close all', callback=self.saveCloseAllCallback)
     
         self.glyphgNames = []
+        self.updateRefPopup() 
         self.updateUfoListCallback()
         self.w.open()
 
-    def filterNamesCallback(self, sender=None):
-        glyphNames = []
-        filterPattern1 = self.w.filterPattern1.get()
-        filterPattern2 = self.w.filterPattern2.get()
-        for glyphName in sorted(self.glyphNames):
-            if filterPattern1 and filterPattern1[0] == '=' and filterPattern1[1:] == glyphName:
-                glyphNames.append(glyphName)                
-            elif (not filterPattern1 or filterPattern1 in glyphName) and (not filterPattern2 or filterPattern2 in glyphName):
-                glyphNames.append(glyphName)
-        self.w.glyphNames.set(glyphNames)
+    def acceptsFirstResponder(self, sender):
+        # necessary for accepting mouse events
+        return True
+
+    def acceptsMouseDrag(self, sender):
+        # necessary for tracking mouse movement
+        return True
+
+    def acceptsMouseDown(self, sender):
+        # necessary for tracking mouse down
+        return True
+
+    def started(self):
+        #print("started")
+        self.subscriberClass.controller = self
+        registerGlyphEditorSubscriber(self.subscriberClass)
+
+    def destroy(self):
+        #print("windowClose")
+        #container = self.w.view.getMerzContainer()
+        #container.clearSublayers()
+        #unregisterGlyphEditorSubscriber(self.subscriberClass)
+        #self.subscriberClass.controller = None
+        pass
+
+    def glyphEditorDidSetGlyph(self, info):
+        # Pass this on to the window controller. How to do this better?
+        pass
         
+    def glyphEditorDidMouseUp(self, info):
+        # Pass this on to the window controller. How to do this better?
+        pass
+
+    def glyphEditorDidMouseDrag(self, info):
+        # Pass this on to the window controller. How to do this better?
+        pass
+
+    def glyphEditorGlyphDidChangeSelection(self, info):
+        # Pass this on to the window controller. How to do this better?
+        pass
+
+    def filterNamesCallback(self, sender=None):
+        filteredGlyphNames = []
+        filterPatternStart = self.w.filterPatternStart.get()
+        filterPatternHas = self.w.filterPatternHas.get()
+        filterPatternEnd = self.w.filterPatternEnd.get()
+        for glyphName in sorted(self.glyphNames):
+            if ((not filterPatternStart or glyphName.startswith(filterPatternStart)) and
+                (not filterPatternHas or filterPatternHas in glyphName) and
+                (not filterPatternEnd or glyphName.endswith(filterPatternEnd))):
+                filteredGlyphNames.append(glyphName)
+
+        self.w.glyphNames.set(sorted(filteredGlyphNames))
+
+    def dblClickUfoNamesCallback(self, sender):
+        ref = self.getReferenceFont()
+        if ref is None:
+            return
+        dirPath = getUfoDirPath(ref)
+
+        ufoSelected = sender.getSelection()
+        for ufoIndex in ufoSelected:
+
+            ufoPath = dirPath + sender[ufoIndex]
+            getMaster(ufoPath, showInterface=True)
+                
+    def dblClickGlyphNamesCallback(self, sender):
+        """Double click on one of the glyphs. Open the glyph editor on the selectyed UFO and otherwise
+        on the current font"""
+        selected = sender.getSelection()
+        for index in selected:
+            glyphName = sender[index]
+            ufoSelection = self.w.ufoNames.getSelection()
+            f = None
+            if ufoSelection:
+                ref = self.getReferenceFont()
+                if ref is not None:
+                    dirPath = getUfoDirPath(ref) # Get the directory of the reference.
+                    f = getMaster(dirPath + self.w.ufoNames[ufoSelection[0]])
+            else:
+                f = CurrentFont()
+            if f is not None:
+                g = f[glyphName]
+                OpenGlyphWindow(g) # Open the editor window on the selected glyph name.
+    
+    def updateRefPopup(self):
+        refNames = []
+        for f in AllFonts(): # Use open fonts as seed to find the folders. 
+            refNames.append(getUfoName(f))
+        self.w.referenceSelection.setItems(refNames)
+              
     def updateUfoListCallback(self, sender=None):
         """Update the list of UFOs that are in the same folder as the fonts that are currently open.
         Open them in the background if not already open."""
         self.glyphNames = set()
         ufoNames = []
 
-        refName = self.w.referenceSelection.getItem()
-        if refName is None:
+        ref = self.getReferenceFont()
+        if ref is None:
             return
-        ref = openFont(refName)
-        
-        if not ref.path in openFonts: # This may be a newly opened font. Check to be sure, add to openFonts otherwise
-            openFonts[ref.path] = ref
+
         dirPath = getUfoDirPath(ref)
+        refName = getUfoName(ref)
+        
         for fileName in os.listdir(dirPath):
             if not fileName.endswith('.ufo'):
                 continue
@@ -155,9 +277,7 @@ class BaseTypolator:
             select = bool('Italic' in refName) == bool('Italic' in fileName)
             if select:
                 ufoNames.append(fileName)
-                ufo = OpenFont(ufoPath, False)
-                if ufoPath not in openFonts:
-                    openFonts[ufoPath] = ufo
+                ufo = getMaster(ufoPath, False)
                 self.glyphNames = self.glyphNames.union(set(ufo.keys()))
                     
         self.w.ufoNames.set(sorted(ufoNames))
@@ -184,15 +304,24 @@ class BaseTypolator:
                     errors.append('### Contour[%s].points (%d) in /%s not equal to reference (%d)' % (cIndex, len(contour.points), g.name, len(contourRef.points)))
                     foudError = True
         return foudError
-        
-    def checkInterpolationCallback(self, sender):
+    
+    def getReferenceFont(self):
         ref = None
         refName = self.w.referenceSelection.getItem()
         if refName is None:
+            return None
+        # Find the reference font
+        for f in AllFonts():
+            if getUfoName(f) == refName:
+                return f
+        return None
+            
+    def checkInterpolationCallback(self, sender):
+        ref = self.getReferenceFont()
+        if ref is None:
             return
-        ref = openFont(refName)
         dirPath = getUfoDirPath(ref)
-        
+                
         # Collect selected names from the UFO name list
         selectedUfoNames = []
         for row in self.w.ufoNames.getSelection():
@@ -204,7 +333,7 @@ class BaseTypolator:
         totalErrors = 0
         for ufoName in selectedUfoNames:
             errors = []
-            f = openFont(dirPath + ufoName)
+            f = getMaster(dirPath + ufoName)
             # Now we have a reference, compare the list of filtered glyph names.
             print('... Checking interpolation of %s' % ufoName)
             for glyphName in self.w.glyphNames: # Just test for the filtered set
@@ -239,6 +368,6 @@ class BaseTypolator:
         pass
         
 if __name__ == '__main__':
-    BaseTypolator()
+    OpenWindow(TypolatorController)
 
   
