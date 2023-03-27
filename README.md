@@ -23,4 +23,4 @@ A faster and more flexible version of Prepolator.
 * color marker on the glyphs you just did
 * preview left and right
 * I would also add an option of copying spacing from one glyph to another and auto adjusting it, that’s one of my fav things!
-
+* For TYPETR-Polator: Side by side glyph comparison and font preview like in prepolator.
