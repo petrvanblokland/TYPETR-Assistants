@@ -33,6 +33,7 @@ W, H = 500, 450
 L = 22
 M = 8 # Margin of UI and gutter of colums
 CW = (W-4*M)/2
+CW2 = (CW-M)/2
 C0 = M
 C1 = C0 + CW + M
 VT = 120 # Vertical tab from bottom
@@ -155,11 +156,13 @@ class TypolatorController(WindowController):
         self.w.glyphNames = vanilla.List((M, y, CW, -VT), items=[], doubleClickCallback=self.dblClickGlyphNamesCallback)
         self.w.ufoNames = vanilla.List((M+M+CW, y, CW, -VT), items=[], doubleClickCallback=self.dblClickUfoNamesCallback)
         y = -VT
-        self.w.openGlyphWindow = vanilla.CheckBox((C1, y, CW, 24), 'Open GlyphEditor', value=True, sizeStyle='small')
+        self.w.selectOpenDblClick = vanilla.RadioGroup((C1, y, CW, L), ('Open GlyphEditor', 'Open FontWindow'), isVertical=False, sizeStyle='small')
+        self.w.selectOpenDblClick.set(0)
         y += L
         #self.w.checkInterpolation = vanilla.Button((C1, y, CW, 32), 'Check/Fix', callback=self.checkInterpolationCallback)
         #y += L*1.1
-        self.w.saveCloseAll = vanilla.Button((C1, y, CW, 32), 'Save/Close all', callback=self.saveCloseAllCallback)
+        self.w.saveAll = vanilla.Button((C1, y, CW2, 32), 'Save all', callback=self.saveAllCallback)
+        self.w.saveCloseAll = vanilla.Button((C1 + CW2 + M, y, CW2, 32), 'Save/Close all', callback=self.saveCloseAllCallback)
     
         self.glyphgNames = []
         self.updateRefPopup() 
@@ -249,8 +252,13 @@ class TypolatorController(WindowController):
                 f = CurrentFont()
             if f is not None:
                 g = f[glyphName]
-                OpenGlyphWindow(g) # Open the editor window on the selected glyph name.
-    
+                if self.w.selectOpenDblClick.get() == 0:
+                    OpenGlyphWindow(g) # Open the editor window on the selected glyph name.
+                else:
+                    for fontWindow in AllFontWindows():
+                        if fontWindow._font == f.naked():
+                            fontWindow.window().show()
+                    
     def updateRefPopup(self):
         refNames = []
         for f in AllFonts(): # Use open fonts as seed to find the folders. 
@@ -346,7 +354,7 @@ class TypolatorController(WindowController):
                 else:
                     g = f[glyphName]
                     foundError = self.checkInterpolationCompatibility(g, gRef, errors)
-                    if self.w.openGlyphWindow.get() and foundError:
+                    if self.w.selectOpenDblClick.get() == 0 and foundError:
                         OpenGlyphWindow(g)
                         done = True
                 if done:
@@ -363,6 +371,11 @@ class TypolatorController(WindowController):
         for f in AllFonts():
             f.save()
             f.close()
+         
+    def saveAllCallback(self, sender):
+        # Save and close all open fonts
+        for f in AllFonts():
+            f.save()
          
     def update(self, sender):
         pass
