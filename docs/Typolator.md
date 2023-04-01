@@ -38,19 +38,19 @@ you can also say
 
 	Start=A@acu 
 	
-which will select /AEacute, /AEacite.sc /Aacute /Aacite.sc
+which will select /AEacute, /AEacite.sc, /Aacute, /Aacite.sc
 
 	Start=@ac Has=.sc 
 	
 does select all small caps that contain an acute component
 
-	Start=A@ Has=.sc 
+	Start=A@ac Has=.sc 
 	
-does select all small caps that start with /A that contain an acute component
+does select all small caps that start with “A” that contain an /acute component
 
 	Start=C@c End=.sc 
 	
-does select all small caps that start with "C" that contain a component that stars with "c" such as /Ccaron.sc /Ccedilla.sc /Ccircumflex.sc
+does select all small caps that start with "C" that contain a component that stars with "c" such as /Ccaron.sc, /Ccedilla.sc, /Ccircumflex.sc
 
 	Has=@cu 
 	
