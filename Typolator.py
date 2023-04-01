@@ -212,14 +212,46 @@ class TypolatorController(WindowController):
 
     def filterNamesCallback(self, sender=None):
         filteredGlyphNames = []
-        filterPatternStart = self.w.filterPatternStart.get()
-        filterPatternHas = self.w.filterPatternHas.get()
-        filterPatternEnd = self.w.filterPatternEnd.get()
+        filterPatternStart = self.w.filterPatternStart.get().strip()
+        filterPatternHas = self.w.filterPatternHas.get().strip()
+        filterPatternEnd = self.w.filterPatternEnd.get().strip()
+        # Search for component patterns
+        componentPatternStart = componentPatternHas = componentPatternEnd = None
+        if '@' in filterPatternStart:
+            componentPatternStart = filterPatternStart.split('@')[1]
+            filterPatternStart = filterPatternStart.split('@')[0]
+        if '@' in filterPatternHas:
+            filterPatternHas = filterPatternHas.split('@')[1]
+            filterPatternHas = filterPatternHas.split('@')[0] # In there is a combined pattern A@
+        if '@' in filterPatternEnd:
+            componentPatternEnd = filterPatternEnd.split('@')[1]
+            filterPatternEnd = filterPatternEnd.split('@')[0]
+
+        f = CurrentFont()
         for glyphName in sorted(self.glyphNames):
+            selected = None
             if ((not filterPatternStart or glyphName.startswith(filterPatternStart)) and
                 (not filterPatternHas or filterPatternHas in glyphName) and
                 (not filterPatternEnd or glyphName.endswith(filterPatternEnd))):
-                filteredGlyphNames.append(glyphName)
+                selected = glyphName
+            # Test on component filter too
+            if f is not None and selected is not None and selected in f and (
+                componentPatternStart is not None or componentPatternHas is not None or componentPatternEnd):
+                selectedByComponent = None
+                for component in f[selected].components:
+                    if componentPatternStart is not None and component.baseGlyph.startswith(componentPatternStart):
+                        selectedByComponent = selected
+                        break
+                    if componentPatternHas is not None and componentPatternHas in component.baseGlyph:
+                        selectedByComponent = selected
+                        break
+                    if componentPatternEnd is not None and component.baseGlyph.endswith(componentPatternEnd):
+                        selectedByComponent = selected
+                        break
+                selected = selectedByComponent # Not this one.
+            if selected is not None:
+                filteredGlyphNames.append(selected)
+                
 
         self.w.glyphNames.set(sorted(filteredGlyphNames))
 
