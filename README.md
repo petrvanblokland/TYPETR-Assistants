@@ -1,7 +1,7 @@
 # TYPETR-Assistants
 
-This is our new Assistant Tools environment.
-All sources for the BaseAssistant classes and additional functions will be kept here, instead of having them copied inside project repositories.
+This is our new Helpers and Assistant environment.
+All sources for the BaseAssistant classes and additional functions will be kept here, instead of having copying them inside project repositories.
 
 It is a fast and flexible collection of helpers for specific type projects: this repository contains library of assistants and helper for type project.
 
