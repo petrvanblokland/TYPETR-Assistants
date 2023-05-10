@@ -1,4 +1,4 @@
-# TYPETR-Assistant
+# TYPETR-Assistants
 
 This is our new Assistant Tools environment.
 All sources for the BaseAssistant classes and additional functions will be kept here, instead of having them copied inside project repositories.
