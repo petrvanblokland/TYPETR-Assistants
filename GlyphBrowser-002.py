@@ -23,11 +23,7 @@ from mojo.subscriber import Subscriber, WindowController, registerGlyphEditorSub
 
 from fontTools.misc.transform import Transform
 
-from typelib.toolset import interpolateGlyph, copyLayer, scaleGlyph
-
-import scriptsLib
-
-importlib.reload(scriptsLib)
+from assistantLib import interpolateGlyph, copyLayer, scaleGlyph
 
 W, H = 500, 450
 L = 22
@@ -87,7 +83,7 @@ def getMaster(path, showInterface=False):
 
 assistant = None # Little cheat, to make the assistant available from the window
 
-class Typolator(Subscriber):
+class GlyphBrowser(Subscriber):
 
     controller = None
 
@@ -127,16 +123,16 @@ class Typolator(Subscriber):
         self.controller.updateRefPopup()
         self.controller.updateUfoListCallback()
         
-class TypolatorController(WindowController):
+class GlyphBrowserController(WindowController):
 
-    subscriberClass = Typolator
+    subscriberClass = GlyphBrowser
 
     debug = True
 
     def build(self):
             
         y = M
-        self.w = WindowClass((W, H), 'Typolator', minSize=(W, H))
+        self.w = WindowClass((W, H), 'GlyphBrowser', minSize=(W, H))
 
         self.w.filterPatternLabelStart = vanilla.TextBox((M, y, CW/3, 24), 'Starts')
         self.w.filterPatternLabelHas = vanilla.TextBox((M+CW/3, y, CW/3, 24), 'Has')
@@ -413,6 +409,6 @@ class TypolatorController(WindowController):
         pass
         
 if __name__ == '__main__':
-    OpenWindow(TypolatorController)
+    OpenWindow(GlyphBrowserController)
 
   

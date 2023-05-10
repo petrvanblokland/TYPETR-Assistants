@@ -1,4 +1,5 @@
 To install this package, type the following in the command line:
+@@@ Does not work yet
 
   python setup.py install
 
