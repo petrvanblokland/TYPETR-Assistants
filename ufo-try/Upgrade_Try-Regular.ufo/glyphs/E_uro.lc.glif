@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Euro.lc" format="2">
+  <advance width="516"/>
+  <outline>
+    <contour>
+      <point x="33" y="169" type="line"/>
+      <point x="317" y="169" type="line"/>
+      <point x="317" y="212" type="line"/>
+      <point x="33" y="212" type="line"/>
+    </contour>
+    <contour>
+      <point x="33" y="258" type="line"/>
+      <point x="317" y="258" type="line"/>
+      <point x="317" y="301" type="line"/>
+      <point x="33" y="301" type="line"/>
+    </contour>
+    <component base="c" xOffset="40"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <string>4</string>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.3125</real>
+          <key>interpolateX</key>
+          <real>130.54063415527344</real>
+          <key>interpolateY</key>
+          <real>130.54063415527344</real>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>72.5374984741211</real>
+          <key>scaleY</key>
+          <real>72.5374984741211</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

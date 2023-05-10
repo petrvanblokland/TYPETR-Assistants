@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="E" format="2">
+  <advance width="471"/>
+  <unicode hex="0045"/>
+  <anchor x="249" y="642" name="top"/>
+  <anchor x="412" y="16" name="ogonek"/>
+  <outline>
+    <contour>
+      <point x="80" y="0" type="line"/>
+      <point x="415" y="0" type="line"/>
+      <point x="415" y="29" type="line"/>
+      <point x="112" y="29" type="line"/>
+      <point x="112" y="319" type="line"/>
+      <point x="387" y="319" type="line"/>
+      <point x="387" y="348" type="line"/>
+      <point x="112" y="348" type="line"/>
+      <point x="112" y="629" type="line"/>
+      <point x="403" y="629" type="line"/>
+      <point x="403" y="658" type="line"/>
+      <point x="80" y="658" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>axes</key>
+      <dict>
+        <key>wdth</key>
+        <dict>
+          <key>defaultValue</key>
+          <integer>500</integer>
+          <key>enabled</key>
+          <true/>
+          <key>master</key>
+          <string></string>
+          <key>maxValue</key>
+          <integer>1000</integer>
+          <key>minValue</key>
+          <integer>0</integer>
+          <key>name</key>
+          <string>wdth</string>
+          <key>tag</key>
+          <string>wdth</string>
+          <key>value</key>
+          <integer>500</integer>
+        </dict>
+        <key>wght</key>
+        <dict>
+          <key>defaultValue</key>
+          <integer>500</integer>
+          <key>enabled</key>
+          <true/>
+          <key>master</key>
+          <string></string>
+          <key>maxValue</key>
+          <integer>1000</integer>
+          <key>minValue</key>
+          <integer>0</integer>
+          <key>name</key>
+          <string>wght</string>
+          <key>tag</key>
+          <string>wght</string>
+          <key>value</key>
+          <integer>500</integer>
+        </dict>
+      </dict>
+      <key>public.markColor</key>
+      <string>1,1,0,1</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <string>4</string>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.3125</real>
+          <key>interpolateX</key>
+          <real>130.54063415527344</real>
+          <key>interpolateY</key>
+          <real>130.54063415527344</real>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>72.5374984741211</real>
+          <key>scaleY</key>
+          <real>72.5374984741211</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

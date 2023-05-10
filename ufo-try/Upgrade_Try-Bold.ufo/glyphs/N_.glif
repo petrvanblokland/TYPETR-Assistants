@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="N" format="2">
+  <advance width="746"/>
+  <unicode hex="004E"/>
+  <anchor x="374" y="642" name="top"/>
+  <anchor x="377" y="8" name="bottom"/>
+  <outline>
+    <contour>
+      <point x="62" y="0" type="line"/>
+      <point x="223" y="0" type="line"/>
+      <point x="223" y="328" type="line"/>
+      <point x="215" y="551" type="line"/>
+      <point x="136" y="551" type="line"/>
+      <point x="272" y="327" type="line"/>
+      <point x="490" y="0" type="line"/>
+      <point x="684" y="0" type="line"/>
+      <point x="684" y="658" type="line"/>
+      <point x="522" y="658" type="line"/>
+      <point x="522" y="333" type="line"/>
+      <point x="530" y="107" type="line"/>
+      <point x="610" y="107" type="line"/>
+      <point x="474" y="334" type="line"/>
+      <point x="260" y="658" type="line"/>
+      <point x="62" y="658" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>axes</key>
+      <dict>
+        <key>wdth</key>
+        <dict>
+          <key>defaultValue</key>
+          <integer>500</integer>
+          <key>enabled</key>
+          <true/>
+          <key>master</key>
+          <string></string>
+          <key>maxValue</key>
+          <integer>1000</integer>
+          <key>minValue</key>
+          <integer>0</integer>
+          <key>name</key>
+          <string>wdth</string>
+          <key>tag</key>
+          <string>wdth</string>
+          <key>value</key>
+          <integer>500</integer>
+        </dict>
+        <key>wght</key>
+        <dict>
+          <key>defaultValue</key>
+          <integer>500</integer>
+          <key>enabled</key>
+          <true/>
+          <key>master</key>
+          <string></string>
+          <key>maxValue</key>
+          <integer>1000</integer>
+          <key>minValue</key>
+          <integer>0</integer>
+          <key>name</key>
+          <string>wght</string>
+          <key>tag</key>
+          <string>wght</string>
+          <key>value</key>
+          <integer>500</integer>
+        </dict>
+      </dict>
+      <key>public.markColor</key>
+      <string>1,1,0,1</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <string>4</string>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.3125</real>
+          <key>interpolateX</key>
+          <real>130.54063415527344</real>
+          <key>interpolateY</key>
+          <real>130.54063415527344</real>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>72.5374984741211</real>
+          <key>scaleY</key>
+          <real>72.5374984741211</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

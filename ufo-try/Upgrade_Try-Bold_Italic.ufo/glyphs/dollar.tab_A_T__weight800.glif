@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="dollar.tab_AT_weight800" format="2">
+  <advance width="650"/>
+  <outline>
+    <component base="dollar_AT_weight800" xOffset="42"/>
+  </outline>
+</glyph>

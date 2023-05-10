@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="d" format="2">
+  <advance width="521"/>
+  <unicode hex="0064"/>
+  <anchor x="580" y="704" name="caron.vert"/>
+  <outline>
+    <contour>
+      <point x="245" y="-10" type="curve" smooth="yes"/>
+      <point x="298" y="-10"/>
+      <point x="349" y="17"/>
+      <point x="378" y="63" type="curve"/>
+      <point x="384" y="0" type="line"/>
+      <point x="459" y="0" type="line"/>
+      <point x="459" y="720" type="line"/>
+      <point x="377" y="720" type="line"/>
+      <point x="377" y="441" type="line"/>
+      <point x="343" y="463"/>
+      <point x="300" y="476"/>
+      <point x="259" y="476" type="curve" smooth="yes"/>
+      <point x="132" y="476"/>
+      <point x="41" y="386"/>
+      <point x="41" y="229" type="curve" smooth="yes"/>
+      <point x="41" y="76"/>
+      <point x="125" y="-10"/>
+    </contour>
+    <contour>
+      <point x="261" y="62" type="curve" smooth="yes"/>
+      <point x="175" y="62"/>
+      <point x="124" y="129"/>
+      <point x="124" y="232" type="curve" smooth="yes"/>
+      <point x="124" y="336"/>
+      <point x="180" y="405"/>
+      <point x="269" y="405" type="curve" smooth="yes"/>
+      <point x="309" y="405"/>
+      <point x="347" y="391"/>
+      <point x="377" y="366" type="curve"/>
+      <point x="377" y="132" type="line"/>
+      <point x="353" y="90"/>
+      <point x="311" y="62"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>1,1,0,1</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <string>4</string>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.3125</real>
+          <key>interpolateX</key>
+          <real>130.54063415527344</real>
+          <key>interpolateY</key>
+          <real>130.54063415527344</real>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>72.5374984741211</real>
+          <key>scaleY</key>
+          <real>72.5374984741211</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

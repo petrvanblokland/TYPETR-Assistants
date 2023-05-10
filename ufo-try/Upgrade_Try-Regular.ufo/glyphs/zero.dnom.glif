@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="zero.dnom" format="2">
+  <advance width="395"/>
+  <outline>
+    <contour>
+      <point x="197" y="-8" type="curve" smooth="yes"/>
+      <point x="299" y="-8"/>
+      <point x="362" y="66"/>
+      <point x="362" y="181" type="curve" smooth="yes"/>
+      <point x="362" y="295"/>
+      <point x="299" y="368"/>
+      <point x="197" y="368" type="curve" smooth="yes"/>
+      <point x="96" y="368"/>
+      <point x="33" y="294"/>
+      <point x="33" y="180" type="curve" smooth="yes"/>
+      <point x="33" y="65"/>
+      <point x="96" y="-8"/>
+    </contour>
+    <contour>
+      <point x="197" y="55" type="curve" smooth="yes"/>
+      <point x="140" y="55"/>
+      <point x="102" y="105"/>
+      <point x="102" y="181" type="curve" smooth="yes"/>
+      <point x="102" y="256"/>
+      <point x="140" y="305"/>
+      <point x="197" y="305" type="curve" smooth="yes"/>
+      <point x="255" y="305"/>
+      <point x="293" y="255"/>
+      <point x="293" y="180" type="curve" smooth="yes"/>
+      <point x="293" y="104"/>
+      <point x="255" y="55"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>1,1,0,1</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <string>4</string>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.18153381347656</real>
+          <key>baselineMax</key>
+          <string>-100</string>
+          <key>baselineMin</key>
+          <string>-250</string>
+          <key>interpolateX</key>
+          <real>130.54063415527344</real>
+          <key>interpolateXMax</key>
+          <string>300</string>
+          <key>interpolateXMin</key>
+          <string>0</string>
+          <key>interpolateY</key>
+          <real>130.54063415527344</real>
+          <key>interpolateYMax</key>
+          <string>300</string>
+          <key>interpolateYMin</key>
+          <string>0</string>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>72.5374984741211</real>
+          <key>scaleXMax</key>
+          <string>200</string>
+          <key>scaleXMin</key>
+          <string>0</string>
+          <key>scaleY</key>
+          <real>72.5374984741211</real>
+          <key>scaleYMax</key>
+          <string>200</string>
+          <key>scaleYMin</key>
+          <string>0</string>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

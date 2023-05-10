@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="O" format="2">
+  <advance width="768"/>
+  <unicode hex="004F"/>
+  <anchor x="384" y="642" name="top"/>
+  <outline>
+    <contour>
+      <point x="384" y="-8" type="curve" smooth="yes"/>
+      <point x="578" y="-8"/>
+      <point x="708" y="127"/>
+      <point x="708" y="329" type="curve" smooth="yes"/>
+      <point x="708" y="532"/>
+      <point x="578" y="666"/>
+      <point x="384" y="666" type="curve" smooth="yes"/>
+      <point x="190" y="666"/>
+      <point x="60" y="532"/>
+      <point x="60" y="329" type="curve" smooth="yes"/>
+      <point x="60" y="127"/>
+      <point x="190" y="-8"/>
+    </contour>
+    <contour>
+      <point x="384" y="-1" type="curve" smooth="yes"/>
+      <point x="194" y="-1"/>
+      <point x="68" y="131"/>
+      <point x="68" y="329" type="curve" smooth="yes"/>
+      <point x="68" y="528"/>
+      <point x="194" y="659"/>
+      <point x="384" y="659" type="curve" smooth="yes"/>
+      <point x="574" y="659"/>
+      <point x="700" y="528"/>
+      <point x="700" y="329" type="curve" smooth="yes"/>
+      <point x="700" y="131"/>
+      <point x="574" y="-1"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>1,1,0,1</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <integer>0</integer>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>autoGlyphSource</key>
+          <integer>1</integer>
+          <key>baseline</key>
+          <real>0.0</real>
+          <key>glyphSource</key>
+          <string></string>
+          <key>interpolateX</key>
+          <real>100.0</real>
+          <key>interpolateY</key>
+          <real>100.0</real>
+          <key>lockInterpolationXY</key>
+          <integer>1</integer>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>master1</key>
+          <string>Upgrade-Thin.ufo</string>
+          <key>master2</key>
+          <string>Upgrade-Middle.ufo</string>
+          <key>scaleX</key>
+          <real>100.0</real>
+          <key>scaleY</key>
+          <real>100.0</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

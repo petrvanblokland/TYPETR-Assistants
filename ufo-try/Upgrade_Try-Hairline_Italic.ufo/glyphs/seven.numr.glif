@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="seven.numr" format="2">
+  <advance width="315"/>
+  <outline>
+    <component base="seven.dnom" xOffset="50" yOffset="360"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.petr.ptt</key>
+      <dict>
+        <key>winglabels</key>
+        <dict/>
+        <key>wings</key>
+        <dict/>
+      </dict>
+      <key>com.robofont.robohint</key>
+      <dict>
+        <key>wingcommands_json</key>
+        <string>{"aa": {"id": "aa", "name": "Anti-aliasing"}, "bw": {"id": "bw", "name": "Black &amp; white"}, "ct": {"id": "ct", "name": "Cleartype"}, "sp": {"id": "sp", "name": "Space constraint"}}</string>
+        <key>wingset_json</key>
+        <string>{"wings": {"78f4fa9b1aa5": {"id": "797ddac6bc8d", "name": "Testing IF-ELSE", "src": "/* Testing IF-ELSE */\nPUSHB[0] 1\nIF[] \nsrp0[] 24\nelse[]\nsrp0[] 11\neif[]\n"}, "78f4fa9b80d3": {}, "797d0c7721c2": {"id": "797d0c7721c2", "name": "(X) Horizontal hints for o", "src": "/* (X) Horizontal hints for o */\nSVTCA[X]\nSRP0[] 24\nMIRP[M&gt;RWh] 2 lsbRound\nMIRP[m&gt;rBl] 20 stemRound\nMDRP[M&gt;RGr] 8\nMIRP[m&gt;rBl] 14 stemRound\nSRP0[] 8\nMIRP[m&lt;RWh] 25 rsbRound\nIUP[X]\n/* (Y) Autohints for o */\nSVTCA[Y]\n/* ... */\nIUP[Y]"}, "797d108e34b0": {"id": "797d108e34b0", "name": "(X) Autohints for o", "src": "/* (X) Autohints for o */\nSVTCA[X]\nSRP0[] 24\nMIRP[M&gt;RWh] 2 lsbRound\nMIRP[m&gt;rBl] 20 stemRound\nMDRP[M&gt;RGr] 14\nMIRP[m&gt;rBl] 8 stemRound\nSRP0[] 8\nMIRP[m&lt;RWh] 25 rsbRound\n/* (Y) Autohints for o */\nSVTCA[Y]\n/* ... */\nIUP[X]\nIUP[Y]\n"}}}</string>
+      </dict>
+      <key>com.typemytype.roboFont.layerData</key>
+      <dict/>
+    </dict>
+  </lib>
+</glyph>

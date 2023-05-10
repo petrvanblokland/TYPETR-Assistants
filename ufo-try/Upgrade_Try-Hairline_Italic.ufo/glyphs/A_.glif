@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="A" format="2">
+  <advance width="580"/>
+  <unicode hex="0041"/>
+  <anchor x="379" y="642" name="top"/>
+  <anchor x="553" y="16" name="ogonek"/>
+  <outline>
+    <contour>
+      <point x="24" y="0" type="line"/>
+      <point x="32" y="0" type="line"/>
+      <point x="171" y="263" type="line"/>
+      <point x="168" y="263" type="line"/>
+      <point x="487" y="263" type="line"/>
+      <point x="483" y="263" type="line"/>
+      <point x="548" y="0" type="line"/>
+      <point x="556" y="0" type="line"/>
+      <point x="388" y="670" type="line"/>
+      <point x="379" y="670" type="line"/>
+    </contour>
+    <contour>
+      <point x="175" y="270" type="line"/>
+      <point x="349" y="598" type="line"/>
+      <point x="384" y="666" type="line"/>
+      <point x="381" y="666" type="line"/>
+      <point x="398" y="598" type="line"/>
+      <point x="481" y="270" type="line"/>
+      <point x="485" y="270" type="line"/>
+      <point x="170" y="270" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.typemytype.robofont.Image.Brightness</key>
+      <integer>0</integer>
+      <key>com.typemytype.robofont.Image.Contrast</key>
+      <integer>1</integer>
+      <key>com.typemytype.robofont.Image.Saturation</key>
+      <integer>1</integer>
+      <key>com.typemytype.robofont.Image.Sharpness</key>
+      <real>0.4</real>
+      <key>fbTools.spacingEnvelop</key>
+      <array>
+        <array>
+          <integer>0</integer>
+          <integer>-3</integer>
+        </array>
+        <array>
+          <real>96.98846172356207</real>
+          <real>473.3530905094967</real>
+        </array>
+        <array>
+          <real>117.87493583162131</real>
+          <real>584.2085833226383</real>
+        </array>
+        <array>
+          <real>57.798005967658355</real>
+          <real>656.4416990182235</real>
+        </array>
+        <array>
+          <integer>457</integer>
+          <integer>666</integer>
+        </array>
+        <array>
+          <integer>457</integer>
+          <integer>-3</integer>
+        </array>
+      </array>
+      <key>public.markColor</key>
+      <string>1,1,0,1</string>
+    </dict>
+  </lib>
+</glyph>

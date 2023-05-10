@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="parenleft.uc" format="2">
+  <advance width="437"/>
+  <outline>
+    <contour>
+      <point x="161" y="-58" type="curve"/>
+      <point x="405" y="-58" type="line"/>
+      <point x="333" y="73"/>
+      <point x="292" y="204"/>
+      <point x="292" y="329" type="curve" smooth="yes"/>
+      <point x="292" y="467"/>
+      <point x="332" y="599"/>
+      <point x="400" y="716" type="curve"/>
+      <point x="156" y="716" type="line"/>
+      <point x="89" y="607"/>
+      <point x="56" y="486"/>
+      <point x="56" y="334" type="curve" smooth="yes"/>
+      <point x="56" y="193"/>
+      <point x="90" y="70"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>1,1,0,1</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <string>4</string>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.3125</real>
+          <key>interpolateX</key>
+          <real>130.54063415527344</real>
+          <key>interpolateY</key>
+          <real>130.54063415527344</real>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>72.5374984741211</real>
+          <key>scaleY</key>
+          <real>72.5374984741211</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

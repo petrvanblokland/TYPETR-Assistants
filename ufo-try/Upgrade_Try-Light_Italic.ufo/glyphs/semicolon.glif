@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="semicolon" format="2">
+  <advance width="159"/>
+  <unicode hex="003B"/>
+  <guideline x="114" y="244" angle="82.0" name="" identifier="b3IDUI7Q3m"/>
+  <outline>
+    <component base="comma"/>
+    <component base="period" xOffset="57" yOffset="316"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.typemytype.robofont.guideline.magnetic.b3IDUI7Q3m</key>
+      <integer>5</integer>
+    </dict>
+  </lib>
+</glyph>

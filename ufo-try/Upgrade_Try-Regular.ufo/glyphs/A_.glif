@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="A" format="2">
+  <advance width="643"/>
+  <unicode hex="0041"/>
+  <anchor x="321" y="642" name="top"/>
+  <anchor x="618" y="16" name="ogonek"/>
+  <outline>
+    <contour>
+      <point x="20" y="0" type="line"/>
+      <point x="106" y="0" type="line"/>
+      <point x="181" y="197" type="line"/>
+      <point x="161" y="197" type="line"/>
+      <point x="478" y="197" type="line"/>
+      <point x="457" y="197" type="line"/>
+      <point x="532" y="0" type="line"/>
+      <point x="623" y="0" type="line"/>
+      <point x="361" y="664" type="line"/>
+      <point x="282" y="664" type="line"/>
+    </contour>
+    <contour>
+      <point x="209" y="271" type="line"/>
+      <point x="292" y="488" type="line"/>
+      <point x="325" y="582" type="line"/>
+      <point x="312" y="582" type="line"/>
+      <point x="345" y="488" type="line"/>
+      <point x="429" y="271" type="line"/>
+      <point x="451" y="271" type="line"/>
+      <point x="182" y="271" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>axes</key>
+      <dict>
+        <key>wdth</key>
+        <dict>
+          <key>defaultValue</key>
+          <integer>500</integer>
+          <key>enabled</key>
+          <false/>
+          <key>master</key>
+          <string></string>
+          <key>maxValue</key>
+          <integer>1000</integer>
+          <key>minValue</key>
+          <integer>0</integer>
+          <key>name</key>
+          <string>wdth</string>
+          <key>tag</key>
+          <string>wdth</string>
+          <key>value</key>
+          <integer>500</integer>
+        </dict>
+        <key>wght</key>
+        <dict>
+          <key>defaultValue</key>
+          <integer>500</integer>
+          <key>enabled</key>
+          <true/>
+          <key>master</key>
+          <string></string>
+          <key>maxValue</key>
+          <integer>1000</integer>
+          <key>minValue</key>
+          <integer>0</integer>
+          <key>name</key>
+          <string>wght</string>
+          <key>tag</key>
+          <string>wght</string>
+          <key>value</key>
+          <integer>500</integer>
+        </dict>
+      </dict>
+      <key>fbTools.spacingEnvelop</key>
+      <array>
+        <array>
+          <integer>0</integer>
+          <integer>-3</integer>
+        </array>
+        <array>
+          <real>96.98846172356207</real>
+          <real>473.3530905094967</real>
+        </array>
+        <array>
+          <real>117.87493583162131</real>
+          <real>584.2085833226383</real>
+        </array>
+        <array>
+          <real>57.798005967658355</real>
+          <real>656.4416990182235</real>
+        </array>
+        <array>
+          <integer>457</integer>
+          <integer>666</integer>
+        </array>
+        <array>
+          <integer>457</integer>
+          <integer>-3</integer>
+        </array>
+      </array>
+      <key>public.markColor</key>
+      <string>1,1,0,1</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <string>4</string>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.3125</real>
+          <key>interpolateX</key>
+          <real>130.54063415527344</real>
+          <key>interpolateY</key>
+          <real>130.54063415527344</real>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>72.5374984741211</real>
+          <key>scaleY</key>
+          <real>72.5374984741211</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

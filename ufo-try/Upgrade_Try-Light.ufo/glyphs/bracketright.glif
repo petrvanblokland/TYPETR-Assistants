@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="bracketright" format="2">
+  <advance width="317"/>
+  <unicode hex="005D"/>
+  <outline>
+    <contour>
+      <point x="40" y="-220" type="line"/>
+      <point x="217" y="-220" type="line"/>
+      <point x="217" y="724" type="line"/>
+      <point x="40" y="724" type="line"/>
+      <point x="40" y="696" type="line"/>
+      <point x="185" y="696" type="line"/>
+      <point x="185" y="-192" type="line"/>
+      <point x="40" y="-192" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>0.8,1,0.8,1</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <string>4</string>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.3125</real>
+          <key>interpolateX</key>
+          <real>130.54063415527344</real>
+          <key>interpolateY</key>
+          <real>130.54063415527344</real>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>72.5374984741211</real>
+          <key>scaleY</key>
+          <real>72.5374984741211</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

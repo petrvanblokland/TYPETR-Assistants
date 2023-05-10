@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="acutecmb.uc" format="2">
+  <anchor x="90" y="642" name="_top"/>
+  <anchor x="2" y="16" name="_bottom"/>
+  <outline>
+    <contour>
+      <point x="74" y="724" type="line"/>
+      <point x="83" y="724" type="line"/>
+      <point x="188" y="849" type="line"/>
+      <point x="178" y="849" type="line"/>
+    </contour>
+  </outline>
+</glyph>

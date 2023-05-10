@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Delta" format="2">
+  <advance width="782"/>
+  <unicode hex="0394"/>
+  <unicode hex="2206"/>
+  <outline>
+    <contour>
+      <point x="12" y="0" type="line"/>
+      <point x="304" y="658" type="line"/>
+      <point x="663" y="658" type="line"/>
+      <point x="770" y="0" type="line"/>
+    </contour>
+    <contour>
+      <point x="356" y="220" type="line"/>
+      <point x="459" y="220" type="line"/>
+      <point x="430" y="408" type="line"/>
+    </contour>
+  </outline>
+</glyph>

@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="dollar_AT_weight800" format="2">
+  <advance width="507"/>
+  <outline>
+    <contour>
+      <point x="333" y="662" type="line"/>
+      <point x="340" y="662" type="line"/>
+      <point x="352" y="748" type="line"/>
+      <point x="345" y="748" type="line"/>
+    </contour>
+    <contour>
+      <point x="227" y="-90" type="line"/>
+      <point x="234" y="-90" type="line"/>
+      <point x="246" y="-4" type="line"/>
+      <point x="239" y="-4" type="line"/>
+    </contour>
+    <component base="S"/>
+  </outline>
+</glyph>

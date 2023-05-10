@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="dollar.lc_AT_weight800" format="2">
+  <advance width="558"/>
+  <outline>
+    <contour>
+      <point x="197" y="432" type="line"/>
+      <point x="369" y="432" type="line"/>
+      <point x="369" y="604" type="line"/>
+      <point x="197" y="604" type="line"/>
+    </contour>
+    <contour>
+      <point x="197" y="-102" type="line"/>
+      <point x="369" y="-102" type="line"/>
+      <point x="369" y="70" type="line"/>
+      <point x="197" y="70" type="line"/>
+    </contour>
+    <component base="s" xOffset="20"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>1,0.2,0.2,0.4</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <string>4</string>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.3125</real>
+          <key>interpolateX</key>
+          <real>130.54063415527344</real>
+          <key>interpolateY</key>
+          <real>130.54063415527344</real>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>72.5374984741211</real>
+          <key>scaleY</key>
+          <real>72.5374984741211</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

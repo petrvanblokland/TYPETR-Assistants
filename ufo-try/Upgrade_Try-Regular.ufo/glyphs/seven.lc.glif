@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="seven.lc" format="2">
+  <advance width="484"/>
+  <outline>
+    <contour>
+      <point x="124" y="-183" type="line" smooth="yes"/>
+      <point x="214" y="-183" type="line" smooth="yes"/>
+      <point x="442" y="411" type="line" smooth="yes"/>
+      <point x="442" y="470" type="line" smooth="yes"/>
+      <point x="42" y="470" type="line" smooth="yes"/>
+      <point x="42" y="388" type="line" smooth="yes"/>
+      <point x="385" y="388" type="line" smooth="yes"/>
+      <point x="355" y="412" type="line" smooth="yes"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>1,1,0,1</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <string>4</string>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.3125</real>
+          <key>interpolateX</key>
+          <real>130.54063415527344</real>
+          <key>interpolateY</key>
+          <real>130.54063415527344</real>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>72.5374984741211</real>
+          <key>scaleY</key>
+          <real>72.5374984741211</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="I" format="2">
+  <advance width="300"/>
+  <unicode hex="0049"/>
+  <anchor x="242" y="642" name="top"/>
+  <anchor x="234" y="16" name="ogonek"/>
+  <outline>
+    <contour>
+      <point x="62" y="0" type="line"/>
+      <point x="238" y="0" type="line"/>
+      <point x="330" y="658" type="line"/>
+      <point x="154" y="658" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.typemytype.robofont.guideline.magnetic.WObUpThMfp</key>
+      <integer>5</integer>
+      <key>public.markColor</key>
+      <string>1,1,0,1</string>
+    </dict>
+  </lib>
+</glyph>

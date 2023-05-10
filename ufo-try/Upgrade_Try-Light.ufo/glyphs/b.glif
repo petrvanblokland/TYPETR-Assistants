@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="b" format="2">
+  <advance width="502"/>
+  <unicode hex="0062"/>
+  <outline>
+    <contour>
+      <point x="230" y="-10" type="curve" smooth="yes"/>
+      <point x="363" y="-10"/>
+      <point x="450" y="84"/>
+      <point x="450" y="236" type="curve" smooth="yes"/>
+      <point x="450" y="382"/>
+      <point x="369" y="472"/>
+      <point x="246" y="472" type="curve" smooth="yes"/>
+      <point x="194" y="472"/>
+      <point x="141" y="451"/>
+      <point x="107" y="414" type="curve"/>
+      <point x="107" y="724" type="line"/>
+      <point x="76" y="724" type="line"/>
+      <point x="76" y="17" type="line"/>
+      <point x="125" y="-1"/>
+      <point x="175" y="-10"/>
+    </contour>
+    <contour>
+      <point x="230" y="18" type="curve" smooth="yes"/>
+      <point x="186" y="18"/>
+      <point x="148" y="24"/>
+      <point x="107" y="38" type="curve"/>
+      <point x="107" y="382" type="line"/>
+      <point x="147" y="425"/>
+      <point x="190" y="444"/>
+      <point x="246" y="444" type="curve" smooth="yes"/>
+      <point x="350" y="444"/>
+      <point x="418" y="365"/>
+      <point x="418" y="235" type="curve" smooth="yes"/>
+      <point x="418" y="101"/>
+      <point x="343" y="18"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>axes</key>
+      <dict>
+        <key>wdth</key>
+        <dict>
+          <key>defaultValue</key>
+          <integer>500</integer>
+          <key>enabled</key>
+          <true/>
+          <key>master</key>
+          <string></string>
+          <key>maxValue</key>
+          <integer>1000</integer>
+          <key>minValue</key>
+          <integer>0</integer>
+          <key>name</key>
+          <string>wdth</string>
+          <key>tag</key>
+          <string>wdth</string>
+          <key>value</key>
+          <integer>500</integer>
+        </dict>
+        <key>wght</key>
+        <dict>
+          <key>defaultValue</key>
+          <integer>500</integer>
+          <key>enabled</key>
+          <true/>
+          <key>master</key>
+          <string></string>
+          <key>maxValue</key>
+          <integer>1000</integer>
+          <key>minValue</key>
+          <integer>0</integer>
+          <key>name</key>
+          <string>wght</string>
+          <key>tag</key>
+          <string>wght</string>
+          <key>value</key>
+          <integer>500</integer>
+        </dict>
+      </dict>
+      <key>public.markColor</key>
+      <string>1,1,0,1</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <string>4</string>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.3125</real>
+          <key>interpolateX</key>
+          <real>130.54063415527344</real>
+          <key>interpolateY</key>
+          <real>130.54063415527344</real>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>72.5374984741211</real>
+          <key>scaleY</key>
+          <real>72.5374984741211</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

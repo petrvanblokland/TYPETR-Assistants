@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="j" format="2">
+  <advance width="208"/>
+  <unicode hex="006A"/>
+  <guideline x="128" y="413" angle="82.0" name="" identifier="yk6OMRxqcK"/>
+  <anchor x="146" y="450" name="top"/>
+  <outline>
+    <contour>
+      <point x="-53" y="-220" type="line" smooth="yes"/>
+      <point x="55" y="-220"/>
+      <point x="124" y="-161"/>
+      <point x="141" y="-45" type="curve" smooth="yes"/>
+      <point x="213" y="466" type="line"/>
+      <point x="131" y="466" type="line"/>
+      <point x="59" y="-45" type="line" smooth="yes"/>
+      <point x="51" y="-108"/>
+      <point x="13" y="-145"/>
+      <point x="-43" y="-145" type="curve" smooth="yes"/>
+      <point x="-51" y="-145" type="line"/>
+      <point x="-61" y="-220" type="line"/>
+    </contour>
+    <contour>
+      <point x="150" y="611" type="line"/>
+      <point x="236" y="611" type="line"/>
+      <point x="247" y="694" type="line"/>
+      <point x="162" y="694" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.typemytype.robofont.guideline.magnetic.yk6OMRxqcK</key>
+      <integer>5</integer>
+      <key>public.markColor</key>
+      <string>1,1,0,1</string>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="one.numr" format="2">
+  <advance width="272"/>
+  <outline>
+    <component base="one.dnom" xOffset="50" yOffset="360"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.robofont.robohint</key>
+      <dict>
+        <key>wingcommands_json</key>
+        <string>{"aa": {"id": "aa", "name": "Anti-aliasing", "wingorder": [["79191f71df2f", false], ["7a169f472317", false], ["7a169f478e9a", false], ["7a169f47eeb6", false]]}, "bw": {"id": "bw", "name": "Black &amp; white", "wingorder": [["79191f71df2f", false], ["7a169f472317", false], ["7a169f478e9a", false], ["7a169f47eeb6", false]]}, "ct": {"id": "ct", "name": "Cleartype", "wingorder": [["79191f71df2f", false], ["7a169f472317", false], ["7a169f478e9a", false], ["7a169f47eeb6", false]]}, "sp": {"id": "sp", "name": "Space constraint", "wingorder": [["79191f71df2f", false], ["7a169f472317", false], ["7a169f478e9a", false], ["7a169f47eeb6", false]]}}</string>
+        <key>wingset_json</key>
+        <string>{"wings": {"79191f6e563f": {"id": "7a1e9e3998be", "name": "Untitled"}, "79191f6e6dad": {"id": "7a1e9e3899c8", "name": "Petr n", "src": "# Petr n\ny\nindirect round 0 baseline\nreference2 0\nshift 11\nindirect round black 1 xheight\nindirect reference round gray 6 xheight_os\nindirect round black 15 thinstem\nx\nreference0 20\nindirect reference round black 19 stem\nshift 3\n\ninterpolate x\ninterpolate y\n"}, "79191f71df2f": {"id": "79191f71df2f", "name": "(X) Autohints for n", "src": "x\nreference0 @origin\nindirect reference min round white @bottom lsb\nindirect min black 19 stem\nreference min round gray 11\nindirect min black @right stem\nreference0 @right\nindirect round white @width rsb\ny\n\ninterpolate x\ninterpolate y\n"}, "792b46f5c561": {"id": "7a1e9e39b55c", "name": "Untitled"}}}</string>
+      </dict>
+      <key>com.typemytype.Doodle.roundingPalette</key>
+      <dict>
+        <key>blackCorner</key>
+        <integer>0</integer>
+        <key>blackRadius</key>
+        <real>1.0</real>
+        <key>inkTrapLenght</key>
+        <real>1.0</real>
+        <key>roundFlag</key>
+        <integer>0</integer>
+        <key>roundness</key>
+        <real>0.6431587934494019</real>
+        <key>shortLineLength</key>
+        <real>10.0</real>
+        <key>whiteCorner</key>
+        <integer>1</integer>
+        <key>whiteRadius</key>
+        <real>63.74668502807617</real>
+      </dict>
+      <key>com.typemytype.roboFont.layerData</key>
+      <dict/>
+      <key>floqMemesList</key>
+      <array/>
+    </dict>
+  </lib>
+</glyph>

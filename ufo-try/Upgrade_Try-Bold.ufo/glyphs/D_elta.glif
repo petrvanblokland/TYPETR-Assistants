@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Delta" format="2">
+  <advance width="698"/>
+  <unicode hex="0394"/>
+  <unicode hex="2206"/>
+  <outline>
+    <contour>
+      <point x="11" y="0" type="line"/>
+      <point x="255" y="658" type="line"/>
+      <point x="443" y="658" type="line"/>
+      <point x="686" y="0" type="line"/>
+    </contour>
+    <contour>
+      <point x="220" y="143" type="line"/>
+      <point x="452" y="143" type="line"/>
+      <point x="336" y="464" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <string>4</string>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.3125</real>
+          <key>interpolateX</key>
+          <real>130.54063415527344</real>
+          <key>interpolateY</key>
+          <real>130.54063415527344</real>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>72.5374984741211</real>
+          <key>scaleY</key>
+          <real>72.5374984741211</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

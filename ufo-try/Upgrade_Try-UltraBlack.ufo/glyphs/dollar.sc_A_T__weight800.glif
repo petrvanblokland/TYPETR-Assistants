@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="dollar.sc_AT_weight800" format="2">
+  <advance width="577"/>
+  <outline>
+    <contour>
+      <point x="206" y="445" type="line"/>
+      <point x="378" y="445" type="line"/>
+      <point x="378" y="641" type="line"/>
+      <point x="206" y="641" type="line"/>
+    </contour>
+    <contour>
+      <point x="206" y="-110" type="line"/>
+      <point x="378" y="-110" type="line"/>
+      <point x="378" y="86" type="line"/>
+      <point x="206" y="86" type="line"/>
+    </contour>
+    <component base="S.sc" xOffset="16"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>1,0.2,0.2,0.4</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <integer>0</integer>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.74363708496094</real>
+          <key>baselineMax</key>
+          <integer>750</integer>
+          <key>baselineMin</key>
+          <integer>-250</integer>
+          <key>glyphSource</key>
+          <string>a</string>
+          <key>interpolateX</key>
+          <real>119.42200469970703</real>
+          <key>interpolateXMax</key>
+          <integer>150</integer>
+          <key>interpolateXMin</key>
+          <integer>-50</integer>
+          <key>interpolateY</key>
+          <real>119.42200469970703</real>
+          <key>interpolateYMax</key>
+          <integer>150</integer>
+          <key>interpolateYMin</key>
+          <integer>-50</integer>
+          <key>lockInterpolationXY</key>
+          <integer>1</integer>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>81.88823699951172</real>
+          <key>scaleXMax</key>
+          <integer>200</integer>
+          <key>scaleXMin</key>
+          <integer>0</integer>
+          <key>scaleY</key>
+          <real>81.88823699951172</real>
+          <key>scaleYMax</key>
+          <integer>200</integer>
+          <key>scaleYMin</key>
+          <integer>0</integer>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

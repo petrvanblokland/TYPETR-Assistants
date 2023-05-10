@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Q" format="2">
+  <advance width="772"/>
+  <unicode hex="0051"/>
+  <guideline x="754" y="263" angle="82.0" identifier="kRPqQ8vboa"/>
+  <outline>
+    <contour>
+      <point x="676" y="-130" type="curve"/>
+      <point x="680" y="-98" type="line"/>
+      <point x="580" y="-68"/>
+      <point x="517" y="-35"/>
+      <point x="464" y="15" type="curve"/>
+      <point x="429" y="4" type="line"/>
+      <point x="487" y="-56"/>
+      <point x="570" y="-101"/>
+    </contour>
+    <component base="O"/>
+  </outline>
+</glyph>

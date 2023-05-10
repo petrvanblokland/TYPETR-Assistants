@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="quoteleft" format="2">
+  <advance width="199"/>
+  <unicode hex="2018"/>
+  <outline>
+    <contour>
+      <point x="49" y="487" type="line"/>
+      <point x="129" y="487" type="line"/>
+      <point x="129" y="567" type="line" smooth="yes"/>
+      <point x="129" y="625"/>
+      <point x="144" y="665"/>
+      <point x="171" y="709" type="curve"/>
+      <point x="115" y="734" type="line"/>
+      <point x="76" y="692"/>
+      <point x="49" y="630"/>
+      <point x="49" y="562" type="curve" smooth="yes"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>1,1,0,1</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <string>4</string>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.3125</real>
+          <key>interpolateX</key>
+          <real>130.54063415527344</real>
+          <key>interpolateY</key>
+          <real>130.54063415527344</real>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>72.5374984741211</real>
+          <key>scaleY</key>
+          <real>72.5374984741211</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

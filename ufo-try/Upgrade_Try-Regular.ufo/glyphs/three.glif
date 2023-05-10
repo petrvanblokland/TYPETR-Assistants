@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="three" format="2">
+  <advance width="498"/>
+  <unicode hex="0033"/>
+  <outline>
+    <contour>
+      <point x="244" y="-13" type="curve" smooth="yes"/>
+      <point x="371" y="-13"/>
+      <point x="451" y="58"/>
+      <point x="451" y="170" type="curve" smooth="yes"/>
+      <point x="451" y="267"/>
+      <point x="382" y="329"/>
+      <point x="281" y="339" type="curve"/>
+      <point x="281" y="333" type="line"/>
+      <point x="384" y="349"/>
+      <point x="439" y="414"/>
+      <point x="439" y="506" type="curve" smooth="yes"/>
+      <point x="439" y="602"/>
+      <point x="366" y="671"/>
+      <point x="233" y="671" type="curve" smooth="yes"/>
+      <point x="176" y="671"/>
+      <point x="118" y="654"/>
+      <point x="71" y="622" type="curve"/>
+      <point x="71" y="536" type="line"/>
+      <point x="116" y="572"/>
+      <point x="174" y="592"/>
+      <point x="233" y="592" type="curve" smooth="yes"/>
+      <point x="302" y="592"/>
+      <point x="354" y="557"/>
+      <point x="354" y="492" type="curve" smooth="yes"/>
+      <point x="354" y="415"/>
+      <point x="292" y="374"/>
+      <point x="192" y="374" type="curve" smooth="yes"/>
+      <point x="161" y="374" type="line"/>
+      <point x="161" y="295" type="line"/>
+      <point x="197" y="295" type="line" smooth="yes"/>
+      <point x="303" y="295"/>
+      <point x="367" y="255"/>
+      <point x="366" y="177" type="curve" smooth="yes"/>
+      <point x="366" y="106"/>
+      <point x="315" y="66"/>
+      <point x="235" y="66" type="curve" smooth="yes"/>
+      <point x="169" y="66"/>
+      <point x="99" y="91"/>
+      <point x="47" y="134" type="curve"/>
+      <point x="47" y="45" type="line"/>
+      <point x="105" y="8"/>
+      <point x="175" y="-13"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>1,1,0,1</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <string>4</string>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.3125</real>
+          <key>interpolateX</key>
+          <real>130.54063415527344</real>
+          <key>interpolateY</key>
+          <real>130.54063415527344</real>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>72.5374984741211</real>
+          <key>scaleY</key>
+          <real>72.5374984741211</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

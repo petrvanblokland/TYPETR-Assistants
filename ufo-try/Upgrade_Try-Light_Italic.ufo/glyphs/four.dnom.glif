@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="four.dnom" format="2">
+  <advance width="305"/>
+  <outline>
+    <contour>
+      <point x="190" y="0" type="line"/>
+      <point x="221" y="0" type="line"/>
+      <point x="235" y="99" type="line"/>
+      <point x="295" y="99" type="line"/>
+      <point x="299" y="127" type="line"/>
+      <point x="240" y="127" type="line"/>
+      <point x="273" y="360" type="line"/>
+      <point x="235" y="360" type="line"/>
+      <point x="41" y="121" type="line"/>
+      <point x="38" y="99" type="line"/>
+      <point x="204" y="99" type="line"/>
+    </contour>
+    <contour>
+      <point x="209" y="127" type="line"/>
+      <point x="79" y="127" type="line"/>
+      <point x="236" y="319" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.typemytype.robofont.Image.Brightness</key>
+      <integer>0</integer>
+      <key>com.typemytype.robofont.Image.Contrast</key>
+      <integer>1</integer>
+      <key>com.typemytype.robofont.Image.Saturation</key>
+      <integer>1</integer>
+      <key>com.typemytype.robofont.Image.Sharpness</key>
+      <real>0.4</real>
+    </dict>
+  </lib>
+</glyph>

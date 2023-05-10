@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="H" format="2">
+  <advance width="712"/>
+  <unicode hex="0048"/>
+  <guideline x="356" y="0" angle="82.0" name="" identifier="JMBvttS7Pj"/>
+  <anchor x="446" y="640" name="top"/>
+  <outline>
+    <contour>
+      <point x="62" y="0" type="line"/>
+      <point x="238" y="0" type="line"/>
+      <point x="274" y="251" type="line"/>
+      <point x="509" y="251" type="line"/>
+      <point x="474" y="0" type="line"/>
+      <point x="650" y="0" type="line"/>
+      <point x="742" y="658" type="line"/>
+      <point x="566" y="658" type="line"/>
+      <point x="531" y="410" type="line"/>
+      <point x="296" y="410" type="line"/>
+      <point x="330" y="658" type="line"/>
+      <point x="154" y="658" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.typemytype.robofont.guideline.magnetic.JMBvttS7Pj</key>
+      <integer>5</integer>
+      <key>public.markColor</key>
+      <string>1,1,0,1</string>
+    </dict>
+  </lib>
+</glyph>

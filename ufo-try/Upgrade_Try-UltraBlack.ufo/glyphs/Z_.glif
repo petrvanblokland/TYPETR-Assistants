@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Z" format="2">
+  <advance width="657"/>
+  <unicode hex="005A"/>
+  <anchor x="336" y="642" name="top"/>
+  <outline>
+    <contour>
+      <point x="36" y="0" type="line"/>
+      <point x="621" y="0" type="line"/>
+      <point x="621" y="220" type="line"/>
+      <point x="335" y="220" type="line"/>
+      <point x="335" y="126" type="line"/>
+      <point x="457" y="283" type="line"/>
+      <point x="621" y="526" type="line"/>
+      <point x="621" y="658" type="line"/>
+      <point x="37" y="658" type="line"/>
+      <point x="37" y="438" type="line"/>
+      <point x="327" y="438" type="line"/>
+      <point x="327" y="532" type="line"/>
+      <point x="207" y="376" type="line"/>
+      <point x="36" y="132" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>1,1,0,1</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <string>4</string>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.3125</real>
+          <key>interpolateX</key>
+          <real>130.54063415527344</real>
+          <key>interpolateY</key>
+          <real>130.54063415527344</real>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>72.5374984741211</real>
+          <key>scaleY</key>
+          <real>72.5374984741211</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

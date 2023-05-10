@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="three.dnom" format="2">
+  <advance width="300"/>
+  <outline>
+    <contour>
+      <point x="146" y="-8" type="curve" smooth="yes"/>
+      <point x="220" y="-8"/>
+      <point x="264" y="33"/>
+      <point x="264" y="96" type="curve" smooth="yes"/>
+      <point x="264" y="149"/>
+      <point x="229" y="184"/>
+      <point x="163" y="189" type="curve"/>
+      <point x="163" y="184" type="line"/>
+      <point x="226" y="194"/>
+      <point x="257" y="230"/>
+      <point x="257" y="278" type="curve" smooth="yes"/>
+      <point x="257" y="335"/>
+      <point x="217" y="368"/>
+      <point x="150" y="368" type="curve" smooth="yes"/>
+      <point x="114" y="368"/>
+      <point x="83" y="357"/>
+      <point x="56" y="336" type="curve"/>
+      <point x="56" y="301" type="line"/>
+      <point x="82" y="327"/>
+      <point x="113" y="339"/>
+      <point x="150" y="339" type="curve" smooth="yes"/>
+      <point x="195" y="339"/>
+      <point x="226" y="316"/>
+      <point x="226" y="277" type="curve" smooth="yes"/>
+      <point x="226" y="231"/>
+      <point x="191" y="202"/>
+      <point x="127" y="202" type="curve" smooth="yes"/>
+      <point x="113" y="202" type="line"/>
+      <point x="113" y="173" type="line"/>
+      <point x="128" y="173" type="line" smooth="yes"/>
+      <point x="196" y="173"/>
+      <point x="233" y="141"/>
+      <point x="233" y="94" type="curve" smooth="yes"/>
+      <point x="233" y="50"/>
+      <point x="197" y="21"/>
+      <point x="146" y="21" type="curve" smooth="yes"/>
+      <point x="102" y="21"/>
+      <point x="66" y="37"/>
+      <point x="36" y="69" type="curve"/>
+      <point x="36" y="32" type="line"/>
+      <point x="68" y="5"/>
+      <point x="103" y="-8"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.markColor</key>
+      <string>1,1,0,1</string>
+      <key>tnScalarpolator</key>
+      <dict>
+        <key>scalarpolatorPrefs</key>
+        <dict>
+          <key>LSB</key>
+          <string>4</string>
+          <key>RSB</key>
+          <integer>0</integer>
+          <key>baseline</key>
+          <real>-142.18153381347656</real>
+          <key>baselineMax</key>
+          <string>-100</string>
+          <key>baselineMin</key>
+          <string>-250</string>
+          <key>interpolateX</key>
+          <real>130.54063415527344</real>
+          <key>interpolateXMax</key>
+          <string>300</string>
+          <key>interpolateXMin</key>
+          <string>0</string>
+          <key>interpolateY</key>
+          <real>130.54063415527344</real>
+          <key>interpolateYMax</key>
+          <string>300</string>
+          <key>interpolateYMin</key>
+          <string>0</string>
+          <key>lockScaleXY</key>
+          <integer>1</integer>
+          <key>scaleX</key>
+          <real>72.5374984741211</real>
+          <key>scaleXMax</key>
+          <string>200</string>
+          <key>scaleXMin</key>
+          <string>0</string>
+          <key>scaleY</key>
+          <real>72.5374984741211</real>
+          <key>scaleYMax</key>
+          <string>200</string>
+          <key>scaleYMin</key>
+          <string>0</string>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>
