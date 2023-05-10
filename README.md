@@ -11,7 +11,7 @@ Documentation is at docs/. There may be a website later.
 
 ## Github
 
-https://github.com/petrvanblokland/TYPETR-Assistant
+https://github.com/petrvanblokland/TYPETR-Assistants
 
 ## Environment
 
