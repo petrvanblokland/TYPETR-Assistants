@@ -3,7 +3,7 @@
 This is our new Helpers and Assistant environment.
 All sources for the BaseAssistant classes and additional functions will be kept here, instead of having copying them inside project repositories.
 
-It is a fast and flexible collection of helpers for specific type projects: this repository contains library of assistants and helper for type project.
+It is a fast and flexible collection of helpers for specific type projects: this repository contains library of assistants and helpers for type project.
 
 This collection of tools offers a fast and flexible collection of helpers and assistant examples for specific type projects.
 
@@ -33,9 +33,15 @@ Or install from a cloned repository in your local Python version by (@@@ Does no
 
 In the context of this repository, “Helpers” are scripts that can be run without any coding. They are generic tools that perform a specifc task, such as the editing of curves or building PDF proofs. “Helpers can best be compared with existing tools that live inside the RoboFont extension menu, maintained by Mechanic.
 
+With the pip-installer not working yet, it’s possible to run the helpers directly from this repository. Open the current version of GlyphBrowser.py in RoboFont and run the code. If there is a UFO open, the browser will show a list of all other UFO’s in the same directory, filtering on romand/italic and showing the superset of all glyphs that exist in all masters. 
+
+Double click on one of the glyphs will open an EditorWindow on that glyph for the selected UFO.
+
+The glyphset can easily be filtered by various levels of name patterns.
+
 #### Operational helpers
 
-* GlyphBrowser
+* GlyphBrowser.py
 
 #### Planned helpers
 
@@ -43,8 +49,11 @@ In the context of this repository, “Helpers” are scripts that can be run wit
 * Text samples connection with FontGoggles
 * InterpolationFixer (probably part of GlyphBrowser)
 * GuidesBuilder
+* Quadratics --> Bezier --> Quadratics conversions
 * Measures (inside the EditorWindow)
+* Overlays and point snapping
 * KerningEditor (inside the EditorWindow)
+* Live Auto-spacing and Auto-kerning, based on trained neural networks.
 * Python source generators for build.py, MasterData and GlyphData dictionaries
 * Exporting OT feature code, design space files,  
 * Proofing PDF
@@ -78,6 +87,7 @@ TYPETR-Assistants imports open source type libraries, such as:
 * FontGoggles (by Just van Rossum)
 * drawBot/ (by Frederik Berlaen and Just van Rossum)
 * merz/ and ezui/ (by Tal Leming) 
+* neuralNetworkKerning/ (by Lars van Blokland)
 * ... more here.
 
 Special thanks to all designers, coders and companies who published the sources that TYPETR-Assistants are based on.
