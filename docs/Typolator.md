@@ -1,12 +1,12 @@
-# TYPETR Typolator
+# TYPETR Assistant
 
-Typolator is offers (will offer) similar functions as Prepolator, but faster because fonts only get opened with the interface if there is an EditorWindow needed.
+The TYPETR Assistant is offers (will offer) similar functions as Prepolator, but faster because fonts only get opened with the interface if there is an EditorWindow needed.
 
 ## Management of masters
 
 ![](images/TL01.png)
 
-When started, the Typolator takes the open fonts in RoboFont as list in the *[Reference UFO]* popup. 
+When started, the Assistant takes the open fonts in RoboFont as list in the *[Reference UFO]* popup. 
 The selected “Reference UFO” will be used as source for the glyphset and all UFO’s in the same directory will be  used in the list below the reference popup. 
 
 The tool also decides to filter the UFO names if there is *Italic* in the same, in a similar way as the selected reference UFO.
@@ -29,7 +29,7 @@ Double-click on the glyph name opes the EditorWindow for that glyph in the selec
 
 ### Selection by component
 
-The Typolator now has improved glyph selection. 
+The Assistant now has improved glyph selection. 
 The “@” symbol starts the pattern part for the component name. I can be used in each of the **Start-Has-End** boxes. You can combine this with the glyph name selection itself. So instead of 
 
 	Start=A 

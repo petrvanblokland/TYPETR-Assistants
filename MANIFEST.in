@@ -1,0 +1,4 @@
+include License.txt
+include Install.txt
+recursive-include docs *
+recursive-include assistantLib *.py

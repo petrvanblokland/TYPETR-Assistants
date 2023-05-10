@@ -130,6 +130,10 @@ dmypy.json
 
 _local/
 _export/
+_nursery/
+_ufo/
+_ufo_tmp/
+_vf/
 venv/
 
 .DS_Store

@@ -1,3 +1,0 @@
-include (features/Upgrade_ThickLigatures.fea);
-include (features/Upgrade_Generic.fea);
-include (features/Upgrade.fea);
