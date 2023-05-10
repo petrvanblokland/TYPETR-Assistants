@@ -33,14 +33,29 @@ Or install from a cloned repository in your local Python version by (@@@ Does no
 
 In the context of this repository, “Helpers” are scripts that can be run without any coding. They are generic tools that perform a specifc task, such as the editing of curves or building PDF proofs. “Helpers can best be compared with existing tools that live inside the RoboFont extension menu, maintained by Mechanic.
 
-Current operational helpers are:
+#### Operational helpers
+
+* GlyphBrowser
+
+#### Planned helpers
 
 * CurvePalette (will soon be implemented, see docs/CurvePalette.md)
-* GlyphBrowser
+* Text samples connection with FontGoggles
+* InterpolationFixer (probably part of GlyphBrowser)
+* GuidesBuilder
+* Measures (inside the EditorWindow)
+* KerningEditor (inside the EditorWindow)
+* Python source generators for build.py, MasterData and GlyphData dictionaries
+* Exporting OT feature code, design space files,  
+* Proofing PDF
 
 ### Assistants
 
-“Assistants” are applications that are written for a specific project. They inherit from BaseAssistant classes that take care of the base level of “event” plumbing between tools, UFO’s and RoboFont. Assistants may contain very specific information about the type project, such as glyphset, design space, shape of serifs, position of guide lines and spacing dependencies. Assistant code is likely to live inside the directories of type projects.
+“Assistants” are applications that are written for a specific project. They develop alongside the different phases of a project, supporting the automation of tasks as they are needed.
+
+They inherit from BaseAssistant classes that take care of the base level of “event” plumbing between tools, UFO’s and RoboFont. Assistants may contain very specific information about the type project, such as glyphset, design space, shape of serifs, position of guide lines and spacing dependencies. Assistant code is likely to live inside the directories of type projects.
+
+In general Assistants will be a mixture of functions that are specific for a design project and a range of adapted helpers.
 
 ## Documentation
 
