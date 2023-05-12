@@ -82,12 +82,14 @@ All markdown documents (“.md” extension) in this repository can best be open
 
 TYPETR-Assistants imports open source type libraries, such as:
 
-* vanilla/ (by Tal Leming)
-* fontmake/ (by Google and Just van Rossum)
+* Vanilla/ (by Tal Leming)
+* FontMake/ and FontTools (by Google and Just van Rossum)
 * FontGoggles (by Just van Rossum)
-* drawBot/ (by Frederik Berlaen and Just van Rossum)
-* merz/ and ezui/ (by Tal Leming) 
-* neuralNetworkKerning/ (by Lars van Blokland)
+* DrawBot/ (by Frederik Berlaen and Just van Rossum)
+* RoboFont.app (by Frederik Berlaen)
+* Merz/ and Ezui/ (by Tal Leming)
+* Similarity (by Erik van Blokland) 
+* KernNet/ (by Lars van Blokland)
 * ... more here.
 
 Special thanks to all designers, coders and companies who published the sources that TYPETR-Assistants are based on.
