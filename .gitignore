@@ -134,6 +134,7 @@ _nursery/
 _ufo/
 _ufo_tmp/
 _vf/
+_burned
 venv/
 
 .DS_Store

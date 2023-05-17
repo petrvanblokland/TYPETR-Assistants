@@ -36,11 +36,11 @@ class GlyphBrowser(Subscriber, WindowController):
     own window or canvas.
     The selection and order of the helpers defines their top-down order in the Assistant window.
     """
-    WINDOW_CLASS = Window # Or FloatingWindow
+    WINDOW_CLASS = Window # FloatingWindow or Window
     debug = True
     VERBOSE = False
 
-    TITLE = 'Assistant'
+    TITLE = 'GlyphBrowser'
 
     # Layout paratemers. Not using Ezui right now, just layout math.
     X = Y = 50 # Position of the window, should eventually come from preference storage.
@@ -314,19 +314,8 @@ class GlyphBrowser(Subscriber, WindowController):
         
     def glyphNameListCallback(self, sender=None):
         """Something happened to the glyph name list. Update it."""
-        selection = self.w.glyphNames.getSelection()
-        if selection:
-            gName = self.w.glyphNames[selection[0]]
-            f = self.getCurrentFont()
-            g = f[gName]
-            if g.unicode:
-                unicode = '%04X' % g.unicode
-            else:
-                unicode = '----'
-            
-        else:
-            unicode = ''
-        self.w.unicode.set(unicode)
+        self.updateGlyphInfo()
+        # Don't call editor open on selection, because it will make typing in the filter impossible.
                                         
     def glyphNameListDblClickCallback(self, sender):
         """Open the selected glyph in the current font (independent from which font is selected in the ufo names list).
@@ -372,6 +361,23 @@ class GlyphBrowser(Subscriber, WindowController):
         self.w.ufoReference.setItems(refNames)
         self.updateUfoListCallback()
         self.filterNamesCallback()
+
+    def updateGlyphInfo(self):
+        """Update the info about the glyph (such as unicode) from the selected glyph in the list.
+        Blank the info if no glyph is selected."""
+        selection = self.w.glyphNames.getSelection()
+        if selection:
+            gName = self.w.glyphNames[selection[0]]
+            f = self.getCurrentFont()
+            g = f[gName]
+            if g.unicode:
+                unicode = '%04X' % g.unicode
+            else:
+                unicode = '----'
+            
+        else:
+            unicode = ''
+        self.w.unicode.set(unicode)
                                 
 if __name__ == '__main__':
     registerRoboFontSubscriber(GlyphBrowser)
