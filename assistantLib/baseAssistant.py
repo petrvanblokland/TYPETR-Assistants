@@ -6,11 +6,12 @@
 #
 #    TYPETR baseAssistant.py
 #
-#    The BaseAssistant provides both an example template as base class for writing Assistant tools,
+#    The BaseAssistantSubscriber provides both an example template as base class for writing Assistant tools,
 #    with specific knowledge about a typedesign project.
 #
 
 import os
+import AppKit
 
 # Import the main entry into RoboFont subscriber and window controller classes and functions.
 from mojo.subscriber import (Subscriber, WindowController, 
@@ -18,7 +19,7 @@ from mojo.subscriber import (Subscriber, WindowController,
     unregisterGlyphEditorSubscriber, registerSubscriberEvent)
 from mojo.events import postEvent
 from mojo.UI import OpenGlyphWindow
-from mojo.roboFont import AllFonts, OpenFont, RGlyph, RPoint, CurrentGlyph, CurrentFont
+from mojo.roboFont import AllFonts, OpenFont, RFont, RGlyph, RPoint, CurrentGlyph, CurrentFont
 
 # Get the vanilla controls that are used in the UI window
 from vanilla import (Window, FloatingWindow, TextBox, EditText, PopUpButton, RadioGroup, 
@@ -31,7 +32,7 @@ DEFAULT_KEY = 'com.typetr.Assistant'
 EVENT_DO_OPEN_EDITWINDOW = f"{DEFAULT_KEY}.doOpenEditWindow"
 EVENT_SAVE_ALL = f"{DEFAULT_KEY}.saveAll"
 
-class BaseAssistant(Subscriber):
+class BaseAssistantSubscriber(Subscriber):
     """This class interacts with the glyphs and UFO’s through events. It also holds
     the Merz objects that are drawn in the EditorWindow that belongs to this Assistant subscriber.
     Each EditorWindow gets its own Assistant, so there is not confusion about what the current
@@ -49,6 +50,8 @@ class BaseAssistant(Subscriber):
         # Build the Assistant subscriber object
         if self.VERBOSE:
             print('--- build')
+
+        self.windowControllers = []
 
         # Get the GlyphEditor that relates to self.
         glyphEditor = self.getGlyphEditor()
@@ -91,7 +94,7 @@ class BaseAssistant(Subscriber):
         To be redefined by inheriting Assistant-Subscriber classes.
         Default behavior is to do nothing.
         """
-        print('### BaseAssistant.buildAssistant should be redefined by the inheriting Assistant class.')
+        print('### BaseAssistantSubscriber.buildAssistant should be redefined by the inheriting Assistant class.')
 
     def destroy(self):
         """This is called if the glyphEditor is about to get closed. 
@@ -99,6 +102,8 @@ class BaseAssistant(Subscriber):
         glyphEditor = self.getGlyphEditor()
         container = glyphEditor.extensionContainer(DEFAULT_KEY, location='background')
         container.clearSublayers()
+
+    #   G L Y P H
 
     def getGlyph(self):
         """Answer the glyph in the GlyphEditor that relates to this subscriber. This answer a DoodleGlyph"""
@@ -117,35 +122,39 @@ class BaseAssistant(Subscriber):
 
     def doOpenEditWindow(self, info):
         if self.VERBOSE:
-            print('--- BaseAssistant.doOpenEditWindow', info['lowLevelEvents'][0]['info']['ufoName'])
+            print(f"--- {self.__class__.__name__}.doOpenEditWindow {info['lowLevelEvents'][0]['info']['ufoName']}")
 
     def glyphEditorDidSetGlyph(self, info):
         if self.VERBOSE:
-            print('--- BaseAssistant.glyphEditorDidSetGlyph /%s' % info['glyph'].name)
+            print(f"--- {self.__class__.__name__}.glyphEditorDidSetGlyph {info['glyph'].name}")
 
     def glyphEditorDidMouseUp(self, info):
         if self.VERBOSE:
-            print('--- BaseAssistant.glyphEditorDidMouseUp /%s' % info['glyph'].name)
+            print(f"--- {self.__class__.__name__}.glyphEditorDidMouseUp {info['glyph'].name}")
 
     def glyphEditorDidMouseDrag(self, info):
         if self.VERBOSE:
-            print('--- BaseAssistant.glyphEditorDidMouseDrag /%s' % info['glyph'].name)
+            print(f"--- {self.__class__.__name__}.glyphEditorDidMouseDrag {info['glyph'].name}")
 
     def glyphEditorGlyphDidChangeSelection(self, info):
         if self.VERBOSE:
-            print('--- BaseAssistant.glyphEditorGlyphDidChangeSelection /%s' % info['glyph'].name)
+            print(f"--- {self.__class__.__name__}.glyphEditorGlyphDidChangeSelection {info['glyph'].name}")
 
+    def currentFontDidSetFont(self):
+        if self.VERBOSE:
+            print(f"--- {self.__class__.__name__}.currentFontDidSetFont")
+        
     def fontDocumentDidOpen(self, info):
         if self.VERBOSE:
-            print('--- BaseAssistant.fontDocumentDidOpen')
+            print(f"--- {self.__class__.__name__}.fontDocumentDidOpen {info['font'].path}")
         
     def fontDocumentDidClose(self, info):
         if self.VERBOSE:
-            print('--- BaseAssistant.fontDocumentDidClose')
+            print(f"--- {self.__class__.__name__}.fontDocumentDidClose")
 
     def saveAll(self, info):
         # Save all open fonts and all fonts that are in the global openFonts dictionary.
-        print('--- BaseAssistant.saveAll')
+        print(f'--- {self.__class__.__name__}.saveAll')
         for f in AllFonts():
             f.save()
         for ufoPath, f in openFonts.items():
@@ -165,18 +174,23 @@ class BaseAssistantController(WindowController):
     own window or canvas.
     The selection and order of the helpers defines their top-down order in the Assistant window.
     """
-
     WINDOW_CLASS = Window # Or FloatingWindow
-    subscriberClass = BaseAssistant
+    subscriberClass = BaseAssistantSubscriber
     debug = True
     VERBOSE = False
 
-    X = Y = 50 # Position of the window
-    W = 400 # Width of controller window
-    H = 600
+    TITLE = 'Assistant'
+
+    X = Y = 50 # Position of the window, should eventually come from preference storage.
+    W, H = 400, 600 # Width and height of controller window
+    MINW, MINH, MAXW, MAXH = W, H, 3 * W, 3 * H # Min/max size of the window
     M = 8 # Margin and gutter
     L = 20 # Line height between controls
     LL = 32 # Line height between functions
+    BH = 32 # Button height
+    TBH = 24 # Text box height
+    LH = 24 # Label height
+    POBH = 24 # Popup button height
     CW = (W - 4 * M) / 3 # Column width
     CW2 = 2 * CW + M # Column width
     C0 = M # X position of column 0
@@ -186,11 +200,14 @@ class BaseAssistantController(WindowController):
     TITLE = subscriberClass.__name__ # Default is class subscriber class name
     
     def build(self):
-        self.w = self.WINDOW_CLASS((self.X, self.Y, self.W, self.H), self.TITLE)
+        self.fonts = {}
+        self.w = self.WINDOW_CLASS((self.X, self.Y, self.W, self.H), self.TITLE, 
+            minSize=(self.MINW, self.MINH), maxSize=(self.MAXW, self.MAXH))
         self.buildUI()
         self.w.open()
 
     def buildUI(self):
+        """For inheriting classes to define the building of the user interface."""
         pass
         
     def started(self):
@@ -200,4 +217,6 @@ class BaseAssistantController(WindowController):
     def destroy(self):
         unregisterGlyphEditorSubscriber(self.subscriberClass)
         self.subscriberClass.controller = None
+
+    #   F O N T
 

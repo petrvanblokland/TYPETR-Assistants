@@ -17,13 +17,13 @@ from mojo.events import postEvent
 from mojo.UI import OpenGlyphWindow
 from mojo.roboFont import AllFonts, OpenFont, RGlyph, RPoint
 
-from assistantLib.baseAssistant import BaseAssistant, BaseAssistantController, DEFAULT_KEY
+from assistantLib.baseAssistant import BaseAssistantSubscriber, BaseAssistantController, DEFAULT_KEY
 from assistantLib.helpers import *
 
 # PreviewOverlay events
 EVENT_PREVIEW_OVERLAY_CHANGED = f"{DEFAULT_KEY}.previewOverlayChanged"
 
-class PreviewOverlay(BaseAssistant):
+class PreviewOverlay(BaseAssistantSubscriber):
 
     VERBOSE = False
 

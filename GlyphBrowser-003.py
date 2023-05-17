@@ -7,6 +7,12 @@
 #    TYPETR tp_glyphBrowser.py
 #
 import os
+import importlib
+import sys
+PATH = '/Users/petr/Desktop/TYPETR-git/TYPETR-Assistants'
+if not PATH in sys.path:
+    print('@@@ Append sys.path', PATH)
+    sys.path.append(PATH)
 
 from vanilla import (TextBox, EditText, CheckBox, RadioGroup, HorizontalRadioGroup, PopUpButton, 
     List, FloatingWindow)
@@ -19,8 +25,14 @@ from mojo.events import postEvent
 from mojo.UI import OpenGlyphWindow
 from mojo.roboFont import AllFonts, OpenFont, RGlyph, RPoint
 
-from assistantLib.baseAssistant import BaseAssistantSubscriber, BaseAssistantController, DEFAULT_KEY
+import assistantLib
+from assistantLib import *
+from assistantLib.baseAssistant import *
 from assistantLib.helpers import *
+
+importlib.reload(assistantLib)
+importlib.reload(assistantLib.baseAssistant)
+from assistantLib.baseAssistant import BaseAssistantSubscriber, BaseAssistantController, DEFAULT_KEY
 
 # GlyphBrowser events
 EVENT_UFO_REFERENCE_CHANGED = f"{DEFAULT_KEY}.ufoReferenceChanged"
@@ -34,7 +46,7 @@ EVENT_GLYPH_NAMELIST_DBLCLICK = f"{DEFAULT_KEY}.glyphNameListDblClick"
 
 class GlyphBrowser(BaseAssistantSubscriber):
 
-    VERBOSE = False
+    VERBOSE = True
 
     MAX_OVERLAY_POINTS = 100 # Number point markers to show on an overlay glyph
     POINT_MARKER_R = 4 # Size of point markers
@@ -53,7 +65,7 @@ class GlyphBrowser(BaseAssistantSubscriber):
         """
         if self.VERBOSE:
             print('--- GlyphBrowser.buildAssistant')
-        
+                
         """Register the events for this subscriber. The methodName is the method self.<methodName> responds to."""
         registerSubscriberEvent(
             subscriberEventName=EVENT_UFO_REFERENCE_CHANGED,
@@ -143,28 +155,10 @@ class GlyphBrowser(BaseAssistantSubscriber):
                 return f
         return None
 
-    def XXXgetFont(self, path, showInterface=False):
-        # Check if the master is already open, by RoboFont or by self
-        for f in AllFonts():
-            if f.path is not None and f.path.endswith(path):
-                #print('... Selecting open font', path)
-                return f
-        if path in self.openFonts:
-            f = self.controller.openFonts[path]
-            if showInterface:
-                f.openInterface()
-            return f
-        # Not open yet, open it in the background and cache the master
-        # In case "showUI" error here, then start venv
-        f = OpenFont(path, showInterface=showInterface)
-        if f is None:
-            print('### Cannot open font', path)
-            return None
-        self.openFonts[path] = f
-        return f
-            
     #   E V E N T S
 
+    #def glyphEditorDidSetGlyph(self, info):
+                
     def ufoReferenceChanged(self, info=None):
         # Event: EVENT_UFO_REFERENCE_CHANGED
         print('--- GlyphBrowser.ufoReferenceChanged')
@@ -185,7 +179,7 @@ class GlyphBrowser(BaseAssistantSubscriber):
         if self.VERBOSE:
             print('--- GlyphBrowser.ufoNameListChanged', g.name)
 
-        self.glyphNames = set()
+        self.controller.glyphNames = set()
         ufoNames = []
 
         ref = self.getReferenceFont()
@@ -202,8 +196,9 @@ class GlyphBrowser(BaseAssistantSubscriber):
             select = bool('Italic' in refName) == bool('Italic' in fileName)
             if select:
                 ufoNames.append(fileName)
-                ufo = getFont(ufoPath)
-                self.glyphNames = self.glyphNames.union(set(ufo.keys()))
+                ufo = getFont(ufoPath, showInterface=False)
+                if ufo is not None:
+                    self.controller.glyphNames = self.controller.glyphNames.union(set(ufo.keys()))
                     
         self.controller.w.ufoNames.set(sorted(ufoNames))
         self.glyphNameListChanged()
@@ -258,7 +253,7 @@ class GlyphBrowser(BaseAssistantSubscriber):
             componentPatternEnd = filterPatternEnd.split('@')[1]
             filterPatternEnd = filterPatternEnd.split('@')[0]
 
-        for glyphName in sorted(self.glyphNames):
+        for glyphName in sorted(self.controller.glyphNames):
             selected = None
             if ((not filterPatternStart or glyphName.startswith(filterPatternStart)) and
                 (not filterPatternHas or filterPatternHas in glyphName) and
@@ -288,6 +283,12 @@ class GlyphBrowser(BaseAssistantSubscriber):
         # Event: EVENT_GLYPH_NAMELIST_SELECTION_CHANGED
         if self.VERBOSE:
             print('--- GlyphBrowser.glyphNameListSelectionChanged')
+
+    def glyphNameListDblClick(self, info):
+        # Event: EVENT_GLYPH_NAMELIST_DBLCLICK
+        g = self.getGlyph()
+        if self.VERBOSE:
+            print('--- GlyphBrowser.glyphNameListDblClick', g.name)
         # Get the new first selected glyph name
         selection = self.controller.w.glyphNames.getSelection()
         if selection and self.controller.w.openGlyphEditor.get():
@@ -296,63 +297,67 @@ class GlyphBrowser(BaseAssistantSubscriber):
             if gName in f:
                 OpenGlyphWindow(f[gName]) # Open the window or change to
 
-    def glyphNameListDblClick(self, info):
-        # Event: EVENT_GLYPH_NAMELIST_DBLCLICK
-        g = self.getGlyph()
-        if self.VERBOSE:
-            print('--- GlyphBrowser.glyphNameListDblClick', g.name)
-
 
 class GlyphBrowserController(BaseAssistantController):
 
     WINDOW_CLASS = FloatingWindow 
     subscriberClass = GlyphBrowser
     
-    H = 400
+    W, H = 600, 400 # Width and height of controller window
+    MINW, MINH, MAXW, MAXH = W, H, 3 * W, 3 * H # Min/max size of the window
+    M = 8 # Margin and gutter
+    CW = (W - 4 * M) / 3 # Column width
+    CW2 = 2 * CW + M # Column width
+    C0 = M # X position of column 0
+    C1 = C0 + CW + M # X position of column 1
+    C2 = C1 + CW + M # X position of column 2
+
     BROWSER_BOTTOM = -36
 
     TITLE = 'TYPETR Glyph Browser'
 
     def buildUI(self):
         """Build the controls for preview/overlay glyph functions:
-            [        ] - Optional name of the glyph to show on the left side. /? shows current glyph
-            [        ] - Overlay glyph to show as outline
-            [x] Fill Left - Draw left overlay as black or outline
-            [x] Preview kerned - Space preview left and right kerned from the current glyph
-            (o) L  ( ) C  ( ) R - Left/Center/Right alignment of overlay glyph. Does reset the slider values to 0
-            [        ] - Optional name of the glyph to show on the right side. /? shows current glyph
-            [x] Fill Right - Draw right overlay as black or outline
-            X [---|----] - Slider horizontal position, relative to the alignment. 
-            Y [---|----] - Slider horizontal position, relative to the alignment. 
-            ↻ [---|----] - Slider rotation of overlay glyph. 
+            [        ] - Select glyphs with a name that starts with this pattern
+            [        ] - Select glyphs with a name that contains this pattern
+            [        ] - Select glyphs with a name that ends with this pattern
+            (o) Roman ( ) Italic - Select fonts w/o 'Italic' in the file name
+            (UFO name) - Reference ufo selection
+            [        ] - List of glyph names, full set of all ufo’s or subset by patterns
+            [        ] - List of ufo names that are in the same directory as the selected reference ufo.
         """
         if self.VERBOSE:
             print('--- GlyphBrowserController.buildUI')
 
-        y = 0
-        self.w.filterPatternLabelStart = TextBox((self.M, y, self.CW/3, 24), 'Starts')
-        self.w.filterPatternLabelHas = TextBox((self.M+self.CW/3, y, self.CW/3, 24), 'Has')
-        self.w.filterPatternLabelEnd = TextBox((self.M+2*self.CW/3, y, self.CW/3, 24), 'Ends')
-        self.w.referenceUfo = TextBox((self.C1, y, self.CW, 24), 'Reference UFO')
-        self.w.filterItalicUfo = HorizontalRadioGroup((self.C2, y, self.CW, 24), ('Roman', 'Italic'), callback=self.ufoNameListSelectionCallback, sizeStyle='small')
+        self.glyphNames = set()
+        
+        y = self.L / 2
+        self.w.filterPatternLabelStart = TextBox((self.M, y, self.CW/3, 24), 'Starts', sizeStyle='small')
+        self.w.filterPatternLabelHas = TextBox((self.M+self.CW/3, y, self.CW/3, 24), 'Has', sizeStyle='small')
+        self.w.filterPatternLabelEnd = TextBox((self.M+2*self.CW/3, y, self.CW/3, 24), 'Ends', sizeStyle='small')
+        self.w.referenceUfo = TextBox((self.C1, y, self.CW, self.TBH), 'Reference UFO', sizeStyle='small')
+        self.w.filterItalicUfo = HorizontalRadioGroup((self.C2, y, self.CW, self.TBH), ('Roman', 'Italic'), 
+            callback=self.ufoNameListSelectionCallback, sizeStyle='small')
         self.w.filterItalicUfo.set(0)
         y += self.L
-        self.w.filterPatternStart = EditText((self.M, y, self.CW/3, 24), continuous=True, callback=self.glyphNameListCallback)
-        self.w.filterPatternHas = EditText((self.M+self.CW/3, y, self.CW/3, 24), continuous=True, callback=self.glyphNameListCallback)
-        self.w.filterPatternEnd = EditText((self.M+2*self.CW/3, y, self.CW/3, 24), continuous=True, callback=self.glyphNameListCallback)
+        self.w.filterPatternStart = EditText((self.M, y, self.CW/3, self.TBH), continuous=True, callback=self.glyphNameListCallback)
+        self.w.filterPatternHas = EditText((self.M+self.CW/3, y, self.CW/3, self.TBH), continuous=True, callback=self.glyphNameListCallback)
+        self.w.filterPatternEnd = EditText((self.M+2*self.CW/3, y, self.CW/3, self.TBH), continuous=True, callback=self.glyphNameListCallback)
 
         # List of currently open fonts, that can be used as reference.
         refNames = getOpenUfoNames()
-        self.w.ufoReference = PopUpButton((self.C1, y, self.CW2, 24), refNames, callback=self.ufoReferenceSelectionCallback)
+        self.w.ufoReference = PopUpButton((self.C1, y, -self.M, self.POBH), refNames, callback=self.ufoReferenceSelectionCallback)
         
         y += self.L*1.2
         self.w.glyphNames = List((self.C0, y, self.CW, self.BROWSER_BOTTOM), items=[], 
             selectionCallback=self.glyphNameListSelectionCallback, doubleClickCallback=self.glyphNameListDblClibkCallback)
-        self.w.ufoNames = List((self.C1, y, self.CW2, self.BROWSER_BOTTOM), items=[], 
+        self.w.ufoNames = List((self.C1, y, -self.M, self.BROWSER_BOTTOM), items=[], 
             selectionCallback=self.ufoNameListSelectionCallback, doubleClickCallback=self.dblClickUfoNamesCallback)
         
-        self.w.openGlyphEditor = CheckBox((self.C0+4, self.BROWSER_BOTTOM + self.M, self.CW, self.L), 'Open GlyphEditor', value=True, sizeStyle='small')
-        self.w.selectOpenDblClick = RadioGroup((self.C1, self.BROWSER_BOTTOM + self.M, self.CW2, self.L), ('Open GlyphEditor', 'Open FontWindow'), isVertical=False, sizeStyle='small')
+        self.w.openGlyphEditor = CheckBox((self.C0+4, self.BROWSER_BOTTOM + self.M, self.CW, self.L), 
+            'Open GlyphEditor', value=True, sizeStyle='small')
+        self.w.selectOpenDblClick = RadioGroup((self.C1, self.BROWSER_BOTTOM + self.M, self.CW2, self.L), 
+            ('Open GlyphEditor', 'Open FontWindow'), isVertical=False, sizeStyle='small')
         self.w.selectOpenDblClick.set(0)
         
         return y + self.LL
@@ -374,3 +379,7 @@ class GlyphBrowserController(BaseAssistantController):
         
     def dblClickUfoNamesCallback(self, sender):
         postEvent(EVENT_UFO_NAMELIST_DBLCLICK)
+        
+if __name__ == '__main__':
+    OpenWindow(GlyphBrowserController)
+

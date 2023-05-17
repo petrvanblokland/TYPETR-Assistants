@@ -18,13 +18,13 @@ from mojo.events import postEvent
 from mojo.UI import OpenGlyphWindow
 from mojo.roboFont import AllFonts, OpenFont, RGlyph, RPoint, CurrentFont
 
-from assistantLib.baseAssistant import BaseAssistant, BaseAssistantController, DEFAULT_KEY
+from assistantLib.baseAssistant import BaseAssistantSubscriber, BaseAssistantController, DEFAULT_KEY
 from assistantLib.helpers import *
 
 # PreviewDesignspace events
 EVENT_PREVIEW_DESIGNSPACE_CHANGED = f"{DEFAULT_KEY}.previewDesignspaceChanged"
 
-class PreviewDesignspace(BaseAssistant):
+class PreviewDesignspaceSubscriber(BaseAssistantSubscriber):
 
     VERBOSE = False
     
@@ -66,15 +66,15 @@ class PreviewDesignspace(BaseAssistant):
         ufoPath = info['lowLevelEvents'][0]['info']['ufoName']
         dirPath = getUfoDirPath(CurrentFont())
         f = getFont(dirPath + ufoPath)
-        if self.controller.showInterface.get():
-            f.openInterface()
+        #if self.controller.showInterface.get():
+        #    f.openInterface()
         g = info['lowLevelEvents'][0]['glyph']
         if g.name in f:
             OpenGlyphWindow(f[g.name])
 
 class PreviewDesignspaceController(BaseAssistantController):
 
-    subscriberClass = PreviewDesignspace
+    subscriberClass = PreviewDesignspaceSubscriber
 
     # Left/right position of the slider
     
