@@ -44,7 +44,7 @@ FAR = 10000 # Move element to invisible position
 MIN_RANGE = range(60, 19, -5) # (60, 55, 50, 45, 40, 35, 30, 25, 20)
 MAX_RANGE = range(100, 65-1, -5) # (100, 95, 90, 85, 80, 75, 70, 65)
 # Limit the choice of possible grid sizes. 
-GRID_SIZES = range(16, 25) # 16 - 24 grid sizes
+GRID_SIZES = range(12, 33) # 12 - 32 grid sizes
 GRID_SIZE = 18 # Default number of cells in the grid. Value is stored in the font.lib and self.preferences
 
 PREFERENCES_LIB = 'TYPETR.CurvePalette' # Key for storage in font.lib
@@ -515,7 +515,7 @@ class CurvePaletteController(WindowController):
         #        self.glyphChanged()
 
     def mouseUp(self, view, event):
-        print(self.lastMouseDrag, self.selectedDragPoints)
+        #print(self.lastMouseDrag, self.selectedDragPoints)
         if self.lastMouseDrag is not None and self.selectedDragPoints is not None:
             # Finishing drag: select the points in the marquee
             marqueeX1 = min(self.lastMouseDrag[0], self.lastMouse[0])
