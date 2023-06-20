@@ -135,7 +135,13 @@ _ufo/
 _ufo_tmp/
 _vf/
 _burned
+_old
+
 venv/
+
+# Kerning neural net training stuff
+_imagePredict/
+_imageTrain/
 
 .DS_Store
 

@@ -4,18 +4,49 @@
 #     Usage by MIT License
 # ..............................................................................
 #
-#    TYPETR tp_glyphBrowser.py
+#    TYPETR GlyphBrowser.py
 #
-import os
+#    How to make a TYPETR helper
+#    Define the base subscriber class that responds to RoboFont event.
+#    Define the base class the creates the UI window for the helper/assistant tool.
+#    Inheriting controller classes can define required functions by setting class flags to True.
+#    This class mostly just defines the window, controls and interactions, calling events
+#    for the Assistant-Subscriber to perform tasks on glyphs and UFO’s.
+#
+#    In this example the Subscriber and Controller and combined in the GlyphBrowser class.
+#    
+#    Helpers are generic tools that can perform a series of tasks. They know how to build their
+#    part of the interface. They instruct the Assistant on which events they want to respond
+#    and they know how to perform theirs tasks on glyph, current UFO or all UFOs.
+#    Helpers can draw in the EditorWindow through Merz objects. And they can construct their
+#    own window or canvas.
 
+# Generic system imports
+import os, sys
+
+# Import of resources available in RoboFont
 from vanilla import (Window, FloatingWindow, TextBox, HorizontalRadioGroup, EditText, PopUpButton, 
-    List, CheckBox, RadioGroup)
+    List, CheckBox, RadioGroup, Button)
 import merz
 from mojo.subscriber import Subscriber, WindowController, registerRoboFontSubscriber
 from mojo.roboFont import AllFonts, OpenFont, CurrentFont
 from mojo.UI import OpenGlyphWindow
 
-WHITE = (1, 1, 1, 1)
+# Add the local assistantLib library to the RoboFont sys paths if it does not already exist.
+# This ways we can just start this script without the need to install it into RoboFont.
+# Maybe not entirely user friendly (the script is running from the source, instead of making
+# it available from a menu), but the iterative concept of helpers and assistants make them
+# closer to be viewed as source.
+# The PATH can also be used to access other resources in this repository.
+PATH = '/'.join(__file__.split('/')[:-1]) + '/' # Get the directory path that this script is in.
+if not PATH in sys.path: # Is it not already defined in RoboFont
+    sys.path.append(PATH) # Then add it.
+import assistantLib # Now we can import local helper/assistant stuff 
+
+# Define the GlyphBrowser class, inheriting from Subsriber (which responds to RoboFont events)
+# and WindowController (which knows how to deal with the user interface).
+# In principle these could be two separate classes (GlyphBrowserSubscriber and GlyphBrowserController)
+# but in simple helper applications like this it’s also good to combine the functions.
 
 class GlyphBrowser(Subscriber, WindowController):
     """The SimpleAssistant is a demo class to show how events work between inside the 
@@ -23,19 +54,6 @@ class GlyphBrowser(Subscriber, WindowController):
     """
     debug = True
 
-    """Define the base class the creates the UI window for the assistant tool.
-    Inheriting controller classes can define required functions by setting class flags to True.
-
-    This class mostly just defines the window, controls and interactions, calling events
-    for the Assistant-Subscriber to perform tasks on glyphs and UFO’s.
-
-    Helpers are generic tools that can perform a series of tasks. They know how to build their
-    part of the interface. They instruct the Assistant on which events they want to respond
-    and they know how to perform theirs tasks on glyph, current UFO or all UFOs.
-    Helpers can draw in the EditorWindow through Merz objects. And they can construct their
-    own window or canvas.
-    The selection and order of the helpers defines their top-down order in the Assistant window.
-    """
     WINDOW_CLASS = Window # FloatingWindow or Window
     debug = True
     VERBOSE = False
@@ -43,8 +61,8 @@ class GlyphBrowser(Subscriber, WindowController):
     TITLE = 'GlyphBrowser'
 
     # Layout paratemers. Not using Ezui right now, just layout math.
-    X = Y = 50 # Position of the window, should eventually come from preference storage.
-    W, H = 500, 600 # Width and height of controller window
+    X = Y = 50 # Position of the window, should eventually come from RF preference storage.
+    W, H = 500, 600 # Width and height of controller window, should eventually come from RF preference storage.
     MINW, MINH, MAXW, MAXH = W, H, 3 * W, 3 * H # Min/max size of the window
     M = 8 # Margin and gutter
     L = 20 # Line height between controls
@@ -109,7 +127,7 @@ class GlyphBrowser(Subscriber, WindowController):
         
         y += self.L*1.2
         self.w.glyphNames = List((self.C0, y, self.CW, self.BROWSER_BOTTOM), items=[], # Will later be updated.
-            selectionCallback=self.glyphNameListCallback, doubleClickCallback=self.glyphNameListDblClickCallback)
+            doubleClickCallback=self.glyphNameListDblClickCallback)
         self.w.ufoNames = List((self.C1, y, -self.M, self.BROWSER_BOTTOM), items=[], # Will later be updated. 
             doubleClickCallback=self.dblClickUfoNamesCallback)
         
@@ -281,7 +299,7 @@ class GlyphBrowser(Subscriber, WindowController):
         if '@' in filterPatternEnd:
             componentPatternEnd = filterPatternEnd.split('@')[1]
             filterPatternEnd = filterPatternEnd.split('@')[0]
-
+        
         ref = self.getReferenceFont()
         for glyphName in sorted(self.glyphNames):
             selected = None
@@ -314,7 +332,9 @@ class GlyphBrowser(Subscriber, WindowController):
         
     def glyphNameListCallback(self, sender=None):
         """Something happened to the glyph name list. Update it."""
-        self.updateGlyphInfo()
+        self.filterNamesCallback()
+        #self.updateGlyphInfo()
+        #self.update()
         # Don't call editor open on selection, because it will make typing in the filter impossible.
                                         
     def glyphNameListDblClickCallback(self, sender):
@@ -346,22 +366,24 @@ class GlyphBrowser(Subscriber, WindowController):
             
 
     def updateCallback(self, sender):
-        self.update()
-        
+        pass
+                
     #   E V E N T S
     
     def fontDocumentWindowDidOpen(self, info):
-        self.update()
+        self.filterNamesCallback()
         
     def fontDocumentDidClose(self, info):
-        self.update()
-
+        #self.update()
+        pass
+        
     def update(self):
-        refNames = self.getOpenUfoNames()
-        self.w.ufoReference.setItems(refNames)
-        self.updateUfoListCallback()
-        self.filterNamesCallback()
-
+        #refNames = self.getOpenUfoNames()
+        #self.w.ufoReference.setItems(refNames)
+        #self.updateUfoListCallback()
+        #self.filterNamesCallback()
+        pass
+        
     def updateGlyphInfo(self):
         """Update the info about the glyph (such as unicode) from the selected glyph in the list.
         Blank the info if no glyph is selected."""
