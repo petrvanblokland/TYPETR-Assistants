@@ -13,6 +13,20 @@ Documentation is at docs/. There may be a website later.
 
 https://github.com/petrvanblokland/TYPETR-Assistants
 
+Other friends tools repositories:
+
+### Frank Grießhammer & Josh Hadley
+
+https://github.com/adobe-type-tools/drawBotProofing/
+
+and some more by others:
+
+https://github.com/hermitdave/FrequencyWords
+
+https://earthlingsoft.net/UnicodeChecker/
+
+https://github.com/vslavik/diff-pdf
+
 ## Environment
 
 TYPETR-Assistants is developed for RoboFont only.

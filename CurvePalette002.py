@@ -10,6 +10,7 @@ from merz import MerzView
 from vanilla import Window, PopUpButton, CheckBox
 from AppKit import *
 
+from mojo.events import extractNSEvent
 from mojo.roboFont import OpenWindow
 from mojo.subscriber import Subscriber, WindowController, registerGlyphEditorSubscriber, unregisterGlyphEditorSubscriber
 
@@ -20,7 +21,7 @@ MB = 72
 BUTTON_HEIGHT = 24
 POPUP_HEIGHT = 24
 POPUP_WIDTH = 40
-
+ 
 GRID_LINE = 0.25
 GRID_COLOR = (0.25, 0.25, 0.25, 1)
 DIAGONAL_COLOR = (0.85, 0.85, 0.85, 1)
@@ -309,6 +310,20 @@ class CurvePalette(Subscriber):
     def destroy(self):
         pass
 
+    def glyphEditorDidKeyDown(self, info):
+        event = extractNSEvent(info['NSEvent'])
+        characters = event['keyDown']
+        
+        commandDown = event['commandDown']
+        shiftDown = event['shiftDown']
+        controlDown = event['controlDown']
+        optionDown = event['optionDown']
+        self.capLock = event['capLockDown']
+
+        if characters in 'Hh':
+            # As if "Circle - (8, 8) was hit for [h]. Caps [H] gives less stress (7, 7)"
+            self.controller.glyphEditorSelectedDefaultCurve(characters == 'H')
+            
     def glyphEditorDidSetGlyph(self, info):
         # Pass this on to the window controller. How to do this better?
         self.controller.glyphEditorDidSetGlyph(info)
@@ -337,7 +352,7 @@ class CurvePaletteController(WindowController):
         self.lastMouseDrag = None # Actual position of last mouse drag
         self.selectedDragPoints = None # Storage of selected points, while dragging
 
-        self.w = Window((W + ML + MR, H + MT + MB), "Curve Palette")
+        self.w = FloatingWindow((W + ML + MR, H + MT + MB), "Curve Palette")
         self.w.view = MerzView(
             (ML, MT, -MR, -MB),
             backgroundColor=(1, 1, 1, 1),
@@ -470,6 +485,14 @@ class CurvePaletteController(WindowController):
         x, y = event.locationInWindow()
         return x - ML, y - MB
 
+    def glyphEditorSelectedDefaultCurve(self, lessStress=False):
+        """Key stroke inditing "Circle - (2, 2)" location hit."""
+        if lessStress:
+            self.updateCurves(7, 7)
+        else:
+            self.updateCurves(8, 8)
+        self.glyphChanged()
+        
     def getMouseCellPosition(self, event):
         x, y = self.getMousePosition(event)
         cw = self.getCellWidth()
@@ -477,7 +500,7 @@ class CurvePaletteController(WindowController):
                      
     def mouseDown(self, view, event):
         self.lastMouse = self.lastMouseDrag = self.getMousePosition(event)
-        cx, cy = self.getMouseCellPosition(event)
+        cx, cy = self.getMouseCellPosition(event)        
         self.lastMouseGrid = cx, cy
         modifiers = event.modifierFlags()
         alternateDown = modifiers & NSAlternateKeyMask
