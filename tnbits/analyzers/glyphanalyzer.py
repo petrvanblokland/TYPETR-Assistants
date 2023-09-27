@@ -1742,7 +1742,7 @@ class GlyphAnalyzer(PointAnalyzer):
         if self._allStemsCountersComponents is None:
             self._allStemsCountersComponents = {}
             for value, stems in self.allStemsCounters.items():
-                self._allStemsCountersComponents[value] = stems[:] # Make copy, as we'll appending to it.
+                self._allStemsCountersComponents[value] = stems[:] # Make copy, as we'll be appending to it.
             # Now recursively repeat for all components in the glyph. We don't do the counters of the components.
             for component in getComponents(self.glyph):
                 if component.baseGlyph in self.style:

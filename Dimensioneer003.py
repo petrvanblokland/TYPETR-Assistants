@@ -372,17 +372,23 @@ class Dimensioneer(Subscriber):
     #   E V E N T S
 
     def glyphEditorDidSetGlyph(self, info):
-        if not info['glyph']:
-            return # No opeb editor
         g = info['glyph']
-        print(f'(glyphEditorDidSetGlyph) /{g.name}')
+        if g is None:
+            print('### Dimensioneer (glyphEditorDidSetGlyph) No open editor')
+            return # No open editor
+        #print(f'(glyphEditorDidSetGlyph) /{g.name}')
 
         self.ga = analyzerManager.getGlyphAnalyzer(g)
-        self._dValues = None # Force recalculation
-        
+        self._dValues = None # Force recalculation        
         self.update()
 
     def glyphEditorGlyphDidChange(self, info):
+        g = info['glyph']
+        if g is None:
+            print('### Dimensioneer (glyphEditorGlyphDidChange) No open editor')
+            return # No open editor
+        #print(f'(glyphEditorGlyphDidChange) /{g.name}')
+
         self._dValues = None # Force recalculation
         self.update()
     
