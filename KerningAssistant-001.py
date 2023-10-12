@@ -72,6 +72,9 @@ VERBOSE2 = False
 KERNING_SAMPLE_SELECT_LIB = 'TYPETR-Presti-Assistant-KerningSampleIndex'
 KERNING_SAMPLE_X = 'TYPETR-Presti-Assistant-KerningSampleX'
 
+GROUPGLYPH_COLOR = (0, 0, 0.6, 1)
+GLYPHGLYPH_COLOR = (0, 0.4, 0, 1)
+
 # Initial template string. The /? gets replaced by the unicode of the current glyph.
 # Replace /??W by random word
 
