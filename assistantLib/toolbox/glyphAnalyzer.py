@@ -207,6 +207,96 @@ class Stem:
         return abs(self.v1.x - self.v2.x)
     width = property(_get_width)
 
+    def _get_point(self): # Legacy compatibility with older analyzers
+        return self.v2
+    point = property(_get_point)
+
+    def _get_parent(self): # Legacy compatibility with older analyzers
+        return self.v1
+    parent = property(_get_parent)
+
+class DiagonalStem(Stem):
+
+    # self.run answers the horizontal run of the diagonal.
+
+    # self.nearestPoint
+
+    def _get_nearestPoint(self):
+        """The `getNearestPoint` method gets the nearest point in the `self.point` point context
+        to `self.parent`. Default for a diagonal is always to answer `self.point.p`.
+        """
+        return self.point.p
+
+    nearestPoint = property(_get_nearestPoint)
+
+    # self.size    Average distance between the diagonal projected line segments.
+
+    def _get_size(self):
+        d = 0
+        projectionLines = self.projectionLines
+        for p, projectedP in projectionLines: # p is PointContext instance, projectP is Point instance.
+            d += distance(p.x, p.y, projectedP.x, projectedP.y)
+        return int(round(d/len(projectionLines)))
+
+    size = property(_get_size)
+
+    """A diagonal is a special kind of `Stem`, as it also is able to calculate
+    the projected window points."""
+
+    # self.projectionLines    Answer the list of valid projection lines (tuple of point + projected point)
+
+    def _get_projectionLines(self):
+        projectionLines = []
+        for projectionLine in self.point.getProjectedWindowLines(self.parent):
+            if not None in projectionLine:
+                projectionLines.append(projectionLine)
+        return projectionLines
+
+    projectionLines = property(_get_projectionLines)
+
+    # self.perpendicularMiddleLine     Answer the line that is average perpendicular and in the middle of the projected window
+
+    def _get_perpendicularMiddleLine(self):
+        # Calculate the average middle from the projections
+        mx = my = 0
+        projectionLines = self.projectionLines
+        count = len(projectionLines)*2 # Avoid double division of average
+        for p, projectedP in projectionLines:
+            mx += p.x + projectedP.x
+            my += p.y + projectedP.y
+        m = Point(mx/count, my/count)
+        # Now project this window middle points on the two lines again.
+        pp0 = self.point.getProjectedPoint(m)
+        pp1 = self.parent.getProjectedPoint(m)
+        return pp0, pp1
+
+    perpendicularMiddleLine = property(_get_perpendicularMiddleLine)
+
+    # self.perpendicularLines   Answer the relevant perpendicular lines (start, middle, end) of the projectionLines.
+
+    def _get_perpendicularLines(self):
+        projectionLines = self.projectionLines
+        if len(projectionLines) == 2:
+            return projectionLines[0], self.perpendicularMiddleLine, self.projectionLines[1]
+        return [self.perpendicularMiddleLine]
+
+    perpendicularLines = property(_get_perpendicularLines)
+
+class Serif(Stem):
+    """
+    The `Serif` class holds the two point contexts (`self.parent` and `self.point`)
+    that span a continuous set of point contexts defining a serif.
+    """
+
+    def _get_boundingBox(self):
+        bb = BoundingBox()
+        bb.extendByPointContext(self.parent)
+        bb.extendByPointContext(self.point)
+        return bb
+
+    boundingBox = property(_get_boundingBox)
+
+
 class HCounter(Stem):
     isBlack = False
 
@@ -296,12 +386,12 @@ class GlyphAnalyzer:
                     if p.x not in self.verticals:
                         self.verticals[p.x] = []
                     self.verticals[p.x].append(pointContext)
-                    if p.y not in self.roundVerticals:
+                    if p.x not in self.roundVerticals:
                         self.roundVerticals[p.x] = []
                     self.roundVerticals[p.x].append(pointContext)
 
                 elif p_1.x == p.x:
-                    if p.y not in self.verticals:
+                    if p.x not in self.verticals:
                         self.verticals[p.x] = []
                     self.verticals[p.x].append(pointContext)
                     if p.x not in self.straightVerticals:
@@ -320,15 +410,13 @@ class GlyphAnalyzer:
                     self.diagonals[angle] = []
                 self.diagonals[angle].append(pc)
 
-        # Find Diagonal Stems
-
+        # Try to find iagonal Stems
         found = set()
-        for diagonals1 in self.diagonals.values(): # Loop through all pointContexts that are diagonal
-            for pc0 in diagonals1:
-                for diagonals2 in self.diagonals.values(): # angle1, diagonals2
-                    for pc1 in diagonals2:
-                        if (pc0.index, pc1.index) in found:
-                            continue
+        for diagonals0 in self.diagonals.values(): # Loop through all pointContexts that are diagonal
+            for pc0 in diagonals0:
+                for diagonals1 in self.diagonals.values(): # angle1, diagonals2
+                    for pc1 in diagonals1:
+
                         # Test if the y values are in range so this can be seen as stem pair
                         # and test if this pair is spanning a black space
                         if not self.isDiagonalStem(pc0, pc1):
@@ -336,11 +424,12 @@ class GlyphAnalyzer:
                         found.add((pc0.index, pc1.index))
                         found.add((pc1.index, pc0.index))
 
-                        distance = pc0.averageDistance(pc1) # Average length of the diagonal projected lines
-                        if distance is not None:
-                            if not distance in self.diagonalStems:
-                                self.diagonalStems[distance] = []
-                            self.diagonalStems[distance].append((pc0, pc1))
+                        diagonalStem = DiagonalStem(pc0, pc1)
+                        distance = diagonalStem.size # Average length of the diagonal projected lines
+                        if not distance in self.diagonalStems:
+                            self.diagonalStems[distance] = []
+                        self.diagonalStems[distance].append(diagonalStem)
+                            
         # Try to find stems
         xx = None # Previous x
         vv = None # Previous vertical
