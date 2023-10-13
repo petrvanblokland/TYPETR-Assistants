@@ -1,3 +1,11 @@
+# -*- coding: UTF-8 -*-
+# ------------------------------------------------------------------------------
+#     Copyright (c) 2023+ TYPETR
+#     Usage by MIT License
+# ..............................................................................
+#
+#   kernNetClasses.py
+#
 import torch
 import torch.nn as nn
 import torch.nn.functional as F

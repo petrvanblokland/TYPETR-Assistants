@@ -1,12 +1,21 @@
+# ------------------------------------------------------------------------------
+#     Copyright (c) 2023+ TYPETR
+#     Usage by MIT License
+# ..............................................................................
+#
+#   tp_kerningSamples.py
+#
+
 import torch
 import numpy as np
-from PIL import Image
 import PIL
+#from PIL import Image
 from torchvision import transforms
 try:
     from assistantLib.nernnet.kernNetClasses import KernNet
 except ImportError:
     from kernnet.kernNetClasses import KernNet
+
 
 # This file includes a function that predicts a kerning value for 32x32 pixel image.
 # The function is called with two parameters:

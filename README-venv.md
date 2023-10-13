@@ -18,9 +18,9 @@ pip install statmake
 pip install ttfautohint-py
 pip install fontPens
 pip install ufo2ft
+pip install pillow
 
 pip install brotli
-pip install pillow
 pip install git+https://github.com/typemytype/drawbot
 
 * fontmake -o ttf --output-dir ttf -u ufo/Presti*.ufo

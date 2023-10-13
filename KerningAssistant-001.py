@@ -25,6 +25,7 @@ from random import choice
 from copy import copy
 from math import *
 from AppKit import *
+import drawBot
 
 from mojo.events import extractNSEvent
 from mojo.UI import OpenGlyphWindow
@@ -40,6 +41,12 @@ for path in PATHS:
         print('@@@ Append to sys.path', path)
         sys.path.append(path)
 
+# Importing Similarity for grouping & spacing
+import cosineSimilarity
+# Importing KernNet for AI assistent kerning
+#import torch
+#from assistantLib.kernnet.predictKernNetModel import predict_kern_value
+
 import assistantLib
 importlib.reload(assistantLib)
 import assistantLib.kerningSamples
@@ -51,6 +58,8 @@ importlib.reload(assistantLib.tp_kerningManager)
 
 from assistantLib.kerningSamples.ulcwords import ULCWORDS
 from assistantLib.tp_kerningManager import KerningManager
+
+
 
 ARROW_KEYS = [NSUpArrowFunctionKey, NSDownArrowFunctionKey,
         NSLeftArrowFunctionKey, NSRightArrowFunctionKey, NSPageUpFunctionKey,
@@ -384,7 +393,44 @@ class KerningAssistant(Subscriber):
         #print("stop subscription")
         self.foregroundContainer.clearSublayers()
         #self.controller.addInfo("stop subscription")
-                            
+    
+    def predictKerning(self, gName1, gName2):
+        f = CurrentFont()            
+        imageName = 'test.png'
+        kernImagePath = '/'.join(__file__.split('/')[:-1]) + '/assistantLib/kernnet/_imagePredict/' + imageName
+        W = H = 32
+        R = 12
+        R2 = 2*R
+        scale = H/f.info.unitsPerEm
+        y = -f.info.descender 
+
+        drawBot.newDrawing()
+        drawBot.newPage(W, H)
+        drawBot.fill(0)
+        
+        drawBot.scale(scale)
+        drawBot.save()
+
+        g1 = f[gName1]
+        path1 = g1.getRepresentation("defconAppKit.NSBezierPath")
+        drawBot.translate(W/2/scale-g1.width, y)
+        drawBot.drawPath(path1)
+        drawBot.restore()        
+
+        g2 = f[gName2]
+        path2 = g2.getRepresentation("defconAppKit.NSBezierPath")
+        drawBot.translate(W/2/scale, y)
+        drawBot.drawPath(path2)
+
+        drawBot.saveImage(kernImagePath)
+        
+        import urllib.request
+        page = urllib.request.urlopen('http://localhost:8080/' + imageName)
+        
+        CALIBRATE = 16
+        
+        return int(str(page.read())[2:-1]) + CALIBRATE     
+                                
     def glyphEditorDidSetGlyph(self, info):
         #self.backgroundContainer.clearSublayers()
         #self.foregroundContainer.clearSublayers()
@@ -404,9 +450,18 @@ class KerningAssistant(Subscriber):
             for component in g.components:
                 component.selected = False
 
-        
         # Set controller groups names for current glyph
         km = self.getKerningManager(f)
+        sample = km.sample
+        cursor = int(round(self.controller.w.kerningSampleSelectSlider.get())) + 16
+        gName1 = km.sample[cursor-1]
+        gName2 = km.sample[cursor+1]
+
+        k1 = k2 = 0
+        k1 = self.predictKerning(gName1, g.name)
+        k2 = self.predictKerning(g.name, gName2)
+        print((gName1, g.name), k1, (g.name, gName2), k2)
+        
 
         simGroups2 = km.getSimilarGroups2(g)
         simGroups1 = km.getSimilarGroups1(g)
@@ -1412,7 +1467,8 @@ class KerningAssistantController(WindowController):
         self.w.showKerningFilled = vanilla.CheckBox((C2, y, CW, L), 'Show kerning filled', value=True, sizeStyle='small', callback=self.updateEditor)
         y += L
         self.w.showKerningLists = vanilla.CheckBox((C0, y, CW, L), 'Show kerning lists', value=True, sizeStyle='small', callback=self.updateEditor)
-        y += 18
+        self.w.keysOverview = vanilla.TextBox((C1, y, 2*CW, 36), 'Navigate: [alt]+[arrows], [alt]+[shift]+[arrows]\nKern: [n][m] [comma][period]', sizeStyle="small")
+        y += 24
         self.w.kerningSampleTextLabel = vanilla.TextBox((C0, y, -M, 24), 'Find kerning pair', sizeStyle="small")
         y += 18
         self.w.kerningGlyph1 = vanilla.EditText((C0, y, CW, L)) # Use  kerning find button to go there.
@@ -1427,13 +1483,21 @@ class KerningAssistantController(WindowController):
         y += 32
         self.w.groupName2Label = vanilla.TextBox((C0, y, CW, 24), 'Group 2 (left side)', sizeStyle="small")
         self.w.groupName1Label = vanilla.TextBox((C15, y, CW, 24), 'Group 1 (right side)', sizeStyle="small")
-        y += 18
+        y += 18 
+        # Group names of current glyph
         self.w.groupName2 = vanilla.TextBox((C0, y, CW*1.5, 24), '---', sizeStyle="small")
         self.w.groupName1 = vanilla.TextBox((C15, y, CW*1.5, 24), '---', sizeStyle="small")
         y += 18
+        # List of alternative group (or single glyphs without a group) according to Similarity
         self.w.groupNameList2 = vanilla.List((C0, y, CW*1.5, 90), [], selectionCallback=self.groupNameListSelectCallback2, doubleClickCallback=self.groupNameListDblClickCallback2)
         self.w.groupNameList1 = vanilla.List((C15, y, CW*1.5, 90), [], selectionCallback=self.groupNameListSelectCallback1, doubleClickCallback=self.groupNameListDblClickCallback1)
         y += 100
+        # Label for glyph list of current group selection
+        self.w.groupGlyphs2Label = vanilla.TextBox((C0, y, CW, 24), 'Glyphs of ---', sizeStyle="small")
+        self.w.groupGlyphs1Label = vanilla.TextBox((C15, y, CW, 24), 'Glyphs of ---', sizeStyle="small")
+        y += 18
+        # List of glyphs of current group selection.
+        # Double click opens the EditorWindow on that glyph.
         self.w.groupNameGlyphList2 = vanilla.List((C0, y, CW*1.5, 130), [], doubleClickCallback=self.groupNameGlyphListDblClickCallback)
         self.w.groupNameGlyphList1 = vanilla.List((C15, y, CW*1.5, 130), [], doubleClickCallback=self.groupNameGlyphListDblClickCallback)
         y += 130
@@ -1460,21 +1524,30 @@ class KerningAssistantController(WindowController):
     def groupNameListSelectCallback2(self, sender):
         f = CurrentFont()
         glyphNames = []
+        label = 'Glyphs of ---'
         if f is not None:
             for index in sender.getSelection():
                 groupName = sender[index]
                 if groupName in f.groups:
                     glyphNames = f.groups[groupName]
+                    label = f'Glyphs of {groupName}'
+                    break
+                    
+        self.w.groupGlyphs2Label.set(label)
         self.w.groupNameGlyphList2.set(glyphNames)
         
     def groupNameListSelectCallback1(self, sender):
         f = CurrentFont()
         glyphNames = []
+        label = 'Glyphs of ---'
         if f is not None:
             for index in sender.getSelection():
                 groupName = sender[index]
                 if groupName in f.groups:
                     glyphNames = f.groups[groupName]
+                    label = f'Glyphs of {groupName}'
+                    break
+        self.w.groupGlyphs2Label.set(label)
         self.w.groupNameGlyphList1.set(glyphNames)
  
     def groupNameListDblClickCallback2(self, sender):

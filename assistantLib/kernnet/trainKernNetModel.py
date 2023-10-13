@@ -1,3 +1,11 @@
+# -*- coding: UTF-8 -*-
+# ------------------------------------------------------------------------------
+#     Copyright (c) 2023+ TYPETR
+#     Usage by MIT License
+# ..............................................................................
+#
+#   trainKernNetModel.py
+#
 import torch
 import pytorch_lightning as pl
 from torch.utils.data import Dataset, DataLoader
