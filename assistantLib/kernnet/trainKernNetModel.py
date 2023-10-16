@@ -14,7 +14,8 @@ import os
 try:
     from assistantLib.kernnet.kernNetClasses import KernNetDataloader, KernNet
 except ImportError:
-    from kernnet.kernNetClasses import KernNetDataloader, KernNet
+    #from kernnet.kernNetClasses import KernNetDataloader, KernNet
+    from kernNetClasses import KernNetDataloader, KernNet
 
 
 # This file contains a function to train a predictive kerning model using the KernNet class.
@@ -58,8 +59,11 @@ except ImportError:
 # If the training process fails due to running out of RAM, you can lower the batch size.
 # Make sure the batch size is always a power of 2.
 
+W, H = 32, 32
+SUB_DIR_PATTERN = f'{W}_{H}'
+PATH = '_imageTrainSansItalic/'
 
-def train_model(data_directory_path, training_epochs=10, validation_split=0.3, batch_size=64):
+def train_model(data_directory_path, training_epochs=20, validation_split=0.3, batch_size=64):
 
     directory_list = os.listdir(data_directory_path)
 
@@ -67,7 +71,7 @@ def train_model(data_directory_path, training_epochs=10, validation_split=0.3, b
 
     for dir_name in directory_list:
 
-        if not dir_name.endswith("32_32"):
+        if not dir_name.endswith(SUB_DIR_PATTERN):
             continue
 
         for file_name in os.listdir(osp.join(data_directory_path, dir_name)):
@@ -103,3 +107,5 @@ def train_model(data_directory_path, training_epochs=10, validation_split=0.3, b
 
     trainer.fit(model=model, train_dataloaders=train_loader, val_dataloaders=val_loader)
 
+if __name__ == "__main__":        
+    train_model(PATH)

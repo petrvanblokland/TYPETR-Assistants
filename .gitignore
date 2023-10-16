@@ -143,6 +143,8 @@ venv/
 # Kerning neural net training stuff
 _imagePredict/
 _imageTrain/
+_ImageTrainSansItalic/
+CheckPoints
 
 .DS_Store
 

@@ -131,7 +131,7 @@ SAMPLES = (
 
 # ULCWORDS has list of words
 
-W, H = 400, 500
+W, H = 400, 540
 M = 32
 SPACE_MARKER_R = 16
 POINT_MARKER_R = 6
@@ -378,6 +378,20 @@ class KerningAssistant(Subscriber):
             name='kernGlyphImage2',
             position=(FAR, 0),
             fillColor=(0, 0, 0, 1),
+        )
+        self.similarGlyphImage1 = self.backgroundContainer.appendPathSublayer(
+            name='similarGlyphImage1',
+            position=(0, 0),
+            fillColor=None,
+            strokeColor=(1, 0, 0, 1),
+            strokeWidth=1,
+        )
+        self.similarGlyphImage2 = self.backgroundContainer.appendPathSublayer(
+            name='similarGlyphImage2',
+            position=(0, 0),
+            fillColor=None,
+            strokeColor=(1, 0, 0, 1),
+            strokeWidth=1,
         )
 
         
@@ -1468,7 +1482,7 @@ class KerningAssistantController(WindowController):
         self.w.keysOverview = vanilla.TextBox((C1, y, 2*CW, 36), 'Navigate: alt + arrows, alt + shift + arrows\nKern: [n][m] [comma][period]', sizeStyle="small")
         y += 24
         self.w.kerningSampleTextLabel = vanilla.TextBox((C0, y, -M, 24), 'Find kerning pair', sizeStyle="small")
-        y += 18
+        y += 24
         self.w.kerningGlyph1 = vanilla.EditText((C0, y, CW, L)) # Use  kerning find button to go there.
         self.w.kerningGlyph2 = vanilla.EditText((C1, y, CW, L))
         self.w.findKerning = vanilla.Button((C2, y, CW, L), 'Find pair', callback=self.findKerningSampleCallback)
@@ -1480,6 +1494,7 @@ class KerningAssistantController(WindowController):
         self.w.kerningSampleSelectSlider = vanilla.Slider((C1, y, CW*2+M, 24), minValue=0, maxValue=486, value=kerningSampleIndex, continuous=True, callback=self.kerningSampleSelectSliderCallback)
         y += 32
         self.w.automaticGroups = vanilla.CheckBox((C0, y, CW, L), 'Automatic groups', value=True, sizeStyle='small')
+        self.w.showSimilarGlyphs = vanilla.CheckBox((C1, y, CW, L), 'Show similar glyphs', value=True, sizeStyle='small', callback=self.updateEditor)
         y += L
         self.w.groupName2Label = vanilla.TextBox((C0, y, CW, 24), 'Group 2 (left side)', sizeStyle="small")
         self.w.groupName1Label = vanilla.TextBox((C15, y, CW, 24), 'Group 1 (right side)', sizeStyle="small")
@@ -1498,8 +1513,8 @@ class KerningAssistantController(WindowController):
         y += 18
         # List of glyphs of current group selection.
         # Double click opens the EditorWindow on that glyph.
-        self.w.groupNameGlyphList2 = vanilla.List((C0, y, CW*1.5, 130), [], doubleClickCallback=self.groupNameGlyphListDblClickCallback)
-        self.w.groupNameGlyphList1 = vanilla.List((C15, y, CW*1.5, 130), [], doubleClickCallback=self.groupNameGlyphListDblClickCallback)
+        self.w.groupNameGlyphList2 = vanilla.List((C0, y, CW*1.5, 130), [], selectionCallback=self.groupNameGlyphListCallback2, doubleClickCallback=self.groupNameGlyphListDblClickCallback)
+        self.w.groupNameGlyphList1 = vanilla.List((C15, y, CW*1.5, 130), [], selectionCallback=self.groupNameGlyphListCallback1, doubleClickCallback=self.groupNameGlyphListDblClickCallback)
         y += 130
         # Text box to enter an alternative sample text. /? is replaced by the current glyph unicode
         self.w.sampleTextLabel = vanilla.TextBox((C0, y, -M, 24), 'Sample text in FontGoggles', sizeStyle="small")
@@ -1520,7 +1535,33 @@ class KerningAssistantController(WindowController):
         #print("windowClose")
         unregisterGlyphEditorSubscriber(self.assistantGlyphEditorSubscriberClass)
         self.assistantGlyphEditorSubscriberClass.controller = None
+
+    def groupNameGlyphListCallback1(self, sender=None):
+        """Selected a glyph, show it as overlay in the EditorWindow"""
+        g = CurrentGlyph()
+        selection = self.w.groupNameGlyphList1.getSelection()
+        if self.w.showSimilarGlyphs.get() and g is not None and selection:
+            similarGlyphName = self.w.groupNameGlyphList1[selection[0]]
+            print(similarGlyphName)
+            simG = g.font[similarGlyphName]
+            kerningAssistant.similarGlyphImage1.setPath(simG.getRepresentation("merz.CGPath"))
+            kerningAssistant.similarGlyphImage1.setPosition((g.width - simG.width, 0)) # Right aligned.
+        else:
+            kerningAssistant.similarGlyphImage1.setPosition((FAR, 0))                
         
+    def groupNameGlyphListCallback2(self, sender=None):
+        """Selected a glyph, show it as overlay in the EditorWindow"""
+        g = CurrentGlyph()
+        selection = self.w.groupNameGlyphList2.getSelection()
+        if self.w.showSimilarGlyphs.get() and g is not None and selection:
+            similarGlyphName = self.w.groupNameGlyphList2[selection[0]]
+            print(similarGlyphName)
+            simG = g.font[similarGlyphName]
+            kerningAssistant.similarGlyphImage2.setPath(simG.getRepresentation("merz.CGPath"))
+            kerningAssistant.similarGlyphImage2.setPosition((0, 0)) # Right aligned.
+        else:
+            kerningAssistant.similarGlyphImage2.setPosition((FAR, 0))                
+                
     def groupNameListSelectCallback2(self, sender):
         f = CurrentFont()
         glyphNames = []
@@ -1577,6 +1618,8 @@ class KerningAssistantController(WindowController):
     def updateEditor(self, sender):
         # Force updating of the current EditorWindow. Is there a better way to do this directly?
         g = CurrentGlyph()
+        self.groupNameGlyphListCallback1()
+        self.groupNameGlyphListCallback2()
         if g is not None:
             g.changed()
             

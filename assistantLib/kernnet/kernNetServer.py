@@ -35,7 +35,7 @@ class MyServer(BaseHTTPRequestHandler):
         #self.wfile.write(bytes("</body></html>", "utf-8"))
 
         imagePath = f'_imagePredict{self.path}'
-        checkPointFilePath = 'Checkpoints/version_11/checkpoints/epoch=9-step=65610.ckpt'
+        checkPointFilePath = 'lightning_logs/version_6/checkpoints/epoch=19-step=74440.ckpt'
         k = int(round(self.predict_kern_value(imagePath, checkPointFilePath)/self.INCREMENT))*self.INCREMENT
         print(k)
         self.wfile.write(bytes(str(k), "utf-8"))

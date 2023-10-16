@@ -18,12 +18,16 @@ from assistantLib.kerningSamples import SAMPLES
 class KerningManager:
     """Generic kerning manager"""
 
-    def __init__(self, f, features=None, sample=None, simT=0.95, simSameCategory=True, simSameScript=True, simClip=300, simZones=None):
+    def __init__(self, f, features=None, sample=None, simT=0.95, 
+            simSameCategory=True, simSameScript=True, simClip=300, simZones=None,
+            automaticGroups=True, verbose=True):
         assert f is not None
         self.f = f # Stored as weakref property
         if features is None:
             features = {}
         self.features = features # Dictionary of open type features to show in the samples
+
+        self.verbose = verbose
 
         # Similarity parameters
         self.simT = simT # the confidence threshold. Only show results > simT
@@ -48,6 +52,8 @@ class KerningManager:
             if g.unicode:
                 self.uni2glyphName[g.unicode] = g.name
                 self.chr2glyphName[chr(g.unicode)] = g.name
+
+        self.automaticGroups = automaticGroups # Generated new groups for glyphs that don't belong.
 
         # Do some caching on groups
         self.glyphName2GroupName1 = {}
@@ -110,10 +116,17 @@ class KerningManager:
         for confidence, simGroup in self.getSimilar1(g).items():
             for gName in simGroup:
                 groupName = self.glyphName2GroupName1.get(gName)
-                if groupName is None:
-                    simGroups[f'({gName})'] = [gName]
-                else:
+                if groupName is not None:
                     simGroups[groupName] = self.f.groups[groupName]
+                elif self.automaticGroups:
+                    groupName = f'public.kern1.{g.name}'
+                    group = [g.name]
+                    simGroups[groupName] = self.f.groups[groupName] = group
+                    self.glyphName2GroupName1[gName] = groupName
+                    if self.verbose:
+                        print(f'... Add group {groupName} {group}')
+                else:
+                    simGroups[f'({gName})'] = [gName]
         return simGroups
 
     def getSimilarGroups2(self, g):
@@ -123,10 +136,17 @@ class KerningManager:
         for confidence, simGroup in self.getSimilar2(g).items():
             for gName in simGroup:
                 groupName = self.glyphName2GroupName2.get(gName)
-                if groupName is None:
-                    simGroups[f'({gName})'] = [gName]
-                else:
+                if groupName is not None:
                     simGroups[groupName] = self.f.groups[groupName]
+                elif self.automaticGroups:
+                    groupName = f'public.kern2.{g.name}'
+                    group = [g.name]
+                    simGroups[groupName] = self.f.groups[groupName] = group
+                    self.glyphName2GroupName2[gName] = groupName
+                    if self.verbose:
+                        print(f'... Add group {groupName} {group}')
+                else:
+                    simGroups[f'({gName})'] = [gName]
         return simGroups
 
     #   S A M P L E
