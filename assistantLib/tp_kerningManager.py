@@ -119,8 +119,8 @@ class KerningManager:
                 if groupName is not None:
                     simGroups[groupName] = self.f.groups[groupName]
                 elif self.automaticGroups:
-                    groupName = f'public.kern1.{g.name}'
-                    group = [g.name]
+                    groupName = f'public.kern1.{gName}'
+                    group = [gName]
                     simGroups[groupName] = self.f.groups[groupName] = group
                     self.glyphName2GroupName1[gName] = groupName
                     if self.verbose:
@@ -139,8 +139,8 @@ class KerningManager:
                 if groupName is not None:
                     simGroups[groupName] = self.f.groups[groupName]
                 elif self.automaticGroups:
-                    groupName = f'public.kern2.{g.name}'
-                    group = [g.name]
+                    groupName = f'public.kern2.{gName}'
+                    group = [gName]
                     simGroups[groupName] = self.f.groups[groupName] = group
                     self.glyphName2GroupName2[gName] = groupName
                     if self.verbose:
@@ -149,6 +149,26 @@ class KerningManager:
                     simGroups[f'({gName})'] = [gName]
         return simGroups
 
+    #   S P A C I N G
+
+    def getLeftMarginSrc(self, g):
+        """Answer the angled left margin source glyph, according to the base glyph of group2"""
+        groupName = self.glyphName2GroupName2.get(g.name)
+        if groupName is None:
+            return None
+        baseGlyphName = groupName.replace('public.kern2.', '')
+        assert baseGlyphName in self.f
+        return self.f[baseGlyphName]
+        
+    def getRightMarginSrc(self, g):
+        """Answer the angled right margin source glyph, according to the base glyph of group1"""
+        groupName = self.glyphName2GroupName1.get(g.name)
+        if groupName is None:
+            return None
+        baseGlyphName = groupName.replace('public.kern1.', '')
+        assert baseGlyphName in self.f
+        return self.f[baseGlyphName]
+        
     #   S A M P L E
 
     def _initSample(self):

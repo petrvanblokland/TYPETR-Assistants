@@ -211,8 +211,8 @@ class KerningAssistant(Subscriber):
 
         self.kernGlyph1 = None # Name of glyph on left side, if kerning is on
         self.kernGlyph2 = None # Name of glyph on right side, if kerning is on
-        self.groupTextLayer_colW = colW = 400 
-        colH = 750
+        self.groupTextLayer_colW = colW = 500 
+        colH = f.info.capHeight
         # Showing the left and groups of the current glyp
         self.group1TextLeftLayer = container.appendTextBoxSublayer(name="group1Left",
             position=(FAR, 0), # Will be changed to width of current glyph
@@ -254,7 +254,12 @@ class KerningAssistant(Subscriber):
             lineHeight=18,
             fillColor=(0, 0, 0, 1),
         )
-
+        
+        # The KerningManagers is just doing margins according to the groups.
+        # This way no GLYPH_DATA is necessary. This means that only identical sides are copied,
+        # not similar (angled) margins, as in superior and inferior figures. That still should 
+        # be handled by the main editor/project Assistant
+        
         self.fixedSpaceMarkerLeft = container.appendOvalSublayer(name="spaceMarkerLeft",
             position=(-SPACE_MARKER_R, -SPACE_MARKER_R),
             size=(SPACE_MARKER_R*2, SPACE_MARKER_R*2),
@@ -263,7 +268,7 @@ class KerningAssistant(Subscriber):
             strokeWidth=1,
         )
         self.leftSpaceSourceLabel = container.appendTextLineSublayer(name="leftSpaceSourceLabel",
-            position=(FAR, -SPACE_MARKER_R*1.5),
+            position=(FAR, -SPACE_MARKER_R*2),
             text='LSB',
             font='Courier',
             pointSize=14,
@@ -279,7 +284,7 @@ class KerningAssistant(Subscriber):
             strokeWidth=1,
         )
         self.rightSpaceSourceLabel = container.appendTextLineSublayer(name="rightSpaceSourceLabel",
-            position=(1000, -SPACE_MARKER_R*1.5),
+            position=(FAR, -SPACE_MARKER_R*2),
             text='RSB',
             font='Courier',
             pointSize=14,
@@ -382,14 +387,14 @@ class KerningAssistant(Subscriber):
         self.similarGlyphImage1 = self.backgroundContainer.appendPathSublayer(
             name='similarGlyphImage1',
             position=(0, 0),
-            fillColor=None,
+            fillColor=(0.5, 0.5, 0.5, 0.2),
             strokeColor=(1, 0, 0, 1),
             strokeWidth=1,
         )
         self.similarGlyphImage2 = self.backgroundContainer.appendPathSublayer(
             name='similarGlyphImage2',
             position=(0, 0),
-            fillColor=None,
+            fillColor=(0.5, 0.5, 0.5, 0.2),
             strokeColor=(1, 0, 0, 1),
             strokeWidth=1,
         )
@@ -474,13 +479,37 @@ class KerningAssistant(Subscriber):
         k1 = k2 = 0
         k1 = self.predictKerning(gName1, g.name)
         k2 = self.predictKerning(g.name, gName2)
-        print((gName1, g.name), k1, (g.name, gName2), k2)
+        #print((gName1, g.name), k1, (g.name, gName2), k2)
         
+        # Set spacing labels from base of glyph groups
+        g1 = km.getLeftMarginSrc(g)
+        if g1 is not None and g1.name != g.name:
+            label = f'Sim:{g1.name}'
+        else:
+            label = ''
+        self.leftSpaceSourceLabel.setText(label)
+        self.leftSpaceSourceLabel.setPosition((0, -SPACE_MARKER_R*2))
 
+        g2 = km.getRightMarginSrc(g)
+        if g2 is not None and g2.name != g.name:
+            label = f'Sim:{g2.name}'
+        else:
+            label = ''
+        self.rightSpaceSourceLabel.setText(label)
+        self.rightSpaceSourceLabel.setPosition((g.width, -SPACE_MARKER_R*2))
+
+        # Lists with similar groups
         simGroups2 = km.getSimilarGroups2(g)
-        simGroups1 = km.getSimilarGroups1(g)
         self.controller.w.groupNameList2.set(sorted(simGroups2.keys()))
+        if simGroups2:
+            self.controller.w.groupNameList2.setSelection([0])
+            self.controller.groupNameListSelectCallback2()
+            
+        simGroups1 = km.getSimilarGroups1(g)
         self.controller.w.groupNameList1.set(sorted(simGroups1.keys()))
+        if simGroups1:
+            self.controller.w.groupNameList1.setSelection([0])
+            self.controller.groupNameListSelectCallback1()
 
         # Left side of glyph
         groupName2 = km.glyphName2GroupName2.get(g.name)
@@ -798,25 +827,25 @@ class KerningAssistant(Subscriber):
         if self.isUpdating:
             return
         f = g.font
+        km = self.getKerningManager(f)
         unit = 4
-        gd = getGlyphData(f, g.name)
-        marginSrcName = gd.leftSpaceSourceLabel
-        if not gd.fixedLeft:
-            #self.isUpdating = True
+        g2 = km.getLeftMarginSrc(g)
+        if g2 is not None:
+            g2.angledLeftMargin = g.angledLeftMargin = int(round(g2.angledLeftMargin/unit) + value) * unit
+        else: # If not margin source, then just increment the current glyph
             g.angledLeftMargin = int(round(g.angledLeftMargin/unit) + value) * unit
-            #self.isUpdating = False
                         
     def _adjustRightMargin(self, g, value):
         if self.isUpdating:
             return
         f = g.font
+        km = self.getKerningManager(f)
         unit = 4
-        gd = getGlyphData(f, g.name)
-        marginSrcName = gd.rightSpaceSourceLabel
-        if not gd.fixedRight:
-            #self.isUpdating = True
+        g2 = km.getRightMarginSrc(g)
+        if g2 is not None:
+            g2.angledRightMargin = g.angledRightMargin = int(round(g2.angledRightMargin/unit) + value) * unit
+        else: # If not margin source, then just increment the current glyph
             g.angledRightMargin = int(round(g.angledRightMargin/unit) + value) * unit
-            #self.isUpdating = False
 
     def _adjustLeftKerning(self, g, value):
         """    
@@ -1036,13 +1065,37 @@ class KerningAssistant(Subscriber):
                             self.kernGlyphImage1.setPath(prev.getRepresentation("merz.CGPath"))
                             self.kernGlyphImage1.setPosition((-prev.width - k, 0))
                             if kerningType in (1, 2) and k != groupK: # Show that we are kerning group<-->glyph
-                                self.kernGlyphImage1.setFillColor(GROUPGLYPH_COLOR)
-                                self.kernGlyphImage.setFillColor(GROUPGLYPH_COLOR)
+                                if self.controller.w.showKerningLeftFilled.get():
+                                    self.kernGlyphImage1.setFillColor(GROUPGLYPH_COLOR)
+                                    self.kernGlyphImage1.setStrokeColor(None)
+                                    self.kernGlyphImage.setFillColor(GROUPGLYPH_COLOR)
+                                    self.kernGlyphImage.setStrokeColor(None)
+                                else:
+                                    self.kernGlyphImage1.setFillColor(None)
+                                    self.kernGlyphImage1.setStrokeColor(GROUPGLYPH_COLOR)
+                                    self.kernGlyphImage.setFillColor(None)
+                                    self.kernGlyphImage.setStrokeColor(GROUPGLYPH_COLOR)
+
                             elif kerningType == 3 and k != groupK: # Show that we are in kerning glyph<-->glyph
-                                self.kernGlyphImage1.setFillColor(GLYPHGLYPH_COLOR)
-                                self.kernGlyphImage.setFillColor(GLYPHGLYPH_COLOR)
-                            else:
+                                if self.controller.w.showKerningLeftFilled.get():
+                                    self.kernGlyphImage1.setFillColor(GLYPHGLYPH_COLOR)
+                                    self.kernGlyphImage1.setStrokeColor(None)
+                                    self.kernGlyphImage.setFillColor(GLYPHGLYPH_COLOR)
+                                    self.kernGlyphImage.setStrokeColor(None)
+                                else:
+                                    self.kernGlyphImage1.setFillColor(None)
+                                    self.kernGlyphImage1.setStrokeColor(GLYPHGLYPH_COLOR)
+                                    self.kernGlyphImage.setFillColor(None)
+                                    self.kernGlyphImage.setStrokeColor(GLYPHGLYPH_COLOR)
+
+                            elif self.controller.w.showKerningFilled.get():
                                 self.kernGlyphImage1.setFillColor((0, 0, 0, 1))
+                                self.kernGlyphImage1.setStrokeColor(None)
+
+                            else:
+                                self.kernGlyphImage1.setFillColor(None)
+                                self.kernGlyphImage1.setStrokeColor(None)
+                                
                             if kerningType in (1, 2):
                                 self.kerning1Value.setFillColor(GROUPGLYPH_COLOR)
                             elif kerningType == 3:
@@ -1066,14 +1119,38 @@ class KerningAssistant(Subscriber):
                             kSrcString = ''
                             self.kernGlyphImage2.setPath(gKern.getRepresentation("merz.CGPath"))
                             self.kernGlyphImage2.setPosition((prev.width + k, 0))
-                            if kerningType in (1, 2) and k != groupK: # Show that we are kerning glyph<-->group
-                                self.kernGlyphImage2.setFillColor(GROUPGLYPH_COLOR)
-                                self.kernGlyphImage.setFillColor(GROUPGLYPH_COLOR)
-                            elif kerningType == 3 and k != groupK: # Show that we are kerning glyph<-->group
-                                self.kernGlyphImage2.setFillColor(GLYPHGLYPH_COLOR)
-                                self.kernGlyphImage.setFillColor(GLYPHGLYPH_COLOR)
-                            else:
+                            if kerningType in (1, 2) and k != groupK: # Show that we are kerning group<-->glyph
+                                if self.controller.w.showKerningRightFilled.get():
+                                    self.kernGlyphImage2.setFillColor(GROUPGLYPH_COLOR)
+                                    self.kernGlyphImage2.setStrokeColor(None)
+                                    self.kernGlyphImage.setFillColor(GROUPGLYPH_COLOR)
+                                    self.kernGlyphImage.setStrokeColor(None)
+                                else:
+                                    self.kernGlyphImage2.setFillColor(None)
+                                    self.kernGlyphImage2.setStrokeColor(GROUPGLYPH_COLOR)
+                                    self.kernGlyphImage.setFillColor(None)
+                                    self.kernGlyphImage.setStrokeColor(GROUPGLYPH_COLOR)
+
+                            elif kerningType == 3 and k != groupK: # Show that we are in kerning glyph<-->glyph
+                                if self.controller.w.showKerningRightFilled.get():
+                                    self.kernGlyphImage2.setFillColor(GLYPHGLYPH_COLOR)
+                                    self.kernGlyphImage2.setStrokeColor(None)
+                                    self.kernGlyphImage.setFillColor(GLYPHGLYPH_COLOR)
+                                    self.kernGlyphImage.setStrokeColor(None)
+                                else:
+                                    self.kernGlyphImage2.setFillColor(None)
+                                    self.kernGlyphImage2.setStrokeColor(GLYPHGLYPH_COLOR)
+                                    self.kernGlyphImage.setFillColor(None)
+                                    self.kernGlyphImage.setStrokeColor(GLYPHGLYPH_COLOR)
+
+                            elif self.controller.w.showKerningFilled.get():
                                 self.kernGlyphImage2.setFillColor((0, 0, 0, 1))
+                                self.kernGlyphImage2.setStrokeColor(None)
+
+                            else:
+                                self.kernGlyphImage1.setFillColor(None)
+                                self.kernGlyphImage1.setStrokeColor(None)
+                                
                             if kerningType in (1,2):
                                 self.kerning2Value.setFillColor(GROUPGLYPH_COLOR)
                             elif kerningType == 3:
@@ -1155,297 +1232,49 @@ class KerningAssistant(Subscriber):
 
         # Update the groups lists for the new current glyph
         self.group1TextLeftLayer.setText('\n'.join(sorted(km.glyphName2Group1.get(self.kernGlyph1, []))))
+        self.group2TextLeftLayer.setText('\n'.join(sorted(km.glyphName2Group2.get(g.name, []))))
+        self.group1TextRightLayer.setText('\n'.join(sorted(km.glyphName2Group1.get(g.name, []))))
         self.group2TextRightLayer.setText('\n'.join(sorted(km.glyphName2Group2.get(self.kernGlyph2, []))))
-        self.group2TextLeftLayer.setText('\n'.join(sorted(km.glyphName2Group1.get(g.name, []))))
-        self.group1TextRightLayer.setText('\n'.join(sorted(km.glyphName2Group2.get(g.name, []))))
 
         if self.controller.w.showKerningLists.get():
             self.group1TextLeftLayer.setPosition((-g.width-2*self.groupTextLayer_colW, 0))
-            self.group2TextRightLayer.setPosition((g.width*2+self.groupTextLayer_colW, 0))
             self.group2TextLeftLayer.setPosition((-g.width-self.groupTextLayer_colW, 0))
-            self.group1TextRightLayer.setPosition((g.width*2, 0))
+            self.group1TextRightLayer.setPosition((g.width*2+self.groupTextLayer_colW, 0)) # Some extra on the right, in case of italics
+            self.group2TextRightLayer.setPosition((g.width*2+2*self.groupTextLayer_colW, 0))
         else:
             self.group1TextLeftLayer.setPosition((FAR, 0))
-            self.group2TextRightLayer.setPosition((FAR, 0))
             self.group2TextLeftLayer.setPosition((FAR, 0))
             self.group1TextRightLayer.setPosition((FAR, 0))
-            
-    def guessBasedLeftMargin(self, f, md, g, gd, base, l):
-        if l == 'CENTER':
-            return l
-        if isinstance(l, str):
-            l = f[l].angledLeftMargin
-        elif l is None:
-            if base is not None: # If l is not defined and there is a base, then use that margin instead
-                baseGlyph = f[base] # Get the base glyph
-                baseGd = getGlyphData(f, g.name)
-                self.checkSpacing(f, md, baseGlyph, baseGd) # Make sure the base itself is rightly spaced
-                l = baseGlyph.angledLeftMargin # Now we take the left margin of the base.
-        # else l must already be a number or None
-
-        if l is not None and base: # Answer the margin from the perspective of the base component, if defined 
-            for component in g.components:
-                if component.baseGlyph == base: # This is the base component, get the transformation
-                    baseGlyph = f[base]
-                    baseLeft = baseGlyph.angledLeftMargin
-                    l -= component.transformation[-2] + baseLeft + tan(radians(f.info.italicAngle)) * component.transformation[-1]
-                    l = g.angledLeftMargin + l
-        
-        # Number or 'CENTER'            
-        return l
-       
-    def guessBasedRightMargin(self, f, md, g, gd, base, r):
-        if isinstance(r, str):
-            r = f[r].angledRightMargin
-        elif r is None:
-            if base is not None: # If l is not defined, and there is a base, use that margin instead
-                baseGlyph = f[base] # Get the base glyph
-                baseGd = getGlyphData(f, g.name)
-                self.checkSpacing(f, md, baseGlyph, baseGd) # Make sure the base itself is rightly spaced
-                r = baseGlyph.angledRightMargin # Now we take the left margin of the base.
-        # else r must already be a number or None
-        if r is not None and base: # Answer the margin from the perspective of the base component, if defined 
-            for component in g.components:
-                if component.baseGlyph == base: # This is the base component, get the transformation
-                    baseGlyph = f[base]
-                    r = baseGlyph.angledRightMargin
-                    
-        return r   
-            
-    def checkSpacingDependencies(self, g):
-        """Check the spacing dependencies of the current selected kerning line"""
-        changed = False
-        """ Skip for now, we'll do margin-guessing in context of similarities, instead of using GLYPH_DATA, 
-        as that table may not always be available or filled out.
-        f = g.font
-        md = getMasterData(f)
-        glyph2SpacingChildren = getGlyph2SpacingChildren(f)
-        for gChildName in glyph2SpacingChildren.get(g.name, []):
-            gChild = f[gChildName]
-            gd = getGlyphData(f, gChildName)
-            changed |= self.checkSpacing(f, md, gChild, gd, setMarkers=False)
-        """
-        return changed
-        
-    def checkSpacing(self, f, md, g, gd, done=None, setMarkers=True):
-        """Check the spacing, draw markers and overwrite the spacing from the source if it is different."""
-        if VERBOSE2:
-            print('@@@ Check spacing', g.name)
-        
-        if gd is None:
-            print('### Cannot find glyphData for /%s' % g.name)
-            return False
-            
-        if done is None:
-            done = set()
-        if g.name in done:
-            return False
-
-        base, l, r, w, il, ir, iw, ml, mr, l2r, r2l, il2r, ir2l = (
-            gd.base,
-            gd.l, gd.r, gd.w, gd.il, gd.ir, gd.iw, gd.ml, gd.mr, 
-            gd.l2r, gd.r2l, gd.il2r, gd.ir2l)
-
-        changed = False
-        
-        gLabel = ''
-        gDisplay = None
-        
-        # @@@ Disable the auto-copy of margins from Display masters per 2022-02-12 (Build 015) 
-        # @@@ Enable on 2023-03-05
-        # @@@ Disable on 2023-09-21 after TN/Adobe delivery
-        if 0 and md.displaySrc is not None: # Copy from equivalent margin of Display master            
-            fd = getMaster(md.displaySrc)
-            if g.name not in fd:
-                print('### Missing glyph /%s in %s' % (g.name, md.displaySrc))
-                return False
-            gDisplay = fd[g.name]
-            if gDisplay.width and not g.components:
-                if l is None and ml is None and il is None and r2l is None and gDisplay.leftMargin is not None:
-                    l = int(round(gDisplay.angledLeftMargin + gd.smallTrackLeft))
-                    gLabel = 'Copy left from display /%s' % g.name
-                if r is None and mr is None and ir is None and w is None and iw is None and l2r is None and gDisplay.rightMargin is not None:
-                    r = int(round(gDisplay.angledRightMargin + gd.smallTrackRight))
-                    gLabel += 'Copy right from display /%s' % g.name
+            self.group2TextRightLayer.setPosition((FAR, 0))
                         
-        if self.controller.w.checkFixSpacing.get() and not md.fixedSpacing: # This font has automatic spacing? If fixed, then ignore any requested change
-            # Interpret which kind of spacing is requested
-            # Interpret left specification. Translate the requested left margin l
-            # into what the margin should be to keep the base at its original positions.
-
-            if ml is not None:
-                l = self.guessBasedLeftMargin(f, md, g, gd, None, ml) # Overwrite the base margin, just look at full glyph margin           
-            elif l is not None:
-                l = self.guessBasedLeftMargin(f, md, g, gd, base, l) # Use margin of the base
-            if mr is not None:
-                r = self.guessBasedRightMargin(f, md, g, gd, None, mr) # Overwrite the base margin, just look at full glyph margin
-            elif r is not None:
-                r = self.guessBasedRightMargin(f, md, g, gd, base, r) # Use margin of the base
-
-            # Interpret width specification
-            if w == TAB:
-                w = md.tab # md.metrics[TAB] @ Dofferent for Condensed and Extended
-            elif w == ACCENT_WIDTH:
-                w = md.accentWidth #metrics[ACCENT_WIDTH] Different for Condensed and Extended
-            elif w == EM:
-                w = md.em #.metrics[EM]
-            elif w == EM2:
-                w = md.em/2
-            elif w == MATH_WIDTH:
-                w = md.mathWidth
-            elif isinstance(w, str):
-                w = f[w].width  
-            elif w is None and base is not None and mr is None:
-                baseGlyph = f[base]
-                baseGd = getGlyphData(f, g.name)
-                changed |= self.checkSpacing(f, md, baseGlyph, baseGd, done)  # Make sure the base itself is rightly spaced
-                if VERBOSE4 and changed:
-                    print('###222 Set width', changed)
-                if g.name in done:
-                    return changed
-                #w = baseGlyph.width    
- 
-            # else w must be a number
-            # Interpret mirrored margins
-            if r2l:
-                l = f[r2l].angledRightMargin    
-            if l2r:
-                r = f[l2r].angledLeftMargin  
-            
-            D = 1 # Difference when to change (due to rounding of italic coordinates)
-            if g.angledLeftMargin is None and w is not None: # No contours, just set width
-                g.width = w
+    def checkSpacingDependencies(self, g):
+        """Check the spacing dependencies of the current selected kerning line.
+            The KerningManagers is just doing margins according to the groups.
+            This way no GLYPH_DATA is necessary. This means that only identical sides are copied,
+            not similar (angled) margins, as in superior and inferior figures. That still should 
+            be handled by the main editor/project Assistant
+        """
+        changed = False
+        f = g.font
+        km = self.getKerningManager(f)
+        g2 = km.getLeftMarginSrc(g) # Get the left margin source glyph, according to group2 of g
+        if g2 is not None:
+            lm = g2.angledLeftMargin
+            if lm is not None and abs(g.angledLeftMargin - lm) >= 1:
+                print(f'... Set left margin of /{g.name} to {int(round(lm))} from group {km.glyphName2GroupName2[g.name]}')
+                g.angledLeftMargin = lm
                 changed = True
-                if VERBOSE4 and changed:
-                    print('###333 Set width', changed)
-            elif w is not None:
-                if r is None:
-                    # Just set the width
-                    g.width = w
-                    changed = True
-                    if VERBOSE4 and changed:
-                        print('###444 Set width', changed)
-                elif l == 'CENTER':
-                    alm = g.angledLeftMargin
-                    if alm is not None:
-                        if abs(g.width - w) > 0.5:
-                            g.width = w
-                            changed = True
-                            if VERBOSE4 and changed:
-                                print('###555 Set width', changed)
-                        centered = (alm + g.angledRightMargin) / 2
-                        if abs(centered - alm) > D:
-                            print('... Center /%s left margin (%d --> %d) and width (%d --> %d)' % (g.name, alm, centered, w, g.width))
-                            g.angledLeftMargin = centered
-                            g.width = w # Set again, in case of rounding error
-                            changed = True
-                            if VERBOSE4 and changed:
-                                print('###666 Set width', changed)
-                    l = r = None # Notify that we already did draw. If w and l defined, then ignore r
-            
-                elif l is not None:
-                    alm = g.angledLeftMargin
-                    if alm is not None and (abs(alm - l) > D or abs(g.width - w) > D):
-                        print('... %s Set /%s left margin (%d --> %d) and width (%d --> %d)' % (gLabel, g.name, alm, l, w, g.width))
-                        g.angledLeftMargin = l
-                        g.width = w
-                        changed = True
-                        if VERBOSE4 and changed:
-                            print('###777 Set width', changed)
-                    l = r = None # Notify that we already did draw. If w and l defined, then ignore r
 
-                elif r is not None: # Either l or r can be set, if w is defined.
-                    arm = g.angledRightMargin
-                    if arm is not None and (abs(arm - r) > D or abs(g.width - w) > D):
-                        print('... %s Set /%s right margin (%d --> %d) and width (%d --> %d)' % (gLabel, g.name, arm, r, w, g.width))
-                        g.width = w # First set the width
-                        arm = g.angledRightMargin
-                        g.angledLeftMargin -= arm - r # Then move the glyph by difference on right side
-                        g.width = w # Set actual width to overwrite roundings.
-                        changed = True
-                        if VERBOSE4 and changed:
-                            print('###888 Set width', changed)
-                    r = l = None # Notify that we already did draw
+        g1 = km.getRightMarginSrc(g) # Get the right margin source glyph, according to group1 of g
+        if g1 is not None:
+            rm = g1.angledRightMargin
+            if rm is not None and abs(g.angledRightMargin - rm) >= 1:
+                print(f'... Set right margin of /{g.name} to {int(round(rm))} from group {km.glyphName2GroupName1[g.name]}')
+                g.angledRightMargin = rm
+                changed = True
 
-                elif w is not None and abs(g.width - w) > D: # No l or r defined, just set the width.
-                    print('... %s Set /%s width (%d --> %d)' % (gLabel, g.name, w, g.width))
-                    g.width = w
-                    changed = True
-                    if VERBOSE4 and changed:
-                        print('###999 Set width', changed)
-   
-            if l is not None and isinstance(l, (float, int)):  # Value defined but not drawn yet?
-                alm = g.angledLeftMargin
-                #print('## L ##', g.name, r, l, alm)
-                if alm is not None and abs(alm - l) > D:
-                    print('... %s Set /%s left margin (%d --> %d)' % (gLabel, g.name, l, alm))
-                    g.angledLeftMargin = l
-                    changed = True
-                    if VERBOSE4 and changed:
-                        print('###000 Set angledLeftMargin', changed)
-
-            if r is not None and isinstance(r, (float, int)): # Value defined but not drawn yet?
-                arm = g.angledRightMargin
-                #print('## R ##', g.name, r, l, arm)
-                if arm is not None and abs(arm - r) > D:
-                    print('... %s Set /%s right margin (%d --> %d)' % (gLabel, g.name, r, arm))
-                    g.angledRightMargin = r
-                    changed = True
-                    if VERBOSE4 and changed:
-                        print('###000 Set angledRightMargin', changed)
-        
-        # @@@@@ Move to self.updatePreview() ?            
-        if setMarkers:
-            # Set the drawing of spacing markers, depending if there are spacing sources for this glyph
-            self.fixedSpaceMarkerRight.setPosition((g.width-SPACE_MARKER_R, -SPACE_MARKER_R))
-            self.leftSpaceSourceLabel.setPosition((0, -SPACE_MARKER_R*1.5))
-            self.rightSpaceSourceLabel.setPosition((g.width, -SPACE_MARKER_R*1.5))
-
-            leftSpaceSourceLabel = gd.leftSpaceSourceLabel
-            if md.fixedSpacing:
-                c = 0.2, 0, 0.5, 0.25
-                label = 'Fixed'
-            elif leftSpaceSourceLabel:
-                c = 1, 0, 0, 1
-                label = leftSpaceSourceLabel
-            elif gDisplay is not None:
-                c = 1, 1, 0, 1
-                label = 'Display %s: %d+%d' % (gDisplay.name, gDisplay.angledLeftMargin, gd.smallTrackLeft)
-            else:
-                c = 0, 0, 0, 0
-                label = ''
-            self.fixedSpaceMarkerLeft.setStrokeColor(c)
-            self.leftSpaceSourceLabel.setText(label)
-
-            rightSpaceSourceLabel = gd.rightSpaceSourceLabel
-            if md.fixedSpacing:
-                c = 0.2, 0, 0.5, 0.25
-                label = 'Fixed'
-            elif rightSpaceSourceLabel:
-                c = 1, 0, 0, 1
-                label = rightSpaceSourceLabel
-            elif gDisplay is not None:
-                c = 1, 1, 0, 1
-                label = 'Display %s: %d+%d' % (gDisplay.name, gDisplay.angledRightMargin, gd.smallTrackRight)
-            else:
-                c = 0, 0, 0, 0
-                label = ''
-            self.fixedSpaceMarkerRight.setStrokeColor(c)
-            self.rightSpaceSourceLabel.setText(label)
-        
-        done.add(g.name) # Recursively remember that we did this one
-        
         return changed
-        
-    def updateMetricsText(self, md):
-        # Update the metric text for this
-        pass
-        s = 'H stem: %s\nH thin: %s\nO stem: %s\nO thin: %s\nU thin: %s\nV thin: %s\nHsc stem: %s\nHsc thin: %s\nOsc stem: %s\nOsc thin: %s\nn stem: %s\no stem: %s\no thin: %s' % (
-            md.HStem, md.HThin, md.OStem, md.OThin, md.UThin, md.VThin, md.HscStem, md.HscThin, md.OscStem, md.OscThin, md.nStem, md.oStem, md.oThin) 
-        self.metricsTextLayer.setText(s)
-        #print('... MetricsText', self.metricsTextLayer.getText())
-
-        
+                        
 L = 22
 M = 8 # Margin of UI and gutter of colums
 CW = (W-4*M)/3
@@ -1474,9 +1303,12 @@ class KerningAssistantController(WindowController):
         y = M
         self.w = WindowClass((W, H), self.NAME, minSize=(W, H))
 
+        self.w.showKerningLeftFilled = vanilla.CheckBox((C0, y, CW, L), 'Show left filled', value=True, sizeStyle='small', callback=self.updateEditor)
+        self.w.showKerningFilled = vanilla.CheckBox((C1, y, CW, L), 'Show kerning filled', value=True, sizeStyle='small', callback=self.updateEditor)
+        self.w.showKerningRightFilled = vanilla.CheckBox((C2, y, CW, L), 'Show right filled', value=True, sizeStyle='small', callback=self.updateEditor)
+        y += L
         self.w.showKerning = vanilla.CheckBox((C0, y, CW, L), 'Show kerning', value=True, sizeStyle='small', callback=self.updateEditor)
         self.w.showKerningBox = vanilla.CheckBox((C1, y, CW, L), 'Show kerning box', value=False, sizeStyle='small', callback=self.updateEditor)
-        self.w.showKerningFilled = vanilla.CheckBox((C2, y, CW, L), 'Show kerning filled', value=True, sizeStyle='small', callback=self.updateEditor)
         y += L
         self.w.showKerningLists = vanilla.CheckBox((C0, y, CW, L), 'Show kerning lists', value=True, sizeStyle='small', callback=self.updateEditor)
         self.w.keysOverview = vanilla.TextBox((C1, y, 2*CW, 36), 'Navigate: alt + arrows, alt + shift + arrows\nKern: [n][m] [comma][period]', sizeStyle="small")
@@ -1493,8 +1325,9 @@ class KerningAssistantController(WindowController):
         self.w.kerningLeftX = vanilla.Slider((C0, y, CW, 24), minValue=-4000, maxValue=2500, value=kerningSampleX, continuous=True, callback=self.updateEditor)
         self.w.kerningSampleSelectSlider = vanilla.Slider((C1, y, CW*2+M, 24), minValue=0, maxValue=486, value=kerningSampleIndex, continuous=True, callback=self.kerningSampleSelectSliderCallback)
         y += 32
-        self.w.automaticGroups = vanilla.CheckBox((C0, y, CW, L), 'Automatic groups', value=True, sizeStyle='small')
-        self.w.showSimilarGlyphs = vanilla.CheckBox((C1, y, CW, L), 'Show similar glyphs', value=True, sizeStyle='small', callback=self.updateEditor)
+        self.w.showSimilarGlyphs2 = vanilla.CheckBox((C0, y, CW, L), 'Show similar2', value=True, sizeStyle='small', callback=self.updateEditor)
+        self.w.automaticGroups = vanilla.CheckBox((C1, y, CW, L), 'Automatic groups', value=True, sizeStyle='small')
+        self.w.showSimilarGlyphs1 = vanilla.CheckBox((C2, y, CW, L), 'Show similar1', value=True, sizeStyle='small', callback=self.updateEditor)
         y += L
         self.w.groupName2Label = vanilla.TextBox((C0, y, CW, 24), 'Group 2 (left side)', sizeStyle="small")
         self.w.groupName1Label = vanilla.TextBox((C15, y, CW, 24), 'Group 1 (right side)', sizeStyle="small")
@@ -1508,8 +1341,8 @@ class KerningAssistantController(WindowController):
         self.w.groupNameList1 = vanilla.List((C15, y, CW*1.5, 90), [], selectionCallback=self.groupNameListSelectCallback1, doubleClickCallback=self.groupNameListDblClickCallback1)
         y += 100
         # Label for glyph list of current group selection
-        self.w.groupGlyphs2Label = vanilla.TextBox((C0, y, CW, 24), 'Glyphs of ---', sizeStyle="small")
-        self.w.groupGlyphs1Label = vanilla.TextBox((C15, y, CW, 24), 'Glyphs of ---', sizeStyle="small")
+        self.w.groupGlyphs2Label = vanilla.TextBox((C0, y, CW*1.5, 24), 'Glyphs of ---', sizeStyle="small")
+        self.w.groupGlyphs1Label = vanilla.TextBox((C15, y, CW*1.5, 24), 'Glyphs of ---', sizeStyle="small")
         y += 18
         # List of glyphs of current group selection.
         # Double click opens the EditorWindow on that glyph.
@@ -1540,9 +1373,8 @@ class KerningAssistantController(WindowController):
         """Selected a glyph, show it as overlay in the EditorWindow"""
         g = CurrentGlyph()
         selection = self.w.groupNameGlyphList1.getSelection()
-        if self.w.showSimilarGlyphs.get() and g is not None and selection:
+        if self.w.showSimilarGlyphs1.get() and g is not None and selection:
             similarGlyphName = self.w.groupNameGlyphList1[selection[0]]
-            print(similarGlyphName)
             simG = g.font[similarGlyphName]
             kerningAssistant.similarGlyphImage1.setPath(simG.getRepresentation("merz.CGPath"))
             kerningAssistant.similarGlyphImage1.setPosition((g.width - simG.width, 0)) # Right aligned.
@@ -1553,22 +1385,21 @@ class KerningAssistantController(WindowController):
         """Selected a glyph, show it as overlay in the EditorWindow"""
         g = CurrentGlyph()
         selection = self.w.groupNameGlyphList2.getSelection()
-        if self.w.showSimilarGlyphs.get() and g is not None and selection:
+        if self.w.showSimilarGlyphs2.get() and g is not None and selection:
             similarGlyphName = self.w.groupNameGlyphList2[selection[0]]
-            print(similarGlyphName)
             simG = g.font[similarGlyphName]
             kerningAssistant.similarGlyphImage2.setPath(simG.getRepresentation("merz.CGPath"))
             kerningAssistant.similarGlyphImage2.setPosition((0, 0)) # Right aligned.
         else:
             kerningAssistant.similarGlyphImage2.setPosition((FAR, 0))                
                 
-    def groupNameListSelectCallback2(self, sender):
+    def groupNameListSelectCallback2(self, sender=None):
         f = CurrentFont()
         glyphNames = []
         label = 'Glyphs of ---'
         if f is not None:
-            for index in sender.getSelection():
-                groupName = sender[index]
+            for index in self.w.groupNameList2.getSelection():
+                groupName = self.w.groupNameList2[index]
                 if groupName in f.groups:
                     glyphNames = f.groups[groupName]
                     label = f'Glyphs of {groupName}'
@@ -1576,20 +1407,24 @@ class KerningAssistantController(WindowController):
                     
         self.w.groupGlyphs2Label.set(label)
         self.w.groupNameGlyphList2.set(glyphNames)
-        
-    def groupNameListSelectCallback1(self, sender):
+        if glyphNames:
+            self.w.groupNameGlyphList2.setSelection([0])
+            
+    def groupNameListSelectCallback1(self, sender=None):
         f = CurrentFont()
         glyphNames = []
         label = 'Glyphs of ---'
         if f is not None:
-            for index in sender.getSelection():
-                groupName = sender[index]
+            for index in self.w.groupNameList1.getSelection():
+                groupName = self.w.groupNameList1[index]
                 if groupName in f.groups:
                     glyphNames = f.groups[groupName]
                     label = f'Glyphs of {groupName}'
                     break
-        self.w.groupGlyphs2Label.set(label)
+        self.w.groupGlyphs1Label.set(label)
         self.w.groupNameGlyphList1.set(glyphNames)
+        if glyphNames:
+            self.w.groupNameGlyphList1.setSelection([0])
  
     def groupNameListDblClickCallback2(self, sender):
         g = CurrentGlyph()
@@ -1622,19 +1457,7 @@ class KerningAssistantController(WindowController):
         self.groupNameGlyphListCallback2()
         if g is not None:
             g.changed()
-            
-    def fixKerning(self, f):
-        """Copy all kerning from Display if f is a Small master"""
-        xxx
-        md = getMasterData(f)
-        # @@@ Disable copy of kerning from Display masters per 1/12/2022 (Build 015)
-        if 0 and md.displaySrc is not None: # Copy from equivalent margin of Display master            
-            fd = getMaster(md.displaySrc)
-            f.kerning.clear()
-            print('... Copy %d kerning pairs from %s to %s' % (len(fd.kerning), md.displaySrc, md.name))
-            for pair, k in fd.kerning.items():
-                f.kerning[pair] = k
-                                                  
+                                                              
     def sampleTextSelectCallback(self, sender):
         # This will makek the self.w.sampleText call the self.updateEditor
         self.w.sampleText.set(sender.getItem())
