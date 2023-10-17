@@ -15,7 +15,9 @@ import weakref
 import assistantLib.similarity.cosineSimilarity
 from assistantLib.similarity.cosineSimilarity import cosineSimilarity, SimilarGlyphsKey
 
-from assistantLib.kerningSamples import SAMPLES 
+from assistantLib.kerningSamples import SAMPLES, CYRILLIC_KERNING
+
+MAIN_SAMPLES = CYRILLIC_KERNING
 
 class KerningManager:
     """Generic kerning manager"""
@@ -179,7 +181,7 @@ class KerningManager:
 
     def _initSample(self):
         sample = [] # List of glyph names
-        for c in SAMPLES:
+        for c in MAIN_SAMPLES:
             gName = self.chr2glyphName.get(c)
             if gName is not None:
                 sample.append(gName)

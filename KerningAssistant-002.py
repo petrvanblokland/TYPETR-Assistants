@@ -1140,10 +1140,14 @@ class KerningAssistant(Subscriber):
                             else:
                                 self.kerning1Value.setFillColor((0.6, 0.6, 0.6, 1))
                             self.kerning1Value.setPosition((-k, y4))
-                            if k != groupK: 
-                                self.kerning1Value.setText('%d:G%d%s\n(%d)' % (k, groupK, kSrcString, self.predictedKerning1))
+                            if k != self.predictedKerning1:
+                                predicted = f'\n({self.predictedKerning1})'
                             else:
-                                self.kerning1Value.setText('%d%s\n(%d)' % (k, kSrcString, self.predictedKerning1))
+                                predicted = '' 
+                            if k != groupK: 
+                                self.kerning1Value.setText('%d:G%d%s%s' % (k, groupK, kSrcString, predicted))
+                            else:
+                                self.kerning1Value.setText('%d%s%s' % (k, kSrcString, predicted))
                                 
                     elif gIndex == kerningSelectedIndex + 1: # Kerning glyph on right side of current glyph
                         if prevName is not None:  
@@ -1195,10 +1199,14 @@ class KerningAssistant(Subscriber):
                             else:
                                 self.kerning2Value.setFillColor((0.6, 0.6, 0.6, 1))
                             self.kerning2Value.setPosition((prev.width + k, y4))
-                            if k != groupK:        
-                                self.kerning2Value.setText('%d:G%d%s\n(%s)' % (k, groupK, kSrcString, self.predictedKerning2))
+                            if k != self.predictedKerning2:
+                                predicted = f'\n({self.predictedKerning2})'
                             else:
-                                self.kerning2Value.setText('%d%s\n(%s)' % (k, kSrcString, self.predictedKerning2))
+                                predicted = '' 
+                            if k != groupK:        
+                                self.kerning2Value.setText('%d:G%d%s%s' % (k, groupK, kSrcString, predicted))
+                            else:
+                                self.kerning2Value.setText('%d%s%s' % (k, kSrcString, predicted))
 
                     k = 0
                     if prevName is not None:
