@@ -13,7 +13,12 @@
 #    Show kerning line samples in the Editor Window
 #    Alloes selection by clicking on the sample line.
 #
-
+#    Install Similarity from Mechanic and run it once, after RoboFont starts.
+#    The initial window can be closed. This way the library "cosoneSimilarity"
+#    becomes available for this Assistant.
+#
+#    No need to import KernNet for AI assistent kerning. That will be available as local webserver.
+#
 import sys
 import os
 import codecs
@@ -41,12 +46,6 @@ for path in PATHS:
         print('@@@ Append to sys.path', path)
         sys.path.append(path)
 
-# Importing Similarity for grouping & spacing
-import cosineSimilarity
-# Importing KernNet for AI assistent kerning
-#import torch
-#from assistantLib.kernnet.predictKernNetModel import predict_kern_value
-
 import assistantLib
 importlib.reload(assistantLib)
 import assistantLib.kerningSamples
@@ -59,8 +58,6 @@ importlib.reload(assistantLib.tp_kerningManager)
 from assistantLib.kerningSamples.ulcwords import ULCWORDS
 from assistantLib.tp_kerningManager import KerningManager
 
-
-
 ARROW_KEYS = [NSUpArrowFunctionKey, NSDownArrowFunctionKey,
         NSLeftArrowFunctionKey, NSRightArrowFunctionKey, NSPageUpFunctionKey,
         NSPageDownFunctionKey, NSHomeFunctionKey, NSEndFunctionKey]
@@ -69,6 +66,8 @@ FUNCTION_KEYS = (
     'Ii', # Increment left margin
     'Oo', # Decrement right margin
     'Pp', # Increment right margin
+    ';', # Set left pair kerning to self.predictedKerning1
+    "'", # Set right pair kerning to self.predictedKerning2
     'Nn', # Increment left kerning
     'Mm', # Decrement left kerning
     '.<', # Decrement right kerning
@@ -79,7 +78,7 @@ VERBOSE = False
 VERBOSE2 = False
 
 KERNING_SAMPLE_SELECT_LIB = 'TYPETR-Presti-Assistant-KerningSampleIndex'
-KERNING_SAMPLE_X = 'TYPETR-Presti-Assistant-KerningSampleX'
+KERNING_SAMPLE_X = 'KerningAssistant-GG-Sample'
 
 GROUPGLYPH_COLOR = (0, 0, 0.6, 1)
 GLYPHGLYPH_COLOR = (0, 0.4, 0, 1)
@@ -131,7 +130,7 @@ SAMPLES = (
 
 # ULCWORDS has list of words
 
-W, H = 400, 540
+W, H = 500, 560
 M = 32
 SPACE_MARKER_R = 16
 POINT_MARKER_R = 6
@@ -182,6 +181,9 @@ class KerningAssistant(Subscriber):
         
         self.isUpdating = False
         self.fixingAnchors = False
+        
+        self.predictedKerning1 = '-'
+        self.predictedKerning2 = '-'
         
         # Store selected glyphs for (kern1, kern2) if the preview char changed value
         #self.previewKern1 = self.previewKern2 = None
@@ -352,7 +354,7 @@ class KerningAssistant(Subscriber):
         )
         self.kerning1Value.setHorizontalAlignment('center')
         self.kerning2Value = self.backgroundContainer.appendTextLineSublayer(
-            name="kerning1Value",
+            name="kerning2Value",
             position=(FAR, 0),
             text='xxx\nxxx',
             font='Courier',
@@ -446,7 +448,7 @@ class KerningAssistant(Subscriber):
         import urllib.request
         page = urllib.request.urlopen('http://localhost:8080/' + imageName)
         
-        CALIBRATE = 0
+        CALIBRATE = -36
         
         return int(str(page.read())[2:-1]) + CALIBRATE     
                                 
@@ -476,9 +478,8 @@ class KerningAssistant(Subscriber):
         gName1 = km.sample[cursor-1]
         gName2 = km.sample[cursor+1]
 
-        k1 = k2 = 0
-        k1 = self.predictKerning(gName1, g.name)
-        k2 = self.predictKerning(g.name, gName2)
+        self.predictedKerning1 = self.predictKerning(gName1, g.name)
+        self.predictedKerning2 = self.predictKerning(g.name, gName2)
         #print((gName1, g.name), k1, (g.name, gName2), k2)
         
         # Set spacing labels from base of glyph groups
@@ -499,13 +500,17 @@ class KerningAssistant(Subscriber):
         self.rightSpaceSourceLabel.setPosition((g.width, -SPACE_MARKER_R*2))
 
         # Lists with similar groups
-        simGroups2 = km.getSimilarGroups2(g)
+        simGroups2 = km.getSimilarGroups2(g) #[] # List of groups with their confidence percentage
+        #for gName, confidence, isCurrent in km.getSimilarGroups2(g):
+        #    simGroups.append(dict(current=isCurrent, confidence='%.2f' % confidence))
         self.controller.w.groupNameList2.set(sorted(simGroups2.keys()))
         if simGroups2:
             self.controller.w.groupNameList2.setSelection([0])
             self.controller.groupNameListSelectCallback2()
             
-        simGroups1 = km.getSimilarGroups1(g)
+        simGroups1 = km.getSimilarGroups1(g) #[] # List of groups with their confidence percentage
+        #for gName, confidence, isCurrent in km.getSimilarGroups1(g):
+        #    simGroups.append(dict(current=isCurrent, confidence='%.2f' % confidence))
         self.controller.w.groupNameList1.set(sorted(simGroups1.keys()))
         if simGroups1:
             self.controller.w.groupNameList1.setSelection([0])
@@ -597,6 +602,18 @@ class KerningAssistant(Subscriber):
             changed |= self.checkSpacingDependencies(g) # Update the spacing consistency for all glyphs in the kerning line
             updatePreview = True
 
+        # Adjust to predicted kerning
+        
+        elif characters == ';': # Set left pair to predicted kerning
+            self._adjustLeftKerning(g, newK=self.predictedKerning1)
+            changed |= self.checkSpacingDependencies(g) # Update the spacing consistency for all glyphs in the kerning line
+            updatePreview = True
+        
+        elif characters == "'": # Set right pair to predicted kerning
+            self._adjustRightKerning(g, newK=self.predictedKerning2)
+            changed |= self.checkSpacingDependencies(g) # Update the spacing consistency for all glyphs in the kerning line
+            updatePreview = True
+            
         # Adjust kerning
 
         elif characters in '.>': # Increment right kerning
@@ -847,40 +864,56 @@ class KerningAssistant(Subscriber):
         else: # If not margin source, then just increment the current glyph
             g.angledRightMargin = int(round(g.angledRightMargin/unit) + value) * unit
 
-    def _adjustLeftKerning(self, g, value):
-        """    
+    def _adjustLeftKerning(self, g, value=None, newK=None):
+        """ 
+        Two ways of usage:
+        • value is relative adjustment
+        • newK is setting new kerning value.
+           
             3 = glyph<-->glyph # Not used
             2 = group<-->glyph
             1 = glyph<-->group
             0 or None = group<-->group
         """
+        assert value is not None or newK is not None
         f = g.font
         km = self.getKerningManager(f)
         unit = 4
         if self.kernGlyph1 is None:
             return
         k, groupK, kerningType = km.getKerning(self.kernGlyph1, g.name)
-        k = int(round(k/unit))*unit + value * unit
+        if newK is not None:
+            k = newK # Set this value, probably predicted.
+        else: # Adjust relative by rounded value
+            k = int(round(k/unit))*unit + value * unit
         if not kerningType and self.capLock:
             kerningType = 2 # group<-->glyph
         elif kerningType == 2 and self.capLock:
             kerningType = 3 # glyph<-->glyph 
         km.setKerning(self.kernGlyph1, g.name, k, kerningType)
                                         
-    def _adjustRightKerning(self, g, value):
+    def _adjustRightKerning(self, g, value=None, newK=None):
         """    
+        Two ways of usage:
+        • value is relative adjustment
+        • newK is setting new kerning value.
+
             3 = glyph<-->glyph # Not used
             2 = group<-->glyph
             1 = glyph<-->group
             0 or None = group<-->group
         """
+        assert value is not None or newK is not None
         f = g.font
         km = self.getKerningManager(f)
         unit = 4
         if self.kernGlyph2 is None:
             return
         k, groupK, kerningType = km.getKerning(g.name, self.kernGlyph2)
-        k = int(round(k/unit))*unit + value * unit
+        if newK is not None:
+            k = newK # Set this value, probably predicted.
+        else: # Adjust relative by rounded value
+            k = int(round(k/unit))*unit + value * unit
         if not kerningType and self.capLock:
             kerningType = 1 # glyph<-->group
         elif kerningType == 1 and self.capLock:
@@ -1108,9 +1141,9 @@ class KerningAssistant(Subscriber):
                                 self.kerning1Value.setFillColor((0.6, 0.6, 0.6, 1))
                             self.kerning1Value.setPosition((-k, y4))
                             if k != groupK: 
-                                self.kerning1Value.setText('%d:G%d%s' % (k, groupK, kSrcString))
+                                self.kerning1Value.setText('%d:G%d%s\n(%d)' % (k, groupK, kSrcString, self.predictedKerning1))
                             else:
-                                self.kerning1Value.setText('%d%s' % (k, kSrcString))
+                                self.kerning1Value.setText('%d%s\n(%d)' % (k, kSrcString, self.predictedKerning1))
                                 
                     elif gIndex == kerningSelectedIndex + 1: # Kerning glyph on right side of current glyph
                         if prevName is not None:  
@@ -1163,9 +1196,9 @@ class KerningAssistant(Subscriber):
                                 self.kerning2Value.setFillColor((0.6, 0.6, 0.6, 1))
                             self.kerning2Value.setPosition((prev.width + k, y4))
                             if k != groupK:        
-                                self.kerning2Value.setText('%d:G%d%s' % (k, groupK, kSrcString))
+                                self.kerning2Value.setText('%d:G%d%s\n(%s)' % (k, groupK, kSrcString, self.predictedKerning2))
                             else:
-                                self.kerning2Value.setText('%d%s' % (k, kSrcString))
+                                self.kerning2Value.setText('%d%s\n(%s)' % (k, kSrcString, self.predictedKerning2))
 
                     k = 0
                     if prevName is not None:
@@ -1337,8 +1370,10 @@ class KerningAssistantController(WindowController):
         self.w.groupName1 = vanilla.TextBox((C15, y, CW*1.5, 24), '---', sizeStyle="small")
         y += 18
         # List of alternative group (or single glyphs without a group) according to Similarity
-        self.w.groupNameList2 = vanilla.List((C0, y, CW*1.5, 90), [], selectionCallback=self.groupNameListSelectCallback2, doubleClickCallback=self.groupNameListDblClickCallback2)
-        self.w.groupNameList1 = vanilla.List((C15, y, CW*1.5, 90), [], selectionCallback=self.groupNameListSelectCallback1, doubleClickCallback=self.groupNameListDblClickCallback1)
+        self.w.groupNameList2 = vanilla.List((C0, y, CW*1.5, 90), [], 
+            selectionCallback=self.groupNameListSelectCallback2, doubleClickCallback=self.groupNameListDblClickCallback2)
+        self.w.groupNameList1 = vanilla.List((C15, y, CW*1.5, 90), [], 
+            selectionCallback=self.groupNameListSelectCallback1, doubleClickCallback=self.groupNameListDblClickCallback1)
         y += 100
         # Label for glyph list of current group selection
         self.w.groupGlyphs2Label = vanilla.TextBox((C0, y, CW*1.5, 24), 'Glyphs of ---', sizeStyle="small")
@@ -1346,8 +1381,12 @@ class KerningAssistantController(WindowController):
         y += 18
         # List of glyphs of current group selection.
         # Double click opens the EditorWindow on that glyph.
-        self.w.groupNameGlyphList2 = vanilla.List((C0, y, CW*1.5, 130), [], selectionCallback=self.groupNameGlyphListCallback2, doubleClickCallback=self.groupNameGlyphListDblClickCallback)
-        self.w.groupNameGlyphList1 = vanilla.List((C15, y, CW*1.5, 130), [], selectionCallback=self.groupNameGlyphListCallback1, doubleClickCallback=self.groupNameGlyphListDblClickCallback)
+        self.w.groupNameGlyphList2 = vanilla.List((C0, y, CW*1.5, 130), [], 
+            #columnDescriptions=[dict(title='•'), dict(title='Name'), dict(title='%')], 
+            selectionCallback=self.groupNameGlyphListCallback2, doubleClickCallback=self.groupNameGlyphListDblClickCallback)
+        self.w.groupNameGlyphList1 = vanilla.List((C15, y, CW*1.5, 130), [], 
+            #columnDescriptions=[dict(title='•'), dict(title='Name'), dict(title='%')],
+            selectionCallback=self.groupNameGlyphListCallback1, doubleClickCallback=self.groupNameGlyphListDblClickCallback)
         y += 130
         # Text box to enter an alternative sample text. /? is replaced by the current glyph unicode
         self.w.sampleTextLabel = vanilla.TextBox((C0, y, -M, 24), 'Sample text in FontGoggles', sizeStyle="small")
