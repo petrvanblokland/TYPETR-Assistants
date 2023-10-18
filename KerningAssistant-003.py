@@ -505,18 +505,14 @@ class KerningAssistant(Subscriber):
         self.rightSpaceSourceLabel.setPosition((g.width, -SPACE_MARKER_R*2))
 
         # Lists with similar groups
-        simGroups2 = km.getSimilarGroups2(g) #[] # List of groups with their confidence percentage
-        #for gName, confidence, isCurrent in km.getSimilarGroups2(g):
-        #    simGroups.append(dict(current=isCurrent, confidence='%.2f' % confidence))
-        self.controller.w.groupNameList2.set(sorted(simGroups2.keys()))
+        simGroups2 = km.getSimilarGroupsNames2(g) #[] # List of group names
+        self.controller.w.groupNameList2.set(simGroups2)
         if simGroups2:
             self.controller.w.groupNameList2.setSelection([0])
             self.controller.groupNameListSelectCallback2()
             
-        simGroups1 = km.getSimilarGroups1(g) #[] # List of groups with their confidence percentage
-        #for gName, confidence, isCurrent in km.getSimilarGroups1(g):
-        #    simGroups.append(dict(current=isCurrent, confidence='%.2f' % confidence))
-        self.controller.w.groupNameList1.set(sorted(simGroups1.keys()))
+        simGroups1 = km.getSimilarGroupsNames1(g) #[] # List of group names
+        self.controller.w.groupNameList1.set(simGroups1)
         if simGroups1:
             self.controller.w.groupNameList1.setSelection([0])
             self.controller.groupNameListSelectCallback1()
@@ -1372,7 +1368,7 @@ class KerningAssistantController(WindowController):
         self.w.kerningSampleSelectSlider = vanilla.Slider((C1, y, CW*2+M, 24), minValue=0, maxValue=486, value=kerningSampleIndex, continuous=True, callback=self.kerningSampleSelectSliderCallback)
         y += 32
         self.w.showSimilarGlyphs2 = vanilla.CheckBox((C0, y, CW, L), 'Show similar2', value=True, sizeStyle='small', callback=self.updateEditor)
-        self.w.automaticGroups = vanilla.CheckBox((C1, y, CW, L), 'Automatic groups', value=False, sizeStyle='small')
+        self.w.automaticGroups = vanilla.CheckBox((C1, y, CW, L), 'Automatic groups', value=True, sizeStyle='small')
         self.w.showSimilarGlyphs1 = vanilla.CheckBox((C2, y, CW, L), 'Show similar1', value=True, sizeStyle='small', callback=self.updateEditor)
         y += L
         self.w.groupName2Label = vanilla.TextBox((C0, y, CW, 24), 'Group 2 (left side)', sizeStyle="small")
@@ -1395,10 +1391,10 @@ class KerningAssistantController(WindowController):
         # List of glyphs of current group selection.
         # Double click opens the EditorWindow on that glyph.
         self.w.groupNameGlyphList2 = vanilla.List((C0, y, CW*1.5, 130), [], 
-            #columnDescriptions=[dict(title='•'), dict(title='Name'), dict(title='%')], 
+            columnDescriptions=[dict(title='•', width=12), dict(title='Name'), dict(title='%', width=48)], 
             selectionCallback=self.groupNameGlyphListCallback2, doubleClickCallback=self.groupNameGlyphListDblClickCallback)
         self.w.groupNameGlyphList1 = vanilla.List((C15, y, CW*1.5, 130), [], 
-            #columnDescriptions=[dict(title='•'), dict(title='Name'), dict(title='%')],
+            columnDescriptions=[dict(title='•', width=12), dict(title='Name'), dict(title='%', width=48)],
             selectionCallback=self.groupNameGlyphListCallback1, doubleClickCallback=self.groupNameGlyphListDblClickCallback)
         y += 130
         # Text box to enter an alternative sample text. /? is replaced by the current glyph unicode
@@ -1421,13 +1417,75 @@ class KerningAssistantController(WindowController):
         unregisterGlyphEditorSubscriber(self.assistantGlyphEditorSubscriberClass)
         self.assistantGlyphEditorSubscriberClass.controller = None
 
+    def groupNameListSelectCallback2(self, sender=None):
+        g = CurrentGlyph()
+        if g is None:
+            return
+        km = kerningAssistant.getKerningManager(g.font)
+        glyphNames = []
+        selectedGroup = None
+        label = 'Glyphs of ---'
+
+        for index in self.w.groupNameList2.getSelection():
+            selectedGroupName = self.w.groupNameList2[index]
+            if selectedGroupName in g.font.groups:
+                label = f'Glyphs of {selectedGroupName}'
+                similarGroups = km.getSimilarGroups2(g)
+                selectedGroup = similarGroups.get(selectedGroupName)
+                break
+        self.w.groupGlyphs2Label.set(label)
+        
+        if selectedGroup is None:
+            self.w.groupNameGlyphList2.set([])
+        else:
+            rows = []        
+            for gName, confidence, isCurrent in selectedGroup:
+                rows.append({'•':{True:'•', False:''}[isCurrent], 'Name':gName, '%':'%0.3f' % confidence})
+            self.w.groupNameGlyphList2.set(rows)
+            
+    def groupNameListSelectCallback1(self, sender=None):
+        g = CurrentGlyph()
+        if g is None:
+            return
+        km = kerningAssistant.getKerningManager(g.font)
+        glyphNames = []
+        selectedGroup = None
+        label = 'Glyphs of ---'
+
+        for index in self.w.groupNameList1.getSelection():
+            selectedGroupName = self.w.groupNameList1[index]
+            if selectedGroupName in g.font.groups:
+                label = f'Glyphs of {selectedGroupName}'
+                similarGroups = km.getSimilarGroups1(g)
+                selectedGroup = similarGroups.get(selectedGroupName)
+                break
+        self.w.groupGlyphs1Label.set(label)
+        
+        if selectedGroup is None:
+            self.w.groupNameGlyphList1.set([])
+        else:
+            rows = []        
+            for gName, confidence, isCurrent in selectedGroup:
+                rows.append({'•':{True:'•', False:''}[isCurrent], 'Name':gName, '%':'%0.3f' % confidence})
+            self.w.groupNameGlyphList1.set(rows)
+ 
+    def groupNameListDblClickCallback2(self, sender):
+        g = CurrentGlyph()
+        km = kerningAssistant.getKerningManager(g.font)
+        km.addGlyph2Group2(g, sender[sender.getSelection()[0]['Name']])
+        
+    def groupNameListDblClickCallback1(self, sender):
+        g = CurrentGlyph()
+        km = kerningAssistant.getKerningManager(g.font)
+        km.addGlyph2Group1(g, sender[sender.getSelection()[0]['Name']])
+               
     def groupNameGlyphListCallback1(self, sender=None):
         """Selected a glyph, show it as overlay in the EditorWindow"""
         g = CurrentGlyph()
         selection = self.w.groupNameGlyphList1.getSelection()
         if self.w.showSimilarGlyphs1.get() and g is not None and selection:
             similarGlyphName = self.w.groupNameGlyphList1[selection[0]]
-            simG = g.font[similarGlyphName]
+            simG = g.font[similarGlyphName['Name']]
             kerningAssistant.similarGlyphImage1.setPath(simG.getRepresentation("merz.CGPath"))
             kerningAssistant.similarGlyphImage1.setPosition((g.width - simG.width, 0)) # Right aligned.
         else:
@@ -1439,60 +1497,17 @@ class KerningAssistantController(WindowController):
         selection = self.w.groupNameGlyphList2.getSelection()
         if self.w.showSimilarGlyphs2.get() and g is not None and selection:
             similarGlyphName = self.w.groupNameGlyphList2[selection[0]]
-            simG = g.font[similarGlyphName]
+            simG = g.font[similarGlyphName['Name']]
             kerningAssistant.similarGlyphImage2.setPath(simG.getRepresentation("merz.CGPath"))
             kerningAssistant.similarGlyphImage2.setPosition((0, 0)) # Right aligned.
         else:
             kerningAssistant.similarGlyphImage2.setPosition((FAR, 0))                
                 
-    def groupNameListSelectCallback2(self, sender=None):
-        f = CurrentFont()
-        glyphNames = []
-        label = 'Glyphs of ---'
-        if f is not None:
-            for index in self.w.groupNameList2.getSelection():
-                groupName = self.w.groupNameList2[index]
-                if groupName in f.groups:
-                    glyphNames = f.groups[groupName]
-                    label = f'Glyphs of {groupName}'
-                    break
-                    
-        self.w.groupGlyphs2Label.set(label)
-        self.w.groupNameGlyphList2.set(glyphNames)
-        if glyphNames:
-            self.w.groupNameGlyphList2.setSelection([0])
-            
-    def groupNameListSelectCallback1(self, sender=None):
-        f = CurrentFont()
-        glyphNames = []
-        label = 'Glyphs of ---'
-        if f is not None:
-            for index in self.w.groupNameList1.getSelection():
-                groupName = self.w.groupNameList1[index]
-                if groupName in f.groups:
-                    glyphNames = f.groups[groupName]
-                    label = f'Glyphs of {groupName}'
-                    break
-        self.w.groupGlyphs1Label.set(label)
-        self.w.groupNameGlyphList1.set(glyphNames)
-        if glyphNames:
-            self.w.groupNameGlyphList1.setSelection([0])
- 
-    def groupNameListDblClickCallback2(self, sender):
-        g = CurrentGlyph()
-        km = kerningAssistant.getKerningManager(g.font)
-        km.addGlyph2Group2(g, sender[sender.getSelection()[0]])
-        
-    def groupNameListDblClickCallback1(self, sender):
-        g = CurrentGlyph()
-        km = kerningAssistant.getKerningManager(g.font)
-        km.addGlyph2Group1(g, sender[sender.getSelection()[0]])
-               
     def groupNameGlyphListDblClickCallback(self, sender):        
         f = CurrentFont()
         if f is not None:
             for index in sender.getSelection():
-                glyphName = sender[index]
+                glyphName = sender[index]['Name']
                 OpenGlyphWindow(glyph=f[glyphName], newWindow=False)
                 break
             

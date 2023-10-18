@@ -18,6 +18,7 @@ from assistantLib.similarity.cosineSimilarity import cosineSimilarity, SimilarGl
 from assistantLib.kerningSamples import SAMPLES, CYRILLIC_KERNING
 
 MAIN_SAMPLES = CYRILLIC_KERNING
+MAIN_SAMPLES = SAMPLES
 
 class KerningManager:
     """Generic kerning manager"""
@@ -113,48 +114,73 @@ class KerningManager:
             side=side,
             clip=self.simClip
         )
-    def getSimilarGroups1(self, g):
-        """Answer a list of tuples with (group names and their confidence % and isCurrent flag) 
-        that are similar to g, including the group that glyph g is already in. 
-        If there is more than one group, either g should change or groups should be merged."""
-        simGroups = {} # Key is group name, value is tuple (group, confidence, isCurrent)
+
+    def getSimilarGroupsNames1(self, g):
+        """Answer a sorted list of group names that are similar to g."""
+        simGroups = set()
         for confidence, simGroup in self.getSimilar1(g).items():
             for gName in simGroup:
                 groupName = self.glyphName2GroupName1.get(gName) # If a group exists for this glyph
                 if groupName is not None:
-                    simGroups[groupName] = self.f.groups[groupName] #(self.f.groups[groupName], confidence, bool(gName == g.name))
-                elif self.automaticGroups:
-                    groupName = f'public.kern1.{gName}'
-                    group = [gName]
-                    simGroups[groupName] = group #(group, confidence, bool(gName == g.name))
-                    self.f.groups[groupName] = group
-                    self.glyphName2GroupName1[gName] = groupName
-                    if self.verbose:
-                        print(f'... Add group {groupName} {group}')
-                else:
-                    simGroups[f'({gName})'] = gName #[(gName, confidence, bool(gName == g.name))]
-        return simGroups
+                    simGroups.add(groupName)
+        return sorted(simGroups)
 
-    def getSimilarGroups2(self, g):
-        """Answer a list of tuples with (group names and their confidence % and isCurrent flag) 
+    def getSimilarGroups1(self, g):
+        """Answer a dict for each found group with a list of tuples (glyph names, confidence %, isCurrent flag) 
         that are similar to g, including the group that glyph g is already in. 
         If there is more than one group, either g should change or groups should be merged."""
-        simGroups = {}
+        simGroups = {} # Key is group name, value is list of tuple (group, confidence, isCurrent)
+        for confidence, simGroup in self.getSimilar1(g).items():
+            for gName in simGroup:
+                groupName = self.glyphName2GroupName1.get(gName) # If a group exists for this glyph
+                if groupName is None:
+                    if self.automaticGroups: # Create missing group?
+                        groupName = f'public.kern1.{gName}'
+                        self.f.groups[groupName] = [gName]
+                        self.glyphName2GroupName1[gName] = groupName
+                        if self.verbose:
+                            print(f'... Add group {groupName}')
+                    else: # Otherwise for now, use a pseudo group name "(glyphName)"
+                        groupName = f'({gName})'
+
+                if groupName not in simGroups:
+                    simGroups[groupName] = []
+                simGroups[groupName].append((gName, confidence, bool(gName == g.name)))
+
+        return simGroups
+
+    def getSimilarGroupsNames2(self, g):
+        """Answer a list of group names that are similar to g."""
+        simGroups = set()
         for confidence, simGroup in self.getSimilar2(g).items():
             for gName in simGroup:
                 groupName = self.glyphName2GroupName2.get(gName) # If a group exists for this glyph
                 if groupName is not None:
-                    simGroups[groupName] = self.f.groups[groupName] #(self.f.groups[groupName], confidence, bool(gName == g.name))
-                elif self.automaticGroups:
-                    groupName = f'public.kern2.{gName}'
-                    group = [gName]
-                    simGroups[groupName] = group #(group, confidence, bool(gName == g.name))
-                    self.f.groups[groupName] = group
-                    self.glyphName2GroupName2[gName] = groupName
-                    if self.verbose:
-                        print(f'... Add group {groupName} {group}')
-                else:
-                    simGroups[f'({gName})'] = gName #[(gName, confidence, bool(gName == g.name))]
+                    simGroups.add(groupName)
+        return sorted(simGroups)
+
+    def getSimilarGroups2(self, g):
+        """Answer a dict for each found group with a list of tuples (glyph names, confidence %, isCurrent flag) 
+        that are similar to g, including the group that glyph g is already in. 
+        If there is more than one group, either g should change or groups should be merged."""
+        simGroups = {} # Key is group name, value is list of tuple (group, confidence, isCurrent)
+        for confidence, simGroup in self.getSimilar2(g).items():
+            for gName in simGroup:
+                groupName = self.glyphName2GroupName2.get(gName) # If a group exists for this glyph
+                if groupName is None:
+                    if self.automaticGroups: # Create missing group?
+                        groupName = f'public.kern2.{gName}'
+                        self.f.groups[groupName] = [gName]
+                        self.glyphName2GroupName2[gName] = groupName
+                        if self.verbose:
+                            print(f'... Add group {groupName}')
+                    else: # Otherwise for now, use a pseudo group name "(glyphName)"
+                        groupName = f'({gName})'
+
+                if groupName not in simGroups:
+                    simGroups[groupName] = []
+                simGroups[groupName].append((gName, confidence, bool(gName == g.name)))
+
         return simGroups
 
     #   S P A C I N G
