@@ -448,10 +448,15 @@ class KerningAssistant(Subscriber):
         import urllib.request
         page = urllib.request.urlopen('http://localhost:8080/' + imageName)
         
-        CALIBRATE = -36
+        # For some reason, predicted kerning seems to be best when subrachting this amount
+        CALIBRATE = -36 
         
-        return int(str(page.read())[2:-1]) + CALIBRATE     
-                                
+        k = int(str(page.read())[2:-1]) + CALIBRATE     
+        if abs(k) <= 4:
+            k = 0 # Apply threshold for very small kerning values
+            
+        return k
+                            
     def glyphEditorDidSetGlyph(self, info):
         #self.backgroundContainer.clearSublayers()
         #self.foregroundContainer.clearSublayers()
