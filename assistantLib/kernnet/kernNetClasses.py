@@ -44,8 +44,8 @@ class KernNetDataloader(Dataset):
         r, g, b, a = image.split()
 
         transformer = transforms.Compose([
-            transforms.RandomHorizontalFlip(0.5),
-            transforms.RandomVerticalFlip(0.1),
+            #transforms.RandomHorizontalFlip(0.5),
+            #transforms.RandomVerticalFlip(0.1),
             transforms.ToTensor(),
         ])
 

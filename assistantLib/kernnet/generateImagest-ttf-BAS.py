@@ -8,6 +8,7 @@
 #
 import os
 from drawBot import *
+from fontTools.ttLib import TTFont
 
 # This file contains a function to train a predictive kerning model using the KernNet class.
 # The function is called with four parameters:
@@ -111,7 +112,7 @@ FONTS = (
     'Upgrade-UltraBlackItalic',
 
 )
-FONTS_PATH = '/Library/Fonts/'
+FONT_PATH = '/Library/Fonts/'
 FONTS = (
     'Upgrade_CG-Bold.otf',
     'Upgrade_CG-Book.otf',
@@ -186,24 +187,25 @@ IMAGE_PATH = '_imageTrainSansItalic/'
 
 def generateFamily(fontName):
     
-    path = IMAGE_PATH + f'{fontName}_{W}_{H}/'
-    print('...', path)
+    imageName = fontName.replace('.ttf','').replace('.otf','')
+    imagesPath = IMAGE_PATH + f'{imageName}_{W}_{H}/'
+    print('...', imagesPath)
         
     if not os.path.exists(IMAGE_PATH):
         os.system(f'mkdir {IMAGE_PATH}')
-    if not os.path.exists(path):
-        os.system(f'mkdir {path}')
+    if not os.path.exists(imagesPath):
+        os.system(f'mkdir {imagesPath}')
 
     alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     alpha += alpha + alpha.lower() + '™()[]{}%.,\\/“”‘’0123456789'
-        
-    for uni1 in range(33, 512):
-        for uni2 in range(33, 512):
+    
+    for uni1 in range(33, 256):
+        for uni2 in range(33, 256):
             c1 = chr(uni1)
             c2 = chr(uni2)  
 
-            s1 = FormattedString(c1, font=fontName, fontSize=H, fill=0)
-            s2 = FormattedString(c2, font=fontName, fontSize=H, fill=0)
+            s1 = FormattedString(c1, font=FONT_PATH+fontName, fontSize=H, fill=0)
+            s2 = FormattedString(c2, font=FONT_PATH+fontName, fontSize=H, fill=0)
             tw1, _ = textSize(s1)
             tw2, _ = textSize(s2)
             if tw1 and tw2:
@@ -215,7 +217,7 @@ def generateFamily(fontName):
                 k = w12 - (w1 + w2)
                 #if w1 + w1 != w12:
                 #    print(c1, c2, w1, w2, w1 + w2, w12, k)
-                imagePath = path + f'{uni1}_{uni2}_{k}.png'
+                imagePath = imagesPath + f'{uni1}_{uni2}_{k}.png'
                 #if abs(k) >= 4 and not os.path.exists(imagePath): # Ignore k == 0
                 if k > 4 or (c1 in alpha and c2 in alpha): 
                     newDrawing()
@@ -228,5 +230,3 @@ def generateFamily(fontName):
 for fontName in FONTS:
     if 'Upgrade' in fontName:
         generateFamily(fontName)
-
-    

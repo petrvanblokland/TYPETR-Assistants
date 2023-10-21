@@ -19,6 +19,7 @@ from kernNetClasses import KernNet
 
 hostName = "localhost"
 serverPort = 8080
+#We van EM = 2048
 
 class MyServer(BaseHTTPRequestHandler):
 
@@ -35,9 +36,11 @@ class MyServer(BaseHTTPRequestHandler):
         #self.wfile.write(bytes("</body></html>", "utf-8"))
 
         imagePath = f'_imagePredict{self.path}'
-        checkPointFilePath = 'lightning_logs/version_6/checkpoints/epoch=19-step=74440.ckpt'
-        k = int(round(self.predict_kern_value(imagePath, checkPointFilePath)/self.INCREMENT))*self.INCREMENT
-        print(k)
+        checkPointFilePath = 'lightning_logs/version_15/checkpoints/epoch=2-step=29319-frozen.ckpt'
+        predicted = self.predict_kern_value(imagePath, checkPointFilePath)
+        #k = int(round(predicted*EM/1000/self.INCREMENT))*self.INCREMENT
+        k = int(round(predicted/self.INCREMENT))*self.INCREMENT
+        print(k, predicted)
         self.wfile.write(bytes(str(k), "utf-8"))
         
     def predict_kern_value(self, image_file_path, checkpoint_file_path):

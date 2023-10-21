@@ -63,7 +63,7 @@ W, H = 32, 32
 SUB_DIR_PATTERN = f'{W}_{H}'
 PATH = '_imageTrainSansItalic/'
 
-def train_model(data_directory_path, training_epochs=20, validation_split=0.3, batch_size=64):
+def train_model(data_directory_path, training_epochs=50, validation_split=0.3, batch_size=64):
 
     directory_list = os.listdir(data_directory_path)
 
@@ -74,22 +74,33 @@ def train_model(data_directory_path, training_epochs=20, validation_split=0.3, b
         if not dir_name.endswith(SUB_DIR_PATTERN):
             continue
 
-        for file_name in os.listdir(osp.join(data_directory_path, dir_name)):
+        for dir_name_sub in os.listdir(osp.join(data_directory_path, dir_name)):
 
-            if not file_name.endswith(".png"):
+            if not os.path.isdir(osp.join(data_directory_path, dir_name, dir_name_sub)):
                 continue
 
-            file_path = osp.join(dir_name, file_name)
-            kern_value = int(file_name.replace(".png", "").split("_")[-1])
+            for file_name in os.listdir(osp.join(data_directory_path, dir_name, dir_name_sub)):
 
-            data_instance = (file_path, kern_value)
+                if not file_name.endswith(".png"):
+                    continue
 
-            data.append(data_instance)
+                file_path = osp.join(dir_name, dir_name_sub, file_name)
+
+                kern_value = int(round(float(file_name.replace(".png", "").split("_")[-1])))
+
+                if not kern_value:
+                    continue
+
+                data_instance = (file_path, kern_value)
+
+                data.append(data_instance)
 
     dataset = KernNetDataloader(data_directory_path, data)
 
     train_size = int((1 - validation_split) * len(dataset))
     valid_size = len(dataset) - train_size
+
+    print(f'--- Train size {train_size} Valid size {valid_size}')
 
     train_set, val_set = torch.utils.data.random_split(dataset, [train_size, valid_size])
 
