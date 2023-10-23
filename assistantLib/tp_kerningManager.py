@@ -17,8 +17,14 @@ from assistantLib.similarity.cosineSimilarity import cosineSimilarity, SimilarGl
 
 from assistantLib.kerningSamples import SAMPLES, CYRILLIC_KERNING
 
+# Defines types of spacing dependencies
+SPACING_TYPES_LEFT = ('', 'l', 'ml', 'r2l')
+SPACING_TYPES_RIGHT = ('', 'r', 'mr', 'l2r', 'w')
+SPACING_KEYS = ('typeRight', 'right', 'typeLeft', 'left')
+
+
 MAIN_SAMPLES = CYRILLIC_KERNING
-#MAIN_SAMPLES = SAMPLES
+MAIN_SAMPLES = SAMPLES
 
 class KerningManager:
     """Generic kerning manager"""
@@ -90,52 +96,126 @@ class KerningManager:
     #   G R O U P S
 
     def addGlyph2Group1(self, g, groupName):
+        """Add glyph g to groupNamed. if g already exists in another "kern1" or "kern2" group,
+        then remove it there. If that group gets empty, then remove it from g.font.groups"""
         print(g.name, groupName)
         
     def addGlyph2Group2(self, g, groupName):
         print(g.name, groupName)
     
+    #   S P A C I N G  B Y  G R O U P S
+
+    #   Spacing by groups, answers the base glyph for the group of g (left or right side). 
+    def getLeftMarginGroupBaseGlyph(self, g):
+        """Answer the angled left margin source glyph, according to the base glyph of group2"""
+        groupName = self.glyphName2GroupName2.get(g.name)
+        if groupName is None:
+            return None
+        baseGlyphName = groupName.replace('public.kern2.', '')
+        assert baseGlyphName in self.f
+        return self.f[baseGlyphName]
+        
+    def getRightMarginGroupBaseGlyph(self, g):
+        """Answer the angled right margin source glyph, according to the base glyph of group1"""
+        groupName = self.glyphName2GroupName1.get(g.name)
+        if groupName is None:
+            return None
+        baseGlyphName = groupName.replace('public.kern1.', '')
+        assert baseGlyphName in self.f
+        return self.f[baseGlyphName]
+        
     #   S P A C I N G  D E P E N D E N C I E S
 
     #   This is a different approach from similarity of groups. Sometimes margins need to be forced,
     #   even if the shapes are not similar, such as inferior --> superior. Also copying from side to side
-    #   (l2r and r2l) cannot be defined by the standard similarity check.
+    #   (l2r and r2l) or copy/set a fixed width cannot be defined by the standard similarity check.
     #   And groups only work inside their own script. In order to copy margins such as /A --> /A-cy
     #   this approach is more flexible. 
-    #   The spacing dependencies are stored dictionary in the f['A-cy'].lib[KEY] = dict(l='A', r='A')
+    #   The spacing dependencies are stored as dictionary:
+    #   f['A-cy'].lib[KEY] = dict(typeLeft='l', left='A', typeRight='r', right='A')
+    #   The left and/or right dependencies can be omitted. They can be altered in the editor. 
+    #   Omitted dependencies make the glyph "base" for other dependencies. 
 
     KEY = 'com.typetr.KerningAssistant.spacingDependencies' # Dictionary for left/right dependencies and spacing types
 
-    def getSpacingDependencies(self, g):
+    def getSpacingDependencyLib(self, g):
         """Answer the g.lib dictionary that defines the left/right spacing dependencies.""" 
         if self.KEY not in g.lib: # Initialize if it does not exist
             g.lib[self.KEY] = {}
-        return  g.lib.get(self.KEY) # Should have format dict(typeRight='r', right='A', typeLeft='l', left='H'')
+        d = g.lib.get(self.KEY) # Should have format dict(typeLeft='l', left='H', typeRight='r', right='A')
+        for key, value in d.items():
+            if not key in SPACING_KEYS:
+                del d[key]
+        # Do some valication on the dictionary, otherwise the g.lib may raise an error.
+        if d.get('typeLeft') not in SPACING_TYPES_LEFT: # Not a valid value, reset
+            d['typeLeft'] = ''
+        if d.get('typeRight') not in SPACING_TYPES_RIGHT: # Not a valid value, reset
+            d['typeRight'] = ''
+        #print('GET', d)
+        return d
 
-    def setSpacingDependencies(self, g, d):
+    def setSpacingDependencyLib(self, g, d):
         """Store the g.lib dictionary that defines the left/right spacing dependencies.""" 
-        g.lib[self.KEY] = d # Should have format dict(typeRight='r', right='A', typeLeft='l', left='H'')
+        for key, value in d.items():
+            if not key in SPACING_KEYS:
+                del d[key]
+        # Do some valication on the dictionary, otherwise the g.lib may raise an error.
+        if d.get('typeLeft') not in SPACING_TYPES_LEFT: # Not a valid value, reset
+            d['typeLeft'] = ''
+        if d.get('typeRight') not in SPACING_TYPES_RIGHT: # Not a valid value, reset
+            d['typeRight'] = ''
+        #print('SET', d)
+        g.lib[self.KEY] = d # Should have format dict(typeLeft='l', left='H', typeRight='r', right='A')
+
+    def getLeftSpaceDependencyLabel(self, g):
+        """Answer the left label as used in the EditorWindow that shows the margin dependency of the glyph.
+        If the label is empty, it means that there is no dependency. The glyph is "base" for other glyphs."""
+        labels = dict(l='Base Left:%s', ml='Left:%s', r2l='R-->L:%s')
+        d = self.getSpacingDependencyLib(g)
+        if 'typeLeft' in d and 'left' in d:
+            return labels[d['typeLeft']] % d['left']
+        return ''
+
+    def getRightSpaceDependencyLabel(self, g):
+        """Answer the right label as used in the EditorWindow that shows the margin dependency of the glyph.
+        If the label is empty, it means that there is no dependency. The glyph is "base" for other glyphs."""
+        labels = dict(r='Base Right:%s', mr='Right:%s', l2r='L-->R:%s', w='Width:%s')
+        d = self.getSpacingDependencyLib(g)
+        if 'typeRight' in d and 'right' in d:
+            return labels[d['typeRight']] % d['right']
+        return ''
+    
+    def getSpacingDependencyLeft(self, g):
+        d = self.getSpacingDependencyLib(g)
+        return d.get('typeLeft'), d.get('left')
+
+    def getSpacingDependencyRight(self, g):
+        d = self.getSpacingDependencyLib(g)
+        return d.get('typeRight'), d.get('right')
 
     def getLeftMargin(self, g, visited=None):
-        """Answer the recursive value for angled left margin dependency of this glyph.""" 
+        """Answer the recursive value for angled left margin dependency of this glyph.
+        Note that this is the value that the glyph is supposed to have based, on its defined dependency.
+        The value is not the angled left margin that is has now.""" 
         if visited is None:
             visited = [] # Remember the glyphs we referenced, in case there's a circular chain.
         lm = None # Default value, we could not determine the left margin.
         spacingType, value = self.getSpacingDependencyLeft(g)
         if isinstance(value, (int, float)):
-            lm = value # It's a value, we're done.
+            lm = value # It's an actual value, we're done.
         elif isinstance(value, str):
             if value in visited: # Did we already got here?
                 print(f'### getSpacingDependencyLeft: Circular reference for /{g.name} with {visited}')
-                return None # Error, backout
-            visited.append(g.name)
+                return None # Error, probably a circular reference. Backout
+            visited.append(g.name) # Remember that we were here.
             if spacingType == 'l': # Use the left margin of the base component (assumed to be the first component)
                 if g.components: # Only if there are any components
                     component = g.components[0]
                     if component.baseGlyph in g.font:
                         baseG = g.font[component.baseGlyph]
                         blm = self.getLeftMargin(baseG, visited) # Recursively get the left margin from the base
-                        lm = component.transformation[-2] - blm # Add it to the current position of the base component
+                        if blm is not None:
+                            lm = component.transformation[-2] - blm # Add it to the current position of the base component
                 # Otherwise just let the method return the angled left margin of g
             elif spacingType == 'ml': # Answer the plain left margin of the referenced glyph     
                 if value in g.font: # Is it a glyph reference?
@@ -147,30 +227,33 @@ class KerningManager:
                     lm = self.getRightMargin(refG)
         return lm
 
-    def getRightMargin(self, g):
-        """Answer the recursive value for angled right margin dependency of this glyph.""" 
+    def getRightMargin(self, g, visited=None):
+        """Answer the recursive value for angled right margin dependency of this glyph.
+        Note that this is the value that the glyph is supposed to have based, on its defined dependency.
+        The value is not the angled left margin that is has now.""" 
         if visited is None:
             visited = [] # Remember the glyphs we referenced, in case there's a circular chain.
         rm = None # Default value, we could not determine the right margin.
         spacingType, value = self.getSpacingDependencyRight(g)
         if isinstance(value, (int, float)):
-            rm = value # It's a value, we're done.
+            rm = value # It's an actual value, we're done.
         elif isinstance(value, str):
             if value in visited: # Did we already got here?
                 print(f'### getSpacingDependencyLeft: Circular reference for /{g.name} with {visited}')
-                return None # Error, backout
-            visited.append(g.name)
+                return None # Error, probably a circular reference. Backout
+            visited.append(g.name) # Remember that we were here.
             if spacingType == 'w': # Answer the plain width of the referenced glyph     
                 if value in g.font: # Is it a glyph reference?
                     refG = g.font[value]
-                    rm = refG.width
+                    rm = refG.width # Get the width of the referenced glyph
             elif spacingType == 'r': # Use the right margin of the base component (assumed to be the first component)
                 if g.components: # Only if there are any components
                     component = g.components[0]
                     if component.baseGlyph in g.font:
                         baseG = g.font[component.baseGlyph]
                         brm = self.getRightMargin(baseG, visited) # Recursively get the left margin from the base
-                        rm = component.transformation[-2] - brm # Add it to the current position of the base component
+                        if brm is not None:
+                            rm = component.transformation[-2] - brm # Add it to the current position of the base component
                 # Otherwise just let the method return the angled left margin of g
             elif spacingType == 'mr': # Answer the plain left margin of the referenced glyph     
                 if value in g.font: # Is it a glyph reference?
@@ -270,26 +353,6 @@ class KerningManager:
 
         return simGroups
 
-    #   S P A C I N G
-
-    def getLeftMarginSrc(self, g):
-        """Answer the angled left margin source glyph, according to the base glyph of group2"""
-        groupName = self.glyphName2GroupName2.get(g.name)
-        if groupName is None:
-            return None
-        baseGlyphName = groupName.replace('public.kern2.', '')
-        assert baseGlyphName in self.f
-        return self.f[baseGlyphName]
-        
-    def getRightMarginSrc(self, g):
-        """Answer the angled right margin source glyph, according to the base glyph of group1"""
-        groupName = self.glyphName2GroupName1.get(g.name)
-        if groupName is None:
-            return None
-        baseGlyphName = groupName.replace('public.kern1.', '')
-        assert baseGlyphName in self.f
-        return self.f[baseGlyphName]
-        
     #   S A M P L E
 
     def _initSample(self):

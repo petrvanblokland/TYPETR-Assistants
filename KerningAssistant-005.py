@@ -257,10 +257,8 @@ class KerningAssistant(Subscriber):
             fillColor=(0, 0, 0, 1),
         )
         
-        # The KerningManagers is just doing margins according to the groups.
-        # This way no GLYPH_DATA is necessary. This means that only identical sides are copied,
-        # not similar (angled) margins, as in superior and inferior figures. That still should 
-        # be handled by the main editor/project Assistant
+        # The KerningManagers is just doing margins according the available glyph.lib dependecies 
+        # and to the groups.
         
         self.fixedSpaceMarkerLeft = container.appendOvalSublayer(name="spaceMarkerLeft",
             position=(-SPACE_MARKER_R, -SPACE_MARKER_R),
@@ -486,9 +484,9 @@ class KerningAssistant(Subscriber):
         km = self.getKerningManager(f)
                 
         # Set spacing dependency parameters from glyph.lib
-        d = km.getSpacingDependencies(g)
+        d = km.getSpacingDependencyLib(g)
     
-        # Set dependency labels according to the selected values    
+        # Set dependency UI labels according to the selected values    
         typeLeft = d.get('typeLeft')
         left = d.get('left', '')
         self.controller.w.spacingTypeLeft.setItem(typeLeft) 
@@ -535,23 +533,6 @@ class KerningAssistant(Subscriber):
         self.predictedKerning2 = self.predictKerning(g.name, gName2)
         #print((gName1, g.name), k1, (g.name, gName2), k2)
         
-        # Set spacing labels from base of glyph groups
-        g1 = km.getLeftMarginSrc(g)
-        if g1 is not None and g1.name != g.name:
-            label = f'Sim:{g1.name}'
-        else:
-            label = ''
-        self.leftSpaceSourceLabel.setText(label)
-        self.leftSpaceSourceLabel.setPosition((0, -SPACE_MARKER_R*2))
-
-        g2 = km.getRightMarginSrc(g)
-        if g2 is not None and g2.name != g.name:
-            label = f'Sim:{g2.name}'
-        else:
-            label = ''
-        self.rightSpaceSourceLabel.setText(label)
-        self.rightSpaceSourceLabel.setPosition((g.width, -SPACE_MARKER_R*2))
-
         # Lists with similar groups
         simGroups2 = km.getSimilarGroupsNames2(g) #[] # List of group names
         self.controller.w.groupNameList2.set(simGroups2)
@@ -584,6 +565,8 @@ class KerningAssistant(Subscriber):
         self.controller.w.setTitle(f'Kerning Assistant /{g.name}')
 
         self.updateGlyph(g)
+        self.updatePreview(g)
+        
         #self.glyphEditorGlyphDidChange(info)
         #self.glyphEditorGlyphDidChangeInfo(info)
         #self.glyphEditorGlyphDidChangeOutline(info)
@@ -762,7 +745,7 @@ class KerningAssistant(Subscriber):
                 print('... Update', g.name)
             self.updateGlyph(g)
         if updatePreview:
-            #print('Preview key down', g.name)
+            print('Preview key down', g.name)
             self.updatePreview(g)
 
     def saveKerningCursor(self):
@@ -796,15 +779,18 @@ class KerningAssistant(Subscriber):
         #self.showFrozen(g)
         #self.showItalicRoman(g)
         #print('... Mouse down', info['locationInGlyph'], info['NSEvent'])
+        self.updatePreview(g)
     
     def glyphEditorDidMouseUp(self, info):
         # Reset terminal stuff
+        g = info['glyph']
         if VERBOSE:
-            print('--- glyphEditorDidMouseDown', info['glyph'].name)
+            print('--- glyphEditorDidMouseDown', g.name)
         self.selectedTerminal = None
         self.mouseClickPoint = None
         self.mouseDraggedPoint = None
         #print('... Mouse up', info['locationInGlyph'], info['NSEvent'])
+        self.updatePreview(g)
     
     def glyphEditorDidMouseMove(self, info):
         pass
@@ -821,6 +807,7 @@ class KerningAssistant(Subscriber):
             return
         if VERBOSE:
             print('--- glyphEditorGlyphDidChange', g.name)
+        self.updatePreview(g)
 
     def glyphEditorGlyphDidChangeInfo(self, info):
         g = info['glyph']
@@ -828,6 +815,7 @@ class KerningAssistant(Subscriber):
             return
         if VERBOSE:
             print('--- glyphEditorGlyphDidChangeInfo', g.name)
+        self.updatePreview(g)
              
     def glyphEditorGlyphDidChangeOutline(self, info):
         g = info['glyph']
@@ -836,6 +824,7 @@ class KerningAssistant(Subscriber):
         if VERBOSE:
             print('--- glyphEditorGlyphDidChangeOutline', g.name)
         self.updateGlyph(g)
+        self.updatePreview(g)
             
     def glyphEditorGlyphDidChangeContours(self, info):
         """Event also calls glyphEditorGlyphDidChangeOutline"""
@@ -845,6 +834,7 @@ class KerningAssistant(Subscriber):
         if VERBOSE:
             print('--- glyphEditorGlyphDidChangeContours', g.name)        
         self.updateGlyph(g)
+        self.updatePreview(g)
              
     def glyphEditorGlyphDidChangeComponents(self, info):
         """Event also calls glyphEditorGlyphDidChangeOutline"""
@@ -854,6 +844,7 @@ class KerningAssistant(Subscriber):
         if VERBOSE:
             print('--- glyphEditorGlyphDidChangeComponents', g.name)
         self.updateGlyph(g)
+        self.updatePreview(g)
              
     def glyphEditorGlyphDidChangeAnchors(self, info):
         g = info['glyph']
@@ -862,6 +853,7 @@ class KerningAssistant(Subscriber):
         if VERBOSE:
             print('--- glyphEditorGlyphDidChangeAnchors', g.name)
         self.updateGlyph(g)
+        self.updatePreview(g)
 
     #def glyphEditorGlyphDidChangeSelection(self, info):
     #    g = info['glyph']
@@ -903,26 +895,26 @@ class KerningAssistant(Subscriber):
     def _adjustLeftMargin(self, g, value):
         if self.isUpdating:
             return
-        f = g.font
-        km = self.getKerningManager(f)
+        km = self.getKerningManager(g.font)
         unit = 4
-        g2 = km.getLeftMarginSrc(g)
-        if g2 is not None:
-            g2.angledLeftMargin = g.angledLeftMargin = int(round(g2.angledLeftMargin/unit) + value) * unit
-        else: # If not margin source, then just increment the current glyph
-            g.angledLeftMargin = int(round(g.angledLeftMargin/unit) + value) * unit
+        lm = km.getLeftMargin(g) # Margin from dependency
+        g1 = km.getLeftMarginGroupBaseGlyph(g) # Margin from group
+        # Only if no dependency and no group or g is a group base, then we can alter the margin
+        if lm is None and (g1 is None or g1.name == g.name): 
+            g.angledleftMargin = int(round(g.angledLeftMargin/unit) + value) * unit
                         
     def _adjustRightMargin(self, g, value):
         if self.isUpdating:
             return
-        f = g.font
-        km = self.getKerningManager(f)
+        km = self.getKerningManager(g.font)
         unit = 4
-        g2 = km.getRightMarginSrc(g)
-        if g2 is not None:
-            g2.angledRightMargin = g.angledRightMargin = int(round(g2.angledRightMargin/unit) + value) * unit
-        else: # If not margin source, then just increment the current glyph
+        rm = km.getRightMargin(g) # Margin from dependency
+        g2 = km.getRightMarginGroupBaseGlyph(g) # Margin from group
+        # Only if no dependency and no group or g is a group base, then we can alter the margin
+        if rm is None and (g2 is None or g2.name == g.name): 
             g.angledRightMargin = int(round(g.angledRightMargin/unit) + value) * unit
+            
+    #    K E R N I N G
 
     def _adjustLeftKerning(self, g, value=None, newK=None):
         """ 
@@ -980,7 +972,9 @@ class KerningAssistant(Subscriber):
             kerningType = 3 # glyph<-->glyph
         km.setKerning(g.name, self.kernGlyph2, k, kerningType)
 
-            
+
+    #    U P D A T I N G
+                
     def updateGlyph(self, g):
         """Figure out what needs to be done with this of glyph.
         """
@@ -993,9 +987,8 @@ class KerningAssistant(Subscriber):
             return
         self.isUpdating = True
         
-        #print('Preview updateGlyph', g.name)
-        self.updatePreview(g)
-        
+        # Things that change the glyph should go here.
+                
         self.isUpdating = False
                          
     def updateSampleText(self, md):
@@ -1102,10 +1095,42 @@ class KerningAssistant(Subscriber):
         if self.controller is None: # In case no longer available
             return
                 
+        self.updateKerningLine(g)
+        self.updateSpaceMarkers(g)
+        
+    def updateSpaceMarkers(self, g):
+        km = self.getKerningManager(g.font)
+
+        print('updateSpaceMarkers', g.name)
+        # Set the drawing of spacing markers, if there are spacing dependecies for this glyph
+        self.fixedSpaceMarkerRight.setPosition((g.width-SPACE_MARKER_R, -SPACE_MARKER_R))
+        self.leftSpaceSourceLabel.setPosition((0, -SPACE_MARKER_R*1.5))
+        self.rightSpaceSourceLabel.setPosition((g.width, -SPACE_MARKER_R*1.5))
+
+        leftSpaceSourceLabel = km.getLeftSpaceDependencyLabel(g)
+        if leftSpaceSourceLabel:
+            c = 1, 0, 0, 1
+            label = leftSpaceSourceLabel
+        else:
+            c = 0, 0, 0, 0
+            label = ''
+        self.fixedSpaceMarkerLeft.setStrokeColor(c)
+        self.leftSpaceSourceLabel.setText(label)
+
+        rightSpaceSourceLabel = km.getRightSpaceDependencyLabel(g)
+        if rightSpaceSourceLabel:
+            c = 1, 0, 0, 1
+            label = rightSpaceSourceLabel
+        else:
+            c = 0, 0, 0, 0
+            label = ''
+        self.fixedSpaceMarkerRight.setStrokeColor(c)
+        self.rightSpaceSourceLabel.setText(label)
+        
+    def updateKerningLine(self, g):
         f = g.font
-
         km = self.getKerningManager(f)            
-
+        
         kerningSelectedIndex = int(KERN_LINE_SIZE/2)
         # Update the kerning line
         if self.controller.w.showKerning.get():
@@ -1350,29 +1375,44 @@ class KerningAssistant(Subscriber):
                         
     def checkSpacingDependencies(self, g):
         """Check the spacing dependencies of the current selected kerning line.
-            The KerningManagers is just doing margins according to the groups.
-            This way no GLYPH_DATA is necessary. This means that only identical sides are copied,
-            not similar (angled) margins, as in superior and inferior figures. That still should 
-            be handled by the main editor/project Assistant
+        The KerningManagers is just doing margins according dependencies and groups.
+        This way no GLYPH_DATA is necessary. 
         """
         changed = False
         f = g.font
         km = self.getKerningManager(f)
-        g2 = km.getLeftMarginSrc(g) # Get the left margin source glyph, according to group2 of g
-        if g2 is not None:
-            lm = g2.angledLeftMargin
-            if lm is not None and abs(g.angledLeftMargin - lm) >= 1:
-                print(f'... Set left margin of /{g.name} to {int(round(lm))} from group {km.glyphName2GroupName2[g.name]}')
-                g.angledLeftMargin = lm
-                changed = True
+        
+        # Priority to dependencies that may be defined in g.lib[km.KEY]
+        # Otherwise try to find the group2 (left) base
+        lm = km.getLeftMargin(g) 
+        if lm is not None:
+            explain = f'... Set left margin of /{g.name} to {int(round(lm))} from dependency {self.getLeftSpaceDependencyLabel(g)}'
+        else: # No dependency defined, try glyph group
+            g2 = km.getLeftMarginGroupBaseGlyph(g) # Get the left margin source glyph, according to group2 of g
+            if g2 is not None:
+                lm = g2.angledLeftMargin
+                explain = f'... Set left margin of /{g.name} to {int(round(lm))} from group {km.glyphName2GroupName2[g.name]}'
 
-        g1 = km.getRightMarginSrc(g) # Get the right margin source glyph, according to group1 of g
-        if g1 is not None:
-            rm = g1.angledRightMargin
-            if rm is not None and abs(g.angledRightMargin - rm) >= 1:
-                print(f'... Set right margin of /{g.name} to {int(round(rm))} from group {km.glyphName2GroupName1[g.name]}')
-                g.angledRightMargin = rm
-                changed = True
+        if lm is not None and abs(g.angledLeftMargin - lm) >= 1: # Defined and it changed?
+            print(explain)
+            g.angledLeftMargin = lm
+            changed = True
+
+        # Priority to dependencies that may be defined in g.lib[km.KEY]
+        # Otherwise try to find the group1 (right) base
+        rm = km.getRightMargin(g) 
+        if rm is not None:
+            explain = f'... Set right margin of /{g.name} to {int(round(rm))} from dependency {self.getRightSpaceDependencyLabel(g)}'
+        else: # No dependency defined, try glyph group
+            g1 = km.getRightMarginGroupBaseGlyph(g) # Get the right margin source glyph, according to group1 of g
+            if g1 is not None:
+                rm = g1.angledRightMargin
+                explain = f'... Set right margin of /{g.name} to {int(round(lm))} from group {km.glyphName2GroupName1[g.name]}'
+
+        if rm is not None and abs(g.angledRightMargin - lm) >= 1: # Defined and it changed?
+            print(explain)
+            g.angledRightMargin = rm
+            changed = True
 
         return changed
                         
@@ -1593,13 +1633,18 @@ class KerningAssistantController(WindowController):
         kerningAssistant.kerningSampleSelect()
         
     def setSpacingLibCallback(self, sender):
-        """Set the spacing dependecies for the current Glyph"""
+        """Set the spacing dependecies for the current glyph.
+        The spacing dependencies are stored as dictionary:
+        f['A-cy'].lib[KEY] = dict(typeLeft='l', left='A', typeRight='r', right='A')
+        The left and/or right dependencies can be omitted. They can be altered in the editor. 
+        Omitted dependencies make the glyph "base" for other dependencies. 
+        """
         g = CurrentGlyph()
         km = kerningAssistant.getKerningManager(g.font)
         d = {}
         typeLeft = self.w.spacingTypeLeft.getItem()
         left = self.w.spacingLeft.get()
-        if typeLeft not in ('', '-'):
+        if typeLeft not in ('', '-'): # Otherwise just omit typeLeft
             d['typeLeft'] = typeLeft
         if left and left in g.font: 
             d['left'] = left
@@ -1610,7 +1655,7 @@ class KerningAssistantController(WindowController):
 
         typeRight = self.w.spacingTypeRight.getItem()
         right = self.w.spacingRight.get()
-        if typeRight not in ('', '-'):
+        if typeRight not in ('', '-'): # Otherwise just omit typeRight
             d['typeRight'] = typeRight
         if right and right in g.font: 
             d['right'] = right
@@ -1619,9 +1664,7 @@ class KerningAssistantController(WindowController):
             d['right'] = ''
             self.w.spacingLeftLabel.set(f'Right')
 
-        print('====', d)
-        km.setSpacingDependencies(g, d) # Set the g.lib[km.KEY] dictionary that hold the
-        print('xxxx', g.lib[km.KEY])
+        km.setSpacingDependencyLib(g, d) # Set the g.lib[km.KEY] dictionary that hold the
         g.changed()
         
     def updateEditor(self, sender):
