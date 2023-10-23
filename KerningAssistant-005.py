@@ -1386,7 +1386,7 @@ class KerningAssistant(Subscriber):
         # Otherwise try to find the group2 (left) base
         lm = km.getLeftMargin(g) 
         if lm is not None:
-            explain = f'... Set left margin of /{g.name} to {int(round(lm))} from dependency {self.getLeftSpaceDependencyLabel(g)}'
+            explain = f'... Set left margin of /{g.name} to {int(round(lm))} from dependency {km.getLeftSpaceDependencyLabel(g)}'
         else: # No dependency defined, try glyph group
             g2 = km.getLeftMarginGroupBaseGlyph(g) # Get the left margin source glyph, according to group2 of g
             if g2 is not None:
@@ -1402,14 +1402,14 @@ class KerningAssistant(Subscriber):
         # Otherwise try to find the group1 (right) base
         rm = km.getRightMargin(g) 
         if rm is not None:
-            explain = f'... Set right margin of /{g.name} to {int(round(rm))} from dependency {self.getRightSpaceDependencyLabel(g)}'
+            explain = f'... Set right margin of /{g.name} to {int(round(rm))} from dependency {km.getRightSpaceDependencyLabel(g)}'
         else: # No dependency defined, try glyph group
             g1 = km.getRightMarginGroupBaseGlyph(g) # Get the right margin source glyph, according to group1 of g
             if g1 is not None:
                 rm = g1.angledRightMargin
-                explain = f'... Set right margin of /{g.name} to {int(round(lm))} from group {km.glyphName2GroupName1[g.name]}'
+                explain = f'... Set right margin of /{g.name} to {int(round(rm))} from group {km.glyphName2GroupName1[g.name]}'
 
-        if rm is not None and abs(g.angledRightMargin - lm) >= 1: # Defined and it changed?
+        if rm is not None and abs(g.angledRightMargin - rm) >= 1: # Defined and it changed?
             print(explain)
             g.angledRightMargin = rm
             changed = True

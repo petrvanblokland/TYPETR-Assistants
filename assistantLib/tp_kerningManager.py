@@ -15,7 +15,7 @@ import weakref
 import assistantLib.similarity.cosineSimilarity
 from assistantLib.similarity.cosineSimilarity import cosineSimilarity, SimilarGlyphsKey
 
-from assistantLib.kerningSamples import SAMPLES, CYRILLIC_KERNING
+from assistantLib.kerningSamples import SAMPLES, CYRILLIC_KERNING, GREEK_KERNING
 
 # Defines types of spacing dependencies
 SPACING_TYPES_LEFT = ('', 'l', 'ml', 'r2l')
@@ -24,7 +24,8 @@ SPACING_KEYS = ('typeRight', 'right', 'typeLeft', 'left')
 
 
 MAIN_SAMPLES = CYRILLIC_KERNING
-MAIN_SAMPLES = SAMPLES
+MAIN_SAMPLES = GREEK_KERNING
+#MAIN_SAMPLES = SAMPLES
 
 class KerningManager:
     """Generic kerning manager"""
@@ -173,7 +174,7 @@ class KerningManager:
         labels = dict(l='Base Left:%s', ml='Left:%s', r2l='R-->L:%s')
         d = self.getSpacingDependencyLib(g)
         if 'typeLeft' in d and 'left' in d:
-            return labels[d['typeLeft']] % d['left']
+            return labels.get(d.get('typeLeft'), '%s') % d.get('left', '')
         return ''
 
     def getRightSpaceDependencyLabel(self, g):
@@ -182,7 +183,7 @@ class KerningManager:
         labels = dict(r='Base Right:%s', mr='Right:%s', l2r='L-->R:%s', w='Width:%s')
         d = self.getSpacingDependencyLib(g)
         if 'typeRight' in d and 'right' in d:
-            return labels[d['typeRight']] % d['right']
+            return labels.get(d.get('typeRight'), '%s') % d.get('right', '')
         return ''
     
     def getSpacingDependencyLeft(self, g):
@@ -245,7 +246,9 @@ class KerningManager:
             if spacingType == 'w': # Answer the plain width of the referenced glyph     
                 if value in g.font: # Is it a glyph reference?
                     refG = g.font[value]
-                    rm = refG.width # Get the width of the referenced glyph
+                    # Setting the width, but we are supposed to answer the right margin.
+                    # So we'll calculate the difference of widths and translate that into right margin
+                    rm = g.angledRightMargin + refG.width - g.width
             elif spacingType == 'r': # Use the right margin of the base component (assumed to be the first component)
                 if g.components: # Only if there are any components
                     component = g.components[0]
