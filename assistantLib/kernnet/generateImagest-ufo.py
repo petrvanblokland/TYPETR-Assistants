@@ -48,10 +48,52 @@ Y = H/4
 
 UFOS_PATH = '/Users/petr/Desktop/TYPETR-git/TYPETR-Upgrade-Sans/ufo/'
 UFOS = (
-    #'Upgrade-Black_212.ufo',    #'Upgrade-Black_Condensed_196.ufo',    #'Upgrade-Black_Condensed_Italic_196.ufo',    #'Upgrade-Black_Extended_250.ufo',    #'Upgrade-Black_Extended_Italic_250.ufo',    'Upgrade-Black_Italic_212.ufo',    'Upgrade-Hairline_8.ufo',    #'Upgrade-Hairline_Condensed_8.ufo',    #'Upgrade-Hairline_Condensed_Italic_8.ufo',    #'Upgrade-Hairline_Extended_8-OLD.ufo',    #'Upgrade-Hairline_Extended_8.ufo',    #'Upgrade-Hairline_Extended_Italic_8.ufo',    'Upgrade-Hairline_Italic_8.ufo',    'Upgrade-Light_32.ufo',    #'Upgrade-Light_Condensed_31.ufo',    #'Upgrade-Light_Condensed_Italic_31.ufo',    #'Upgrade-Light_Extended_32.ufo',    #'Upgrade-Light_Extended_Italic_32.ufo',    'Upgrade-Light_Italic_32.ufo',    'Upgrade-Regular_84.ufo',    #'Upgrade-Regular_Condensed_82.ufo',    #'Upgrade-Regular_Condensed_Italic_82.ufo',    #'Upgrade-Regular_Extended_86.ufo',    #'Upgrade-Regular_Extended_Italic_86.ufo',    'Upgrade-Regular_Italic_84.ufo',    'Upgrade-Semibold_140.ufo',    #'Upgrade-Semibold_Condensed_136.ufo',    #'Upgrade-Semibold_Condensed_Italic_136.ufo',    #'Upgrade-Semibold_Extended_156.ufo',    #'Upgrade-Semibold_Extended_Italic_156.ufo',    'Upgrade-Semibold_Italic_140.ufo',    'Upgrade-UltraBlack_276.ufo',    #'Upgrade-UltraBlack_Condensed_226.ufo',    #'Upgrade-UltraBlack_Condensed_Italic_226.ufo',    #'Upgrade-UltraBlack_Extended_414.ufo',    #'Upgrade-UltraBlack_Extended_Italic_414.ufo',
+    #'Upgrade-Black_212.ufo',
+    #'Upgrade-Black_Condensed_196.ufo',
+    #'Upgrade-Black_Condensed_Italic_196.ufo',
+    #'Upgrade-Black_Extended_250.ufo',
+    #'Upgrade-Black_Extended_Italic_250.ufo',
+    'Upgrade-Black_Italic_212.ufo',
+    'Upgrade-Hairline_8.ufo',
+    #'Upgrade-Hairline_Condensed_8.ufo',
+    #'Upgrade-Hairline_Condensed_Italic_8.ufo',
+    #'Upgrade-Hairline_Extended_8-OLD.ufo',
+    #'Upgrade-Hairline_Extended_8.ufo',
+    #'Upgrade-Hairline_Extended_Italic_8.ufo',
+    'Upgrade-Hairline_Italic_8.ufo',
+    'Upgrade-Light_32.ufo',
+    #'Upgrade-Light_Condensed_31.ufo',
+    #'Upgrade-Light_Condensed_Italic_31.ufo',
+    #'Upgrade-Light_Extended_32.ufo',
+    #'Upgrade-Light_Extended_Italic_32.ufo',
+    'Upgrade-Light_Italic_32.ufo',
+    'Upgrade-Regular_84.ufo',
+    #'Upgrade-Regular_Condensed_82.ufo',
+    #'Upgrade-Regular_Condensed_Italic_82.ufo',
+    #'Upgrade-Regular_Extended_86.ufo',
+    #'Upgrade-Regular_Extended_Italic_86.ufo',
+    'Upgrade-Regular_Italic_84.ufo',
+    'Upgrade-Semibold_140.ufo',
+    #'Upgrade-Semibold_Condensed_136.ufo',
+    #'Upgrade-Semibold_Condensed_Italic_136.ufo',
+    #'Upgrade-Semibold_Extended_156.ufo',
+    #'Upgrade-Semibold_Extended_Italic_156.ufo',
+    'Upgrade-Semibold_Italic_140.ufo',
+    'Upgrade-UltraBlack_276.ufo',
+    #'Upgrade-UltraBlack_Condensed_226.ufo',
+    #'Upgrade-UltraBlack_Condensed_Italic_226.ufo',
+    #'Upgrade-UltraBlack_Extended_414.ufo',
+    #'Upgrade-UltraBlack_Extended_Italic_414.ufo',
 )
 UFOS = (
-    #'Upgrade-Regular_84.ufo',    #'Upgrade-Regular_Italic_84.ufo',    #'Upgrade-Semibold_140.ufo',    #'Upgrade-Semibold_Italic_140.ufo',    #'Upgrade-UltraBlack_276.ufo',    'Upgrade-Black_212.ufo',    'Upgrade-UltraBlack_Italic_276.ufo',)
+    #'Upgrade-Regular_84.ufo',
+    #'Upgrade-Regular_Italic_84.ufo',
+    #'Upgrade-Semibold_140.ufo',
+    #'Upgrade-Semibold_Italic_140.ufo',
+    #'Upgrade-UltraBlack_276.ufo',
+    'Upgrade-Black_212.ufo',
+    'Upgrade-UltraBlack_Italic_276.ufo',
+)
 IMAGES_PATH = '_imageTrainSansItalic/'
 
 def kernImage(imagePath, g1, g2, k):
@@ -65,6 +107,9 @@ def kernImage(imagePath, g1, g2, k):
     #if abs(k) >= 4 and not os.path.exists(imagePath): # Ignore k == 0
     newDrawing()
     newPage(W, H)
+    # Experimental: Try equalize left and right part of the image
+    rect(0, 0, W*1/6, H)
+    rect(W*5/6, 0, W*1/6, H)    
     scale(s, s)
     save()
     translate(W/s/2 - g1.width, y)

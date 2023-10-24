@@ -414,7 +414,10 @@ class KerningAssistant(Subscriber):
         #self.controller.addInfo("stop subscription")
     
     def predictKerning(self, gName1, gName2):
-        f = CurrentFont()            
+        """Generate a kerning test image for the based of the groups that gName1 and gName2 are in.
+        If there is no group for those glyphs, then use the glyphs themselves."""
+        f = CurrentFont()     
+        km = self.getKerningManager(f)       
         imageName = 'test.png'
         kernImagePath = '/'.join(__file__.split('/')[:-1]) + '/assistantLib/kernnet/_imagePredict/' + imageName
         W = H = 32
@@ -430,13 +433,23 @@ class KerningAssistant(Subscriber):
         drawBot.scale(scale)
         drawBot.save()
 
-        g1 = f[gName1]
+        # Use the base of the group instead of gName1 itself for more consistent result of the AI-kerning
+        # bewtween the different glyphs in on group.
+        g = f[gName1]
+        g1 = km.getRightMarginGroupBaseGlyph(g)
+        if g1 is None:
+            g1 = g
         path1 = g1.getRepresentation("defconAppKit.NSBezierPath")
         drawBot.translate(W/2/scale-g1.width, y)
         drawBot.drawPath(path1)
         drawBot.restore()        
 
-        g2 = f[gName2]
+        # Use the base of the group instead of gName1 itself for more consistent result of the AI-kerning
+        # bewtween the different glyphs in on group.
+        g = f[gName2]
+        g2 = km.getLeftMarginGroupBaseGlyph(g)
+        if g2 is None: # Not part of any group
+            g2 = g
         path2 = g2.getRepresentation("defconAppKit.NSBezierPath")
         drawBot.translate(W/2/scale, y)
         drawBot.drawPath(path2)
@@ -452,12 +465,13 @@ class KerningAssistant(Subscriber):
         ss = str(page.read())
         #print('Predicted kerning', ss, len(ss), int(ss[2:-1]))
         #print('===', int(str(page.read())[2:-1]))
+        unit = 4
         k = float(ss[2:-1])
-        #k = round(int(str(page.read())[2:-1]) * f.info.unitsPerEm/1000) + CALIBRATE     
-        kk = int(round(k * CALIBRATE/4))*4
-        print('Predicted kerning', gName1, gName2, k, kk)
-        if abs(kk) <= 4:
+        kk = int(round(k * f.info.unitsPerEm/1000/unit))*unit   
+        #kk = int(round(k * CALIBRATE/4))*4
+        if abs(kk) <= unit:
             kk = 0 # Apply threshold for very small kerning values
+        print(f'... Predicted kerning {g1.name} {(gName1)} -- {g2.name} {(gName2)} k={k} kk={kk}')
             
         return kk
                             
@@ -531,6 +545,7 @@ class KerningAssistant(Subscriber):
 
         self.predictedKerning1 = self.predictKerning(gName1, g.name)
         self.predictedKerning2 = self.predictKerning(g.name, gName2)
+        print('@@@', gName1, self.predictedKerning1, g.name, self.predictedKerning2, gName2)
         #print((gName1, g.name), k1, (g.name, gName2), k2)
         
         # Lists with similar groups

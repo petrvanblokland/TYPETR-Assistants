@@ -144,6 +144,7 @@ venv/
 _imagePredict/
 _imageTrain/
 _ImageTrainSansItalic/
+_ImageTrainSansItalic-32x32/
 CheckPoints
 
 .DS_Store

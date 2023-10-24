@@ -25,7 +25,7 @@ SPACING_KEYS = ('typeRight', 'right', 'typeLeft', 'left')
 
 MAIN_SAMPLES = CYRILLIC_KERNING
 MAIN_SAMPLES = GREEK_KERNING
-#MAIN_SAMPLES = SAMPLES
+MAIN_SAMPLES = SAMPLES
 
 class KerningManager:
     """Generic kerning manager"""
