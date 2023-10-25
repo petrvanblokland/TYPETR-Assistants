@@ -36,14 +36,21 @@ class MyServer(BaseHTTPRequestHandler):
         #self.wfile.write(bytes("<p>This is an example web server.</p>", "utf-8"))
         #self.wfile.write(bytes("</body></html>", "utf-8"))
 
-        imagePath = f'_imagePredict{self.path}'
+        # The path is supposed to have this format: glyphName1/glyphName2/imageFileName
+        parts = self.path.split('/')
+        gName1, gName2, imageFileName = parts[-3:]
+        imagePath = f'_imagePredict/{imageFileName}'
+        #print(gName1, gName2, imageFileName)
+
         checkPointFilePath = 'lightning_logs/version_16/checkpoints/epoch=49-step=589100.ckpt'
         predicted = self.predict_kern_value(imagePath, checkPointFilePath)
-        k = int(round(predicted*EM/1000/self.INCREMENT))*self.INCREMENT
-        k = int(round(predicted/self.INCREMENT))*self.INCREMENT
-        k = predicted
-        print(k, predicted)
-        self.wfile.write(bytes(str(k), "utf-8"))
+        #k = int(round(predicted*EM/1000/self.INCREMENT))*self.INCREMENT
+        #k = int(round(predicted/self.INCREMENT))*self.INCREMENT
+        k = predicted # Answer the whole predicted value as float, by default scaled for unitsPerEm=1000
+        # Answer the glyph names with the predicted kerning value, for the caller to check.
+        # Since this is a ansynchronic system, calls and answer my be mixed up.
+        print(gName1, gName2, k) 
+        self.wfile.write(bytes(f'{gName1}/{gName2}/{str(k)}', "utf-8"))
         
     def predict_kern_value(self, image_file_path, checkpoint_file_path):
 

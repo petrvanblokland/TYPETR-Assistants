@@ -85,14 +85,20 @@ UFOS = (
     #'Upgrade-UltraBlack_Extended_414.ufo',
     #'Upgrade-UltraBlack_Extended_Italic_414.ufo',
 )
-UFOS = (
-    #'Upgrade-Regular_84.ufo',
-    #'Upgrade-Regular_Italic_84.ufo',
-    #'Upgrade-Semibold_140.ufo',
-    #'Upgrade-Semibold_Italic_140.ufo',
-    #'Upgrade-UltraBlack_276.ufo',
-    'Upgrade-Black_212.ufo',
-    'Upgrade-UltraBlack_Italic_276.ufo',
+UFOSXX = (
+    'Upgrade-Black_Italic_212.ufo',
+    'Upgrade-Hairline_8.ufo',
+    'Upgrade-Hairline_Italic_8.ufo',
+    'Upgrade-Light_32.ufo',
+    'Upgrade-Light_Italic_32.ufo',
+    'Upgrade-Regular_84.ufo',
+    'Upgrade-Regular_Italic_84.ufo',
+    'Upgrade-Semibold_140.ufo',
+    'Upgrade-Semibold_Italic_140.ufo',
+    'Upgrade-UltraBlack_276.ufo',
+
+    #'Upgrade-Black_212.ufo',
+    #'Upgrade-UltraBlack_Italic_276.ufo',
 )
 IMAGES_PATH = '_imageTrainSansItalic/'
 

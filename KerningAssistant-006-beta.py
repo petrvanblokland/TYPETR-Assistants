@@ -457,17 +457,25 @@ class KerningAssistant(Subscriber):
         drawBot.saveImage(kernImagePath)
         
         import urllib.request
-        page = urllib.request.urlopen('http://localhost:8080/' + imageName)
+        page = urllib.request.urlopen(f'http://localhost:8080/{g1.name}/{g2.name}/{imageName}')
         
         # For some reason, predicted kerning seems to be best when subrachting this amount
         # Value is for 1000 EM.
         CALIBRATE = 1 #.4 #-36 
-        ss = str(page.read())
+        # Returns value is glyphName1/glyphName2/predictedKerningValue
+        # The glyph names are returned to check validity of the kerning value.
+        # Since the call is ansynchronic to the server, we may get the answer here from a previous query.
+        parts = str(page.read())[2:-1].split('/')
+        print('@@@', parts)
+        if not len(parts) == 3 or parts[0] != g1.name or parts[1] != g2.name:
+            print('### Predicted kerning query not value', parts)
+            return None
+        
         #print('Predicted kerning', ss, len(ss), int(ss[2:-1]))
         #print('===', int(str(page.read())[2:-1]))
         unit = 4
-        k = float(ss[2:-1])
-        kk = int(round(k * f.info.unitsPerEm/1000/unit))*unit   
+        k = float(parts[-1])
+        kk = int(round(k * f.info.unitsPerEm/1000/unit))*unit # Scale the kerning value to our Em-size.  
         #kk = int(round(k * CALIBRATE/4))*4
         if abs(kk) <= unit:
             kk = 0 # Apply threshold for very small kerning values
