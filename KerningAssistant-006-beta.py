@@ -372,17 +372,17 @@ class KerningAssistant(Subscriber):
         self.kernGlyphImage1 = self.backgroundContainer.appendPathSublayer(
             name='kernGlyphImage1',
             position=(FAR, 0),
-            fillColor=(0, 0, 0, 1),
+            fillColor=(0, 0, 0, 1), # Sets to light gray if not equal to current glyph.
         )
         self.kernGlyphImage = self.backgroundContainer.appendPathSublayer(
             name='kernGlyphImage',
             position=(FAR, 0),
-            fillColor=(0, 0, 0, 1),
+            fillColor=(0, 0, 0, 1), # Sets to light gray if not equal to current glyph.
         )
         self.kernGlyphImage2 = self.backgroundContainer.appendPathSublayer(
             name='kernGlyphImage2',
             position=(FAR, 0),
-            fillColor=(0, 0, 0, 1),
+            fillColor=(0, 0, 0, 1), # Sets to light gray if not equal to current glyph.
         )
         self.similarGlyphImage1 = self.backgroundContainer.appendPathSublayer(
             name='similarGlyphImage1',
@@ -420,15 +420,19 @@ class KerningAssistant(Subscriber):
         km = self.getKerningManager(f)       
         imageName = 'test.png'
         kernImagePath = '/'.join(__file__.split('/')[:-1]) + '/assistantLib/kernnet/_imagePredict/' + imageName
-        W = H = 32
-        R = 12
-        R2 = 2*R
-        scale = H/f.info.unitsPerEm
+        iw = ih = 32
+        r = 12
+        r2 = 2*r
+        scale = ih/f.info.unitsPerEm
         y = -f.info.descender 
 
         drawBot.newDrawing()
-        drawBot.newPage(W, H)
+        drawBot.newPage(iw, ih)
         drawBot.fill(0)
+
+        # Experimental: Try equalize left and right part of the image
+        drawBot.rect(0, 0, iw*1/6, ih)
+        drawBot.rect(iw*5/6, 0, iw*1/6, ih)    
         
         drawBot.scale(scale)
         drawBot.save()
@@ -440,10 +444,10 @@ class KerningAssistant(Subscriber):
         if g1 is None:
             g1 = g
         path1 = g1.getRepresentation("defconAppKit.NSBezierPath")
-        drawBot.translate(W/2/scale-g1.width, y)
+        drawBot.translate(iw/2/scale-g1.width, y)
         drawBot.drawPath(path1)
         drawBot.restore()        
-
+        drawBot.save()
         # Use the base of the group instead of gName1 itself for more consistent result of the AI-kerning
         # bewtween the different glyphs in on group.
         g = f[gName2]
@@ -451,9 +455,9 @@ class KerningAssistant(Subscriber):
         if g2 is None: # Not part of any group
             g2 = g
         path2 = g2.getRepresentation("defconAppKit.NSBezierPath")
-        drawBot.translate(W/2/scale, y)
+        drawBot.translate(iw/2/scale, y)
         drawBot.drawPath(path2)
-
+        
         drawBot.saveImage(kernImagePath)
         
         import urllib.request
@@ -504,9 +508,14 @@ class KerningAssistant(Subscriber):
 
         # Get the kerning  manager instance for this glyph
         km = self.getKerningManager(f)
-                
+        
+        # Find first of current glyph in the kerning sample
+        #self.findKerningSample(g.name)
+                 
         # Set spacing dependency parameters from glyph.lib
         d = km.getSpacingDependencyLib(g)
+
+        self.controller.w.setTitle(f'Kerning Assistant /{g.name}')
     
         # Set dependency UI labels according to the selected values    
         typeLeft = d.get('typeLeft')
@@ -545,6 +554,27 @@ class KerningAssistant(Subscriber):
             self.controller.w.spacingRight.set('') 
             self.controller.w.spacingRightLabel.set('Right')
             
+        self.updateGroupLists(g)
+        
+        self.updateGlyph(g)
+        self.updatePreview(g)
+        
+        #self.glyphEditorGlyphDidChange(info)
+        #self.glyphEditorGlyphDidChangeInfo(info)
+        #self.glyphEditorGlyphDidChangeOutline(info)
+        #self.glyphEditorGlyphDidChangeComponents(info)
+        #self.glyphEditorGlyphDidChangeAnchors(info)
+        #self.glyphEditorGlyphDidChangeGuidelines(info)
+        #self.glyphEditorGlyphDidChangeImage(info)
+        #self.glyphEditorGlyphDidChangeMetrics(info)
+        #self.glyphEditorGlyphDidChangeContours(info)
+
+    def updateGroupLists(self, g):
+
+        f = g.font
+        # Get the kerning  manager instance for this glyph
+        km = self.getKerningManager(f)
+        
         # Set controller groups names for current glyph
         sample = km.sample
         cursor = int(round(self.controller.w.kerningSampleSelectSlider.get())) + 16
@@ -584,21 +614,6 @@ class KerningAssistant(Subscriber):
         else:
             label1 = '---'
         self.controller.w.groupName1.set(label1) # Right side of the current glyph
-
-        self.controller.w.setTitle(f'Kerning Assistant /{g.name}')
-
-        self.updateGlyph(g)
-        self.updatePreview(g)
-        
-        #self.glyphEditorGlyphDidChange(info)
-        #self.glyphEditorGlyphDidChangeInfo(info)
-        #self.glyphEditorGlyphDidChangeOutline(info)
-        #self.glyphEditorGlyphDidChangeComponents(info)
-        #self.glyphEditorGlyphDidChangeAnchors(info)
-        #self.glyphEditorGlyphDidChangeGuidelines(info)
-        #self.glyphEditorGlyphDidChangeImage(info)
-        #self.glyphEditorGlyphDidChangeMetrics(info)
-        #self.glyphEditorGlyphDidChangeContours(info)
 
     def glyphEditorDidKeyDown(self, info):
         g = info['glyph']
@@ -1064,6 +1079,11 @@ class KerningAssistant(Subscriber):
     
     def findKerningSample(self, kerningGlyph1, kerningGlyph2=''):
         prev = None
+        g = CurrentGlyph()
+        if g is not None and g.name == kerningGlyph1:
+            # We're already there
+            return
+            
         f = CurrentFont()
         km = kerningAssistant.getKerningManager(f)
         # Find the pair in the kerning sample and set the cursor there. 
@@ -1099,7 +1119,6 @@ class KerningAssistant(Subscriber):
         if not found:
             print('### Kerning main pair not found (%s, %s)' % (kerningGlyph1, kerningGlyph2))
         else:
-            g = CurrentGlyph()
             if g is not None:
                 self.updatePreview(g)
                                                    
@@ -1205,7 +1224,12 @@ class KerningAssistant(Subscriber):
                             kSrcString = ''
                             self.kernGlyphImage1.setPath(prev.getRepresentation("merz.CGPath"))
                             self.kernGlyphImage1.setPosition((-prev.width - k, 0))
-                            if kerningType in (1, 2) and k != groupK: # Show that we are kerning group<-->glyph
+                            if gName != g.name: # Other current glyph than selected in kerning line
+                                print(gName, prev.name, g.name)
+                                self.kernGlyphImage2.setFillColor((0.9, 0.9, 0.9, 0.9)) # Just show as light gray
+                                self.kernGlyphImage.setFillColor((0.9, 0.9, 0.9, 0.9)) # Just show as light gray
+                                self.kernGlyphImage1.setFillColor((0.9, 0.9, 0.9, 0.9)) # Just show as light gray
+                            elif kerningType in (1, 2) and k != groupK: # Show that we are kerning group<-->glyph
                                 if self.controller.w.showKerningLeftFilled.get():
                                     self.kernGlyphImage1.setFillColor(GROUPGLYPH_COLOR)
                                     self.kernGlyphImage1.setStrokeColor(None)
@@ -1264,7 +1288,12 @@ class KerningAssistant(Subscriber):
                             kSrcString = ''
                             self.kernGlyphImage2.setPath(gKern.getRepresentation("merz.CGPath"))
                             self.kernGlyphImage2.setPosition((prev.width + k, 0))
-                            if kerningType in (1, 2) and k != groupK: # Show that we are kerning group<-->glyph
+                            if gName != g.name: # Other current glyph than selected in kerning line
+                                print(gName, prev.name, g.name)
+                                self.kernGlyphImage2.setFillColor((0.9, 0.9, 0.9, 0.9)) # Just show as light gray
+                                self.kernGlyphImage.setFillColor((0.9, 0.9, 0.9, 0.9)) # Just show as light gray
+                                self.kernGlyphImage1.setFillColor((0.9, 0.9, 0.9, 0.9)) # Just show as light gray
+                            elif kerningType in (1, 2) and k != groupK: # Show that we are kerning group<-->glyph
                                 if self.controller.w.showKerningRightFilled.get():
                                     self.kernGlyphImage2.setFillColor(GROUPGLYPH_COLOR)
                                     self.kernGlyphImage2.setStrokeColor(None)
@@ -1518,7 +1547,14 @@ class KerningAssistantController(WindowController):
             selectionCallback=self.groupNameListSelectCallback2, doubleClickCallback=self.groupNameListDblClickCallback2)
         self.w.groupNameList1 = vanilla.List((C15, y, CW*1.5, 90), [], 
             selectionCallback=self.groupNameListSelectCallback1, doubleClickCallback=self.groupNameListDblClickCallback1)
-        y += 100
+        y += 90
+        self.w.moveToGroup2Check = vanilla.CheckBox((C0, y, 18, L), '', value=False, sizeStyle='small', callback=self.moveToGroup2CheckCallback)
+        self.w.moveToGroup2Button = vanilla.Button((C0+14, y, CW*1.5-14, 24), '(Select group2 to move to)', callback=self.moveToGroup2Callback)
+        self.w.moveToGroup2Button.enable(False)
+        self.w.moveToGroup1Check = vanilla.CheckBox((C15, y, 18, L), '', value=False, sizeStyle='small', callback=self.moveToGroup1CheckCallback)
+        self.w.moveToGroup1Button = vanilla.Button((C15+14, y, CW*1.5-14, 24), '(Select group1 to move to)', callback=self.moveToGroup1Callback)
+        self.w.moveToGroup1Button.enable(False)
+        y += 36
         # Label for glyph list of current group selection
         self.w.groupGlyphs2Label = vanilla.TextBox((C0, y, CW*1.5, 24), 'Glyphs of ---', sizeStyle="small")
         self.w.groupGlyphs1Label = vanilla.TextBox((C15, y, CW*1.5, 24), 'Glyphs of ---', sizeStyle="small")
@@ -1552,6 +1588,58 @@ class KerningAssistantController(WindowController):
         unregisterGlyphEditorSubscriber(self.assistantGlyphEditorSubscriberClass)
         self.assistantGlyphEditorSubscriberClass.controller = None
 
+    def moveToGroup2CheckCallback(self, sender):
+        self.w.moveToGroup2Button.enable(sender.get())
+        
+    def moveToGroup1CheckCallback(self, sender):
+        self.w.moveToGroup1Button.enable(sender.get())
+        
+    def moveToGroup2Callback(self, sender):
+        g = CurrentGlyph()
+        if g is None:
+            return
+        km = kerningAssistant.getKerningManager(g.font)
+        selectedGroupName = None
+        for index in self.w.groupNameList2.getSelection():
+            selectedGroupName = self.w.groupNameList2[index]
+            break
+        if selectedGroupName is None: # Create a new group
+            selectedGroupName = f'public.kern2.{g.name}'
+
+        km.addGlyph2Group2(g, selectedGroupName)
+        print(f'Move /{g.name} to {selectedGroupName} group {g.font.groups[selectedGroupName]}')
+
+        # Secure button again by disabling it
+        self.w.moveToGroup1Check.set(False)
+        self.w.moveToGroup2Check.set(False)
+        self.w.moveToGroup1Button.enable(False)
+        self.w.moveToGroup2Button.enable(False)
+
+        kerningAssistant.updateGroupLists(g)
+                    
+    def moveToGroup1Callback(self, sender):
+        g = CurrentGlyph()
+        if g is None:
+            return
+        km = kerningAssistant.getKerningManager(g.font)
+        selectedGroupName = None
+        for index in self.w.groupNameList1.getSelection():
+            selectedGroupName = self.w.groupNameList1[index]
+            break
+        if selectedGroupName is None: # Create a new group
+            selectedGroupName = f'public.kern1.{g.name}'
+
+        km.addGlyph2Group1(g, selectedGroupName)
+        print(f'Move /{g.name} to {selectedGroupName} group {g.font.groups[selectedGroupName]}')
+
+        # Secure button again by disabling it
+        self.w.moveToGroup1Check.set(False)
+        self.w.moveToGroup2Check.set(False)
+        self.w.moveToGroup1Button.enable(False)
+        self.w.moveToGroup2Button.enable(False)
+
+        kerningAssistant.updateGroupLists(g)
+           
     def groupNameListSelectCallback2(self, sender=None):
         g = CurrentGlyph()
         if g is None:
@@ -1559,16 +1647,20 @@ class KerningAssistantController(WindowController):
         km = kerningAssistant.getKerningManager(g.font)
         glyphNames = []
         selectedGroup = None
+        newGroup = f'public.kern2.{g.name}'
+        buttonTitle = f'New group public.kern2.{g.name}'
         label = 'Glyphs of ---'
 
         for index in self.w.groupNameList2.getSelection():
             selectedGroupName = self.w.groupNameList2[index]
             if selectedGroupName in g.font.groups:
                 label = f'Glyphs of {selectedGroupName}'
+                buttonTitle = f'Move /{g.name} to {selectedGroupName}'
                 similarGroups = km.getSimilarGroups2(g)
                 selectedGroup = similarGroups.get(selectedGroupName)
                 break
         self.w.groupGlyphs2Label.set(label)
+        self.w.moveToGroup2Button.setTitle(buttonTitle)
         
         if selectedGroup is None:
             self.w.groupNameGlyphList2.set([])
@@ -1586,15 +1678,18 @@ class KerningAssistantController(WindowController):
         glyphNames = []
         selectedGroup = None
         label = 'Glyphs of ---'
+        buttonTitle = f'New group public.kern1.{g.name}'
 
         for index in self.w.groupNameList1.getSelection():
             selectedGroupName = self.w.groupNameList1[index]
             if selectedGroupName in g.font.groups:
                 label = f'Glyphs of {selectedGroupName}'
+                buttonTitle = f'Move /{g.name} to {selectedGroupName}'
                 similarGroups = km.getSimilarGroups1(g)
                 selectedGroup = similarGroups.get(selectedGroupName)
                 break
         self.w.groupGlyphs1Label.set(label)
+        self.w.moveToGroup1Button.setTitle(buttonTitle)
         
         if selectedGroup is None:
             self.w.groupNameGlyphList1.set([])

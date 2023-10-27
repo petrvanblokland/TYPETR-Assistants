@@ -73,7 +73,9 @@ def train_model(data_directory_path, training_epochs=50, validation_split=0.3, b
 
         if not dir_name.endswith(SUB_DIR_PATTERN):
             continue
-
+        if not 'Italic' in dir_name:
+            continue
+            
         for dir_name_sub in os.listdir(osp.join(data_directory_path, dir_name)):
 
             if not os.path.isdir(osp.join(data_directory_path, dir_name, dir_name_sub)):

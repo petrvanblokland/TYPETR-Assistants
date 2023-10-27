@@ -42,7 +42,12 @@ class MyServer(BaseHTTPRequestHandler):
         imagePath = f'_imagePredict/{imageFileName}'
         #print(gName1, gName2, imageFileName)
 
-        checkPointFilePath = 'lightning_logs/version_16/checkpoints/epoch=49-step=589100.ckpt'
+        # Roman + Italic + black side rectangles
+        #checkPointFilePath = 'lightning_logs/version_16/checkpoints/epoch=49-step=589100.ckpt'
+        # Roman + Italic + black side rectangles
+        #checkPointFilePath = 'lightning_logs/version_17/checkpoints/epoch=49-step=589100.ckpt'
+        # Roman + Italic + black side rectangles
+        checkPointFilePath = 'lightning_logs/version_18/checkpoints/epoch=49-step=286250.ckpt'
         predicted = self.predict_kern_value(imagePath, checkPointFilePath)
         #k = int(round(predicted*EM/1000/self.INCREMENT))*self.INCREMENT
         #k = int(round(predicted/self.INCREMENT))*self.INCREMENT

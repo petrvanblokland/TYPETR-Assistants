@@ -97,12 +97,54 @@ class KerningManager:
     #   G R O U P S
 
     def addGlyph2Group1(self, g, groupName):
-        """Add glyph g to groupNamed. if g already exists in another "kern1" or "kern2" group,
+        """Add glyph g to groupName. if g already exists in another "kern1" group,
         then remove it there. If that group gets empty, then remove it from g.font.groups"""
-        print(g.name, groupName)
+        currentGroup = self.glyphName2GroupName1.get(g.name)
+        if currentGroup != groupName: # Only if there is something to change
+            if currentGroup is not None: # Glyph is part of another "kern1" group, remove it there.
+                # Remove the glyph from the curren group
+                group = set(g.font.groups[currentGroup])
+                group.remove(g.name)
+                if not len(group): # Group became empty, delete it.
+                    del g.font.groups[currentGroup]
+                else:
+                    g.font.groups[currentGroup] = sorted(group) # Otherwise save the cleaned group.
+                self.glyphName2GroupName1[g.name] = currentGroup
+                self.glyphName2Group1[g.name] = sorted(group)
+
+            # Save the glyph under the new groupName
+            if groupName in g.font.groups:
+                dstGroup = list(g.font.groups[groupName])
+            else:
+                dstGroup = [] # Group does not exist, create a new one
+            dstGroup.append(g.name)
+            g.font.groups[groupName] = sorted(dstGroup)
+            #print('==== Current group', currentGroup, group)
         
     def addGlyph2Group2(self, g, groupName):
-        print(g.name, groupName)
+        """Add glyph g to groupName. if g already exists in another "kern2" group,
+        then remove it there. If that group gets empty, then remove it from g.font.groups"""
+        currentGroup = self.glyphName2GroupName2.get(g.name)
+        if currentGroup != groupName: # Only if there is something to change
+            if currentGroup is not None: # Glyph is part of another "kern1" group, remove it there.
+                # Remove the glyph from the curren group
+                group = set(g.font.groups[currentGroup])
+                group.remove(g.name)
+                if not len(group): # Group became empty, delete it.
+                    del g.font.groups[currentGroup]
+                else:
+                    g.font.groups[currentGroup] = sorted(group) # Otherwise save the cleaned group.
+                self.glyphName2GroupName2[g.name] = currentGroup
+                self.glyphName2Group2[g.name] = sorted(group)
+
+            # Save the glyph under the new groupName
+            if groupName in g.font.groups:
+                dstGroup = list(g.font.groups[groupName])
+            else:
+                dstGroup = [] # Group does not exist, create a new one
+            dstGroup.append(g.name)
+            g.font.groups[groupName] = sorted(dstGroup)
+            #print('==== Current group', currentGroup, group)
     
     #   S P A C I N G  B Y  G R O U P S
 
