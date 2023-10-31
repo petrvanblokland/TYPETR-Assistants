@@ -62,6 +62,7 @@ except ImportError:
 W, H = 32, 32
 SUB_DIR_PATTERN = f'{W}_{H}'
 PATH = '_imageTrainSansItalic/'
+PATH = '/Volumes/Archiv-T1/TYPETR-KernNet-TrainingImages/'
 
 def train_model(data_directory_path, training_epochs=50, validation_split=0.3, batch_size=64):
 
@@ -73,8 +74,9 @@ def train_model(data_directory_path, training_epochs=50, validation_split=0.3, b
 
         if not dir_name.endswith(SUB_DIR_PATTERN):
             continue
-        if not 'Italic' in dir_name:
-            continue
+        #if not 'Italic' in dir_name:
+        #    continue
+        print('---', dir_name)
             
         for dir_name_sub in os.listdir(osp.join(data_directory_path, dir_name)):
 
@@ -90,8 +92,8 @@ def train_model(data_directory_path, training_epochs=50, validation_split=0.3, b
 
                 kern_value = int(round(float(file_name.replace(".png", "").split("_")[-1])))
 
-                if not kern_value:
-                    continue
+                #if not kern_value:
+                #    continue
 
                 data_instance = (file_path, kern_value)
 
