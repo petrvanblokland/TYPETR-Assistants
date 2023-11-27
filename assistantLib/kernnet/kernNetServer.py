@@ -48,6 +48,8 @@ class MyServer(BaseHTTPRequestHandler):
         #checkPointFilePath = 'lightning_logs/version_17/checkpoints/epoch=49-step=589100.ckpt'
         # Roman + Italic + black side rectangles
         checkPointFilePath = 'lightning_logs/version_18/checkpoints/epoch=49-step=286250.ckpt'
+        # Upgrade Roman + Italic 9m test files
+        checkPointFilePath = 'lightning_logs/version_21/checkpoints/epoch=0-step=102979.ckpt'
         predicted = self.predict_kern_value(imagePath, checkPointFilePath)
         #k = int(round(predicted*EM/1000/self.INCREMENT))*self.INCREMENT
         #k = int(round(predicted/self.INCREMENT))*self.INCREMENT

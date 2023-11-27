@@ -50,8 +50,8 @@ UFOS_PATH1 = '/Users/petr/Desktop/TYPETR-git/TYPETR-Upgrade-Sans/ufo-frozen/'
 UFOS_PATH2 = '/Users/petr/Desktop/TYPETR-git/TYPETR-Upgrade-Sans/ufo/'
 UFOS_PATH3 = '/Users/petr/Desktop/TYPETR-git/TYPETR-Upgrade FROZEN PUBLISHED 2018-01-18/'
 UFOS = (
-    #UFOS_PATH1+'Upgrade_Frozen-Semibold.ufo',    #UFOS_PATH1+'Upgrade_Frozen-Bold_Italic.ufo',    #UFOS_PATH1+'Upgrade_Frozen-Bold.ufo',    UFOS_PATH1+'Upgrade_Frozen-Book_Italic.ufo',    UFOS_PATH1+'Upgrade_Frozen-Book.ufo',    UFOS_PATH1+'Upgrade_Frozen-Light_Italic.ufo',    UFOS_PATH1+'Upgrade_Frozen-Light.ufo',    UFOS_PATH1+'Upgrade_Frozen-Medium_Italic.ufo',    UFOS_PATH1+'Upgrade_Frozen-Medium.ufo',    UFOS_PATH1+'Upgrade_Frozen-Regular_Italic.ufo',    UFOS_PATH1+'Upgrade_Frozen-Regular.ufo',    UFOS_PATH1+'Upgrade_Frozen-Semibold_Italic.ufo',
-    
+    UFOS_PATH1+'Upgrade_Frozen-Bold_Italic.ufo',    #UFOS_PATH1+'Upgrade_Frozen-Bold.ufo',    UFOS_PATH1+'Upgrade_Frozen-Book_Italic.ufo',    #UFOS_PATH1+'Upgrade_Frozen-Book.ufo',    UFOS_PATH1+'Upgrade_Frozen-Light_Italic.ufo',    #UFOS_PATH1+'Upgrade_Frozen-Light.ufo',    UFOS_PATH1+'Upgrade_Frozen-Medium_Italic.ufo',    #UFOS_PATH1+'Upgrade_Frozen-Medium.ufo',    UFOS_PATH1+'Upgrade_Frozen-Regular_Italic.ufo',    #UFOS_PATH1+'Upgrade_Frozen-Regular.ufo',    UFOS_PATH1+'Upgrade_Frozen-Semibold_Italic.ufo',
+    #UFOS_PATH1+'Upgrade_Frozen-Semibold.ufo',    
 )
 XXX = (
     UFOS_PATH1+'Upgrade_Frozen-ExtraBlack_Italic.ufo',    UFOS_PATH1+'Upgrade_Frozen-ExtraBlack.ufo',    UFOS_PATH1+'Upgrade_Frozen-ExtraLight_Italic.ufo',    UFOS_PATH1+'Upgrade_Frozen-ExtraLight.ufo',    UFOS_PATH1+'Upgrade_Frozen-Hairline_Italic.ufo',    UFOS_PATH1+'Upgrade_Frozen-Hairline.ufo', 
@@ -130,7 +130,7 @@ UFOSXX = (
     'Upgrade-UltraBlack_Italic.ufo',    'Upgrade-UltraBlack.ufo',
 )
 
-IMAGES_PATH = '/Volumes/Archiv-T1/TYPETR-KernNet-TrainingImages/'
+IMAGES_PATH = '/Volumes/Archiv-T1/TYPETR-KernNet-TrainingImages-Italic/'
 
 def kernImage(imagePath, g1, g2, k, dx=0):
     if k < 0:
@@ -153,8 +153,8 @@ def kernImage(imagePath, g1, g2, k, dx=0):
     newDrawing()
     newPage(W, H)
     # Experimental: Try equalize left and right part of the image
-    rect(0, 0, W*1/6, H)
-    rect(W*5/6, 0, W*1/6, H)    
+    #rect(0, 0, W*1/6, H)
+    #rect(W*5/6, 0, W*1/6, H)    
     scale(s, s)
     save()
     translate(W/s/2-(k-kdx)/2 - g1.width, y)
@@ -229,7 +229,7 @@ def generateFamily(fontPath):
             continue
         for gName1 in group1:
             for gName2 in group2:
-                step = 4               
+                step = 8               
                 for dx in range(0, abs(k), step):
                     if gName1 in f and gName2 in f:
                         kernImage(imagesPathSub, f[gName1], f[gName2], k, dx)

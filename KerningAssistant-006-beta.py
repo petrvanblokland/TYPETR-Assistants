@@ -40,7 +40,7 @@ from mojo.subscriber import Subscriber, WindowController, registerGlyphEditorSub
 from fontTools.misc.transform import Transform
 
 # Add paths to libs in sibling repositories
-PATHS = ('../TYPETR-Assistants/', '../TYPETR-Segoe-UI/')
+PATHS = ['../TYPETR-Assistants/']
 for path in PATHS:
     if not path in sys.path:
         print('@@@ Append to sys.path', path)
@@ -581,9 +581,9 @@ class KerningAssistant(Subscriber):
         gName1 = km.sample[cursor-1]
         gName2 = km.sample[cursor+1]
 
-        self.predictedKerning1 = self.predictKerning(gName1, g.name)
-        self.predictedKerning2 = self.predictKerning(g.name, gName2)
-        print('@@@', gName1, self.predictedKerning1, g.name, self.predictedKerning2, gName2)
+        #self.predictedKerning1 = self.predictKerning(gName1, g.name)
+        #self.predictedKerning2 = self.predictKerning(g.name, gName2)
+        #print('@@@', gName1, self.predictedKerning1, g.name, self.predictedKerning2, gName2)
         #print((gName1, g.name), k1, (g.name, gName2), k2)
         
         # Lists with similar groups
@@ -674,15 +674,15 @@ class KerningAssistant(Subscriber):
 
         # Adjust to predicted kerning
         
-        elif characters == ';': # Set left pair to predicted kerning
-            self._adjustLeftKerning(g, newK=self.predictedKerning1)
-            changed |= self.checkSpacingDependencies(g) # Update the spacing consistency for all glyphs in the kerning line
-            updatePreview = True
+        #elif characters == ';': # Set left pair to predicted kerning
+        #    self._adjustLeftKerning(g, newK=self.predictedKerning1)
+        #    changed |= self.checkSpacingDependencies(g) # Update the spacing consistency for all glyphs in the kerning line
+        #    updatePreview = True
         
-        elif characters == "'": # Set right pair to predicted kerning
-            self._adjustRightKerning(g, newK=self.predictedKerning2)
-            changed |= self.checkSpacingDependencies(g) # Update the spacing consistency for all glyphs in the kerning line
-            updatePreview = True
+        #elif characters == "'": # Set right pair to predicted kerning
+        #    self._adjustRightKerning(g, newK=self.predictedKerning2)
+        #    changed |= self.checkSpacingDependencies(g) # Update the spacing consistency for all glyphs in the kerning line
+        #    updatePreview = True
             
         # Adjust kerning
 
@@ -783,7 +783,8 @@ class KerningAssistant(Subscriber):
                 print('... Update', g.name)
             self.updateGlyph(g)
         if updatePreview:
-            print('Preview key down', g.name)
+            if VERBOSE:
+                print('Preview key down', g.name)
             self.updatePreview(g)
 
     def saveKerningCursor(self):
@@ -1138,7 +1139,7 @@ class KerningAssistant(Subscriber):
             return
                 
         self.updateKerningLine(g)
-        self.updateSpaceMarkers(g)
+        #@@@@ self.updateSpaceMarkers(g)
         
     def updateSpaceMarkers(self, g):
         km = self.getKerningManager(g.font)
@@ -1225,10 +1226,11 @@ class KerningAssistant(Subscriber):
                             self.kernGlyphImage1.setPath(prev.getRepresentation("merz.CGPath"))
                             self.kernGlyphImage1.setPosition((-prev.width - k, 0))
                             if gName != g.name: # Other current glyph than selected in kerning line
-                                print(gName, prev.name, g.name)
-                                self.kernGlyphImage2.setFillColor((0.9, 0.9, 0.9, 0.9)) # Just show as light gray
-                                self.kernGlyphImage.setFillColor((0.9, 0.9, 0.9, 0.9)) # Just show as light gray
-                                self.kernGlyphImage1.setFillColor((0.9, 0.9, 0.9, 0.9)) # Just show as light gray
+                                #print(gName, prev.name, g.name)
+                                gray = 0.4
+                                self.kernGlyphImage2.setFillColor((gray, gray, gray, 0.7)) # Just show as light gray
+                                self.kernGlyphImage.setFillColor((gray, gray, gray, 0.7)) # Just show as light gray
+                                self.kernGlyphImage1.setFillColor((gray, gray, gray, 0.7)) # Just show as light gray
                             elif kerningType in (1, 2) and k != groupK: # Show that we are kerning group<-->glyph
                                 if self.controller.w.showKerningLeftFilled.get():
                                     self.kernGlyphImage1.setFillColor(GROUPGLYPH_COLOR)
@@ -1272,14 +1274,18 @@ class KerningAssistant(Subscriber):
                             else:
                                 self.kerning1Value.setFillColor((0.6, 0.6, 0.6, 1))
                             self.kerning1Value.setPosition((-k, y4))
-                            if k != self.predictedKerning1:
-                                predicted = f'\n({self.predictedKerning1})'
-                            else:
-                                predicted = '' 
+                            #if k != self.predictedKerning1:
+                            #    predicted = f'\n({self.predictedKerning1})'
+                            #else:
+                            #    predicted = '' 
+                            #if k != groupK: 
+                            #    self.kerning1Value.setText('%d:G%d%s%s' % (k, groupK, kSrcString, predicted))
+                            #else:
+                            #    self.kerning1Value.setText('%d%s%s' % (k, kSrcString, predicted))
                             if k != groupK: 
-                                self.kerning1Value.setText('%d:G%d%s%s' % (k, groupK, kSrcString, predicted))
+                                self.kerning1Value.setText('%d:G%d%s' % (k, groupK, kSrcString))
                             else:
-                                self.kerning1Value.setText('%d%s%s' % (k, kSrcString, predicted))
+                                self.kerning1Value.setText('%d%s' % (k, kSrcString))
                                 
                     elif gIndex == kerningSelectedIndex + 1: # Kerning glyph on right side of current glyph
                         if prevName is not None:  
@@ -1289,10 +1295,10 @@ class KerningAssistant(Subscriber):
                             self.kernGlyphImage2.setPath(gKern.getRepresentation("merz.CGPath"))
                             self.kernGlyphImage2.setPosition((prev.width + k, 0))
                             if gName != g.name: # Other current glyph than selected in kerning line
-                                print(gName, prev.name, g.name)
-                                self.kernGlyphImage2.setFillColor((0.9, 0.9, 0.9, 0.9)) # Just show as light gray
-                                self.kernGlyphImage.setFillColor((0.9, 0.9, 0.9, 0.9)) # Just show as light gray
-                                self.kernGlyphImage1.setFillColor((0.9, 0.9, 0.9, 0.9)) # Just show as light gray
+                                gray = 0.4
+                                self.kernGlyphImage2.setFillColor((gray, gray, gray, 0.7)) # Just show as light gray
+                                self.kernGlyphImage.setFillColor((gray, gray, gray, 0.7)) # Just show as light gray
+                                self.kernGlyphImage1.setFillColor((gray, gray, gray, 0.7)) # Just show as light gray
                             elif kerningType in (1, 2) and k != groupK: # Show that we are kerning group<-->glyph
                                 if self.controller.w.showKerningRightFilled.get():
                                     self.kernGlyphImage2.setFillColor(GROUPGLYPH_COLOR)
@@ -1430,6 +1436,9 @@ class KerningAssistant(Subscriber):
         The KerningManagers is just doing margins according dependencies and groups.
         This way no GLYPH_DATA is necessary. 
         """
+        # @@@@@@@@
+        return False
+        
         changed = False
         f = g.font
         km = self.getKerningManager(f)

@@ -1,0 +1,14 @@
+Presti-V1-testing training report
+
+Trained Epochs: 7
+
+Best validation loss: 0.0014257304415387587
+
+Training Data root: E:\Petr Werk Files\Kerning V1\images_32_32
+
+Training Data:
+
+images_32_32 
+    images_32_32 
+    Presti_Display-Regular_images_32_32 
+    Presti_Small-Bold_images_32_32 

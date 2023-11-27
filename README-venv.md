@@ -8,7 +8,11 @@ source venv/bin/activate
 pip install --upgrade pip
 
 pip install torch torchvision torchaudio
-pip install pytorch_lightning
+pip install pandas
+pip install tqdm
+pip install pillow
+pip install numpy
+pip install rasterio
 
 pip install defcon
 pip install fontbakery
@@ -18,7 +22,6 @@ pip install statmake
 pip install ttfautohint-py
 pip install fontPens
 pip install ufo2ft
-pip install pillow
 
 pip install brotli
 pip install git+https://github.com/typemytype/drawbot

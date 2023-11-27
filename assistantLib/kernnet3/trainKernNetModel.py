@@ -61,7 +61,7 @@ except ImportError:
 
 W, H = 32, 32
 SUB_DIR_PATTERN = f'{W}_{H}'
-PATH = '_imageTrainSansItalicTEST/'
+PATH = '_imageTrainSansItalic/'
 PATH = '/Volumes/Archiv-T1/TYPETR-KernNet-TrainingImages-Italic/'
 
 def train_model(data_directory_path, training_epochs=50, validation_split=0.3, batch_size=64):
