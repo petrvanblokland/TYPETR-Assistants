@@ -9,7 +9,11 @@
 #      for the glyphs is k = 0
 #    • Do the same for a special symmetric /ispace in case, in case the /idotless is not symmetric 
 #      (a in serif or italic with tail)
+#    • For all glyph:
+#        • Automate position of anchors
+#        • Adjust manually and lock anchor positions from automatic.
 #    • For all glyphs:
+#        • If the glyph is symmetric, then use the calibrate function instead of the spacing function
 #        • If the side(s) of the glyph is similar to the side(s) of a glyph that was already processed,
 #          then simply copy the margin().
 #        • Otherwise use KernNet to calibrate glyphs a /H<glyph>/H and /O<glyph>/O into k = 0. 
@@ -18,6 +22,7 @@
 #    • For all kerning combinations:
 #        • Use similarity to generate groups, splitting into scripts.
 #        • Use KernNet to kern the main of group-group combinations (not crossing script boundaries)
+#    • Write current glyph selection into FontGoggles sample file 
 #        
 #
 # 
@@ -82,11 +87,16 @@ VISITED_MARKER = (15/256, 180/256, 240/256, 1)
 
 CALIBRATOR = 'H' # Calibrator glyph, that is used on both sides to get standard kerning and spacing.
 SYMMETRIC_GLYPHS = (# Valid to calibrate 
-    'period', 'quotesingle', 'slash', 'fraction', 'clickdental', 'clicklateral', 
-    'Hsmall', 'ispace',
+    #'period', 
+    'quotesingle', 'slash', 'fraction', 'clickdental', 'clicklateral', 
+    'Hsmall', 'Vturmed',
+    'ispace',
     'zero', 
-    'A', 'H', 'I', 'O', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 
-    'o', 's', 'x', 'v', 'w', 'z', )
+    'A', 'H', 'I', 'M', 'N', 'O', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 
+    'o', 's', 'x', 'v', 'w', 'z', 
+    'Xi', 'Phi', 'Tau', 'Chi', 'Iota', 'Theta', 'Upsilon', 'Pi', 'Lambda', 'Delta', 
+    'San',
+    )
 
 def getLib(g):
     """Get the dictionary of flags that is stored in g.lib"""
@@ -417,11 +427,21 @@ class KernNetSpacingAssistant(Subscriber):
         d = getLib(g)
         d['lockedSpacing'] = self.controller.w.lockedSpacing.get()
 
+    def lockSpacing(self, g):
+        d = getLib(g)
+        d['lockedSpacing'] = True
+        self.controller.w.lockedSpacing.set(True)
+        
+    def getLockedSpacing(self, g):
+        d = getLib(g)
+        return d.get('lockedSpacing', False)
+        
     #    S P A C I N G
     
     def _adjustLeftMargin(self, g, value):
         if self.isUpdating:
             return
+        self.lockSpacing(g)
         km = self.getKerningManager(g.font)
         unit = 4
         lm = km.getLeftMargin(g) # Margin from dependency
@@ -433,6 +453,7 @@ class KernNetSpacingAssistant(Subscriber):
     def _adjustRightMargin(self, g, value):
         if self.isUpdating:
             return
+        self.lockSpacing(g)
         km = self.getKerningManager(g.font)
         unit = 4
         rm = km.getRightMargin(g) # Margin from dependency
@@ -546,12 +567,14 @@ class KernNetSpacingAssistant(Subscriber):
             self.controller.w.kerningGlyph2_ml.set('L'+str(round(f[gName2].angledLeftMargin)))
 
         # Enabling buttons
-        self.controller.w.calibrateButton.enable(g.name in SYMMETRIC_GLYPHS or self.controller.w.calibrateAll.get())
+        self.controller.w.calibrateButton.enable((g.name in SYMMETRIC_GLYPHS or self.controller.w.calibrateAll.get()) and not self.getLockedSpacing(g))
         self.controller.w.spaceButton.enable(not self.controller.w.lockedSpacing.get())
         
     def calibrate(self, g, margin=500):
         """Calibrate the margins, starting at lm=0 and rm=0, then increase, until the k reaches a local minimum.
         The glyph is supposed to be sumetrics, as the predicted kerning is dived by 2 to get the margins."""
+        if self.getLockedSpacing(g):
+            return
         prevK = 10000 # Start with extreme large.
         if margin is not None:
             g.angledRightMargin = g.angledLeftMargin = margin    
@@ -561,9 +584,9 @@ class KernNetSpacingAssistant(Subscriber):
             #print('DDDD', margin, k1, k2, prevK)
             g.angledLeftMargin = margin + k1/2
             g.angledRightMargin = margin + k2/2
-            if abs(k1) <= 1: #or abs(k1) == abs(prevK):
+            if abs(k1/2) <= 1 and abs(k2/2) <= 1: #or abs(k1) == abs(prevK):
                 break
-            prevK = k1
+            prevK = k1/2
         g.changed()
 
     #    S P A C I N G  B Y  K E R N N E T
@@ -578,29 +601,32 @@ class KernNetSpacingAssistant(Subscriber):
     
     def space(self, g, margin=200, step=1):
         """Try to guess what the margins for @h should be, based on the Similarity groups and on /H/H kerning == 0."""
-        d = getLib(g)
+        if self.getLockedSpacing(g):
+            return
+            
         if g.name.endswith('tab') or g.name.endswith('tnum'): # Fixed with
-            d['lockedSpacing'] = True
+            self.lockSpacing(g)
             g.width = TAB_WIDTH # Needs differentation by weight/width
             self.center(g)
             
         elif 'keycap' in g.name:
-            d['lockedSpacing'] = True
+            self.lockSpacing(g)
             g.angledLeftMargin = g.angledRightMargin = 0
             self.controller.w.lockedSpacing.set(True)
                      
         elif 'comp' in g.name or 'comb' in g.name:
-            d['lockedSpacing'] = True
+            self.lockSpacing(g)
             g.width = 0
             self.center(g)
         
-        elif 0:
-            H = g.font['H']
+        #elif g.name in SYMMETRIC_GLYPHS:
+        #    self.calibrate(g)
+            
+        else:
             g.angledLeftMargin = g.angledRightMargin = 50 # Start with neuitral value
     
             for n in range(5): # Do some iterations
                 k1, k2 = self.predictKerning(CALIBRATOR, g, CALIBRATOR, step=step)
-                print(k1, k2)
                 g.angledLeftMargin += k1 # Correct the margins by the amount of predicted kerning it would need.
                 g.angledRightMargin += k2
                 if g.angledLeftMargin <= 0 or g.angledRightMargin <= 0:
