@@ -1,0 +1,112 @@
+# General Punctuation 02000 - 0206F
+2000	enquad	EN QUAD
+2001	emquad	EM QUAD
+2002	enspace	EN SPACE
+2003	emspace	EM SPACE
+2004	threeperemspace	THREE-PER-EM SPACE
+2005	fourperemspace	FOUR-PER-EM SPACE
+2006	sixperemspace	SIX-PER-EM SPACE
+2007	figurespace	FIGURE SPACE
+2008	punctuationspace	PUNCTUATION SPACE
+2009	thinspace	THIN SPACE
+200A	hairspace	HAIR SPACE
+200B	zerowidthspace	ZERO WIDTH SPACE
+200C	zerowidthnonjoiner	ZERO WIDTH NON-JOINER
+200D	zerowidthjoiner	ZERO WIDTH JOINER
+200E	lefttorightmark	LEFT-TO-RIGHT MARK
+200F	righttoleftmark	RIGHT-TO-LEFT MARK
+2010	gnrl:hyphen	HYPHEN
+2011	nonbreakinghyphen	NON-BREAKING HYPHEN
+2012	figuredash	FIGURE DASH
+2013	endash	EN DASH
+2014	emdash	EM DASH
+2015	horizontalbar	HORIZONTAL BAR
+2016	verticalbardbl	DOUBLE VERTICAL LINE
+2017	underscoredbl	DOUBLE LOW LINE
+2018	quoteleft	LEFT SINGLE QUOTATION MARK
+2019	quoteright	RIGHT SINGLE QUOTATION MARK
+201A	quotesinglbase	SINGLE LOW-9 QUOTATION MARK
+201B	quotereversed	SINGLE HIGH-REVERSED-9 QUOTATION MARK
+201C	quotedblleft	LEFT DOUBLE QUOTATION MARK
+201D	quotedblright	RIGHT DOUBLE QUOTATION MARK
+201E	quotedblbase	DOUBLE LOW-9 QUOTATION MARK
+201F	quotedblreversed	DOUBLE HIGH-REVERSED-9 QUOTATION MARK
+2020	dagger	DAGGER
+2021	daggerdbl	DOUBLE DAGGER
+2022	bullet	BULLET
+2023	triangularbullet	TRIANGULAR BULLET
+2024	onedotenleader	ONE DOT LEADER
+2025	twodotenleader	TWO DOT LEADER
+2026	ellipsis	HORIZONTAL ELLIPSIS
+2027	hyphenationpoint	HYPHENATION POINT
+2028	lineseparator	LINE SEPARATOR
+2029	paragraphseparator	PARAGRAPH SEPARATOR
+202A	lefttorightembed	LEFT-TO-RIGHT EMBEDDING
+202B	righttoleftembed	RIGHT-TO-LEFT EMBEDDING
+202C	popdirectionalformatting	POP DIRECTIONAL FORMATTING
+202D	lefttorightoverride	LEFT-TO-RIGHT OVERRIDE
+202E	righttoleftoverride	RIGHT-TO-LEFT OVERRIDE
+202F	narrownobreakspace	NARROW NO-BREAK SPACE
+2030	perthousand	PER MILLE SIGN
+2031	pertenthousandsign	PER TEN THOUSAND SIGN
+2032	minute	PRIME
+2033	second	DOUBLE PRIME
+2034	millisecond	TRIPLE PRIME
+2035	minutereversed	REVERSED PRIME
+2036	secondreversed	REVERSED DOUBLE PRIME
+2037	millisecondreversed	REVERSED TRIPLE PRIME
+2038	caret	CARET
+2039	guilsinglleft	SINGLE LEFT-POINTING ANGLE QUOTATION MARK
+203A	guilsinglright	SINGLE RIGHT-POINTING ANGLE QUOTATION MARK
+203B	referencemark	REFERENCE MARK
+203C	exclamdbl	DOUBLE EXCLAMATION MARK
+203D	interrobang	INTERROBANG
+203E	overline	OVERLINE
+203F	undertie	UNDERTIE
+2040	charactertie	CHARACTER TIE
+2041	caretinsertionpoint	CARET INSERTION POINT
+2042	asterism	ASTERISM
+2043	hyphenbullet	HYPHEN BULLET
+2044	fraction	FRACTION SLASH
+2045	bracketleftsquarequill	LEFT SQUARE BRACKET WITH QUILL
+2046	bracketrightsquarequill	RIGHT SQUARE BRACKET WITH QUILL
+2047	questiondbl	DOUBLE QUESTION MARK
+2048	questionexclamationmark	QUESTION EXCLAMATION MARK
+2049	exclamationquestion	EXCLAMATION QUESTION MARK
+204A	tironiansignet	TIRONIAN SIGN ET
+204B	pilcrowsignreversed	REVERSED PILCROW SIGN
+204C	blackwardsbulletleft	BLACK LEFTWARDS BULLET
+204D	blackwardsbulletright	BLACK RIGHTWARDS BULLET
+204E	lowasterisk	LOW ASTERISK
+204F	semicolonreversed	REVERSED SEMICOLON
+2050	closeup	CLOSE UP
+2051	twoasterisksalignedvertically	TWO ASTERISKS ALIGNED VERTICALLY
+2052	commercialminussign	COMMERCIAL MINUS SIGN
+2053	swungdash	SWUNG DASH
+2054	invertedundertie	INVERTED UNDERTIE
+2055	flowerpunctuationmark	FLOWER PUNCTUATION MARK
+2056	threedotpunctuation	THREE DOT PUNCTUATION
+2057	quadrupleminute	QUADRUPLE PRIME
+2058	fourdotpunctuation	FOUR DOT PUNCTUATION
+2059	fivedotpunctuation	FIVE DOT PUNCTUATION
+205A	twodotpunctuation	TWO DOT PUNCTUATION
+205B	fourdotmark	FOUR DOT MARK
+205C	dottedcross	DOTTED CROSS
+205D	tricolon	TRICOLON
+205E	verticalfourdots	VERTICAL FOUR DOTS
+205F	mediummathematicalspace	MEDIUM MATHEMATICAL SPACE
+2060	wordjoiner	WORD JOINER
+2061	functionapplication	FUNCTION APPLICATION
+2062	invisibletimes	INVISIBLE TIMES
+2063	invisibleseparator	INVISIBLE SEPARATOR
+2064	invisibleplus	INVISIBLE PLUS
+2066	lefttorightisolate	LEFT-TO-RIGHT ISOLATE
+2067	righttoleftisolate	RIGHT-TO-LEFT ISOLATE
+2068	firststrongisolate	FIRST STRONG ISOLATE
+2069	popdirectionalisolate	POP DIRECTIONAL ISOLATE
+206A	inhibitsymmetricswapping	INHIBIT SYMMETRIC SWAPPING
+206B	activatesymmetricswapping	ACTIVATE SYMMETRIC SWAPPING
+206C	inhibitarabicformshaping	INHIBIT ARABIC FORM SHAPING
+206D	activatearabicformshaping	ACTIVATE ARABIC FORM SHAPING
+206E	nationaldigitshapes	NATIONAL DIGIT SHAPES
+206F	nominaldigitshapes	NOMINAL DIGIT SHAPES

@@ -1,0 +1,84 @@
+# Georgian 10A0 - 10FF
+10A0	georgiancapitalletteran	GEORGIAN CAPITAL LETTER AN
+10A1	georgiancapitalletterban	GEORGIAN CAPITAL LETTER BAN
+10A2	georgiancapitallettergan	GEORGIAN CAPITAL LETTER GAN
+10A3	georgiancapitalletterdon	GEORGIAN CAPITAL LETTER DON
+10A4	georgiancapitalletteren	GEORGIAN CAPITAL LETTER EN
+10A5	georgiancapitallettervin	GEORGIAN CAPITAL LETTER VIN
+10A6	georgiancapitalletterzen	GEORGIAN CAPITAL LETTER ZEN
+10A7	georgiancapitallettertan	GEORGIAN CAPITAL LETTER TAN
+10A8	georgiancapitalletterin	GEORGIAN CAPITAL LETTER IN
+10A9	georgiancapitalletterkan	GEORGIAN CAPITAL LETTER KAN
+10AA	georgiancapitalletterlas	GEORGIAN CAPITAL LETTER LAS
+10AB	georgiancapitalletterman	GEORGIAN CAPITAL LETTER MAN
+10AC	georgiancapitalletternar	GEORGIAN CAPITAL LETTER NAR
+10AD	georgiancapitalletteron	GEORGIAN CAPITAL LETTER ON
+10AE	georgiancapitalletterpar	GEORGIAN CAPITAL LETTER PAR
+10AF	georgiancapitalletterzhar	GEORGIAN CAPITAL LETTER ZHAR
+10B0	georgiancapitalletterrae	GEORGIAN CAPITAL LETTER RAE
+10B1	georgiancapitallettersan	GEORGIAN CAPITAL LETTER SAN
+10B2	georgiancapitallettertar	GEORGIAN CAPITAL LETTER TAR
+10B3	georgiancapitalletterun	GEORGIAN CAPITAL LETTER UN
+10B4	georgiancapitalletterphar	GEORGIAN CAPITAL LETTER PHAR
+10B5	georgiancapitalletterkhar	GEORGIAN CAPITAL LETTER KHAR
+10B6	georgiancapitalletterghan	GEORGIAN CAPITAL LETTER GHAN
+10B7	georgiancapitalletterqar	GEORGIAN CAPITAL LETTER QAR
+10B8	georgiancapitallettershin	GEORGIAN CAPITAL LETTER SHIN
+10B9	georgiancapitalletterchin	GEORGIAN CAPITAL LETTER CHIN
+10BA	georgiancapitallettercan	GEORGIAN CAPITAL LETTER CAN
+10BB	georgiancapitalletterjil	GEORGIAN CAPITAL LETTER JIL
+10BC	georgiancapitallettercil	GEORGIAN CAPITAL LETTER CIL
+10BD	georgiancapitalletterchar	GEORGIAN CAPITAL LETTER CHAR
+10BE	georgiancapitalletterxan	GEORGIAN CAPITAL LETTER XAN
+10BF	georgiancapitalletterjhan	GEORGIAN CAPITAL LETTER JHAN
+10C0	georgiancapitalletterhae	GEORGIAN CAPITAL LETTER HAE
+10C1	georgiancapitalletterhe	GEORGIAN CAPITAL LETTER HE
+10C2	georgiancapitalletterhie	GEORGIAN CAPITAL LETTER HIE
+10C3	georgiancapitalletterwe	GEORGIAN CAPITAL LETTER WE
+10C4	georgiancapitalletterhar	GEORGIAN CAPITAL LETTER HAR
+10C5	georgiancapitalletterhoe	GEORGIAN CAPITAL LETTER HOE
+10D0	georgianletteran	GEORGIAN LETTER AN
+10D1	georgianletterban	GEORGIAN LETTER BAN
+10D2	georgianlettergan	GEORGIAN LETTER GAN
+10D3	georgianletterdon	GEORGIAN LETTER DON
+10D4	georgianletteren	GEORGIAN LETTER EN
+10D5	georgianlettervin	GEORGIAN LETTER VIN
+10D6	georgianletterzen	GEORGIAN LETTER ZEN
+10D7	georgianlettertan	GEORGIAN LETTER TAN
+10D8	georgianletterin	GEORGIAN LETTER IN
+10D9	georgianletterkan	GEORGIAN LETTER KAN
+10DA	georgianletterlas	GEORGIAN LETTER LAS
+10DB	georgianletterman	GEORGIAN LETTER MAN
+10DC	georgianletternar	GEORGIAN LETTER NAR
+10DD	georgianletteron	GEORGIAN LETTER ON
+10DE	georgianletterpar	GEORGIAN LETTER PAR
+10DF	georgianletterzhar	GEORGIAN LETTER ZHAR
+10E0	georgianletterrae	GEORGIAN LETTER RAE
+10E1	georgianlettersan	GEORGIAN LETTER SAN
+10E2	georgianlettertar	GEORGIAN LETTER TAR
+10E3	georgianletterun	GEORGIAN LETTER UN
+10E4	georgianletterphar	GEORGIAN LETTER PHAR
+10E5	georgianletterkhar	GEORGIAN LETTER KHAR
+10E6	georgianletterghan	GEORGIAN LETTER GHAN
+10E7	georgianletterqar	GEORGIAN LETTER QAR
+10E8	georgianlettershin	GEORGIAN LETTER SHIN
+10E9	georgianletterchin	GEORGIAN LETTER CHIN
+10EA	georgianlettercan	GEORGIAN LETTER CAN
+10EB	georgianletterjil	GEORGIAN LETTER JIL
+10EC	georgianlettercil	GEORGIAN LETTER CIL
+10ED	georgianletterchar	GEORGIAN LETTER CHAR
+10EE	georgianletterxan	GEORGIAN LETTER XAN
+10EF	georgianletterjhan	GEORGIAN LETTER JHAN
+10F0	georgianletterhae	GEORGIAN LETTER HAE
+10F1	georgianletterhe	GEORGIAN LETTER HE
+10F2	georgianletterhie	GEORGIAN LETTER HIE
+10F3	georgianletterwe	GEORGIAN LETTER WE
+10F4	georgianletterhar	GEORGIAN LETTER HAR
+10F5	georgianletterhoe	GEORGIAN LETTER HOE
+10F6	georgianletterfi	GEORGIAN LETTER FI
+10F7	georgianletteryn	GEORGIAN LETTER YN
+10F8	georgianletterelifi	GEORGIAN LETTER ELIFI
+10F9	georgianletterturnedgan	GEORGIAN LETTER TURNED GAN
+10FA	georgianletterain	GEORGIAN LETTER AIN
+10FB	georgianparagraphseparator	GEORGIAN PARAGRAPH SEPARATOR
+10FC	modifierlettergeorgiannar	MODIFIER LETTER GEORGIAN NAR

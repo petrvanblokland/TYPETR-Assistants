@@ -1,0 +1,97 @@
+# Geometric Shapes 025A0 - 025FF
+25A0	squareblack	BLACK SQUARE
+25A1	squarewhite	WHITE SQUARE
+25A2	squarewhiteround	WHITE SQUARE WITH ROUNDED CORNERS
+25A3	squarewhitewithsquaresmallblack	WHITE SQUARE CONTAINING BLACK SMALL SQUARE
+25A4	squarehorizontalfill	SQUARE WITH HORIZONTAL FILL
+25A5	squareverticalfill	SQUARE WITH VERTICAL FILL
+25A6	squareorthogonalcrosshatchfill	SQUARE WITH ORTHOGONAL CROSSHATCH FILL
+25A7	squareupperlefttolowerrightfill	SQUARE WITH UPPER LEFT TO LOWER RIGHT FILL
+25A8	squareupperrighttolowerleftfill	SQUARE WITH UPPER RIGHT TO LOWER LEFT FILL
+25A9	squarediagonalcrosshatchfill	SQUARE WITH DIAGONAL CROSSHATCH FILL
+25AA	squaresmallblack	BLACK SMALL SQUARE
+25AB	squaresmallwhite	WHITE SMALL SQUARE
+25AC	rectangleblack	BLACK RECTANGLE
+25AD	rectanglewhite	WHITE RECTANGLE
+25AE	rectangleverticalblack	BLACK VERTICAL RECTANGLE
+25AF	rectangleverticalwhite	WHITE VERTICAL RECTANGLE
+25B0	parallelogramblack	BLACK PARALLELOGRAM
+25B1	parallelogramwhite	WHITE PARALLELOGRAM
+25B2	triangleupblack	BLACK UP-POINTING TRIANGLE
+25B3	triangleupwhite	WHITE UP-POINTING TRIANGLE
+25B4	triangleupsmallblack	BLACK UP-POINTING SMALL TRIANGLE
+25B5	triangleupsmallwhite	WHITE UP-POINTING SMALL TRIANGLE
+25B6	trianglerightblack	BLACK RIGHT-POINTING TRIANGLE
+25B7	trianglerightwhite	WHITE RIGHT-POINTING TRIANGLE
+25B8	trianglerightsmallblack	BLACK RIGHT-POINTING SMALL TRIANGLE
+25B9	trianglerightsmallwhite	WHITE RIGHT-POINTING SMALL TRIANGLE
+25BA	pointerrightblack	BLACK RIGHT-POINTING POINTER
+25BB	pointerrightwhite	WHITE RIGHT-POINTING POINTER
+25BC	triangledownblack	BLACK DOWN-POINTING TRIANGLE
+25BD	triangledownwhite	WHITE DOWN-POINTING TRIANGLE
+25BE	triangledownsmallblack	BLACK DOWN-POINTING SMALL TRIANGLE
+25BF	triangledownsmallwhite	WHITE DOWN-POINTING SMALL TRIANGLE
+25C0	triangleleftblack	BLACK LEFT-POINTING TRIANGLE
+25C1	triangleleftwhite	WHITE LEFT-POINTING TRIANGLE
+25C2	triangleleftsmallblack	BLACK LEFT-POINTING SMALL TRIANGLE
+25C3	triangleleftsmallwhite	WHITE LEFT-POINTING SMALL TRIANGLE
+25C4	pointerleftblack	BLACK LEFT-POINTING POINTER
+25C5	pointerleftwhite	WHITE LEFT-POINTING POINTER
+25C6	gmtr:diamondblack	BLACK DIAMOND
+25C7	gmtr:diamondwhite	WHITE DIAMOND
+25C8	diamondwhitewithdiamondsmallblack	WHITE DIAMOND CONTAINING BLACK SMALL DIAMOND
+25C9	fisheye	FISHEYE
+25CA	lozenge	LOZENGE
+25CB	circlewhite	WHITE CIRCLE
+25CC	circledotted	DOTTED CIRCLE
+25CD	circleverticalfill	CIRCLE WITH VERTICAL FILL
+25CE	bullseye	BULLSEYE
+25CF	circleblack	BLACK CIRCLE
+25D0	circlehalfleftblack	CIRCLE WITH LEFT HALF BLACK
+25D1	circlehalfrightblack	CIRCLE WITH RIGHT HALF BLACK
+25D2	circlelowerhalfblack	CIRCLE WITH LOWER HALF BLACK
+25D3	circleupperhalfblack	CIRCLE WITH UPPER HALF BLACK
+25D4	circleupperquadrantrightblack	CIRCLE WITH UPPER RIGHT QUADRANT BLACK
+25D5	circleallbutupperquadrantleftblack	CIRCLE WITH ALL BUT UPPER LEFT QUADRANT BLACK
+25D6	halfcircleleftblack	LEFT HALF BLACK CIRCLE
+25D7	halfcirclerightblack	RIGHT HALF BLACK CIRCLE
+25D8	bulletinverse	INVERSE BULLET
+25D9	circleinversewhite	INVERSE WHITE CIRCLE
+25DA	upperhalfcircleinversewhite	UPPER HALF INVERSE WHITE CIRCLE
+25DB	lowerhalfcircleinversewhite	LOWER HALF INVERSE WHITE CIRCLE
+25DC	upperquadrantcirculararcleft	UPPER LEFT QUADRANT CIRCULAR ARC
+25DD	upperquadrantcirculararcright	UPPER RIGHT QUADRANT CIRCULAR ARC
+25DE	lowerquadrantcirculararcright	LOWER RIGHT QUADRANT CIRCULAR ARC
+25DF	lowerquadrantcirculararcleft	LOWER LEFT QUADRANT CIRCULAR ARC
+25E0	upperhalfcircle	UPPER HALF CIRCLE
+25E1	lowerhalfcircle	LOWER HALF CIRCLE
+25E2	lowertrianglerightblack	BLACK LOWER RIGHT TRIANGLE
+25E3	lowertriangleleftblack	BLACK LOWER LEFT TRIANGLE
+25E4	uppertriangleleftblack	BLACK UPPER LEFT TRIANGLE
+25E5	uppertrianglerightblack	BLACK UPPER RIGHT TRIANGLE
+25E6	openbullet	WHITE BULLET
+25E7	squarehalfleftblack	SQUARE WITH LEFT HALF BLACK
+25E8	squarehalfrightblack	SQUARE WITH RIGHT HALF BLACK
+25E9	squareupperdiagonalhalfleftblack	SQUARE WITH UPPER LEFT DIAGONAL HALF BLACK
+25EA	squarelowerdiagonalhalfrightblack	SQUARE WITH LOWER RIGHT DIAGONAL HALF BLACK
+25EB	squarewhitebisectinglinevertical	WHITE SQUARE WITH VERTICAL BISECTING LINE
+25EC	triangledotupwhite	WHITE UP-POINTING TRIANGLE WITH DOT
+25ED	trianglehalfupleftblack	UP-POINTING TRIANGLE WITH LEFT HALF BLACK
+25EE	trianglehalfuprightblack	UP-POINTING TRIANGLE WITH RIGHT HALF BLACK
+25EF	largecircle	LARGE CIRCLE
+25F0	squarewhiteupperquadrantleft	WHITE SQUARE WITH UPPER LEFT QUADRANT
+25F1	squarewhitelowerquadrantleft	WHITE SQUARE WITH LOWER LEFT QUADRANT
+25F2	squarewhitelowerquadrantright	WHITE SQUARE WITH LOWER RIGHT QUADRANT
+25F3	squarewhiteupperquadrantright	WHITE SQUARE WITH UPPER RIGHT QUADRANT
+25F4	circleupperquadrantleftwhite	WHITE CIRCLE WITH UPPER LEFT QUADRANT
+25F5	circlelowerquadrantleftwhite	WHITE CIRCLE WITH LOWER LEFT QUADRANT
+25F6	circlelowerquadrantrightwhite	WHITE CIRCLE WITH LOWER RIGHT QUADRANT
+25F7	circleupperquadrantrightwhite	WHITE CIRCLE WITH UPPER RIGHT QUADRANT
+25F8	uppertriangleleft	UPPER LEFT TRIANGLE
+25F9	uppertriangleright	UPPER RIGHT TRIANGLE
+25FA	lowertriangleleft	LOWER LEFT TRIANGLE
+25FB	squaremediumwhite	WHITE MEDIUM SQUARE
+25FC	squaremediumblack	BLACK MEDIUM SQUARE
+25FD	squaresmallmediumwhite	WHITE MEDIUM SMALL SQUARE
+25FE	squaresmallmediumblack	BLACK MEDIUM SMALL SQUARE
+25FF	lowertriangleright	LOWER RIGHT TRIANGLE

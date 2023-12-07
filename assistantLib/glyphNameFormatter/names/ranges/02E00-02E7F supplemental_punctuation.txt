@@ -1,0 +1,81 @@
+# Supplemental Punctuation 02E00 - 02E7F
+2E00	anglemarkersubstitutionright	RIGHT ANGLE SUBSTITUTION MARKER
+2E01	anglemarkerdottedsubstitutionright	RIGHT ANGLE DOTTED SUBSTITUTION MARKER
+2E02	bracketsubstitutionleft	LEFT SUBSTITUTION BRACKET
+2E03	bracketsubstitutionright	RIGHT SUBSTITUTION BRACKET
+2E04	bracketdottedsubstitutionleft	LEFT DOTTED SUBSTITUTION BRACKET
+2E05	bracketdottedsubstitutionright	RIGHT DOTTED SUBSTITUTION BRACKET
+2E06	markerraisedinterpolation	RAISED INTERPOLATION MARKER
+2E07	markerdottedraisedinterpolation	RAISED DOTTED INTERPOLATION MARKER
+2E08	markerdottedtransposition	DOTTED TRANSPOSITION MARKER
+2E09	brackettranspositionleft	LEFT TRANSPOSITION BRACKET
+2E0A	brackettranspositionright	RIGHT TRANSPOSITION BRACKET
+2E0B	squareraised	RAISED SQUARE
+2E0C	bracketraisedleft	LEFT RAISED OMISSION BRACKET
+2E0D	bracketraisedright	RIGHT RAISED OMISSION BRACKET
+2E0E	coroniseditorial	EDITORIAL CORONIS
+2E0F	paragraphos	PARAGRAPHOS
+2E10	paragraphosforked	FORKED PARAGRAPHOS
+2E11	paragraphosforkedreversed	REVERSED FORKED PARAGRAPHOS
+2E12	hypodiastole	HYPODIASTOLE
+2E13	obelosdotted	DOTTED OBELOS
+2E14	ancoradown	DOWNWARDS ANCORA
+2E15	ancoraup	UPWARDS ANCORA
+2E16	angledottedright	DOTTED RIGHT-POINTING ANGLE
+2E17	hyphendbloblique	DOUBLE OBLIQUE HYPHEN
+2E18	interrobanginverted	INVERTED INTERROBANG
+2E19	palmbranch	PALM BRANCH
+2E1A	hyphendieresis	HYPHEN WITH DIAERESIS
+2E1B	tildering	TILDE WITH RING ABOVE
+2E1C	bracketparaphraselowleft	LEFT LOW PARAPHRASE BRACKET
+2E1D	bracketparaphraselowright	RIGHT LOW PARAPHRASE BRACKET
+2E1E	tildedotaccent	TILDE WITH DOT ABOVE
+2E1F	tildedotbelow	TILDE WITH DOT BELOW
+2E20	barquillverticalleft	LEFT VERTICAL BAR WITH QUILL
+2E21	barquillverticalright	RIGHT VERTICAL BAR WITH QUILL
+2E22	brackethalftopleft	TOP LEFT HALF BRACKET
+2E23	brackethalftopright	TOP RIGHT HALF BRACKET
+2E24	brackethalfbottomleft	BOTTOM LEFT HALF BRACKET
+2E25	brackethalfbottomright	BOTTOM RIGHT HALF BRACKET
+2E26	ubracketleft	LEFT SIDEWAYS U BRACKET
+2E27	ubracketright	RIGHT SIDEWAYS U BRACKET
+2E28	parendblleft	LEFT DOUBLE PARENTHESIS
+2E29	parendblright	RIGHT DOUBLE PARENTHESIS
+2E2A	twodotsoveronedot	TWO DOTS OVER ONE DOT PUNCTUATION
+2E2B	onedotovertwodots	ONE DOT OVER TWO DOTS PUNCTUATION
+2E2C	dotsquarefour	SQUARED FOUR DOT PUNCTUATION
+2E2D	fivedot	FIVE DOT MARK
+2E2E	questionreversed	REVERSED QUESTION MARK
+2E2F	tildevertical	VERTICAL TILDE
+2E30	pointring	RING POINT
+2E31	wordseparatormiddledot	WORD SEPARATOR MIDDLE DOT
+2E32	turnedcomma	TURNED COMMA
+2E33	dotraised	RAISED DOT
+2E34	commaraised	RAISED COMMA
+2E35	turnedsemicolon	TURNED SEMICOLON
+2E36	daggerwithguardleft	DAGGER WITH LEFT GUARD
+2E37	daggerwithguardright	DAGGER WITH RIGHT GUARD
+2E38	turneddagger	TURNED DAGGER
+2E39	sectionsignhalftop	TOP HALF SECTION SIGN
+2E3A	emdashdbl	TWO-EM DASH
+2E3B	emdashtpl	THREE-EM DASH
+2E3C	stenographicfullstop	STENOGRAPHIC FULL STOP
+2E3D	sixdotsvertical	VERTICAL SIX DOTS
+2E3E	wigglylinevertical	WIGGLY VERTICAL LINE
+2E3F	capitulum	CAPITULUM
+2E40	hyphendbl	DOUBLE HYPHEN
+2E41	commareversed	REVERSED COMMA
+2E42	quotedbllowreversed	DOUBLE LOW-REVERSED-9 QUOTATION MARK
+2E43	dashwithupturnleft	DASH WITH LEFT UPTURN
+2E44	suspensiondbl	DOUBLE SUSPENSION MARK
+2E45	kavykainvertedlow	INVERTED LOW KAVYKA
+2E46	kavykawithkavykaaboveinvertedlow	INVERTED LOW KAVYKA WITH KAVYKA ABOVE
+2E47	kavykalow	LOW KAVYKA
+2E48	kavykawithdotlow	LOW KAVYKA WITH DOT
+2E49	stackedcommadbl	DOUBLE STACKED COMMA
+2E4A	solidusdotted	DOTTED SOLIDUS
+2E4B	tripledagger	TRIPLE DAGGER
+2E4C	medievalcomma	MEDIEVAL COMMA
+2E4D	paragraphus	PARAGRAPHUS MARK
+2E4E	punctuselevatus	PUNCTUS ELEVATUS MARK
+2E4F	cornishversedivider	CORNISH VERSE DIVIDER

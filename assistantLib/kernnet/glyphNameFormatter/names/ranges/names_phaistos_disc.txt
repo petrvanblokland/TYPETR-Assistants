@@ -1,0 +1,47 @@
+# Phaistos Disc 101D0 - 101FF
+101D0	phaistosdiscsignpedestrian	PHAISTOS DISC SIGN PEDESTRIAN
+101D1	phaistosdiscsignplumedhead	PHAISTOS DISC SIGN PLUMED HEAD
+101D2	phaistosdiscsigntattooedhead	PHAISTOS DISC SIGN TATTOOED HEAD
+101D3	phaistosdiscsigncaptive	PHAISTOS DISC SIGN CAPTIVE
+101D4	phaistosdiscsignchild	PHAISTOS DISC SIGN CHILD
+101D5	phaistosdiscsignwoman	PHAISTOS DISC SIGN WOMAN
+101D6	phaistosdiscsignhelmet	PHAISTOS DISC SIGN HELMET
+101D7	phaistosdiscsigngauntlet	PHAISTOS DISC SIGN GAUNTLET
+101D8	phaistosdiscsigntiara	PHAISTOS DISC SIGN TIARA
+101D9	phaistosdiscsignarrow	PHAISTOS DISC SIGN ARROW
+101DA	phaistosdiscsignbow	PHAISTOS DISC SIGN BOW
+101DB	phaistosdiscsignshield	PHAISTOS DISC SIGN SHIELD
+101DC	phaistosdiscsignclub	PHAISTOS DISC SIGN CLUB
+101DD	phaistosdiscsignmanacles	PHAISTOS DISC SIGN MANACLES
+101DE	phaistosdiscsignmattock	PHAISTOS DISC SIGN MATTOCK
+101DF	phaistosdiscsignsaw	PHAISTOS DISC SIGN SAW
+101E0	phaistosdiscsignlid	PHAISTOS DISC SIGN LID
+101E1	phaistosdiscsignboomerang	PHAISTOS DISC SIGN BOOMERANG
+101E2	phaistosdiscsigncarpentryplane	PHAISTOS DISC SIGN CARPENTRY PLANE
+101E3	phaistosdiscsigndolium	PHAISTOS DISC SIGN DOLIUM
+101E4	phaistosdiscsigncomb	PHAISTOS DISC SIGN COMB
+101E5	phaistosdiscsignsling	PHAISTOS DISC SIGN SLING
+101E6	phaistosdiscsigncolumn	PHAISTOS DISC SIGN COLUMN
+101E7	phaistosdiscsignbeehive	PHAISTOS DISC SIGN BEEHIVE
+101E8	phaistosdiscsignship	PHAISTOS DISC SIGN SHIP
+101E9	phaistosdiscsignhorn	PHAISTOS DISC SIGN HORN
+101EA	phaistosdiscsignhide	PHAISTOS DISC SIGN HIDE
+101EB	phaistosdiscsignbullsleg	PHAISTOS DISC SIGN BULLS LEG
+101EC	phaistosdiscsigncat	PHAISTOS DISC SIGN CAT
+101ED	phaistosdiscsignram	PHAISTOS DISC SIGN RAM
+101EE	phaistosdiscsigneagle	PHAISTOS DISC SIGN EAGLE
+101EF	phaistosdiscsigndove	PHAISTOS DISC SIGN DOVE
+101F0	phaistosdiscsigntunny	PHAISTOS DISC SIGN TUNNY
+101F1	phaistosdiscsignbee	PHAISTOS DISC SIGN BEE
+101F2	phaistosdiscsignplanetree	PHAISTOS DISC SIGN PLANE TREE
+101F3	phaistosdiscsignvine	PHAISTOS DISC SIGN VINE
+101F4	phaistosdiscsignpapyrus	PHAISTOS DISC SIGN PAPYRUS
+101F5	phaistosdiscsignrosette	PHAISTOS DISC SIGN ROSETTE
+101F6	phaistosdiscsignlily	PHAISTOS DISC SIGN LILY
+101F7	phaistosdiscsignoxback	PHAISTOS DISC SIGN OX BACK
+101F8	phaistosdiscsignflute	PHAISTOS DISC SIGN FLUTE
+101F9	phaistosdiscsigngrater	PHAISTOS DISC SIGN GRATER
+101FA	phaistosdiscsignstrainer	PHAISTOS DISC SIGN STRAINER
+101FB	phaistosdiscsignsmallaxe	PHAISTOS DISC SIGN SMALL AXE
+101FC	phaistosdiscsignwavyband	PHAISTOS DISC SIGN WAVY BAND
+101FD	phaistosdiscsigncombiningobliquestroke	PHAISTOS DISC SIGN COMBINING OBLIQUE STROKE

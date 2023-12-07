@@ -1,0 +1,60 @@
+# NKo 07C0 - 07FF
+07C0	nkodigitzero	NKO DIGIT ZERO
+07C1	nkodigitone	NKO DIGIT ONE
+07C2	nkodigittwo	NKO DIGIT TWO
+07C3	nkodigitthree	NKO DIGIT THREE
+07C4	nkodigitfour	NKO DIGIT FOUR
+07C5	nkodigitfive	NKO DIGIT FIVE
+07C6	nkodigitsix	NKO DIGIT SIX
+07C7	nkodigitseven	NKO DIGIT SEVEN
+07C8	nkodigiteight	NKO DIGIT EIGHT
+07C9	nkodigitnine	NKO DIGIT NINE
+07CA	nkolettera	NKO LETTER A
+07CB	nkoletteree	NKO LETTER EE
+07CC	nkoletteri	NKO LETTER I
+07CD	nkolettere	NKO LETTER E
+07CE	nkoletteru	NKO LETTER U
+07CF	nkoletteroo	NKO LETTER OO
+07D0	nkolettero	NKO LETTER O
+07D1	nkoletterdagbasinna	NKO LETTER DAGBASINNA
+07D2	nkolettern	NKO LETTER N
+07D3	nkoletterba	NKO LETTER BA
+07D4	nkoletterpa	NKO LETTER PA
+07D5	nkoletterta	NKO LETTER TA
+07D6	nkoletterja	NKO LETTER JA
+07D7	nkolettercha	NKO LETTER CHA
+07D8	nkoletterda	NKO LETTER DA
+07D9	nkoletterra	NKO LETTER RA
+07DA	nkoletterrra	NKO LETTER RRA
+07DB	nkolettersa	NKO LETTER SA
+07DC	nkolettergba	NKO LETTER GBA
+07DD	nkoletterfa	NKO LETTER FA
+07DE	nkoletterka	NKO LETTER KA
+07DF	nkoletterla	NKO LETTER LA
+07E0	nkoletternawoloso	NKO LETTER NA WOLOSO
+07E1	nkoletterma	NKO LETTER MA
+07E2	nkoletternya	NKO LETTER NYA
+07E3	nkoletterna	NKO LETTER NA
+07E4	nkoletterha	NKO LETTER HA
+07E5	nkoletterwa	NKO LETTER WA
+07E6	nkoletterya	NKO LETTER YA
+07E7	nkoletternyawoloso	NKO LETTER NYA WOLOSO
+07E8	nkoletterjonaja	NKO LETTER JONA JA
+07E9	nkoletterjonacha	NKO LETTER JONA CHA
+07EA	nkoletterjonara	NKO LETTER JONA RA
+07EB	nkocombiningshorthightone	NKO COMBINING SHORT HIGH TONE
+07EC	nkocombiningshortlowtone	NKO COMBINING SHORT LOW TONE
+07ED	nkocombiningshortrisingtone	NKO COMBINING SHORT RISING TONE
+07EE	nkocombininglongdescendingtone	NKO COMBINING LONG DESCENDING TONE
+07EF	nkocombininglonghightone	NKO COMBINING LONG HIGH TONE
+07F0	nkocombininglonglowtone	NKO COMBINING LONG LOW TONE
+07F1	nkocombininglongrisingtone	NKO COMBINING LONG RISING TONE
+07F2	nkocombiningnasalizationmark	NKO COMBINING NASALIZATION MARK
+07F3	nkocombiningdoubledotabove	NKO COMBINING DOUBLE DOT ABOVE
+07F4	nkohightoneapostrophe	NKO HIGH TONE APOSTROPHE
+07F5	nkolowtoneapostrophe	NKO LOW TONE APOSTROPHE
+07F6	nkosymboloodennen	NKO SYMBOL OO DENNEN
+07F7	nkosymbolgbakurunen	NKO SYMBOL GBAKURUNEN
+07F8	nkocomma	NKO COMMA
+07F9	nkoexclamationmark	NKO EXCLAMATION MARK
+07FA	nkolajanyalan	NKO LAJANYALAN

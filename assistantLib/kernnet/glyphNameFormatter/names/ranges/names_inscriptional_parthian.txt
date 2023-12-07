@@ -1,0 +1,31 @@
+# Inscriptional Parthian 10B40 - 10B5F
+10B40	inscriptionalparthianletteraleph	INSCRIPTIONAL PARTHIAN LETTER ALEPH
+10B41	inscriptionalparthianletterbeth	INSCRIPTIONAL PARTHIAN LETTER BETH
+10B42	inscriptionalparthianlettergimel	INSCRIPTIONAL PARTHIAN LETTER GIMEL
+10B43	inscriptionalparthianletterdaleth	INSCRIPTIONAL PARTHIAN LETTER DALETH
+10B44	inscriptionalparthianletterhe	INSCRIPTIONAL PARTHIAN LETTER HE
+10B45	inscriptionalparthianletterwaw	INSCRIPTIONAL PARTHIAN LETTER WAW
+10B46	inscriptionalparthianletterzayin	INSCRIPTIONAL PARTHIAN LETTER ZAYIN
+10B47	inscriptionalparthianletterheth	INSCRIPTIONAL PARTHIAN LETTER HETH
+10B48	inscriptionalparthianletterteth	INSCRIPTIONAL PARTHIAN LETTER TETH
+10B49	inscriptionalparthianletteryodh	INSCRIPTIONAL PARTHIAN LETTER YODH
+10B4A	inscriptionalparthianletterkaph	INSCRIPTIONAL PARTHIAN LETTER KAPH
+10B4B	inscriptionalparthianletterlamedh	INSCRIPTIONAL PARTHIAN LETTER LAMEDH
+10B4C	inscriptionalparthianlettermem	INSCRIPTIONAL PARTHIAN LETTER MEM
+10B4D	inscriptionalparthianletternun	INSCRIPTIONAL PARTHIAN LETTER NUN
+10B4E	inscriptionalparthianlettersamekh	INSCRIPTIONAL PARTHIAN LETTER SAMEKH
+10B4F	inscriptionalparthianletterayin	INSCRIPTIONAL PARTHIAN LETTER AYIN
+10B50	inscriptionalparthianletterpe	INSCRIPTIONAL PARTHIAN LETTER PE
+10B51	inscriptionalparthianlettersadhe	INSCRIPTIONAL PARTHIAN LETTER SADHE
+10B52	inscriptionalparthianletterqoph	INSCRIPTIONAL PARTHIAN LETTER QOPH
+10B53	inscriptionalparthianletterresh	INSCRIPTIONAL PARTHIAN LETTER RESH
+10B54	inscriptionalparthianlettershin	INSCRIPTIONAL PARTHIAN LETTER SHIN
+10B55	inscriptionalparthianlettertaw	INSCRIPTIONAL PARTHIAN LETTER TAW
+10B58	inscriptionalparthiannumberone	INSCRIPTIONAL PARTHIAN NUMBER ONE
+10B59	inscriptionalparthiannumbertwo	INSCRIPTIONAL PARTHIAN NUMBER TWO
+10B5A	inscriptionalparthiannumberthree	INSCRIPTIONAL PARTHIAN NUMBER THREE
+10B5B	inscriptionalparthiannumberfour	INSCRIPTIONAL PARTHIAN NUMBER FOUR
+10B5C	inscriptionalparthiannumberten	INSCRIPTIONAL PARTHIAN NUMBER TEN
+10B5D	inscriptionalparthiannumbertwenty	INSCRIPTIONAL PARTHIAN NUMBER TWENTY
+10B5E	inscriptionalparthiannumberonehundred	INSCRIPTIONAL PARTHIAN NUMBER ONE HUNDRED
+10B5F	inscriptionalparthiannumberonethousand	INSCRIPTIONAL PARTHIAN NUMBER ONE THOUSAND

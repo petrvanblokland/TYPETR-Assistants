@@ -1,0 +1,49 @@
+# Lisu A4D0 - A4FF
+A4D0	lisuletterba	LISU LETTER BA
+A4D1	lisuletterpa	LISU LETTER PA
+A4D2	lisuletterpha	LISU LETTER PHA
+A4D3	lisuletterda	LISU LETTER DA
+A4D4	lisuletterta	LISU LETTER TA
+A4D5	lisulettertha	LISU LETTER THA
+A4D6	lisuletterga	LISU LETTER GA
+A4D7	lisuletterka	LISU LETTER KA
+A4D8	lisuletterkha	LISU LETTER KHA
+A4D9	lisuletterja	LISU LETTER JA
+A4DA	lisuletterca	LISU LETTER CA
+A4DB	lisulettercha	LISU LETTER CHA
+A4DC	lisuletterdza	LISU LETTER DZA
+A4DD	lisulettertsa	LISU LETTER TSA
+A4DE	lisulettertsha	LISU LETTER TSHA
+A4DF	lisuletterma	LISU LETTER MA
+A4E0	lisuletterna	LISU LETTER NA
+A4E1	lisuletterla	LISU LETTER LA
+A4E2	lisulettersa	LISU LETTER SA
+A4E3	lisuletterzha	LISU LETTER ZHA
+A4E4	lisuletterza	LISU LETTER ZA
+A4E5	lisuletternga	LISU LETTER NGA
+A4E6	lisuletterha	LISU LETTER HA
+A4E7	lisuletterxa	LISU LETTER XA
+A4E8	lisuletterhha	LISU LETTER HHA
+A4E9	lisuletterfa	LISU LETTER FA
+A4EA	lisuletterwa	LISU LETTER WA
+A4EB	lisulettersha	LISU LETTER SHA
+A4EC	lisuletterya	LISU LETTER YA
+A4ED	lisulettergha	LISU LETTER GHA
+A4EE	lisulettera	LISU LETTER A
+A4EF	lisuletterae	LISU LETTER AE
+A4F0	lisulettere	LISU LETTER E
+A4F1	lisulettereu	LISU LETTER EU
+A4F2	lisuletteri	LISU LETTER I
+A4F3	lisulettero	LISU LETTER O
+A4F4	lisuletteru	LISU LETTER U
+A4F5	lisuletterue	LISU LETTER UE
+A4F6	lisuletteruh	LISU LETTER UH
+A4F7	lisuletteroe	LISU LETTER OE
+A4F8	lisulettertonemyati	LISU LETTER TONE MYA TI
+A4F9	lisulettertonenapo	LISU LETTER TONE NA PO
+A4FA	lisulettertonemyacya	LISU LETTER TONE MYA CYA
+A4FB	lisulettertonemyabo	LISU LETTER TONE MYA BO
+A4FC	lisulettertonemyana	LISU LETTER TONE MYA NA
+A4FD	lisulettertonemyajeu	LISU LETTER TONE MYA JEU
+A4FE	lisupunctuationcomma	LISU PUNCTUATION COMMA
+A4FF	lisupunctuationfullstop	LISU PUNCTUATION FULL STOP

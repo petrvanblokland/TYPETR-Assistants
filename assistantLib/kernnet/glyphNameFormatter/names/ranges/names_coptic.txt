@@ -1,0 +1,122 @@
+# Coptic 2C80 - 2CFF
+2C80	copticcapitalletteralfa	COPTIC CAPITAL LETTER ALFA
+2C81	copticsmallletteralfa	COPTIC SMALL LETTER ALFA
+2C82	copticcapitallettervida	COPTIC CAPITAL LETTER VIDA
+2C83	copticsmalllettervida	COPTIC SMALL LETTER VIDA
+2C84	copticcapitallettergamma	COPTIC CAPITAL LETTER GAMMA
+2C85	copticsmalllettergamma	COPTIC SMALL LETTER GAMMA
+2C86	copticcapitalletterdalda	COPTIC CAPITAL LETTER DALDA
+2C87	copticsmallletterdalda	COPTIC SMALL LETTER DALDA
+2C88	copticcapitallettereie	COPTIC CAPITAL LETTER EIE
+2C89	copticsmalllettereie	COPTIC SMALL LETTER EIE
+2C8A	copticcapitallettersou	COPTIC CAPITAL LETTER SOU
+2C8B	copticsmalllettersou	COPTIC SMALL LETTER SOU
+2C8C	copticcapitalletterzata	COPTIC CAPITAL LETTER ZATA
+2C8D	copticsmallletterzata	COPTIC SMALL LETTER ZATA
+2C8E	copticcapitalletterhate	COPTIC CAPITAL LETTER HATE
+2C8F	copticsmallletterhate	COPTIC SMALL LETTER HATE
+2C90	copticcapitalletterthethe	COPTIC CAPITAL LETTER THETHE
+2C91	copticsmallletterthethe	COPTIC SMALL LETTER THETHE
+2C92	copticcapitalletteriauda	COPTIC CAPITAL LETTER IAUDA
+2C93	copticsmallletteriauda	COPTIC SMALL LETTER IAUDA
+2C94	copticcapitalletterkapa	COPTIC CAPITAL LETTER KAPA
+2C95	copticsmallletterkapa	COPTIC SMALL LETTER KAPA
+2C96	copticcapitalletterlaula	COPTIC CAPITAL LETTER LAULA
+2C97	copticsmallletterlaula	COPTIC SMALL LETTER LAULA
+2C98	copticcapitallettermi	COPTIC CAPITAL LETTER MI
+2C99	copticsmalllettermi	COPTIC SMALL LETTER MI
+2C9A	copticcapitalletterni	COPTIC CAPITAL LETTER NI
+2C9B	copticsmallletterni	COPTIC SMALL LETTER NI
+2C9C	copticcapitalletterksi	COPTIC CAPITAL LETTER KSI
+2C9D	copticsmallletterksi	COPTIC SMALL LETTER KSI
+2C9E	copticcapitallettero	COPTIC CAPITAL LETTER O
+2C9F	copticsmalllettero	COPTIC SMALL LETTER O
+2CA0	copticcapitalletterpi	COPTIC CAPITAL LETTER PI
+2CA1	copticsmallletterpi	COPTIC SMALL LETTER PI
+2CA2	copticcapitalletterro	COPTIC CAPITAL LETTER RO
+2CA3	copticsmallletterro	COPTIC SMALL LETTER RO
+2CA4	copticcapitallettersima	COPTIC CAPITAL LETTER SIMA
+2CA5	copticsmalllettersima	COPTIC SMALL LETTER SIMA
+2CA6	copticcapitallettertau	COPTIC CAPITAL LETTER TAU
+2CA7	copticsmalllettertau	COPTIC SMALL LETTER TAU
+2CA8	copticcapitalletterua	COPTIC CAPITAL LETTER UA
+2CA9	copticsmallletterua	COPTIC SMALL LETTER UA
+2CAA	copticcapitalletterfi	COPTIC CAPITAL LETTER FI
+2CAB	copticsmallletterfi	COPTIC SMALL LETTER FI
+2CAC	copticcapitalletterkhi	COPTIC CAPITAL LETTER KHI
+2CAD	copticsmallletterkhi	COPTIC SMALL LETTER KHI
+2CAE	copticcapitalletterpsi	COPTIC CAPITAL LETTER PSI
+2CAF	copticsmallletterpsi	COPTIC SMALL LETTER PSI
+2CB0	copticcapitalletteroou	COPTIC CAPITAL LETTER OOU
+2CB1	copticsmallletteroou	COPTIC SMALL LETTER OOU
+2CB2	copticcapitalletterdialectpalef	COPTIC CAPITAL LETTER DIALECT-P ALEF
+2CB3	copticsmallletterdialectpalef	COPTIC SMALL LETTER DIALECT-P ALEF
+2CB4	copticcapitalletteroldcopticain	COPTIC CAPITAL LETTER OLD COPTIC AIN
+2CB5	copticsmallletteroldcopticain	COPTIC SMALL LETTER OLD COPTIC AIN
+2CB6	copticcapitallettercryptogrammiceie	COPTIC CAPITAL LETTER CRYPTOGRAMMIC EIE
+2CB7	copticsmalllettercryptogrammiceie	COPTIC SMALL LETTER CRYPTOGRAMMIC EIE
+2CB8	copticcapitalletterdialectpkapa	COPTIC CAPITAL LETTER DIALECT-P KAPA
+2CB9	copticsmallletterdialectpkapa	COPTIC SMALL LETTER DIALECT-P KAPA
+2CBA	copticcapitalletterdialectpni	COPTIC CAPITAL LETTER DIALECT-P NI
+2CBB	copticsmallletterdialectpni	COPTIC SMALL LETTER DIALECT-P NI
+2CBC	copticcapitallettercryptogrammicni	COPTIC CAPITAL LETTER CRYPTOGRAMMIC NI
+2CBD	copticsmalllettercryptogrammicni	COPTIC SMALL LETTER CRYPTOGRAMMIC NI
+2CBE	copticcapitalletteroldcopticoou	COPTIC CAPITAL LETTER OLD COPTIC OOU
+2CBF	copticsmallletteroldcopticoou	COPTIC SMALL LETTER OLD COPTIC OOU
+2CC0	copticcapitallettersampi	COPTIC CAPITAL LETTER SAMPI
+2CC1	copticsmalllettersampi	COPTIC SMALL LETTER SAMPI
+2CC2	copticcapitallettercrossedshei	COPTIC CAPITAL LETTER CROSSED SHEI
+2CC3	copticsmalllettercrossedshei	COPTIC SMALL LETTER CROSSED SHEI
+2CC4	copticcapitalletteroldcopticshei	COPTIC CAPITAL LETTER OLD COPTIC SHEI
+2CC5	copticsmallletteroldcopticshei	COPTIC SMALL LETTER OLD COPTIC SHEI
+2CC6	copticcapitalletteroldcopticesh	COPTIC CAPITAL LETTER OLD COPTIC ESH
+2CC7	copticsmallletteroldcopticesh	COPTIC SMALL LETTER OLD COPTIC ESH
+2CC8	copticcapitalletterakhmimickhei	COPTIC CAPITAL LETTER AKHMIMIC KHEI
+2CC9	copticsmallletterakhmimickhei	COPTIC SMALL LETTER AKHMIMIC KHEI
+2CCA	copticcapitalletterdialectphori	COPTIC CAPITAL LETTER DIALECT-P HORI
+2CCB	copticsmallletterdialectphori	COPTIC SMALL LETTER DIALECT-P HORI
+2CCC	copticcapitalletteroldcoptichori	COPTIC CAPITAL LETTER OLD COPTIC HORI
+2CCD	copticsmallletteroldcoptichori	COPTIC SMALL LETTER OLD COPTIC HORI
+2CCE	copticcapitalletteroldcopticha	COPTIC CAPITAL LETTER OLD COPTIC HA
+2CCF	copticsmallletteroldcopticha	COPTIC SMALL LETTER OLD COPTIC HA
+2CD0	copticcapitalletterlshapedha	COPTIC CAPITAL LETTER L-SHAPED HA
+2CD1	copticsmallletterlshapedha	COPTIC SMALL LETTER L-SHAPED HA
+2CD2	copticcapitalletteroldcoptichei	COPTIC CAPITAL LETTER OLD COPTIC HEI
+2CD3	copticsmallletteroldcoptichei	COPTIC SMALL LETTER OLD COPTIC HEI
+2CD4	copticcapitalletteroldcoptichat	COPTIC CAPITAL LETTER OLD COPTIC HAT
+2CD5	copticsmallletteroldcoptichat	COPTIC SMALL LETTER OLD COPTIC HAT
+2CD6	copticcapitalletteroldcopticgangia	COPTIC CAPITAL LETTER OLD COPTIC GANGIA
+2CD7	copticsmallletteroldcopticgangia	COPTIC SMALL LETTER OLD COPTIC GANGIA
+2CD8	copticcapitalletteroldcopticdja	COPTIC CAPITAL LETTER OLD COPTIC DJA
+2CD9	copticsmallletteroldcopticdja	COPTIC SMALL LETTER OLD COPTIC DJA
+2CDA	copticcapitalletteroldcopticshima	COPTIC CAPITAL LETTER OLD COPTIC SHIMA
+2CDB	copticsmallletteroldcopticshima	COPTIC SMALL LETTER OLD COPTIC SHIMA
+2CDC	copticcapitalletteroldnubianshima	COPTIC CAPITAL LETTER OLD NUBIAN SHIMA
+2CDD	copticsmallletteroldnubianshima	COPTIC SMALL LETTER OLD NUBIAN SHIMA
+2CDE	copticcapitalletteroldnubianngi	COPTIC CAPITAL LETTER OLD NUBIAN NGI
+2CDF	copticsmallletteroldnubianngi	COPTIC SMALL LETTER OLD NUBIAN NGI
+2CE0	copticcapitalletteroldnubiannyi	COPTIC CAPITAL LETTER OLD NUBIAN NYI
+2CE1	copticsmallletteroldnubiannyi	COPTIC SMALL LETTER OLD NUBIAN NYI
+2CE2	copticcapitalletteroldnubianwau	COPTIC CAPITAL LETTER OLD NUBIAN WAU
+2CE3	copticsmallletteroldnubianwau	COPTIC SMALL LETTER OLD NUBIAN WAU
+2CE4	copticsymbolkai	COPTIC SYMBOL KAI
+2CE5	copticsymbolmiro	COPTIC SYMBOL MI RO
+2CE6	copticsymbolpiro	COPTIC SYMBOL PI RO
+2CE7	copticsymbolstauros	COPTIC SYMBOL STAUROS
+2CE8	copticsymboltauro	COPTIC SYMBOL TAU RO
+2CE9	copticsymbolkhiro	COPTIC SYMBOL KHI RO
+2CEA	copticsymbolshimasima	COPTIC SYMBOL SHIMA SIMA
+2CEB	copticcapitallettercryptogrammicshei	COPTIC CAPITAL LETTER CRYPTOGRAMMIC SHEI
+2CEC	copticsmalllettercryptogrammicshei	COPTIC SMALL LETTER CRYPTOGRAMMIC SHEI
+2CED	copticcapitallettercryptogrammicgangia	COPTIC CAPITAL LETTER CRYPTOGRAMMIC GANGIA
+2CEE	copticsmalllettercryptogrammicgangia	COPTIC SMALL LETTER CRYPTOGRAMMIC GANGIA
+2CEF	copticcombiningniabove	COPTIC COMBINING NI ABOVE
+2CF0	copticcombiningspiritusasper	COPTIC COMBINING SPIRITUS ASPER
+2CF1	copticcombiningspirituslenis	COPTIC COMBINING SPIRITUS LENIS
+2CF9	copticoldnubianfullstop	COPTIC OLD NUBIAN FULL STOP
+2CFA	copticoldnubiandirectquestionmark	COPTIC OLD NUBIAN DIRECT QUESTION MARK
+2CFB	copticoldnubianindirectquestionmark	COPTIC OLD NUBIAN INDIRECT QUESTION MARK
+2CFC	copticoldnubianversedivider	COPTIC OLD NUBIAN VERSE DIVIDER
+2CFD	copticfractiononehalf	COPTIC FRACTION ONE HALF
+2CFE	copticfullstop	COPTIC FULL STOP
+2CFF	copticmorphologicaldivider	COPTIC MORPHOLOGICAL DIVIDER

@@ -1,0 +1,33 @@
+# Modifier Tone Letters A700 - A71F
+A700	modifierletterchinesetoneyinping	MODIFIER LETTER CHINESE TONE YIN PING
+A701	modifierletterchinesetoneyangping	MODIFIER LETTER CHINESE TONE YANG PING
+A702	modifierletterchinesetoneyinshang	MODIFIER LETTER CHINESE TONE YIN SHANG
+A703	modifierletterchinesetoneyangshang	MODIFIER LETTER CHINESE TONE YANG SHANG
+A704	modifierletterchinesetoneyinqu	MODIFIER LETTER CHINESE TONE YIN QU
+A705	modifierletterchinesetoneyangqu	MODIFIER LETTER CHINESE TONE YANG QU
+A706	modifierletterchinesetoneyinru	MODIFIER LETTER CHINESE TONE YIN RU
+A707	modifierletterchinesetoneyangru	MODIFIER LETTER CHINESE TONE YANG RU
+A708	modifierletterextrahighdottedtonebar	MODIFIER LETTER EXTRA-HIGH DOTTED TONE BAR
+A709	modifierletterhighdottedtonebar	MODIFIER LETTER HIGH DOTTED TONE BAR
+A70A	modifierlettermiddottedtonebar	MODIFIER LETTER MID DOTTED TONE BAR
+A70B	modifierletterlowdottedtonebar	MODIFIER LETTER LOW DOTTED TONE BAR
+A70C	modifierletterextralowdottedtonebar	MODIFIER LETTER EXTRA-LOW DOTTED TONE BAR
+A70D	modifierletterextrahighdottedleftstemtonebar	MODIFIER LETTER EXTRA-HIGH DOTTED LEFT-STEM TONE BAR
+A70E	modifierletterhighdottedleftstemtonebar	MODIFIER LETTER HIGH DOTTED LEFT-STEM TONE BAR
+A70F	modifierlettermiddottedleftstemtonebar	MODIFIER LETTER MID DOTTED LEFT-STEM TONE BAR
+A710	modifierletterlowdottedleftstemtonebar	MODIFIER LETTER LOW DOTTED LEFT-STEM TONE BAR
+A711	modifierletterextralowdottedleftstemtonebar	MODIFIER LETTER EXTRA-LOW DOTTED LEFT-STEM TONE BAR
+A712	modifierletterextrahighleftstemtonebar	MODIFIER LETTER EXTRA-HIGH LEFT-STEM TONE BAR
+A713	modifierletterhighleftstemtonebar	MODIFIER LETTER HIGH LEFT-STEM TONE BAR
+A714	modifierlettermidleftstemtonebar	MODIFIER LETTER MID LEFT-STEM TONE BAR
+A715	modifierletterlowleftstemtonebar	MODIFIER LETTER LOW LEFT-STEM TONE BAR
+A716	modifierletterextralowleftstemtonebar	MODIFIER LETTER EXTRA-LOW LEFT-STEM TONE BAR
+A717	modifierletterdotverticalbar	MODIFIER LETTER DOT VERTICAL BAR
+A718	modifierletterdotslash	MODIFIER LETTER DOT SLASH
+A719	modifierletterdothorizontalbar	MODIFIER LETTER DOT HORIZONTAL BAR
+A71A	modifierletterlowerrightcornerangle	MODIFIER LETTER LOWER RIGHT CORNER ANGLE
+A71B	modifierletterraiseduparrow	MODIFIER LETTER RAISED UP ARROW
+A71C	modifierletterraiseddownarrow	MODIFIER LETTER RAISED DOWN ARROW
+A71D	modifierletterraisedexclamationmark	MODIFIER LETTER RAISED EXCLAMATION MARK
+A71E	modifierletterraisedinvertedexclamationmark	MODIFIER LETTER RAISED INVERTED EXCLAMATION MARK
+A71F	modifierletterlowinvertedexclamationmark	MODIFIER LETTER LOW INVERTED EXCLAMATION MARK

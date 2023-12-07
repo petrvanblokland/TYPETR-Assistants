@@ -1,0 +1,78 @@
+# Syriac 0700 - 074F
+0700	syriacendofparagraph	SYRIAC END OF PARAGRAPH
+0701	syriacsupralinearfullstop	SYRIAC SUPRALINEAR FULL STOP
+0702	syriacsublinearfullstop	SYRIAC SUBLINEAR FULL STOP
+0703	syriacsupralinearcolon	SYRIAC SUPRALINEAR COLON
+0704	syriacsublinearcolon	SYRIAC SUBLINEAR COLON
+0705	syriachorizontalcolon	SYRIAC HORIZONTAL COLON
+0706	syriaccolonskewedleft	SYRIAC COLON SKEWED LEFT
+0707	syriaccolonskewedright	SYRIAC COLON SKEWED RIGHT
+0708	syriacsupralinearcolonskewedleft	SYRIAC SUPRALINEAR COLON SKEWED LEFT
+0709	syriacsublinearcolonskewedright	SYRIAC SUBLINEAR COLON SKEWED RIGHT
+070A	syriaccontraction	SYRIAC CONTRACTION
+070B	syriacharkleanobelus	SYRIAC HARKLEAN OBELUS
+070C	syriacharkleanmetobelus	SYRIAC HARKLEAN METOBELUS
+070D	syriacharkleanasteriscus	SYRIAC HARKLEAN ASTERISCUS
+070F	syriacabbreviationmark	SYRIAC ABBREVIATION MARK
+0710	syriacletteralaph	SYRIAC LETTER ALAPH
+0711	syriaclettersuperscriptalaph	SYRIAC LETTER SUPERSCRIPT ALAPH
+0712	syriacletterbeth	SYRIAC LETTER BETH
+0713	syriaclettergamal	SYRIAC LETTER GAMAL
+0714	syriaclettergamalgarshuni	SYRIAC LETTER GAMAL GARSHUNI
+0715	syriacletterdalath	SYRIAC LETTER DALATH
+0716	syriacletterdotlessdalathrish	SYRIAC LETTER DOTLESS DALATH RISH
+0717	syriacletterhe	SYRIAC LETTER HE
+0718	syriacletterwaw	SYRIAC LETTER WAW
+0719	syriacletterzain	SYRIAC LETTER ZAIN
+071A	syriacletterheth	SYRIAC LETTER HETH
+071B	syriacletterteth	SYRIAC LETTER TETH
+071C	syriaclettertethgarshuni	SYRIAC LETTER TETH GARSHUNI
+071D	syriacletteryudh	SYRIAC LETTER YUDH
+071E	syriacletteryudhhe	SYRIAC LETTER YUDH HE
+071F	syriacletterkaph	SYRIAC LETTER KAPH
+0720	syriacletterlamadh	SYRIAC LETTER LAMADH
+0721	syriaclettermim	SYRIAC LETTER MIM
+0722	syriacletternun	SYRIAC LETTER NUN
+0723	syriaclettersemkath	SYRIAC LETTER SEMKATH
+0724	syriacletterfinalsemkath	SYRIAC LETTER FINAL SEMKATH
+0725	syriaclettere	SYRIAC LETTER E
+0726	syriacletterpe	SYRIAC LETTER PE
+0727	syriacletterreversedpe	SYRIAC LETTER REVERSED PE
+0728	syriaclettersadhe	SYRIAC LETTER SADHE
+0729	syriacletterqaph	SYRIAC LETTER QAPH
+072A	syriacletterrish	SYRIAC LETTER RISH
+072B	syriaclettershin	SYRIAC LETTER SHIN
+072C	syriaclettertaw	SYRIAC LETTER TAW
+072D	syriacletterpersianbheth	SYRIAC LETTER PERSIAN BHETH
+072E	syriacletterpersianghamal	SYRIAC LETTER PERSIAN GHAMAL
+072F	syriacletterpersiandhalath	SYRIAC LETTER PERSIAN DHALATH
+0730	syriacpthahaabove	SYRIAC PTHAHA ABOVE
+0731	syriacpthahabelow	SYRIAC PTHAHA BELOW
+0732	syriacpthahadotted	SYRIAC PTHAHA DOTTED
+0733	syriaczqaphaabove	SYRIAC ZQAPHA ABOVE
+0734	syriaczqaphabelow	SYRIAC ZQAPHA BELOW
+0735	syriaczqaphadotted	SYRIAC ZQAPHA DOTTED
+0736	syriacrbasaabove	SYRIAC RBASA ABOVE
+0737	syriacrbasabelow	SYRIAC RBASA BELOW
+0738	syriacdottedzlamahorizontal	SYRIAC DOTTED ZLAMA HORIZONTAL
+0739	syriacdottedzlamaangular	SYRIAC DOTTED ZLAMA ANGULAR
+073A	syriachbasaabove	SYRIAC HBASA ABOVE
+073B	syriachbasabelow	SYRIAC HBASA BELOW
+073C	syriachbasaesasadotted	SYRIAC HBASA-ESASA DOTTED
+073D	syriacesasaabove	SYRIAC ESASA ABOVE
+073E	syriacesasabelow	SYRIAC ESASA BELOW
+073F	syriacrwaha	SYRIAC RWAHA
+0740	syriacfemininedot	SYRIAC FEMININE DOT
+0741	syriacqushshaya	SYRIAC QUSHSHAYA
+0742	syriacrukkakha	SYRIAC RUKKAKHA
+0743	syriactwoverticaldotsabove	SYRIAC TWO VERTICAL DOTS ABOVE
+0744	syriactwoverticaldotsbelow	SYRIAC TWO VERTICAL DOTS BELOW
+0745	syriacthreedotsabove	SYRIAC THREE DOTS ABOVE
+0746	syriacthreedotsbelow	SYRIAC THREE DOTS BELOW
+0747	syriacobliquelineabove	SYRIAC OBLIQUE LINE ABOVE
+0748	syriacobliquelinebelow	SYRIAC OBLIQUE LINE BELOW
+0749	syriacmusic	SYRIAC MUSIC
+074A	syriacbarrekh	SYRIAC BARREKH
+074D	syriaclettersogdianzhain	SYRIAC LETTER SOGDIAN ZHAIN
+074E	syriaclettersogdiankhaph	SYRIAC LETTER SOGDIAN KHAPH
+074F	syriaclettersogdianfe	SYRIAC LETTER SOGDIAN FE

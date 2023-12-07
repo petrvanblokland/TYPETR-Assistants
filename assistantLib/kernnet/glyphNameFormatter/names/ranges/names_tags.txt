@@ -1,0 +1,98 @@
+# Tags E0000 - E007F
+E0001	languagetag	LANGUAGE TAG
+E0020	tagspace	TAG SPACE
+E0021	tagexclamationmark	TAG EXCLAMATION MARK
+E0022	tagquotationmark	TAG QUOTATION MARK
+E0023	tagnumbersign	TAG NUMBER SIGN
+E0024	tagdollarsign	TAG DOLLAR SIGN
+E0025	tagpercentsign	TAG PERCENT SIGN
+E0026	tagampersand	TAG AMPERSAND
+E0027	tagapostrophe	TAG APOSTROPHE
+E0028	tagleftparenthesis	TAG LEFT PARENTHESIS
+E0029	tagrightparenthesis	TAG RIGHT PARENTHESIS
+E002A	tagasterisk	TAG ASTERISK
+E002B	tagplussign	TAG PLUS SIGN
+E002C	tagcomma	TAG COMMA
+E002D	taghyphenminus	TAG HYPHEN-MINUS
+E002E	tagfullstop	TAG FULL STOP
+E002F	tagsolidus	TAG SOLIDUS
+E0030	tagdigitzero	TAG DIGIT ZERO
+E0031	tagdigitone	TAG DIGIT ONE
+E0032	tagdigittwo	TAG DIGIT TWO
+E0033	tagdigitthree	TAG DIGIT THREE
+E0034	tagdigitfour	TAG DIGIT FOUR
+E0035	tagdigitfive	TAG DIGIT FIVE
+E0036	tagdigitsix	TAG DIGIT SIX
+E0037	tagdigitseven	TAG DIGIT SEVEN
+E0038	tagdigiteight	TAG DIGIT EIGHT
+E0039	tagdigitnine	TAG DIGIT NINE
+E003A	tagcolon	TAG COLON
+E003B	tagsemicolon	TAG SEMICOLON
+E003C	taglessthansign	TAG LESS-THAN SIGN
+E003D	tagequalssign	TAG EQUALS SIGN
+E003E	taggreaterthansign	TAG GREATER-THAN SIGN
+E003F	tagquestionmark	TAG QUESTION MARK
+E0040	tagcommercialat	TAG COMMERCIAL AT
+E0041	taglatincapitallettera	TAG LATIN CAPITAL LETTER A
+E0042	taglatincapitalletterb	TAG LATIN CAPITAL LETTER B
+E0043	taglatincapitalletterc	TAG LATIN CAPITAL LETTER C
+E0044	taglatincapitalletterd	TAG LATIN CAPITAL LETTER D
+E0045	taglatincapitallettere	TAG LATIN CAPITAL LETTER E
+E0046	taglatincapitalletterf	TAG LATIN CAPITAL LETTER F
+E0047	taglatincapitalletterg	TAG LATIN CAPITAL LETTER G
+E0048	taglatincapitalletterh	TAG LATIN CAPITAL LETTER H
+E0049	taglatincapitalletteri	TAG LATIN CAPITAL LETTER I
+E004A	taglatincapitalletterj	TAG LATIN CAPITAL LETTER J
+E004B	taglatincapitalletterk	TAG LATIN CAPITAL LETTER K
+E004C	taglatincapitalletterl	TAG LATIN CAPITAL LETTER L
+E004D	taglatincapitalletterm	TAG LATIN CAPITAL LETTER M
+E004E	taglatincapitallettern	TAG LATIN CAPITAL LETTER N
+E004F	taglatincapitallettero	TAG LATIN CAPITAL LETTER O
+E0050	taglatincapitalletterp	TAG LATIN CAPITAL LETTER P
+E0051	taglatincapitalletterq	TAG LATIN CAPITAL LETTER Q
+E0052	taglatincapitalletterr	TAG LATIN CAPITAL LETTER R
+E0053	taglatincapitalletters	TAG LATIN CAPITAL LETTER S
+E0054	taglatincapitallettert	TAG LATIN CAPITAL LETTER T
+E0055	taglatincapitalletteru	TAG LATIN CAPITAL LETTER U
+E0056	taglatincapitalletterv	TAG LATIN CAPITAL LETTER V
+E0057	taglatincapitalletterw	TAG LATIN CAPITAL LETTER W
+E0058	taglatincapitalletterx	TAG LATIN CAPITAL LETTER X
+E0059	taglatincapitallettery	TAG LATIN CAPITAL LETTER Y
+E005A	taglatincapitalletterz	TAG LATIN CAPITAL LETTER Z
+E005B	tagleftsquarebracket	TAG LEFT SQUARE BRACKET
+E005C	tagreversesolidus	TAG REVERSE SOLIDUS
+E005D	tagrightsquarebracket	TAG RIGHT SQUARE BRACKET
+E005E	tagcircumflexaccent	TAG CIRCUMFLEX ACCENT
+E005F	taglowline	TAG LOW LINE
+E0060	taggraveaccent	TAG GRAVE ACCENT
+E0061	taglatinsmalllettera	TAG LATIN SMALL LETTER A
+E0062	taglatinsmallletterb	TAG LATIN SMALL LETTER B
+E0063	taglatinsmallletterc	TAG LATIN SMALL LETTER C
+E0064	taglatinsmallletterd	TAG LATIN SMALL LETTER D
+E0065	taglatinsmalllettere	TAG LATIN SMALL LETTER E
+E0066	taglatinsmallletterf	TAG LATIN SMALL LETTER F
+E0067	taglatinsmallletterg	TAG LATIN SMALL LETTER G
+E0068	taglatinsmallletterh	TAG LATIN SMALL LETTER H
+E0069	taglatinsmallletteri	TAG LATIN SMALL LETTER I
+E006A	taglatinsmallletterj	TAG LATIN SMALL LETTER J
+E006B	taglatinsmallletterk	TAG LATIN SMALL LETTER K
+E006C	taglatinsmallletterl	TAG LATIN SMALL LETTER L
+E006D	taglatinsmallletterm	TAG LATIN SMALL LETTER M
+E006E	taglatinsmalllettern	TAG LATIN SMALL LETTER N
+E006F	taglatinsmalllettero	TAG LATIN SMALL LETTER O
+E0070	taglatinsmallletterp	TAG LATIN SMALL LETTER P
+E0071	taglatinsmallletterq	TAG LATIN SMALL LETTER Q
+E0072	taglatinsmallletterr	TAG LATIN SMALL LETTER R
+E0073	taglatinsmallletters	TAG LATIN SMALL LETTER S
+E0074	taglatinsmalllettert	TAG LATIN SMALL LETTER T
+E0075	taglatinsmallletteru	TAG LATIN SMALL LETTER U
+E0076	taglatinsmallletterv	TAG LATIN SMALL LETTER V
+E0077	taglatinsmallletterw	TAG LATIN SMALL LETTER W
+E0078	taglatinsmallletterx	TAG LATIN SMALL LETTER X
+E0079	taglatinsmalllettery	TAG LATIN SMALL LETTER Y
+E007A	taglatinsmallletterz	TAG LATIN SMALL LETTER Z
+E007B	tagleftcurlybracket	TAG LEFT CURLY BRACKET
+E007C	tagverticalline	TAG VERTICAL LINE
+E007D	tagrightcurlybracket	TAG RIGHT CURLY BRACKET
+E007E	tagtilde	TAG TILDE
+E007F	canceltag	CANCEL TAG

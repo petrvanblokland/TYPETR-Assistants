@@ -1,0 +1,13 @@
+# Ancient Symbols 10190 - 101CF
+10190	romansextanssign	ROMAN SEXTANS SIGN
+10191	romanunciasign	ROMAN UNCIA SIGN
+10192	romansemunciasign	ROMAN SEMUNCIA SIGN
+10193	romansextulasign	ROMAN SEXTULA SIGN
+10194	romandimidiasextulasign	ROMAN DIMIDIA SEXTULA SIGN
+10195	romansiliquasign	ROMAN SILIQUA SIGN
+10196	romandenariussign	ROMAN DENARIUS SIGN
+10197	romanquinariussign	ROMAN QUINARIUS SIGN
+10198	romansestertiussign	ROMAN SESTERTIUS SIGN
+10199	romandupondiussign	ROMAN DUPONDIUS SIGN
+1019A	romanassign	ROMAN AS SIGN
+1019B	romancenturialsign	ROMAN CENTURIAL SIGN

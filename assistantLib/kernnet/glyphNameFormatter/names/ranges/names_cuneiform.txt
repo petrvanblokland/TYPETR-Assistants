@@ -1,0 +1,880 @@
+# Cuneiform 12000 - 123FF
+12000	cuneiformsigna	CUNEIFORM SIGN A
+12001	cuneiformsignatimesa	CUNEIFORM SIGN A TIMES A
+12002	cuneiformsignatimesbad	CUNEIFORM SIGN A TIMES BAD
+12003	cuneiformsignatimesgan2tenu	CUNEIFORM SIGN A TIMES GAN2 TENU
+12004	cuneiformsignatimesha	CUNEIFORM SIGN A TIMES HA
+12005	cuneiformsignatimesigi	CUNEIFORM SIGN A TIMES IGI
+12006	cuneiformsignatimeslagargunu	CUNEIFORM SIGN A TIMES LAGAR GUNU
+12007	cuneiformsignatimesmush	CUNEIFORM SIGN A TIMES MUSH
+12008	cuneiformsignatimessag	CUNEIFORM SIGN A TIMES SAG
+12009	cuneiformsigna2	CUNEIFORM SIGN A2
+1200A	cuneiformsignab	CUNEIFORM SIGN AB
+1200B	cuneiformsignabtimesash2	CUNEIFORM SIGN AB TIMES ASH2
+1200C	cuneiformsignabtimesdun3gunu	CUNEIFORM SIGN AB TIMES DUN3 GUNU
+1200D	cuneiformsignabtimesgal	CUNEIFORM SIGN AB TIMES GAL
+1200E	cuneiformsignabtimesgan2tenu	CUNEIFORM SIGN AB TIMES GAN2 TENU
+1200F	cuneiformsignabtimesha	CUNEIFORM SIGN AB TIMES HA
+12010	cuneiformsignabtimesigigunu	CUNEIFORM SIGN AB TIMES IGI GUNU
+12011	cuneiformsignabtimesimin	CUNEIFORM SIGN AB TIMES IMIN
+12012	cuneiformsignabtimeslagab	CUNEIFORM SIGN AB TIMES LAGAB
+12013	cuneiformsignabtimesshesh	CUNEIFORM SIGN AB TIMES SHESH
+12014	cuneiformsignabtimesuplusuplusu	CUNEIFORM SIGN AB TIMES U PLUS U PLUS U
+12015	cuneiformsignabgunu	CUNEIFORM SIGN AB GUNU
+12016	cuneiformsignab2	CUNEIFORM SIGN AB2
+12017	cuneiformsignab2timesbalag	CUNEIFORM SIGN AB2 TIMES BALAG
+12018	cuneiformsignab2timesgan2tenu	CUNEIFORM SIGN AB2 TIMES GAN2 TENU
+12019	cuneiformsignab2timesmeplusen	CUNEIFORM SIGN AB2 TIMES ME PLUS EN
+1201A	cuneiformsignab2timessha3	CUNEIFORM SIGN AB2 TIMES SHA3
+1201B	cuneiformsignab2timestak4	CUNEIFORM SIGN AB2 TIMES TAK4
+1201C	cuneiformsignad	CUNEIFORM SIGN AD
+1201D	cuneiformsignak	CUNEIFORM SIGN AK
+1201E	cuneiformsignaktimeserin2	CUNEIFORM SIGN AK TIMES ERIN2
+1201F	cuneiformsignaktimesshitaplusgish	CUNEIFORM SIGN AK TIMES SHITA PLUS GISH
+12020	cuneiformsignal	CUNEIFORM SIGN AL
+12021	cuneiformsignaltimesal	CUNEIFORM SIGN AL TIMES AL
+12022	cuneiformsignaltimesdim2	CUNEIFORM SIGN AL TIMES DIM2
+12023	cuneiformsignaltimesgish	CUNEIFORM SIGN AL TIMES GISH
+12024	cuneiformsignaltimesha	CUNEIFORM SIGN AL TIMES HA
+12025	cuneiformsignaltimeskad3	CUNEIFORM SIGN AL TIMES KAD3
+12026	cuneiformsignaltimeski	CUNEIFORM SIGN AL TIMES KI
+12027	cuneiformsignaltimesshe	CUNEIFORM SIGN AL TIMES SHE
+12028	cuneiformsignaltimesush	CUNEIFORM SIGN AL TIMES USH
+12029	cuneiformsignalan	CUNEIFORM SIGN ALAN
+1202A	cuneiformsignaleph	CUNEIFORM SIGN ALEPH
+1202B	cuneiformsignamar	CUNEIFORM SIGN AMAR
+1202C	cuneiformsignamartimesshe	CUNEIFORM SIGN AMAR TIMES SHE
+1202D	cuneiformsignan	CUNEIFORM SIGN AN
+1202E	cuneiformsignanoveran	CUNEIFORM SIGN AN OVER AN
+1202F	cuneiformsignanthreetimes	CUNEIFORM SIGN AN THREE TIMES
+12030	cuneiformsignanplusnagaopposinganplusnaga	CUNEIFORM SIGN AN PLUS NAGA OPPOSING AN PLUS NAGA
+12031	cuneiformsignanplusnagasquared	CUNEIFORM SIGN AN PLUS NAGA SQUARED
+12032	cuneiformsignanshe	CUNEIFORM SIGN ANSHE
+12033	cuneiformsignapin	CUNEIFORM SIGN APIN
+12034	cuneiformsignarad	CUNEIFORM SIGN ARAD
+12035	cuneiformsignaradtimeskur	CUNEIFORM SIGN ARAD TIMES KUR
+12036	cuneiformsignarkab	CUNEIFORM SIGN ARKAB
+12037	cuneiformsignasal2	CUNEIFORM SIGN ASAL2
+12038	cuneiformsignash	CUNEIFORM SIGN ASH
+12039	cuneiformsignashzidatenu	CUNEIFORM SIGN ASH ZIDA TENU
+1203A	cuneiformsignashkabatenu	CUNEIFORM SIGN ASH KABA TENU
+1203B	cuneiformsignashoverashtug2overtug2tug2overtug2pap	CUNEIFORM SIGN ASH OVER ASH TUG2 OVER TUG2 TUG2 OVER TUG2 PAP
+1203C	cuneiformsignashoverashoverash	CUNEIFORM SIGN ASH OVER ASH OVER ASH
+1203D	cuneiformsignashoverashoverashcrossingashoverashoverash	CUNEIFORM SIGN ASH OVER ASH OVER ASH CROSSING ASH OVER ASH OVER ASH
+1203E	cuneiformsignash2	CUNEIFORM SIGN ASH2
+1203F	cuneiformsignashgab	CUNEIFORM SIGN ASHGAB
+12040	cuneiformsignba	CUNEIFORM SIGN BA
+12041	cuneiformsignbad	CUNEIFORM SIGN BAD
+12042	cuneiformsignbag3	CUNEIFORM SIGN BAG3
+12043	cuneiformsignbahar2	CUNEIFORM SIGN BAHAR2
+12044	cuneiformsignbal	CUNEIFORM SIGN BAL
+12045	cuneiformsignbaloverbal	CUNEIFORM SIGN BAL OVER BAL
+12046	cuneiformsignbalag	CUNEIFORM SIGN BALAG
+12047	cuneiformsignbar	CUNEIFORM SIGN BAR
+12048	cuneiformsignbara2	CUNEIFORM SIGN BARA2
+12049	cuneiformsignbi	CUNEIFORM SIGN BI
+1204A	cuneiformsignbitimesa	CUNEIFORM SIGN BI TIMES A
+1204B	cuneiformsignbitimesgar	CUNEIFORM SIGN BI TIMES GAR
+1204C	cuneiformsignbitimesigigunu	CUNEIFORM SIGN BI TIMES IGI GUNU
+1204D	cuneiformsignbu	CUNEIFORM SIGN BU
+1204E	cuneiformsignbuoverbuab	CUNEIFORM SIGN BU OVER BU AB
+1204F	cuneiformsignbuoverbuun	CUNEIFORM SIGN BU OVER BU UN
+12050	cuneiformsignbucrossingbu	CUNEIFORM SIGN BU CROSSING BU
+12051	cuneiformsignbulug	CUNEIFORM SIGN BULUG
+12052	cuneiformsignbulugoverbulug	CUNEIFORM SIGN BULUG OVER BULUG
+12053	cuneiformsignbur	CUNEIFORM SIGN BUR
+12054	cuneiformsignbur2	CUNEIFORM SIGN BUR2
+12055	cuneiformsignda	CUNEIFORM SIGN DA
+12056	cuneiformsigndag	CUNEIFORM SIGN DAG
+12057	cuneiformsigndagkisim5timesaplusmash	CUNEIFORM SIGN DAG KISIM5 TIMES A PLUS MASH
+12058	cuneiformsigndagkisim5timesamar	CUNEIFORM SIGN DAG KISIM5 TIMES AMAR
+12059	cuneiformsigndagkisim5timesbalag	CUNEIFORM SIGN DAG KISIM5 TIMES BALAG
+1205A	cuneiformsigndagkisim5timesbi	CUNEIFORM SIGN DAG KISIM5 TIMES BI
+1205B	cuneiformsigndagkisim5timesga	CUNEIFORM SIGN DAG KISIM5 TIMES GA
+1205C	cuneiformsigndagkisim5timesgaplusmash	CUNEIFORM SIGN DAG KISIM5 TIMES GA PLUS MASH
+1205D	cuneiformsigndagkisim5timesgi	CUNEIFORM SIGN DAG KISIM5 TIMES GI
+1205E	cuneiformsigndagkisim5timesgir2	CUNEIFORM SIGN DAG KISIM5 TIMES GIR2
+1205F	cuneiformsigndagkisim5timesgud	CUNEIFORM SIGN DAG KISIM5 TIMES GUD
+12060	cuneiformsigndagkisim5timesha	CUNEIFORM SIGN DAG KISIM5 TIMES HA
+12061	cuneiformsigndagkisim5timesir	CUNEIFORM SIGN DAG KISIM5 TIMES IR
+12062	cuneiformsigndagkisim5timesirpluslu	CUNEIFORM SIGN DAG KISIM5 TIMES IR PLUS LU
+12063	cuneiformsigndagkisim5timeskak	CUNEIFORM SIGN DAG KISIM5 TIMES KAK
+12064	cuneiformsigndagkisim5timesla	CUNEIFORM SIGN DAG KISIM5 TIMES LA
+12065	cuneiformsigndagkisim5timeslu	CUNEIFORM SIGN DAG KISIM5 TIMES LU
+12066	cuneiformsigndagkisim5timesluplusmash2	CUNEIFORM SIGN DAG KISIM5 TIMES LU PLUS MASH2
+12067	cuneiformsigndagkisim5timeslum	CUNEIFORM SIGN DAG KISIM5 TIMES LUM
+12068	cuneiformsigndagkisim5timesne	CUNEIFORM SIGN DAG KISIM5 TIMES NE
+12069	cuneiformsigndagkisim5timespappluspap	CUNEIFORM SIGN DAG KISIM5 TIMES PAP PLUS PAP
+1206A	cuneiformsigndagkisim5timessi	CUNEIFORM SIGN DAG KISIM5 TIMES SI
+1206B	cuneiformsigndagkisim5timestak4	CUNEIFORM SIGN DAG KISIM5 TIMES TAK4
+1206C	cuneiformsigndagkisim5timesu2plusgir2	CUNEIFORM SIGN DAG KISIM5 TIMES U2 PLUS GIR2
+1206D	cuneiformsigndagkisim5timesush	CUNEIFORM SIGN DAG KISIM5 TIMES USH
+1206E	cuneiformsigndam	CUNEIFORM SIGN DAM
+1206F	cuneiformsigndar	CUNEIFORM SIGN DAR
+12070	cuneiformsigndara3	CUNEIFORM SIGN DARA3
+12071	cuneiformsigndara4	CUNEIFORM SIGN DARA4
+12072	cuneiformsigndi	CUNEIFORM SIGN DI
+12073	cuneiformsigndib	CUNEIFORM SIGN DIB
+12074	cuneiformsigndim	CUNEIFORM SIGN DIM
+12075	cuneiformsigndimtimesshe	CUNEIFORM SIGN DIM TIMES SHE
+12076	cuneiformsigndim2	CUNEIFORM SIGN DIM2
+12077	cuneiformsigndin	CUNEIFORM SIGN DIN
+12078	cuneiformsigndinkaskalugunudish	CUNEIFORM SIGN DIN KASKAL U GUNU DISH
+12079	cuneiformsigndish	CUNEIFORM SIGN DISH
+1207A	cuneiformsigndu	CUNEIFORM SIGN DU
+1207B	cuneiformsignduoverdu	CUNEIFORM SIGN DU OVER DU
+1207C	cuneiformsigndugunu	CUNEIFORM SIGN DU GUNU
+1207D	cuneiformsigndusheshig	CUNEIFORM SIGN DU SHESHIG
+1207E	cuneiformsigndub	CUNEIFORM SIGN DUB
+1207F	cuneiformsigndubtimesesh2	CUNEIFORM SIGN DUB TIMES ESH2
+12080	cuneiformsigndub2	CUNEIFORM SIGN DUB2
+12081	cuneiformsigndug	CUNEIFORM SIGN DUG
+12082	cuneiformsigndugud	CUNEIFORM SIGN DUGUD
+12083	cuneiformsignduh	CUNEIFORM SIGN DUH
+12084	cuneiformsigndun	CUNEIFORM SIGN DUN
+12085	cuneiformsigndun3	CUNEIFORM SIGN DUN3
+12086	cuneiformsigndun3gunu	CUNEIFORM SIGN DUN3 GUNU
+12087	cuneiformsigndun3gunugunu	CUNEIFORM SIGN DUN3 GUNU GUNU
+12088	cuneiformsigndun4	CUNEIFORM SIGN DUN4
+12089	cuneiformsigndur2	CUNEIFORM SIGN DUR2
+1208A	cuneiformsigne	CUNEIFORM SIGN E
+1208B	cuneiformsignetimespap	CUNEIFORM SIGN E TIMES PAP
+1208C	cuneiformsigneoverenunovernun	CUNEIFORM SIGN E OVER E NUN OVER NUN
+1208D	cuneiformsigne2	CUNEIFORM SIGN E2
+1208E	cuneiformsigne2timesaplushaplusda	CUNEIFORM SIGN E2 TIMES A PLUS HA PLUS DA
+1208F	cuneiformsigne2timesgar	CUNEIFORM SIGN E2 TIMES GAR
+12090	cuneiformsigne2timesmi	CUNEIFORM SIGN E2 TIMES MI
+12091	cuneiformsigne2timessal	CUNEIFORM SIGN E2 TIMES SAL
+12092	cuneiformsigne2timesshe	CUNEIFORM SIGN E2 TIMES SHE
+12093	cuneiformsigne2timesu	CUNEIFORM SIGN E2 TIMES U
+12094	cuneiformsignedin	CUNEIFORM SIGN EDIN
+12095	cuneiformsignegir	CUNEIFORM SIGN EGIR
+12096	cuneiformsignel	CUNEIFORM SIGN EL
+12097	cuneiformsignen	CUNEIFORM SIGN EN
+12098	cuneiformsignentimesgan2	CUNEIFORM SIGN EN TIMES GAN2
+12099	cuneiformsignentimesgan2tenu	CUNEIFORM SIGN EN TIMES GAN2 TENU
+1209A	cuneiformsignentimesme	CUNEIFORM SIGN EN TIMES ME
+1209B	cuneiformsignencrossingen	CUNEIFORM SIGN EN CROSSING EN
+1209C	cuneiformsignenopposingen	CUNEIFORM SIGN EN OPPOSING EN
+1209D	cuneiformsignensquared	CUNEIFORM SIGN EN SQUARED
+1209E	cuneiformsigneren	CUNEIFORM SIGN EREN
+1209F	cuneiformsignerin2	CUNEIFORM SIGN ERIN2
+120A0	cuneiformsignesh2	CUNEIFORM SIGN ESH2
+120A1	cuneiformsignezen	CUNEIFORM SIGN EZEN
+120A2	cuneiformsignezentimesa	CUNEIFORM SIGN EZEN TIMES A
+120A3	cuneiformsignezentimesapluslal	CUNEIFORM SIGN EZEN TIMES A PLUS LAL
+120A4	cuneiformsignezentimesapluslaltimeslal	CUNEIFORM SIGN EZEN TIMES A PLUS LAL TIMES LAL
+120A5	cuneiformsignezentimesan	CUNEIFORM SIGN EZEN TIMES AN
+120A6	cuneiformsignezentimesbad	CUNEIFORM SIGN EZEN TIMES BAD
+120A7	cuneiformsignezentimesdun3gunu	CUNEIFORM SIGN EZEN TIMES DUN3 GUNU
+120A8	cuneiformsignezentimesdun3gunugunu	CUNEIFORM SIGN EZEN TIMES DUN3 GUNU GUNU
+120A9	cuneiformsignezentimesha	CUNEIFORM SIGN EZEN TIMES HA
+120AA	cuneiformsignezentimeshagunu	CUNEIFORM SIGN EZEN TIMES HA GUNU
+120AB	cuneiformsignezentimesigigunu	CUNEIFORM SIGN EZEN TIMES IGI GUNU
+120AC	cuneiformsignezentimeskaskal	CUNEIFORM SIGN EZEN TIMES KASKAL
+120AD	cuneiformsignezentimeskaskalsquared	CUNEIFORM SIGN EZEN TIMES KASKAL SQUARED
+120AE	cuneiformsignezentimesku3	CUNEIFORM SIGN EZEN TIMES KU3
+120AF	cuneiformsignezentimesla	CUNEIFORM SIGN EZEN TIMES LA
+120B0	cuneiformsignezentimeslaltimeslal	CUNEIFORM SIGN EZEN TIMES LAL TIMES LAL
+120B1	cuneiformsignezentimesli	CUNEIFORM SIGN EZEN TIMES LI
+120B2	cuneiformsignezentimeslu	CUNEIFORM SIGN EZEN TIMES LU
+120B3	cuneiformsignezentimesu2	CUNEIFORM SIGN EZEN TIMES U2
+120B4	cuneiformsignezentimesud	CUNEIFORM SIGN EZEN TIMES UD
+120B5	cuneiformsignga	CUNEIFORM SIGN GA
+120B6	cuneiformsigngagunu	CUNEIFORM SIGN GA GUNU
+120B7	cuneiformsignga2	CUNEIFORM SIGN GA2
+120B8	cuneiformsignga2timesaplusdaplusha	CUNEIFORM SIGN GA2 TIMES A PLUS DA PLUS HA
+120B9	cuneiformsignga2timesaplusha	CUNEIFORM SIGN GA2 TIMES A PLUS HA
+120BA	cuneiformsignga2timesaplusigi	CUNEIFORM SIGN GA2 TIMES A PLUS IGI
+120BB	cuneiformsignga2timesab2tenuplustab	CUNEIFORM SIGN GA2 TIMES AB2 TENU PLUS TAB
+120BC	cuneiformsignga2timesan	CUNEIFORM SIGN GA2 TIMES AN
+120BD	cuneiformsignga2timesash	CUNEIFORM SIGN GA2 TIMES ASH
+120BE	cuneiformsignga2timesash2plusgal	CUNEIFORM SIGN GA2 TIMES ASH2 PLUS GAL
+120BF	cuneiformsignga2timesbad	CUNEIFORM SIGN GA2 TIMES BAD
+120C0	cuneiformsignga2timesbarplusra	CUNEIFORM SIGN GA2 TIMES BAR PLUS RA
+120C1	cuneiformsignga2timesbur	CUNEIFORM SIGN GA2 TIMES BUR
+120C2	cuneiformsignga2timesburplusra	CUNEIFORM SIGN GA2 TIMES BUR PLUS RA
+120C3	cuneiformsignga2timesda	CUNEIFORM SIGN GA2 TIMES DA
+120C4	cuneiformsignga2timesdi	CUNEIFORM SIGN GA2 TIMES DI
+120C5	cuneiformsignga2timesdimtimesshe	CUNEIFORM SIGN GA2 TIMES DIM TIMES SHE
+120C6	cuneiformsignga2timesdub	CUNEIFORM SIGN GA2 TIMES DUB
+120C7	cuneiformsignga2timesel	CUNEIFORM SIGN GA2 TIMES EL
+120C8	cuneiformsignga2timeselplusla	CUNEIFORM SIGN GA2 TIMES EL PLUS LA
+120C9	cuneiformsignga2timesen	CUNEIFORM SIGN GA2 TIMES EN
+120CA	cuneiformsignga2timesentimesgan2tenu	CUNEIFORM SIGN GA2 TIMES EN TIMES GAN2 TENU
+120CB	cuneiformsignga2timesgan2tenu	CUNEIFORM SIGN GA2 TIMES GAN2 TENU
+120CC	cuneiformsignga2timesgar	CUNEIFORM SIGN GA2 TIMES GAR
+120CD	cuneiformsignga2timesgi	CUNEIFORM SIGN GA2 TIMES GI
+120CE	cuneiformsignga2timesgi4	CUNEIFORM SIGN GA2 TIMES GI4
+120CF	cuneiformsignga2timesgi4plusa	CUNEIFORM SIGN GA2 TIMES GI4 PLUS A
+120D0	cuneiformsignga2timesgir2plussu	CUNEIFORM SIGN GA2 TIMES GIR2 PLUS SU
+120D1	cuneiformsignga2timeshaplusluplusesh2	CUNEIFORM SIGN GA2 TIMES HA PLUS LU PLUS ESH2
+120D2	cuneiformsignga2timeshal	CUNEIFORM SIGN GA2 TIMES HAL
+120D3	cuneiformsignga2timeshalplusla	CUNEIFORM SIGN GA2 TIMES HAL PLUS LA
+120D4	cuneiformsignga2timeshiplusli	CUNEIFORM SIGN GA2 TIMES HI PLUS LI
+120D5	cuneiformsignga2timeshub2	CUNEIFORM SIGN GA2 TIMES HUB2
+120D6	cuneiformsignga2timesigigunu	CUNEIFORM SIGN GA2 TIMES IGI GUNU
+120D7	cuneiformsignga2timesishplushuplusash	CUNEIFORM SIGN GA2 TIMES ISH PLUS HU PLUS ASH
+120D8	cuneiformsignga2timeskak	CUNEIFORM SIGN GA2 TIMES KAK
+120D9	cuneiformsignga2timeskaskal	CUNEIFORM SIGN GA2 TIMES KASKAL
+120DA	cuneiformsignga2timeskid	CUNEIFORM SIGN GA2 TIMES KID
+120DB	cuneiformsignga2timeskidpluslal	CUNEIFORM SIGN GA2 TIMES KID PLUS LAL
+120DC	cuneiformsignga2timesku3plusan	CUNEIFORM SIGN GA2 TIMES KU3 PLUS AN
+120DD	cuneiformsignga2timesla	CUNEIFORM SIGN GA2 TIMES LA
+120DE	cuneiformsignga2timesmeplusen	CUNEIFORM SIGN GA2 TIMES ME PLUS EN
+120DF	cuneiformsignga2timesmi	CUNEIFORM SIGN GA2 TIMES MI
+120E0	cuneiformsignga2timesnun	CUNEIFORM SIGN GA2 TIMES NUN
+120E1	cuneiformsignga2timesnunovernun	CUNEIFORM SIGN GA2 TIMES NUN OVER NUN
+120E2	cuneiformsignga2timespa	CUNEIFORM SIGN GA2 TIMES PA
+120E3	cuneiformsignga2timessal	CUNEIFORM SIGN GA2 TIMES SAL
+120E4	cuneiformsignga2timessar	CUNEIFORM SIGN GA2 TIMES SAR
+120E5	cuneiformsignga2timesshe	CUNEIFORM SIGN GA2 TIMES SHE
+120E6	cuneiformsignga2timessheplustur	CUNEIFORM SIGN GA2 TIMES SHE PLUS TUR
+120E7	cuneiformsignga2timesshid	CUNEIFORM SIGN GA2 TIMES SHID
+120E8	cuneiformsignga2timessum	CUNEIFORM SIGN GA2 TIMES SUM
+120E9	cuneiformsignga2timestak4	CUNEIFORM SIGN GA2 TIMES TAK4
+120EA	cuneiformsignga2timesu	CUNEIFORM SIGN GA2 TIMES U
+120EB	cuneiformsignga2timesud	CUNEIFORM SIGN GA2 TIMES UD
+120EC	cuneiformsignga2timesudplusdu	CUNEIFORM SIGN GA2 TIMES UD PLUS DU
+120ED	cuneiformsignga2overga2	CUNEIFORM SIGN GA2 OVER GA2
+120EE	cuneiformsigngaba	CUNEIFORM SIGN GABA
+120EF	cuneiformsigngabacrossinggaba	CUNEIFORM SIGN GABA CROSSING GABA
+120F0	cuneiformsigngad	CUNEIFORM SIGN GAD
+120F1	cuneiformsigngadovergadgarovergar	CUNEIFORM SIGN GAD OVER GAD GAR OVER GAR
+120F2	cuneiformsigngal	CUNEIFORM SIGN GAL
+120F3	cuneiformsigngalgadovergadgarovergar	CUNEIFORM SIGN GAL GAD OVER GAD GAR OVER GAR
+120F4	cuneiformsigngalam	CUNEIFORM SIGN GALAM
+120F5	cuneiformsigngam	CUNEIFORM SIGN GAM
+120F6	cuneiformsigngan	CUNEIFORM SIGN GAN
+120F7	cuneiformsigngan2	CUNEIFORM SIGN GAN2
+120F8	cuneiformsigngan2tenu	CUNEIFORM SIGN GAN2 TENU
+120F9	cuneiformsigngan2overgan2	CUNEIFORM SIGN GAN2 OVER GAN2
+120FA	cuneiformsigngan2crossinggan2	CUNEIFORM SIGN GAN2 CROSSING GAN2
+120FB	cuneiformsigngar	CUNEIFORM SIGN GAR
+120FC	cuneiformsigngar3	CUNEIFORM SIGN GAR3
+120FD	cuneiformsigngashan	CUNEIFORM SIGN GASHAN
+120FE	cuneiformsigngeshtin	CUNEIFORM SIGN GESHTIN
+120FF	cuneiformsigngeshtintimeskur	CUNEIFORM SIGN GESHTIN TIMES KUR
+12100	cuneiformsigngi	CUNEIFORM SIGN GI
+12101	cuneiformsigngitimese	CUNEIFORM SIGN GI TIMES E
+12102	cuneiformsigngitimesu	CUNEIFORM SIGN GI TIMES U
+12103	cuneiformsigngicrossinggi	CUNEIFORM SIGN GI CROSSING GI
+12104	cuneiformsigngi4	CUNEIFORM SIGN GI4
+12105	cuneiformsigngi4overgi4	CUNEIFORM SIGN GI4 OVER GI4
+12106	cuneiformsigngi4crossinggi4	CUNEIFORM SIGN GI4 CROSSING GI4
+12107	cuneiformsigngidim	CUNEIFORM SIGN GIDIM
+12108	cuneiformsigngir2	CUNEIFORM SIGN GIR2
+12109	cuneiformsigngir2gunu	CUNEIFORM SIGN GIR2 GUNU
+1210A	cuneiformsigngir3	CUNEIFORM SIGN GIR3
+1210B	cuneiformsigngir3timesaplusigi	CUNEIFORM SIGN GIR3 TIMES A PLUS IGI
+1210C	cuneiformsigngir3timesgan2tenu	CUNEIFORM SIGN GIR3 TIMES GAN2 TENU
+1210D	cuneiformsigngir3timesigi	CUNEIFORM SIGN GIR3 TIMES IGI
+1210E	cuneiformsigngir3timesluplusigi	CUNEIFORM SIGN GIR3 TIMES LU PLUS IGI
+1210F	cuneiformsigngir3timespa	CUNEIFORM SIGN GIR3 TIMES PA
+12110	cuneiformsigngisal	CUNEIFORM SIGN GISAL
+12111	cuneiformsigngish	CUNEIFORM SIGN GISH
+12112	cuneiformsigngishcrossinggish	CUNEIFORM SIGN GISH CROSSING GISH
+12113	cuneiformsigngishtimesbad	CUNEIFORM SIGN GISH TIMES BAD
+12114	cuneiformsigngishtimestak4	CUNEIFORM SIGN GISH TIMES TAK4
+12115	cuneiformsigngishtenu	CUNEIFORM SIGN GISH TENU
+12116	cuneiformsigngu	CUNEIFORM SIGN GU
+12117	cuneiformsigngucrossinggu	CUNEIFORM SIGN GU CROSSING GU
+12118	cuneiformsigngu2	CUNEIFORM SIGN GU2
+12119	cuneiformsigngu2timeskak	CUNEIFORM SIGN GU2 TIMES KAK
+1211A	cuneiformsigngu2timeskaktimesigigunu	CUNEIFORM SIGN GU2 TIMES KAK TIMES IGI GUNU
+1211B	cuneiformsigngu2timesnun	CUNEIFORM SIGN GU2 TIMES NUN
+1211C	cuneiformsigngu2timessalplustug2	CUNEIFORM SIGN GU2 TIMES SAL PLUS TUG2
+1211D	cuneiformsigngu2gunu	CUNEIFORM SIGN GU2 GUNU
+1211E	cuneiformsigngud	CUNEIFORM SIGN GUD
+1211F	cuneiformsigngudtimesapluskur	CUNEIFORM SIGN GUD TIMES A PLUS KUR
+12120	cuneiformsigngudtimeskur	CUNEIFORM SIGN GUD TIMES KUR
+12121	cuneiformsigngudovergudlugal	CUNEIFORM SIGN GUD OVER GUD LUGAL
+12122	cuneiformsigngul	CUNEIFORM SIGN GUL
+12123	cuneiformsigngum	CUNEIFORM SIGN GUM
+12124	cuneiformsigngumtimesshe	CUNEIFORM SIGN GUM TIMES SHE
+12125	cuneiformsigngur	CUNEIFORM SIGN GUR
+12126	cuneiformsigngur7	CUNEIFORM SIGN GUR7
+12127	cuneiformsigngurun	CUNEIFORM SIGN GURUN
+12128	cuneiformsigngurush	CUNEIFORM SIGN GURUSH
+12129	cuneiformsignha	CUNEIFORM SIGN HA
+1212A	cuneiformsignhatenu	CUNEIFORM SIGN HA TENU
+1212B	cuneiformsignhagunu	CUNEIFORM SIGN HA GUNU
+1212C	cuneiformsignhal	CUNEIFORM SIGN HAL
+1212D	cuneiformsignhi	CUNEIFORM SIGN HI
+1212E	cuneiformsignhitimesash	CUNEIFORM SIGN HI TIMES ASH
+1212F	cuneiformsignhitimesash2	CUNEIFORM SIGN HI TIMES ASH2
+12130	cuneiformsignhitimesbad	CUNEIFORM SIGN HI TIMES BAD
+12131	cuneiformsignhitimesdish	CUNEIFORM SIGN HI TIMES DISH
+12132	cuneiformsignhitimesgad	CUNEIFORM SIGN HI TIMES GAD
+12133	cuneiformsignhitimeskin	CUNEIFORM SIGN HI TIMES KIN
+12134	cuneiformsignhitimesnun	CUNEIFORM SIGN HI TIMES NUN
+12135	cuneiformsignhitimesshe	CUNEIFORM SIGN HI TIMES SHE
+12136	cuneiformsignhitimesu	CUNEIFORM SIGN HI TIMES U
+12137	cuneiformsignhu	CUNEIFORM SIGN HU
+12138	cuneiformsignhub2	CUNEIFORM SIGN HUB2
+12139	cuneiformsignhub2timesan	CUNEIFORM SIGN HUB2 TIMES AN
+1213A	cuneiformsignhub2timeshal	CUNEIFORM SIGN HUB2 TIMES HAL
+1213B	cuneiformsignhub2timeskaskal	CUNEIFORM SIGN HUB2 TIMES KASKAL
+1213C	cuneiformsignhub2timeslish	CUNEIFORM SIGN HUB2 TIMES LISH
+1213D	cuneiformsignhub2timesud	CUNEIFORM SIGN HUB2 TIMES UD
+1213E	cuneiformsignhul2	CUNEIFORM SIGN HUL2
+1213F	cuneiformsigni	CUNEIFORM SIGN I
+12140	cuneiformsignia	CUNEIFORM SIGN I A
+12141	cuneiformsignib	CUNEIFORM SIGN IB
+12142	cuneiformsignidim	CUNEIFORM SIGN IDIM
+12143	cuneiformsignidimoveridimbur	CUNEIFORM SIGN IDIM OVER IDIM BUR
+12144	cuneiformsignidimoveridimsquared	CUNEIFORM SIGN IDIM OVER IDIM SQUARED
+12145	cuneiformsignig	CUNEIFORM SIGN IG
+12146	cuneiformsignigi	CUNEIFORM SIGN IGI
+12147	cuneiformsignigidib	CUNEIFORM SIGN IGI DIB
+12148	cuneiformsignigiri	CUNEIFORM SIGN IGI RI
+12149	cuneiformsignigioverigishirovershirudoverud	CUNEIFORM SIGN IGI OVER IGI SHIR OVER SHIR UD OVER UD
+1214A	cuneiformsignigigunu	CUNEIFORM SIGN IGI GUNU
+1214B	cuneiformsignil	CUNEIFORM SIGN IL
+1214C	cuneiformsigniltimesgan2tenu	CUNEIFORM SIGN IL TIMES GAN2 TENU
+1214D	cuneiformsignil2	CUNEIFORM SIGN IL2
+1214E	cuneiformsignim	CUNEIFORM SIGN IM
+1214F	cuneiformsignimtimestak4	CUNEIFORM SIGN IM TIMES TAK4
+12150	cuneiformsignimcrossingim	CUNEIFORM SIGN IM CROSSING IM
+12151	cuneiformsignimopposingim	CUNEIFORM SIGN IM OPPOSING IM
+12152	cuneiformsignimsquared	CUNEIFORM SIGN IM SQUARED
+12153	cuneiformsignimin	CUNEIFORM SIGN IMIN
+12154	cuneiformsignin	CUNEIFORM SIGN IN
+12155	cuneiformsignir	CUNEIFORM SIGN IR
+12156	cuneiformsignish	CUNEIFORM SIGN ISH
+12157	cuneiformsignka	CUNEIFORM SIGN KA
+12158	cuneiformsignkatimesa	CUNEIFORM SIGN KA TIMES A
+12159	cuneiformsignkatimesad	CUNEIFORM SIGN KA TIMES AD
+1215A	cuneiformsignkatimesadplusku3	CUNEIFORM SIGN KA TIMES AD PLUS KU3
+1215B	cuneiformsignkatimesash2	CUNEIFORM SIGN KA TIMES ASH2
+1215C	cuneiformsignkatimesbad	CUNEIFORM SIGN KA TIMES BAD
+1215D	cuneiformsignkatimesbalag	CUNEIFORM SIGN KA TIMES BALAG
+1215E	cuneiformsignkatimesbar	CUNEIFORM SIGN KA TIMES BAR
+1215F	cuneiformsignkatimesbi	CUNEIFORM SIGN KA TIMES BI
+12160	cuneiformsignkatimeserin2	CUNEIFORM SIGN KA TIMES ERIN2
+12161	cuneiformsignkatimesesh2	CUNEIFORM SIGN KA TIMES ESH2
+12162	cuneiformsignkatimesga	CUNEIFORM SIGN KA TIMES GA
+12163	cuneiformsignkatimesgal	CUNEIFORM SIGN KA TIMES GAL
+12164	cuneiformsignkatimesgan2tenu	CUNEIFORM SIGN KA TIMES GAN2 TENU
+12165	cuneiformsignkatimesgar	CUNEIFORM SIGN KA TIMES GAR
+12166	cuneiformsignkatimesgarplussha3plusa	CUNEIFORM SIGN KA TIMES GAR PLUS SHA3 PLUS A
+12167	cuneiformsignkatimesgi	CUNEIFORM SIGN KA TIMES GI
+12168	cuneiformsignkatimesgir2	CUNEIFORM SIGN KA TIMES GIR2
+12169	cuneiformsignkatimesgishplussar	CUNEIFORM SIGN KA TIMES GISH PLUS SAR
+1216A	cuneiformsignkatimesgishcrossinggish	CUNEIFORM SIGN KA TIMES GISH CROSSING GISH
+1216B	cuneiformsignkatimesgu	CUNEIFORM SIGN KA TIMES GU
+1216C	cuneiformsignkatimesgur7	CUNEIFORM SIGN KA TIMES GUR7
+1216D	cuneiformsignkatimesigi	CUNEIFORM SIGN KA TIMES IGI
+1216E	cuneiformsignkatimesim	CUNEIFORM SIGN KA TIMES IM
+1216F	cuneiformsignkatimeskak	CUNEIFORM SIGN KA TIMES KAK
+12170	cuneiformsignkatimeski	CUNEIFORM SIGN KA TIMES KI
+12171	cuneiformsignkatimeskid	CUNEIFORM SIGN KA TIMES KID
+12172	cuneiformsignkatimesli	CUNEIFORM SIGN KA TIMES LI
+12173	cuneiformsignkatimeslu	CUNEIFORM SIGN KA TIMES LU
+12174	cuneiformsignkatimesme	CUNEIFORM SIGN KA TIMES ME
+12175	cuneiformsignkatimesmeplusdu	CUNEIFORM SIGN KA TIMES ME PLUS DU
+12176	cuneiformsignkatimesmeplusgi	CUNEIFORM SIGN KA TIMES ME PLUS GI
+12177	cuneiformsignkatimesmepluste	CUNEIFORM SIGN KA TIMES ME PLUS TE
+12178	cuneiformsignkatimesmi	CUNEIFORM SIGN KA TIMES MI
+12179	cuneiformsignkatimesmiplusnunuz	CUNEIFORM SIGN KA TIMES MI PLUS NUNUZ
+1217A	cuneiformsignkatimesne	CUNEIFORM SIGN KA TIMES NE
+1217B	cuneiformsignkatimesnun	CUNEIFORM SIGN KA TIMES NUN
+1217C	cuneiformsignkatimespi	CUNEIFORM SIGN KA TIMES PI
+1217D	cuneiformsignkatimesru	CUNEIFORM SIGN KA TIMES RU
+1217E	cuneiformsignkatimessa	CUNEIFORM SIGN KA TIMES SA
+1217F	cuneiformsignkatimessar	CUNEIFORM SIGN KA TIMES SAR
+12180	cuneiformsignkatimessha	CUNEIFORM SIGN KA TIMES SHA
+12181	cuneiformsignkatimesshe	CUNEIFORM SIGN KA TIMES SHE
+12182	cuneiformsignkatimesshid	CUNEIFORM SIGN KA TIMES SHID
+12183	cuneiformsignkatimesshu	CUNEIFORM SIGN KA TIMES SHU
+12184	cuneiformsignkatimessig	CUNEIFORM SIGN KA TIMES SIG
+12185	cuneiformsignkatimessuhur	CUNEIFORM SIGN KA TIMES SUHUR
+12186	cuneiformsignkatimestar	CUNEIFORM SIGN KA TIMES TAR
+12187	cuneiformsignkatimesu	CUNEIFORM SIGN KA TIMES U
+12188	cuneiformsignkatimesu2	CUNEIFORM SIGN KA TIMES U2
+12189	cuneiformsignkatimesud	CUNEIFORM SIGN KA TIMES UD
+1218A	cuneiformsignkatimesumumtimespa	CUNEIFORM SIGN KA TIMES UMUM TIMES PA
+1218B	cuneiformsignkatimesush	CUNEIFORM SIGN KA TIMES USH
+1218C	cuneiformsignkatimeszi	CUNEIFORM SIGN KA TIMES ZI
+1218D	cuneiformsignka2	CUNEIFORM SIGN KA2
+1218E	cuneiformsignka2crossingka2	CUNEIFORM SIGN KA2 CROSSING KA2
+1218F	cuneiformsignkab	CUNEIFORM SIGN KAB
+12190	cuneiformsignkad2	CUNEIFORM SIGN KAD2
+12191	cuneiformsignkad3	CUNEIFORM SIGN KAD3
+12192	cuneiformsignkad4	CUNEIFORM SIGN KAD4
+12193	cuneiformsignkad5	CUNEIFORM SIGN KAD5
+12194	cuneiformsignkad5overkad5	CUNEIFORM SIGN KAD5 OVER KAD5
+12195	cuneiformsignkak	CUNEIFORM SIGN KAK
+12196	cuneiformsignkaktimesigigunu	CUNEIFORM SIGN KAK TIMES IGI GUNU
+12197	cuneiformsignkal	CUNEIFORM SIGN KAL
+12198	cuneiformsignkaltimesbad	CUNEIFORM SIGN KAL TIMES BAD
+12199	cuneiformsignkalcrossingkal	CUNEIFORM SIGN KAL CROSSING KAL
+1219A	cuneiformsignkam2	CUNEIFORM SIGN KAM2
+1219B	cuneiformsignkam4	CUNEIFORM SIGN KAM4
+1219C	cuneiformsignkaskal	CUNEIFORM SIGN KASKAL
+1219D	cuneiformsignkaskallagabtimesuoverlagabtimesu	CUNEIFORM SIGN KASKAL LAGAB TIMES U OVER LAGAB TIMES U
+1219E	cuneiformsignkaskaloverkaskallagabtimesuoverlagabtimesu	CUNEIFORM SIGN KASKAL OVER KASKAL LAGAB TIMES U OVER LAGAB TIMES U
+1219F	cuneiformsignkesh2	CUNEIFORM SIGN KESH2
+121A0	cuneiformsignki	CUNEIFORM SIGN KI
+121A1	cuneiformsignkitimesbad	CUNEIFORM SIGN KI TIMES BAD
+121A2	cuneiformsignkitimesu	CUNEIFORM SIGN KI TIMES U
+121A3	cuneiformsignkitimesud	CUNEIFORM SIGN KI TIMES UD
+121A4	cuneiformsignkid	CUNEIFORM SIGN KID
+121A5	cuneiformsignkin	CUNEIFORM SIGN KIN
+121A6	cuneiformsignkisal	CUNEIFORM SIGN KISAL
+121A7	cuneiformsignkish	CUNEIFORM SIGN KISH
+121A8	cuneiformsignkisim5	CUNEIFORM SIGN KISIM5
+121A9	cuneiformsignkisim5overkisim5	CUNEIFORM SIGN KISIM5 OVER KISIM5
+121AA	cuneiformsignku	CUNEIFORM SIGN KU
+121AB	cuneiformsignkuoverhitimesash2kuoverhitimesash2	CUNEIFORM SIGN KU OVER HI TIMES ASH2 KU OVER HI TIMES ASH2
+121AC	cuneiformsignku3	CUNEIFORM SIGN KU3
+121AD	cuneiformsignku4	CUNEIFORM SIGN KU4
+121AE	cuneiformsignku4variantform	CUNEIFORM SIGN KU4 VARIANT FORM
+121AF	cuneiformsignku7	CUNEIFORM SIGN KU7
+121B0	cuneiformsignkul	CUNEIFORM SIGN KUL
+121B1	cuneiformsignkulgunu	CUNEIFORM SIGN KUL GUNU
+121B2	cuneiformsignkun	CUNEIFORM SIGN KUN
+121B3	cuneiformsignkur	CUNEIFORM SIGN KUR
+121B4	cuneiformsignkuropposingkur	CUNEIFORM SIGN KUR OPPOSING KUR
+121B5	cuneiformsignkushu2	CUNEIFORM SIGN KUSHU2
+121B6	cuneiformsignkwu318	CUNEIFORM SIGN KWU318
+121B7	cuneiformsignla	CUNEIFORM SIGN LA
+121B8	cuneiformsignlagab	CUNEIFORM SIGN LAGAB
+121B9	cuneiformsignlagabtimesa	CUNEIFORM SIGN LAGAB TIMES A
+121BA	cuneiformsignlagabtimesaplusdaplusha	CUNEIFORM SIGN LAGAB TIMES A PLUS DA PLUS HA
+121BB	cuneiformsignlagabtimesaplusgar	CUNEIFORM SIGN LAGAB TIMES A PLUS GAR
+121BC	cuneiformsignlagabtimesapluslal	CUNEIFORM SIGN LAGAB TIMES A PLUS LAL
+121BD	cuneiformsignlagabtimesal	CUNEIFORM SIGN LAGAB TIMES AL
+121BE	cuneiformsignlagabtimesan	CUNEIFORM SIGN LAGAB TIMES AN
+121BF	cuneiformsignlagabtimesashzidatenu	CUNEIFORM SIGN LAGAB TIMES ASH ZIDA TENU
+121C0	cuneiformsignlagabtimesbad	CUNEIFORM SIGN LAGAB TIMES BAD
+121C1	cuneiformsignlagabtimesbi	CUNEIFORM SIGN LAGAB TIMES BI
+121C2	cuneiformsignlagabtimesdar	CUNEIFORM SIGN LAGAB TIMES DAR
+121C3	cuneiformsignlagabtimesen	CUNEIFORM SIGN LAGAB TIMES EN
+121C4	cuneiformsignlagabtimesga	CUNEIFORM SIGN LAGAB TIMES GA
+121C5	cuneiformsignlagabtimesgar	CUNEIFORM SIGN LAGAB TIMES GAR
+121C6	cuneiformsignlagabtimesgud	CUNEIFORM SIGN LAGAB TIMES GUD
+121C7	cuneiformsignlagabtimesgudplusgud	CUNEIFORM SIGN LAGAB TIMES GUD PLUS GUD
+121C8	cuneiformsignlagabtimesha	CUNEIFORM SIGN LAGAB TIMES HA
+121C9	cuneiformsignlagabtimeshal	CUNEIFORM SIGN LAGAB TIMES HAL
+121CA	cuneiformsignlagabtimeshitimesnun	CUNEIFORM SIGN LAGAB TIMES HI TIMES NUN
+121CB	cuneiformsignlagabtimesigigunu	CUNEIFORM SIGN LAGAB TIMES IGI GUNU
+121CC	cuneiformsignlagabtimesim	CUNEIFORM SIGN LAGAB TIMES IM
+121CD	cuneiformsignlagabtimesimplusha	CUNEIFORM SIGN LAGAB TIMES IM PLUS HA
+121CE	cuneiformsignlagabtimesimpluslu	CUNEIFORM SIGN LAGAB TIMES IM PLUS LU
+121CF	cuneiformsignlagabtimeski	CUNEIFORM SIGN LAGAB TIMES KI
+121D0	cuneiformsignlagabtimeskin	CUNEIFORM SIGN LAGAB TIMES KIN
+121D1	cuneiformsignlagabtimesku3	CUNEIFORM SIGN LAGAB TIMES KU3
+121D2	cuneiformsignlagabtimeskul	CUNEIFORM SIGN LAGAB TIMES KUL
+121D3	cuneiformsignlagabtimeskulplushiplusa	CUNEIFORM SIGN LAGAB TIMES KUL PLUS HI PLUS A
+121D4	cuneiformsignlagabtimeslagab	CUNEIFORM SIGN LAGAB TIMES LAGAB
+121D5	cuneiformsignlagabtimeslish	CUNEIFORM SIGN LAGAB TIMES LISH
+121D6	cuneiformsignlagabtimeslu	CUNEIFORM SIGN LAGAB TIMES LU
+121D7	cuneiformsignlagabtimeslul	CUNEIFORM SIGN LAGAB TIMES LUL
+121D8	cuneiformsignlagabtimesme	CUNEIFORM SIGN LAGAB TIMES ME
+121D9	cuneiformsignlagabtimesmeplusen	CUNEIFORM SIGN LAGAB TIMES ME PLUS EN
+121DA	cuneiformsignlagabtimesmush	CUNEIFORM SIGN LAGAB TIMES MUSH
+121DB	cuneiformsignlagabtimesne	CUNEIFORM SIGN LAGAB TIMES NE
+121DC	cuneiformsignlagabtimessheplussum	CUNEIFORM SIGN LAGAB TIMES SHE PLUS SUM
+121DD	cuneiformsignlagabtimesshitaplusgishpluserin2	CUNEIFORM SIGN LAGAB TIMES SHITA PLUS GISH PLUS ERIN2
+121DE	cuneiformsignlagabtimesshitaplusgishtenu	CUNEIFORM SIGN LAGAB TIMES SHITA PLUS GISH TENU
+121DF	cuneiformsignlagabtimesshu2	CUNEIFORM SIGN LAGAB TIMES SHU2
+121E0	cuneiformsignlagabtimesshu2plusshu2	CUNEIFORM SIGN LAGAB TIMES SHU2 PLUS SHU2
+121E1	cuneiformsignlagabtimessum	CUNEIFORM SIGN LAGAB TIMES SUM
+121E2	cuneiformsignlagabtimestag	CUNEIFORM SIGN LAGAB TIMES TAG
+121E3	cuneiformsignlagabtimestak4	CUNEIFORM SIGN LAGAB TIMES TAK4
+121E4	cuneiformsignlagabtimesteplusaplussuplusna	CUNEIFORM SIGN LAGAB TIMES TE PLUS A PLUS SU PLUS NA
+121E5	cuneiformsignlagabtimesu	CUNEIFORM SIGN LAGAB TIMES U
+121E6	cuneiformsignlagabtimesuplusa	CUNEIFORM SIGN LAGAB TIMES U PLUS A
+121E7	cuneiformsignlagabtimesuplusuplusu	CUNEIFORM SIGN LAGAB TIMES U PLUS U PLUS U
+121E8	cuneiformsignlagabtimesu2plusash	CUNEIFORM SIGN LAGAB TIMES U2 PLUS ASH
+121E9	cuneiformsignlagabtimesud	CUNEIFORM SIGN LAGAB TIMES UD
+121EA	cuneiformsignlagabtimesush	CUNEIFORM SIGN LAGAB TIMES USH
+121EB	cuneiformsignlagabsquared	CUNEIFORM SIGN LAGAB SQUARED
+121EC	cuneiformsignlagar	CUNEIFORM SIGN LAGAR
+121ED	cuneiformsignlagartimesshe	CUNEIFORM SIGN LAGAR TIMES SHE
+121EE	cuneiformsignlagartimessheplussum	CUNEIFORM SIGN LAGAR TIMES SHE PLUS SUM
+121EF	cuneiformsignlagargunu	CUNEIFORM SIGN LAGAR GUNU
+121F0	cuneiformsignlagargunuoverlagargunushe	CUNEIFORM SIGN LAGAR GUNU OVER LAGAR GUNU SHE
+121F1	cuneiformsignlahshu	CUNEIFORM SIGN LAHSHU
+121F2	cuneiformsignlal	CUNEIFORM SIGN LAL
+121F3	cuneiformsignlaltimeslal	CUNEIFORM SIGN LAL TIMES LAL
+121F4	cuneiformsignlam	CUNEIFORM SIGN LAM
+121F5	cuneiformsignlamtimeskur	CUNEIFORM SIGN LAM TIMES KUR
+121F6	cuneiformsignlamtimeskurplusru	CUNEIFORM SIGN LAM TIMES KUR PLUS RU
+121F7	cuneiformsignli	CUNEIFORM SIGN LI
+121F8	cuneiformsignlil	CUNEIFORM SIGN LIL
+121F9	cuneiformsignlimmu2	CUNEIFORM SIGN LIMMU2
+121FA	cuneiformsignlish	CUNEIFORM SIGN LISH
+121FB	cuneiformsignlu	CUNEIFORM SIGN LU
+121FC	cuneiformsignlutimesbad	CUNEIFORM SIGN LU TIMES BAD
+121FD	cuneiformsignlu2	CUNEIFORM SIGN LU2
+121FE	cuneiformsignlu2timesal	CUNEIFORM SIGN LU2 TIMES AL
+121FF	cuneiformsignlu2timesbad	CUNEIFORM SIGN LU2 TIMES BAD
+12200	cuneiformsignlu2timesesh2	CUNEIFORM SIGN LU2 TIMES ESH2
+12201	cuneiformsignlu2timesesh2tenu	CUNEIFORM SIGN LU2 TIMES ESH2 TENU
+12202	cuneiformsignlu2timesgan2tenu	CUNEIFORM SIGN LU2 TIMES GAN2 TENU
+12203	cuneiformsignlu2timeshitimesbad	CUNEIFORM SIGN LU2 TIMES HI TIMES BAD
+12204	cuneiformsignlu2timesim	CUNEIFORM SIGN LU2 TIMES IM
+12205	cuneiformsignlu2timeskad2	CUNEIFORM SIGN LU2 TIMES KAD2
+12206	cuneiformsignlu2timeskad3	CUNEIFORM SIGN LU2 TIMES KAD3
+12207	cuneiformsignlu2timeskad3plusash	CUNEIFORM SIGN LU2 TIMES KAD3 PLUS ASH
+12208	cuneiformsignlu2timeski	CUNEIFORM SIGN LU2 TIMES KI
+12209	cuneiformsignlu2timeslaplusash	CUNEIFORM SIGN LU2 TIMES LA PLUS ASH
+1220A	cuneiformsignlu2timeslagab	CUNEIFORM SIGN LU2 TIMES LAGAB
+1220B	cuneiformsignlu2timesmeplusen	CUNEIFORM SIGN LU2 TIMES ME PLUS EN
+1220C	cuneiformsignlu2timesne	CUNEIFORM SIGN LU2 TIMES NE
+1220D	cuneiformsignlu2timesnu	CUNEIFORM SIGN LU2 TIMES NU
+1220E	cuneiformsignlu2timessiplusash	CUNEIFORM SIGN LU2 TIMES SI PLUS ASH
+1220F	cuneiformsignlu2timessik2plusbu	CUNEIFORM SIGN LU2 TIMES SIK2 PLUS BU
+12210	cuneiformsignlu2timestug2	CUNEIFORM SIGN LU2 TIMES TUG2
+12211	cuneiformsignlu2tenu	CUNEIFORM SIGN LU2 TENU
+12212	cuneiformsignlu2crossinglu2	CUNEIFORM SIGN LU2 CROSSING LU2
+12213	cuneiformsignlu2opposinglu2	CUNEIFORM SIGN LU2 OPPOSING LU2
+12214	cuneiformsignlu2squared	CUNEIFORM SIGN LU2 SQUARED
+12215	cuneiformsignlu2sheshig	CUNEIFORM SIGN LU2 SHESHIG
+12216	cuneiformsignlu3	CUNEIFORM SIGN LU3
+12217	cuneiformsignlugal	CUNEIFORM SIGN LUGAL
+12218	cuneiformsignlugaloverlugal	CUNEIFORM SIGN LUGAL OVER LUGAL
+12219	cuneiformsignlugalopposinglugal	CUNEIFORM SIGN LUGAL OPPOSING LUGAL
+1221A	cuneiformsignlugalsheshig	CUNEIFORM SIGN LUGAL SHESHIG
+1221B	cuneiformsignluh	CUNEIFORM SIGN LUH
+1221C	cuneiformsignlul	CUNEIFORM SIGN LUL
+1221D	cuneiformsignlum	CUNEIFORM SIGN LUM
+1221E	cuneiformsignlumoverlum	CUNEIFORM SIGN LUM OVER LUM
+1221F	cuneiformsignlumoverlumgarovergar	CUNEIFORM SIGN LUM OVER LUM GAR OVER GAR
+12220	cuneiformsignma	CUNEIFORM SIGN MA
+12221	cuneiformsignmatimestak4	CUNEIFORM SIGN MA TIMES TAK4
+12222	cuneiformsignmagunu	CUNEIFORM SIGN MA GUNU
+12223	cuneiformsignma2	CUNEIFORM SIGN MA2
+12224	cuneiformsignmah	CUNEIFORM SIGN MAH
+12225	cuneiformsignmar	CUNEIFORM SIGN MAR
+12226	cuneiformsignmash	CUNEIFORM SIGN MASH
+12227	cuneiformsignmash2	CUNEIFORM SIGN MASH2
+12228	cuneiformsignme	CUNEIFORM SIGN ME
+12229	cuneiformsignmes	CUNEIFORM SIGN MES
+1222A	cuneiformsignmi	CUNEIFORM SIGN MI
+1222B	cuneiformsignmin	CUNEIFORM SIGN MIN
+1222C	cuneiformsignmu	CUNEIFORM SIGN MU
+1222D	cuneiformsignmuovermu	CUNEIFORM SIGN MU OVER MU
+1222E	cuneiformsignmug	CUNEIFORM SIGN MUG
+1222F	cuneiformsignmuggunu	CUNEIFORM SIGN MUG GUNU
+12230	cuneiformsignmunsub	CUNEIFORM SIGN MUNSUB
+12231	cuneiformsignmurgu2	CUNEIFORM SIGN MURGU2
+12232	cuneiformsignmush	CUNEIFORM SIGN MUSH
+12233	cuneiformsignmushtimesa	CUNEIFORM SIGN MUSH TIMES A
+12234	cuneiformsignmushtimeskur	CUNEIFORM SIGN MUSH TIMES KUR
+12235	cuneiformsignmushtimesza	CUNEIFORM SIGN MUSH TIMES ZA
+12236	cuneiformsignmushovermush	CUNEIFORM SIGN MUSH OVER MUSH
+12237	cuneiformsignmushovermushtimesaplusna	CUNEIFORM SIGN MUSH OVER MUSH TIMES A PLUS NA
+12238	cuneiformsignmushcrossingmush	CUNEIFORM SIGN MUSH CROSSING MUSH
+12239	cuneiformsignmush3	CUNEIFORM SIGN MUSH3
+1223A	cuneiformsignmush3timesa	CUNEIFORM SIGN MUSH3 TIMES A
+1223B	cuneiformsignmush3timesaplusdi	CUNEIFORM SIGN MUSH3 TIMES A PLUS DI
+1223C	cuneiformsignmush3timesdi	CUNEIFORM SIGN MUSH3 TIMES DI
+1223D	cuneiformsignmush3gunu	CUNEIFORM SIGN MUSH3 GUNU
+1223E	cuneiformsignna	CUNEIFORM SIGN NA
+1223F	cuneiformsignna2	CUNEIFORM SIGN NA2
+12240	cuneiformsignnaga	CUNEIFORM SIGN NAGA
+12241	cuneiformsignnagainverted	CUNEIFORM SIGN NAGA INVERTED
+12242	cuneiformsignnagatimesshutenu	CUNEIFORM SIGN NAGA TIMES SHU TENU
+12243	cuneiformsignnagaopposingnaga	CUNEIFORM SIGN NAGA OPPOSING NAGA
+12244	cuneiformsignnagar	CUNEIFORM SIGN NAGAR
+12245	cuneiformsignnamnutillu	CUNEIFORM SIGN NAM NUTILLU
+12246	cuneiformsignnam	CUNEIFORM SIGN NAM
+12247	cuneiformsignnam2	CUNEIFORM SIGN NAM2
+12248	cuneiformsignne	CUNEIFORM SIGN NE
+12249	cuneiformsignnetimesa	CUNEIFORM SIGN NE TIMES A
+1224A	cuneiformsignnetimesud	CUNEIFORM SIGN NE TIMES UD
+1224B	cuneiformsignnesheshig	CUNEIFORM SIGN NE SHESHIG
+1224C	cuneiformsignni	CUNEIFORM SIGN NI
+1224D	cuneiformsignnitimese	CUNEIFORM SIGN NI TIMES E
+1224E	cuneiformsignni2	CUNEIFORM SIGN NI2
+1224F	cuneiformsignnim	CUNEIFORM SIGN NIM
+12250	cuneiformsignnimtimesgan2tenu	CUNEIFORM SIGN NIM TIMES GAN2 TENU
+12251	cuneiformsignnimtimesgarplusgan2tenu	CUNEIFORM SIGN NIM TIMES GAR PLUS GAN2 TENU
+12252	cuneiformsignninda2	CUNEIFORM SIGN NINDA2
+12253	cuneiformsignninda2timesan	CUNEIFORM SIGN NINDA2 TIMES AN
+12254	cuneiformsignninda2timesash	CUNEIFORM SIGN NINDA2 TIMES ASH
+12255	cuneiformsignninda2timesashplusash	CUNEIFORM SIGN NINDA2 TIMES ASH PLUS ASH
+12256	cuneiformsignninda2timesgud	CUNEIFORM SIGN NINDA2 TIMES GUD
+12257	cuneiformsignninda2timesmeplusgan2tenu	CUNEIFORM SIGN NINDA2 TIMES ME PLUS GAN2 TENU
+12258	cuneiformsignninda2timesne	CUNEIFORM SIGN NINDA2 TIMES NE
+12259	cuneiformsignninda2timesnun	CUNEIFORM SIGN NINDA2 TIMES NUN
+1225A	cuneiformsignninda2timesshe	CUNEIFORM SIGN NINDA2 TIMES SHE
+1225B	cuneiformsignninda2timessheplusaan	CUNEIFORM SIGN NINDA2 TIMES SHE PLUS A AN
+1225C	cuneiformsignninda2timessheplusash	CUNEIFORM SIGN NINDA2 TIMES SHE PLUS ASH
+1225D	cuneiformsignninda2timessheplusashplusash	CUNEIFORM SIGN NINDA2 TIMES SHE PLUS ASH PLUS ASH
+1225E	cuneiformsignninda2timesu2plusash	CUNEIFORM SIGN NINDA2 TIMES U2 PLUS ASH
+1225F	cuneiformsignninda2timesush	CUNEIFORM SIGN NINDA2 TIMES USH
+12260	cuneiformsignnisag	CUNEIFORM SIGN NISAG
+12261	cuneiformsignnu	CUNEIFORM SIGN NU
+12262	cuneiformsignnu11	CUNEIFORM SIGN NU11
+12263	cuneiformsignnun	CUNEIFORM SIGN NUN
+12264	cuneiformsignnunlagartimesgar	CUNEIFORM SIGN NUN LAGAR TIMES GAR
+12265	cuneiformsignnunlagartimesmash	CUNEIFORM SIGN NUN LAGAR TIMES MASH
+12266	cuneiformsignnunlagartimessal	CUNEIFORM SIGN NUN LAGAR TIMES SAL
+12267	cuneiformsignnunlagartimessalovernunlagartimessal	CUNEIFORM SIGN NUN LAGAR TIMES SAL OVER NUN LAGAR TIMES SAL
+12268	cuneiformsignnunlagartimesush	CUNEIFORM SIGN NUN LAGAR TIMES USH
+12269	cuneiformsignnuntenu	CUNEIFORM SIGN NUN TENU
+1226A	cuneiformsignnunovernun	CUNEIFORM SIGN NUN OVER NUN
+1226B	cuneiformsignnuncrossingnun	CUNEIFORM SIGN NUN CROSSING NUN
+1226C	cuneiformsignnuncrossingnunlagaroverlagar	CUNEIFORM SIGN NUN CROSSING NUN LAGAR OVER LAGAR
+1226D	cuneiformsignnunuz	CUNEIFORM SIGN NUNUZ
+1226E	cuneiformsignnunuzab2timesashgab	CUNEIFORM SIGN NUNUZ AB2 TIMES ASHGAB
+1226F	cuneiformsignnunuzab2timesbi	CUNEIFORM SIGN NUNUZ AB2 TIMES BI
+12270	cuneiformsignnunuzab2timesdug	CUNEIFORM SIGN NUNUZ AB2 TIMES DUG
+12271	cuneiformsignnunuzab2timesgud	CUNEIFORM SIGN NUNUZ AB2 TIMES GUD
+12272	cuneiformsignnunuzab2timesigigunu	CUNEIFORM SIGN NUNUZ AB2 TIMES IGI GUNU
+12273	cuneiformsignnunuzab2timeskad3	CUNEIFORM SIGN NUNUZ AB2 TIMES KAD3
+12274	cuneiformsignnunuzab2timesla	CUNEIFORM SIGN NUNUZ AB2 TIMES LA
+12275	cuneiformsignnunuzab2timesne	CUNEIFORM SIGN NUNUZ AB2 TIMES NE
+12276	cuneiformsignnunuzab2timessila3	CUNEIFORM SIGN NUNUZ AB2 TIMES SILA3
+12277	cuneiformsignnunuzab2timesu2	CUNEIFORM SIGN NUNUZ AB2 TIMES U2
+12278	cuneiformsignnunuzkisim5timesbi	CUNEIFORM SIGN NUNUZ KISIM5 TIMES BI
+12279	cuneiformsignnunuzkisim5timesbiu	CUNEIFORM SIGN NUNUZ KISIM5 TIMES BI U
+1227A	cuneiformsignpa	CUNEIFORM SIGN PA
+1227B	cuneiformsignpad	CUNEIFORM SIGN PAD
+1227C	cuneiformsignpan	CUNEIFORM SIGN PAN
+1227D	cuneiformsignpap	CUNEIFORM SIGN PAP
+1227E	cuneiformsignpesh2	CUNEIFORM SIGN PESH2
+1227F	cuneiformsignpi	CUNEIFORM SIGN PI
+12280	cuneiformsignpitimesa	CUNEIFORM SIGN PI TIMES A
+12281	cuneiformsignpitimesab	CUNEIFORM SIGN PI TIMES AB
+12282	cuneiformsignpitimesbi	CUNEIFORM SIGN PI TIMES BI
+12283	cuneiformsignpitimesbu	CUNEIFORM SIGN PI TIMES BU
+12284	cuneiformsignpitimese	CUNEIFORM SIGN PI TIMES E
+12285	cuneiformsignpitimesi	CUNEIFORM SIGN PI TIMES I
+12286	cuneiformsignpitimesib	CUNEIFORM SIGN PI TIMES IB
+12287	cuneiformsignpitimesu	CUNEIFORM SIGN PI TIMES U
+12288	cuneiformsignpitimesu2	CUNEIFORM SIGN PI TIMES U2
+12289	cuneiformsignpicrossingpi	CUNEIFORM SIGN PI CROSSING PI
+1228A	cuneiformsignpirig	CUNEIFORM SIGN PIRIG
+1228B	cuneiformsignpirigtimeskal	CUNEIFORM SIGN PIRIG TIMES KAL
+1228C	cuneiformsignpirigtimesud	CUNEIFORM SIGN PIRIG TIMES UD
+1228D	cuneiformsignpirigtimesza	CUNEIFORM SIGN PIRIG TIMES ZA
+1228E	cuneiformsignpirigopposingpirig	CUNEIFORM SIGN PIRIG OPPOSING PIRIG
+1228F	cuneiformsignra	CUNEIFORM SIGN RA
+12290	cuneiformsignrab	CUNEIFORM SIGN RAB
+12291	cuneiformsignri	CUNEIFORM SIGN RI
+12292	cuneiformsignru	CUNEIFORM SIGN RU
+12293	cuneiformsignsa	CUNEIFORM SIGN SA
+12294	cuneiformsignsagnutillu	CUNEIFORM SIGN SAG NUTILLU
+12295	cuneiformsignsag	CUNEIFORM SIGN SAG
+12296	cuneiformsignsagtimesa	CUNEIFORM SIGN SAG TIMES A
+12297	cuneiformsignsagtimesdu	CUNEIFORM SIGN SAG TIMES DU
+12298	cuneiformsignsagtimesdub	CUNEIFORM SIGN SAG TIMES DUB
+12299	cuneiformsignsagtimesha	CUNEIFORM SIGN SAG TIMES HA
+1229A	cuneiformsignsagtimeskak	CUNEIFORM SIGN SAG TIMES KAK
+1229B	cuneiformsignsagtimeskur	CUNEIFORM SIGN SAG TIMES KUR
+1229C	cuneiformsignsagtimeslum	CUNEIFORM SIGN SAG TIMES LUM
+1229D	cuneiformsignsagtimesmi	CUNEIFORM SIGN SAG TIMES MI
+1229E	cuneiformsignsagtimesnun	CUNEIFORM SIGN SAG TIMES NUN
+1229F	cuneiformsignsagtimessal	CUNEIFORM SIGN SAG TIMES SAL
+122A0	cuneiformsignsagtimesshid	CUNEIFORM SIGN SAG TIMES SHID
+122A1	cuneiformsignsagtimestab	CUNEIFORM SIGN SAG TIMES TAB
+122A2	cuneiformsignsagtimesu2	CUNEIFORM SIGN SAG TIMES U2
+122A3	cuneiformsignsagtimesub	CUNEIFORM SIGN SAG TIMES UB
+122A4	cuneiformsignsagtimesum	CUNEIFORM SIGN SAG TIMES UM
+122A5	cuneiformsignsagtimesur	CUNEIFORM SIGN SAG TIMES UR
+122A6	cuneiformsignsagtimesush	CUNEIFORM SIGN SAG TIMES USH
+122A7	cuneiformsignsagoversag	CUNEIFORM SIGN SAG OVER SAG
+122A8	cuneiformsignsaggunu	CUNEIFORM SIGN SAG GUNU
+122A9	cuneiformsignsal	CUNEIFORM SIGN SAL
+122AA	cuneiformsignsallagabtimesash2	CUNEIFORM SIGN SAL LAGAB TIMES ASH2
+122AB	cuneiformsignsanga2	CUNEIFORM SIGN SANGA2
+122AC	cuneiformsignsar	CUNEIFORM SIGN SAR
+122AD	cuneiformsignsha	CUNEIFORM SIGN SHA
+122AE	cuneiformsignsha3	CUNEIFORM SIGN SHA3
+122AF	cuneiformsignsha3timesa	CUNEIFORM SIGN SHA3 TIMES A
+122B0	cuneiformsignsha3timesbad	CUNEIFORM SIGN SHA3 TIMES BAD
+122B1	cuneiformsignsha3timesgish	CUNEIFORM SIGN SHA3 TIMES GISH
+122B2	cuneiformsignsha3timesne	CUNEIFORM SIGN SHA3 TIMES NE
+122B3	cuneiformsignsha3timesshu2	CUNEIFORM SIGN SHA3 TIMES SHU2
+122B4	cuneiformsignsha3timestur	CUNEIFORM SIGN SHA3 TIMES TUR
+122B5	cuneiformsignsha3timesu	CUNEIFORM SIGN SHA3 TIMES U
+122B6	cuneiformsignsha3timesuplusa	CUNEIFORM SIGN SHA3 TIMES U PLUS A
+122B7	cuneiformsignsha6	CUNEIFORM SIGN SHA6
+122B8	cuneiformsignshab6	CUNEIFORM SIGN SHAB6
+122B9	cuneiformsignshar2	CUNEIFORM SIGN SHAR2
+122BA	cuneiformsignshe	CUNEIFORM SIGN SHE
+122BB	cuneiformsignshehu	CUNEIFORM SIGN SHE HU
+122BC	cuneiformsignsheovershegadovergadgarovergar	CUNEIFORM SIGN SHE OVER SHE GAD OVER GAD GAR OVER GAR
+122BD	cuneiformsignsheovershetabovertabgarovergar	CUNEIFORM SIGN SHE OVER SHE TAB OVER TAB GAR OVER GAR
+122BE	cuneiformsignsheg9	CUNEIFORM SIGN SHEG9
+122BF	cuneiformsignshen	CUNEIFORM SIGN SHEN
+122C0	cuneiformsignshesh	CUNEIFORM SIGN SHESH
+122C1	cuneiformsignshesh2	CUNEIFORM SIGN SHESH2
+122C2	cuneiformsignsheshlam	CUNEIFORM SIGN SHESHLAM
+122C3	cuneiformsignshid	CUNEIFORM SIGN SHID
+122C4	cuneiformsignshidtimesa	CUNEIFORM SIGN SHID TIMES A
+122C5	cuneiformsignshidtimesim	CUNEIFORM SIGN SHID TIMES IM
+122C6	cuneiformsignshim	CUNEIFORM SIGN SHIM
+122C7	cuneiformsignshimtimesa	CUNEIFORM SIGN SHIM TIMES A
+122C8	cuneiformsignshimtimesbal	CUNEIFORM SIGN SHIM TIMES BAL
+122C9	cuneiformsignshimtimesbulug	CUNEIFORM SIGN SHIM TIMES BULUG
+122CA	cuneiformsignshimtimesdin	CUNEIFORM SIGN SHIM TIMES DIN
+122CB	cuneiformsignshimtimesgar	CUNEIFORM SIGN SHIM TIMES GAR
+122CC	cuneiformsignshimtimesigi	CUNEIFORM SIGN SHIM TIMES IGI
+122CD	cuneiformsignshimtimesigigunu	CUNEIFORM SIGN SHIM TIMES IGI GUNU
+122CE	cuneiformsignshimtimeskushu2	CUNEIFORM SIGN SHIM TIMES KUSHU2
+122CF	cuneiformsignshimtimeslul	CUNEIFORM SIGN SHIM TIMES LUL
+122D0	cuneiformsignshimtimesmug	CUNEIFORM SIGN SHIM TIMES MUG
+122D1	cuneiformsignshimtimessal	CUNEIFORM SIGN SHIM TIMES SAL
+122D2	cuneiformsignshinig	CUNEIFORM SIGN SHINIG
+122D3	cuneiformsignshir	CUNEIFORM SIGN SHIR
+122D4	cuneiformsignshirtenu	CUNEIFORM SIGN SHIR TENU
+122D5	cuneiformsignshirovershirburoverbur	CUNEIFORM SIGN SHIR OVER SHIR BUR OVER BUR
+122D6	cuneiformsignshita	CUNEIFORM SIGN SHITA
+122D7	cuneiformsignshu	CUNEIFORM SIGN SHU
+122D8	cuneiformsignshuoverinvertedshu	CUNEIFORM SIGN SHU OVER INVERTED SHU
+122D9	cuneiformsignshu2	CUNEIFORM SIGN SHU2
+122DA	cuneiformsignshubur	CUNEIFORM SIGN SHUBUR
+122DB	cuneiformsignsi	CUNEIFORM SIGN SI
+122DC	cuneiformsignsigunu	CUNEIFORM SIGN SI GUNU
+122DD	cuneiformsignsig	CUNEIFORM SIGN SIG
+122DE	cuneiformsignsig4	CUNEIFORM SIGN SIG4
+122DF	cuneiformsignsig4oversig4shu2	CUNEIFORM SIGN SIG4 OVER SIG4 SHU2
+122E0	cuneiformsignsik2	CUNEIFORM SIGN SIK2
+122E1	cuneiformsignsila3	CUNEIFORM SIGN SILA3
+122E2	cuneiformsignsu	CUNEIFORM SIGN SU
+122E3	cuneiformsignsuoversu	CUNEIFORM SIGN SU OVER SU
+122E4	cuneiformsignsud	CUNEIFORM SIGN SUD
+122E5	cuneiformsignsud2	CUNEIFORM SIGN SUD2
+122E6	cuneiformsignsuhur	CUNEIFORM SIGN SUHUR
+122E7	cuneiformsignsum	CUNEIFORM SIGN SUM
+122E8	cuneiformsignsumash	CUNEIFORM SIGN SUMASH
+122E9	cuneiformsignsur	CUNEIFORM SIGN SUR
+122EA	cuneiformsignsur9	CUNEIFORM SIGN SUR9
+122EB	cuneiformsignta	CUNEIFORM SIGN TA
+122EC	cuneiformsigntaasterisk	CUNEIFORM SIGN TA ASTERISK
+122ED	cuneiformsigntatimeshi	CUNEIFORM SIGN TA TIMES HI
+122EE	cuneiformsigntatimesmi	CUNEIFORM SIGN TA TIMES MI
+122EF	cuneiformsigntagunu	CUNEIFORM SIGN TA GUNU
+122F0	cuneiformsigntab	CUNEIFORM SIGN TAB
+122F1	cuneiformsigntabovertabniovernidishoverdish	CUNEIFORM SIGN TAB OVER TAB NI OVER NI DISH OVER DISH
+122F2	cuneiformsigntabsquared	CUNEIFORM SIGN TAB SQUARED
+122F3	cuneiformsigntag	CUNEIFORM SIGN TAG
+122F4	cuneiformsigntagtimesbi	CUNEIFORM SIGN TAG TIMES BI
+122F5	cuneiformsigntagtimesgud	CUNEIFORM SIGN TAG TIMES GUD
+122F6	cuneiformsigntagtimesshe	CUNEIFORM SIGN TAG TIMES SHE
+122F7	cuneiformsigntagtimesshu	CUNEIFORM SIGN TAG TIMES SHU
+122F8	cuneiformsigntagtimestug2	CUNEIFORM SIGN TAG TIMES TUG2
+122F9	cuneiformsigntagtimesud	CUNEIFORM SIGN TAG TIMES UD
+122FA	cuneiformsigntak4	CUNEIFORM SIGN TAK4
+122FB	cuneiformsigntar	CUNEIFORM SIGN TAR
+122FC	cuneiformsignte	CUNEIFORM SIGN TE
+122FD	cuneiformsigntegunu	CUNEIFORM SIGN TE GUNU
+122FE	cuneiformsignti	CUNEIFORM SIGN TI
+122FF	cuneiformsigntitenu	CUNEIFORM SIGN TI TENU
+12300	cuneiformsigntil	CUNEIFORM SIGN TIL
+12301	cuneiformsigntir	CUNEIFORM SIGN TIR
+12302	cuneiformsigntirtimestak4	CUNEIFORM SIGN TIR TIMES TAK4
+12303	cuneiformsigntirovertir	CUNEIFORM SIGN TIR OVER TIR
+12304	cuneiformsigntirovertirgadovergadgarovergar	CUNEIFORM SIGN TIR OVER TIR GAD OVER GAD GAR OVER GAR
+12305	cuneiformsigntu	CUNEIFORM SIGN TU
+12306	cuneiformsigntug2	CUNEIFORM SIGN TUG2
+12307	cuneiformsigntuk	CUNEIFORM SIGN TUK
+12308	cuneiformsigntum	CUNEIFORM SIGN TUM
+12309	cuneiformsigntur	CUNEIFORM SIGN TUR
+1230A	cuneiformsignturoverturzaoverza	CUNEIFORM SIGN TUR OVER TUR ZA OVER ZA
+1230B	cuneiformsignu	CUNEIFORM SIGN U
+1230C	cuneiformsignugud	CUNEIFORM SIGN U GUD
+1230D	cuneiformsignuuu	CUNEIFORM SIGN U U U
+1230E	cuneiformsignuoverupaoverpagarovergar	CUNEIFORM SIGN U OVER U PA OVER PA GAR OVER GAR
+1230F	cuneiformsignuoverusuroversur	CUNEIFORM SIGN U OVER U SUR OVER SUR
+12310	cuneiformsignuoveruureversedoverureversed	CUNEIFORM SIGN U OVER U U REVERSED OVER U REVERSED
+12311	cuneiformsignu2	CUNEIFORM SIGN U2
+12312	cuneiformsignub	CUNEIFORM SIGN UB
+12313	cuneiformsignud	CUNEIFORM SIGN UD
+12314	cuneiformsignudkushu2	CUNEIFORM SIGN UD KUSHU2
+12315	cuneiformsignudtimesbad	CUNEIFORM SIGN UD TIMES BAD
+12316	cuneiformsignudtimesmi	CUNEIFORM SIGN UD TIMES MI
+12317	cuneiformsignudtimesuplusuplusu	CUNEIFORM SIGN UD TIMES U PLUS U PLUS U
+12318	cuneiformsignudtimesuplusuplusugunu	CUNEIFORM SIGN UD TIMES U PLUS U PLUS U GUNU
+12319	cuneiformsignudgunu	CUNEIFORM SIGN UD GUNU
+1231A	cuneiformsignudsheshig	CUNEIFORM SIGN UD SHESHIG
+1231B	cuneiformsignudsheshigtimesbad	CUNEIFORM SIGN UD SHESHIG TIMES BAD
+1231C	cuneiformsignudug	CUNEIFORM SIGN UDUG
+1231D	cuneiformsignum	CUNEIFORM SIGN UM
+1231E	cuneiformsignumtimeslagab	CUNEIFORM SIGN UM TIMES LAGAB
+1231F	cuneiformsignumtimesmeplusda	CUNEIFORM SIGN UM TIMES ME PLUS DA
+12320	cuneiformsignumtimessha3	CUNEIFORM SIGN UM TIMES SHA3
+12321	cuneiformsignumtimesu	CUNEIFORM SIGN UM TIMES U
+12322	cuneiformsignumbin	CUNEIFORM SIGN UMBIN
+12323	cuneiformsignumum	CUNEIFORM SIGN UMUM
+12324	cuneiformsignumumtimeskaskal	CUNEIFORM SIGN UMUM TIMES KASKAL
+12325	cuneiformsignumumtimespa	CUNEIFORM SIGN UMUM TIMES PA
+12326	cuneiformsignun	CUNEIFORM SIGN UN
+12327	cuneiformsignungunu	CUNEIFORM SIGN UN GUNU
+12328	cuneiformsignur	CUNEIFORM SIGN UR
+12329	cuneiformsignurcrossingur	CUNEIFORM SIGN UR CROSSING UR
+1232A	cuneiformsignursheshig	CUNEIFORM SIGN UR SHESHIG
+1232B	cuneiformsignur2	CUNEIFORM SIGN UR2
+1232C	cuneiformsignur2timesaplusha	CUNEIFORM SIGN UR2 TIMES A PLUS HA
+1232D	cuneiformsignur2timesaplusna	CUNEIFORM SIGN UR2 TIMES A PLUS NA
+1232E	cuneiformsignur2timesal	CUNEIFORM SIGN UR2 TIMES AL
+1232F	cuneiformsignur2timesha	CUNEIFORM SIGN UR2 TIMES HA
+12330	cuneiformsignur2timesnun	CUNEIFORM SIGN UR2 TIMES NUN
+12331	cuneiformsignur2timesu2	CUNEIFORM SIGN UR2 TIMES U2
+12332	cuneiformsignur2timesu2plusash	CUNEIFORM SIGN UR2 TIMES U2 PLUS ASH
+12333	cuneiformsignur2timesu2plusbi	CUNEIFORM SIGN UR2 TIMES U2 PLUS BI
+12334	cuneiformsignur4	CUNEIFORM SIGN UR4
+12335	cuneiformsignuri	CUNEIFORM SIGN URI
+12336	cuneiformsignuri3	CUNEIFORM SIGN URI3
+12337	cuneiformsignuru	CUNEIFORM SIGN URU
+12338	cuneiformsignurutimesa	CUNEIFORM SIGN URU TIMES A
+12339	cuneiformsignurutimesashgab	CUNEIFORM SIGN URU TIMES ASHGAB
+1233A	cuneiformsignurutimesbar	CUNEIFORM SIGN URU TIMES BAR
+1233B	cuneiformsignurutimesdun	CUNEIFORM SIGN URU TIMES DUN
+1233C	cuneiformsignurutimesga	CUNEIFORM SIGN URU TIMES GA
+1233D	cuneiformsignurutimesgal	CUNEIFORM SIGN URU TIMES GAL
+1233E	cuneiformsignurutimesgan2tenu	CUNEIFORM SIGN URU TIMES GAN2 TENU
+1233F	cuneiformsignurutimesgar	CUNEIFORM SIGN URU TIMES GAR
+12340	cuneiformsignurutimesgu	CUNEIFORM SIGN URU TIMES GU
+12341	cuneiformsignurutimesha	CUNEIFORM SIGN URU TIMES HA
+12342	cuneiformsignurutimesigi	CUNEIFORM SIGN URU TIMES IGI
+12343	cuneiformsignurutimesim	CUNEIFORM SIGN URU TIMES IM
+12344	cuneiformsignurutimesish	CUNEIFORM SIGN URU TIMES ISH
+12345	cuneiformsignurutimeski	CUNEIFORM SIGN URU TIMES KI
+12346	cuneiformsignurutimeslum	CUNEIFORM SIGN URU TIMES LUM
+12347	cuneiformsignurutimesmin	CUNEIFORM SIGN URU TIMES MIN
+12348	cuneiformsignurutimespa	CUNEIFORM SIGN URU TIMES PA
+12349	cuneiformsignurutimesshe	CUNEIFORM SIGN URU TIMES SHE
+1234A	cuneiformsignurutimessig4	CUNEIFORM SIGN URU TIMES SIG4
+1234B	cuneiformsignurutimestu	CUNEIFORM SIGN URU TIMES TU
+1234C	cuneiformsignurutimesuplusgud	CUNEIFORM SIGN URU TIMES U PLUS GUD
+1234D	cuneiformsignurutimesud	CUNEIFORM SIGN URU TIMES UD
+1234E	cuneiformsignurutimesuruda	CUNEIFORM SIGN URU TIMES URUDA
+1234F	cuneiformsignuruda	CUNEIFORM SIGN URUDA
+12350	cuneiformsignurudatimesu	CUNEIFORM SIGN URUDA TIMES U
+12351	cuneiformsignush	CUNEIFORM SIGN USH
+12352	cuneiformsignushtimesa	CUNEIFORM SIGN USH TIMES A
+12353	cuneiformsignushtimesku	CUNEIFORM SIGN USH TIMES KU
+12354	cuneiformsignushtimeskur	CUNEIFORM SIGN USH TIMES KUR
+12355	cuneiformsignushtimestak4	CUNEIFORM SIGN USH TIMES TAK4
+12356	cuneiformsignushx	CUNEIFORM SIGN USHX
+12357	cuneiformsignush2	CUNEIFORM SIGN USH2
+12358	cuneiformsignushumx	CUNEIFORM SIGN USHUMX
+12359	cuneiformsignutuki	CUNEIFORM SIGN UTUKI
+1235A	cuneiformsignuz3	CUNEIFORM SIGN UZ3
+1235B	cuneiformsignuz3timeskaskal	CUNEIFORM SIGN UZ3 TIMES KASKAL
+1235C	cuneiformsignuzu	CUNEIFORM SIGN UZU
+1235D	cuneiformsignza	CUNEIFORM SIGN ZA
+1235E	cuneiformsignzatenu	CUNEIFORM SIGN ZA TENU
+1235F	cuneiformsignzasquaredtimeskur	CUNEIFORM SIGN ZA SQUARED TIMES KUR
+12360	cuneiformsignzag	CUNEIFORM SIGN ZAG
+12361	cuneiformsignzamx	CUNEIFORM SIGN ZAMX
+12362	cuneiformsignze2	CUNEIFORM SIGN ZE2
+12363	cuneiformsignzi	CUNEIFORM SIGN ZI
+12364	cuneiformsignzioverzi	CUNEIFORM SIGN ZI OVER ZI
+12365	cuneiformsignzi3	CUNEIFORM SIGN ZI3
+12366	cuneiformsignzib	CUNEIFORM SIGN ZIB
+12367	cuneiformsignzibkabatenu	CUNEIFORM SIGN ZIB KABA TENU
+12368	cuneiformsignzig	CUNEIFORM SIGN ZIG
+12369	cuneiformsignziz2	CUNEIFORM SIGN ZIZ2
+1236A	cuneiformsignzu	CUNEIFORM SIGN ZU
+1236B	cuneiformsignzu5	CUNEIFORM SIGN ZU5
+1236C	cuneiformsignzu5timesa	CUNEIFORM SIGN ZU5 TIMES A
+1236D	cuneiformsignzubur	CUNEIFORM SIGN ZUBUR
+1236E	cuneiformsignzum	CUNEIFORM SIGN ZUM

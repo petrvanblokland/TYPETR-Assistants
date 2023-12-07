@@ -1,0 +1,29 @@
+# Devanagari Extended A8E0 - A8FF
+A8E0	combiningdevanagaridigitzero	COMBINING DEVANAGARI DIGIT ZERO
+A8E1	combiningdevanagaridigitone	COMBINING DEVANAGARI DIGIT ONE
+A8E2	combiningdevanagaridigittwo	COMBINING DEVANAGARI DIGIT TWO
+A8E3	combiningdevanagaridigitthree	COMBINING DEVANAGARI DIGIT THREE
+A8E4	combiningdevanagaridigitfour	COMBINING DEVANAGARI DIGIT FOUR
+A8E5	combiningdevanagaridigitfive	COMBINING DEVANAGARI DIGIT FIVE
+A8E6	combiningdevanagaridigitsix	COMBINING DEVANAGARI DIGIT SIX
+A8E7	combiningdevanagaridigitseven	COMBINING DEVANAGARI DIGIT SEVEN
+A8E8	combiningdevanagaridigiteight	COMBINING DEVANAGARI DIGIT EIGHT
+A8E9	combiningdevanagaridigitnine	COMBINING DEVANAGARI DIGIT NINE
+A8EA	combiningdevanagarilettera	COMBINING DEVANAGARI LETTER A
+A8EB	combiningdevanagariletteru	COMBINING DEVANAGARI LETTER U
+A8EC	combiningdevanagariletterka	COMBINING DEVANAGARI LETTER KA
+A8ED	combiningdevanagariletterna	COMBINING DEVANAGARI LETTER NA
+A8EE	combiningdevanagariletterpa	COMBINING DEVANAGARI LETTER PA
+A8EF	combiningdevanagariletterra	COMBINING DEVANAGARI LETTER RA
+A8F0	combiningdevanagarilettervi	COMBINING DEVANAGARI LETTER VI
+A8F1	combiningdevanagarisignavagraha	COMBINING DEVANAGARI SIGN AVAGRAHA
+A8F2	devanagarisignspacingcandrabindu	DEVANAGARI SIGN SPACING CANDRABINDU
+A8F3	devanagarisigncandrabinduvirama	DEVANAGARI SIGN CANDRABINDU VIRAMA
+A8F4	devanagarisigndoublecandrabinduvirama	DEVANAGARI SIGN DOUBLE CANDRABINDU VIRAMA
+A8F5	devanagarisigncandrabindutwo	DEVANAGARI SIGN CANDRABINDU TWO
+A8F6	devanagarisigncandrabinduthree	DEVANAGARI SIGN CANDRABINDU THREE
+A8F7	devanagarisigncandrabinduavagraha	DEVANAGARI SIGN CANDRABINDU AVAGRAHA
+A8F8	devanagarisignpushpika	DEVANAGARI SIGN PUSHPIKA
+A8F9	devanagarigapfiller	DEVANAGARI GAP FILLER
+A8FA	devanagaricaret	DEVANAGARI CARET
+A8FB	devanagariheadstroke	DEVANAGARI HEADSTROKE

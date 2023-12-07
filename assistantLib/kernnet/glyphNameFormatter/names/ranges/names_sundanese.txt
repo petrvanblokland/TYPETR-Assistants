@@ -1,0 +1,56 @@
+# Sundanese 1B80 - 1BBF
+1B80	sundanesesignpanyecek	SUNDANESE SIGN PANYECEK
+1B81	sundanesesignpanglayar	SUNDANESE SIGN PANGLAYAR
+1B82	sundanesesignpangwisad	SUNDANESE SIGN PANGWISAD
+1B83	sundaneselettera	SUNDANESE LETTER A
+1B84	sundaneseletteri	SUNDANESE LETTER I
+1B85	sundaneseletteru	SUNDANESE LETTER U
+1B86	sundaneseletterae	SUNDANESE LETTER AE
+1B87	sundaneselettero	SUNDANESE LETTER O
+1B88	sundaneselettere	SUNDANESE LETTER E
+1B89	sundaneselettereu	SUNDANESE LETTER EU
+1B8A	sundaneseletterka	SUNDANESE LETTER KA
+1B8B	sundaneseletterqa	SUNDANESE LETTER QA
+1B8C	sundaneseletterga	SUNDANESE LETTER GA
+1B8D	sundaneseletternga	SUNDANESE LETTER NGA
+1B8E	sundaneseletterca	SUNDANESE LETTER CA
+1B8F	sundaneseletterja	SUNDANESE LETTER JA
+1B90	sundaneseletterza	SUNDANESE LETTER ZA
+1B91	sundaneseletternya	SUNDANESE LETTER NYA
+1B92	sundaneseletterta	SUNDANESE LETTER TA
+1B93	sundaneseletterda	SUNDANESE LETTER DA
+1B94	sundaneseletterna	SUNDANESE LETTER NA
+1B95	sundaneseletterpa	SUNDANESE LETTER PA
+1B96	sundaneseletterfa	SUNDANESE LETTER FA
+1B97	sundaneseletterva	SUNDANESE LETTER VA
+1B98	sundaneseletterba	SUNDANESE LETTER BA
+1B99	sundaneseletterma	SUNDANESE LETTER MA
+1B9A	sundaneseletterya	SUNDANESE LETTER YA
+1B9B	sundaneseletterra	SUNDANESE LETTER RA
+1B9C	sundaneseletterla	SUNDANESE LETTER LA
+1B9D	sundaneseletterwa	SUNDANESE LETTER WA
+1B9E	sundaneselettersa	SUNDANESE LETTER SA
+1B9F	sundaneseletterxa	SUNDANESE LETTER XA
+1BA0	sundaneseletterha	SUNDANESE LETTER HA
+1BA1	sundaneseconsonantsignpamingkal	SUNDANESE CONSONANT SIGN PAMINGKAL
+1BA2	sundaneseconsonantsignpanyakra	SUNDANESE CONSONANT SIGN PANYAKRA
+1BA3	sundaneseconsonantsignpanyiku	SUNDANESE CONSONANT SIGN PANYIKU
+1BA4	sundanesevowelsignpanghulu	SUNDANESE VOWEL SIGN PANGHULU
+1BA5	sundanesevowelsignpanyuku	SUNDANESE VOWEL SIGN PANYUKU
+1BA6	sundanesevowelsignpanaelaeng	SUNDANESE VOWEL SIGN PANAELAENG
+1BA7	sundanesevowelsignpanolong	SUNDANESE VOWEL SIGN PANOLONG
+1BA8	sundanesevowelsignpamepet	SUNDANESE VOWEL SIGN PAMEPET
+1BA9	sundanesevowelsignpaneuleung	SUNDANESE VOWEL SIGN PANEULEUNG
+1BAA	sundanesesignpamaaeh	SUNDANESE SIGN PAMAAEH
+1BAE	sundaneseletterkha	SUNDANESE LETTER KHA
+1BAF	sundaneselettersya	SUNDANESE LETTER SYA
+1BB0	sundanesedigitzero	SUNDANESE DIGIT ZERO
+1BB1	sundanesedigitone	SUNDANESE DIGIT ONE
+1BB2	sundanesedigittwo	SUNDANESE DIGIT TWO
+1BB3	sundanesedigitthree	SUNDANESE DIGIT THREE
+1BB4	sundanesedigitfour	SUNDANESE DIGIT FOUR
+1BB5	sundanesedigitfive	SUNDANESE DIGIT FIVE
+1BB6	sundanesedigitsix	SUNDANESE DIGIT SIX
+1BB7	sundanesedigitseven	SUNDANESE DIGIT SEVEN
+1BB8	sundanesedigiteight	SUNDANESE DIGIT EIGHT
+1BB9	sundanesedigitnine	SUNDANESE DIGIT NINE

@@ -1,0 +1,75 @@
+# Lepcha 1C00 - 1C4F
+1C00	lepchaletterka	LEPCHA LETTER KA
+1C01	lepchaletterkla	LEPCHA LETTER KLA
+1C02	lepchaletterkha	LEPCHA LETTER KHA
+1C03	lepchaletterga	LEPCHA LETTER GA
+1C04	lepchalettergla	LEPCHA LETTER GLA
+1C05	lepchaletternga	LEPCHA LETTER NGA
+1C06	lepchaletterca	LEPCHA LETTER CA
+1C07	lepchalettercha	LEPCHA LETTER CHA
+1C08	lepchaletterja	LEPCHA LETTER JA
+1C09	lepchaletternya	LEPCHA LETTER NYA
+1C0A	lepchaletterta	LEPCHA LETTER TA
+1C0B	lepchalettertha	LEPCHA LETTER THA
+1C0C	lepchaletterda	LEPCHA LETTER DA
+1C0D	lepchaletterna	LEPCHA LETTER NA
+1C0E	lepchaletterpa	LEPCHA LETTER PA
+1C0F	lepchaletterpla	LEPCHA LETTER PLA
+1C10	lepchaletterpha	LEPCHA LETTER PHA
+1C11	lepchaletterfa	LEPCHA LETTER FA
+1C12	lepchaletterfla	LEPCHA LETTER FLA
+1C13	lepchaletterba	LEPCHA LETTER BA
+1C14	lepchaletterbla	LEPCHA LETTER BLA
+1C15	lepchaletterma	LEPCHA LETTER MA
+1C16	lepchalettermla	LEPCHA LETTER MLA
+1C17	lepchalettertsa	LEPCHA LETTER TSA
+1C18	lepchalettertsha	LEPCHA LETTER TSHA
+1C19	lepchaletterdza	LEPCHA LETTER DZA
+1C1A	lepchaletterya	LEPCHA LETTER YA
+1C1B	lepchaletterra	LEPCHA LETTER RA
+1C1C	lepchaletterla	LEPCHA LETTER LA
+1C1D	lepchaletterha	LEPCHA LETTER HA
+1C1E	lepchaletterhla	LEPCHA LETTER HLA
+1C1F	lepchaletterva	LEPCHA LETTER VA
+1C20	lepchalettersa	LEPCHA LETTER SA
+1C21	lepchalettersha	LEPCHA LETTER SHA
+1C22	lepchaletterwa	LEPCHA LETTER WA
+1C23	lepchalettera	LEPCHA LETTER A
+1C24	lepchasubjoinedletterya	LEPCHA SUBJOINED LETTER YA
+1C25	lepchasubjoinedletterra	LEPCHA SUBJOINED LETTER RA
+1C26	lepchavowelsignaa	LEPCHA VOWEL SIGN AA
+1C27	lepchavowelsigni	LEPCHA VOWEL SIGN I
+1C28	lepchavowelsigno	LEPCHA VOWEL SIGN O
+1C29	lepchavowelsignoo	LEPCHA VOWEL SIGN OO
+1C2A	lepchavowelsignu	LEPCHA VOWEL SIGN U
+1C2B	lepchavowelsignuu	LEPCHA VOWEL SIGN UU
+1C2C	lepchavowelsigne	LEPCHA VOWEL SIGN E
+1C2D	lepchaconsonantsignk	LEPCHA CONSONANT SIGN K
+1C2E	lepchaconsonantsignm	LEPCHA CONSONANT SIGN M
+1C2F	lepchaconsonantsignl	LEPCHA CONSONANT SIGN L
+1C30	lepchaconsonantsignn	LEPCHA CONSONANT SIGN N
+1C31	lepchaconsonantsignp	LEPCHA CONSONANT SIGN P
+1C32	lepchaconsonantsignr	LEPCHA CONSONANT SIGN R
+1C33	lepchaconsonantsignt	LEPCHA CONSONANT SIGN T
+1C34	lepchaconsonantsignnyindo	LEPCHA CONSONANT SIGN NYIN-DO
+1C35	lepchaconsonantsignkang	LEPCHA CONSONANT SIGN KANG
+1C36	lepchasignran	LEPCHA SIGN RAN
+1C37	lepchasignnukta	LEPCHA SIGN NUKTA
+1C3B	lepchapunctuationtarol	LEPCHA PUNCTUATION TA-ROL
+1C3C	lepchapunctuationnyetthyoomtarol	LEPCHA PUNCTUATION NYET THYOOM TA-ROL
+1C3D	lepchapunctuationcerwa	LEPCHA PUNCTUATION CER-WA
+1C3E	lepchapunctuationtshookcerwa	LEPCHA PUNCTUATION TSHOOK CER-WA
+1C3F	lepchapunctuationtshook	LEPCHA PUNCTUATION TSHOOK
+1C40	lepchadigitzero	LEPCHA DIGIT ZERO
+1C41	lepchadigitone	LEPCHA DIGIT ONE
+1C42	lepchadigittwo	LEPCHA DIGIT TWO
+1C43	lepchadigitthree	LEPCHA DIGIT THREE
+1C44	lepchadigitfour	LEPCHA DIGIT FOUR
+1C45	lepchadigitfive	LEPCHA DIGIT FIVE
+1C46	lepchadigitsix	LEPCHA DIGIT SIX
+1C47	lepchadigitseven	LEPCHA DIGIT SEVEN
+1C48	lepchadigiteight	LEPCHA DIGIT EIGHT
+1C49	lepchadigitnine	LEPCHA DIGIT NINE
+1C4D	lepchalettertta	LEPCHA LETTER TTA
+1C4E	lepchaletterttha	LEPCHA LETTER TTHA
+1C4F	lepchaletterdda	LEPCHA LETTER DDA

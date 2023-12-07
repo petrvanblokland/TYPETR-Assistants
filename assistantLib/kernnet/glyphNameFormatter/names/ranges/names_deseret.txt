@@ -1,0 +1,81 @@
+# Deseret 10400 - 1044F
+10400	deseretcapitalletterlongi	DESERET CAPITAL LETTER LONG I
+10401	deseretcapitalletterlonge	DESERET CAPITAL LETTER LONG E
+10402	deseretcapitalletterlonga	DESERET CAPITAL LETTER LONG A
+10403	deseretcapitalletterlongah	DESERET CAPITAL LETTER LONG AH
+10404	deseretcapitalletterlongo	DESERET CAPITAL LETTER LONG O
+10405	deseretcapitalletterlongoo	DESERET CAPITAL LETTER LONG OO
+10406	deseretcapitallettershorti	DESERET CAPITAL LETTER SHORT I
+10407	deseretcapitallettershorte	DESERET CAPITAL LETTER SHORT E
+10408	deseretcapitallettershorta	DESERET CAPITAL LETTER SHORT A
+10409	deseretcapitallettershortah	DESERET CAPITAL LETTER SHORT AH
+1040A	deseretcapitallettershorto	DESERET CAPITAL LETTER SHORT O
+1040B	deseretcapitallettershortoo	DESERET CAPITAL LETTER SHORT OO
+1040C	deseretcapitalletteray	DESERET CAPITAL LETTER AY
+1040D	deseretcapitalletterow	DESERET CAPITAL LETTER OW
+1040E	deseretcapitalletterwu	DESERET CAPITAL LETTER WU
+1040F	deseretcapitalletteryee	DESERET CAPITAL LETTER YEE
+10410	deseretcapitalletterh	DESERET CAPITAL LETTER H
+10411	deseretcapitalletterpee	DESERET CAPITAL LETTER PEE
+10412	deseretcapitalletterbee	DESERET CAPITAL LETTER BEE
+10413	deseretcapitallettertee	DESERET CAPITAL LETTER TEE
+10414	deseretcapitalletterdee	DESERET CAPITAL LETTER DEE
+10415	deseretcapitalletterchee	DESERET CAPITAL LETTER CHEE
+10416	deseretcapitalletterjee	DESERET CAPITAL LETTER JEE
+10417	deseretcapitalletterkay	DESERET CAPITAL LETTER KAY
+10418	deseretcapitallettergay	DESERET CAPITAL LETTER GAY
+10419	deseretcapitalletteref	DESERET CAPITAL LETTER EF
+1041A	deseretcapitallettervee	DESERET CAPITAL LETTER VEE
+1041B	deseretcapitallettereth	DESERET CAPITAL LETTER ETH
+1041C	deseretcapitalletterthee	DESERET CAPITAL LETTER THEE
+1041D	deseretcapitalletteres	DESERET CAPITAL LETTER ES
+1041E	deseretcapitalletterzee	DESERET CAPITAL LETTER ZEE
+1041F	deseretcapitalletteresh	DESERET CAPITAL LETTER ESH
+10420	deseretcapitalletterzhee	DESERET CAPITAL LETTER ZHEE
+10421	deseretcapitalletterer	DESERET CAPITAL LETTER ER
+10422	deseretcapitalletterel	DESERET CAPITAL LETTER EL
+10423	deseretcapitalletterem	DESERET CAPITAL LETTER EM
+10424	deseretcapitalletteren	DESERET CAPITAL LETTER EN
+10425	deseretcapitallettereng	DESERET CAPITAL LETTER ENG
+10426	deseretcapitalletteroi	DESERET CAPITAL LETTER OI
+10427	deseretcapitalletterew	DESERET CAPITAL LETTER EW
+10428	deseretsmallletterlongi	DESERET SMALL LETTER LONG I
+10429	deseretsmallletterlonge	DESERET SMALL LETTER LONG E
+1042A	deseretsmallletterlonga	DESERET SMALL LETTER LONG A
+1042B	deseretsmallletterlongah	DESERET SMALL LETTER LONG AH
+1042C	deseretsmallletterlongo	DESERET SMALL LETTER LONG O
+1042D	deseretsmallletterlongoo	DESERET SMALL LETTER LONG OO
+1042E	deseretsmalllettershorti	DESERET SMALL LETTER SHORT I
+1042F	deseretsmalllettershorte	DESERET SMALL LETTER SHORT E
+10430	deseretsmalllettershorta	DESERET SMALL LETTER SHORT A
+10431	deseretsmalllettershortah	DESERET SMALL LETTER SHORT AH
+10432	deseretsmalllettershorto	DESERET SMALL LETTER SHORT O
+10433	deseretsmalllettershortoo	DESERET SMALL LETTER SHORT OO
+10434	deseretsmallletteray	DESERET SMALL LETTER AY
+10435	deseretsmallletterow	DESERET SMALL LETTER OW
+10436	deseretsmallletterwu	DESERET SMALL LETTER WU
+10437	deseretsmallletteryee	DESERET SMALL LETTER YEE
+10438	deseretsmallletterh	DESERET SMALL LETTER H
+10439	deseretsmallletterpee	DESERET SMALL LETTER PEE
+1043A	deseretsmallletterbee	DESERET SMALL LETTER BEE
+1043B	deseretsmalllettertee	DESERET SMALL LETTER TEE
+1043C	deseretsmallletterdee	DESERET SMALL LETTER DEE
+1043D	deseretsmallletterchee	DESERET SMALL LETTER CHEE
+1043E	deseretsmallletterjee	DESERET SMALL LETTER JEE
+1043F	deseretsmallletterkay	DESERET SMALL LETTER KAY
+10440	deseretsmalllettergay	DESERET SMALL LETTER GAY
+10441	deseretsmallletteref	DESERET SMALL LETTER EF
+10442	deseretsmalllettervee	DESERET SMALL LETTER VEE
+10443	deseretsmalllettereth	DESERET SMALL LETTER ETH
+10444	deseretsmallletterthee	DESERET SMALL LETTER THEE
+10445	deseretsmallletteres	DESERET SMALL LETTER ES
+10446	deseretsmallletterzee	DESERET SMALL LETTER ZEE
+10447	deseretsmallletteresh	DESERET SMALL LETTER ESH
+10448	deseretsmallletterzhee	DESERET SMALL LETTER ZHEE
+10449	deseretsmallletterer	DESERET SMALL LETTER ER
+1044A	deseretsmallletterel	DESERET SMALL LETTER EL
+1044B	deseretsmallletterem	DESERET SMALL LETTER EM
+1044C	deseretsmallletteren	DESERET SMALL LETTER EN
+1044D	deseretsmalllettereng	DESERET SMALL LETTER ENG
+1044E	deseretsmallletteroi	DESERET SMALL LETTER OI
+1044F	deseretsmallletterew	DESERET SMALL LETTER EW

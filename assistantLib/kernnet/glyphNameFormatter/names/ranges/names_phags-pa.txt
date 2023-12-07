@@ -1,0 +1,57 @@
+# Phags-pa A840 - A87F
+A840	phagspaletterka	PHAGS-PA LETTER KA
+A841	phagspaletterkha	PHAGS-PA LETTER KHA
+A842	phagspaletterga	PHAGS-PA LETTER GA
+A843	phagspaletternga	PHAGS-PA LETTER NGA
+A844	phagspaletterca	PHAGS-PA LETTER CA
+A845	phagspalettercha	PHAGS-PA LETTER CHA
+A846	phagspaletterja	PHAGS-PA LETTER JA
+A847	phagspaletternya	PHAGS-PA LETTER NYA
+A848	phagspaletterta	PHAGS-PA LETTER TA
+A849	phagspalettertha	PHAGS-PA LETTER THA
+A84A	phagspaletterda	PHAGS-PA LETTER DA
+A84B	phagspaletterna	PHAGS-PA LETTER NA
+A84C	phagspaletterpa	PHAGS-PA LETTER PA
+A84D	phagspaletterpha	PHAGS-PA LETTER PHA
+A84E	phagspaletterba	PHAGS-PA LETTER BA
+A84F	phagspaletterma	PHAGS-PA LETTER MA
+A850	phagspalettertsa	PHAGS-PA LETTER TSA
+A851	phagspalettertsha	PHAGS-PA LETTER TSHA
+A852	phagspaletterdza	PHAGS-PA LETTER DZA
+A853	phagspaletterwa	PHAGS-PA LETTER WA
+A854	phagspaletterzha	PHAGS-PA LETTER ZHA
+A855	phagspaletterza	PHAGS-PA LETTER ZA
+A856	phagspalettersmalla	PHAGS-PA LETTER SMALL A
+A857	phagspaletterya	PHAGS-PA LETTER YA
+A858	phagspaletterra	PHAGS-PA LETTER RA
+A859	phagspaletterla	PHAGS-PA LETTER LA
+A85A	phagspalettersha	PHAGS-PA LETTER SHA
+A85B	phagspalettersa	PHAGS-PA LETTER SA
+A85C	phagspaletterha	PHAGS-PA LETTER HA
+A85D	phagspalettera	PHAGS-PA LETTER A
+A85E	phagspaletteri	PHAGS-PA LETTER I
+A85F	phagspaletteru	PHAGS-PA LETTER U
+A860	phagspalettere	PHAGS-PA LETTER E
+A861	phagspalettero	PHAGS-PA LETTER O
+A862	phagspaletterqa	PHAGS-PA LETTER QA
+A863	phagspaletterxa	PHAGS-PA LETTER XA
+A864	phagspaletterfa	PHAGS-PA LETTER FA
+A865	phagspalettergga	PHAGS-PA LETTER GGA
+A866	phagspaletteree	PHAGS-PA LETTER EE
+A867	phagspasubjoinedletterwa	PHAGS-PA SUBJOINED LETTER WA
+A868	phagspasubjoinedletterya	PHAGS-PA SUBJOINED LETTER YA
+A869	phagspalettertta	PHAGS-PA LETTER TTA
+A86A	phagspaletterttha	PHAGS-PA LETTER TTHA
+A86B	phagspaletterdda	PHAGS-PA LETTER DDA
+A86C	phagspaletternna	PHAGS-PA LETTER NNA
+A86D	phagspaletteralternateya	PHAGS-PA LETTER ALTERNATE YA
+A86E	phagspalettervoicelesssha	PHAGS-PA LETTER VOICELESS SHA
+A86F	phagspalettervoicedha	PHAGS-PA LETTER VOICED HA
+A870	phagspaletteraspiratedfa	PHAGS-PA LETTER ASPIRATED FA
+A871	phagspasubjoinedletterra	PHAGS-PA SUBJOINED LETTER RA
+A872	phagspasuperfixedletterra	PHAGS-PA SUPERFIXED LETTER RA
+A873	phagspalettercandrabindu	PHAGS-PA LETTER CANDRABINDU
+A874	phagspasingleheadmark	PHAGS-PA SINGLE HEAD MARK
+A875	phagspadoubleheadmark	PHAGS-PA DOUBLE HEAD MARK
+A876	phagspamarkshad	PHAGS-PA MARK SHAD
+A877	phagspamarkdoubleshad	PHAGS-PA MARK DOUBLE SHAD

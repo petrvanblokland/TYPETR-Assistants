@@ -1,0 +1,128 @@
+# Tai Tham 1A20 - 1AAF
+1A20	taithamletterhighka	TAI THAM LETTER HIGH KA
+1A21	taithamletterhighkha	TAI THAM LETTER HIGH KHA
+1A22	taithamletterhighkxa	TAI THAM LETTER HIGH KXA
+1A23	taithamletterlowka	TAI THAM LETTER LOW KA
+1A24	taithamletterlowkxa	TAI THAM LETTER LOW KXA
+1A25	taithamletterlowkha	TAI THAM LETTER LOW KHA
+1A26	taithamletternga	TAI THAM LETTER NGA
+1A27	taithamletterhighca	TAI THAM LETTER HIGH CA
+1A28	taithamletterhighcha	TAI THAM LETTER HIGH CHA
+1A29	taithamletterlowca	TAI THAM LETTER LOW CA
+1A2A	taithamletterlowsa	TAI THAM LETTER LOW SA
+1A2B	taithamletterlowcha	TAI THAM LETTER LOW CHA
+1A2C	taithamletternya	TAI THAM LETTER NYA
+1A2D	taithamletterrata	TAI THAM LETTER RATA
+1A2E	taithamletterhighratha	TAI THAM LETTER HIGH RATHA
+1A2F	taithamletterda	TAI THAM LETTER DA
+1A30	taithamletterlowratha	TAI THAM LETTER LOW RATHA
+1A31	taithamletterrana	TAI THAM LETTER RANA
+1A32	taithamletterhighta	TAI THAM LETTER HIGH TA
+1A33	taithamletterhightha	TAI THAM LETTER HIGH THA
+1A34	taithamletterlowta	TAI THAM LETTER LOW TA
+1A35	taithamletterlowtha	TAI THAM LETTER LOW THA
+1A36	taithamletterna	TAI THAM LETTER NA
+1A37	taithamletterba	TAI THAM LETTER BA
+1A38	taithamletterhighpa	TAI THAM LETTER HIGH PA
+1A39	taithamletterhighpha	TAI THAM LETTER HIGH PHA
+1A3A	taithamletterhighfa	TAI THAM LETTER HIGH FA
+1A3B	taithamletterlowpa	TAI THAM LETTER LOW PA
+1A3C	taithamletterlowfa	TAI THAM LETTER LOW FA
+1A3D	taithamletterlowpha	TAI THAM LETTER LOW PHA
+1A3E	taithamletterma	TAI THAM LETTER MA
+1A3F	taithamletterlowya	TAI THAM LETTER LOW YA
+1A40	taithamletterhighya	TAI THAM LETTER HIGH YA
+1A41	taithamletterra	TAI THAM LETTER RA
+1A42	taithamletterrue	TAI THAM LETTER RUE
+1A43	taithamletterla	TAI THAM LETTER LA
+1A44	taithamletterlue	TAI THAM LETTER LUE
+1A45	taithamletterwa	TAI THAM LETTER WA
+1A46	taithamletterhighsha	TAI THAM LETTER HIGH SHA
+1A47	taithamletterhighssa	TAI THAM LETTER HIGH SSA
+1A48	taithamletterhighsa	TAI THAM LETTER HIGH SA
+1A49	taithamletterhighha	TAI THAM LETTER HIGH HA
+1A4A	taithamletterlla	TAI THAM LETTER LLA
+1A4B	taithamlettera	TAI THAM LETTER A
+1A4C	taithamletterlowha	TAI THAM LETTER LOW HA
+1A4D	taithamletteri	TAI THAM LETTER I
+1A4E	taithamletterii	TAI THAM LETTER II
+1A4F	taithamletteru	TAI THAM LETTER U
+1A50	taithamletteruu	TAI THAM LETTER UU
+1A51	taithamletteree	TAI THAM LETTER EE
+1A52	taithamletteroo	TAI THAM LETTER OO
+1A53	taithamletterlae	TAI THAM LETTER LAE
+1A54	taithamlettergreatsa	TAI THAM LETTER GREAT SA
+1A55	taithamconsonantsignmedialra	TAI THAM CONSONANT SIGN MEDIAL RA
+1A56	taithamconsonantsignmedialla	TAI THAM CONSONANT SIGN MEDIAL LA
+1A57	taithamconsonantsignlatanglai	TAI THAM CONSONANT SIGN LA TANG LAI
+1A58	taithamsignmaikanglai	TAI THAM SIGN MAI KANG LAI
+1A59	taithamconsonantsignfinalnga	TAI THAM CONSONANT SIGN FINAL NGA
+1A5A	taithamconsonantsignlowpa	TAI THAM CONSONANT SIGN LOW PA
+1A5B	taithamconsonantsignhighrathaorlowpa	TAI THAM CONSONANT SIGN HIGH RATHA OR LOW PA
+1A5C	taithamconsonantsignma	TAI THAM CONSONANT SIGN MA
+1A5D	taithamconsonantsignba	TAI THAM CONSONANT SIGN BA
+1A5E	taithamconsonantsignsa	TAI THAM CONSONANT SIGN SA
+1A60	taithamsignsakot	TAI THAM SIGN SAKOT
+1A61	taithamvowelsigna	TAI THAM VOWEL SIGN A
+1A62	taithamvowelsignmaisat	TAI THAM VOWEL SIGN MAI SAT
+1A63	taithamvowelsignaa	TAI THAM VOWEL SIGN AA
+1A64	taithamvowelsigntallaa	TAI THAM VOWEL SIGN TALL AA
+1A65	taithamvowelsigni	TAI THAM VOWEL SIGN I
+1A66	taithamvowelsignii	TAI THAM VOWEL SIGN II
+1A67	taithamvowelsignue	TAI THAM VOWEL SIGN UE
+1A68	taithamvowelsignuue	TAI THAM VOWEL SIGN UUE
+1A69	taithamvowelsignu	TAI THAM VOWEL SIGN U
+1A6A	taithamvowelsignuu	TAI THAM VOWEL SIGN UU
+1A6B	taithamvowelsigno	TAI THAM VOWEL SIGN O
+1A6C	taithamvowelsignoabelow	TAI THAM VOWEL SIGN OA BELOW
+1A6D	taithamvowelsignoy	TAI THAM VOWEL SIGN OY
+1A6E	taithamvowelsigne	TAI THAM VOWEL SIGN E
+1A6F	taithamvowelsignae	TAI THAM VOWEL SIGN AE
+1A70	taithamvowelsignoo	TAI THAM VOWEL SIGN OO
+1A71	taithamvowelsignai	TAI THAM VOWEL SIGN AI
+1A72	taithamvowelsignthamai	TAI THAM VOWEL SIGN THAM AI
+1A73	taithamvowelsignoaabove	TAI THAM VOWEL SIGN OA ABOVE
+1A74	taithamsignmaikang	TAI THAM SIGN MAI KANG
+1A75	taithamsigntone1	TAI THAM SIGN TONE-1
+1A76	taithamsigntone2	TAI THAM SIGN TONE-2
+1A77	taithamsignkhuentone3	TAI THAM SIGN KHUEN TONE-3
+1A78	taithamsignkhuentone4	TAI THAM SIGN KHUEN TONE-4
+1A79	taithamsignkhuentone5	TAI THAM SIGN KHUEN TONE-5
+1A7A	taithamsignrahaam	TAI THAM SIGN RA HAAM
+1A7B	taithamsignmaisam	TAI THAM SIGN MAI SAM
+1A7C	taithamsignkhuenluekaran	TAI THAM SIGN KHUEN-LUE KARAN
+1A7F	taithamcombiningcryptogrammicdot	TAI THAM COMBINING CRYPTOGRAMMIC DOT
+1A80	taithamhoradigitzero	TAI THAM HORA DIGIT ZERO
+1A81	taithamhoradigitone	TAI THAM HORA DIGIT ONE
+1A82	taithamhoradigittwo	TAI THAM HORA DIGIT TWO
+1A83	taithamhoradigitthree	TAI THAM HORA DIGIT THREE
+1A84	taithamhoradigitfour	TAI THAM HORA DIGIT FOUR
+1A85	taithamhoradigitfive	TAI THAM HORA DIGIT FIVE
+1A86	taithamhoradigitsix	TAI THAM HORA DIGIT SIX
+1A87	taithamhoradigitseven	TAI THAM HORA DIGIT SEVEN
+1A88	taithamhoradigiteight	TAI THAM HORA DIGIT EIGHT
+1A89	taithamhoradigitnine	TAI THAM HORA DIGIT NINE
+1A90	taithamthamdigitzero	TAI THAM THAM DIGIT ZERO
+1A91	taithamthamdigitone	TAI THAM THAM DIGIT ONE
+1A92	taithamthamdigittwo	TAI THAM THAM DIGIT TWO
+1A93	taithamthamdigitthree	TAI THAM THAM DIGIT THREE
+1A94	taithamthamdigitfour	TAI THAM THAM DIGIT FOUR
+1A95	taithamthamdigitfive	TAI THAM THAM DIGIT FIVE
+1A96	taithamthamdigitsix	TAI THAM THAM DIGIT SIX
+1A97	taithamthamdigitseven	TAI THAM THAM DIGIT SEVEN
+1A98	taithamthamdigiteight	TAI THAM THAM DIGIT EIGHT
+1A99	taithamthamdigitnine	TAI THAM THAM DIGIT NINE
+1AA0	taithamsignwiang	TAI THAM SIGN WIANG
+1AA1	taithamsignwiangwaak	TAI THAM SIGN WIANGWAAK
+1AA2	taithamsignsawan	TAI THAM SIGN SAWAN
+1AA3	taithamsignkeow	TAI THAM SIGN KEOW
+1AA4	taithamsignhoy	TAI THAM SIGN HOY
+1AA5	taithamsigndokmai	TAI THAM SIGN DOKMAI
+1AA6	taithamsignreversedrotatedrana	TAI THAM SIGN REVERSED ROTATED RANA
+1AA7	taithamsignmaiyamok	TAI THAM SIGN MAI YAMOK
+1AA8	taithamsignkaan	TAI THAM SIGN KAAN
+1AA9	taithamsignkaankuu	TAI THAM SIGN KAANKUU
+1AAA	taithamsignsatkaan	TAI THAM SIGN SATKAAN
+1AAB	taithamsignsatkaankuu	TAI THAM SIGN SATKAANKUU
+1AAC	taithamsignhang	TAI THAM SIGN HANG
+1AAD	taithamsigncaang	TAI THAM SIGN CAANG

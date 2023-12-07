@@ -1,0 +1,21 @@
+# Buhid 1740 - 175F
+1740	buhidlettera	BUHID LETTER A
+1741	buhidletteri	BUHID LETTER I
+1742	buhidletteru	BUHID LETTER U
+1743	buhidletterka	BUHID LETTER KA
+1744	buhidletterga	BUHID LETTER GA
+1745	buhidletternga	BUHID LETTER NGA
+1746	buhidletterta	BUHID LETTER TA
+1747	buhidletterda	BUHID LETTER DA
+1748	buhidletterna	BUHID LETTER NA
+1749	buhidletterpa	BUHID LETTER PA
+174A	buhidletterba	BUHID LETTER BA
+174B	buhidletterma	BUHID LETTER MA
+174C	buhidletterya	BUHID LETTER YA
+174D	buhidletterra	BUHID LETTER RA
+174E	buhidletterla	BUHID LETTER LA
+174F	buhidletterwa	BUHID LETTER WA
+1750	buhidlettersa	BUHID LETTER SA
+1751	buhidletterha	BUHID LETTER HA
+1752	buhidvowelsigni	BUHID VOWEL SIGN I
+1753	buhidvowelsignu	BUHID VOWEL SIGN U

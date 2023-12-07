@@ -1,0 +1,67 @@
+# Kaithi 11080 - 110CF
+11080	kaithisigncandrabindu	KAITHI SIGN CANDRABINDU
+11081	kaithisignanusvara	KAITHI SIGN ANUSVARA
+11082	kaithisignvisarga	KAITHI SIGN VISARGA
+11083	kaithilettera	KAITHI LETTER A
+11084	kaithiletteraa	KAITHI LETTER AA
+11085	kaithiletteri	KAITHI LETTER I
+11086	kaithiletterii	KAITHI LETTER II
+11087	kaithiletteru	KAITHI LETTER U
+11088	kaithiletteruu	KAITHI LETTER UU
+11089	kaithilettere	KAITHI LETTER E
+1108A	kaithiletterai	KAITHI LETTER AI
+1108B	kaithilettero	KAITHI LETTER O
+1108C	kaithiletterau	KAITHI LETTER AU
+1108D	kaithiletterka	KAITHI LETTER KA
+1108E	kaithiletterkha	KAITHI LETTER KHA
+1108F	kaithiletterga	KAITHI LETTER GA
+11090	kaithilettergha	KAITHI LETTER GHA
+11091	kaithiletternga	KAITHI LETTER NGA
+11092	kaithiletterca	KAITHI LETTER CA
+11093	kaithilettercha	KAITHI LETTER CHA
+11094	kaithiletterja	KAITHI LETTER JA
+11095	kaithiletterjha	KAITHI LETTER JHA
+11096	kaithiletternya	KAITHI LETTER NYA
+11097	kaithilettertta	KAITHI LETTER TTA
+11098	kaithiletterttha	KAITHI LETTER TTHA
+11099	kaithiletterdda	KAITHI LETTER DDA
+1109A	kaithiletterdddha	KAITHI LETTER DDDHA
+1109B	kaithiletterddha	KAITHI LETTER DDHA
+1109C	kaithiletterrha	KAITHI LETTER RHA
+1109D	kaithiletternna	KAITHI LETTER NNA
+1109E	kaithiletterta	KAITHI LETTER TA
+1109F	kaithilettertha	KAITHI LETTER THA
+110A0	kaithiletterda	KAITHI LETTER DA
+110A1	kaithiletterdha	KAITHI LETTER DHA
+110A2	kaithiletterna	KAITHI LETTER NA
+110A3	kaithiletterpa	KAITHI LETTER PA
+110A4	kaithiletterpha	KAITHI LETTER PHA
+110A5	kaithiletterba	KAITHI LETTER BA
+110A6	kaithiletterbha	KAITHI LETTER BHA
+110A7	kaithiletterma	KAITHI LETTER MA
+110A8	kaithiletterya	KAITHI LETTER YA
+110A9	kaithiletterra	KAITHI LETTER RA
+110AA	kaithiletterla	KAITHI LETTER LA
+110AB	kaithiletterva	KAITHI LETTER VA
+110AC	kaithilettersha	KAITHI LETTER SHA
+110AD	kaithiletterssa	KAITHI LETTER SSA
+110AE	kaithilettersa	KAITHI LETTER SA
+110AF	kaithiletterha	KAITHI LETTER HA
+110B0	kaithivowelsignaa	KAITHI VOWEL SIGN AA
+110B1	kaithivowelsigni	KAITHI VOWEL SIGN I
+110B2	kaithivowelsignii	KAITHI VOWEL SIGN II
+110B3	kaithivowelsignu	KAITHI VOWEL SIGN U
+110B4	kaithivowelsignuu	KAITHI VOWEL SIGN UU
+110B5	kaithivowelsigne	KAITHI VOWEL SIGN E
+110B6	kaithivowelsignai	KAITHI VOWEL SIGN AI
+110B7	kaithivowelsigno	KAITHI VOWEL SIGN O
+110B8	kaithivowelsignau	KAITHI VOWEL SIGN AU
+110B9	kaithisignvirama	KAITHI SIGN VIRAMA
+110BA	kaithisignnukta	KAITHI SIGN NUKTA
+110BB	kaithiabbreviationsign	KAITHI ABBREVIATION SIGN
+110BC	kaithienumerationsign	KAITHI ENUMERATION SIGN
+110BD	kaithinumbersign	KAITHI NUMBER SIGN
+110BE	kaithisectionmark	KAITHI SECTION MARK
+110BF	kaithidoublesectionmark	KAITHI DOUBLE SECTION MARK
+110C0	kaithidanda	KAITHI DANDA
+110C1	kaithidoubledanda	KAITHI DOUBLE DANDA

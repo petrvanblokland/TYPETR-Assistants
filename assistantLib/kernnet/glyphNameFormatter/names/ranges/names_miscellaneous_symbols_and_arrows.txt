@@ -1,0 +1,88 @@
+# Miscellaneous Symbols and Arrows 2B00 - 2BFF
+2B00	northeastwhitearrow	NORTH EAST WHITE ARROW
+2B01	northwestwhitearrow	NORTH WEST WHITE ARROW
+2B02	southeastwhitearrow	SOUTH EAST WHITE ARROW
+2B03	southwestwhitearrow	SOUTH WEST WHITE ARROW
+2B04	leftrightwhitearrow	LEFT RIGHT WHITE ARROW
+2B05	leftwardsblackarrow	LEFTWARDS BLACK ARROW
+2B06	upwardsblackarrow	UPWARDS BLACK ARROW
+2B07	downwardsblackarrow	DOWNWARDS BLACK ARROW
+2B08	northeastblackarrow	NORTH EAST BLACK ARROW
+2B09	northwestblackarrow	NORTH WEST BLACK ARROW
+2B0A	southeastblackarrow	SOUTH EAST BLACK ARROW
+2B0B	southwestblackarrow	SOUTH WEST BLACK ARROW
+2B0C	leftrightblackarrow	LEFT RIGHT BLACK ARROW
+2B0D	updownblackarrow	UP DOWN BLACK ARROW
+2B0E	rightwardsarrowwithtipdownwards	RIGHTWARDS ARROW WITH TIP DOWNWARDS
+2B0F	rightwardsarrowwithtipupwards	RIGHTWARDS ARROW WITH TIP UPWARDS
+2B10	leftwardsarrowwithtipdownwards	LEFTWARDS ARROW WITH TIP DOWNWARDS
+2B11	leftwardsarrowwithtipupwards	LEFTWARDS ARROW WITH TIP UPWARDS
+2B12	squarewithtophalfblack	SQUARE WITH TOP HALF BLACK
+2B13	squarewithbottomhalfblack	SQUARE WITH BOTTOM HALF BLACK
+2B14	squarewithupperrightdiagonalhalfblack	SQUARE WITH UPPER RIGHT DIAGONAL HALF BLACK
+2B15	squarewithlowerleftdiagonalhalfblack	SQUARE WITH LOWER LEFT DIAGONAL HALF BLACK
+2B16	diamondwithlefthalfblack	DIAMOND WITH LEFT HALF BLACK
+2B17	diamondwithrighthalfblack	DIAMOND WITH RIGHT HALF BLACK
+2B18	diamondwithtophalfblack	DIAMOND WITH TOP HALF BLACK
+2B19	diamondwithbottomhalfblack	DIAMOND WITH BOTTOM HALF BLACK
+2B1A	dottedsquare	DOTTED SQUARE
+2B1B	blacklargesquare	BLACK LARGE SQUARE
+2B1C	whitelargesquare	WHITE LARGE SQUARE
+2B1D	blackverysmallsquare	BLACK VERY SMALL SQUARE
+2B1E	whiteverysmallsquare	WHITE VERY SMALL SQUARE
+2B1F	blackpentagon	BLACK PENTAGON
+2B20	whitepentagon	WHITE PENTAGON
+2B21	whitehexagon	WHITE HEXAGON
+2B22	blackhexagon	BLACK HEXAGON
+2B23	horizontalblackhexagon	HORIZONTAL BLACK HEXAGON
+2B24	blacklargecircle	BLACK LARGE CIRCLE
+2B25	blackmediumdiamond	BLACK MEDIUM DIAMOND
+2B26	whitemediumdiamond	WHITE MEDIUM DIAMOND
+2B27	blackmediumlozenge	BLACK MEDIUM LOZENGE
+2B28	whitemediumlozenge	WHITE MEDIUM LOZENGE
+2B29	blacksmalldiamond	BLACK SMALL DIAMOND
+2B2A	blacksmalllozenge	BLACK SMALL LOZENGE
+2B2B	whitesmalllozenge	WHITE SMALL LOZENGE
+2B2C	blackhorizontalellipse	BLACK HORIZONTAL ELLIPSE
+2B2D	whitehorizontalellipse	WHITE HORIZONTAL ELLIPSE
+2B2E	blackverticalellipse	BLACK VERTICAL ELLIPSE
+2B2F	whiteverticalellipse	WHITE VERTICAL ELLIPSE
+2B30	leftarrowwithsmallcircle	LEFT ARROW WITH SMALL CIRCLE
+2B31	threeleftwardsarrows	THREE LEFTWARDS ARROWS
+2B32	leftarrowwithcircledplus	LEFT ARROW WITH CIRCLED PLUS
+2B33	longleftwardssquigglearrow	LONG LEFTWARDS SQUIGGLE ARROW
+2B34	leftwardstwoheadedarrowwithverticalstroke	LEFTWARDS TWO-HEADED ARROW WITH VERTICAL STROKE
+2B35	leftwardstwoheadedarrowwithdoubleverticalstroke	LEFTWARDS TWO-HEADED ARROW WITH DOUBLE VERTICAL STROKE
+2B36	leftwardstwoheadedarrowfrombar	LEFTWARDS TWO-HEADED ARROW FROM BAR
+2B37	leftwardstwoheadedtripledasharrow	LEFTWARDS TWO-HEADED TRIPLE DASH ARROW
+2B38	leftwardsarrowwithdottedstem	LEFTWARDS ARROW WITH DOTTED STEM
+2B39	leftwardsarrowwithtailwithverticalstroke	LEFTWARDS ARROW WITH TAIL WITH VERTICAL STROKE
+2B3A	leftwardsarrowwithtailwithdoubleverticalstroke	LEFTWARDS ARROW WITH TAIL WITH DOUBLE VERTICAL STROKE
+2B3B	leftwardstwoheadedarrowwithtail	LEFTWARDS TWO-HEADED ARROW WITH TAIL
+2B3C	leftwardstwoheadedarrowwithtailwithverticalstroke	LEFTWARDS TWO-HEADED ARROW WITH TAIL WITH VERTICAL STROKE
+2B3D	leftwardstwoheadedarrowwithtailwithdoubleverticalstroke	LEFTWARDS TWO-HEADED ARROW WITH TAIL WITH DOUBLE VERTICAL STROKE
+2B3E	leftwardsarrowthroughx	LEFTWARDS ARROW THROUGH X
+2B3F	wavearrowpointingdirectlyleft	WAVE ARROW POINTING DIRECTLY LEFT
+2B40	equalssignaboveleftwardsarrow	EQUALS SIGN ABOVE LEFTWARDS ARROW
+2B41	reversetildeoperatoraboveleftwardsarrow	REVERSE TILDE OPERATOR ABOVE LEFTWARDS ARROW
+2B42	leftwardsarrowabovereversealmostequalto	LEFTWARDS ARROW ABOVE REVERSE ALMOST EQUAL TO
+2B43	rightwardsarrowthroughgreaterthan	RIGHTWARDS ARROW THROUGH GREATER-THAN
+2B44	rightwardsarrowthroughsuperset	RIGHTWARDS ARROW THROUGH SUPERSET
+2B45	leftwardsquadruplearrow	LEFTWARDS QUADRUPLE ARROW
+2B46	rightwardsquadruplearrow	RIGHTWARDS QUADRUPLE ARROW
+2B47	reversetildeoperatoraboverightwardsarrow	REVERSE TILDE OPERATOR ABOVE RIGHTWARDS ARROW
+2B48	rightwardsarrowabovereversealmostequalto	RIGHTWARDS ARROW ABOVE REVERSE ALMOST EQUAL TO
+2B49	tildeoperatoraboveleftwardsarrow	TILDE OPERATOR ABOVE LEFTWARDS ARROW
+2B4A	leftwardsarrowabovealmostequalto	LEFTWARDS ARROW ABOVE ALMOST EQUAL TO
+2B4B	leftwardsarrowabovereversetildeoperator	LEFTWARDS ARROW ABOVE REVERSE TILDE OPERATOR
+2B4C	rightwardsarrowabovereversetildeoperator	RIGHTWARDS ARROW ABOVE REVERSE TILDE OPERATOR
+2B50	whitemediumstar	WHITE MEDIUM STAR
+2B51	blacksmallstar	BLACK SMALL STAR
+2B52	whitesmallstar	WHITE SMALL STAR
+2B53	blackrightpointingpentagon	BLACK RIGHT-POINTING PENTAGON
+2B54	whiterightpointingpentagon	WHITE RIGHT-POINTING PENTAGON
+2B55	heavylargecircle	HEAVY LARGE CIRCLE
+2B56	heavyovalwithovalinside	HEAVY OVAL WITH OVAL INSIDE
+2B57	heavycirclewithcircleinside	HEAVY CIRCLE WITH CIRCLE INSIDE
+2B58	heavycircle	HEAVY CIRCLE
+2B59	heavycircledsaltire	HEAVY CIRCLED SALTIRE

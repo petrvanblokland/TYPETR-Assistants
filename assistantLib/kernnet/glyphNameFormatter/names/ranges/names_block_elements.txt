@@ -1,0 +1,33 @@
+# Block Elements 2580 - 259F
+2580	upperhalfblock	UPPER HALF BLOCK
+2581	loweroneeighthblock	LOWER ONE EIGHTH BLOCK
+2582	loweronequarterblock	LOWER ONE QUARTER BLOCK
+2583	lowerthreeeighthsblock	LOWER THREE EIGHTHS BLOCK
+2584	lowerhalfblock	LOWER HALF BLOCK
+2585	lowerfiveeighthsblock	LOWER FIVE EIGHTHS BLOCK
+2586	lowerthreequartersblock	LOWER THREE QUARTERS BLOCK
+2587	lowerseveneighthsblock	LOWER SEVEN EIGHTHS BLOCK
+2588	fullblock	FULL BLOCK
+2589	leftseveneighthsblock	LEFT SEVEN EIGHTHS BLOCK
+258A	leftthreequartersblock	LEFT THREE QUARTERS BLOCK
+258B	leftfiveeighthsblock	LEFT FIVE EIGHTHS BLOCK
+258C	lefthalfblock	LEFT HALF BLOCK
+258D	leftthreeeighthsblock	LEFT THREE EIGHTHS BLOCK
+258E	leftonequarterblock	LEFT ONE QUARTER BLOCK
+258F	leftoneeighthblock	LEFT ONE EIGHTH BLOCK
+2590	righthalfblock	RIGHT HALF BLOCK
+2591	lightshade	LIGHT SHADE
+2592	mediumshade	MEDIUM SHADE
+2593	darkshade	DARK SHADE
+2594	upperoneeighthblock	UPPER ONE EIGHTH BLOCK
+2595	rightoneeighthblock	RIGHT ONE EIGHTH BLOCK
+2596	quadrantlowerleft	QUADRANT LOWER LEFT
+2597	quadrantlowerright	QUADRANT LOWER RIGHT
+2598	quadrantupperleft	QUADRANT UPPER LEFT
+2599	quadrantupperleftlowerleftlowerright	QUADRANT UPPER LEFT AND LOWER LEFT AND LOWER RIGHT
+259A	quadrantupperleftlowerright	QUADRANT UPPER LEFT AND LOWER RIGHT
+259B	quadrantupperleftupperrightlowerleft	QUADRANT UPPER LEFT AND UPPER RIGHT AND LOWER LEFT
+259C	quadrantupperleftupperrightlowerright	QUADRANT UPPER LEFT AND UPPER RIGHT AND LOWER RIGHT
+259D	quadrantupperright	QUADRANT UPPER RIGHT
+259E	quadrantupperrightlowerleft	QUADRANT UPPER RIGHT AND LOWER LEFT
+259F	quadrantupperrightlowerleftlowerright	QUADRANT UPPER RIGHT AND LOWER LEFT AND LOWER RIGHT

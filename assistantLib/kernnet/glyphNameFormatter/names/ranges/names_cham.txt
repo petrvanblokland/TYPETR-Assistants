@@ -1,0 +1,84 @@
+# Cham AA00 - AA5F
+AA00	chamlettera	CHAM LETTER A
+AA01	chamletteri	CHAM LETTER I
+AA02	chamletteru	CHAM LETTER U
+AA03	chamlettere	CHAM LETTER E
+AA04	chamletterai	CHAM LETTER AI
+AA05	chamlettero	CHAM LETTER O
+AA06	chamletterka	CHAM LETTER KA
+AA07	chamletterkha	CHAM LETTER KHA
+AA08	chamletterga	CHAM LETTER GA
+AA09	chamlettergha	CHAM LETTER GHA
+AA0A	chamletterngue	CHAM LETTER NGUE
+AA0B	chamletternga	CHAM LETTER NGA
+AA0C	chamlettercha	CHAM LETTER CHA
+AA0D	chamletterchha	CHAM LETTER CHHA
+AA0E	chamletterja	CHAM LETTER JA
+AA0F	chamletterjha	CHAM LETTER JHA
+AA10	chamletternhue	CHAM LETTER NHUE
+AA11	chamletternha	CHAM LETTER NHA
+AA12	chamletternhja	CHAM LETTER NHJA
+AA13	chamletterta	CHAM LETTER TA
+AA14	chamlettertha	CHAM LETTER THA
+AA15	chamletterda	CHAM LETTER DA
+AA16	chamletterdha	CHAM LETTER DHA
+AA17	chamletternue	CHAM LETTER NUE
+AA18	chamletterna	CHAM LETTER NA
+AA19	chamletterdda	CHAM LETTER DDA
+AA1A	chamletterpa	CHAM LETTER PA
+AA1B	chamletterppa	CHAM LETTER PPA
+AA1C	chamletterpha	CHAM LETTER PHA
+AA1D	chamletterba	CHAM LETTER BA
+AA1E	chamletterbha	CHAM LETTER BHA
+AA1F	chamlettermue	CHAM LETTER MUE
+AA20	chamletterma	CHAM LETTER MA
+AA21	chamletterbba	CHAM LETTER BBA
+AA22	chamletterya	CHAM LETTER YA
+AA23	chamletterra	CHAM LETTER RA
+AA24	chamletterla	CHAM LETTER LA
+AA25	chamletterva	CHAM LETTER VA
+AA26	chamletterssa	CHAM LETTER SSA
+AA27	chamlettersa	CHAM LETTER SA
+AA28	chamletterha	CHAM LETTER HA
+AA29	chamvowelsignaa	CHAM VOWEL SIGN AA
+AA2A	chamvowelsigni	CHAM VOWEL SIGN I
+AA2B	chamvowelsignii	CHAM VOWEL SIGN II
+AA2C	chamvowelsignei	CHAM VOWEL SIGN EI
+AA2D	chamvowelsignu	CHAM VOWEL SIGN U
+AA2E	chamvowelsignoe	CHAM VOWEL SIGN OE
+AA2F	chamvowelsigno	CHAM VOWEL SIGN O
+AA30	chamvowelsignai	CHAM VOWEL SIGN AI
+AA31	chamvowelsignau	CHAM VOWEL SIGN AU
+AA32	chamvowelsignue	CHAM VOWEL SIGN UE
+AA33	chamconsonantsignya	CHAM CONSONANT SIGN YA
+AA34	chamconsonantsignra	CHAM CONSONANT SIGN RA
+AA35	chamconsonantsignla	CHAM CONSONANT SIGN LA
+AA36	chamconsonantsignwa	CHAM CONSONANT SIGN WA
+AA40	chamletterfinalk	CHAM LETTER FINAL K
+AA41	chamletterfinalg	CHAM LETTER FINAL G
+AA42	chamletterfinalng	CHAM LETTER FINAL NG
+AA43	chamconsonantsignfinalng	CHAM CONSONANT SIGN FINAL NG
+AA44	chamletterfinalch	CHAM LETTER FINAL CH
+AA45	chamletterfinalt	CHAM LETTER FINAL T
+AA46	chamletterfinaln	CHAM LETTER FINAL N
+AA47	chamletterfinalp	CHAM LETTER FINAL P
+AA48	chamletterfinaly	CHAM LETTER FINAL Y
+AA49	chamletterfinalr	CHAM LETTER FINAL R
+AA4A	chamletterfinall	CHAM LETTER FINAL L
+AA4B	chamletterfinalss	CHAM LETTER FINAL SS
+AA4C	chamconsonantsignfinalm	CHAM CONSONANT SIGN FINAL M
+AA4D	chamconsonantsignfinalh	CHAM CONSONANT SIGN FINAL H
+AA50	chamdigitzero	CHAM DIGIT ZERO
+AA51	chamdigitone	CHAM DIGIT ONE
+AA52	chamdigittwo	CHAM DIGIT TWO
+AA53	chamdigitthree	CHAM DIGIT THREE
+AA54	chamdigitfour	CHAM DIGIT FOUR
+AA55	chamdigitfive	CHAM DIGIT FIVE
+AA56	chamdigitsix	CHAM DIGIT SIX
+AA57	chamdigitseven	CHAM DIGIT SEVEN
+AA58	chamdigiteight	CHAM DIGIT EIGHT
+AA59	chamdigitnine	CHAM DIGIT NINE
+AA5C	champunctuationspiral	CHAM PUNCTUATION SPIRAL
+AA5D	champunctuationdanda	CHAM PUNCTUATION DANDA
+AA5E	champunctuationdoubledanda	CHAM PUNCTUATION DOUBLE DANDA
+AA5F	champunctuationtripledanda	CHAM PUNCTUATION TRIPLE DANDA

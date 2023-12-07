@@ -1,0 +1,82 @@
+# Runic 16A0 - 16FF
+16A0	runicletterfehufeohfef	RUNIC LETTER FEHU FEOH FE F
+16A1	runicletterv	RUNIC LETTER V
+16A2	runicletteruruzuru	RUNIC LETTER URUZ UR U
+16A3	runicletteryr	RUNIC LETTER YR
+16A4	runiclettery	RUNIC LETTER Y
+16A5	runicletterw	RUNIC LETTER W
+16A6	runicletterthurisazthursthorn	RUNIC LETTER THURISAZ THURS THORN
+16A7	runiclettereth	RUNIC LETTER ETH
+16A8	runicletteransuza	RUNIC LETTER ANSUZ A
+16A9	runicletteroso	RUNIC LETTER OS O
+16AA	runicletteraca	RUNIC LETTER AC A
+16AB	runicletteraesc	RUNIC LETTER AESC
+16AC	runicletterlongbranchosso	RUNIC LETTER LONG-BRANCH-OSS O
+16AD	runiclettershorttwigosso	RUNIC LETTER SHORT-TWIG-OSS O
+16AE	runiclettero	RUNIC LETTER O
+16AF	runicletteroe	RUNIC LETTER OE
+16B0	runicletteron	RUNIC LETTER ON
+16B1	runicletterraidoradreidr	RUNIC LETTER RAIDO RAD REID R
+16B2	runicletterkauna	RUNIC LETTER KAUNA
+16B3	runiclettercen	RUNIC LETTER CEN
+16B4	runicletterkaunk	RUNIC LETTER KAUN K
+16B5	runicletterg	RUNIC LETTER G
+16B6	runiclettereng	RUNIC LETTER ENG
+16B7	runiclettergebogyfug	RUNIC LETTER GEBO GYFU G
+16B8	runiclettergar	RUNIC LETTER GAR
+16B9	runicletterwunjowynnw	RUNIC LETTER WUNJO WYNN W
+16BA	runicletterhaglazh	RUNIC LETTER HAGLAZ H
+16BB	runicletterhaeglh	RUNIC LETTER HAEGL H
+16BC	runicletterlongbranchhagallh	RUNIC LETTER LONG-BRANCH-HAGALL H
+16BD	runiclettershorttwighagallh	RUNIC LETTER SHORT-TWIG-HAGALL H
+16BE	runicletternaudiznydnaudn	RUNIC LETTER NAUDIZ NYD NAUD N
+16BF	runiclettershorttwignaudn	RUNIC LETTER SHORT-TWIG-NAUD N
+16C0	runicletterdottedn	RUNIC LETTER DOTTED-N
+16C1	runicletterisazisissi	RUNIC LETTER ISAZ IS ISS I
+16C2	runiclettere	RUNIC LETTER E
+16C3	runicletterjeranj	RUNIC LETTER JERAN J
+16C4	runicletterger	RUNIC LETTER GER
+16C5	runicletterlongbrancharae	RUNIC LETTER LONG-BRANCH-AR AE
+16C6	runiclettershorttwigara	RUNIC LETTER SHORT-TWIG-AR A
+16C7	runicletteriwazeoh	RUNIC LETTER IWAZ EOH
+16C8	runicletterperthopeorthp	RUNIC LETTER PERTHO PEORTH P
+16C9	runicletteralgizeolhx	RUNIC LETTER ALGIZ EOLHX
+16CA	runiclettersowilos	RUNIC LETTER SOWILO S
+16CB	runiclettersigellongbranchsols	RUNIC LETTER SIGEL LONG-BRANCH-SOL S
+16CC	runiclettershorttwigsols	RUNIC LETTER SHORT-TWIG-SOL S
+16CD	runicletterc	RUNIC LETTER C
+16CE	runicletterz	RUNIC LETTER Z
+16CF	runiclettertiwaztirtyrt	RUNIC LETTER TIWAZ TIR TYR T
+16D0	runiclettershorttwigtyrt	RUNIC LETTER SHORT-TWIG-TYR T
+16D1	runicletterd	RUNIC LETTER D
+16D2	runicletterberkananbeorcbjarkanb	RUNIC LETTER BERKANAN BEORC BJARKAN B
+16D3	runiclettershorttwigbjarkanb	RUNIC LETTER SHORT-TWIG-BJARKAN B
+16D4	runicletterdottedp	RUNIC LETTER DOTTED-P
+16D5	runicletteropenp	RUNIC LETTER OPEN-P
+16D6	runicletterehwazehe	RUNIC LETTER EHWAZ EH E
+16D7	runiclettermannazmanm	RUNIC LETTER MANNAZ MAN M
+16D8	runicletterlongbranchmadrm	RUNIC LETTER LONG-BRANCH-MADR M
+16D9	runiclettershorttwigmadrm	RUNIC LETTER SHORT-TWIG-MADR M
+16DA	runicletterlaukazlagulogrl	RUNIC LETTER LAUKAZ LAGU LOGR L
+16DB	runicletterdottedl	RUNIC LETTER DOTTED-L
+16DC	runicletteringwaz	RUNIC LETTER INGWAZ
+16DD	runiclettering	RUNIC LETTER ING
+16DE	runicletterdagazdaegd	RUNIC LETTER DAGAZ DAEG D
+16DF	runicletterothalanethelo	RUNIC LETTER OTHALAN ETHEL O
+16E0	runicletterear	RUNIC LETTER EAR
+16E1	runicletterior	RUNIC LETTER IOR
+16E2	runiclettercweorth	RUNIC LETTER CWEORTH
+16E3	runiclettercalc	RUNIC LETTER CALC
+16E4	runiclettercealc	RUNIC LETTER CEALC
+16E5	runicletterstan	RUNIC LETTER STAN
+16E6	runicletterlongbranchyr	RUNIC LETTER LONG-BRANCH-YR
+16E7	runiclettershorttwigyr	RUNIC LETTER SHORT-TWIG-YR
+16E8	runiclettericelandicyr	RUNIC LETTER ICELANDIC-YR
+16E9	runicletterq	RUNIC LETTER Q
+16EA	runicletterx	RUNIC LETTER X
+16EB	runicsinglepunctuation	RUNIC SINGLE PUNCTUATION
+16EC	runicmultiplepunctuation	RUNIC MULTIPLE PUNCTUATION
+16ED	runiccrosspunctuation	RUNIC CROSS PUNCTUATION
+16EE	runicarlaugsymbol	RUNIC ARLAUG SYMBOL
+16EF	runictvimadursymbol	RUNIC TVIMADUR SYMBOL
+16F0	runicbelgthorsymbol	RUNIC BELGTHOR SYMBOL

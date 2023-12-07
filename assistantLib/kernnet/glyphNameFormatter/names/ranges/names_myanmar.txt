@@ -1,0 +1,161 @@
+# Myanmar 1000 - 109F
+1000	myanmarletterka	MYANMAR LETTER KA
+1001	myanmarletterkha	MYANMAR LETTER KHA
+1002	myanmarletterga	MYANMAR LETTER GA
+1003	myanmarlettergha	MYANMAR LETTER GHA
+1004	myanmarletternga	MYANMAR LETTER NGA
+1005	myanmarletterca	MYANMAR LETTER CA
+1006	myanmarlettercha	MYANMAR LETTER CHA
+1007	myanmarletterja	MYANMAR LETTER JA
+1008	myanmarletterjha	MYANMAR LETTER JHA
+1009	myanmarletternya	MYANMAR LETTER NYA
+100A	myanmarletternnya	MYANMAR LETTER NNYA
+100B	myanmarlettertta	MYANMAR LETTER TTA
+100C	myanmarletterttha	MYANMAR LETTER TTHA
+100D	myanmarletterdda	MYANMAR LETTER DDA
+100E	myanmarletterddha	MYANMAR LETTER DDHA
+100F	myanmarletternna	MYANMAR LETTER NNA
+1010	myanmarletterta	MYANMAR LETTER TA
+1011	myanmarlettertha	MYANMAR LETTER THA
+1012	myanmarletterda	MYANMAR LETTER DA
+1013	myanmarletterdha	MYANMAR LETTER DHA
+1014	myanmarletterna	MYANMAR LETTER NA
+1015	myanmarletterpa	MYANMAR LETTER PA
+1016	myanmarletterpha	MYANMAR LETTER PHA
+1017	myanmarletterba	MYANMAR LETTER BA
+1018	myanmarletterbha	MYANMAR LETTER BHA
+1019	myanmarletterma	MYANMAR LETTER MA
+101A	myanmarletterya	MYANMAR LETTER YA
+101B	myanmarletterra	MYANMAR LETTER RA
+101C	myanmarletterla	MYANMAR LETTER LA
+101D	myanmarletterwa	MYANMAR LETTER WA
+101E	myanmarlettersa	MYANMAR LETTER SA
+101F	myanmarletterha	MYANMAR LETTER HA
+1020	myanmarletterlla	MYANMAR LETTER LLA
+1021	myanmarlettera	MYANMAR LETTER A
+1022	myanmarlettershana	MYANMAR LETTER SHAN A
+1023	myanmarletteri	MYANMAR LETTER I
+1024	myanmarletterii	MYANMAR LETTER II
+1025	myanmarletteru	MYANMAR LETTER U
+1026	myanmarletteruu	MYANMAR LETTER UU
+1027	myanmarlettere	MYANMAR LETTER E
+1028	myanmarlettermone	MYANMAR LETTER MON E
+1029	myanmarlettero	MYANMAR LETTER O
+102A	myanmarletterau	MYANMAR LETTER AU
+102B	myanmarvowelsigntallaa	MYANMAR VOWEL SIGN TALL AA
+102C	myanmarvowelsignaa	MYANMAR VOWEL SIGN AA
+102D	myanmarvowelsigni	MYANMAR VOWEL SIGN I
+102E	myanmarvowelsignii	MYANMAR VOWEL SIGN II
+102F	myanmarvowelsignu	MYANMAR VOWEL SIGN U
+1030	myanmarvowelsignuu	MYANMAR VOWEL SIGN UU
+1031	myanmarvowelsigne	MYANMAR VOWEL SIGN E
+1032	myanmarvowelsignai	MYANMAR VOWEL SIGN AI
+1033	myanmarvowelsignmonii	MYANMAR VOWEL SIGN MON II
+1034	myanmarvowelsignmono	MYANMAR VOWEL SIGN MON O
+1035	myanmarvowelsigneabove	MYANMAR VOWEL SIGN E ABOVE
+1036	myanmarsignanusvara	MYANMAR SIGN ANUSVARA
+1037	myanmarsigndotbelow	MYANMAR SIGN DOT BELOW
+1038	myanmarsignvisarga	MYANMAR SIGN VISARGA
+1039	myanmarsignvirama	MYANMAR SIGN VIRAMA
+103A	myanmarsignasat	MYANMAR SIGN ASAT
+103B	myanmarconsonantsignmedialya	MYANMAR CONSONANT SIGN MEDIAL YA
+103C	myanmarconsonantsignmedialra	MYANMAR CONSONANT SIGN MEDIAL RA
+103D	myanmarconsonantsignmedialwa	MYANMAR CONSONANT SIGN MEDIAL WA
+103E	myanmarconsonantsignmedialha	MYANMAR CONSONANT SIGN MEDIAL HA
+103F	myanmarlettergreatsa	MYANMAR LETTER GREAT SA
+1040	myanmardigitzero	MYANMAR DIGIT ZERO
+1041	myanmardigitone	MYANMAR DIGIT ONE
+1042	myanmardigittwo	MYANMAR DIGIT TWO
+1043	myanmardigitthree	MYANMAR DIGIT THREE
+1044	myanmardigitfour	MYANMAR DIGIT FOUR
+1045	myanmardigitfive	MYANMAR DIGIT FIVE
+1046	myanmardigitsix	MYANMAR DIGIT SIX
+1047	myanmardigitseven	MYANMAR DIGIT SEVEN
+1048	myanmardigiteight	MYANMAR DIGIT EIGHT
+1049	myanmardigitnine	MYANMAR DIGIT NINE
+104A	myanmarsignlittlesection	MYANMAR SIGN LITTLE SECTION
+104B	myanmarsignsection	MYANMAR SIGN SECTION
+104C	myanmarsymbollocative	MYANMAR SYMBOL LOCATIVE
+104D	myanmarsymbolcompleted	MYANMAR SYMBOL COMPLETED
+104E	myanmarsymbolaforementioned	MYANMAR SYMBOL AFOREMENTIONED
+104F	myanmarsymbolgenitive	MYANMAR SYMBOL GENITIVE
+1050	myanmarlettersha	MYANMAR LETTER SHA
+1051	myanmarletterssa	MYANMAR LETTER SSA
+1052	myanmarlettervocalicr	MYANMAR LETTER VOCALIC R
+1053	myanmarlettervocalicrr	MYANMAR LETTER VOCALIC RR
+1054	myanmarlettervocalicl	MYANMAR LETTER VOCALIC L
+1055	myanmarlettervocalicll	MYANMAR LETTER VOCALIC LL
+1056	myanmarvowelsignvocalicr	MYANMAR VOWEL SIGN VOCALIC R
+1057	myanmarvowelsignvocalicrr	MYANMAR VOWEL SIGN VOCALIC RR
+1058	myanmarvowelsignvocalicl	MYANMAR VOWEL SIGN VOCALIC L
+1059	myanmarvowelsignvocalicll	MYANMAR VOWEL SIGN VOCALIC LL
+105A	myanmarlettermonnga	MYANMAR LETTER MON NGA
+105B	myanmarlettermonjha	MYANMAR LETTER MON JHA
+105C	myanmarlettermonbba	MYANMAR LETTER MON BBA
+105D	myanmarlettermonbbe	MYANMAR LETTER MON BBE
+105E	myanmarconsonantsignmonmedialna	MYANMAR CONSONANT SIGN MON MEDIAL NA
+105F	myanmarconsonantsignmonmedialma	MYANMAR CONSONANT SIGN MON MEDIAL MA
+1060	myanmarconsonantsignmonmedialla	MYANMAR CONSONANT SIGN MON MEDIAL LA
+1061	myanmarlettersgawkarensha	MYANMAR LETTER SGAW KAREN SHA
+1062	myanmarvowelsignsgawkareneu	MYANMAR VOWEL SIGN SGAW KAREN EU
+1063	myanmartonemarksgawkarenhathi	MYANMAR TONE MARK SGAW KAREN HATHI
+1064	myanmartonemarksgawkarenkepho	MYANMAR TONE MARK SGAW KAREN KE PHO
+1065	myanmarletterwesternpwokarentha	MYANMAR LETTER WESTERN PWO KAREN THA
+1066	myanmarletterwesternpwokarenpwa	MYANMAR LETTER WESTERN PWO KAREN PWA
+1067	myanmarvowelsignwesternpwokareneu	MYANMAR VOWEL SIGN WESTERN PWO KAREN EU
+1068	myanmarvowelsignwesternpwokarenue	MYANMAR VOWEL SIGN WESTERN PWO KAREN UE
+1069	myanmarsignwesternpwokarentone1	MYANMAR SIGN WESTERN PWO KAREN TONE-1
+106A	myanmarsignwesternpwokarentone2	MYANMAR SIGN WESTERN PWO KAREN TONE-2
+106B	myanmarsignwesternpwokarentone3	MYANMAR SIGN WESTERN PWO KAREN TONE-3
+106C	myanmarsignwesternpwokarentone4	MYANMAR SIGN WESTERN PWO KAREN TONE-4
+106D	myanmarsignwesternpwokarentone5	MYANMAR SIGN WESTERN PWO KAREN TONE-5
+106E	myanmarlettereasternpwokarennna	MYANMAR LETTER EASTERN PWO KAREN NNA
+106F	myanmarlettereasternpwokarenywa	MYANMAR LETTER EASTERN PWO KAREN YWA
+1070	myanmarlettereasternpwokarenghwa	MYANMAR LETTER EASTERN PWO KAREN GHWA
+1071	myanmarvowelsigngebakareni	MYANMAR VOWEL SIGN GEBA KAREN I
+1072	myanmarvowelsignkayahoe	MYANMAR VOWEL SIGN KAYAH OE
+1073	myanmarvowelsignkayahu	MYANMAR VOWEL SIGN KAYAH U
+1074	myanmarvowelsignkayahee	MYANMAR VOWEL SIGN KAYAH EE
+1075	myanmarlettershanka	MYANMAR LETTER SHAN KA
+1076	myanmarlettershankha	MYANMAR LETTER SHAN KHA
+1077	myanmarlettershanga	MYANMAR LETTER SHAN GA
+1078	myanmarlettershanca	MYANMAR LETTER SHAN CA
+1079	myanmarlettershanza	MYANMAR LETTER SHAN ZA
+107A	myanmarlettershannya	MYANMAR LETTER SHAN NYA
+107B	myanmarlettershanda	MYANMAR LETTER SHAN DA
+107C	myanmarlettershanna	MYANMAR LETTER SHAN NA
+107D	myanmarlettershanpha	MYANMAR LETTER SHAN PHA
+107E	myanmarlettershanfa	MYANMAR LETTER SHAN FA
+107F	myanmarlettershanba	MYANMAR LETTER SHAN BA
+1080	myanmarlettershantha	MYANMAR LETTER SHAN THA
+1081	myanmarlettershanha	MYANMAR LETTER SHAN HA
+1082	myanmarconsonantsignshanmedialwa	MYANMAR CONSONANT SIGN SHAN MEDIAL WA
+1083	myanmarvowelsignshanaa	MYANMAR VOWEL SIGN SHAN AA
+1084	myanmarvowelsignshane	MYANMAR VOWEL SIGN SHAN E
+1085	myanmarvowelsignshaneabove	MYANMAR VOWEL SIGN SHAN E ABOVE
+1086	myanmarvowelsignshanfinaly	MYANMAR VOWEL SIGN SHAN FINAL Y
+1087	myanmarsignshantone2	MYANMAR SIGN SHAN TONE-2
+1088	myanmarsignshantone3	MYANMAR SIGN SHAN TONE-3
+1089	myanmarsignshantone5	MYANMAR SIGN SHAN TONE-5
+108A	myanmarsignshantone6	MYANMAR SIGN SHAN TONE-6
+108B	myanmarsignshancounciltone2	MYANMAR SIGN SHAN COUNCIL TONE-2
+108C	myanmarsignshancounciltone3	MYANMAR SIGN SHAN COUNCIL TONE-3
+108D	myanmarsignshancouncilemphatictone	MYANMAR SIGN SHAN COUNCIL EMPHATIC TONE
+108E	myanmarletterrumaipalaungfa	MYANMAR LETTER RUMAI PALAUNG FA
+108F	myanmarsignrumaipalaungtone5	MYANMAR SIGN RUMAI PALAUNG TONE-5
+1090	myanmarshandigitzero	MYANMAR SHAN DIGIT ZERO
+1091	myanmarshandigitone	MYANMAR SHAN DIGIT ONE
+1092	myanmarshandigittwo	MYANMAR SHAN DIGIT TWO
+1093	myanmarshandigitthree	MYANMAR SHAN DIGIT THREE
+1094	myanmarshandigitfour	MYANMAR SHAN DIGIT FOUR
+1095	myanmarshandigitfive	MYANMAR SHAN DIGIT FIVE
+1096	myanmarshandigitsix	MYANMAR SHAN DIGIT SIX
+1097	myanmarshandigitseven	MYANMAR SHAN DIGIT SEVEN
+1098	myanmarshandigiteight	MYANMAR SHAN DIGIT EIGHT
+1099	myanmarshandigitnine	MYANMAR SHAN DIGIT NINE
+109A	myanmarsignkhamtitone1	MYANMAR SIGN KHAMTI TONE-1
+109B	myanmarsignkhamtitone3	MYANMAR SIGN KHAMTI TONE-3
+109C	myanmarvowelsignaitona	MYANMAR VOWEL SIGN AITON A
+109D	myanmarvowelsignaitonai	MYANMAR VOWEL SIGN AITON AI
+109E	myanmarsymbolshanone	MYANMAR SYMBOL SHAN ONE
+109F	myanmarsymbolshanexclamation	MYANMAR SYMBOL SHAN EXCLAMATION

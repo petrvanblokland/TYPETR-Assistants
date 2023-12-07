@@ -1,0 +1,66 @@
+# Kharoshthi 10A00 - 10A5F
+10A00	kharoshthilettera	KHAROSHTHI LETTER A
+10A01	kharoshthivowelsigni	KHAROSHTHI VOWEL SIGN I
+10A02	kharoshthivowelsignu	KHAROSHTHI VOWEL SIGN U
+10A03	kharoshthivowelsignvocalicr	KHAROSHTHI VOWEL SIGN VOCALIC R
+10A05	kharoshthivowelsigne	KHAROSHTHI VOWEL SIGN E
+10A06	kharoshthivowelsigno	KHAROSHTHI VOWEL SIGN O
+10A0C	kharoshthivowellengthmark	KHAROSHTHI VOWEL LENGTH MARK
+10A0D	kharoshthisigndoubleringbelow	KHAROSHTHI SIGN DOUBLE RING BELOW
+10A0E	kharoshthisignanusvara	KHAROSHTHI SIGN ANUSVARA
+10A0F	kharoshthisignvisarga	KHAROSHTHI SIGN VISARGA
+10A10	kharoshthiletterka	KHAROSHTHI LETTER KA
+10A11	kharoshthiletterkha	KHAROSHTHI LETTER KHA
+10A12	kharoshthiletterga	KHAROSHTHI LETTER GA
+10A13	kharoshthilettergha	KHAROSHTHI LETTER GHA
+10A15	kharoshthiletterca	KHAROSHTHI LETTER CA
+10A16	kharoshthilettercha	KHAROSHTHI LETTER CHA
+10A17	kharoshthiletterja	KHAROSHTHI LETTER JA
+10A19	kharoshthiletternya	KHAROSHTHI LETTER NYA
+10A1A	kharoshthilettertta	KHAROSHTHI LETTER TTA
+10A1B	kharoshthiletterttha	KHAROSHTHI LETTER TTHA
+10A1C	kharoshthiletterdda	KHAROSHTHI LETTER DDA
+10A1D	kharoshthiletterddha	KHAROSHTHI LETTER DDHA
+10A1E	kharoshthiletternna	KHAROSHTHI LETTER NNA
+10A1F	kharoshthiletterta	KHAROSHTHI LETTER TA
+10A20	kharoshthilettertha	KHAROSHTHI LETTER THA
+10A21	kharoshthiletterda	KHAROSHTHI LETTER DA
+10A22	kharoshthiletterdha	KHAROSHTHI LETTER DHA
+10A23	kharoshthiletterna	KHAROSHTHI LETTER NA
+10A24	kharoshthiletterpa	KHAROSHTHI LETTER PA
+10A25	kharoshthiletterpha	KHAROSHTHI LETTER PHA
+10A26	kharoshthiletterba	KHAROSHTHI LETTER BA
+10A27	kharoshthiletterbha	KHAROSHTHI LETTER BHA
+10A28	kharoshthiletterma	KHAROSHTHI LETTER MA
+10A29	kharoshthiletterya	KHAROSHTHI LETTER YA
+10A2A	kharoshthiletterra	KHAROSHTHI LETTER RA
+10A2B	kharoshthiletterla	KHAROSHTHI LETTER LA
+10A2C	kharoshthiletterva	KHAROSHTHI LETTER VA
+10A2D	kharoshthilettersha	KHAROSHTHI LETTER SHA
+10A2E	kharoshthiletterssa	KHAROSHTHI LETTER SSA
+10A2F	kharoshthilettersa	KHAROSHTHI LETTER SA
+10A30	kharoshthiletterza	KHAROSHTHI LETTER ZA
+10A31	kharoshthiletterha	KHAROSHTHI LETTER HA
+10A32	kharoshthiletterkka	KHAROSHTHI LETTER KKA
+10A33	kharoshthilettertttha	KHAROSHTHI LETTER TTTHA
+10A38	kharoshthisignbarabove	KHAROSHTHI SIGN BAR ABOVE
+10A39	kharoshthisigncauda	KHAROSHTHI SIGN CAUDA
+10A3A	kharoshthisigndotbelow	KHAROSHTHI SIGN DOT BELOW
+10A3F	kharoshthivirama	KHAROSHTHI VIRAMA
+10A40	kharoshthidigitone	KHAROSHTHI DIGIT ONE
+10A41	kharoshthidigittwo	KHAROSHTHI DIGIT TWO
+10A42	kharoshthidigitthree	KHAROSHTHI DIGIT THREE
+10A43	kharoshthidigitfour	KHAROSHTHI DIGIT FOUR
+10A44	kharoshthinumberten	KHAROSHTHI NUMBER TEN
+10A45	kharoshthinumbertwenty	KHAROSHTHI NUMBER TWENTY
+10A46	kharoshthinumberonehundred	KHAROSHTHI NUMBER ONE HUNDRED
+10A47	kharoshthinumberonethousand	KHAROSHTHI NUMBER ONE THOUSAND
+10A50	kharoshthipunctuationdot	KHAROSHTHI PUNCTUATION DOT
+10A51	kharoshthipunctuationsmallcircle	KHAROSHTHI PUNCTUATION SMALL CIRCLE
+10A52	kharoshthipunctuationcircle	KHAROSHTHI PUNCTUATION CIRCLE
+10A53	kharoshthipunctuationcrescentbar	KHAROSHTHI PUNCTUATION CRESCENT BAR
+10A54	kharoshthipunctuationmangalam	KHAROSHTHI PUNCTUATION MANGALAM
+10A55	kharoshthipunctuationlotus	KHAROSHTHI PUNCTUATION LOTUS
+10A56	kharoshthipunctuationdanda	KHAROSHTHI PUNCTUATION DANDA
+10A57	kharoshthipunctuationdoubledanda	KHAROSHTHI PUNCTUATION DOUBLE DANDA
+10A58	kharoshthipunctuationlines	KHAROSHTHI PUNCTUATION LINES

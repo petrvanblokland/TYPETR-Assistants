@@ -1,0 +1,24 @@
+# Hanunoo 1720 - 173F
+1720	hanunoolettera	HANUNOO LETTER A
+1721	hanunooletteri	HANUNOO LETTER I
+1722	hanunooletteru	HANUNOO LETTER U
+1723	hanunooletterka	HANUNOO LETTER KA
+1724	hanunooletterga	HANUNOO LETTER GA
+1725	hanunooletternga	HANUNOO LETTER NGA
+1726	hanunooletterta	HANUNOO LETTER TA
+1727	hanunooletterda	HANUNOO LETTER DA
+1728	hanunooletterna	HANUNOO LETTER NA
+1729	hanunooletterpa	HANUNOO LETTER PA
+172A	hanunooletterba	HANUNOO LETTER BA
+172B	hanunooletterma	HANUNOO LETTER MA
+172C	hanunooletterya	HANUNOO LETTER YA
+172D	hanunooletterra	HANUNOO LETTER RA
+172E	hanunooletterla	HANUNOO LETTER LA
+172F	hanunooletterwa	HANUNOO LETTER WA
+1730	hanunoolettersa	HANUNOO LETTER SA
+1731	hanunooletterha	HANUNOO LETTER HA
+1732	hanunoovowelsigni	HANUNOO VOWEL SIGN I
+1733	hanunoovowelsignu	HANUNOO VOWEL SIGN U
+1734	hanunoosignpamudpod	HANUNOO SIGN PAMUDPOD
+1735	philippinesinglepunctuation	PHILIPPINE SINGLE PUNCTUATION
+1736	philippinedoublepunctuation	PHILIPPINE DOUBLE PUNCTUATION

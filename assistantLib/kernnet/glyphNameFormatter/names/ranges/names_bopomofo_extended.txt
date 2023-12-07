@@ -1,0 +1,25 @@
+# Bopomofo Extended 31A0 - 31BF
+31A0	bopomofoletterbu	BOPOMOFO LETTER BU
+31A1	bopomofoletterzi	BOPOMOFO LETTER ZI
+31A2	bopomofoletterji	BOPOMOFO LETTER JI
+31A3	bopomofolettergu	BOPOMOFO LETTER GU
+31A4	bopomofoletteree	BOPOMOFO LETTER EE
+31A5	bopomofoletterenn	BOPOMOFO LETTER ENN
+31A6	bopomofoletteroo	BOPOMOFO LETTER OO
+31A7	bopomofoletteronn	BOPOMOFO LETTER ONN
+31A8	bopomofoletterir	BOPOMOFO LETTER IR
+31A9	bopomofoletterann	BOPOMOFO LETTER ANN
+31AA	bopomofoletterinn	BOPOMOFO LETTER INN
+31AB	bopomofoletterunn	BOPOMOFO LETTER UNN
+31AC	bopomofoletterim	BOPOMOFO LETTER IM
+31AD	bopomofoletterngg	BOPOMOFO LETTER NGG
+31AE	bopomofoletterainn	BOPOMOFO LETTER AINN
+31AF	bopomofoletteraunn	BOPOMOFO LETTER AUNN
+31B0	bopomofoletteram	BOPOMOFO LETTER AM
+31B1	bopomofoletterom	BOPOMOFO LETTER OM
+31B2	bopomofoletterong	BOPOMOFO LETTER ONG
+31B3	bopomofoletterinnn	BOPOMOFO LETTER INNN
+31B4	bopomofofinalletterp	BOPOMOFO FINAL LETTER P
+31B5	bopomofofinallettert	BOPOMOFO FINAL LETTER T
+31B6	bopomofofinalletterk	BOPOMOFO FINAL LETTER K
+31B7	bopomofofinalletterh	BOPOMOFO FINAL LETTER H

@@ -1,0 +1,17 @@
+# Variation Selectors FE00 - FE0F
+FE00	variationselector1	VARIATION SELECTOR-1
+FE01	variationselector2	VARIATION SELECTOR-2
+FE02	variationselector3	VARIATION SELECTOR-3
+FE03	variationselector4	VARIATION SELECTOR-4
+FE04	variationselector5	VARIATION SELECTOR-5
+FE05	variationselector6	VARIATION SELECTOR-6
+FE06	variationselector7	VARIATION SELECTOR-7
+FE07	variationselector8	VARIATION SELECTOR-8
+FE08	variationselector9	VARIATION SELECTOR-9
+FE09	variationselector10	VARIATION SELECTOR-10
+FE0A	variationselector11	VARIATION SELECTOR-11
+FE0B	variationselector12	VARIATION SELECTOR-12
+FE0C	variationselector13	VARIATION SELECTOR-13
+FE0D	variationselector14	VARIATION SELECTOR-14
+FE0E	variationselector15	VARIATION SELECTOR-15
+FE0F	variationselector16	VARIATION SELECTOR-16

@@ -1,0 +1,129 @@
+# Supplemental Arrows-B 2900 - 297F
+2900	rightwardstwoheadedarrowwithverticalstroke	RIGHTWARDS TWO-HEADED ARROW WITH VERTICAL STROKE
+2901	rightwardstwoheadedarrowwithdoubleverticalstroke	RIGHTWARDS TWO-HEADED ARROW WITH DOUBLE VERTICAL STROKE
+2902	leftwardsdoublearrowwithverticalstroke	LEFTWARDS DOUBLE ARROW WITH VERTICAL STROKE
+2903	rightwardsdoublearrowwithverticalstroke	RIGHTWARDS DOUBLE ARROW WITH VERTICAL STROKE
+2904	leftrightdoublearrowwithverticalstroke	LEFT RIGHT DOUBLE ARROW WITH VERTICAL STROKE
+2905	rightwardstwoheadedarrowfrombar	RIGHTWARDS TWO-HEADED ARROW FROM BAR
+2906	leftwardsdoublearrowfrombar	LEFTWARDS DOUBLE ARROW FROM BAR
+2907	rightwardsdoublearrowfrombar	RIGHTWARDS DOUBLE ARROW FROM BAR
+2908	downwardsarrowwithhorizontalstroke	DOWNWARDS ARROW WITH HORIZONTAL STROKE
+2909	upwardsarrowwithhorizontalstroke	UPWARDS ARROW WITH HORIZONTAL STROKE
+290A	upwardstriplearrow	UPWARDS TRIPLE ARROW
+290B	downwardstriplearrow	DOWNWARDS TRIPLE ARROW
+290C	leftwardsdoubledasharrow	LEFTWARDS DOUBLE DASH ARROW
+290D	rightwardsdoubledasharrow	RIGHTWARDS DOUBLE DASH ARROW
+290E	leftwardstripledasharrow	LEFTWARDS TRIPLE DASH ARROW
+290F	rightwardstripledasharrow	RIGHTWARDS TRIPLE DASH ARROW
+2910	rightwardstwoheadedtripledasharrow	RIGHTWARDS TWO-HEADED TRIPLE DASH ARROW
+2911	rightwardsarrowwithdottedstem	RIGHTWARDS ARROW WITH DOTTED STEM
+2912	upwardsarrowtobar	UPWARDS ARROW TO BAR
+2913	downwardsarrowtobar	DOWNWARDS ARROW TO BAR
+2914	rightwardsarrowwithtailwithverticalstroke	RIGHTWARDS ARROW WITH TAIL WITH VERTICAL STROKE
+2915	rightwardsarrowwithtailwithdoubleverticalstroke	RIGHTWARDS ARROW WITH TAIL WITH DOUBLE VERTICAL STROKE
+2916	rightwardstwoheadedarrowwithtail	RIGHTWARDS TWO-HEADED ARROW WITH TAIL
+2917	rightwardstwoheadedarrowwithtailwithverticalstroke	RIGHTWARDS TWO-HEADED ARROW WITH TAIL WITH VERTICAL STROKE
+2918	rightwardstwoheadedarrowwithtailwithdoubleverticalstroke	RIGHTWARDS TWO-HEADED ARROW WITH TAIL WITH DOUBLE VERTICAL STROKE
+2919	leftwardsarrowtail	LEFTWARDS ARROW-TAIL
+291A	rightwardsarrowtail	RIGHTWARDS ARROW-TAIL
+291B	leftwardsdoublearrowtail	LEFTWARDS DOUBLE ARROW-TAIL
+291C	rightwardsdoublearrowtail	RIGHTWARDS DOUBLE ARROW-TAIL
+291D	leftwardsarrowtoblackdiamond	LEFTWARDS ARROW TO BLACK DIAMOND
+291E	rightwardsarrowtoblackdiamond	RIGHTWARDS ARROW TO BLACK DIAMOND
+291F	leftwardsarrowfrombartoblackdiamond	LEFTWARDS ARROW FROM BAR TO BLACK DIAMOND
+2920	rightwardsarrowfrombartoblackdiamond	RIGHTWARDS ARROW FROM BAR TO BLACK DIAMOND
+2921	northwestandsoutheastarrow	NORTH WEST AND SOUTH EAST ARROW
+2922	northeastandsouthwestarrow	NORTH EAST AND SOUTH WEST ARROW
+2923	northwestarrowwithhook	NORTH WEST ARROW WITH HOOK
+2924	northeastarrowwithhook	NORTH EAST ARROW WITH HOOK
+2925	southeastarrowwithhook	SOUTH EAST ARROW WITH HOOK
+2926	southwestarrowwithhook	SOUTH WEST ARROW WITH HOOK
+2927	northwestarrowandnortheastarrow	NORTH WEST ARROW AND NORTH EAST ARROW
+2928	northeastarrowandsoutheastarrow	NORTH EAST ARROW AND SOUTH EAST ARROW
+2929	southeastarrowandsouthwestarrow	SOUTH EAST ARROW AND SOUTH WEST ARROW
+292A	southwestarrowandnorthwestarrow	SOUTH WEST ARROW AND NORTH WEST ARROW
+292B	risingdiagonalcrossingfallingdiagonal	RISING DIAGONAL CROSSING FALLING DIAGONAL
+292C	fallingdiagonalcrossingrisingdiagonal	FALLING DIAGONAL CROSSING RISING DIAGONAL
+292D	southeastarrowcrossingnortheastarrow	SOUTH EAST ARROW CROSSING NORTH EAST ARROW
+292E	northeastarrowcrossingsoutheastarrow	NORTH EAST ARROW CROSSING SOUTH EAST ARROW
+292F	fallingdiagonalcrossingnortheastarrow	FALLING DIAGONAL CROSSING NORTH EAST ARROW
+2930	risingdiagonalcrossingsoutheastarrow	RISING DIAGONAL CROSSING SOUTH EAST ARROW
+2931	northeastarrowcrossingnorthwestarrow	NORTH EAST ARROW CROSSING NORTH WEST ARROW
+2932	northwestarrowcrossingnortheastarrow	NORTH WEST ARROW CROSSING NORTH EAST ARROW
+2933	wavearrowpointingdirectlyright	WAVE ARROW POINTING DIRECTLY RIGHT
+2934	arrowpointingrightwardsthencurvingupwards	ARROW POINTING RIGHTWARDS THEN CURVING UPWARDS
+2935	arrowpointingrightwardsthencurvingdownwards	ARROW POINTING RIGHTWARDS THEN CURVING DOWNWARDS
+2936	arrowpointingdownwardsthencurvingleftwards	ARROW POINTING DOWNWARDS THEN CURVING LEFTWARDS
+2937	arrowpointingdownwardsthencurvingrightwards	ARROW POINTING DOWNWARDS THEN CURVING RIGHTWARDS
+2938	rightsidearcclockwisearrow	RIGHT-SIDE ARC CLOCKWISE ARROW
+2939	leftsidearcanticlockwisearrow	LEFT-SIDE ARC ANTICLOCKWISE ARROW
+293A	toparcanticlockwisearrow	TOP ARC ANTICLOCKWISE ARROW
+293B	bottomarcanticlockwisearrow	BOTTOM ARC ANTICLOCKWISE ARROW
+293C	toparcclockwisearrowwithminus	TOP ARC CLOCKWISE ARROW WITH MINUS
+293D	toparcanticlockwisearrowwithplus	TOP ARC ANTICLOCKWISE ARROW WITH PLUS
+293E	lowerrightsemicircularclockwisearrow	LOWER RIGHT SEMICIRCULAR CLOCKWISE ARROW
+293F	lowerleftsemicircularanticlockwisearrow	LOWER LEFT SEMICIRCULAR ANTICLOCKWISE ARROW
+2940	anticlockwiseclosedcirclearrow	ANTICLOCKWISE CLOSED CIRCLE ARROW
+2941	clockwiseclosedcirclearrow	CLOCKWISE CLOSED CIRCLE ARROW
+2942	rightwardsarrowaboveshortleftwardsarrow	RIGHTWARDS ARROW ABOVE SHORT LEFTWARDS ARROW
+2943	leftwardsarrowaboveshortrightwardsarrow	LEFTWARDS ARROW ABOVE SHORT RIGHTWARDS ARROW
+2944	shortrightwardsarrowaboveleftwardsarrow	SHORT RIGHTWARDS ARROW ABOVE LEFTWARDS ARROW
+2945	rightwardsarrowwithplusbelow	RIGHTWARDS ARROW WITH PLUS BELOW
+2946	leftwardsarrowwithplusbelow	LEFTWARDS ARROW WITH PLUS BELOW
+2947	rightwardsarrowthroughx	RIGHTWARDS ARROW THROUGH X
+2948	leftrightarrowthroughsmallcircle	LEFT RIGHT ARROW THROUGH SMALL CIRCLE
+2949	upwardstwoheadedarrowfromsmallcircle	UPWARDS TWO-HEADED ARROW FROM SMALL CIRCLE
+294A	leftbarbuprightbarbdownharpoon	LEFT BARB UP RIGHT BARB DOWN HARPOON
+294B	leftbarbdownrightbarbupharpoon	LEFT BARB DOWN RIGHT BARB UP HARPOON
+294C	upbarbrightdownbarbleftharpoon	UP BARB RIGHT DOWN BARB LEFT HARPOON
+294D	upbarbleftdownbarbrightharpoon	UP BARB LEFT DOWN BARB RIGHT HARPOON
+294E	leftbarbuprightbarbupharpoon	LEFT BARB UP RIGHT BARB UP HARPOON
+294F	upbarbrightdownbarbrightharpoon	UP BARB RIGHT DOWN BARB RIGHT HARPOON
+2950	leftbarbdownrightbarbdownharpoon	LEFT BARB DOWN RIGHT BARB DOWN HARPOON
+2951	upbarbleftdownbarbleftharpoon	UP BARB LEFT DOWN BARB LEFT HARPOON
+2952	leftwardsharpoonwithbarbuptobar	LEFTWARDS HARPOON WITH BARB UP TO BAR
+2953	rightwardsharpoonwithbarbuptobar	RIGHTWARDS HARPOON WITH BARB UP TO BAR
+2954	upwardsharpoonwithbarbrighttobar	UPWARDS HARPOON WITH BARB RIGHT TO BAR
+2955	downwardsharpoonwithbarbrighttobar	DOWNWARDS HARPOON WITH BARB RIGHT TO BAR
+2956	leftwardsharpoonwithbarbdowntobar	LEFTWARDS HARPOON WITH BARB DOWN TO BAR
+2957	rightwardsharpoonwithbarbdowntobar	RIGHTWARDS HARPOON WITH BARB DOWN TO BAR
+2958	upwardsharpoonwithbarblefttobar	UPWARDS HARPOON WITH BARB LEFT TO BAR
+2959	downwardsharpoonwithbarblefttobar	DOWNWARDS HARPOON WITH BARB LEFT TO BAR
+295A	leftwardsharpoonwithbarbupfrombar	LEFTWARDS HARPOON WITH BARB UP FROM BAR
+295B	rightwardsharpoonwithbarbupfrombar	RIGHTWARDS HARPOON WITH BARB UP FROM BAR
+295C	upwardsharpoonwithbarbrightfrombar	UPWARDS HARPOON WITH BARB RIGHT FROM BAR
+295D	downwardsharpoonwithbarbrightfrombar	DOWNWARDS HARPOON WITH BARB RIGHT FROM BAR
+295E	leftwardsharpoonwithbarbdownfrombar	LEFTWARDS HARPOON WITH BARB DOWN FROM BAR
+295F	rightwardsharpoonwithbarbdownfrombar	RIGHTWARDS HARPOON WITH BARB DOWN FROM BAR
+2960	upwardsharpoonwithbarbleftfrombar	UPWARDS HARPOON WITH BARB LEFT FROM BAR
+2961	downwardsharpoonwithbarbleftfrombar	DOWNWARDS HARPOON WITH BARB LEFT FROM BAR
+2962	leftwardsharpoonwithbarbupaboveleftwardsharpoonwithbarbdown	LEFTWARDS HARPOON WITH BARB UP ABOVE LEFTWARDS HARPOON WITH BARB DOWN
+2963	upwardsharpoonwithbarbleftbesideupwardsharpoonwithbarbright	UPWARDS HARPOON WITH BARB LEFT BESIDE UPWARDS HARPOON WITH BARB RIGHT
+2964	rightwardsharpoonwithbarbupaboverightwardsharpoonwithbarbdown	RIGHTWARDS HARPOON WITH BARB UP ABOVE RIGHTWARDS HARPOON WITH BARB DOWN
+2965	downwardsharpoonwithbarbleftbesidedownwardsharpoonwithbarbright	DOWNWARDS HARPOON WITH BARB LEFT BESIDE DOWNWARDS HARPOON WITH BARB RIGHT
+2966	leftwardsharpoonwithbarbupaboverightwardsharpoonwithbarbup	LEFTWARDS HARPOON WITH BARB UP ABOVE RIGHTWARDS HARPOON WITH BARB UP
+2967	leftwardsharpoonwithbarbdownaboverightwardsharpoonwithbarbdown	LEFTWARDS HARPOON WITH BARB DOWN ABOVE RIGHTWARDS HARPOON WITH BARB DOWN
+2968	rightwardsharpoonwithbarbupaboveleftwardsharpoonwithbarbup	RIGHTWARDS HARPOON WITH BARB UP ABOVE LEFTWARDS HARPOON WITH BARB UP
+2969	rightwardsharpoonwithbarbdownaboveleftwardsharpoonwithbarbdown	RIGHTWARDS HARPOON WITH BARB DOWN ABOVE LEFTWARDS HARPOON WITH BARB DOWN
+296A	leftwardsharpoonwithbarbupabovelongdash	LEFTWARDS HARPOON WITH BARB UP ABOVE LONG DASH
+296B	leftwardsharpoonwithbarbdownbelowlongdash	LEFTWARDS HARPOON WITH BARB DOWN BELOW LONG DASH
+296C	rightwardsharpoonwithbarbupabovelongdash	RIGHTWARDS HARPOON WITH BARB UP ABOVE LONG DASH
+296D	rightwardsharpoonwithbarbdownbelowlongdash	RIGHTWARDS HARPOON WITH BARB DOWN BELOW LONG DASH
+296E	upwardsharpoonwithbarbleftbesidedownwardsharpoonwithbarbright	UPWARDS HARPOON WITH BARB LEFT BESIDE DOWNWARDS HARPOON WITH BARB RIGHT
+296F	downwardsharpoonwithbarbleftbesideupwardsharpoonwithbarbright	DOWNWARDS HARPOON WITH BARB LEFT BESIDE UPWARDS HARPOON WITH BARB RIGHT
+2970	rightdoublearrowwithroundedhead	RIGHT DOUBLE ARROW WITH ROUNDED HEAD
+2971	equalssignaboverightwardsarrow	EQUALS SIGN ABOVE RIGHTWARDS ARROW
+2972	tildeoperatoraboverightwardsarrow	TILDE OPERATOR ABOVE RIGHTWARDS ARROW
+2973	leftwardsarrowabovetildeoperator	LEFTWARDS ARROW ABOVE TILDE OPERATOR
+2974	rightwardsarrowabovetildeoperator	RIGHTWARDS ARROW ABOVE TILDE OPERATOR
+2975	rightwardsarrowabovealmostequalto	RIGHTWARDS ARROW ABOVE ALMOST EQUAL TO
+2976	lessthanaboveleftwardsarrow	LESS-THAN ABOVE LEFTWARDS ARROW
+2977	leftwardsarrowthroughlessthan	LEFTWARDS ARROW THROUGH LESS-THAN
+2978	greaterthanaboverightwardsarrow	GREATER-THAN ABOVE RIGHTWARDS ARROW
+2979	subsetaboverightwardsarrow	SUBSET ABOVE RIGHTWARDS ARROW
+297A	leftwardsarrowthroughsubset	LEFTWARDS ARROW THROUGH SUBSET
+297B	supersetaboveleftwardsarrow	SUPERSET ABOVE LEFTWARDS ARROW
+297C	leftfishtail	LEFT FISH TAIL
+297D	rightfishtail	RIGHT FISH TAIL
+297E	upfishtail	UP FISH TAIL
+297F	downfishtail	DOWN FISH TAIL

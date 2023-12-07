@@ -50,7 +50,7 @@ UFOS_PATH1 = '/Users/petr/Desktop/TYPETR-git/TYPETR-Upgrade-Sans/ufo-frozen/'
 UFOS_PATH2 = '/Users/petr/Desktop/TYPETR-git/TYPETR-Upgrade-Sans/ufo/'
 UFOS_PATH3 = '/Users/petr/Desktop/TYPETR-git/TYPETR-Upgrade FROZEN PUBLISHED 2018-01-18/'
 UFOS = (
-    UFOS_PATH1+'Upgrade_Frozen-Bold_Italic.ufo',    #UFOS_PATH1+'Upgrade_Frozen-Bold.ufo',    UFOS_PATH1+'Upgrade_Frozen-Book_Italic.ufo',    #UFOS_PATH1+'Upgrade_Frozen-Book.ufo',    UFOS_PATH1+'Upgrade_Frozen-Light_Italic.ufo',    #UFOS_PATH1+'Upgrade_Frozen-Light.ufo',    UFOS_PATH1+'Upgrade_Frozen-Medium_Italic.ufo',    #UFOS_PATH1+'Upgrade_Frozen-Medium.ufo',    UFOS_PATH1+'Upgrade_Frozen-Regular_Italic.ufo',    #UFOS_PATH1+'Upgrade_Frozen-Regular.ufo',    UFOS_PATH1+'Upgrade_Frozen-Semibold_Italic.ufo',
+    #UFOS_PATH1+'Upgrade_Frozen-Bold_Italic.ufo',    #UFOS_PATH1+'Upgrade_Frozen-Bold.ufo',    (UFOS_PATH1+'Upgrade_Frozen-Book_Italic.ufo', -40),     #UFOS_PATH1+'Upgrade_Frozen-Book.ufo',    #UFOS_PATH1+'Upgrade_Frozen-Light_Italic.ufo',    #UFOS_PATH1+'Upgrade_Frozen-Light.ufo',    (UFOS_PATH1+'Upgrade_Frozen-Medium_Italic.ufo', -50),    #UFOS_PATH1+'Upgrade_Frozen-Medium.ufo',    (UFOS_PATH1+'Upgrade_Frozen-Regular_Italic.ufo', -45),    #UFOS_PATH1+'Upgrade_Frozen-Regular.ufo',    #UFOS_PATH1+'Upgrade_Frozen-Semibold_Italic.ufo',
     #UFOS_PATH1+'Upgrade_Frozen-Semibold.ufo',    
 )
 XXX = (
@@ -130,14 +130,14 @@ UFOSXX = (
     'Upgrade-UltraBlack_Italic.ufo',    'Upgrade-UltraBlack.ufo',
 )
 
-IMAGES_PATH = '/Volumes/Archiv-T1/TYPETR-KernNet-TrainingImages-Italic/'
+IMAGES_PATH = '/Volumes/Archiv-T1/TYPETR-KernNet-TrainingImages-Italic-K=0/'
 
-def kernImage(imagePath, g1, g2, k, dx=0):
+def kernImage(imagePath, g1, g2, k, dx=0, italicOffset=0):
     if k < 0:
         kdx = -dx
     else:
         kdx = dx
-        
+                
     imagePath = imagePath + f'{g1.name}_{g2.name}_{kdx}.png'
     if os.path.exists(imagePath):
         return # Only make new ones
@@ -157,10 +157,10 @@ def kernImage(imagePath, g1, g2, k, dx=0):
     #rect(W*5/6, 0, W*1/6, H)    
     scale(s, s)
     save()
-    translate(W/s/2-(k-kdx)/2 - g1.width, y)
+    translate(W/s/2-(k-kdx)/2 - g1.width + italicOffset, y)
     drawPath(im1)
     restore()
-    translate(W/s/2+(k-kdx)/2, y)
+    translate(W/s/2+(k-kdx)/2 + italicOffset, y)
     drawPath(im2)
     saveImage(imagePath)
 
@@ -170,7 +170,7 @@ def getImagesSubPath(imagesPath, name):
         os.system(f'mkdir {imagesPathSub}')
     return imagesPathSub
     
-def generateFamily(fontPath):
+def generateFamily(fontPath, italicOffset):
     
     f = OpenFont( fontPath, showInterface=False)
     imageName = fontPath.replace('.ufo','').split('/')[-1]
@@ -207,10 +207,11 @@ def generateFamily(fontPath):
                     step = 4               
                     k = int(round(f.kerning.get((gName1, gName2), 0)))
                     if c1 in f and c2 in f:
+                        kernImage(imagesPathSub, f[c1], f[c2], k, 0, italicOffset=italicOffset) # Make sure to always create the k=0 image.
                         for dx in range(0, abs(k), step):
                             if c1 in f and c2 in f:
-                                kernImage(imagesPathSub, f[c1], f[c2], k, dx)
-     
+                                kernImage(imagesPathSub, f[c1], f[c2], k, dx, italicOffset=italicOffset)
+
     # Now expand existing kerning groups
     for (name1, name2), k in f.kerning.items():
         imagesPathSub = getImagesSubPath(imagesPath, name1)
@@ -232,11 +233,11 @@ def generateFamily(fontPath):
                 step = 8               
                 for dx in range(0, abs(k), step):
                     if gName1 in f and gName2 in f:
-                        kernImage(imagesPathSub, f[gName1], f[gName2], k, dx)
+                        kernImage(imagesPathSub, f[gName1], f[gName2], k, dx, italicOffset=italicOffset)
     
     f.close()
                     
-for fontPath in UFOS:
+for fontPath, italicOffset in UFOS:
     print('===', fontPath)
-    generateFamily(fontPath)
+    generateFamily(fontPath, italicOffset)
     

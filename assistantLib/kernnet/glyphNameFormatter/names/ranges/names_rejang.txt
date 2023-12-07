@@ -1,0 +1,38 @@
+# Rejang A930 - A95F
+A930	rejangletterka	REJANG LETTER KA
+A931	rejangletterga	REJANG LETTER GA
+A932	rejangletternga	REJANG LETTER NGA
+A933	rejangletterta	REJANG LETTER TA
+A934	rejangletterda	REJANG LETTER DA
+A935	rejangletterna	REJANG LETTER NA
+A936	rejangletterpa	REJANG LETTER PA
+A937	rejangletterba	REJANG LETTER BA
+A938	rejangletterma	REJANG LETTER MA
+A939	rejangletterca	REJANG LETTER CA
+A93A	rejangletterja	REJANG LETTER JA
+A93B	rejangletternya	REJANG LETTER NYA
+A93C	rejanglettersa	REJANG LETTER SA
+A93D	rejangletterra	REJANG LETTER RA
+A93E	rejangletterla	REJANG LETTER LA
+A93F	rejangletterya	REJANG LETTER YA
+A940	rejangletterwa	REJANG LETTER WA
+A941	rejangletterha	REJANG LETTER HA
+A942	rejanglettermba	REJANG LETTER MBA
+A943	rejangletterngga	REJANG LETTER NGGA
+A944	rejangletternda	REJANG LETTER NDA
+A945	rejangletternyja	REJANG LETTER NYJA
+A946	rejanglettera	REJANG LETTER A
+A947	rejangvowelsigni	REJANG VOWEL SIGN I
+A948	rejangvowelsignu	REJANG VOWEL SIGN U
+A949	rejangvowelsigne	REJANG VOWEL SIGN E
+A94A	rejangvowelsignai	REJANG VOWEL SIGN AI
+A94B	rejangvowelsigno	REJANG VOWEL SIGN O
+A94C	rejangvowelsignau	REJANG VOWEL SIGN AU
+A94D	rejangvowelsigneu	REJANG VOWEL SIGN EU
+A94E	rejangvowelsignea	REJANG VOWEL SIGN EA
+A94F	rejangconsonantsignng	REJANG CONSONANT SIGN NG
+A950	rejangconsonantsignn	REJANG CONSONANT SIGN N
+A951	rejangconsonantsignr	REJANG CONSONANT SIGN R
+A952	rejangconsonantsignh	REJANG CONSONANT SIGN H
+A953	rejangvirama	REJANG VIRAMA
+A95F	rejangsectionmark	REJANG SECTION MARK

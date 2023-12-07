@@ -1,0 +1,997 @@
+# Mathematical Alphanumeric Symbols 1D400 - 1D7FF
+1D400	mathematicalboldcapitala	MATHEMATICAL BOLD CAPITAL A
+1D401	mathematicalboldcapitalb	MATHEMATICAL BOLD CAPITAL B
+1D402	mathematicalboldcapitalc	MATHEMATICAL BOLD CAPITAL C
+1D403	mathematicalboldcapitald	MATHEMATICAL BOLD CAPITAL D
+1D404	mathematicalboldcapitale	MATHEMATICAL BOLD CAPITAL E
+1D405	mathematicalboldcapitalf	MATHEMATICAL BOLD CAPITAL F
+1D406	mathematicalboldcapitalg	MATHEMATICAL BOLD CAPITAL G
+1D407	mathematicalboldcapitalh	MATHEMATICAL BOLD CAPITAL H
+1D408	mathematicalboldcapitali	MATHEMATICAL BOLD CAPITAL I
+1D409	mathematicalboldcapitalj	MATHEMATICAL BOLD CAPITAL J
+1D40A	mathematicalboldcapitalk	MATHEMATICAL BOLD CAPITAL K
+1D40B	mathematicalboldcapitall	MATHEMATICAL BOLD CAPITAL L
+1D40C	mathematicalboldcapitalm	MATHEMATICAL BOLD CAPITAL M
+1D40D	mathematicalboldcapitaln	MATHEMATICAL BOLD CAPITAL N
+1D40E	mathematicalboldcapitalo	MATHEMATICAL BOLD CAPITAL O
+1D40F	mathematicalboldcapitalp	MATHEMATICAL BOLD CAPITAL P
+1D410	mathematicalboldcapitalq	MATHEMATICAL BOLD CAPITAL Q
+1D411	mathematicalboldcapitalr	MATHEMATICAL BOLD CAPITAL R
+1D412	mathematicalboldcapitals	MATHEMATICAL BOLD CAPITAL S
+1D413	mathematicalboldcapitalt	MATHEMATICAL BOLD CAPITAL T
+1D414	mathematicalboldcapitalu	MATHEMATICAL BOLD CAPITAL U
+1D415	mathematicalboldcapitalv	MATHEMATICAL BOLD CAPITAL V
+1D416	mathematicalboldcapitalw	MATHEMATICAL BOLD CAPITAL W
+1D417	mathematicalboldcapitalx	MATHEMATICAL BOLD CAPITAL X
+1D418	mathematicalboldcapitaly	MATHEMATICAL BOLD CAPITAL Y
+1D419	mathematicalboldcapitalz	MATHEMATICAL BOLD CAPITAL Z
+1D41A	mathematicalboldsmalla	MATHEMATICAL BOLD SMALL A
+1D41B	mathematicalboldsmallb	MATHEMATICAL BOLD SMALL B
+1D41C	mathematicalboldsmallc	MATHEMATICAL BOLD SMALL C
+1D41D	mathematicalboldsmalld	MATHEMATICAL BOLD SMALL D
+1D41E	mathematicalboldsmalle	MATHEMATICAL BOLD SMALL E
+1D41F	mathematicalboldsmallf	MATHEMATICAL BOLD SMALL F
+1D420	mathematicalboldsmallg	MATHEMATICAL BOLD SMALL G
+1D421	mathematicalboldsmallh	MATHEMATICAL BOLD SMALL H
+1D422	mathematicalboldsmalli	MATHEMATICAL BOLD SMALL I
+1D423	mathematicalboldsmallj	MATHEMATICAL BOLD SMALL J
+1D424	mathematicalboldsmallk	MATHEMATICAL BOLD SMALL K
+1D425	mathematicalboldsmalll	MATHEMATICAL BOLD SMALL L
+1D426	mathematicalboldsmallm	MATHEMATICAL BOLD SMALL M
+1D427	mathematicalboldsmalln	MATHEMATICAL BOLD SMALL N
+1D428	mathematicalboldsmallo	MATHEMATICAL BOLD SMALL O
+1D429	mathematicalboldsmallp	MATHEMATICAL BOLD SMALL P
+1D42A	mathematicalboldsmallq	MATHEMATICAL BOLD SMALL Q
+1D42B	mathematicalboldsmallr	MATHEMATICAL BOLD SMALL R
+1D42C	mathematicalboldsmalls	MATHEMATICAL BOLD SMALL S
+1D42D	mathematicalboldsmallt	MATHEMATICAL BOLD SMALL T
+1D42E	mathematicalboldsmallu	MATHEMATICAL BOLD SMALL U
+1D42F	mathematicalboldsmallv	MATHEMATICAL BOLD SMALL V
+1D430	mathematicalboldsmallw	MATHEMATICAL BOLD SMALL W
+1D431	mathematicalboldsmallx	MATHEMATICAL BOLD SMALL X
+1D432	mathematicalboldsmally	MATHEMATICAL BOLD SMALL Y
+1D433	mathematicalboldsmallz	MATHEMATICAL BOLD SMALL Z
+1D434	mathematicalitaliccapitala	MATHEMATICAL ITALIC CAPITAL A
+1D435	mathematicalitaliccapitalb	MATHEMATICAL ITALIC CAPITAL B
+1D436	mathematicalitaliccapitalc	MATHEMATICAL ITALIC CAPITAL C
+1D437	mathematicalitaliccapitald	MATHEMATICAL ITALIC CAPITAL D
+1D438	mathematicalitaliccapitale	MATHEMATICAL ITALIC CAPITAL E
+1D439	mathematicalitaliccapitalf	MATHEMATICAL ITALIC CAPITAL F
+1D43A	mathematicalitaliccapitalg	MATHEMATICAL ITALIC CAPITAL G
+1D43B	mathematicalitaliccapitalh	MATHEMATICAL ITALIC CAPITAL H
+1D43C	mathematicalitaliccapitali	MATHEMATICAL ITALIC CAPITAL I
+1D43D	mathematicalitaliccapitalj	MATHEMATICAL ITALIC CAPITAL J
+1D43E	mathematicalitaliccapitalk	MATHEMATICAL ITALIC CAPITAL K
+1D43F	mathematicalitaliccapitall	MATHEMATICAL ITALIC CAPITAL L
+1D440	mathematicalitaliccapitalm	MATHEMATICAL ITALIC CAPITAL M
+1D441	mathematicalitaliccapitaln	MATHEMATICAL ITALIC CAPITAL N
+1D442	mathematicalitaliccapitalo	MATHEMATICAL ITALIC CAPITAL O
+1D443	mathematicalitaliccapitalp	MATHEMATICAL ITALIC CAPITAL P
+1D444	mathematicalitaliccapitalq	MATHEMATICAL ITALIC CAPITAL Q
+1D445	mathematicalitaliccapitalr	MATHEMATICAL ITALIC CAPITAL R
+1D446	mathematicalitaliccapitals	MATHEMATICAL ITALIC CAPITAL S
+1D447	mathematicalitaliccapitalt	MATHEMATICAL ITALIC CAPITAL T
+1D448	mathematicalitaliccapitalu	MATHEMATICAL ITALIC CAPITAL U
+1D449	mathematicalitaliccapitalv	MATHEMATICAL ITALIC CAPITAL V
+1D44A	mathematicalitaliccapitalw	MATHEMATICAL ITALIC CAPITAL W
+1D44B	mathematicalitaliccapitalx	MATHEMATICAL ITALIC CAPITAL X
+1D44C	mathematicalitaliccapitaly	MATHEMATICAL ITALIC CAPITAL Y
+1D44D	mathematicalitaliccapitalz	MATHEMATICAL ITALIC CAPITAL Z
+1D44E	mathematicalitalicsmalla	MATHEMATICAL ITALIC SMALL A
+1D44F	mathematicalitalicsmallb	MATHEMATICAL ITALIC SMALL B
+1D450	mathematicalitalicsmallc	MATHEMATICAL ITALIC SMALL C
+1D451	mathematicalitalicsmalld	MATHEMATICAL ITALIC SMALL D
+1D452	mathematicalitalicsmalle	MATHEMATICAL ITALIC SMALL E
+1D453	mathematicalitalicsmallf	MATHEMATICAL ITALIC SMALL F
+1D454	mathematicalitalicsmallg	MATHEMATICAL ITALIC SMALL G
+1D456	mathematicalitalicsmalli	MATHEMATICAL ITALIC SMALL I
+1D457	mathematicalitalicsmallj	MATHEMATICAL ITALIC SMALL J
+1D458	mathematicalitalicsmallk	MATHEMATICAL ITALIC SMALL K
+1D459	mathematicalitalicsmalll	MATHEMATICAL ITALIC SMALL L
+1D45A	mathematicalitalicsmallm	MATHEMATICAL ITALIC SMALL M
+1D45B	mathematicalitalicsmalln	MATHEMATICAL ITALIC SMALL N
+1D45C	mathematicalitalicsmallo	MATHEMATICAL ITALIC SMALL O
+1D45D	mathematicalitalicsmallp	MATHEMATICAL ITALIC SMALL P
+1D45E	mathematicalitalicsmallq	MATHEMATICAL ITALIC SMALL Q
+1D45F	mathematicalitalicsmallr	MATHEMATICAL ITALIC SMALL R
+1D460	mathematicalitalicsmalls	MATHEMATICAL ITALIC SMALL S
+1D461	mathematicalitalicsmallt	MATHEMATICAL ITALIC SMALL T
+1D462	mathematicalitalicsmallu	MATHEMATICAL ITALIC SMALL U
+1D463	mathematicalitalicsmallv	MATHEMATICAL ITALIC SMALL V
+1D464	mathematicalitalicsmallw	MATHEMATICAL ITALIC SMALL W
+1D465	mathematicalitalicsmallx	MATHEMATICAL ITALIC SMALL X
+1D466	mathematicalitalicsmally	MATHEMATICAL ITALIC SMALL Y
+1D467	mathematicalitalicsmallz	MATHEMATICAL ITALIC SMALL Z
+1D468	mathematicalbolditaliccapitala	MATHEMATICAL BOLD ITALIC CAPITAL A
+1D469	mathematicalbolditaliccapitalb	MATHEMATICAL BOLD ITALIC CAPITAL B
+1D46A	mathematicalbolditaliccapitalc	MATHEMATICAL BOLD ITALIC CAPITAL C
+1D46B	mathematicalbolditaliccapitald	MATHEMATICAL BOLD ITALIC CAPITAL D
+1D46C	mathematicalbolditaliccapitale	MATHEMATICAL BOLD ITALIC CAPITAL E
+1D46D	mathematicalbolditaliccapitalf	MATHEMATICAL BOLD ITALIC CAPITAL F
+1D46E	mathematicalbolditaliccapitalg	MATHEMATICAL BOLD ITALIC CAPITAL G
+1D46F	mathematicalbolditaliccapitalh	MATHEMATICAL BOLD ITALIC CAPITAL H
+1D470	mathematicalbolditaliccapitali	MATHEMATICAL BOLD ITALIC CAPITAL I
+1D471	mathematicalbolditaliccapitalj	MATHEMATICAL BOLD ITALIC CAPITAL J
+1D472	mathematicalbolditaliccapitalk	MATHEMATICAL BOLD ITALIC CAPITAL K
+1D473	mathematicalbolditaliccapitall	MATHEMATICAL BOLD ITALIC CAPITAL L
+1D474	mathematicalbolditaliccapitalm	MATHEMATICAL BOLD ITALIC CAPITAL M
+1D475	mathematicalbolditaliccapitaln	MATHEMATICAL BOLD ITALIC CAPITAL N
+1D476	mathematicalbolditaliccapitalo	MATHEMATICAL BOLD ITALIC CAPITAL O
+1D477	mathematicalbolditaliccapitalp	MATHEMATICAL BOLD ITALIC CAPITAL P
+1D478	mathematicalbolditaliccapitalq	MATHEMATICAL BOLD ITALIC CAPITAL Q
+1D479	mathematicalbolditaliccapitalr	MATHEMATICAL BOLD ITALIC CAPITAL R
+1D47A	mathematicalbolditaliccapitals	MATHEMATICAL BOLD ITALIC CAPITAL S
+1D47B	mathematicalbolditaliccapitalt	MATHEMATICAL BOLD ITALIC CAPITAL T
+1D47C	mathematicalbolditaliccapitalu	MATHEMATICAL BOLD ITALIC CAPITAL U
+1D47D	mathematicalbolditaliccapitalv	MATHEMATICAL BOLD ITALIC CAPITAL V
+1D47E	mathematicalbolditaliccapitalw	MATHEMATICAL BOLD ITALIC CAPITAL W
+1D47F	mathematicalbolditaliccapitalx	MATHEMATICAL BOLD ITALIC CAPITAL X
+1D480	mathematicalbolditaliccapitaly	MATHEMATICAL BOLD ITALIC CAPITAL Y
+1D481	mathematicalbolditaliccapitalz	MATHEMATICAL BOLD ITALIC CAPITAL Z
+1D482	mathematicalbolditalicsmalla	MATHEMATICAL BOLD ITALIC SMALL A
+1D483	mathematicalbolditalicsmallb	MATHEMATICAL BOLD ITALIC SMALL B
+1D484	mathematicalbolditalicsmallc	MATHEMATICAL BOLD ITALIC SMALL C
+1D485	mathematicalbolditalicsmalld	MATHEMATICAL BOLD ITALIC SMALL D
+1D486	mathematicalbolditalicsmalle	MATHEMATICAL BOLD ITALIC SMALL E
+1D487	mathematicalbolditalicsmallf	MATHEMATICAL BOLD ITALIC SMALL F
+1D488	mathematicalbolditalicsmallg	MATHEMATICAL BOLD ITALIC SMALL G
+1D489	mathematicalbolditalicsmallh	MATHEMATICAL BOLD ITALIC SMALL H
+1D48A	mathematicalbolditalicsmalli	MATHEMATICAL BOLD ITALIC SMALL I
+1D48B	mathematicalbolditalicsmallj	MATHEMATICAL BOLD ITALIC SMALL J
+1D48C	mathematicalbolditalicsmallk	MATHEMATICAL BOLD ITALIC SMALL K
+1D48D	mathematicalbolditalicsmalll	MATHEMATICAL BOLD ITALIC SMALL L
+1D48E	mathematicalbolditalicsmallm	MATHEMATICAL BOLD ITALIC SMALL M
+1D48F	mathematicalbolditalicsmalln	MATHEMATICAL BOLD ITALIC SMALL N
+1D490	mathematicalbolditalicsmallo	MATHEMATICAL BOLD ITALIC SMALL O
+1D491	mathematicalbolditalicsmallp	MATHEMATICAL BOLD ITALIC SMALL P
+1D492	mathematicalbolditalicsmallq	MATHEMATICAL BOLD ITALIC SMALL Q
+1D493	mathematicalbolditalicsmallr	MATHEMATICAL BOLD ITALIC SMALL R
+1D494	mathematicalbolditalicsmalls	MATHEMATICAL BOLD ITALIC SMALL S
+1D495	mathematicalbolditalicsmallt	MATHEMATICAL BOLD ITALIC SMALL T
+1D496	mathematicalbolditalicsmallu	MATHEMATICAL BOLD ITALIC SMALL U
+1D497	mathematicalbolditalicsmallv	MATHEMATICAL BOLD ITALIC SMALL V
+1D498	mathematicalbolditalicsmallw	MATHEMATICAL BOLD ITALIC SMALL W
+1D499	mathematicalbolditalicsmallx	MATHEMATICAL BOLD ITALIC SMALL X
+1D49A	mathematicalbolditalicsmally	MATHEMATICAL BOLD ITALIC SMALL Y
+1D49B	mathematicalbolditalicsmallz	MATHEMATICAL BOLD ITALIC SMALL Z
+1D49C	mathematicalscriptcapitala	MATHEMATICAL SCRIPT CAPITAL A
+1D49E	mathematicalscriptcapitalc	MATHEMATICAL SCRIPT CAPITAL C
+1D49F	mathematicalscriptcapitald	MATHEMATICAL SCRIPT CAPITAL D
+1D4A2	mathematicalscriptcapitalg	MATHEMATICAL SCRIPT CAPITAL G
+1D4A5	mathematicalscriptcapitalj	MATHEMATICAL SCRIPT CAPITAL J
+1D4A6	mathematicalscriptcapitalk	MATHEMATICAL SCRIPT CAPITAL K
+1D4A9	mathematicalscriptcapitaln	MATHEMATICAL SCRIPT CAPITAL N
+1D4AA	mathematicalscriptcapitalo	MATHEMATICAL SCRIPT CAPITAL O
+1D4AB	mathematicalscriptcapitalp	MATHEMATICAL SCRIPT CAPITAL P
+1D4AC	mathematicalscriptcapitalq	MATHEMATICAL SCRIPT CAPITAL Q
+1D4AE	mathematicalscriptcapitals	MATHEMATICAL SCRIPT CAPITAL S
+1D4AF	mathematicalscriptcapitalt	MATHEMATICAL SCRIPT CAPITAL T
+1D4B0	mathematicalscriptcapitalu	MATHEMATICAL SCRIPT CAPITAL U
+1D4B1	mathematicalscriptcapitalv	MATHEMATICAL SCRIPT CAPITAL V
+1D4B2	mathematicalscriptcapitalw	MATHEMATICAL SCRIPT CAPITAL W
+1D4B3	mathematicalscriptcapitalx	MATHEMATICAL SCRIPT CAPITAL X
+1D4B4	mathematicalscriptcapitaly	MATHEMATICAL SCRIPT CAPITAL Y
+1D4B5	mathematicalscriptcapitalz	MATHEMATICAL SCRIPT CAPITAL Z
+1D4B6	mathematicalscriptsmalla	MATHEMATICAL SCRIPT SMALL A
+1D4B7	mathematicalscriptsmallb	MATHEMATICAL SCRIPT SMALL B
+1D4B8	mathematicalscriptsmallc	MATHEMATICAL SCRIPT SMALL C
+1D4B9	mathematicalscriptsmalld	MATHEMATICAL SCRIPT SMALL D
+1D4BB	mathematicalscriptsmallf	MATHEMATICAL SCRIPT SMALL F
+1D4BD	mathematicalscriptsmallh	MATHEMATICAL SCRIPT SMALL H
+1D4BE	mathematicalscriptsmalli	MATHEMATICAL SCRIPT SMALL I
+1D4BF	mathematicalscriptsmallj	MATHEMATICAL SCRIPT SMALL J
+1D4C0	mathematicalscriptsmallk	MATHEMATICAL SCRIPT SMALL K
+1D4C1	mathematicalscriptsmalll	MATHEMATICAL SCRIPT SMALL L
+1D4C2	mathematicalscriptsmallm	MATHEMATICAL SCRIPT SMALL M
+1D4C3	mathematicalscriptsmalln	MATHEMATICAL SCRIPT SMALL N
+1D4C5	mathematicalscriptsmallp	MATHEMATICAL SCRIPT SMALL P
+1D4C6	mathematicalscriptsmallq	MATHEMATICAL SCRIPT SMALL Q
+1D4C7	mathematicalscriptsmallr	MATHEMATICAL SCRIPT SMALL R
+1D4C8	mathematicalscriptsmalls	MATHEMATICAL SCRIPT SMALL S
+1D4C9	mathematicalscriptsmallt	MATHEMATICAL SCRIPT SMALL T
+1D4CA	mathematicalscriptsmallu	MATHEMATICAL SCRIPT SMALL U
+1D4CB	mathematicalscriptsmallv	MATHEMATICAL SCRIPT SMALL V
+1D4CC	mathematicalscriptsmallw	MATHEMATICAL SCRIPT SMALL W
+1D4CD	mathematicalscriptsmallx	MATHEMATICAL SCRIPT SMALL X
+1D4CE	mathematicalscriptsmally	MATHEMATICAL SCRIPT SMALL Y
+1D4CF	mathematicalscriptsmallz	MATHEMATICAL SCRIPT SMALL Z
+1D4D0	mathematicalboldscriptcapitala	MATHEMATICAL BOLD SCRIPT CAPITAL A
+1D4D1	mathematicalboldscriptcapitalb	MATHEMATICAL BOLD SCRIPT CAPITAL B
+1D4D2	mathematicalboldscriptcapitalc	MATHEMATICAL BOLD SCRIPT CAPITAL C
+1D4D3	mathematicalboldscriptcapitald	MATHEMATICAL BOLD SCRIPT CAPITAL D
+1D4D4	mathematicalboldscriptcapitale	MATHEMATICAL BOLD SCRIPT CAPITAL E
+1D4D5	mathematicalboldscriptcapitalf	MATHEMATICAL BOLD SCRIPT CAPITAL F
+1D4D6	mathematicalboldscriptcapitalg	MATHEMATICAL BOLD SCRIPT CAPITAL G
+1D4D7	mathematicalboldscriptcapitalh	MATHEMATICAL BOLD SCRIPT CAPITAL H
+1D4D8	mathematicalboldscriptcapitali	MATHEMATICAL BOLD SCRIPT CAPITAL I
+1D4D9	mathematicalboldscriptcapitalj	MATHEMATICAL BOLD SCRIPT CAPITAL J
+1D4DA	mathematicalboldscriptcapitalk	MATHEMATICAL BOLD SCRIPT CAPITAL K
+1D4DB	mathematicalboldscriptcapitall	MATHEMATICAL BOLD SCRIPT CAPITAL L
+1D4DC	mathematicalboldscriptcapitalm	MATHEMATICAL BOLD SCRIPT CAPITAL M
+1D4DD	mathematicalboldscriptcapitaln	MATHEMATICAL BOLD SCRIPT CAPITAL N
+1D4DE	mathematicalboldscriptcapitalo	MATHEMATICAL BOLD SCRIPT CAPITAL O
+1D4DF	mathematicalboldscriptcapitalp	MATHEMATICAL BOLD SCRIPT CAPITAL P
+1D4E0	mathematicalboldscriptcapitalq	MATHEMATICAL BOLD SCRIPT CAPITAL Q
+1D4E1	mathematicalboldscriptcapitalr	MATHEMATICAL BOLD SCRIPT CAPITAL R
+1D4E2	mathematicalboldscriptcapitals	MATHEMATICAL BOLD SCRIPT CAPITAL S
+1D4E3	mathematicalboldscriptcapitalt	MATHEMATICAL BOLD SCRIPT CAPITAL T
+1D4E4	mathematicalboldscriptcapitalu	MATHEMATICAL BOLD SCRIPT CAPITAL U
+1D4E5	mathematicalboldscriptcapitalv	MATHEMATICAL BOLD SCRIPT CAPITAL V
+1D4E6	mathematicalboldscriptcapitalw	MATHEMATICAL BOLD SCRIPT CAPITAL W
+1D4E7	mathematicalboldscriptcapitalx	MATHEMATICAL BOLD SCRIPT CAPITAL X
+1D4E8	mathematicalboldscriptcapitaly	MATHEMATICAL BOLD SCRIPT CAPITAL Y
+1D4E9	mathematicalboldscriptcapitalz	MATHEMATICAL BOLD SCRIPT CAPITAL Z
+1D4EA	mathematicalboldscriptsmalla	MATHEMATICAL BOLD SCRIPT SMALL A
+1D4EB	mathematicalboldscriptsmallb	MATHEMATICAL BOLD SCRIPT SMALL B
+1D4EC	mathematicalboldscriptsmallc	MATHEMATICAL BOLD SCRIPT SMALL C
+1D4ED	mathematicalboldscriptsmalld	MATHEMATICAL BOLD SCRIPT SMALL D
+1D4EE	mathematicalboldscriptsmalle	MATHEMATICAL BOLD SCRIPT SMALL E
+1D4EF	mathematicalboldscriptsmallf	MATHEMATICAL BOLD SCRIPT SMALL F
+1D4F0	mathematicalboldscriptsmallg	MATHEMATICAL BOLD SCRIPT SMALL G
+1D4F1	mathematicalboldscriptsmallh	MATHEMATICAL BOLD SCRIPT SMALL H
+1D4F2	mathematicalboldscriptsmalli	MATHEMATICAL BOLD SCRIPT SMALL I
+1D4F3	mathematicalboldscriptsmallj	MATHEMATICAL BOLD SCRIPT SMALL J
+1D4F4	mathematicalboldscriptsmallk	MATHEMATICAL BOLD SCRIPT SMALL K
+1D4F5	mathematicalboldscriptsmalll	MATHEMATICAL BOLD SCRIPT SMALL L
+1D4F6	mathematicalboldscriptsmallm	MATHEMATICAL BOLD SCRIPT SMALL M
+1D4F7	mathematicalboldscriptsmalln	MATHEMATICAL BOLD SCRIPT SMALL N
+1D4F8	mathematicalboldscriptsmallo	MATHEMATICAL BOLD SCRIPT SMALL O
+1D4F9	mathematicalboldscriptsmallp	MATHEMATICAL BOLD SCRIPT SMALL P
+1D4FA	mathematicalboldscriptsmallq	MATHEMATICAL BOLD SCRIPT SMALL Q
+1D4FB	mathematicalboldscriptsmallr	MATHEMATICAL BOLD SCRIPT SMALL R
+1D4FC	mathematicalboldscriptsmalls	MATHEMATICAL BOLD SCRIPT SMALL S
+1D4FD	mathematicalboldscriptsmallt	MATHEMATICAL BOLD SCRIPT SMALL T
+1D4FE	mathematicalboldscriptsmallu	MATHEMATICAL BOLD SCRIPT SMALL U
+1D4FF	mathematicalboldscriptsmallv	MATHEMATICAL BOLD SCRIPT SMALL V
+1D500	mathematicalboldscriptsmallw	MATHEMATICAL BOLD SCRIPT SMALL W
+1D501	mathematicalboldscriptsmallx	MATHEMATICAL BOLD SCRIPT SMALL X
+1D502	mathematicalboldscriptsmally	MATHEMATICAL BOLD SCRIPT SMALL Y
+1D503	mathematicalboldscriptsmallz	MATHEMATICAL BOLD SCRIPT SMALL Z
+1D504	mathematicalfrakturcapitala	MATHEMATICAL FRAKTUR CAPITAL A
+1D505	mathematicalfrakturcapitalb	MATHEMATICAL FRAKTUR CAPITAL B
+1D507	mathematicalfrakturcapitald	MATHEMATICAL FRAKTUR CAPITAL D
+1D508	mathematicalfrakturcapitale	MATHEMATICAL FRAKTUR CAPITAL E
+1D509	mathematicalfrakturcapitalf	MATHEMATICAL FRAKTUR CAPITAL F
+1D50A	mathematicalfrakturcapitalg	MATHEMATICAL FRAKTUR CAPITAL G
+1D50D	mathematicalfrakturcapitalj	MATHEMATICAL FRAKTUR CAPITAL J
+1D50E	mathematicalfrakturcapitalk	MATHEMATICAL FRAKTUR CAPITAL K
+1D50F	mathematicalfrakturcapitall	MATHEMATICAL FRAKTUR CAPITAL L
+1D510	mathematicalfrakturcapitalm	MATHEMATICAL FRAKTUR CAPITAL M
+1D511	mathematicalfrakturcapitaln	MATHEMATICAL FRAKTUR CAPITAL N
+1D512	mathematicalfrakturcapitalo	MATHEMATICAL FRAKTUR CAPITAL O
+1D513	mathematicalfrakturcapitalp	MATHEMATICAL FRAKTUR CAPITAL P
+1D514	mathematicalfrakturcapitalq	MATHEMATICAL FRAKTUR CAPITAL Q
+1D516	mathematicalfrakturcapitals	MATHEMATICAL FRAKTUR CAPITAL S
+1D517	mathematicalfrakturcapitalt	MATHEMATICAL FRAKTUR CAPITAL T
+1D518	mathematicalfrakturcapitalu	MATHEMATICAL FRAKTUR CAPITAL U
+1D519	mathematicalfrakturcapitalv	MATHEMATICAL FRAKTUR CAPITAL V
+1D51A	mathematicalfrakturcapitalw	MATHEMATICAL FRAKTUR CAPITAL W
+1D51B	mathematicalfrakturcapitalx	MATHEMATICAL FRAKTUR CAPITAL X
+1D51C	mathematicalfrakturcapitaly	MATHEMATICAL FRAKTUR CAPITAL Y
+1D51E	mathematicalfraktursmalla	MATHEMATICAL FRAKTUR SMALL A
+1D51F	mathematicalfraktursmallb	MATHEMATICAL FRAKTUR SMALL B
+1D520	mathematicalfraktursmallc	MATHEMATICAL FRAKTUR SMALL C
+1D521	mathematicalfraktursmalld	MATHEMATICAL FRAKTUR SMALL D
+1D522	mathematicalfraktursmalle	MATHEMATICAL FRAKTUR SMALL E
+1D523	mathematicalfraktursmallf	MATHEMATICAL FRAKTUR SMALL F
+1D524	mathematicalfraktursmallg	MATHEMATICAL FRAKTUR SMALL G
+1D525	mathematicalfraktursmallh	MATHEMATICAL FRAKTUR SMALL H
+1D526	mathematicalfraktursmalli	MATHEMATICAL FRAKTUR SMALL I
+1D527	mathematicalfraktursmallj	MATHEMATICAL FRAKTUR SMALL J
+1D528	mathematicalfraktursmallk	MATHEMATICAL FRAKTUR SMALL K
+1D529	mathematicalfraktursmalll	MATHEMATICAL FRAKTUR SMALL L
+1D52A	mathematicalfraktursmallm	MATHEMATICAL FRAKTUR SMALL M
+1D52B	mathematicalfraktursmalln	MATHEMATICAL FRAKTUR SMALL N
+1D52C	mathematicalfraktursmallo	MATHEMATICAL FRAKTUR SMALL O
+1D52D	mathematicalfraktursmallp	MATHEMATICAL FRAKTUR SMALL P
+1D52E	mathematicalfraktursmallq	MATHEMATICAL FRAKTUR SMALL Q
+1D52F	mathematicalfraktursmallr	MATHEMATICAL FRAKTUR SMALL R
+1D530	mathematicalfraktursmalls	MATHEMATICAL FRAKTUR SMALL S
+1D531	mathematicalfraktursmallt	MATHEMATICAL FRAKTUR SMALL T
+1D532	mathematicalfraktursmallu	MATHEMATICAL FRAKTUR SMALL U
+1D533	mathematicalfraktursmallv	MATHEMATICAL FRAKTUR SMALL V
+1D534	mathematicalfraktursmallw	MATHEMATICAL FRAKTUR SMALL W
+1D535	mathematicalfraktursmallx	MATHEMATICAL FRAKTUR SMALL X
+1D536	mathematicalfraktursmally	MATHEMATICAL FRAKTUR SMALL Y
+1D537	mathematicalfraktursmallz	MATHEMATICAL FRAKTUR SMALL Z
+1D538	mathematicaldoublestruckcapitala	MATHEMATICAL DOUBLE-STRUCK CAPITAL A
+1D539	mathematicaldoublestruckcapitalb	MATHEMATICAL DOUBLE-STRUCK CAPITAL B
+1D53B	mathematicaldoublestruckcapitald	MATHEMATICAL DOUBLE-STRUCK CAPITAL D
+1D53C	mathematicaldoublestruckcapitale	MATHEMATICAL DOUBLE-STRUCK CAPITAL E
+1D53D	mathematicaldoublestruckcapitalf	MATHEMATICAL DOUBLE-STRUCK CAPITAL F
+1D53E	mathematicaldoublestruckcapitalg	MATHEMATICAL DOUBLE-STRUCK CAPITAL G
+1D540	mathematicaldoublestruckcapitali	MATHEMATICAL DOUBLE-STRUCK CAPITAL I
+1D541	mathematicaldoublestruckcapitalj	MATHEMATICAL DOUBLE-STRUCK CAPITAL J
+1D542	mathematicaldoublestruckcapitalk	MATHEMATICAL DOUBLE-STRUCK CAPITAL K
+1D543	mathematicaldoublestruckcapitall	MATHEMATICAL DOUBLE-STRUCK CAPITAL L
+1D544	mathematicaldoublestruckcapitalm	MATHEMATICAL DOUBLE-STRUCK CAPITAL M
+1D546	mathematicaldoublestruckcapitalo	MATHEMATICAL DOUBLE-STRUCK CAPITAL O
+1D54A	mathematicaldoublestruckcapitals	MATHEMATICAL DOUBLE-STRUCK CAPITAL S
+1D54B	mathematicaldoublestruckcapitalt	MATHEMATICAL DOUBLE-STRUCK CAPITAL T
+1D54C	mathematicaldoublestruckcapitalu	MATHEMATICAL DOUBLE-STRUCK CAPITAL U
+1D54D	mathematicaldoublestruckcapitalv	MATHEMATICAL DOUBLE-STRUCK CAPITAL V
+1D54E	mathematicaldoublestruckcapitalw	MATHEMATICAL DOUBLE-STRUCK CAPITAL W
+1D54F	mathematicaldoublestruckcapitalx	MATHEMATICAL DOUBLE-STRUCK CAPITAL X
+1D550	mathematicaldoublestruckcapitaly	MATHEMATICAL DOUBLE-STRUCK CAPITAL Y
+1D552	mathematicaldoublestrucksmalla	MATHEMATICAL DOUBLE-STRUCK SMALL A
+1D553	mathematicaldoublestrucksmallb	MATHEMATICAL DOUBLE-STRUCK SMALL B
+1D554	mathematicaldoublestrucksmallc	MATHEMATICAL DOUBLE-STRUCK SMALL C
+1D555	mathematicaldoublestrucksmalld	MATHEMATICAL DOUBLE-STRUCK SMALL D
+1D556	mathematicaldoublestrucksmalle	MATHEMATICAL DOUBLE-STRUCK SMALL E
+1D557	mathematicaldoublestrucksmallf	MATHEMATICAL DOUBLE-STRUCK SMALL F
+1D558	mathematicaldoublestrucksmallg	MATHEMATICAL DOUBLE-STRUCK SMALL G
+1D559	mathematicaldoublestrucksmallh	MATHEMATICAL DOUBLE-STRUCK SMALL H
+1D55A	mathematicaldoublestrucksmalli	MATHEMATICAL DOUBLE-STRUCK SMALL I
+1D55B	mathematicaldoublestrucksmallj	MATHEMATICAL DOUBLE-STRUCK SMALL J
+1D55C	mathematicaldoublestrucksmallk	MATHEMATICAL DOUBLE-STRUCK SMALL K
+1D55D	mathematicaldoublestrucksmalll	MATHEMATICAL DOUBLE-STRUCK SMALL L
+1D55E	mathematicaldoublestrucksmallm	MATHEMATICAL DOUBLE-STRUCK SMALL M
+1D55F	mathematicaldoublestrucksmalln	MATHEMATICAL DOUBLE-STRUCK SMALL N
+1D560	mathematicaldoublestrucksmallo	MATHEMATICAL DOUBLE-STRUCK SMALL O
+1D561	mathematicaldoublestrucksmallp	MATHEMATICAL DOUBLE-STRUCK SMALL P
+1D562	mathematicaldoublestrucksmallq	MATHEMATICAL DOUBLE-STRUCK SMALL Q
+1D563	mathematicaldoublestrucksmallr	MATHEMATICAL DOUBLE-STRUCK SMALL R
+1D564	mathematicaldoublestrucksmalls	MATHEMATICAL DOUBLE-STRUCK SMALL S
+1D565	mathematicaldoublestrucksmallt	MATHEMATICAL DOUBLE-STRUCK SMALL T
+1D566	mathematicaldoublestrucksmallu	MATHEMATICAL DOUBLE-STRUCK SMALL U
+1D567	mathematicaldoublestrucksmallv	MATHEMATICAL DOUBLE-STRUCK SMALL V
+1D568	mathematicaldoublestrucksmallw	MATHEMATICAL DOUBLE-STRUCK SMALL W
+1D569	mathematicaldoublestrucksmallx	MATHEMATICAL DOUBLE-STRUCK SMALL X
+1D56A	mathematicaldoublestrucksmally	MATHEMATICAL DOUBLE-STRUCK SMALL Y
+1D56B	mathematicaldoublestrucksmallz	MATHEMATICAL DOUBLE-STRUCK SMALL Z
+1D56C	mathematicalboldfrakturcapitala	MATHEMATICAL BOLD FRAKTUR CAPITAL A
+1D56D	mathematicalboldfrakturcapitalb	MATHEMATICAL BOLD FRAKTUR CAPITAL B
+1D56E	mathematicalboldfrakturcapitalc	MATHEMATICAL BOLD FRAKTUR CAPITAL C
+1D56F	mathematicalboldfrakturcapitald	MATHEMATICAL BOLD FRAKTUR CAPITAL D
+1D570	mathematicalboldfrakturcapitale	MATHEMATICAL BOLD FRAKTUR CAPITAL E
+1D571	mathematicalboldfrakturcapitalf	MATHEMATICAL BOLD FRAKTUR CAPITAL F
+1D572	mathematicalboldfrakturcapitalg	MATHEMATICAL BOLD FRAKTUR CAPITAL G
+1D573	mathematicalboldfrakturcapitalh	MATHEMATICAL BOLD FRAKTUR CAPITAL H
+1D574	mathematicalboldfrakturcapitali	MATHEMATICAL BOLD FRAKTUR CAPITAL I
+1D575	mathematicalboldfrakturcapitalj	MATHEMATICAL BOLD FRAKTUR CAPITAL J
+1D576	mathematicalboldfrakturcapitalk	MATHEMATICAL BOLD FRAKTUR CAPITAL K
+1D577	mathematicalboldfrakturcapitall	MATHEMATICAL BOLD FRAKTUR CAPITAL L
+1D578	mathematicalboldfrakturcapitalm	MATHEMATICAL BOLD FRAKTUR CAPITAL M
+1D579	mathematicalboldfrakturcapitaln	MATHEMATICAL BOLD FRAKTUR CAPITAL N
+1D57A	mathematicalboldfrakturcapitalo	MATHEMATICAL BOLD FRAKTUR CAPITAL O
+1D57B	mathematicalboldfrakturcapitalp	MATHEMATICAL BOLD FRAKTUR CAPITAL P
+1D57C	mathematicalboldfrakturcapitalq	MATHEMATICAL BOLD FRAKTUR CAPITAL Q
+1D57D	mathematicalboldfrakturcapitalr	MATHEMATICAL BOLD FRAKTUR CAPITAL R
+1D57E	mathematicalboldfrakturcapitals	MATHEMATICAL BOLD FRAKTUR CAPITAL S
+1D57F	mathematicalboldfrakturcapitalt	MATHEMATICAL BOLD FRAKTUR CAPITAL T
+1D580	mathematicalboldfrakturcapitalu	MATHEMATICAL BOLD FRAKTUR CAPITAL U
+1D581	mathematicalboldfrakturcapitalv	MATHEMATICAL BOLD FRAKTUR CAPITAL V
+1D582	mathematicalboldfrakturcapitalw	MATHEMATICAL BOLD FRAKTUR CAPITAL W
+1D583	mathematicalboldfrakturcapitalx	MATHEMATICAL BOLD FRAKTUR CAPITAL X
+1D584	mathematicalboldfrakturcapitaly	MATHEMATICAL BOLD FRAKTUR CAPITAL Y
+1D585	mathematicalboldfrakturcapitalz	MATHEMATICAL BOLD FRAKTUR CAPITAL Z
+1D586	mathematicalboldfraktursmalla	MATHEMATICAL BOLD FRAKTUR SMALL A
+1D587	mathematicalboldfraktursmallb	MATHEMATICAL BOLD FRAKTUR SMALL B
+1D588	mathematicalboldfraktursmallc	MATHEMATICAL BOLD FRAKTUR SMALL C
+1D589	mathematicalboldfraktursmalld	MATHEMATICAL BOLD FRAKTUR SMALL D
+1D58A	mathematicalboldfraktursmalle	MATHEMATICAL BOLD FRAKTUR SMALL E
+1D58B	mathematicalboldfraktursmallf	MATHEMATICAL BOLD FRAKTUR SMALL F
+1D58C	mathematicalboldfraktursmallg	MATHEMATICAL BOLD FRAKTUR SMALL G
+1D58D	mathematicalboldfraktursmallh	MATHEMATICAL BOLD FRAKTUR SMALL H
+1D58E	mathematicalboldfraktursmalli	MATHEMATICAL BOLD FRAKTUR SMALL I
+1D58F	mathematicalboldfraktursmallj	MATHEMATICAL BOLD FRAKTUR SMALL J
+1D590	mathematicalboldfraktursmallk	MATHEMATICAL BOLD FRAKTUR SMALL K
+1D591	mathematicalboldfraktursmalll	MATHEMATICAL BOLD FRAKTUR SMALL L
+1D592	mathematicalboldfraktursmallm	MATHEMATICAL BOLD FRAKTUR SMALL M
+1D593	mathematicalboldfraktursmalln	MATHEMATICAL BOLD FRAKTUR SMALL N
+1D594	mathematicalboldfraktursmallo	MATHEMATICAL BOLD FRAKTUR SMALL O
+1D595	mathematicalboldfraktursmallp	MATHEMATICAL BOLD FRAKTUR SMALL P
+1D596	mathematicalboldfraktursmallq	MATHEMATICAL BOLD FRAKTUR SMALL Q
+1D597	mathematicalboldfraktursmallr	MATHEMATICAL BOLD FRAKTUR SMALL R
+1D598	mathematicalboldfraktursmalls	MATHEMATICAL BOLD FRAKTUR SMALL S
+1D599	mathematicalboldfraktursmallt	MATHEMATICAL BOLD FRAKTUR SMALL T
+1D59A	mathematicalboldfraktursmallu	MATHEMATICAL BOLD FRAKTUR SMALL U
+1D59B	mathematicalboldfraktursmallv	MATHEMATICAL BOLD FRAKTUR SMALL V
+1D59C	mathematicalboldfraktursmallw	MATHEMATICAL BOLD FRAKTUR SMALL W
+1D59D	mathematicalboldfraktursmallx	MATHEMATICAL BOLD FRAKTUR SMALL X
+1D59E	mathematicalboldfraktursmally	MATHEMATICAL BOLD FRAKTUR SMALL Y
+1D59F	mathematicalboldfraktursmallz	MATHEMATICAL BOLD FRAKTUR SMALL Z
+1D5A0	mathematicalsansserifcapitala	MATHEMATICAL SANS-SERIF CAPITAL A
+1D5A1	mathematicalsansserifcapitalb	MATHEMATICAL SANS-SERIF CAPITAL B
+1D5A2	mathematicalsansserifcapitalc	MATHEMATICAL SANS-SERIF CAPITAL C
+1D5A3	mathematicalsansserifcapitald	MATHEMATICAL SANS-SERIF CAPITAL D
+1D5A4	mathematicalsansserifcapitale	MATHEMATICAL SANS-SERIF CAPITAL E
+1D5A5	mathematicalsansserifcapitalf	MATHEMATICAL SANS-SERIF CAPITAL F
+1D5A6	mathematicalsansserifcapitalg	MATHEMATICAL SANS-SERIF CAPITAL G
+1D5A7	mathematicalsansserifcapitalh	MATHEMATICAL SANS-SERIF CAPITAL H
+1D5A8	mathematicalsansserifcapitali	MATHEMATICAL SANS-SERIF CAPITAL I
+1D5A9	mathematicalsansserifcapitalj	MATHEMATICAL SANS-SERIF CAPITAL J
+1D5AA	mathematicalsansserifcapitalk	MATHEMATICAL SANS-SERIF CAPITAL K
+1D5AB	mathematicalsansserifcapitall	MATHEMATICAL SANS-SERIF CAPITAL L
+1D5AC	mathematicalsansserifcapitalm	MATHEMATICAL SANS-SERIF CAPITAL M
+1D5AD	mathematicalsansserifcapitaln	MATHEMATICAL SANS-SERIF CAPITAL N
+1D5AE	mathematicalsansserifcapitalo	MATHEMATICAL SANS-SERIF CAPITAL O
+1D5AF	mathematicalsansserifcapitalp	MATHEMATICAL SANS-SERIF CAPITAL P
+1D5B0	mathematicalsansserifcapitalq	MATHEMATICAL SANS-SERIF CAPITAL Q
+1D5B1	mathematicalsansserifcapitalr	MATHEMATICAL SANS-SERIF CAPITAL R
+1D5B2	mathematicalsansserifcapitals	MATHEMATICAL SANS-SERIF CAPITAL S
+1D5B3	mathematicalsansserifcapitalt	MATHEMATICAL SANS-SERIF CAPITAL T
+1D5B4	mathematicalsansserifcapitalu	MATHEMATICAL SANS-SERIF CAPITAL U
+1D5B5	mathematicalsansserifcapitalv	MATHEMATICAL SANS-SERIF CAPITAL V
+1D5B6	mathematicalsansserifcapitalw	MATHEMATICAL SANS-SERIF CAPITAL W
+1D5B7	mathematicalsansserifcapitalx	MATHEMATICAL SANS-SERIF CAPITAL X
+1D5B8	mathematicalsansserifcapitaly	MATHEMATICAL SANS-SERIF CAPITAL Y
+1D5B9	mathematicalsansserifcapitalz	MATHEMATICAL SANS-SERIF CAPITAL Z
+1D5BA	mathematicalsansserifsmalla	MATHEMATICAL SANS-SERIF SMALL A
+1D5BB	mathematicalsansserifsmallb	MATHEMATICAL SANS-SERIF SMALL B
+1D5BC	mathematicalsansserifsmallc	MATHEMATICAL SANS-SERIF SMALL C
+1D5BD	mathematicalsansserifsmalld	MATHEMATICAL SANS-SERIF SMALL D
+1D5BE	mathematicalsansserifsmalle	MATHEMATICAL SANS-SERIF SMALL E
+1D5BF	mathematicalsansserifsmallf	MATHEMATICAL SANS-SERIF SMALL F
+1D5C0	mathematicalsansserifsmallg	MATHEMATICAL SANS-SERIF SMALL G
+1D5C1	mathematicalsansserifsmallh	MATHEMATICAL SANS-SERIF SMALL H
+1D5C2	mathematicalsansserifsmalli	MATHEMATICAL SANS-SERIF SMALL I
+1D5C3	mathematicalsansserifsmallj	MATHEMATICAL SANS-SERIF SMALL J
+1D5C4	mathematicalsansserifsmallk	MATHEMATICAL SANS-SERIF SMALL K
+1D5C5	mathematicalsansserifsmalll	MATHEMATICAL SANS-SERIF SMALL L
+1D5C6	mathematicalsansserifsmallm	MATHEMATICAL SANS-SERIF SMALL M
+1D5C7	mathematicalsansserifsmalln	MATHEMATICAL SANS-SERIF SMALL N
+1D5C8	mathematicalsansserifsmallo	MATHEMATICAL SANS-SERIF SMALL O
+1D5C9	mathematicalsansserifsmallp	MATHEMATICAL SANS-SERIF SMALL P
+1D5CA	mathematicalsansserifsmallq	MATHEMATICAL SANS-SERIF SMALL Q
+1D5CB	mathematicalsansserifsmallr	MATHEMATICAL SANS-SERIF SMALL R
+1D5CC	mathematicalsansserifsmalls	MATHEMATICAL SANS-SERIF SMALL S
+1D5CD	mathematicalsansserifsmallt	MATHEMATICAL SANS-SERIF SMALL T
+1D5CE	mathematicalsansserifsmallu	MATHEMATICAL SANS-SERIF SMALL U
+1D5CF	mathematicalsansserifsmallv	MATHEMATICAL SANS-SERIF SMALL V
+1D5D0	mathematicalsansserifsmallw	MATHEMATICAL SANS-SERIF SMALL W
+1D5D1	mathematicalsansserifsmallx	MATHEMATICAL SANS-SERIF SMALL X
+1D5D2	mathematicalsansserifsmally	MATHEMATICAL SANS-SERIF SMALL Y
+1D5D3	mathematicalsansserifsmallz	MATHEMATICAL SANS-SERIF SMALL Z
+1D5D4	mathematicalsansserifboldcapitala	MATHEMATICAL SANS-SERIF BOLD CAPITAL A
+1D5D5	mathematicalsansserifboldcapitalb	MATHEMATICAL SANS-SERIF BOLD CAPITAL B
+1D5D6	mathematicalsansserifboldcapitalc	MATHEMATICAL SANS-SERIF BOLD CAPITAL C
+1D5D7	mathematicalsansserifboldcapitald	MATHEMATICAL SANS-SERIF BOLD CAPITAL D
+1D5D8	mathematicalsansserifboldcapitale	MATHEMATICAL SANS-SERIF BOLD CAPITAL E
+1D5D9	mathematicalsansserifboldcapitalf	MATHEMATICAL SANS-SERIF BOLD CAPITAL F
+1D5DA	mathematicalsansserifboldcapitalg	MATHEMATICAL SANS-SERIF BOLD CAPITAL G
+1D5DB	mathematicalsansserifboldcapitalh	MATHEMATICAL SANS-SERIF BOLD CAPITAL H
+1D5DC	mathematicalsansserifboldcapitali	MATHEMATICAL SANS-SERIF BOLD CAPITAL I
+1D5DD	mathematicalsansserifboldcapitalj	MATHEMATICAL SANS-SERIF BOLD CAPITAL J
+1D5DE	mathematicalsansserifboldcapitalk	MATHEMATICAL SANS-SERIF BOLD CAPITAL K
+1D5DF	mathematicalsansserifboldcapitall	MATHEMATICAL SANS-SERIF BOLD CAPITAL L
+1D5E0	mathematicalsansserifboldcapitalm	MATHEMATICAL SANS-SERIF BOLD CAPITAL M
+1D5E1	mathematicalsansserifboldcapitaln	MATHEMATICAL SANS-SERIF BOLD CAPITAL N
+1D5E2	mathematicalsansserifboldcapitalo	MATHEMATICAL SANS-SERIF BOLD CAPITAL O
+1D5E3	mathematicalsansserifboldcapitalp	MATHEMATICAL SANS-SERIF BOLD CAPITAL P
+1D5E4	mathematicalsansserifboldcapitalq	MATHEMATICAL SANS-SERIF BOLD CAPITAL Q
+1D5E5	mathematicalsansserifboldcapitalr	MATHEMATICAL SANS-SERIF BOLD CAPITAL R
+1D5E6	mathematicalsansserifboldcapitals	MATHEMATICAL SANS-SERIF BOLD CAPITAL S
+1D5E7	mathematicalsansserifboldcapitalt	MATHEMATICAL SANS-SERIF BOLD CAPITAL T
+1D5E8	mathematicalsansserifboldcapitalu	MATHEMATICAL SANS-SERIF BOLD CAPITAL U
+1D5E9	mathematicalsansserifboldcapitalv	MATHEMATICAL SANS-SERIF BOLD CAPITAL V
+1D5EA	mathematicalsansserifboldcapitalw	MATHEMATICAL SANS-SERIF BOLD CAPITAL W
+1D5EB	mathematicalsansserifboldcapitalx	MATHEMATICAL SANS-SERIF BOLD CAPITAL X
+1D5EC	mathematicalsansserifboldcapitaly	MATHEMATICAL SANS-SERIF BOLD CAPITAL Y
+1D5ED	mathematicalsansserifboldcapitalz	MATHEMATICAL SANS-SERIF BOLD CAPITAL Z
+1D5EE	mathematicalsansserifboldsmalla	MATHEMATICAL SANS-SERIF BOLD SMALL A
+1D5EF	mathematicalsansserifboldsmallb	MATHEMATICAL SANS-SERIF BOLD SMALL B
+1D5F0	mathematicalsansserifboldsmallc	MATHEMATICAL SANS-SERIF BOLD SMALL C
+1D5F1	mathematicalsansserifboldsmalld	MATHEMATICAL SANS-SERIF BOLD SMALL D
+1D5F2	mathematicalsansserifboldsmalle	MATHEMATICAL SANS-SERIF BOLD SMALL E
+1D5F3	mathematicalsansserifboldsmallf	MATHEMATICAL SANS-SERIF BOLD SMALL F
+1D5F4	mathematicalsansserifboldsmallg	MATHEMATICAL SANS-SERIF BOLD SMALL G
+1D5F5	mathematicalsansserifboldsmallh	MATHEMATICAL SANS-SERIF BOLD SMALL H
+1D5F6	mathematicalsansserifboldsmalli	MATHEMATICAL SANS-SERIF BOLD SMALL I
+1D5F7	mathematicalsansserifboldsmallj	MATHEMATICAL SANS-SERIF BOLD SMALL J
+1D5F8	mathematicalsansserifboldsmallk	MATHEMATICAL SANS-SERIF BOLD SMALL K
+1D5F9	mathematicalsansserifboldsmalll	MATHEMATICAL SANS-SERIF BOLD SMALL L
+1D5FA	mathematicalsansserifboldsmallm	MATHEMATICAL SANS-SERIF BOLD SMALL M
+1D5FB	mathematicalsansserifboldsmalln	MATHEMATICAL SANS-SERIF BOLD SMALL N
+1D5FC	mathematicalsansserifboldsmallo	MATHEMATICAL SANS-SERIF BOLD SMALL O
+1D5FD	mathematicalsansserifboldsmallp	MATHEMATICAL SANS-SERIF BOLD SMALL P
+1D5FE	mathematicalsansserifboldsmallq	MATHEMATICAL SANS-SERIF BOLD SMALL Q
+1D5FF	mathematicalsansserifboldsmallr	MATHEMATICAL SANS-SERIF BOLD SMALL R
+1D600	mathematicalsansserifboldsmalls	MATHEMATICAL SANS-SERIF BOLD SMALL S
+1D601	mathematicalsansserifboldsmallt	MATHEMATICAL SANS-SERIF BOLD SMALL T
+1D602	mathematicalsansserifboldsmallu	MATHEMATICAL SANS-SERIF BOLD SMALL U
+1D603	mathematicalsansserifboldsmallv	MATHEMATICAL SANS-SERIF BOLD SMALL V
+1D604	mathematicalsansserifboldsmallw	MATHEMATICAL SANS-SERIF BOLD SMALL W
+1D605	mathematicalsansserifboldsmallx	MATHEMATICAL SANS-SERIF BOLD SMALL X
+1D606	mathematicalsansserifboldsmally	MATHEMATICAL SANS-SERIF BOLD SMALL Y
+1D607	mathematicalsansserifboldsmallz	MATHEMATICAL SANS-SERIF BOLD SMALL Z
+1D608	mathematicalsansserifitaliccapitala	MATHEMATICAL SANS-SERIF ITALIC CAPITAL A
+1D609	mathematicalsansserifitaliccapitalb	MATHEMATICAL SANS-SERIF ITALIC CAPITAL B
+1D60A	mathematicalsansserifitaliccapitalc	MATHEMATICAL SANS-SERIF ITALIC CAPITAL C
+1D60B	mathematicalsansserifitaliccapitald	MATHEMATICAL SANS-SERIF ITALIC CAPITAL D
+1D60C	mathematicalsansserifitaliccapitale	MATHEMATICAL SANS-SERIF ITALIC CAPITAL E
+1D60D	mathematicalsansserifitaliccapitalf	MATHEMATICAL SANS-SERIF ITALIC CAPITAL F
+1D60E	mathematicalsansserifitaliccapitalg	MATHEMATICAL SANS-SERIF ITALIC CAPITAL G
+1D60F	mathematicalsansserifitaliccapitalh	MATHEMATICAL SANS-SERIF ITALIC CAPITAL H
+1D610	mathematicalsansserifitaliccapitali	MATHEMATICAL SANS-SERIF ITALIC CAPITAL I
+1D611	mathematicalsansserifitaliccapitalj	MATHEMATICAL SANS-SERIF ITALIC CAPITAL J
+1D612	mathematicalsansserifitaliccapitalk	MATHEMATICAL SANS-SERIF ITALIC CAPITAL K
+1D613	mathematicalsansserifitaliccapitall	MATHEMATICAL SANS-SERIF ITALIC CAPITAL L
+1D614	mathematicalsansserifitaliccapitalm	MATHEMATICAL SANS-SERIF ITALIC CAPITAL M
+1D615	mathematicalsansserifitaliccapitaln	MATHEMATICAL SANS-SERIF ITALIC CAPITAL N
+1D616	mathematicalsansserifitaliccapitalo	MATHEMATICAL SANS-SERIF ITALIC CAPITAL O
+1D617	mathematicalsansserifitaliccapitalp	MATHEMATICAL SANS-SERIF ITALIC CAPITAL P
+1D618	mathematicalsansserifitaliccapitalq	MATHEMATICAL SANS-SERIF ITALIC CAPITAL Q
+1D619	mathematicalsansserifitaliccapitalr	MATHEMATICAL SANS-SERIF ITALIC CAPITAL R
+1D61A	mathematicalsansserifitaliccapitals	MATHEMATICAL SANS-SERIF ITALIC CAPITAL S
+1D61B	mathematicalsansserifitaliccapitalt	MATHEMATICAL SANS-SERIF ITALIC CAPITAL T
+1D61C	mathematicalsansserifitaliccapitalu	MATHEMATICAL SANS-SERIF ITALIC CAPITAL U
+1D61D	mathematicalsansserifitaliccapitalv	MATHEMATICAL SANS-SERIF ITALIC CAPITAL V
+1D61E	mathematicalsansserifitaliccapitalw	MATHEMATICAL SANS-SERIF ITALIC CAPITAL W
+1D61F	mathematicalsansserifitaliccapitalx	MATHEMATICAL SANS-SERIF ITALIC CAPITAL X
+1D620	mathematicalsansserifitaliccapitaly	MATHEMATICAL SANS-SERIF ITALIC CAPITAL Y
+1D621	mathematicalsansserifitaliccapitalz	MATHEMATICAL SANS-SERIF ITALIC CAPITAL Z
+1D622	mathematicalsansserifitalicsmalla	MATHEMATICAL SANS-SERIF ITALIC SMALL A
+1D623	mathematicalsansserifitalicsmallb	MATHEMATICAL SANS-SERIF ITALIC SMALL B
+1D624	mathematicalsansserifitalicsmallc	MATHEMATICAL SANS-SERIF ITALIC SMALL C
+1D625	mathematicalsansserifitalicsmalld	MATHEMATICAL SANS-SERIF ITALIC SMALL D
+1D626	mathematicalsansserifitalicsmalle	MATHEMATICAL SANS-SERIF ITALIC SMALL E
+1D627	mathematicalsansserifitalicsmallf	MATHEMATICAL SANS-SERIF ITALIC SMALL F
+1D628	mathematicalsansserifitalicsmallg	MATHEMATICAL SANS-SERIF ITALIC SMALL G
+1D629	mathematicalsansserifitalicsmallh	MATHEMATICAL SANS-SERIF ITALIC SMALL H
+1D62A	mathematicalsansserifitalicsmalli	MATHEMATICAL SANS-SERIF ITALIC SMALL I
+1D62B	mathematicalsansserifitalicsmallj	MATHEMATICAL SANS-SERIF ITALIC SMALL J
+1D62C	mathematicalsansserifitalicsmallk	MATHEMATICAL SANS-SERIF ITALIC SMALL K
+1D62D	mathematicalsansserifitalicsmalll	MATHEMATICAL SANS-SERIF ITALIC SMALL L
+1D62E	mathematicalsansserifitalicsmallm	MATHEMATICAL SANS-SERIF ITALIC SMALL M
+1D62F	mathematicalsansserifitalicsmalln	MATHEMATICAL SANS-SERIF ITALIC SMALL N
+1D630	mathematicalsansserifitalicsmallo	MATHEMATICAL SANS-SERIF ITALIC SMALL O
+1D631	mathematicalsansserifitalicsmallp	MATHEMATICAL SANS-SERIF ITALIC SMALL P
+1D632	mathematicalsansserifitalicsmallq	MATHEMATICAL SANS-SERIF ITALIC SMALL Q
+1D633	mathematicalsansserifitalicsmallr	MATHEMATICAL SANS-SERIF ITALIC SMALL R
+1D634	mathematicalsansserifitalicsmalls	MATHEMATICAL SANS-SERIF ITALIC SMALL S
+1D635	mathematicalsansserifitalicsmallt	MATHEMATICAL SANS-SERIF ITALIC SMALL T
+1D636	mathematicalsansserifitalicsmallu	MATHEMATICAL SANS-SERIF ITALIC SMALL U
+1D637	mathematicalsansserifitalicsmallv	MATHEMATICAL SANS-SERIF ITALIC SMALL V
+1D638	mathematicalsansserifitalicsmallw	MATHEMATICAL SANS-SERIF ITALIC SMALL W
+1D639	mathematicalsansserifitalicsmallx	MATHEMATICAL SANS-SERIF ITALIC SMALL X
+1D63A	mathematicalsansserifitalicsmally	MATHEMATICAL SANS-SERIF ITALIC SMALL Y
+1D63B	mathematicalsansserifitalicsmallz	MATHEMATICAL SANS-SERIF ITALIC SMALL Z
+1D63C	mathematicalsansserifbolditaliccapitala	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL A
+1D63D	mathematicalsansserifbolditaliccapitalb	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL B
+1D63E	mathematicalsansserifbolditaliccapitalc	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL C
+1D63F	mathematicalsansserifbolditaliccapitald	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL D
+1D640	mathematicalsansserifbolditaliccapitale	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL E
+1D641	mathematicalsansserifbolditaliccapitalf	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL F
+1D642	mathematicalsansserifbolditaliccapitalg	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL G
+1D643	mathematicalsansserifbolditaliccapitalh	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL H
+1D644	mathematicalsansserifbolditaliccapitali	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL I
+1D645	mathematicalsansserifbolditaliccapitalj	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL J
+1D646	mathematicalsansserifbolditaliccapitalk	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL K
+1D647	mathematicalsansserifbolditaliccapitall	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL L
+1D648	mathematicalsansserifbolditaliccapitalm	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL M
+1D649	mathematicalsansserifbolditaliccapitaln	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL N
+1D64A	mathematicalsansserifbolditaliccapitalo	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL O
+1D64B	mathematicalsansserifbolditaliccapitalp	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL P
+1D64C	mathematicalsansserifbolditaliccapitalq	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL Q
+1D64D	mathematicalsansserifbolditaliccapitalr	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL R
+1D64E	mathematicalsansserifbolditaliccapitals	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL S
+1D64F	mathematicalsansserifbolditaliccapitalt	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL T
+1D650	mathematicalsansserifbolditaliccapitalu	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL U
+1D651	mathematicalsansserifbolditaliccapitalv	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL V
+1D652	mathematicalsansserifbolditaliccapitalw	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL W
+1D653	mathematicalsansserifbolditaliccapitalx	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL X
+1D654	mathematicalsansserifbolditaliccapitaly	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL Y
+1D655	mathematicalsansserifbolditaliccapitalz	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL Z
+1D656	mathematicalsansserifbolditalicsmalla	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL A
+1D657	mathematicalsansserifbolditalicsmallb	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL B
+1D658	mathematicalsansserifbolditalicsmallc	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL C
+1D659	mathematicalsansserifbolditalicsmalld	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL D
+1D65A	mathematicalsansserifbolditalicsmalle	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL E
+1D65B	mathematicalsansserifbolditalicsmallf	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL F
+1D65C	mathematicalsansserifbolditalicsmallg	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL G
+1D65D	mathematicalsansserifbolditalicsmallh	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL H
+1D65E	mathematicalsansserifbolditalicsmalli	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL I
+1D65F	mathematicalsansserifbolditalicsmallj	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL J
+1D660	mathematicalsansserifbolditalicsmallk	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL K
+1D661	mathematicalsansserifbolditalicsmalll	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL L
+1D662	mathematicalsansserifbolditalicsmallm	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL M
+1D663	mathematicalsansserifbolditalicsmalln	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL N
+1D664	mathematicalsansserifbolditalicsmallo	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL O
+1D665	mathematicalsansserifbolditalicsmallp	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL P
+1D666	mathematicalsansserifbolditalicsmallq	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL Q
+1D667	mathematicalsansserifbolditalicsmallr	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL R
+1D668	mathematicalsansserifbolditalicsmalls	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL S
+1D669	mathematicalsansserifbolditalicsmallt	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL T
+1D66A	mathematicalsansserifbolditalicsmallu	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL U
+1D66B	mathematicalsansserifbolditalicsmallv	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL V
+1D66C	mathematicalsansserifbolditalicsmallw	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL W
+1D66D	mathematicalsansserifbolditalicsmallx	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL X
+1D66E	mathematicalsansserifbolditalicsmally	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL Y
+1D66F	mathematicalsansserifbolditalicsmallz	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL Z
+1D670	mathematicalmonospacecapitala	MATHEMATICAL MONOSPACE CAPITAL A
+1D671	mathematicalmonospacecapitalb	MATHEMATICAL MONOSPACE CAPITAL B
+1D672	mathematicalmonospacecapitalc	MATHEMATICAL MONOSPACE CAPITAL C
+1D673	mathematicalmonospacecapitald	MATHEMATICAL MONOSPACE CAPITAL D
+1D674	mathematicalmonospacecapitale	MATHEMATICAL MONOSPACE CAPITAL E
+1D675	mathematicalmonospacecapitalf	MATHEMATICAL MONOSPACE CAPITAL F
+1D676	mathematicalmonospacecapitalg	MATHEMATICAL MONOSPACE CAPITAL G
+1D677	mathematicalmonospacecapitalh	MATHEMATICAL MONOSPACE CAPITAL H
+1D678	mathematicalmonospacecapitali	MATHEMATICAL MONOSPACE CAPITAL I
+1D679	mathematicalmonospacecapitalj	MATHEMATICAL MONOSPACE CAPITAL J
+1D67A	mathematicalmonospacecapitalk	MATHEMATICAL MONOSPACE CAPITAL K
+1D67B	mathematicalmonospacecapitall	MATHEMATICAL MONOSPACE CAPITAL L
+1D67C	mathematicalmonospacecapitalm	MATHEMATICAL MONOSPACE CAPITAL M
+1D67D	mathematicalmonospacecapitaln	MATHEMATICAL MONOSPACE CAPITAL N
+1D67E	mathematicalmonospacecapitalo	MATHEMATICAL MONOSPACE CAPITAL O
+1D67F	mathematicalmonospacecapitalp	MATHEMATICAL MONOSPACE CAPITAL P
+1D680	mathematicalmonospacecapitalq	MATHEMATICAL MONOSPACE CAPITAL Q
+1D681	mathematicalmonospacecapitalr	MATHEMATICAL MONOSPACE CAPITAL R
+1D682	mathematicalmonospacecapitals	MATHEMATICAL MONOSPACE CAPITAL S
+1D683	mathematicalmonospacecapitalt	MATHEMATICAL MONOSPACE CAPITAL T
+1D684	mathematicalmonospacecapitalu	MATHEMATICAL MONOSPACE CAPITAL U
+1D685	mathematicalmonospacecapitalv	MATHEMATICAL MONOSPACE CAPITAL V
+1D686	mathematicalmonospacecapitalw	MATHEMATICAL MONOSPACE CAPITAL W
+1D687	mathematicalmonospacecapitalx	MATHEMATICAL MONOSPACE CAPITAL X
+1D688	mathematicalmonospacecapitaly	MATHEMATICAL MONOSPACE CAPITAL Y
+1D689	mathematicalmonospacecapitalz	MATHEMATICAL MONOSPACE CAPITAL Z
+1D68A	mathematicalmonospacesmalla	MATHEMATICAL MONOSPACE SMALL A
+1D68B	mathematicalmonospacesmallb	MATHEMATICAL MONOSPACE SMALL B
+1D68C	mathematicalmonospacesmallc	MATHEMATICAL MONOSPACE SMALL C
+1D68D	mathematicalmonospacesmalld	MATHEMATICAL MONOSPACE SMALL D
+1D68E	mathematicalmonospacesmalle	MATHEMATICAL MONOSPACE SMALL E
+1D68F	mathematicalmonospacesmallf	MATHEMATICAL MONOSPACE SMALL F
+1D690	mathematicalmonospacesmallg	MATHEMATICAL MONOSPACE SMALL G
+1D691	mathematicalmonospacesmallh	MATHEMATICAL MONOSPACE SMALL H
+1D692	mathematicalmonospacesmalli	MATHEMATICAL MONOSPACE SMALL I
+1D693	mathematicalmonospacesmallj	MATHEMATICAL MONOSPACE SMALL J
+1D694	mathematicalmonospacesmallk	MATHEMATICAL MONOSPACE SMALL K
+1D695	mathematicalmonospacesmalll	MATHEMATICAL MONOSPACE SMALL L
+1D696	mathematicalmonospacesmallm	MATHEMATICAL MONOSPACE SMALL M
+1D697	mathematicalmonospacesmalln	MATHEMATICAL MONOSPACE SMALL N
+1D698	mathematicalmonospacesmallo	MATHEMATICAL MONOSPACE SMALL O
+1D699	mathematicalmonospacesmallp	MATHEMATICAL MONOSPACE SMALL P
+1D69A	mathematicalmonospacesmallq	MATHEMATICAL MONOSPACE SMALL Q
+1D69B	mathematicalmonospacesmallr	MATHEMATICAL MONOSPACE SMALL R
+1D69C	mathematicalmonospacesmalls	MATHEMATICAL MONOSPACE SMALL S
+1D69D	mathematicalmonospacesmallt	MATHEMATICAL MONOSPACE SMALL T
+1D69E	mathematicalmonospacesmallu	MATHEMATICAL MONOSPACE SMALL U
+1D69F	mathematicalmonospacesmallv	MATHEMATICAL MONOSPACE SMALL V
+1D6A0	mathematicalmonospacesmallw	MATHEMATICAL MONOSPACE SMALL W
+1D6A1	mathematicalmonospacesmallx	MATHEMATICAL MONOSPACE SMALL X
+1D6A2	mathematicalmonospacesmally	MATHEMATICAL MONOSPACE SMALL Y
+1D6A3	mathematicalmonospacesmallz	MATHEMATICAL MONOSPACE SMALL Z
+1D6A4	mathematicalitalicsmalldotlessi	MATHEMATICAL ITALIC SMALL DOTLESS I
+1D6A5	mathematicalitalicsmalldotlessj	MATHEMATICAL ITALIC SMALL DOTLESS J
+1D6A8	mathematicalboldcapitalalpha	MATHEMATICAL BOLD CAPITAL ALPHA
+1D6A9	mathematicalboldcapitalbeta	MATHEMATICAL BOLD CAPITAL BETA
+1D6AA	mathematicalboldcapitalgamma	MATHEMATICAL BOLD CAPITAL GAMMA
+1D6AB	mathematicalboldcapitaldelta	MATHEMATICAL BOLD CAPITAL DELTA
+1D6AC	mathematicalboldcapitalepsilon	MATHEMATICAL BOLD CAPITAL EPSILON
+1D6AD	mathematicalboldcapitalzeta	MATHEMATICAL BOLD CAPITAL ZETA
+1D6AE	mathematicalboldcapitaleta	MATHEMATICAL BOLD CAPITAL ETA
+1D6AF	mathematicalboldcapitaltheta	MATHEMATICAL BOLD CAPITAL THETA
+1D6B0	mathematicalboldcapitaliota	MATHEMATICAL BOLD CAPITAL IOTA
+1D6B1	mathematicalboldcapitalkappa	MATHEMATICAL BOLD CAPITAL KAPPA
+1D6B2	mathematicalboldcapitallamda	MATHEMATICAL BOLD CAPITAL LAMDA
+1D6B3	mathematicalboldcapitalmu	MATHEMATICAL BOLD CAPITAL MU
+1D6B4	mathematicalboldcapitalnu	MATHEMATICAL BOLD CAPITAL NU
+1D6B5	mathematicalboldcapitalxi	MATHEMATICAL BOLD CAPITAL XI
+1D6B6	mathematicalboldcapitalomicron	MATHEMATICAL BOLD CAPITAL OMICRON
+1D6B7	mathematicalboldcapitalpi	MATHEMATICAL BOLD CAPITAL PI
+1D6B8	mathematicalboldcapitalrho	MATHEMATICAL BOLD CAPITAL RHO
+1D6B9	mathematicalboldcapitalthetasymbol	MATHEMATICAL BOLD CAPITAL THETA SYMBOL
+1D6BA	mathematicalboldcapitalsigma	MATHEMATICAL BOLD CAPITAL SIGMA
+1D6BB	mathematicalboldcapitaltau	MATHEMATICAL BOLD CAPITAL TAU
+1D6BC	mathematicalboldcapitalupsilon	MATHEMATICAL BOLD CAPITAL UPSILON
+1D6BD	mathematicalboldcapitalphi	MATHEMATICAL BOLD CAPITAL PHI
+1D6BE	mathematicalboldcapitalchi	MATHEMATICAL BOLD CAPITAL CHI
+1D6BF	mathematicalboldcapitalpsi	MATHEMATICAL BOLD CAPITAL PSI
+1D6C0	mathematicalboldcapitalomega	MATHEMATICAL BOLD CAPITAL OMEGA
+1D6C1	mathematicalboldnabla	MATHEMATICAL BOLD NABLA
+1D6C2	mathematicalboldsmallalpha	MATHEMATICAL BOLD SMALL ALPHA
+1D6C3	mathematicalboldsmallbeta	MATHEMATICAL BOLD SMALL BETA
+1D6C4	mathematicalboldsmallgamma	MATHEMATICAL BOLD SMALL GAMMA
+1D6C5	mathematicalboldsmalldelta	MATHEMATICAL BOLD SMALL DELTA
+1D6C6	mathematicalboldsmallepsilon	MATHEMATICAL BOLD SMALL EPSILON
+1D6C7	mathematicalboldsmallzeta	MATHEMATICAL BOLD SMALL ZETA
+1D6C8	mathematicalboldsmalleta	MATHEMATICAL BOLD SMALL ETA
+1D6C9	mathematicalboldsmalltheta	MATHEMATICAL BOLD SMALL THETA
+1D6CA	mathematicalboldsmalliota	MATHEMATICAL BOLD SMALL IOTA
+1D6CB	mathematicalboldsmallkappa	MATHEMATICAL BOLD SMALL KAPPA
+1D6CC	mathematicalboldsmalllamda	MATHEMATICAL BOLD SMALL LAMDA
+1D6CD	mathematicalboldsmallmu	MATHEMATICAL BOLD SMALL MU
+1D6CE	mathematicalboldsmallnu	MATHEMATICAL BOLD SMALL NU
+1D6CF	mathematicalboldsmallxi	MATHEMATICAL BOLD SMALL XI
+1D6D0	mathematicalboldsmallomicron	MATHEMATICAL BOLD SMALL OMICRON
+1D6D1	mathematicalboldsmallpi	MATHEMATICAL BOLD SMALL PI
+1D6D2	mathematicalboldsmallrho	MATHEMATICAL BOLD SMALL RHO
+1D6D3	mathematicalboldsmallfinalsigma	MATHEMATICAL BOLD SMALL FINAL SIGMA
+1D6D4	mathematicalboldsmallsigma	MATHEMATICAL BOLD SMALL SIGMA
+1D6D5	mathematicalboldsmalltau	MATHEMATICAL BOLD SMALL TAU
+1D6D6	mathematicalboldsmallupsilon	MATHEMATICAL BOLD SMALL UPSILON
+1D6D7	mathematicalboldsmallphi	MATHEMATICAL BOLD SMALL PHI
+1D6D8	mathematicalboldsmallchi	MATHEMATICAL BOLD SMALL CHI
+1D6D9	mathematicalboldsmallpsi	MATHEMATICAL BOLD SMALL PSI
+1D6DA	mathematicalboldsmallomega	MATHEMATICAL BOLD SMALL OMEGA
+1D6DB	mathematicalboldpartialdifferential	MATHEMATICAL BOLD PARTIAL DIFFERENTIAL
+1D6DC	mathematicalboldepsilonsymbol	MATHEMATICAL BOLD EPSILON SYMBOL
+1D6DD	mathematicalboldthetasymbol	MATHEMATICAL BOLD THETA SYMBOL
+1D6DE	mathematicalboldkappasymbol	MATHEMATICAL BOLD KAPPA SYMBOL
+1D6DF	mathematicalboldphisymbol	MATHEMATICAL BOLD PHI SYMBOL
+1D6E0	mathematicalboldrhosymbol	MATHEMATICAL BOLD RHO SYMBOL
+1D6E1	mathematicalboldpisymbol	MATHEMATICAL BOLD PI SYMBOL
+1D6E2	mathematicalitaliccapitalalpha	MATHEMATICAL ITALIC CAPITAL ALPHA
+1D6E3	mathematicalitaliccapitalbeta	MATHEMATICAL ITALIC CAPITAL BETA
+1D6E4	mathematicalitaliccapitalgamma	MATHEMATICAL ITALIC CAPITAL GAMMA
+1D6E5	mathematicalitaliccapitaldelta	MATHEMATICAL ITALIC CAPITAL DELTA
+1D6E6	mathematicalitaliccapitalepsilon	MATHEMATICAL ITALIC CAPITAL EPSILON
+1D6E7	mathematicalitaliccapitalzeta	MATHEMATICAL ITALIC CAPITAL ZETA
+1D6E8	mathematicalitaliccapitaleta	MATHEMATICAL ITALIC CAPITAL ETA
+1D6E9	mathematicalitaliccapitaltheta	MATHEMATICAL ITALIC CAPITAL THETA
+1D6EA	mathematicalitaliccapitaliota	MATHEMATICAL ITALIC CAPITAL IOTA
+1D6EB	mathematicalitaliccapitalkappa	MATHEMATICAL ITALIC CAPITAL KAPPA
+1D6EC	mathematicalitaliccapitallamda	MATHEMATICAL ITALIC CAPITAL LAMDA
+1D6ED	mathematicalitaliccapitalmu	MATHEMATICAL ITALIC CAPITAL MU
+1D6EE	mathematicalitaliccapitalnu	MATHEMATICAL ITALIC CAPITAL NU
+1D6EF	mathematicalitaliccapitalxi	MATHEMATICAL ITALIC CAPITAL XI
+1D6F0	mathematicalitaliccapitalomicron	MATHEMATICAL ITALIC CAPITAL OMICRON
+1D6F1	mathematicalitaliccapitalpi	MATHEMATICAL ITALIC CAPITAL PI
+1D6F2	mathematicalitaliccapitalrho	MATHEMATICAL ITALIC CAPITAL RHO
+1D6F3	mathematicalitaliccapitalthetasymbol	MATHEMATICAL ITALIC CAPITAL THETA SYMBOL
+1D6F4	mathematicalitaliccapitalsigma	MATHEMATICAL ITALIC CAPITAL SIGMA
+1D6F5	mathematicalitaliccapitaltau	MATHEMATICAL ITALIC CAPITAL TAU
+1D6F6	mathematicalitaliccapitalupsilon	MATHEMATICAL ITALIC CAPITAL UPSILON
+1D6F7	mathematicalitaliccapitalphi	MATHEMATICAL ITALIC CAPITAL PHI
+1D6F8	mathematicalitaliccapitalchi	MATHEMATICAL ITALIC CAPITAL CHI
+1D6F9	mathematicalitaliccapitalpsi	MATHEMATICAL ITALIC CAPITAL PSI
+1D6FA	mathematicalitaliccapitalomega	MATHEMATICAL ITALIC CAPITAL OMEGA
+1D6FB	mathematicalitalicnabla	MATHEMATICAL ITALIC NABLA
+1D6FC	mathematicalitalicsmallalpha	MATHEMATICAL ITALIC SMALL ALPHA
+1D6FD	mathematicalitalicsmallbeta	MATHEMATICAL ITALIC SMALL BETA
+1D6FE	mathematicalitalicsmallgamma	MATHEMATICAL ITALIC SMALL GAMMA
+1D6FF	mathematicalitalicsmalldelta	MATHEMATICAL ITALIC SMALL DELTA
+1D700	mathematicalitalicsmallepsilon	MATHEMATICAL ITALIC SMALL EPSILON
+1D701	mathematicalitalicsmallzeta	MATHEMATICAL ITALIC SMALL ZETA
+1D702	mathematicalitalicsmalleta	MATHEMATICAL ITALIC SMALL ETA
+1D703	mathematicalitalicsmalltheta	MATHEMATICAL ITALIC SMALL THETA
+1D704	mathematicalitalicsmalliota	MATHEMATICAL ITALIC SMALL IOTA
+1D705	mathematicalitalicsmallkappa	MATHEMATICAL ITALIC SMALL KAPPA
+1D706	mathematicalitalicsmalllamda	MATHEMATICAL ITALIC SMALL LAMDA
+1D707	mathematicalitalicsmallmu	MATHEMATICAL ITALIC SMALL MU
+1D708	mathematicalitalicsmallnu	MATHEMATICAL ITALIC SMALL NU
+1D709	mathematicalitalicsmallxi	MATHEMATICAL ITALIC SMALL XI
+1D70A	mathematicalitalicsmallomicron	MATHEMATICAL ITALIC SMALL OMICRON
+1D70B	mathematicalitalicsmallpi	MATHEMATICAL ITALIC SMALL PI
+1D70C	mathematicalitalicsmallrho	MATHEMATICAL ITALIC SMALL RHO
+1D70D	mathematicalitalicsmallfinalsigma	MATHEMATICAL ITALIC SMALL FINAL SIGMA
+1D70E	mathematicalitalicsmallsigma	MATHEMATICAL ITALIC SMALL SIGMA
+1D70F	mathematicalitalicsmalltau	MATHEMATICAL ITALIC SMALL TAU
+1D710	mathematicalitalicsmallupsilon	MATHEMATICAL ITALIC SMALL UPSILON
+1D711	mathematicalitalicsmallphi	MATHEMATICAL ITALIC SMALL PHI
+1D712	mathematicalitalicsmallchi	MATHEMATICAL ITALIC SMALL CHI
+1D713	mathematicalitalicsmallpsi	MATHEMATICAL ITALIC SMALL PSI
+1D714	mathematicalitalicsmallomega	MATHEMATICAL ITALIC SMALL OMEGA
+1D715	mathematicalitalicpartialdifferential	MATHEMATICAL ITALIC PARTIAL DIFFERENTIAL
+1D716	mathematicalitalicepsilonsymbol	MATHEMATICAL ITALIC EPSILON SYMBOL
+1D717	mathematicalitalicthetasymbol	MATHEMATICAL ITALIC THETA SYMBOL
+1D718	mathematicalitalickappasymbol	MATHEMATICAL ITALIC KAPPA SYMBOL
+1D719	mathematicalitalicphisymbol	MATHEMATICAL ITALIC PHI SYMBOL
+1D71A	mathematicalitalicrhosymbol	MATHEMATICAL ITALIC RHO SYMBOL
+1D71B	mathematicalitalicpisymbol	MATHEMATICAL ITALIC PI SYMBOL
+1D71C	mathematicalbolditaliccapitalalpha	MATHEMATICAL BOLD ITALIC CAPITAL ALPHA
+1D71D	mathematicalbolditaliccapitalbeta	MATHEMATICAL BOLD ITALIC CAPITAL BETA
+1D71E	mathematicalbolditaliccapitalgamma	MATHEMATICAL BOLD ITALIC CAPITAL GAMMA
+1D71F	mathematicalbolditaliccapitaldelta	MATHEMATICAL BOLD ITALIC CAPITAL DELTA
+1D720	mathematicalbolditaliccapitalepsilon	MATHEMATICAL BOLD ITALIC CAPITAL EPSILON
+1D721	mathematicalbolditaliccapitalzeta	MATHEMATICAL BOLD ITALIC CAPITAL ZETA
+1D722	mathematicalbolditaliccapitaleta	MATHEMATICAL BOLD ITALIC CAPITAL ETA
+1D723	mathematicalbolditaliccapitaltheta	MATHEMATICAL BOLD ITALIC CAPITAL THETA
+1D724	mathematicalbolditaliccapitaliota	MATHEMATICAL BOLD ITALIC CAPITAL IOTA
+1D725	mathematicalbolditaliccapitalkappa	MATHEMATICAL BOLD ITALIC CAPITAL KAPPA
+1D726	mathematicalbolditaliccapitallamda	MATHEMATICAL BOLD ITALIC CAPITAL LAMDA
+1D727	mathematicalbolditaliccapitalmu	MATHEMATICAL BOLD ITALIC CAPITAL MU
+1D728	mathematicalbolditaliccapitalnu	MATHEMATICAL BOLD ITALIC CAPITAL NU
+1D729	mathematicalbolditaliccapitalxi	MATHEMATICAL BOLD ITALIC CAPITAL XI
+1D72A	mathematicalbolditaliccapitalomicron	MATHEMATICAL BOLD ITALIC CAPITAL OMICRON
+1D72B	mathematicalbolditaliccapitalpi	MATHEMATICAL BOLD ITALIC CAPITAL PI
+1D72C	mathematicalbolditaliccapitalrho	MATHEMATICAL BOLD ITALIC CAPITAL RHO
+1D72D	mathematicalbolditaliccapitalthetasymbol	MATHEMATICAL BOLD ITALIC CAPITAL THETA SYMBOL
+1D72E	mathematicalbolditaliccapitalsigma	MATHEMATICAL BOLD ITALIC CAPITAL SIGMA
+1D72F	mathematicalbolditaliccapitaltau	MATHEMATICAL BOLD ITALIC CAPITAL TAU
+1D730	mathematicalbolditaliccapitalupsilon	MATHEMATICAL BOLD ITALIC CAPITAL UPSILON
+1D731	mathematicalbolditaliccapitalphi	MATHEMATICAL BOLD ITALIC CAPITAL PHI
+1D732	mathematicalbolditaliccapitalchi	MATHEMATICAL BOLD ITALIC CAPITAL CHI
+1D733	mathematicalbolditaliccapitalpsi	MATHEMATICAL BOLD ITALIC CAPITAL PSI
+1D734	mathematicalbolditaliccapitalomega	MATHEMATICAL BOLD ITALIC CAPITAL OMEGA
+1D735	mathematicalbolditalicnabla	MATHEMATICAL BOLD ITALIC NABLA
+1D736	mathematicalbolditalicsmallalpha	MATHEMATICAL BOLD ITALIC SMALL ALPHA
+1D737	mathematicalbolditalicsmallbeta	MATHEMATICAL BOLD ITALIC SMALL BETA
+1D738	mathematicalbolditalicsmallgamma	MATHEMATICAL BOLD ITALIC SMALL GAMMA
+1D739	mathematicalbolditalicsmalldelta	MATHEMATICAL BOLD ITALIC SMALL DELTA
+1D73A	mathematicalbolditalicsmallepsilon	MATHEMATICAL BOLD ITALIC SMALL EPSILON
+1D73B	mathematicalbolditalicsmallzeta	MATHEMATICAL BOLD ITALIC SMALL ZETA
+1D73C	mathematicalbolditalicsmalleta	MATHEMATICAL BOLD ITALIC SMALL ETA
+1D73D	mathematicalbolditalicsmalltheta	MATHEMATICAL BOLD ITALIC SMALL THETA
+1D73E	mathematicalbolditalicsmalliota	MATHEMATICAL BOLD ITALIC SMALL IOTA
+1D73F	mathematicalbolditalicsmallkappa	MATHEMATICAL BOLD ITALIC SMALL KAPPA
+1D740	mathematicalbolditalicsmalllamda	MATHEMATICAL BOLD ITALIC SMALL LAMDA
+1D741	mathematicalbolditalicsmallmu	MATHEMATICAL BOLD ITALIC SMALL MU
+1D742	mathematicalbolditalicsmallnu	MATHEMATICAL BOLD ITALIC SMALL NU
+1D743	mathematicalbolditalicsmallxi	MATHEMATICAL BOLD ITALIC SMALL XI
+1D744	mathematicalbolditalicsmallomicron	MATHEMATICAL BOLD ITALIC SMALL OMICRON
+1D745	mathematicalbolditalicsmallpi	MATHEMATICAL BOLD ITALIC SMALL PI
+1D746	mathematicalbolditalicsmallrho	MATHEMATICAL BOLD ITALIC SMALL RHO
+1D747	mathematicalbolditalicsmallfinalsigma	MATHEMATICAL BOLD ITALIC SMALL FINAL SIGMA
+1D748	mathematicalbolditalicsmallsigma	MATHEMATICAL BOLD ITALIC SMALL SIGMA
+1D749	mathematicalbolditalicsmalltau	MATHEMATICAL BOLD ITALIC SMALL TAU
+1D74A	mathematicalbolditalicsmallupsilon	MATHEMATICAL BOLD ITALIC SMALL UPSILON
+1D74B	mathematicalbolditalicsmallphi	MATHEMATICAL BOLD ITALIC SMALL PHI
+1D74C	mathematicalbolditalicsmallchi	MATHEMATICAL BOLD ITALIC SMALL CHI
+1D74D	mathematicalbolditalicsmallpsi	MATHEMATICAL BOLD ITALIC SMALL PSI
+1D74E	mathematicalbolditalicsmallomega	MATHEMATICAL BOLD ITALIC SMALL OMEGA
+1D74F	mathematicalbolditalicpartialdifferential	MATHEMATICAL BOLD ITALIC PARTIAL DIFFERENTIAL
+1D750	mathematicalbolditalicepsilonsymbol	MATHEMATICAL BOLD ITALIC EPSILON SYMBOL
+1D751	mathematicalbolditalicthetasymbol	MATHEMATICAL BOLD ITALIC THETA SYMBOL
+1D752	mathematicalbolditalickappasymbol	MATHEMATICAL BOLD ITALIC KAPPA SYMBOL
+1D753	mathematicalbolditalicphisymbol	MATHEMATICAL BOLD ITALIC PHI SYMBOL
+1D754	mathematicalbolditalicrhosymbol	MATHEMATICAL BOLD ITALIC RHO SYMBOL
+1D755	mathematicalbolditalicpisymbol	MATHEMATICAL BOLD ITALIC PI SYMBOL
+1D756	mathematicalsansserifboldcapitalalpha	MATHEMATICAL SANS-SERIF BOLD CAPITAL ALPHA
+1D757	mathematicalsansserifboldcapitalbeta	MATHEMATICAL SANS-SERIF BOLD CAPITAL BETA
+1D758	mathematicalsansserifboldcapitalgamma	MATHEMATICAL SANS-SERIF BOLD CAPITAL GAMMA
+1D759	mathematicalsansserifboldcapitaldelta	MATHEMATICAL SANS-SERIF BOLD CAPITAL DELTA
+1D75A	mathematicalsansserifboldcapitalepsilon	MATHEMATICAL SANS-SERIF BOLD CAPITAL EPSILON
+1D75B	mathematicalsansserifboldcapitalzeta	MATHEMATICAL SANS-SERIF BOLD CAPITAL ZETA
+1D75C	mathematicalsansserifboldcapitaleta	MATHEMATICAL SANS-SERIF BOLD CAPITAL ETA
+1D75D	mathematicalsansserifboldcapitaltheta	MATHEMATICAL SANS-SERIF BOLD CAPITAL THETA
+1D75E	mathematicalsansserifboldcapitaliota	MATHEMATICAL SANS-SERIF BOLD CAPITAL IOTA
+1D75F	mathematicalsansserifboldcapitalkappa	MATHEMATICAL SANS-SERIF BOLD CAPITAL KAPPA
+1D760	mathematicalsansserifboldcapitallamda	MATHEMATICAL SANS-SERIF BOLD CAPITAL LAMDA
+1D761	mathematicalsansserifboldcapitalmu	MATHEMATICAL SANS-SERIF BOLD CAPITAL MU
+1D762	mathematicalsansserifboldcapitalnu	MATHEMATICAL SANS-SERIF BOLD CAPITAL NU
+1D763	mathematicalsansserifboldcapitalxi	MATHEMATICAL SANS-SERIF BOLD CAPITAL XI
+1D764	mathematicalsansserifboldcapitalomicron	MATHEMATICAL SANS-SERIF BOLD CAPITAL OMICRON
+1D765	mathematicalsansserifboldcapitalpi	MATHEMATICAL SANS-SERIF BOLD CAPITAL PI
+1D766	mathematicalsansserifboldcapitalrho	MATHEMATICAL SANS-SERIF BOLD CAPITAL RHO
+1D767	mathematicalsansserifboldcapitalthetasymbol	MATHEMATICAL SANS-SERIF BOLD CAPITAL THETA SYMBOL
+1D768	mathematicalsansserifboldcapitalsigma	MATHEMATICAL SANS-SERIF BOLD CAPITAL SIGMA
+1D769	mathematicalsansserifboldcapitaltau	MATHEMATICAL SANS-SERIF BOLD CAPITAL TAU
+1D76A	mathematicalsansserifboldcapitalupsilon	MATHEMATICAL SANS-SERIF BOLD CAPITAL UPSILON
+1D76B	mathematicalsansserifboldcapitalphi	MATHEMATICAL SANS-SERIF BOLD CAPITAL PHI
+1D76C	mathematicalsansserifboldcapitalchi	MATHEMATICAL SANS-SERIF BOLD CAPITAL CHI
+1D76D	mathematicalsansserifboldcapitalpsi	MATHEMATICAL SANS-SERIF BOLD CAPITAL PSI
+1D76E	mathematicalsansserifboldcapitalomega	MATHEMATICAL SANS-SERIF BOLD CAPITAL OMEGA
+1D76F	mathematicalsansserifboldnabla	MATHEMATICAL SANS-SERIF BOLD NABLA
+1D770	mathematicalsansserifboldsmallalpha	MATHEMATICAL SANS-SERIF BOLD SMALL ALPHA
+1D771	mathematicalsansserifboldsmallbeta	MATHEMATICAL SANS-SERIF BOLD SMALL BETA
+1D772	mathematicalsansserifboldsmallgamma	MATHEMATICAL SANS-SERIF BOLD SMALL GAMMA
+1D773	mathematicalsansserifboldsmalldelta	MATHEMATICAL SANS-SERIF BOLD SMALL DELTA
+1D774	mathematicalsansserifboldsmallepsilon	MATHEMATICAL SANS-SERIF BOLD SMALL EPSILON
+1D775	mathematicalsansserifboldsmallzeta	MATHEMATICAL SANS-SERIF BOLD SMALL ZETA
+1D776	mathematicalsansserifboldsmalleta	MATHEMATICAL SANS-SERIF BOLD SMALL ETA
+1D777	mathematicalsansserifboldsmalltheta	MATHEMATICAL SANS-SERIF BOLD SMALL THETA
+1D778	mathematicalsansserifboldsmalliota	MATHEMATICAL SANS-SERIF BOLD SMALL IOTA
+1D779	mathematicalsansserifboldsmallkappa	MATHEMATICAL SANS-SERIF BOLD SMALL KAPPA
+1D77A	mathematicalsansserifboldsmalllamda	MATHEMATICAL SANS-SERIF BOLD SMALL LAMDA
+1D77B	mathematicalsansserifboldsmallmu	MATHEMATICAL SANS-SERIF BOLD SMALL MU
+1D77C	mathematicalsansserifboldsmallnu	MATHEMATICAL SANS-SERIF BOLD SMALL NU
+1D77D	mathematicalsansserifboldsmallxi	MATHEMATICAL SANS-SERIF BOLD SMALL XI
+1D77E	mathematicalsansserifboldsmallomicron	MATHEMATICAL SANS-SERIF BOLD SMALL OMICRON
+1D77F	mathematicalsansserifboldsmallpi	MATHEMATICAL SANS-SERIF BOLD SMALL PI
+1D780	mathematicalsansserifboldsmallrho	MATHEMATICAL SANS-SERIF BOLD SMALL RHO
+1D781	mathematicalsansserifboldsmallfinalsigma	MATHEMATICAL SANS-SERIF BOLD SMALL FINAL SIGMA
+1D782	mathematicalsansserifboldsmallsigma	MATHEMATICAL SANS-SERIF BOLD SMALL SIGMA
+1D783	mathematicalsansserifboldsmalltau	MATHEMATICAL SANS-SERIF BOLD SMALL TAU
+1D784	mathematicalsansserifboldsmallupsilon	MATHEMATICAL SANS-SERIF BOLD SMALL UPSILON
+1D785	mathematicalsansserifboldsmallphi	MATHEMATICAL SANS-SERIF BOLD SMALL PHI
+1D786	mathematicalsansserifboldsmallchi	MATHEMATICAL SANS-SERIF BOLD SMALL CHI
+1D787	mathematicalsansserifboldsmallpsi	MATHEMATICAL SANS-SERIF BOLD SMALL PSI
+1D788	mathematicalsansserifboldsmallomega	MATHEMATICAL SANS-SERIF BOLD SMALL OMEGA
+1D789	mathematicalsansserifboldpartialdifferential	MATHEMATICAL SANS-SERIF BOLD PARTIAL DIFFERENTIAL
+1D78A	mathematicalsansserifboldepsilonsymbol	MATHEMATICAL SANS-SERIF BOLD EPSILON SYMBOL
+1D78B	mathematicalsansserifboldthetasymbol	MATHEMATICAL SANS-SERIF BOLD THETA SYMBOL
+1D78C	mathematicalsansserifboldkappasymbol	MATHEMATICAL SANS-SERIF BOLD KAPPA SYMBOL
+1D78D	mathematicalsansserifboldphisymbol	MATHEMATICAL SANS-SERIF BOLD PHI SYMBOL
+1D78E	mathematicalsansserifboldrhosymbol	MATHEMATICAL SANS-SERIF BOLD RHO SYMBOL
+1D78F	mathematicalsansserifboldpisymbol	MATHEMATICAL SANS-SERIF BOLD PI SYMBOL
+1D790	mathematicalsansserifbolditaliccapitalalpha	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL ALPHA
+1D791	mathematicalsansserifbolditaliccapitalbeta	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL BETA
+1D792	mathematicalsansserifbolditaliccapitalgamma	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL GAMMA
+1D793	mathematicalsansserifbolditaliccapitaldelta	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL DELTA
+1D794	mathematicalsansserifbolditaliccapitalepsilon	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL EPSILON
+1D795	mathematicalsansserifbolditaliccapitalzeta	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL ZETA
+1D796	mathematicalsansserifbolditaliccapitaleta	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL ETA
+1D797	mathematicalsansserifbolditaliccapitaltheta	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL THETA
+1D798	mathematicalsansserifbolditaliccapitaliota	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL IOTA
+1D799	mathematicalsansserifbolditaliccapitalkappa	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL KAPPA
+1D79A	mathematicalsansserifbolditaliccapitallamda	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL LAMDA
+1D79B	mathematicalsansserifbolditaliccapitalmu	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL MU
+1D79C	mathematicalsansserifbolditaliccapitalnu	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL NU
+1D79D	mathematicalsansserifbolditaliccapitalxi	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL XI
+1D79E	mathematicalsansserifbolditaliccapitalomicron	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL OMICRON
+1D79F	mathematicalsansserifbolditaliccapitalpi	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL PI
+1D7A0	mathematicalsansserifbolditaliccapitalrho	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL RHO
+1D7A1	mathematicalsansserifbolditaliccapitalthetasymbol	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL THETA SYMBOL
+1D7A2	mathematicalsansserifbolditaliccapitalsigma	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL SIGMA
+1D7A3	mathematicalsansserifbolditaliccapitaltau	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL TAU
+1D7A4	mathematicalsansserifbolditaliccapitalupsilon	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL UPSILON
+1D7A5	mathematicalsansserifbolditaliccapitalphi	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL PHI
+1D7A6	mathematicalsansserifbolditaliccapitalchi	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL CHI
+1D7A7	mathematicalsansserifbolditaliccapitalpsi	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL PSI
+1D7A8	mathematicalsansserifbolditaliccapitalomega	MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL OMEGA
+1D7A9	mathematicalsansserifbolditalicnabla	MATHEMATICAL SANS-SERIF BOLD ITALIC NABLA
+1D7AA	mathematicalsansserifbolditalicsmallalpha	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL ALPHA
+1D7AB	mathematicalsansserifbolditalicsmallbeta	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL BETA
+1D7AC	mathematicalsansserifbolditalicsmallgamma	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL GAMMA
+1D7AD	mathematicalsansserifbolditalicsmalldelta	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL DELTA
+1D7AE	mathematicalsansserifbolditalicsmallepsilon	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL EPSILON
+1D7AF	mathematicalsansserifbolditalicsmallzeta	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL ZETA
+1D7B0	mathematicalsansserifbolditalicsmalleta	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL ETA
+1D7B1	mathematicalsansserifbolditalicsmalltheta	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL THETA
+1D7B2	mathematicalsansserifbolditalicsmalliota	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL IOTA
+1D7B3	mathematicalsansserifbolditalicsmallkappa	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL KAPPA
+1D7B4	mathematicalsansserifbolditalicsmalllamda	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL LAMDA
+1D7B5	mathematicalsansserifbolditalicsmallmu	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL MU
+1D7B6	mathematicalsansserifbolditalicsmallnu	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL NU
+1D7B7	mathematicalsansserifbolditalicsmallxi	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL XI
+1D7B8	mathematicalsansserifbolditalicsmallomicron	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL OMICRON
+1D7B9	mathematicalsansserifbolditalicsmallpi	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL PI
+1D7BA	mathematicalsansserifbolditalicsmallrho	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL RHO
+1D7BB	mathematicalsansserifbolditalicsmallfinalsigma	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL FINAL SIGMA
+1D7BC	mathematicalsansserifbolditalicsmallsigma	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL SIGMA
+1D7BD	mathematicalsansserifbolditalicsmalltau	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL TAU
+1D7BE	mathematicalsansserifbolditalicsmallupsilon	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL UPSILON
+1D7BF	mathematicalsansserifbolditalicsmallphi	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL PHI
+1D7C0	mathematicalsansserifbolditalicsmallchi	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL CHI
+1D7C1	mathematicalsansserifbolditalicsmallpsi	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL PSI
+1D7C2	mathematicalsansserifbolditalicsmallomega	MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL OMEGA
+1D7C3	mathematicalsansserifbolditalicpartialdifferential	MATHEMATICAL SANS-SERIF BOLD ITALIC PARTIAL DIFFERENTIAL
+1D7C4	mathematicalsansserifbolditalicepsilonsymbol	MATHEMATICAL SANS-SERIF BOLD ITALIC EPSILON SYMBOL
+1D7C5	mathematicalsansserifbolditalicthetasymbol	MATHEMATICAL SANS-SERIF BOLD ITALIC THETA SYMBOL
+1D7C6	mathematicalsansserifbolditalickappasymbol	MATHEMATICAL SANS-SERIF BOLD ITALIC KAPPA SYMBOL
+1D7C7	mathematicalsansserifbolditalicphisymbol	MATHEMATICAL SANS-SERIF BOLD ITALIC PHI SYMBOL
+1D7C8	mathematicalsansserifbolditalicrhosymbol	MATHEMATICAL SANS-SERIF BOLD ITALIC RHO SYMBOL
+1D7C9	mathematicalsansserifbolditalicpisymbol	MATHEMATICAL SANS-SERIF BOLD ITALIC PI SYMBOL
+1D7CA	mathematicalboldcapitaldigamma	MATHEMATICAL BOLD CAPITAL DIGAMMA
+1D7CB	mathematicalboldsmalldigamma	MATHEMATICAL BOLD SMALL DIGAMMA
+1D7CE	mathematicalbolddigitzero	MATHEMATICAL BOLD DIGIT ZERO
+1D7CF	mathematicalbolddigitone	MATHEMATICAL BOLD DIGIT ONE
+1D7D0	mathematicalbolddigittwo	MATHEMATICAL BOLD DIGIT TWO
+1D7D1	mathematicalbolddigitthree	MATHEMATICAL BOLD DIGIT THREE
+1D7D2	mathematicalbolddigitfour	MATHEMATICAL BOLD DIGIT FOUR
+1D7D3	mathematicalbolddigitfive	MATHEMATICAL BOLD DIGIT FIVE
+1D7D4	mathematicalbolddigitsix	MATHEMATICAL BOLD DIGIT SIX
+1D7D5	mathematicalbolddigitseven	MATHEMATICAL BOLD DIGIT SEVEN
+1D7D6	mathematicalbolddigiteight	MATHEMATICAL BOLD DIGIT EIGHT
+1D7D7	mathematicalbolddigitnine	MATHEMATICAL BOLD DIGIT NINE
+1D7D8	mathematicaldoublestruckdigitzero	MATHEMATICAL DOUBLE-STRUCK DIGIT ZERO
+1D7D9	mathematicaldoublestruckdigitone	MATHEMATICAL DOUBLE-STRUCK DIGIT ONE
+1D7DA	mathematicaldoublestruckdigittwo	MATHEMATICAL DOUBLE-STRUCK DIGIT TWO
+1D7DB	mathematicaldoublestruckdigitthree	MATHEMATICAL DOUBLE-STRUCK DIGIT THREE
+1D7DC	mathematicaldoublestruckdigitfour	MATHEMATICAL DOUBLE-STRUCK DIGIT FOUR
+1D7DD	mathematicaldoublestruckdigitfive	MATHEMATICAL DOUBLE-STRUCK DIGIT FIVE
+1D7DE	mathematicaldoublestruckdigitsix	MATHEMATICAL DOUBLE-STRUCK DIGIT SIX
+1D7DF	mathematicaldoublestruckdigitseven	MATHEMATICAL DOUBLE-STRUCK DIGIT SEVEN
+1D7E0	mathematicaldoublestruckdigiteight	MATHEMATICAL DOUBLE-STRUCK DIGIT EIGHT
+1D7E1	mathematicaldoublestruckdigitnine	MATHEMATICAL DOUBLE-STRUCK DIGIT NINE
+1D7E2	mathematicalsansserifdigitzero	MATHEMATICAL SANS-SERIF DIGIT ZERO
+1D7E3	mathematicalsansserifdigitone	MATHEMATICAL SANS-SERIF DIGIT ONE
+1D7E4	mathematicalsansserifdigittwo	MATHEMATICAL SANS-SERIF DIGIT TWO
+1D7E5	mathematicalsansserifdigitthree	MATHEMATICAL SANS-SERIF DIGIT THREE
+1D7E6	mathematicalsansserifdigitfour	MATHEMATICAL SANS-SERIF DIGIT FOUR
+1D7E7	mathematicalsansserifdigitfive	MATHEMATICAL SANS-SERIF DIGIT FIVE
+1D7E8	mathematicalsansserifdigitsix	MATHEMATICAL SANS-SERIF DIGIT SIX
+1D7E9	mathematicalsansserifdigitseven	MATHEMATICAL SANS-SERIF DIGIT SEVEN
+1D7EA	mathematicalsansserifdigiteight	MATHEMATICAL SANS-SERIF DIGIT EIGHT
+1D7EB	mathematicalsansserifdigitnine	MATHEMATICAL SANS-SERIF DIGIT NINE
+1D7EC	mathematicalsansserifbolddigitzero	MATHEMATICAL SANS-SERIF BOLD DIGIT ZERO
+1D7ED	mathematicalsansserifbolddigitone	MATHEMATICAL SANS-SERIF BOLD DIGIT ONE
+1D7EE	mathematicalsansserifbolddigittwo	MATHEMATICAL SANS-SERIF BOLD DIGIT TWO
+1D7EF	mathematicalsansserifbolddigitthree	MATHEMATICAL SANS-SERIF BOLD DIGIT THREE
+1D7F0	mathematicalsansserifbolddigitfour	MATHEMATICAL SANS-SERIF BOLD DIGIT FOUR
+1D7F1	mathematicalsansserifbolddigitfive	MATHEMATICAL SANS-SERIF BOLD DIGIT FIVE
+1D7F2	mathematicalsansserifbolddigitsix	MATHEMATICAL SANS-SERIF BOLD DIGIT SIX
+1D7F3	mathematicalsansserifbolddigitseven	MATHEMATICAL SANS-SERIF BOLD DIGIT SEVEN
+1D7F4	mathematicalsansserifbolddigiteight	MATHEMATICAL SANS-SERIF BOLD DIGIT EIGHT
+1D7F5	mathematicalsansserifbolddigitnine	MATHEMATICAL SANS-SERIF BOLD DIGIT NINE
+1D7F6	mathematicalmonospacedigitzero	MATHEMATICAL MONOSPACE DIGIT ZERO
+1D7F7	mathematicalmonospacedigitone	MATHEMATICAL MONOSPACE DIGIT ONE
+1D7F8	mathematicalmonospacedigittwo	MATHEMATICAL MONOSPACE DIGIT TWO
+1D7F9	mathematicalmonospacedigitthree	MATHEMATICAL MONOSPACE DIGIT THREE
+1D7FA	mathematicalmonospacedigitfour	MATHEMATICAL MONOSPACE DIGIT FOUR
+1D7FB	mathematicalmonospacedigitfive	MATHEMATICAL MONOSPACE DIGIT FIVE
+1D7FC	mathematicalmonospacedigitsix	MATHEMATICAL MONOSPACE DIGIT SIX
+1D7FD	mathematicalmonospacedigitseven	MATHEMATICAL MONOSPACE DIGIT SEVEN
+1D7FE	mathematicalmonospacedigiteight	MATHEMATICAL MONOSPACE DIGIT EIGHT
+1D7FF	mathematicalmonospacedigitnine	MATHEMATICAL MONOSPACE DIGIT NINE

@@ -1,0 +1,12 @@
+Presti-V1-testing training report
+
+Model trained for 1 Epochs
+
+Best validation loss 0.007300013719574731
+
+Training Data:
+
+images_32_32 
+    images_32_32 
+    Presti_Display-Regular_images_32_32 
+    Presti_Small-Bold_images_32_32 

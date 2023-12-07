@@ -1,0 +1,27 @@
+# Small Form Variants 0FE50 - 0FE6F
+FE50	commasmall	SMALL COMMA
+FE51	ideographiccommasmall	SMALL IDEOGRAPHIC COMMA
+FE52	periodsmall	SMALL FULL STOP
+FE54	semicolonsmall	SMALL SEMICOLON
+FE55	colonsmall	SMALL COLON
+FE56	questionsmall	SMALL QUESTION MARK
+FE57	exclamsmall	SMALL EXCLAMATION MARK
+FE58	emdashsmall	SMALL EM DASH
+FE59	parenthesisleftsmall	SMALL LEFT PARENTHESIS
+FE5A	parenthesisrightsmall	SMALL RIGHT PARENTHESIS
+FE5B	braceleftsmall	SMALL LEFT CURLY BRACKET
+FE5C	bracerightsmall	SMALL RIGHT CURLY BRACKET
+FE5D	tortoiseshellbracketleftsmall	SMALL LEFT TORTOISE SHELL BRACKET
+FE5E	tortoiseshellbracketrightsmall	SMALL RIGHT TORTOISE SHELL BRACKET
+FE5F	numbersignsmall	SMALL NUMBER SIGN
+FE60	ampersandsmall	SMALL AMPERSAND
+FE61	asterisksmall	SMALL ASTERISK
+FE62	plussmall	SMALL PLUS SIGN
+FE63	hyphensmall	SMALL HYPHEN-MINUS
+FE64	lesssmall	SMALL LESS-THAN SIGN
+FE65	greatersmall	SMALL GREATER-THAN SIGN
+FE66	equalsmall	SMALL EQUALS SIGN
+FE68	backslashsmall	SMALL REVERSE SOLIDUS
+FE69	dollarsmall	SMALL DOLLAR SIGN
+FE6A	percentsmall	SMALL PERCENT SIGN
+FE6B	commercialatsmall	SMALL COMMERCIAL AT

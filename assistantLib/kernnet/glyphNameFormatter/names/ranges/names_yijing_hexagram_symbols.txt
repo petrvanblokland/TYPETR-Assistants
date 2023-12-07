@@ -1,0 +1,65 @@
+# Yijing Hexagram Symbols 4DC0 - 4DFF
+4DC0	hexagramforthecreativeheaven	HEXAGRAM FOR THE CREATIVE HEAVEN
+4DC1	hexagramforthereceptiveearth	HEXAGRAM FOR THE RECEPTIVE EARTH
+4DC2	hexagramfordifficultyatthebeginning	HEXAGRAM FOR DIFFICULTY AT THE BEGINNING
+4DC3	hexagramforyouthfulfolly	HEXAGRAM FOR YOUTHFUL FOLLY
+4DC4	hexagramforwaiting	HEXAGRAM FOR WAITING
+4DC5	hexagramforconflict	HEXAGRAM FOR CONFLICT
+4DC6	hexagramforthearmy	HEXAGRAM FOR THE ARMY
+4DC7	hexagramforholdingtogether	HEXAGRAM FOR HOLDING TOGETHER
+4DC8	hexagramforsmalltaming	HEXAGRAM FOR SMALL TAMING
+4DC9	hexagramfortreading	HEXAGRAM FOR TREADING
+4DCA	hexagramforpeace	HEXAGRAM FOR PEACE
+4DCB	hexagramforstandstill	HEXAGRAM FOR STANDSTILL
+4DCC	hexagramforfellowship	HEXAGRAM FOR FELLOWSHIP
+4DCD	hexagramforgreatpossession	HEXAGRAM FOR GREAT POSSESSION
+4DCE	hexagramformodesty	HEXAGRAM FOR MODESTY
+4DCF	hexagramforenthusiasm	HEXAGRAM FOR ENTHUSIASM
+4DD0	hexagramforfollowing	HEXAGRAM FOR FOLLOWING
+4DD1	hexagramforworkonthedecayed	HEXAGRAM FOR WORK ON THE DECAYED
+4DD2	hexagramforapproach	HEXAGRAM FOR APPROACH
+4DD3	hexagramforcontemplation	HEXAGRAM FOR CONTEMPLATION
+4DD4	hexagramforbitingthrough	HEXAGRAM FOR BITING THROUGH
+4DD5	hexagramforgrace	HEXAGRAM FOR GRACE
+4DD6	hexagramforsplittingapart	HEXAGRAM FOR SPLITTING APART
+4DD7	hexagramforreturn	HEXAGRAM FOR RETURN
+4DD8	hexagramforinnocence	HEXAGRAM FOR INNOCENCE
+4DD9	hexagramforgreattaming	HEXAGRAM FOR GREAT TAMING
+4DDA	hexagramformouthcorners	HEXAGRAM FOR MOUTH CORNERS
+4DDB	hexagramforgreatpreponderance	HEXAGRAM FOR GREAT PREPONDERANCE
+4DDC	hexagramfortheabysmalwater	HEXAGRAM FOR THE ABYSMAL WATER
+4DDD	hexagramfortheclingingfire	HEXAGRAM FOR THE CLINGING FIRE
+4DDE	hexagramforinfluence	HEXAGRAM FOR INFLUENCE
+4DDF	hexagramforduration	HEXAGRAM FOR DURATION
+4DE0	hexagramforretreat	HEXAGRAM FOR RETREAT
+4DE1	hexagramforgreatpower	HEXAGRAM FOR GREAT POWER
+4DE2	hexagramforprogress	HEXAGRAM FOR PROGRESS
+4DE3	hexagramfordarkeningofthelight	HEXAGRAM FOR DARKENING OF THE LIGHT
+4DE4	hexagramforthefamily	HEXAGRAM FOR THE FAMILY
+4DE5	hexagramforopposition	HEXAGRAM FOR OPPOSITION
+4DE6	hexagramforobstruction	HEXAGRAM FOR OBSTRUCTION
+4DE7	hexagramfordeliverance	HEXAGRAM FOR DELIVERANCE
+4DE8	hexagramfordecrease	HEXAGRAM FOR DECREASE
+4DE9	hexagramforincrease	HEXAGRAM FOR INCREASE
+4DEA	hexagramforbreakthrough	HEXAGRAM FOR BREAKTHROUGH
+4DEB	hexagramforcomingtomeet	HEXAGRAM FOR COMING TO MEET
+4DEC	hexagramforgatheringtogether	HEXAGRAM FOR GATHERING TOGETHER
+4DED	hexagramforpushingupward	HEXAGRAM FOR PUSHING UPWARD
+4DEE	hexagramforoppression	HEXAGRAM FOR OPPRESSION
+4DEF	hexagramforthewell	HEXAGRAM FOR THE WELL
+4DF0	hexagramforrevolution	HEXAGRAM FOR REVOLUTION
+4DF1	hexagramforthecauldron	HEXAGRAM FOR THE CAULDRON
+4DF2	hexagramforthearousingthunder	HEXAGRAM FOR THE AROUSING THUNDER
+4DF3	hexagramforthekeepingstillmountain	HEXAGRAM FOR THE KEEPING STILL MOUNTAIN
+4DF4	hexagramfordevelopment	HEXAGRAM FOR DEVELOPMENT
+4DF5	hexagramforthemarryingmaiden	HEXAGRAM FOR THE MARRYING MAIDEN
+4DF6	hexagramforabundance	HEXAGRAM FOR ABUNDANCE
+4DF7	hexagramforthewanderer	HEXAGRAM FOR THE WANDERER
+4DF8	hexagramforthegentlewind	HEXAGRAM FOR THE GENTLE WIND
+4DF9	hexagramforthejoyouslake	HEXAGRAM FOR THE JOYOUS LAKE
+4DFA	hexagramfordispersion	HEXAGRAM FOR DISPERSION
+4DFB	hexagramforlimitation	HEXAGRAM FOR LIMITATION
+4DFC	hexagramforinnertruth	HEXAGRAM FOR INNER TRUTH
+4DFD	hexagramforsmallpreponderance	HEXAGRAM FOR SMALL PREPONDERANCE
+4DFE	hexagramforaftercompletion	HEXAGRAM FOR AFTER COMPLETION
+4DFF	hexagramforbeforecompletion	HEXAGRAM FOR BEFORE COMPLETION

@@ -1,0 +1,44 @@
+# Vedic Extensions 01CD0 - 01CFF
+1CD0	ve:karshanatone	VEDIC TONE KARSHANA
+1CD1	ve:sharatone	VEDIC TONE SHARA
+1CD2	ve:prenkhatone	VEDIC TONE PRENKHA
+1CD3	ve:nihshvasasign	VEDIC SIGN NIHSHVASA
+1CD4	ve:yajurmidlinesvaritasign	VEDIC SIGN YAJURVEDIC MIDLINE SVARITA
+1CD5	ve:yajuraggravatedindependentsvaritatone	VEDIC TONE YAJURVEDIC AGGRAVATED INDEPENDENT SVARITA
+1CD6	ve:yajurindependentsvaritatone	VEDIC TONE YAJURVEDIC INDEPENDENT SVARITA
+1CD7	ve:yajurkathakaindependentsvaritatone	VEDIC TONE YAJURVEDIC KATHAKA INDEPENDENT SVARITA
+1CD8	ve:belowtonecandra	VEDIC TONE CANDRA BELOW
+1CD9	ve:yajurkathakaindependentsvaritaschroedertone	VEDIC TONE YAJURVEDIC KATHAKA INDEPENDENT SVARITA SCHROEDER
+1CDA	ve:svaritatonedbl	VEDIC TONE DOUBLE SVARITA
+1CDB	ve:svaritatonetpl	VEDIC TONE TRIPLE SVARITA
+1CDC	ve:kathakaanudattatone	VEDIC TONE KATHAKA ANUDATTA
+1CDD	ve:dotbelowtone	VEDIC TONE DOT BELOW
+1CDE	ve:twodotsbelowtone	VEDIC TONE TWO DOTS BELOW
+1CDF	ve:threedotsbelowtone	VEDIC TONE THREE DOTS BELOW
+1CE0	ve:rigkashmiriindependentsvaritatone	VEDIC TONE RIGVEDIC KASHMIRI INDEPENDENT SVARITA
+1CE1	ve:atharvaindependentsvaritatone	VEDIC TONE ATHARVAVEDIC INDEPENDENT SVARITA
+1CE2	ve:visargasvaritasign	VEDIC SIGN VISARGA SVARITA
+1CE3	ve:visargaudattasign	VEDIC SIGN VISARGA UDATTA
+1CE4	ve:visargaudattasignreversed	VEDIC SIGN REVERSED VISARGA UDATTA
+1CE5	ve:visargaanudattasign	VEDIC SIGN VISARGA ANUDATTA
+1CE6	ve:visargaanudattasignreversed	VEDIC SIGN REVERSED VISARGA ANUDATTA
+1CE7	ve:visargaudattawithtailsign	VEDIC SIGN VISARGA UDATTA WITH TAIL
+1CE8	ve:visargaanudattawithtailsign	VEDIC SIGN VISARGA ANUDATTA WITH TAIL
+1CE9	ve:anusvaraantargomukhasign	VEDIC SIGN ANUSVARA ANTARGOMUKHA
+1CEA	ve:anusvarabahirgomukhasign	VEDIC SIGN ANUSVARA BAHIRGOMUKHA
+1CEB	ve:anusvaravamagomukhasign	VEDIC SIGN ANUSVARA VAMAGOMUKHA
+1CEC	ve:anusvaravamagomukhawithtailsign	VEDIC SIGN ANUSVARA VAMAGOMUKHA WITH TAIL
+1CED	ve:tiryaksign	VEDIC SIGN TIRYAK
+1CEE	ve:hexiformanusvarasignlong	VEDIC SIGN HEXIFORM LONG ANUSVARA
+1CEF	ve:anusvarasignlong	VEDIC SIGN LONG ANUSVARA
+1CF0	ve:rthanganusvarasignlong	VEDIC SIGN RTHANG LONG ANUSVARA
+1CF1	ve:anusvaraubhayatomukhasign	VEDIC SIGN ANUSVARA UBHAYATO MUKHA
+1CF2	ve:ardhavisargasign	VEDIC SIGN ARDHAVISARGA
+1CF3	ve:rotatedardhavisargasign	VEDIC SIGN ROTATED ARDHAVISARGA
+1CF4	ve:abovetonecandra	VEDIC TONE CANDRA ABOVE
+1CF5	ve:jihvamuliyasign	VEDIC SIGN JIHVAMULIYA
+1CF6	ve:upadhmaniyasign	VEDIC SIGN UPADHMANIYA
+1CF7	ve:atikramasign	VEDIC SIGN ATIKRAMA
+1CF8	ve:ringabovetone	VEDIC TONE RING ABOVE
+1CF9	ve:ringabovetonedbl	VEDIC TONE DOUBLE RING ABOVE
+1CFA	ve:anusvaraantargomukhasigndbl	VEDIC SIGN DOUBLE ANUSVARA ANTARGOMUKHA

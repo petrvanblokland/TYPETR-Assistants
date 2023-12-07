@@ -1,0 +1,29 @@
+# Myanmar Extended-A AA60 - AA7F
+AA60	myanmarletterkhamtiga	MYANMAR LETTER KHAMTI GA
+AA61	myanmarletterkhamtica	MYANMAR LETTER KHAMTI CA
+AA62	myanmarletterkhamticha	MYANMAR LETTER KHAMTI CHA
+AA63	myanmarletterkhamtija	MYANMAR LETTER KHAMTI JA
+AA64	myanmarletterkhamtijha	MYANMAR LETTER KHAMTI JHA
+AA65	myanmarletterkhamtinya	MYANMAR LETTER KHAMTI NYA
+AA66	myanmarletterkhamtitta	MYANMAR LETTER KHAMTI TTA
+AA67	myanmarletterkhamtittha	MYANMAR LETTER KHAMTI TTHA
+AA68	myanmarletterkhamtidda	MYANMAR LETTER KHAMTI DDA
+AA69	myanmarletterkhamtiddha	MYANMAR LETTER KHAMTI DDHA
+AA6A	myanmarletterkhamtidha	MYANMAR LETTER KHAMTI DHA
+AA6B	myanmarletterkhamtina	MYANMAR LETTER KHAMTI NA
+AA6C	myanmarletterkhamtisa	MYANMAR LETTER KHAMTI SA
+AA6D	myanmarletterkhamtiha	MYANMAR LETTER KHAMTI HA
+AA6E	myanmarletterkhamtihha	MYANMAR LETTER KHAMTI HHA
+AA6F	myanmarletterkhamtifa	MYANMAR LETTER KHAMTI FA
+AA70	myanmarmodifierletterkhamtireduplication	MYANMAR MODIFIER LETTER KHAMTI REDUPLICATION
+AA71	myanmarletterkhamtixa	MYANMAR LETTER KHAMTI XA
+AA72	myanmarletterkhamtiza	MYANMAR LETTER KHAMTI ZA
+AA73	myanmarletterkhamtira	MYANMAR LETTER KHAMTI RA
+AA74	myanmarlogogramkhamtioay	MYANMAR LOGOGRAM KHAMTI OAY
+AA75	myanmarlogogramkhamtiqn	MYANMAR LOGOGRAM KHAMTI QN
+AA76	myanmarlogogramkhamtihm	MYANMAR LOGOGRAM KHAMTI HM
+AA77	myanmarsymbolaitonexclamation	MYANMAR SYMBOL AITON EXCLAMATION
+AA78	myanmarsymbolaitonone	MYANMAR SYMBOL AITON ONE
+AA79	myanmarsymbolaitontwo	MYANMAR SYMBOL AITON TWO
+AA7A	myanmarletteraitonra	MYANMAR LETTER AITON RA
+AA7B	myanmarsignpaokarentone	MYANMAR SIGN PAO KAREN TONE

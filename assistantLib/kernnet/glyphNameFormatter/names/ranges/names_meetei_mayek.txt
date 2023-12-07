@@ -1,0 +1,57 @@
+# Meetei Mayek ABC0 - ABFF
+ABC0	meeteimayekletterkok	MEETEI MAYEK LETTER KOK
+ABC1	meeteimayeklettersam	MEETEI MAYEK LETTER SAM
+ABC2	meeteimayekletterlai	MEETEI MAYEK LETTER LAI
+ABC3	meeteimayeklettermit	MEETEI MAYEK LETTER MIT
+ABC4	meeteimayekletterpa	MEETEI MAYEK LETTER PA
+ABC5	meeteimayekletterna	MEETEI MAYEK LETTER NA
+ABC6	meeteimayekletterchil	MEETEI MAYEK LETTER CHIL
+ABC7	meeteimayeklettertil	MEETEI MAYEK LETTER TIL
+ABC8	meeteimayekletterkhou	MEETEI MAYEK LETTER KHOU
+ABC9	meeteimayekletterngou	MEETEI MAYEK LETTER NGOU
+ABCA	meeteimayekletterthou	MEETEI MAYEK LETTER THOU
+ABCB	meeteimayekletterwai	MEETEI MAYEK LETTER WAI
+ABCC	meeteimayekletteryang	MEETEI MAYEK LETTER YANG
+ABCD	meeteimayekletterhuk	MEETEI MAYEK LETTER HUK
+ABCE	meeteimayekletterun	MEETEI MAYEK LETTER UN
+ABCF	meeteimayekletteri	MEETEI MAYEK LETTER I
+ABD0	meeteimayekletterpham	MEETEI MAYEK LETTER PHAM
+ABD1	meeteimayekletteratiya	MEETEI MAYEK LETTER ATIYA
+ABD2	meeteimayeklettergok	MEETEI MAYEK LETTER GOK
+ABD3	meeteimayekletterjham	MEETEI MAYEK LETTER JHAM
+ABD4	meeteimayekletterrai	MEETEI MAYEK LETTER RAI
+ABD5	meeteimayekletterba	MEETEI MAYEK LETTER BA
+ABD6	meeteimayekletterjil	MEETEI MAYEK LETTER JIL
+ABD7	meeteimayekletterdil	MEETEI MAYEK LETTER DIL
+ABD8	meeteimayekletterghou	MEETEI MAYEK LETTER GHOU
+ABD9	meeteimayekletterdhou	MEETEI MAYEK LETTER DHOU
+ABDA	meeteimayekletterbham	MEETEI MAYEK LETTER BHAM
+ABDB	meeteimayekletterkoklonsum	MEETEI MAYEK LETTER KOK LONSUM
+ABDC	meeteimayekletterlailonsum	MEETEI MAYEK LETTER LAI LONSUM
+ABDD	meeteimayeklettermitlonsum	MEETEI MAYEK LETTER MIT LONSUM
+ABDE	meeteimayekletterpalonsum	MEETEI MAYEK LETTER PA LONSUM
+ABDF	meeteimayekletternalonsum	MEETEI MAYEK LETTER NA LONSUM
+ABE0	meeteimayeklettertillonsum	MEETEI MAYEK LETTER TIL LONSUM
+ABE1	meeteimayekletterngoulonsum	MEETEI MAYEK LETTER NGOU LONSUM
+ABE2	meeteimayekletterilonsum	MEETEI MAYEK LETTER I LONSUM
+ABE3	meeteimayekvowelsignonap	MEETEI MAYEK VOWEL SIGN ONAP
+ABE4	meeteimayekvowelsigninap	MEETEI MAYEK VOWEL SIGN INAP
+ABE5	meeteimayekvowelsignanap	MEETEI MAYEK VOWEL SIGN ANAP
+ABE6	meeteimayekvowelsignyenap	MEETEI MAYEK VOWEL SIGN YENAP
+ABE7	meeteimayekvowelsignsounap	MEETEI MAYEK VOWEL SIGN SOUNAP
+ABE8	meeteimayekvowelsignunap	MEETEI MAYEK VOWEL SIGN UNAP
+ABE9	meeteimayekvowelsigncheinap	MEETEI MAYEK VOWEL SIGN CHEINAP
+ABEA	meeteimayekvowelsignnung	MEETEI MAYEK VOWEL SIGN NUNG
+ABEB	meeteimayekcheikhei	MEETEI MAYEK CHEIKHEI
+ABEC	meeteimayeklumiyek	MEETEI MAYEK LUM IYEK
+ABED	meeteimayekapuniyek	MEETEI MAYEK APUN IYEK
+ABF0	meeteimayekdigitzero	MEETEI MAYEK DIGIT ZERO
+ABF1	meeteimayekdigitone	MEETEI MAYEK DIGIT ONE
+ABF2	meeteimayekdigittwo	MEETEI MAYEK DIGIT TWO
+ABF3	meeteimayekdigitthree	MEETEI MAYEK DIGIT THREE
+ABF4	meeteimayekdigitfour	MEETEI MAYEK DIGIT FOUR
+ABF5	meeteimayekdigitfive	MEETEI MAYEK DIGIT FIVE
+ABF6	meeteimayekdigitsix	MEETEI MAYEK DIGIT SIX
+ABF7	meeteimayekdigitseven	MEETEI MAYEK DIGIT SEVEN
+ABF8	meeteimayekdigiteight	MEETEI MAYEK DIGIT EIGHT
+ABF9	meeteimayekdigitnine	MEETEI MAYEK DIGIT NINE

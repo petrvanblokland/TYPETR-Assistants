@@ -1,0 +1,28 @@
+# Inscriptional Pahlavi 10B60 - 10B7F
+10B60	inscriptionalpahlaviletteraleph	INSCRIPTIONAL PAHLAVI LETTER ALEPH
+10B61	inscriptionalpahlaviletterbeth	INSCRIPTIONAL PAHLAVI LETTER BETH
+10B62	inscriptionalpahlavilettergimel	INSCRIPTIONAL PAHLAVI LETTER GIMEL
+10B63	inscriptionalpahlaviletterdaleth	INSCRIPTIONAL PAHLAVI LETTER DALETH
+10B64	inscriptionalpahlaviletterhe	INSCRIPTIONAL PAHLAVI LETTER HE
+10B65	inscriptionalpahlaviletterwawayinresh	INSCRIPTIONAL PAHLAVI LETTER WAW-AYIN-RESH
+10B66	inscriptionalpahlaviletterzayin	INSCRIPTIONAL PAHLAVI LETTER ZAYIN
+10B67	inscriptionalpahlaviletterheth	INSCRIPTIONAL PAHLAVI LETTER HETH
+10B68	inscriptionalpahlaviletterteth	INSCRIPTIONAL PAHLAVI LETTER TETH
+10B69	inscriptionalpahlaviletteryodh	INSCRIPTIONAL PAHLAVI LETTER YODH
+10B6A	inscriptionalpahlaviletterkaph	INSCRIPTIONAL PAHLAVI LETTER KAPH
+10B6B	inscriptionalpahlaviletterlamedh	INSCRIPTIONAL PAHLAVI LETTER LAMEDH
+10B6C	inscriptionalpahlavilettermemqoph	INSCRIPTIONAL PAHLAVI LETTER MEM-QOPH
+10B6D	inscriptionalpahlaviletternun	INSCRIPTIONAL PAHLAVI LETTER NUN
+10B6E	inscriptionalpahlavilettersamekh	INSCRIPTIONAL PAHLAVI LETTER SAMEKH
+10B6F	inscriptionalpahlaviletterpe	INSCRIPTIONAL PAHLAVI LETTER PE
+10B70	inscriptionalpahlavilettersadhe	INSCRIPTIONAL PAHLAVI LETTER SADHE
+10B71	inscriptionalpahlavilettershin	INSCRIPTIONAL PAHLAVI LETTER SHIN
+10B72	inscriptionalpahlavilettertaw	INSCRIPTIONAL PAHLAVI LETTER TAW
+10B78	inscriptionalpahlavinumberone	INSCRIPTIONAL PAHLAVI NUMBER ONE
+10B79	inscriptionalpahlavinumbertwo	INSCRIPTIONAL PAHLAVI NUMBER TWO
+10B7A	inscriptionalpahlavinumberthree	INSCRIPTIONAL PAHLAVI NUMBER THREE
+10B7B	inscriptionalpahlavinumberfour	INSCRIPTIONAL PAHLAVI NUMBER FOUR
+10B7C	inscriptionalpahlavinumberten	INSCRIPTIONAL PAHLAVI NUMBER TEN
+10B7D	inscriptionalpahlavinumbertwenty	INSCRIPTIONAL PAHLAVI NUMBER TWENTY
+10B7E	inscriptionalpahlavinumberonehundred	INSCRIPTIONAL PAHLAVI NUMBER ONE HUNDRED
+10B7F	inscriptionalpahlavinumberonethousand	INSCRIPTIONAL PAHLAVI NUMBER ONE THOUSAND

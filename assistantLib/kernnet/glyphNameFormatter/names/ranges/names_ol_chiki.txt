@@ -1,0 +1,49 @@
+# Ol Chiki 1C50 - 1C7F
+1C50	olchikidigitzero	OL CHIKI DIGIT ZERO
+1C51	olchikidigitone	OL CHIKI DIGIT ONE
+1C52	olchikidigittwo	OL CHIKI DIGIT TWO
+1C53	olchikidigitthree	OL CHIKI DIGIT THREE
+1C54	olchikidigitfour	OL CHIKI DIGIT FOUR
+1C55	olchikidigitfive	OL CHIKI DIGIT FIVE
+1C56	olchikidigitsix	OL CHIKI DIGIT SIX
+1C57	olchikidigitseven	OL CHIKI DIGIT SEVEN
+1C58	olchikidigiteight	OL CHIKI DIGIT EIGHT
+1C59	olchikidigitnine	OL CHIKI DIGIT NINE
+1C5A	olchikiletterla	OL CHIKI LETTER LA
+1C5B	olchikiletterat	OL CHIKI LETTER AT
+1C5C	olchikiletterag	OL CHIKI LETTER AG
+1C5D	olchikiletterang	OL CHIKI LETTER ANG
+1C5E	olchikiletteral	OL CHIKI LETTER AL
+1C5F	olchikiletterlaa	OL CHIKI LETTER LAA
+1C60	olchikiletteraak	OL CHIKI LETTER AAK
+1C61	olchikiletteraaj	OL CHIKI LETTER AAJ
+1C62	olchikiletteraam	OL CHIKI LETTER AAM
+1C63	olchikiletteraaw	OL CHIKI LETTER AAW
+1C64	olchikiletterli	OL CHIKI LETTER LI
+1C65	olchikiletteris	OL CHIKI LETTER IS
+1C66	olchikiletterih	OL CHIKI LETTER IH
+1C67	olchikiletteriny	OL CHIKI LETTER INY
+1C68	olchikiletterir	OL CHIKI LETTER IR
+1C69	olchikiletterlu	OL CHIKI LETTER LU
+1C6A	olchikiletteruc	OL CHIKI LETTER UC
+1C6B	olchikiletterud	OL CHIKI LETTER UD
+1C6C	olchikiletterunn	OL CHIKI LETTER UNN
+1C6D	olchikiletteruy	OL CHIKI LETTER UY
+1C6E	olchikiletterle	OL CHIKI LETTER LE
+1C6F	olchikiletterep	OL CHIKI LETTER EP
+1C70	olchikiletteredd	OL CHIKI LETTER EDD
+1C71	olchikiletteren	OL CHIKI LETTER EN
+1C72	olchikilettererr	OL CHIKI LETTER ERR
+1C73	olchikiletterlo	OL CHIKI LETTER LO
+1C74	olchikiletterott	OL CHIKI LETTER OTT
+1C75	olchikiletterob	OL CHIKI LETTER OB
+1C76	olchikiletterov	OL CHIKI LETTER OV
+1C77	olchikiletteroh	OL CHIKI LETTER OH
+1C78	olchikimuttuddag	OL CHIKI MU TTUDDAG
+1C79	olchikigaahlaattuddaag	OL CHIKI GAAHLAA TTUDDAAG
+1C7A	olchikimugaahlaattuddaag	OL CHIKI MU-GAAHLAA TTUDDAAG
+1C7B	olchikirelaa	OL CHIKI RELAA
+1C7C	olchikiphaarkaa	OL CHIKI PHAARKAA
+1C7D	olchikiahad	OL CHIKI AHAD
+1C7E	olchikipunctuationmucaad	OL CHIKI PUNCTUATION MUCAAD
+1C7F	olchikipunctuationdoublemucaad	OL CHIKI PUNCTUATION DOUBLE MUCAAD

@@ -1,0 +1,116 @@
+# CJK Radicals Supplement 2E80 - 2EFF
+2E80	cjkradicalrepeat	CJK RADICAL REPEAT
+2E81	cjkradicalcliff	CJK RADICAL CLIFF
+2E82	cjkradicalsecondone	CJK RADICAL SECOND ONE
+2E83	cjkradicalsecondtwo	CJK RADICAL SECOND TWO
+2E84	cjkradicalsecondthree	CJK RADICAL SECOND THREE
+2E85	cjkradicalperson	CJK RADICAL PERSON
+2E86	cjkradicalbox	CJK RADICAL BOX
+2E87	cjkradicaltable	CJK RADICAL TABLE
+2E88	cjkradicalknifeone	CJK RADICAL KNIFE ONE
+2E89	cjkradicalknifetwo	CJK RADICAL KNIFE TWO
+2E8A	cjkradicaldivination	CJK RADICAL DIVINATION
+2E8B	cjkradicalseal	CJK RADICAL SEAL
+2E8C	cjkradicalsmallone	CJK RADICAL SMALL ONE
+2E8D	cjkradicalsmalltwo	CJK RADICAL SMALL TWO
+2E8E	cjkradicallameone	CJK RADICAL LAME ONE
+2E8F	cjkradicallametwo	CJK RADICAL LAME TWO
+2E90	cjkradicallamethree	CJK RADICAL LAME THREE
+2E91	cjkradicallamefour	CJK RADICAL LAME FOUR
+2E92	cjkradicalsnake	CJK RADICAL SNAKE
+2E93	cjkradicalthread	CJK RADICAL THREAD
+2E94	cjkradicalsnoutone	CJK RADICAL SNOUT ONE
+2E95	cjkradicalsnouttwo	CJK RADICAL SNOUT TWO
+2E96	cjkradicalheartone	CJK RADICAL HEART ONE
+2E97	cjkradicalhearttwo	CJK RADICAL HEART TWO
+2E98	cjkradicalhand	CJK RADICAL HAND
+2E99	cjkradicalrap	CJK RADICAL RAP
+2E9B	cjkradicalchoke	CJK RADICAL CHOKE
+2E9C	cjkradicalsun	CJK RADICAL SUN
+2E9D	cjkradicalmoon	CJK RADICAL MOON
+2E9E	cjkradicaldeath	CJK RADICAL DEATH
+2E9F	cjkradicalmother	CJK RADICAL MOTHER
+2EA0	cjkradicalcivilian	CJK RADICAL CIVILIAN
+2EA1	cjkradicalwaterone	CJK RADICAL WATER ONE
+2EA2	cjkradicalwatertwo	CJK RADICAL WATER TWO
+2EA3	cjkradicalfire	CJK RADICAL FIRE
+2EA4	cjkradicalpawone	CJK RADICAL PAW ONE
+2EA5	cjkradicalpawtwo	CJK RADICAL PAW TWO
+2EA6	cjkradicalsimplifiedhalftreetrunk	CJK RADICAL SIMPLIFIED HALF TREE TRUNK
+2EA7	cjkradicalcow	CJK RADICAL COW
+2EA8	cjkradicaldog	CJK RADICAL DOG
+2EA9	cjkradicaljade	CJK RADICAL JADE
+2EAA	cjkradicalboltofcloth	CJK RADICAL BOLT OF CLOTH
+2EAB	cjkradicaleye	CJK RADICAL EYE
+2EAC	cjkradicalspiritone	CJK RADICAL SPIRIT ONE
+2EAD	cjkradicalspirittwo	CJK RADICAL SPIRIT TWO
+2EAE	cjkradicalbamboo	CJK RADICAL BAMBOO
+2EAF	cjkradicalsilk	CJK RADICAL SILK
+2EB0	cjkradicalcsimplifiedsilk	CJK RADICAL C-SIMPLIFIED SILK
+2EB1	cjkradicalnetone	CJK RADICAL NET ONE
+2EB2	cjkradicalnettwo	CJK RADICAL NET TWO
+2EB3	cjkradicalnetthree	CJK RADICAL NET THREE
+2EB4	cjkradicalnetfour	CJK RADICAL NET FOUR
+2EB5	cjkradicalmesh	CJK RADICAL MESH
+2EB6	cjkradicalsheep	CJK RADICAL SHEEP
+2EB7	cjkradicalram	CJK RADICAL RAM
+2EB8	cjkradicalewe	CJK RADICAL EWE
+2EB9	cjkradicalold	CJK RADICAL OLD
+2EBA	cjkradicalbrushone	CJK RADICAL BRUSH ONE
+2EBB	cjkradicalbrushtwo	CJK RADICAL BRUSH TWO
+2EBC	cjkradicalmeat	CJK RADICAL MEAT
+2EBD	cjkradicalmortar	CJK RADICAL MORTAR
+2EBE	cjkradicalgrassone	CJK RADICAL GRASS ONE
+2EBF	cjkradicalgrasstwo	CJK RADICAL GRASS TWO
+2EC0	cjkradicalgrassthree	CJK RADICAL GRASS THREE
+2EC1	cjkradicaltiger	CJK RADICAL TIGER
+2EC2	cjkradicalclothes	CJK RADICAL CLOTHES
+2EC3	cjkradicalwestone	CJK RADICAL WEST ONE
+2EC4	cjkradicalwesttwo	CJK RADICAL WEST TWO
+2EC5	cjkradicalcsimplifiedsee	CJK RADICAL C-SIMPLIFIED SEE
+2EC6	cjkradicalsimplifiedhorn	CJK RADICAL SIMPLIFIED HORN
+2EC7	cjkradicalhorn	CJK RADICAL HORN
+2EC8	cjkradicalcsimplifiedspeech	CJK RADICAL C-SIMPLIFIED SPEECH
+2EC9	cjkradicalcsimplifiedshell	CJK RADICAL C-SIMPLIFIED SHELL
+2ECA	cjkradicalfoot	CJK RADICAL FOOT
+2ECB	cjkradicalcsimplifiedcart	CJK RADICAL C-SIMPLIFIED CART
+2ECC	cjkradicalsimplifiedwalk	CJK RADICAL SIMPLIFIED WALK
+2ECD	cjkradicalwalkone	CJK RADICAL WALK ONE
+2ECE	cjkradicalwalktwo	CJK RADICAL WALK TWO
+2ECF	cjkradicalcity	CJK RADICAL CITY
+2ED0	cjkradicalcsimplifiedgold	CJK RADICAL C-SIMPLIFIED GOLD
+2ED1	cjkradicallongone	CJK RADICAL LONG ONE
+2ED2	cjkradicallongtwo	CJK RADICAL LONG TWO
+2ED3	cjkradicalcsimplifiedlong	CJK RADICAL C-SIMPLIFIED LONG
+2ED4	cjkradicalcsimplifiedgate	CJK RADICAL C-SIMPLIFIED GATE
+2ED5	cjkradicalmoundone	CJK RADICAL MOUND ONE
+2ED6	cjkradicalmoundtwo	CJK RADICAL MOUND TWO
+2ED7	cjkradicalrain	CJK RADICAL RAIN
+2ED8	cjkradicalblue	CJK RADICAL BLUE
+2ED9	cjkradicalcsimplifiedtannedleather	CJK RADICAL C-SIMPLIFIED TANNED LEATHER
+2EDA	cjkradicalcsimplifiedleaf	CJK RADICAL C-SIMPLIFIED LEAF
+2EDB	cjkradicalcsimplifiedwind	CJK RADICAL C-SIMPLIFIED WIND
+2EDC	cjkradicalcsimplifiedfly	CJK RADICAL C-SIMPLIFIED FLY
+2EDD	cjkradicaleatone	CJK RADICAL EAT ONE
+2EDE	cjkradicaleattwo	CJK RADICAL EAT TWO
+2EDF	cjkradicaleatthree	CJK RADICAL EAT THREE
+2EE0	cjkradicalcsimplifiedeat	CJK RADICAL C-SIMPLIFIED EAT
+2EE1	cjkradicalhead	CJK RADICAL HEAD
+2EE2	cjkradicalcsimplifiedhorse	CJK RADICAL C-SIMPLIFIED HORSE
+2EE3	cjkradicalbone	CJK RADICAL BONE
+2EE4	cjkradicalghost	CJK RADICAL GHOST
+2EE5	cjkradicalcsimplifiedfish	CJK RADICAL C-SIMPLIFIED FISH
+2EE6	cjkradicalcsimplifiedbird	CJK RADICAL C-SIMPLIFIED BIRD
+2EE7	cjkradicalcsimplifiedsalt	CJK RADICAL C-SIMPLIFIED SALT
+2EE8	cjkradicalsimplifiedwheat	CJK RADICAL SIMPLIFIED WHEAT
+2EE9	cjkradicalsimplifiedyellow	CJK RADICAL SIMPLIFIED YELLOW
+2EEA	cjkradicalcsimplifiedfrog	CJK RADICAL C-SIMPLIFIED FROG
+2EEB	cjkradicaljsimplifiedeven	CJK RADICAL J-SIMPLIFIED EVEN
+2EEC	cjkradicalcsimplifiedeven	CJK RADICAL C-SIMPLIFIED EVEN
+2EED	cjkradicaljsimplifiedtooth	CJK RADICAL J-SIMPLIFIED TOOTH
+2EEE	cjkradicalcsimplifiedtooth	CJK RADICAL C-SIMPLIFIED TOOTH
+2EEF	cjkradicaljsimplifieddragon	CJK RADICAL J-SIMPLIFIED DRAGON
+2EF0	cjkradicalcsimplifieddragon	CJK RADICAL C-SIMPLIFIED DRAGON
+2EF1	cjkradicalturtle	CJK RADICAL TURTLE
+2EF2	cjkradicaljsimplifiedturtle	CJK RADICAL J-SIMPLIFIED TURTLE
+2EF3	cjkradicalcsimplifiedturtle	CJK RADICAL C-SIMPLIFIED TURTLE

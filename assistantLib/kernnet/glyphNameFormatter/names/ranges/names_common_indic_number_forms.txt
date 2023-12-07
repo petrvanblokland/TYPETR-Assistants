@@ -1,0 +1,11 @@
+# Common Indic Number Forms A830 - A83F
+A830	northindicfractiononequarter	NORTH INDIC FRACTION ONE QUARTER
+A831	northindicfractiononehalf	NORTH INDIC FRACTION ONE HALF
+A832	northindicfractionthreequarters	NORTH INDIC FRACTION THREE QUARTERS
+A833	northindicfractiononesixteenth	NORTH INDIC FRACTION ONE SIXTEENTH
+A834	northindicfractiononeeighth	NORTH INDIC FRACTION ONE EIGHTH
+A835	northindicfractionthreesixteenths	NORTH INDIC FRACTION THREE SIXTEENTHS
+A836	northindicquartermark	NORTH INDIC QUARTER MARK
+A837	northindicplaceholdermark	NORTH INDIC PLACEHOLDER MARK
+A838	northindicrupeemark	NORTH INDIC RUPEE MARK
+A839	northindicquantitymark	NORTH INDIC QUANTITY MARK

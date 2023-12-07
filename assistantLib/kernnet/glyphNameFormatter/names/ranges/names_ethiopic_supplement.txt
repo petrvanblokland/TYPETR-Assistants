@@ -1,0 +1,27 @@
+# Ethiopic Supplement 1380 - 139F
+1380	ethiopicsyllablesebatbeitmwa	ETHIOPIC SYLLABLE SEBATBEIT MWA
+1381	ethiopicsyllablemwi	ETHIOPIC SYLLABLE MWI
+1382	ethiopicsyllablemwee	ETHIOPIC SYLLABLE MWEE
+1383	ethiopicsyllablemwe	ETHIOPIC SYLLABLE MWE
+1384	ethiopicsyllablesebatbeitbwa	ETHIOPIC SYLLABLE SEBATBEIT BWA
+1385	ethiopicsyllablebwi	ETHIOPIC SYLLABLE BWI
+1386	ethiopicsyllablebwee	ETHIOPIC SYLLABLE BWEE
+1387	ethiopicsyllablebwe	ETHIOPIC SYLLABLE BWE
+1388	ethiopicsyllablesebatbeitfwa	ETHIOPIC SYLLABLE SEBATBEIT FWA
+1389	ethiopicsyllablefwi	ETHIOPIC SYLLABLE FWI
+138A	ethiopicsyllablefwee	ETHIOPIC SYLLABLE FWEE
+138B	ethiopicsyllablefwe	ETHIOPIC SYLLABLE FWE
+138C	ethiopicsyllablesebatbeitpwa	ETHIOPIC SYLLABLE SEBATBEIT PWA
+138D	ethiopicsyllablepwi	ETHIOPIC SYLLABLE PWI
+138E	ethiopicsyllablepwee	ETHIOPIC SYLLABLE PWEE
+138F	ethiopicsyllablepwe	ETHIOPIC SYLLABLE PWE
+1390	ethiopictonalmarkyizet	ETHIOPIC TONAL MARK YIZET
+1391	ethiopictonalmarkderet	ETHIOPIC TONAL MARK DERET
+1392	ethiopictonalmarkrikrik	ETHIOPIC TONAL MARK RIKRIK
+1393	ethiopictonalmarkshortrikrik	ETHIOPIC TONAL MARK SHORT RIKRIK
+1394	ethiopictonalmarkdifat	ETHIOPIC TONAL MARK DIFAT
+1395	ethiopictonalmarkkenat	ETHIOPIC TONAL MARK KENAT
+1396	ethiopictonalmarkchiret	ETHIOPIC TONAL MARK CHIRET
+1397	ethiopictonalmarkhidet	ETHIOPIC TONAL MARK HIDET
+1398	ethiopictonalmarkderethidet	ETHIOPIC TONAL MARK DERET-HIDET
+1399	ethiopictonalmarkkurt	ETHIOPIC TONAL MARK KURT

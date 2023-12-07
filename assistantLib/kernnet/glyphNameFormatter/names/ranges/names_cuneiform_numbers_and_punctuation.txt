@@ -1,0 +1,104 @@
+# Cuneiform Numbers and Punctuation 12400 - 1247F
+12400	cuneiformnumericsigntwoash	CUNEIFORM NUMERIC SIGN TWO ASH
+12401	cuneiformnumericsignthreeash	CUNEIFORM NUMERIC SIGN THREE ASH
+12402	cuneiformnumericsignfourash	CUNEIFORM NUMERIC SIGN FOUR ASH
+12403	cuneiformnumericsignfiveash	CUNEIFORM NUMERIC SIGN FIVE ASH
+12404	cuneiformnumericsignsixash	CUNEIFORM NUMERIC SIGN SIX ASH
+12405	cuneiformnumericsignsevenash	CUNEIFORM NUMERIC SIGN SEVEN ASH
+12406	cuneiformnumericsigneightash	CUNEIFORM NUMERIC SIGN EIGHT ASH
+12407	cuneiformnumericsignnineash	CUNEIFORM NUMERIC SIGN NINE ASH
+12408	cuneiformnumericsignthreedish	CUNEIFORM NUMERIC SIGN THREE DISH
+12409	cuneiformnumericsignfourdish	CUNEIFORM NUMERIC SIGN FOUR DISH
+1240A	cuneiformnumericsignfivedish	CUNEIFORM NUMERIC SIGN FIVE DISH
+1240B	cuneiformnumericsignsixdish	CUNEIFORM NUMERIC SIGN SIX DISH
+1240C	cuneiformnumericsignsevendish	CUNEIFORM NUMERIC SIGN SEVEN DISH
+1240D	cuneiformnumericsigneightdish	CUNEIFORM NUMERIC SIGN EIGHT DISH
+1240E	cuneiformnumericsignninedish	CUNEIFORM NUMERIC SIGN NINE DISH
+1240F	cuneiformnumericsignfouru	CUNEIFORM NUMERIC SIGN FOUR U
+12410	cuneiformnumericsignfiveu	CUNEIFORM NUMERIC SIGN FIVE U
+12411	cuneiformnumericsignsixu	CUNEIFORM NUMERIC SIGN SIX U
+12412	cuneiformnumericsignsevenu	CUNEIFORM NUMERIC SIGN SEVEN U
+12413	cuneiformnumericsigneightu	CUNEIFORM NUMERIC SIGN EIGHT U
+12414	cuneiformnumericsignnineu	CUNEIFORM NUMERIC SIGN NINE U
+12415	cuneiformnumericsignonegesh2	CUNEIFORM NUMERIC SIGN ONE GESH2
+12416	cuneiformnumericsigntwogesh2	CUNEIFORM NUMERIC SIGN TWO GESH2
+12417	cuneiformnumericsignthreegesh2	CUNEIFORM NUMERIC SIGN THREE GESH2
+12418	cuneiformnumericsignfourgesh2	CUNEIFORM NUMERIC SIGN FOUR GESH2
+12419	cuneiformnumericsignfivegesh2	CUNEIFORM NUMERIC SIGN FIVE GESH2
+1241A	cuneiformnumericsignsixgesh2	CUNEIFORM NUMERIC SIGN SIX GESH2
+1241B	cuneiformnumericsignsevengesh2	CUNEIFORM NUMERIC SIGN SEVEN GESH2
+1241C	cuneiformnumericsigneightgesh2	CUNEIFORM NUMERIC SIGN EIGHT GESH2
+1241D	cuneiformnumericsignninegesh2	CUNEIFORM NUMERIC SIGN NINE GESH2
+1241E	cuneiformnumericsignonegeshu	CUNEIFORM NUMERIC SIGN ONE GESHU
+1241F	cuneiformnumericsigntwogeshu	CUNEIFORM NUMERIC SIGN TWO GESHU
+12420	cuneiformnumericsignthreegeshu	CUNEIFORM NUMERIC SIGN THREE GESHU
+12421	cuneiformnumericsignfourgeshu	CUNEIFORM NUMERIC SIGN FOUR GESHU
+12422	cuneiformnumericsignfivegeshu	CUNEIFORM NUMERIC SIGN FIVE GESHU
+12423	cuneiformnumericsigntwoshar2	CUNEIFORM NUMERIC SIGN TWO SHAR2
+12424	cuneiformnumericsignthreeshar2	CUNEIFORM NUMERIC SIGN THREE SHAR2
+12425	cuneiformnumericsignthreeshar2variantform	CUNEIFORM NUMERIC SIGN THREE SHAR2 VARIANT FORM
+12426	cuneiformnumericsignfourshar2	CUNEIFORM NUMERIC SIGN FOUR SHAR2
+12427	cuneiformnumericsignfiveshar2	CUNEIFORM NUMERIC SIGN FIVE SHAR2
+12428	cuneiformnumericsignsixshar2	CUNEIFORM NUMERIC SIGN SIX SHAR2
+12429	cuneiformnumericsignsevenshar2	CUNEIFORM NUMERIC SIGN SEVEN SHAR2
+1242A	cuneiformnumericsigneightshar2	CUNEIFORM NUMERIC SIGN EIGHT SHAR2
+1242B	cuneiformnumericsignnineshar2	CUNEIFORM NUMERIC SIGN NINE SHAR2
+1242C	cuneiformnumericsignonesharu	CUNEIFORM NUMERIC SIGN ONE SHARU
+1242D	cuneiformnumericsigntwosharu	CUNEIFORM NUMERIC SIGN TWO SHARU
+1242E	cuneiformnumericsignthreesharu	CUNEIFORM NUMERIC SIGN THREE SHARU
+1242F	cuneiformnumericsignthreesharuvariantform	CUNEIFORM NUMERIC SIGN THREE SHARU VARIANT FORM
+12430	cuneiformnumericsignfoursharu	CUNEIFORM NUMERIC SIGN FOUR SHARU
+12431	cuneiformnumericsignfivesharu	CUNEIFORM NUMERIC SIGN FIVE SHARU
+12432	cuneiformnumericsignshar2timesgalplusdish	CUNEIFORM NUMERIC SIGN SHAR2 TIMES GAL PLUS DISH
+12433	cuneiformnumericsignshar2timesgalplusmin	CUNEIFORM NUMERIC SIGN SHAR2 TIMES GAL PLUS MIN
+12434	cuneiformnumericsignoneburu	CUNEIFORM NUMERIC SIGN ONE BURU
+12435	cuneiformnumericsigntwoburu	CUNEIFORM NUMERIC SIGN TWO BURU
+12436	cuneiformnumericsignthreeburu	CUNEIFORM NUMERIC SIGN THREE BURU
+12437	cuneiformnumericsignthreeburuvariantform	CUNEIFORM NUMERIC SIGN THREE BURU VARIANT FORM
+12438	cuneiformnumericsignfourburu	CUNEIFORM NUMERIC SIGN FOUR BURU
+12439	cuneiformnumericsignfiveburu	CUNEIFORM NUMERIC SIGN FIVE BURU
+1243A	cuneiformnumericsignthreevariantformesh16	CUNEIFORM NUMERIC SIGN THREE VARIANT FORM ESH16
+1243B	cuneiformnumericsignthreevariantformesh21	CUNEIFORM NUMERIC SIGN THREE VARIANT FORM ESH21
+1243C	cuneiformnumericsignfourvariantformlimmu	CUNEIFORM NUMERIC SIGN FOUR VARIANT FORM LIMMU
+1243D	cuneiformnumericsignfourvariantformlimmu4	CUNEIFORM NUMERIC SIGN FOUR VARIANT FORM LIMMU4
+1243E	cuneiformnumericsignfourvariantformlimmua	CUNEIFORM NUMERIC SIGN FOUR VARIANT FORM LIMMU A
+1243F	cuneiformnumericsignfourvariantformlimmub	CUNEIFORM NUMERIC SIGN FOUR VARIANT FORM LIMMU B
+12440	cuneiformnumericsignsixvariantformash9	CUNEIFORM NUMERIC SIGN SIX VARIANT FORM ASH9
+12441	cuneiformnumericsignsevenvariantformimin3	CUNEIFORM NUMERIC SIGN SEVEN VARIANT FORM IMIN3
+12442	cuneiformnumericsignsevenvariantformimina	CUNEIFORM NUMERIC SIGN SEVEN VARIANT FORM IMIN A
+12443	cuneiformnumericsignsevenvariantformiminb	CUNEIFORM NUMERIC SIGN SEVEN VARIANT FORM IMIN B
+12444	cuneiformnumericsigneightvariantformussu	CUNEIFORM NUMERIC SIGN EIGHT VARIANT FORM USSU
+12445	cuneiformnumericsigneightvariantformussu3	CUNEIFORM NUMERIC SIGN EIGHT VARIANT FORM USSU3
+12446	cuneiformnumericsignninevariantformilimmu	CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU
+12447	cuneiformnumericsignninevariantformilimmu3	CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU3
+12448	cuneiformnumericsignninevariantformilimmu4	CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU4
+12449	cuneiformnumericsignninevariantformilimmua	CUNEIFORM NUMERIC SIGN NINE VARIANT FORM ILIMMU A
+1244A	cuneiformnumericsigntwoashtenu	CUNEIFORM NUMERIC SIGN TWO ASH TENU
+1244B	cuneiformnumericsignthreeashtenu	CUNEIFORM NUMERIC SIGN THREE ASH TENU
+1244C	cuneiformnumericsignfourashtenu	CUNEIFORM NUMERIC SIGN FOUR ASH TENU
+1244D	cuneiformnumericsignfiveashtenu	CUNEIFORM NUMERIC SIGN FIVE ASH TENU
+1244E	cuneiformnumericsignsixashtenu	CUNEIFORM NUMERIC SIGN SIX ASH TENU
+1244F	cuneiformnumericsignoneban2	CUNEIFORM NUMERIC SIGN ONE BAN2
+12450	cuneiformnumericsigntwoban2	CUNEIFORM NUMERIC SIGN TWO BAN2
+12451	cuneiformnumericsignthreeban2	CUNEIFORM NUMERIC SIGN THREE BAN2
+12452	cuneiformnumericsignfourban2	CUNEIFORM NUMERIC SIGN FOUR BAN2
+12453	cuneiformnumericsignfourban2variantform	CUNEIFORM NUMERIC SIGN FOUR BAN2 VARIANT FORM
+12454	cuneiformnumericsignfiveban2	CUNEIFORM NUMERIC SIGN FIVE BAN2
+12455	cuneiformnumericsignfiveban2variantform	CUNEIFORM NUMERIC SIGN FIVE BAN2 VARIANT FORM
+12456	cuneiformnumericsignnigidamin	CUNEIFORM NUMERIC SIGN NIGIDAMIN
+12457	cuneiformnumericsignnigidaesh	CUNEIFORM NUMERIC SIGN NIGIDAESH
+12458	cuneiformnumericsignoneeshe3	CUNEIFORM NUMERIC SIGN ONE ESHE3
+12459	cuneiformnumericsigntwoeshe3	CUNEIFORM NUMERIC SIGN TWO ESHE3
+1245A	cuneiformnumericsignonethirddish	CUNEIFORM NUMERIC SIGN ONE THIRD DISH
+1245B	cuneiformnumericsigntwothirdsdish	CUNEIFORM NUMERIC SIGN TWO THIRDS DISH
+1245C	cuneiformnumericsignfivesixthsdish	CUNEIFORM NUMERIC SIGN FIVE SIXTHS DISH
+1245D	cuneiformnumericsignonethirdvariantforma	CUNEIFORM NUMERIC SIGN ONE THIRD VARIANT FORM A
+1245E	cuneiformnumericsigntwothirdsvariantforma	CUNEIFORM NUMERIC SIGN TWO THIRDS VARIANT FORM A
+1245F	cuneiformnumericsignoneeighthash	CUNEIFORM NUMERIC SIGN ONE EIGHTH ASH
+12460	cuneiformnumericsignonequarterash	CUNEIFORM NUMERIC SIGN ONE QUARTER ASH
+12461	cuneiformnumericsignoldassyrianonesixth	CUNEIFORM NUMERIC SIGN OLD ASSYRIAN ONE SIXTH
+12462	cuneiformnumericsignoldassyrianonequarter	CUNEIFORM NUMERIC SIGN OLD ASSYRIAN ONE QUARTER
+12470	cuneiformpunctuationsignoldassyrianworddivider	CUNEIFORM PUNCTUATION SIGN OLD ASSYRIAN WORD DIVIDER
+12471	cuneiformpunctuationsignverticalcolon	CUNEIFORM PUNCTUATION SIGN VERTICAL COLON
+12472	cuneiformpunctuationsigndiagonalcolon	CUNEIFORM PUNCTUATION SIGN DIAGONAL COLON
+12473	cuneiformpunctuationsigndiagonaltricolon	CUNEIFORM PUNCTUATION SIGN DIAGONAL TRICOLON

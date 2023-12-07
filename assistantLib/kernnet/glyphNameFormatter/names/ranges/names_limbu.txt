@@ -1,0 +1,67 @@
+# Limbu 1900 - 194F
+1900	limbuvowelcarrierletter	LIMBU VOWEL-CARRIER LETTER
+1901	limbuletterka	LIMBU LETTER KA
+1902	limbuletterkha	LIMBU LETTER KHA
+1903	limbuletterga	LIMBU LETTER GA
+1904	limbulettergha	LIMBU LETTER GHA
+1905	limbuletternga	LIMBU LETTER NGA
+1906	limbuletterca	LIMBU LETTER CA
+1907	limbulettercha	LIMBU LETTER CHA
+1908	limbuletterja	LIMBU LETTER JA
+1909	limbuletterjha	LIMBU LETTER JHA
+190A	limbuletteryan	LIMBU LETTER YAN
+190B	limbuletterta	LIMBU LETTER TA
+190C	limbulettertha	LIMBU LETTER THA
+190D	limbuletterda	LIMBU LETTER DA
+190E	limbuletterdha	LIMBU LETTER DHA
+190F	limbuletterna	LIMBU LETTER NA
+1910	limbuletterpa	LIMBU LETTER PA
+1911	limbuletterpha	LIMBU LETTER PHA
+1912	limbuletterba	LIMBU LETTER BA
+1913	limbuletterbha	LIMBU LETTER BHA
+1914	limbuletterma	LIMBU LETTER MA
+1915	limbuletterya	LIMBU LETTER YA
+1916	limbuletterra	LIMBU LETTER RA
+1917	limbuletterla	LIMBU LETTER LA
+1918	limbuletterwa	LIMBU LETTER WA
+1919	limbulettersha	LIMBU LETTER SHA
+191A	limbuletterssa	LIMBU LETTER SSA
+191B	limbulettersa	LIMBU LETTER SA
+191C	limbuletterha	LIMBU LETTER HA
+1920	limbuvowelsigna	LIMBU VOWEL SIGN A
+1921	limbuvowelsigni	LIMBU VOWEL SIGN I
+1922	limbuvowelsignu	LIMBU VOWEL SIGN U
+1923	limbuvowelsignee	LIMBU VOWEL SIGN EE
+1924	limbuvowelsignai	LIMBU VOWEL SIGN AI
+1925	limbuvowelsignoo	LIMBU VOWEL SIGN OO
+1926	limbuvowelsignau	LIMBU VOWEL SIGN AU
+1927	limbuvowelsigne	LIMBU VOWEL SIGN E
+1928	limbuvowelsigno	LIMBU VOWEL SIGN O
+1929	limbusubjoinedletterya	LIMBU SUBJOINED LETTER YA
+192A	limbusubjoinedletterra	LIMBU SUBJOINED LETTER RA
+192B	limbusubjoinedletterwa	LIMBU SUBJOINED LETTER WA
+1930	limbusmallletterka	LIMBU SMALL LETTER KA
+1931	limbusmallletternga	LIMBU SMALL LETTER NGA
+1932	limbusmallletteranusvara	LIMBU SMALL LETTER ANUSVARA
+1933	limbusmallletterta	LIMBU SMALL LETTER TA
+1934	limbusmallletterna	LIMBU SMALL LETTER NA
+1935	limbusmallletterpa	LIMBU SMALL LETTER PA
+1936	limbusmallletterma	LIMBU SMALL LETTER MA
+1937	limbusmallletterra	LIMBU SMALL LETTER RA
+1938	limbusmallletterla	LIMBU SMALL LETTER LA
+1939	limbusignmukphreng	LIMBU SIGN MUKPHRENG
+193A	limbusignkemphreng	LIMBU SIGN KEMPHRENG
+193B	limbusignsai	LIMBU SIGN SA-I
+1940	limbusignloo	LIMBU SIGN LOO
+1944	limbuexclamationmark	LIMBU EXCLAMATION MARK
+1945	limbuquestionmark	LIMBU QUESTION MARK
+1946	limbudigitzero	LIMBU DIGIT ZERO
+1947	limbudigitone	LIMBU DIGIT ONE
+1948	limbudigittwo	LIMBU DIGIT TWO
+1949	limbudigitthree	LIMBU DIGIT THREE
+194A	limbudigitfour	LIMBU DIGIT FOUR
+194B	limbudigitfive	LIMBU DIGIT FIVE
+194C	limbudigitsix	LIMBU DIGIT SIX
+194D	limbudigitseven	LIMBU DIGIT SEVEN
+194E	limbudigiteight	LIMBU DIGIT EIGHT
+194F	limbudigitnine	LIMBU DIGIT NINE

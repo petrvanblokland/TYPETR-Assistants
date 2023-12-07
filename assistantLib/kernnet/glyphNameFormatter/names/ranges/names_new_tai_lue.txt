@@ -1,0 +1,84 @@
+# New Tai Lue 1980 - 19DF
+1980	newtailueletterhighqa	NEW TAI LUE LETTER HIGH QA
+1981	newtailueletterlowqa	NEW TAI LUE LETTER LOW QA
+1982	newtailueletterhighka	NEW TAI LUE LETTER HIGH KA
+1983	newtailueletterhighxa	NEW TAI LUE LETTER HIGH XA
+1984	newtailueletterhighnga	NEW TAI LUE LETTER HIGH NGA
+1985	newtailueletterlowka	NEW TAI LUE LETTER LOW KA
+1986	newtailueletterlowxa	NEW TAI LUE LETTER LOW XA
+1987	newtailueletterlownga	NEW TAI LUE LETTER LOW NGA
+1988	newtailueletterhightsa	NEW TAI LUE LETTER HIGH TSA
+1989	newtailueletterhighsa	NEW TAI LUE LETTER HIGH SA
+198A	newtailueletterhighya	NEW TAI LUE LETTER HIGH YA
+198B	newtailueletterlowtsa	NEW TAI LUE LETTER LOW TSA
+198C	newtailueletterlowsa	NEW TAI LUE LETTER LOW SA
+198D	newtailueletterlowya	NEW TAI LUE LETTER LOW YA
+198E	newtailueletterhighta	NEW TAI LUE LETTER HIGH TA
+198F	newtailueletterhightha	NEW TAI LUE LETTER HIGH THA
+1990	newtailueletterhighna	NEW TAI LUE LETTER HIGH NA
+1991	newtailueletterlowta	NEW TAI LUE LETTER LOW TA
+1992	newtailueletterlowtha	NEW TAI LUE LETTER LOW THA
+1993	newtailueletterlowna	NEW TAI LUE LETTER LOW NA
+1994	newtailueletterhighpa	NEW TAI LUE LETTER HIGH PA
+1995	newtailueletterhighpha	NEW TAI LUE LETTER HIGH PHA
+1996	newtailueletterhighma	NEW TAI LUE LETTER HIGH MA
+1997	newtailueletterlowpa	NEW TAI LUE LETTER LOW PA
+1998	newtailueletterlowpha	NEW TAI LUE LETTER LOW PHA
+1999	newtailueletterlowma	NEW TAI LUE LETTER LOW MA
+199A	newtailueletterhighfa	NEW TAI LUE LETTER HIGH FA
+199B	newtailueletterhighva	NEW TAI LUE LETTER HIGH VA
+199C	newtailueletterhighla	NEW TAI LUE LETTER HIGH LA
+199D	newtailueletterlowfa	NEW TAI LUE LETTER LOW FA
+199E	newtailueletterlowva	NEW TAI LUE LETTER LOW VA
+199F	newtailueletterlowla	NEW TAI LUE LETTER LOW LA
+19A0	newtailueletterhighha	NEW TAI LUE LETTER HIGH HA
+19A1	newtailueletterhighda	NEW TAI LUE LETTER HIGH DA
+19A2	newtailueletterhighba	NEW TAI LUE LETTER HIGH BA
+19A3	newtailueletterlowha	NEW TAI LUE LETTER LOW HA
+19A4	newtailueletterlowda	NEW TAI LUE LETTER LOW DA
+19A5	newtailueletterlowba	NEW TAI LUE LETTER LOW BA
+19A6	newtailueletterhighkva	NEW TAI LUE LETTER HIGH KVA
+19A7	newtailueletterhighxva	NEW TAI LUE LETTER HIGH XVA
+19A8	newtailueletterlowkva	NEW TAI LUE LETTER LOW KVA
+19A9	newtailueletterlowxva	NEW TAI LUE LETTER LOW XVA
+19AA	newtailueletterhighsua	NEW TAI LUE LETTER HIGH SUA
+19AB	newtailueletterlowsua	NEW TAI LUE LETTER LOW SUA
+19B0	newtailuevowelsignvowelshortener	NEW TAI LUE VOWEL SIGN VOWEL SHORTENER
+19B1	newtailuevowelsignaa	NEW TAI LUE VOWEL SIGN AA
+19B2	newtailuevowelsignii	NEW TAI LUE VOWEL SIGN II
+19B3	newtailuevowelsignu	NEW TAI LUE VOWEL SIGN U
+19B4	newtailuevowelsignuu	NEW TAI LUE VOWEL SIGN UU
+19B5	newtailuevowelsigne	NEW TAI LUE VOWEL SIGN E
+19B6	newtailuevowelsignae	NEW TAI LUE VOWEL SIGN AE
+19B7	newtailuevowelsigno	NEW TAI LUE VOWEL SIGN O
+19B8	newtailuevowelsignoa	NEW TAI LUE VOWEL SIGN OA
+19B9	newtailuevowelsignue	NEW TAI LUE VOWEL SIGN UE
+19BA	newtailuevowelsignay	NEW TAI LUE VOWEL SIGN AY
+19BB	newtailuevowelsignaay	NEW TAI LUE VOWEL SIGN AAY
+19BC	newtailuevowelsignuy	NEW TAI LUE VOWEL SIGN UY
+19BD	newtailuevowelsignoy	NEW TAI LUE VOWEL SIGN OY
+19BE	newtailuevowelsignoay	NEW TAI LUE VOWEL SIGN OAY
+19BF	newtailuevowelsignuey	NEW TAI LUE VOWEL SIGN UEY
+19C0	newtailuevowelsigniy	NEW TAI LUE VOWEL SIGN IY
+19C1	newtailueletterfinalv	NEW TAI LUE LETTER FINAL V
+19C2	newtailueletterfinalng	NEW TAI LUE LETTER FINAL NG
+19C3	newtailueletterfinaln	NEW TAI LUE LETTER FINAL N
+19C4	newtailueletterfinalm	NEW TAI LUE LETTER FINAL M
+19C5	newtailueletterfinalk	NEW TAI LUE LETTER FINAL K
+19C6	newtailueletterfinald	NEW TAI LUE LETTER FINAL D
+19C7	newtailueletterfinalb	NEW TAI LUE LETTER FINAL B
+19C8	newtailuetonemark1	NEW TAI LUE TONE MARK-1
+19C9	newtailuetonemark2	NEW TAI LUE TONE MARK-2
+19D0	newtailuedigitzero	NEW TAI LUE DIGIT ZERO
+19D1	newtailuedigitone	NEW TAI LUE DIGIT ONE
+19D2	newtailuedigittwo	NEW TAI LUE DIGIT TWO
+19D3	newtailuedigitthree	NEW TAI LUE DIGIT THREE
+19D4	newtailuedigitfour	NEW TAI LUE DIGIT FOUR
+19D5	newtailuedigitfive	NEW TAI LUE DIGIT FIVE
+19D6	newtailuedigitsix	NEW TAI LUE DIGIT SIX
+19D7	newtailuedigitseven	NEW TAI LUE DIGIT SEVEN
+19D8	newtailuedigiteight	NEW TAI LUE DIGIT EIGHT
+19D9	newtailuedigitnine	NEW TAI LUE DIGIT NINE
+19DA	newtailuethamdigitone	NEW TAI LUE THAM DIGIT ONE
+19DE	newtailuesignlae	NEW TAI LUE SIGN LAE
+19DF	newtailuesignlaev	NEW TAI LUE SIGN LAEV

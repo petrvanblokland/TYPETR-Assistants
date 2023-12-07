@@ -1,0 +1,62 @@
+# Samaritan 0800 - 083F
+0800	samaritanletteralaf	SAMARITAN LETTER ALAF
+0801	samaritanletterbit	SAMARITAN LETTER BIT
+0802	samaritanlettergaman	SAMARITAN LETTER GAMAN
+0803	samaritanletterdalat	SAMARITAN LETTER DALAT
+0804	samaritanletteriy	SAMARITAN LETTER IY
+0805	samaritanletterbaa	SAMARITAN LETTER BAA
+0806	samaritanletterzen	SAMARITAN LETTER ZEN
+0807	samaritanletterit	SAMARITAN LETTER IT
+0808	samaritanlettertit	SAMARITAN LETTER TIT
+0809	samaritanletteryut	SAMARITAN LETTER YUT
+080A	samaritanletterkaaf	SAMARITAN LETTER KAAF
+080B	samaritanletterlabat	SAMARITAN LETTER LABAT
+080C	samaritanlettermim	SAMARITAN LETTER MIM
+080D	samaritanletternun	SAMARITAN LETTER NUN
+080E	samaritanlettersingaat	SAMARITAN LETTER SINGAAT
+080F	samaritanletterin	SAMARITAN LETTER IN
+0810	samaritanletterfi	SAMARITAN LETTER FI
+0811	samaritanlettertsaadiy	SAMARITAN LETTER TSAADIY
+0812	samaritanletterquf	SAMARITAN LETTER QUF
+0813	samaritanletterrish	SAMARITAN LETTER RISH
+0814	samaritanlettershan	SAMARITAN LETTER SHAN
+0815	samaritanlettertaaf	SAMARITAN LETTER TAAF
+0816	samaritanmarkin	SAMARITAN MARK IN
+0817	samaritanmarkinalaf	SAMARITAN MARK IN-ALAF
+0818	samaritanmarkocclusion	SAMARITAN MARK OCCLUSION
+0819	samaritanmarkdagesh	SAMARITAN MARK DAGESH
+081A	samaritanmodifierletterepentheticyut	SAMARITAN MODIFIER LETTER EPENTHETIC YUT
+081B	samaritanmarkepentheticyut	SAMARITAN MARK EPENTHETIC YUT
+081C	samaritanvowelsignlonge	SAMARITAN VOWEL SIGN LONG E
+081D	samaritanvowelsigne	SAMARITAN VOWEL SIGN E
+081E	samaritanvowelsignoverlongaa	SAMARITAN VOWEL SIGN OVERLONG AA
+081F	samaritanvowelsignlongaa	SAMARITAN VOWEL SIGN LONG AA
+0820	samaritanvowelsignaa	SAMARITAN VOWEL SIGN AA
+0821	samaritanvowelsignoverlonga	SAMARITAN VOWEL SIGN OVERLONG A
+0822	samaritanvowelsignlonga	SAMARITAN VOWEL SIGN LONG A
+0823	samaritanvowelsigna	SAMARITAN VOWEL SIGN A
+0824	samaritanmodifierlettershorta	SAMARITAN MODIFIER LETTER SHORT A
+0825	samaritanvowelsignshorta	SAMARITAN VOWEL SIGN SHORT A
+0826	samaritanvowelsignlongu	SAMARITAN VOWEL SIGN LONG U
+0827	samaritanvowelsignu	SAMARITAN VOWEL SIGN U
+0828	samaritanmodifierletteri	SAMARITAN MODIFIER LETTER I
+0829	samaritanvowelsignlongi	SAMARITAN VOWEL SIGN LONG I
+082A	samaritanvowelsigni	SAMARITAN VOWEL SIGN I
+082B	samaritanvowelsigno	SAMARITAN VOWEL SIGN O
+082C	samaritanvowelsignsukun	SAMARITAN VOWEL SIGN SUKUN
+082D	samaritanmarknequdaa	SAMARITAN MARK NEQUDAA
+0830	samaritanpunctuationnequdaa	SAMARITAN PUNCTUATION NEQUDAA
+0831	samaritanpunctuationafsaaq	SAMARITAN PUNCTUATION AFSAAQ
+0832	samaritanpunctuationanged	SAMARITAN PUNCTUATION ANGED
+0833	samaritanpunctuationbau	SAMARITAN PUNCTUATION BAU
+0834	samaritanpunctuationatmaau	SAMARITAN PUNCTUATION ATMAAU
+0835	samaritanpunctuationshiyyaalaa	SAMARITAN PUNCTUATION SHIYYAALAA
+0836	samaritanabbreviationmark	SAMARITAN ABBREVIATION MARK
+0837	samaritanpunctuationmelodicqitsa	SAMARITAN PUNCTUATION MELODIC QITSA
+0838	samaritanpunctuationziqaa	SAMARITAN PUNCTUATION ZIQAA
+0839	samaritanpunctuationqitsa	SAMARITAN PUNCTUATION QITSA
+083A	samaritanpunctuationzaef	SAMARITAN PUNCTUATION ZAEF
+083B	samaritanpunctuationturu	SAMARITAN PUNCTUATION TURU
+083C	samaritanpunctuationarkaanu	SAMARITAN PUNCTUATION ARKAANU
+083D	samaritanpunctuationsofmashfaat	SAMARITAN PUNCTUATION SOF MASHFAAT
+083E	samaritanpunctuationannaau	SAMARITAN PUNCTUATION ANNAAU

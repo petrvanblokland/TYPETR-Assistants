@@ -1,0 +1,71 @@
+# Unified Canadian Aboriginal Syllabics Extended 18B0 - 18FF
+18B0	canadiansyllabicsoy	CANADIAN SYLLABICS OY
+18B1	canadiansyllabicsay	CANADIAN SYLLABICS AY
+18B2	canadiansyllabicsaay	CANADIAN SYLLABICS AAY
+18B3	canadiansyllabicsway	CANADIAN SYLLABICS WAY
+18B4	canadiansyllabicspoy	CANADIAN SYLLABICS POY
+18B5	canadiansyllabicspay	CANADIAN SYLLABICS PAY
+18B6	canadiansyllabicspwoy	CANADIAN SYLLABICS PWOY
+18B7	canadiansyllabicstay	CANADIAN SYLLABICS TAY
+18B8	canadiansyllabicskay	CANADIAN SYLLABICS KAY
+18B9	canadiansyllabicskway	CANADIAN SYLLABICS KWAY
+18BA	canadiansyllabicsmay	CANADIAN SYLLABICS MAY
+18BB	canadiansyllabicsnoy	CANADIAN SYLLABICS NOY
+18BC	canadiansyllabicsnay	CANADIAN SYLLABICS NAY
+18BD	canadiansyllabicslay	CANADIAN SYLLABICS LAY
+18BE	canadiansyllabicssoy	CANADIAN SYLLABICS SOY
+18BF	canadiansyllabicssay	CANADIAN SYLLABICS SAY
+18C0	canadiansyllabicsshoy	CANADIAN SYLLABICS SHOY
+18C1	canadiansyllabicsshay	CANADIAN SYLLABICS SHAY
+18C2	canadiansyllabicsshwoy	CANADIAN SYLLABICS SHWOY
+18C3	canadiansyllabicsyoy	CANADIAN SYLLABICS YOY
+18C4	canadiansyllabicsyay	CANADIAN SYLLABICS YAY
+18C5	canadiansyllabicsray	CANADIAN SYLLABICS RAY
+18C6	canadiansyllabicsnwi	CANADIAN SYLLABICS NWI
+18C7	canadiansyllabicsojibwaynwi	CANADIAN SYLLABICS OJIBWAY NWI
+18C8	canadiansyllabicsnwii	CANADIAN SYLLABICS NWII
+18C9	canadiansyllabicsojibwaynwii	CANADIAN SYLLABICS OJIBWAY NWII
+18CA	canadiansyllabicsnwo	CANADIAN SYLLABICS NWO
+18CB	canadiansyllabicsojibwaynwo	CANADIAN SYLLABICS OJIBWAY NWO
+18CC	canadiansyllabicsnwoo	CANADIAN SYLLABICS NWOO
+18CD	canadiansyllabicsojibwaynwoo	CANADIAN SYLLABICS OJIBWAY NWOO
+18CE	canadiansyllabicsrwee	CANADIAN SYLLABICS RWEE
+18CF	canadiansyllabicsrwi	CANADIAN SYLLABICS RWI
+18D0	canadiansyllabicsrwii	CANADIAN SYLLABICS RWII
+18D1	canadiansyllabicsrwo	CANADIAN SYLLABICS RWO
+18D2	canadiansyllabicsrwoo	CANADIAN SYLLABICS RWOO
+18D3	canadiansyllabicsrwa	CANADIAN SYLLABICS RWA
+18D4	canadiansyllabicsojibwayp	CANADIAN SYLLABICS OJIBWAY P
+18D5	canadiansyllabicsojibwayt	CANADIAN SYLLABICS OJIBWAY T
+18D6	canadiansyllabicsojibwayk	CANADIAN SYLLABICS OJIBWAY K
+18D7	canadiansyllabicsojibwayc	CANADIAN SYLLABICS OJIBWAY C
+18D8	canadiansyllabicsojibwaym	CANADIAN SYLLABICS OJIBWAY M
+18D9	canadiansyllabicsojibwayn	CANADIAN SYLLABICS OJIBWAY N
+18DA	canadiansyllabicsojibways	CANADIAN SYLLABICS OJIBWAY S
+18DB	canadiansyllabicsojibwaysh	CANADIAN SYLLABICS OJIBWAY SH
+18DC	canadiansyllabicseasternw	CANADIAN SYLLABICS EASTERN W
+18DD	canadiansyllabicswesternw	CANADIAN SYLLABICS WESTERN W
+18DE	canadiansyllabicsfinalsmallring	CANADIAN SYLLABICS FINAL SMALL RING
+18DF	canadiansyllabicsfinalraiseddot	CANADIAN SYLLABICS FINAL RAISED DOT
+18E0	canadiansyllabicsrcreerwe	CANADIAN SYLLABICS R-CREE RWE
+18E1	canadiansyllabicswestcreeloo	CANADIAN SYLLABICS WEST-CREE LOO
+18E2	canadiansyllabicswestcreelaa	CANADIAN SYLLABICS WEST-CREE LAA
+18E3	canadiansyllabicsthwe	CANADIAN SYLLABICS THWE
+18E4	canadiansyllabicsthwa	CANADIAN SYLLABICS THWA
+18E5	canadiansyllabicstthwe	CANADIAN SYLLABICS TTHWE
+18E6	canadiansyllabicstthoo	CANADIAN SYLLABICS TTHOO
+18E7	canadiansyllabicstthaa	CANADIAN SYLLABICS TTHAA
+18E8	canadiansyllabicstlhwe	CANADIAN SYLLABICS TLHWE
+18E9	canadiansyllabicstlhoo	CANADIAN SYLLABICS TLHOO
+18EA	canadiansyllabicssayisishwe	CANADIAN SYLLABICS SAYISI SHWE
+18EB	canadiansyllabicssayisishoo	CANADIAN SYLLABICS SAYISI SHOO
+18EC	canadiansyllabicssayisihoo	CANADIAN SYLLABICS SAYISI HOO
+18ED	canadiansyllabicscarriergwu	CANADIAN SYLLABICS CARRIER GWU
+18EE	canadiansyllabicscarrierdenegee	CANADIAN SYLLABICS CARRIER DENE GEE
+18EF	canadiansyllabicscarriergaa	CANADIAN SYLLABICS CARRIER GAA
+18F0	canadiansyllabicscarriergwa	CANADIAN SYLLABICS CARRIER GWA
+18F1	canadiansyllabicssayisijuu	CANADIAN SYLLABICS SAYISI JUU
+18F2	canadiansyllabicscarrierjwa	CANADIAN SYLLABICS CARRIER JWA
+18F3	canadiansyllabicsbeaverdenel	CANADIAN SYLLABICS BEAVER DENE L
+18F4	canadiansyllabicsbeaverdener	CANADIAN SYLLABICS BEAVER DENE R
+18F5	canadiansyllabicscarrierdentals	CANADIAN SYLLABICS CARRIER DENTAL S

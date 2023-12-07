@@ -1,0 +1,17 @@
+# Kanbun 3190 - 319F
+3190	ideographicannotationlinkingmark	IDEOGRAPHIC ANNOTATION LINKING MARK
+3191	ideographicannotationreversemark	IDEOGRAPHIC ANNOTATION REVERSE MARK
+3192	ideographicannotationonemark	IDEOGRAPHIC ANNOTATION ONE MARK
+3193	ideographicannotationtwomark	IDEOGRAPHIC ANNOTATION TWO MARK
+3194	ideographicannotationthreemark	IDEOGRAPHIC ANNOTATION THREE MARK
+3195	ideographicannotationfourmark	IDEOGRAPHIC ANNOTATION FOUR MARK
+3196	ideographicannotationtopmark	IDEOGRAPHIC ANNOTATION TOP MARK
+3197	ideographicannotationmiddlemark	IDEOGRAPHIC ANNOTATION MIDDLE MARK
+3198	ideographicannotationbottommark	IDEOGRAPHIC ANNOTATION BOTTOM MARK
+3199	ideographicannotationfirstmark	IDEOGRAPHIC ANNOTATION FIRST MARK
+319A	ideographicannotationsecondmark	IDEOGRAPHIC ANNOTATION SECOND MARK
+319B	ideographicannotationthirdmark	IDEOGRAPHIC ANNOTATION THIRD MARK
+319C	ideographicannotationfourthmark	IDEOGRAPHIC ANNOTATION FOURTH MARK
+319D	ideographicannotationheavenmark	IDEOGRAPHIC ANNOTATION HEAVEN MARK
+319E	ideographicannotationearthmark	IDEOGRAPHIC ANNOTATION EARTH MARK
+319F	ideographicannotationmanmark	IDEOGRAPHIC ANNOTATION MAN MARK

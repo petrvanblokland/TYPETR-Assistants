@@ -1,0 +1,88 @@
+# Tai Xuan Jing Symbols 1D300 - 1D35F
+1D300	monogramforearth	MONOGRAM FOR EARTH
+1D301	digramforheavenlyearth	DIGRAM FOR HEAVENLY EARTH
+1D302	digramforhumanearth	DIGRAM FOR HUMAN EARTH
+1D303	digramforearthlyheaven	DIGRAM FOR EARTHLY HEAVEN
+1D304	digramforearthlyhuman	DIGRAM FOR EARTHLY HUMAN
+1D305	digramforearth	DIGRAM FOR EARTH
+1D306	tetragramforcentre	TETRAGRAM FOR CENTRE
+1D307	tetragramforfullcircle	TETRAGRAM FOR FULL CIRCLE
+1D308	tetragramformired	TETRAGRAM FOR MIRED
+1D309	tetragramforbarrier	TETRAGRAM FOR BARRIER
+1D30A	tetragramforkeepingsmall	TETRAGRAM FOR KEEPING SMALL
+1D30B	tetragramforcontrariety	TETRAGRAM FOR CONTRARIETY
+1D30C	tetragramforascent	TETRAGRAM FOR ASCENT
+1D30D	tetragramforopposition	TETRAGRAM FOR OPPOSITION
+1D30E	tetragramforbranchingout	TETRAGRAM FOR BRANCHING OUT
+1D30F	tetragramfordefectivenessordistortion	TETRAGRAM FOR DEFECTIVENESS OR DISTORTION
+1D310	tetragramfordivergence	TETRAGRAM FOR DIVERGENCE
+1D311	tetragramforyouthfulness	TETRAGRAM FOR YOUTHFULNESS
+1D312	tetragramforincrease	TETRAGRAM FOR INCREASE
+1D313	tetragramforpenetration	TETRAGRAM FOR PENETRATION
+1D314	tetragramforreach	TETRAGRAM FOR REACH
+1D315	tetragramforcontact	TETRAGRAM FOR CONTACT
+1D316	tetragramforholdingback	TETRAGRAM FOR HOLDING BACK
+1D317	tetragramforwaiting	TETRAGRAM FOR WAITING
+1D318	tetragramforfollowing	TETRAGRAM FOR FOLLOWING
+1D319	tetragramforadvance	TETRAGRAM FOR ADVANCE
+1D31A	tetragramforrelease	TETRAGRAM FOR RELEASE
+1D31B	tetragramforresistance	TETRAGRAM FOR RESISTANCE
+1D31C	tetragramforease	TETRAGRAM FOR EASE
+1D31D	tetragramforjoy	TETRAGRAM FOR JOY
+1D31E	tetragramforcontention	TETRAGRAM FOR CONTENTION
+1D31F	tetragramforendeavour	TETRAGRAM FOR ENDEAVOUR
+1D320	tetragramforduties	TETRAGRAM FOR DUTIES
+1D321	tetragramforchange	TETRAGRAM FOR CHANGE
+1D322	tetragramfordecisiveness	TETRAGRAM FOR DECISIVENESS
+1D323	tetragramforboldresolution	TETRAGRAM FOR BOLD RESOLUTION
+1D324	tetragramforpacking	TETRAGRAM FOR PACKING
+1D325	tetragramforlegion	TETRAGRAM FOR LEGION
+1D326	tetragramforcloseness	TETRAGRAM FOR CLOSENESS
+1D327	tetragramforkinship	TETRAGRAM FOR KINSHIP
+1D328	tetragramforgathering	TETRAGRAM FOR GATHERING
+1D329	tetragramforstrength	TETRAGRAM FOR STRENGTH
+1D32A	tetragramforpurity	TETRAGRAM FOR PURITY
+1D32B	tetragramforfullness	TETRAGRAM FOR FULLNESS
+1D32C	tetragramforresidence	TETRAGRAM FOR RESIDENCE
+1D32D	tetragramforlawormodel	TETRAGRAM FOR LAW OR MODEL
+1D32E	tetragramforresponse	TETRAGRAM FOR RESPONSE
+1D32F	tetragramforgoingtomeet	TETRAGRAM FOR GOING TO MEET
+1D330	tetragramforencounters	TETRAGRAM FOR ENCOUNTERS
+1D331	tetragramforstove	TETRAGRAM FOR STOVE
+1D332	tetragramforgreatness	TETRAGRAM FOR GREATNESS
+1D333	tetragramforenlargement	TETRAGRAM FOR ENLARGEMENT
+1D334	tetragramforpattern	TETRAGRAM FOR PATTERN
+1D335	tetragramforritual	TETRAGRAM FOR RITUAL
+1D336	tetragramforflight	TETRAGRAM FOR FLIGHT
+1D337	tetragramforvastnessorwasting	TETRAGRAM FOR VASTNESS OR WASTING
+1D338	tetragramforconstancy	TETRAGRAM FOR CONSTANCY
+1D339	tetragramformeasure	TETRAGRAM FOR MEASURE
+1D33A	tetragramforeternity	TETRAGRAM FOR ETERNITY
+1D33B	tetragramforunity	TETRAGRAM FOR UNITY
+1D33C	tetragramfordiminishment	TETRAGRAM FOR DIMINISHMENT
+1D33D	tetragramforclosedmouth	TETRAGRAM FOR CLOSED MOUTH
+1D33E	tetragramforguardedness	TETRAGRAM FOR GUARDEDNESS
+1D33F	tetragramforgatheringin	TETRAGRAM FOR GATHERING IN
+1D340	tetragramformassing	TETRAGRAM FOR MASSING
+1D341	tetragramforaccumulation	TETRAGRAM FOR ACCUMULATION
+1D342	tetragramforembellishment	TETRAGRAM FOR EMBELLISHMENT
+1D343	tetragramfordoubt	TETRAGRAM FOR DOUBT
+1D344	tetragramforwatch	TETRAGRAM FOR WATCH
+1D345	tetragramforsinking	TETRAGRAM FOR SINKING
+1D346	tetragramforinner	TETRAGRAM FOR INNER
+1D347	tetragramfordeparture	TETRAGRAM FOR DEPARTURE
+1D348	tetragramfordarkening	TETRAGRAM FOR DARKENING
+1D349	tetragramfordimming	TETRAGRAM FOR DIMMING
+1D34A	tetragramforexhaustion	TETRAGRAM FOR EXHAUSTION
+1D34B	tetragramforseverance	TETRAGRAM FOR SEVERANCE
+1D34C	tetragramforstoppage	TETRAGRAM FOR STOPPAGE
+1D34D	tetragramforhardness	TETRAGRAM FOR HARDNESS
+1D34E	tetragramforcompletion	TETRAGRAM FOR COMPLETION
+1D34F	tetragramforclosure	TETRAGRAM FOR CLOSURE
+1D350	tetragramforfailure	TETRAGRAM FOR FAILURE
+1D351	tetragramforaggravation	TETRAGRAM FOR AGGRAVATION
+1D352	tetragramforcompliance	TETRAGRAM FOR COMPLIANCE
+1D353	tetragramforontheverge	TETRAGRAM FOR ON THE VERGE
+1D354	tetragramfordifficulties	TETRAGRAM FOR DIFFICULTIES
+1D355	tetragramforlabouring	TETRAGRAM FOR LABOURING
+1D356	tetragramforfostering	TETRAGRAM FOR FOSTERING

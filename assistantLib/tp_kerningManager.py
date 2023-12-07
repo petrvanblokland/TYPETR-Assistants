@@ -331,6 +331,122 @@ class KerningManager:
 
     #   S I M I L A R I T Y
 
+    # Glyph names that are used as base for the seeds for the similarity checks
+    # This means that all other glyphs in the set are within the tolerance range of these base glyphs.
+    # These are the only ones that need to be spaced.
+
+    BASE1 = [ # Base glyphs on left side, similar to right margin 
+        'A', 'H', 'O', 'X', 'n', 'o',  # Overall base glyphs
+    ]
+    BBB = [
+        'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
+        
+        'period',
+        
+        'B', 'C', 'D', 'E', 'F', 'G', 'I', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'Y', 'Z', 
+        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+
+        'Iegrave-cy', 'Io-cy', 'Dje-cy', 'Gje-cy', 'E-cy', 'Dze-cy', 'I-cy', 'Yi-cy', 'Je-cy', 'Lje-cy', 'Nje-cy', 'Tshe-cy', 'Kje-cy', 'Iigrave-cy', 'Ushort-cy', 'Dzhe-cy', 
+        'A-cy', 'Be-cy', 'Ve-cy', 'Ge-cy', 'De-cy', 'Ie-cy', 'Zhe-cy', 'Ze-cy', 'Ii-cy', 'Iishort-cy', 'Ka-cy', 'El-cy', 'Em-cy', 'En-cy', 'O-cy', 'Pe-cy', 'Er-cy', 'Es-cy', 
+        'Te-cy', 'U-cy', 'Ef-cy', 'Ha-cy', 'Tse-cy', 'Che-cy', 'Sha-cy', 'Shcha-cy', 'Hardsign-cy', 'Yeru-cy', 'Softsign-cy', 'Ereversed-cy', 'Iu-cy', 'Ia-cy', 
+        
+        'a-cy', 'be-cy', 've-cy', 'ge-cy', 'de-cy', 'ie-cy', 'zhe-cy', 'ze-cy', 'ii-cy', 'iishort-cy', 'ka-cy', 'el-cy', 'em-cy', 'en-cy', 'o-cy', 'pe-cy', 'er-cy', 
+        'es-cy', 'te-cy', 'u-cy', 'ef-cy', 'ha-cy', 'tse-cy', 'che-cy', 'sha-cy', 'shcha-cy', 'hardsign-cy', 'yeru-cy', 'softsign-cy', 'ereversed-cy', 'iu-cy', 
+        'ia-cy', 'iegrave-cy', 'io-cy', 'dje-cy', 'gje-cy', 'e-cy', 'dze-cy', 'i-cy', 'yi-cy', 'je-cy', 'lje-cy', 'nje-cy', 'tshe-cy', 'kje-cy', 'iigrave-cy', 
+        'ushort-cy', 'dzhe-cy', 'Omega-cy', 'omega-cy', 'Yat-cy', 'yat-cy', 'Eiotified-cy', 'eiotified-cy', 'Yuslittle-cy', 'yuslittle-cy', 'Yuslittleiotified-cy', 
+        'yuslittleiotified-cy', 'Yusbig-cy', 'yusbig-cy', 'Yusbigiotified-cy', 'yusbigiotified-cy', 'Ksi-cy', 'ksi-cy',
+
+        'Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Zeta', 'Eta', 'Theta', 'Iota', 'Kappa', 'Lambda', 'Mu', 'Nu', 'Xi', 'Omicron', 'Pi', 'Rho', 'Sigma', 'Tau', 'Upsilon', 'Phi', 'Chi', 'Psi', 'Omega',    
+        'alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta', 'eta', 'theta', 'iota', 'kappa', 'lambda', 'mu', 'nu', 'xi', 'omicron', 'pi', 'rho', 'sigmafinal', 'sigma', 'tau', 'upsilon', 'phi', 'chi', 'psi', 'omega',
+    ]
+    BASE2 = [ # Base glyphs on right side, similar on left margin 
+        'H', 'O', 'X', 'n', 'o', # Overall base glyphs
+
+        'zero', 
+        #'one', 
+        'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
+        
+        'period',
+
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'I', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'Y', 'Z', 
+        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+
+        'Iegrave-cy', 'Io-cy', 'Dje-cy', 'Gje-cy', 'E-cy', 'Dze-cy', 'I-cy', 'Yi-cy', 'Je-cy', 'Lje-cy', 'Nje-cy', 'Tshe-cy', 'Kje-cy', 'Iigrave-cy', 'Ushort-cy', 'Dzhe-cy', 
+        'A-cy', 'Be-cy', 'Ve-cy', 'Ge-cy', 'De-cy', 'Ie-cy', 'Zhe-cy', 'Ze-cy', 'Ii-cy', 'Iishort-cy', 'Ka-cy', 'El-cy', 'Em-cy', 'En-cy', 'O-cy', 'Pe-cy', 'Er-cy', 'Es-cy', 
+        'Te-cy', 'U-cy', 'Ef-cy', 'Ha-cy', 'Tse-cy', 'Che-cy', 'Sha-cy', 'Shcha-cy', 'Hardsign-cy', 'Yeru-cy', 'Softsign-cy', 'Ereversed-cy', 'Iu-cy', 'Ia-cy', 
+        
+        'a-cy', 'be-cy', 've-cy', 'ge-cy', 'de-cy', 'ie-cy', 'zhe-cy', 'ze-cy', 'ii-cy', 'iishort-cy', 'ka-cy', 'el-cy', 'em-cy', 'en-cy', 'o-cy', 'pe-cy', 'er-cy', 
+        'es-cy', 'te-cy', 'u-cy', 'ef-cy', 'ha-cy', 'tse-cy', 'che-cy', 'sha-cy', 'shcha-cy', 'hardsign-cy', 'yeru-cy', 'softsign-cy', 'ereversed-cy', 'iu-cy', 
+        'ia-cy', 'iegrave-cy', 'io-cy', 'dje-cy', 'gje-cy', 'e-cy', 'dze-cy', 'i-cy', 'yi-cy', 'je-cy', 'lje-cy', 'nje-cy', 'tshe-cy', 'kje-cy', 'iigrave-cy', 
+        'ushort-cy', 'dzhe-cy', 'Omega-cy', 'omega-cy', 'Yat-cy', 'yat-cy', 'Eiotified-cy', 'eiotified-cy', 'Yuslittle-cy', 'yuslittle-cy', 'Yuslittleiotified-cy', 
+        'yuslittleiotified-cy', 'Yusbig-cy', 'yusbig-cy', 'Yusbigiotified-cy', 'yusbigiotified-cy', 'Ksi-cy', 'ksi-cy',
+
+        'Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Zeta', 'Eta', 'Theta', 'Iota', 'Kappa', 'Lambda', 'Mu', 'Nu', 'Xi', 'Omicron', 'Pi', 'Rho', 'Sigma', 'Tau', 'Upsilon', 'Phi', 'Chi', 'Psi', 'Omega',    
+        'alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta', 'eta', 'theta', 'iota', 'kappa', 'lambda', 'mu', 'nu', 'xi', 'omicron', 'pi', 'rho', 'sigmafinal', 'sigma', 'tau', 'upsilon', 'phi', 'chi', 'psi', 'omega',
+    ]
+
+    def getSimilarBaseNames2(self):
+        """Answer the sorted list of glyph names that are in self.BASE2 (similar on left side) while not similar to one 
+        of the other base glyphs. Also add the glyphs that don't fit in any of the similar groups, because these should 
+        have been base glyph.
+        Keep track of the glyphs that we examined, since the way similarity works, glyphs can be similar to multiple base
+        glyphs, while those base glyphs are not similar to each other when they fall outside the range."""
+        similarBaseNames = {}
+        examinedNames = set()
+        for baseName in self.BASE2:
+            if baseName in examinedNames:
+                continue
+            if baseName in self.f:
+                g = self.f[baseName]
+                for similarName in self.getSimilarNames2(g):
+                    if similarName not in examinedNames:
+                        if similarName in examinedNames:
+                            continue
+                        if baseName not in similarBaseNames:
+                            similarBaseNames[baseName] = set()
+                            examinedNames.add(baseName)
+                        similarBaseNames[baseName].add(similarName)
+            # If the baseName was not covered here, then add it as similarBaseName
+            if baseName not in similarBaseNames:
+                similarBaseNames[baseName] = set()
+                examinedNames.add(baseName)
+        # Now run again to make all glyphs into base that were not similar to one of the other glyphs
+        for g in self.f:
+            if g.name not in examinedNames:
+                similarBaseNames[g.name] = set([g.name]) # Just similar to itself.
+                examinedNames.add(g.name)
+        return similarBaseNames
+
+    def _findSimilarBaseNames1(self, baseName, similarBaseNames, examinedNames):
+        if baseName in examinedNames:
+            return
+        if baseName in self.f:
+            g = self.f[baseName]
+            for similarName in self.getSimilarNames1(g):
+                if similarName not in examinedNames:
+                    if similarName in examinedNames:
+                        continue
+                    if baseName not in similarBaseNames:
+                        similarBaseNames[baseName] = set()
+                        examinedNames.add(baseName)
+                    similarBaseNames[baseName].add(similarName)
+        # If the baseName was not covered here, then add it as similarBaseName
+        if baseName not in similarBaseNames:
+            similarBaseNames[baseName] = set()
+            examinedNames.add(baseName)
+
+    def getSimilarBaseNames1(self):
+        """Answer the sorted list of glyph names that are in self.BASE1 while not similar to one of the other base glyphs.
+        Also add the glyphs that don't fit in any of the similar groups, because these should have been base glyph."""
+        similarBaseNames = {}
+        examinedNames = set()
+        for baseName in self.BASE1:
+            self._findSimilarBaseNames(baseName, similarBaseNames, examinedNames)
+        # Now run again to make all glyphs into base that were not similar to one of the other glyphs
+        for g in self.f:
+            self._findSimilarBaseNames(g.name, similarBaseNames, examinedNames)
+        return similarBaseNames
+
     def getSimilar1(self, g):
         """Answer the similar representation from the glyph with SimilarGlyphsKey"""
         return self._getSimilar(g, 'right')
@@ -348,6 +464,13 @@ class KerningManager:
             side=side,
             clip=self.simClip
         )
+
+    def getSimilarNames1(self, g):
+        """Answer a simple list of similar glyphs to g."""
+        simNames = []
+        for confidence, simGroup in self.getSimilar1(g).items():
+            simNames += simGroup
+        return sorted(set(simNames))
 
     def getSimilarGroupsNames1(self, g):
         """Answer a sorted list of group names that are similar to g."""
@@ -383,6 +506,13 @@ class KerningManager:
 
         return simGroups
 
+    def getSimilarNames2(self, g):
+        """Answer a simple list of similar glyphs to g."""
+        simNames = []
+        for confidence, simGroup in self.getSimilar2(g).items():
+            simNames += simGroup
+        return sorted(set(simNames))
+        
     def getSimilarGroupsNames2(self, g):
         """Answer a list of group names that are similar to g."""
         simGroups = set()

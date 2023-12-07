@@ -1,0 +1,31 @@
+# Buginese 1A00 - 1A1F
+1A00	bugineseletterka	BUGINESE LETTER KA
+1A01	bugineseletterga	BUGINESE LETTER GA
+1A02	bugineseletternga	BUGINESE LETTER NGA
+1A03	bugineseletterngka	BUGINESE LETTER NGKA
+1A04	bugineseletterpa	BUGINESE LETTER PA
+1A05	bugineseletterba	BUGINESE LETTER BA
+1A06	bugineseletterma	BUGINESE LETTER MA
+1A07	bugineselettermpa	BUGINESE LETTER MPA
+1A08	bugineseletterta	BUGINESE LETTER TA
+1A09	bugineseletterda	BUGINESE LETTER DA
+1A0A	bugineseletterna	BUGINESE LETTER NA
+1A0B	bugineseletternra	BUGINESE LETTER NRA
+1A0C	bugineseletterca	BUGINESE LETTER CA
+1A0D	bugineseletterja	BUGINESE LETTER JA
+1A0E	bugineseletternya	BUGINESE LETTER NYA
+1A0F	bugineseletternyca	BUGINESE LETTER NYCA
+1A10	bugineseletterya	BUGINESE LETTER YA
+1A11	bugineseletterra	BUGINESE LETTER RA
+1A12	bugineseletterla	BUGINESE LETTER LA
+1A13	bugineseletterva	BUGINESE LETTER VA
+1A14	bugineselettersa	BUGINESE LETTER SA
+1A15	bugineselettera	BUGINESE LETTER A
+1A16	bugineseletterha	BUGINESE LETTER HA
+1A17	buginesevowelsigni	BUGINESE VOWEL SIGN I
+1A18	buginesevowelsignu	BUGINESE VOWEL SIGN U
+1A19	buginesevowelsigne	BUGINESE VOWEL SIGN E
+1A1A	buginesevowelsigno	BUGINESE VOWEL SIGN O
+1A1B	buginesevowelsignae	BUGINESE VOWEL SIGN AE
+1A1E	buginesepallawa	BUGINESE PALLAWA
+1A1F	bugineseendofsection	BUGINESE END OF SECTION

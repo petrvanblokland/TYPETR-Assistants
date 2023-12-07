@@ -1,0 +1,641 @@
+# Unified Canadian Aboriginal Syllabics 1400 - 167F
+1400	canadiansyllabicshyphen	CANADIAN SYLLABICS HYPHEN
+1401	canadiansyllabicse	CANADIAN SYLLABICS E
+1402	canadiansyllabicsaai	CANADIAN SYLLABICS AAI
+1403	canadiansyllabicsi	CANADIAN SYLLABICS I
+1404	canadiansyllabicsii	CANADIAN SYLLABICS II
+1405	canadiansyllabicso	CANADIAN SYLLABICS O
+1406	canadiansyllabicsoo	CANADIAN SYLLABICS OO
+1407	canadiansyllabicsycreeoo	CANADIAN SYLLABICS Y-CREE OO
+1408	canadiansyllabicscarrieree	CANADIAN SYLLABICS CARRIER EE
+1409	canadiansyllabicscarrieri	CANADIAN SYLLABICS CARRIER I
+140A	canadiansyllabicsa	CANADIAN SYLLABICS A
+140B	canadiansyllabicsaa	CANADIAN SYLLABICS AA
+140C	canadiansyllabicswe	CANADIAN SYLLABICS WE
+140D	canadiansyllabicswestcreewe	CANADIAN SYLLABICS WEST-CREE WE
+140E	canadiansyllabicswi	CANADIAN SYLLABICS WI
+140F	canadiansyllabicswestcreewi	CANADIAN SYLLABICS WEST-CREE WI
+1410	canadiansyllabicswii	CANADIAN SYLLABICS WII
+1411	canadiansyllabicswestcreewii	CANADIAN SYLLABICS WEST-CREE WII
+1412	canadiansyllabicswo	CANADIAN SYLLABICS WO
+1413	canadiansyllabicswestcreewo	CANADIAN SYLLABICS WEST-CREE WO
+1414	canadiansyllabicswoo	CANADIAN SYLLABICS WOO
+1415	canadiansyllabicswestcreewoo	CANADIAN SYLLABICS WEST-CREE WOO
+1416	canadiansyllabicsnaskapiwoo	CANADIAN SYLLABICS NASKAPI WOO
+1417	canadiansyllabicswa	CANADIAN SYLLABICS WA
+1418	canadiansyllabicswestcreewa	CANADIAN SYLLABICS WEST-CREE WA
+1419	canadiansyllabicswaa	CANADIAN SYLLABICS WAA
+141A	canadiansyllabicswestcreewaa	CANADIAN SYLLABICS WEST-CREE WAA
+141B	canadiansyllabicsnaskapiwaa	CANADIAN SYLLABICS NASKAPI WAA
+141C	canadiansyllabicsai	CANADIAN SYLLABICS AI
+141D	canadiansyllabicsycreew	CANADIAN SYLLABICS Y-CREE W
+141E	canadiansyllabicsglottalstop	CANADIAN SYLLABICS GLOTTAL STOP
+141F	canadiansyllabicsfinalacute	CANADIAN SYLLABICS FINAL ACUTE
+1420	canadiansyllabicsfinalgrave	CANADIAN SYLLABICS FINAL GRAVE
+1421	canadiansyllabicsfinalbottomhalfring	CANADIAN SYLLABICS FINAL BOTTOM HALF RING
+1422	canadiansyllabicsfinaltophalfring	CANADIAN SYLLABICS FINAL TOP HALF RING
+1423	canadiansyllabicsfinalrighthalfring	CANADIAN SYLLABICS FINAL RIGHT HALF RING
+1424	canadiansyllabicsfinalring	CANADIAN SYLLABICS FINAL RING
+1425	canadiansyllabicsfinaldoubleacute	CANADIAN SYLLABICS FINAL DOUBLE ACUTE
+1426	canadiansyllabicsfinaldoubleshortverticalstrokes	CANADIAN SYLLABICS FINAL DOUBLE SHORT VERTICAL STROKES
+1427	canadiansyllabicsfinalmiddledot	CANADIAN SYLLABICS FINAL MIDDLE DOT
+1428	canadiansyllabicsfinalshorthorizontalstroke	CANADIAN SYLLABICS FINAL SHORT HORIZONTAL STROKE
+1429	canadiansyllabicsfinalplus	CANADIAN SYLLABICS FINAL PLUS
+142A	canadiansyllabicsfinaldowntack	CANADIAN SYLLABICS FINAL DOWN TACK
+142B	canadiansyllabicsen	CANADIAN SYLLABICS EN
+142C	canadiansyllabicsin	CANADIAN SYLLABICS IN
+142D	canadiansyllabicson	CANADIAN SYLLABICS ON
+142E	canadiansyllabicsan	CANADIAN SYLLABICS AN
+142F	canadiansyllabicspe	CANADIAN SYLLABICS PE
+1430	canadiansyllabicspaai	CANADIAN SYLLABICS PAAI
+1431	canadiansyllabicspi	CANADIAN SYLLABICS PI
+1432	canadiansyllabicspii	CANADIAN SYLLABICS PII
+1433	canadiansyllabicspo	CANADIAN SYLLABICS PO
+1434	canadiansyllabicspoo	CANADIAN SYLLABICS POO
+1435	canadiansyllabicsycreepoo	CANADIAN SYLLABICS Y-CREE POO
+1436	canadiansyllabicscarrierhee	CANADIAN SYLLABICS CARRIER HEE
+1437	canadiansyllabicscarrierhi	CANADIAN SYLLABICS CARRIER HI
+1438	canadiansyllabicspa	CANADIAN SYLLABICS PA
+1439	canadiansyllabicspaa	CANADIAN SYLLABICS PAA
+143A	canadiansyllabicspwe	CANADIAN SYLLABICS PWE
+143B	canadiansyllabicswestcreepwe	CANADIAN SYLLABICS WEST-CREE PWE
+143C	canadiansyllabicspwi	CANADIAN SYLLABICS PWI
+143D	canadiansyllabicswestcreepwi	CANADIAN SYLLABICS WEST-CREE PWI
+143E	canadiansyllabicspwii	CANADIAN SYLLABICS PWII
+143F	canadiansyllabicswestcreepwii	CANADIAN SYLLABICS WEST-CREE PWII
+1440	canadiansyllabicspwo	CANADIAN SYLLABICS PWO
+1441	canadiansyllabicswestcreepwo	CANADIAN SYLLABICS WEST-CREE PWO
+1442	canadiansyllabicspwoo	CANADIAN SYLLABICS PWOO
+1443	canadiansyllabicswestcreepwoo	CANADIAN SYLLABICS WEST-CREE PWOO
+1444	canadiansyllabicspwa	CANADIAN SYLLABICS PWA
+1445	canadiansyllabicswestcreepwa	CANADIAN SYLLABICS WEST-CREE PWA
+1446	canadiansyllabicspwaa	CANADIAN SYLLABICS PWAA
+1447	canadiansyllabicswestcreepwaa	CANADIAN SYLLABICS WEST-CREE PWAA
+1448	canadiansyllabicsycreepwaa	CANADIAN SYLLABICS Y-CREE PWAA
+1449	canadiansyllabicsp	CANADIAN SYLLABICS P
+144A	canadiansyllabicswestcreep	CANADIAN SYLLABICS WEST-CREE P
+144B	canadiansyllabicscarrierh	CANADIAN SYLLABICS CARRIER H
+144C	canadiansyllabicste	CANADIAN SYLLABICS TE
+144D	canadiansyllabicstaai	CANADIAN SYLLABICS TAAI
+144E	canadiansyllabicsti	CANADIAN SYLLABICS TI
+144F	canadiansyllabicstii	CANADIAN SYLLABICS TII
+1450	canadiansyllabicsto	CANADIAN SYLLABICS TO
+1451	canadiansyllabicstoo	CANADIAN SYLLABICS TOO
+1452	canadiansyllabicsycreetoo	CANADIAN SYLLABICS Y-CREE TOO
+1453	canadiansyllabicscarrierdee	CANADIAN SYLLABICS CARRIER DEE
+1454	canadiansyllabicscarrierdi	CANADIAN SYLLABICS CARRIER DI
+1455	canadiansyllabicsta	CANADIAN SYLLABICS TA
+1456	canadiansyllabicstaa	CANADIAN SYLLABICS TAA
+1457	canadiansyllabicstwe	CANADIAN SYLLABICS TWE
+1458	canadiansyllabicswestcreetwe	CANADIAN SYLLABICS WEST-CREE TWE
+1459	canadiansyllabicstwi	CANADIAN SYLLABICS TWI
+145A	canadiansyllabicswestcreetwi	CANADIAN SYLLABICS WEST-CREE TWI
+145B	canadiansyllabicstwii	CANADIAN SYLLABICS TWII
+145C	canadiansyllabicswestcreetwii	CANADIAN SYLLABICS WEST-CREE TWII
+145D	canadiansyllabicstwo	CANADIAN SYLLABICS TWO
+145E	canadiansyllabicswestcreetwo	CANADIAN SYLLABICS WEST-CREE TWO
+145F	canadiansyllabicstwoo	CANADIAN SYLLABICS TWOO
+1460	canadiansyllabicswestcreetwoo	CANADIAN SYLLABICS WEST-CREE TWOO
+1461	canadiansyllabicstwa	CANADIAN SYLLABICS TWA
+1462	canadiansyllabicswestcreetwa	CANADIAN SYLLABICS WEST-CREE TWA
+1463	canadiansyllabicstwaa	CANADIAN SYLLABICS TWAA
+1464	canadiansyllabicswestcreetwaa	CANADIAN SYLLABICS WEST-CREE TWAA
+1465	canadiansyllabicsnaskapitwaa	CANADIAN SYLLABICS NASKAPI TWAA
+1466	canadiansyllabicst	CANADIAN SYLLABICS T
+1467	canadiansyllabicstte	CANADIAN SYLLABICS TTE
+1468	canadiansyllabicstti	CANADIAN SYLLABICS TTI
+1469	canadiansyllabicstto	CANADIAN SYLLABICS TTO
+146A	canadiansyllabicstta	CANADIAN SYLLABICS TTA
+146B	canadiansyllabicske	CANADIAN SYLLABICS KE
+146C	canadiansyllabicskaai	CANADIAN SYLLABICS KAAI
+146D	canadiansyllabicski	CANADIAN SYLLABICS KI
+146E	canadiansyllabicskii	CANADIAN SYLLABICS KII
+146F	canadiansyllabicsko	CANADIAN SYLLABICS KO
+1470	canadiansyllabicskoo	CANADIAN SYLLABICS KOO
+1471	canadiansyllabicsycreekoo	CANADIAN SYLLABICS Y-CREE KOO
+1472	canadiansyllabicska	CANADIAN SYLLABICS KA
+1473	canadiansyllabicskaa	CANADIAN SYLLABICS KAA
+1474	canadiansyllabicskwe	CANADIAN SYLLABICS KWE
+1475	canadiansyllabicswestcreekwe	CANADIAN SYLLABICS WEST-CREE KWE
+1476	canadiansyllabicskwi	CANADIAN SYLLABICS KWI
+1477	canadiansyllabicswestcreekwi	CANADIAN SYLLABICS WEST-CREE KWI
+1478	canadiansyllabicskwii	CANADIAN SYLLABICS KWII
+1479	canadiansyllabicswestcreekwii	CANADIAN SYLLABICS WEST-CREE KWII
+147A	canadiansyllabicskwo	CANADIAN SYLLABICS KWO
+147B	canadiansyllabicswestcreekwo	CANADIAN SYLLABICS WEST-CREE KWO
+147C	canadiansyllabicskwoo	CANADIAN SYLLABICS KWOO
+147D	canadiansyllabicswestcreekwoo	CANADIAN SYLLABICS WEST-CREE KWOO
+147E	canadiansyllabicskwa	CANADIAN SYLLABICS KWA
+147F	canadiansyllabicswestcreekwa	CANADIAN SYLLABICS WEST-CREE KWA
+1480	canadiansyllabicskwaa	CANADIAN SYLLABICS KWAA
+1481	canadiansyllabicswestcreekwaa	CANADIAN SYLLABICS WEST-CREE KWAA
+1482	canadiansyllabicsnaskapikwaa	CANADIAN SYLLABICS NASKAPI KWAA
+1483	canadiansyllabicsk	CANADIAN SYLLABICS K
+1484	canadiansyllabicskw	CANADIAN SYLLABICS KW
+1485	canadiansyllabicssouthslaveykeh	CANADIAN SYLLABICS SOUTH-SLAVEY KEH
+1486	canadiansyllabicssouthslaveykih	CANADIAN SYLLABICS SOUTH-SLAVEY KIH
+1487	canadiansyllabicssouthslaveykoh	CANADIAN SYLLABICS SOUTH-SLAVEY KOH
+1488	canadiansyllabicssouthslaveykah	CANADIAN SYLLABICS SOUTH-SLAVEY KAH
+1489	canadiansyllabicsce	CANADIAN SYLLABICS CE
+148A	canadiansyllabicscaai	CANADIAN SYLLABICS CAAI
+148B	canadiansyllabicsci	CANADIAN SYLLABICS CI
+148C	canadiansyllabicscii	CANADIAN SYLLABICS CII
+148D	canadiansyllabicsco	CANADIAN SYLLABICS CO
+148E	canadiansyllabicscoo	CANADIAN SYLLABICS COO
+148F	canadiansyllabicsycreecoo	CANADIAN SYLLABICS Y-CREE COO
+1490	canadiansyllabicsca	CANADIAN SYLLABICS CA
+1491	canadiansyllabicscaa	CANADIAN SYLLABICS CAA
+1492	canadiansyllabicscwe	CANADIAN SYLLABICS CWE
+1493	canadiansyllabicswestcreecwe	CANADIAN SYLLABICS WEST-CREE CWE
+1494	canadiansyllabicscwi	CANADIAN SYLLABICS CWI
+1495	canadiansyllabicswestcreecwi	CANADIAN SYLLABICS WEST-CREE CWI
+1496	canadiansyllabicscwii	CANADIAN SYLLABICS CWII
+1497	canadiansyllabicswestcreecwii	CANADIAN SYLLABICS WEST-CREE CWII
+1498	canadiansyllabicscwo	CANADIAN SYLLABICS CWO
+1499	canadiansyllabicswestcreecwo	CANADIAN SYLLABICS WEST-CREE CWO
+149A	canadiansyllabicscwoo	CANADIAN SYLLABICS CWOO
+149B	canadiansyllabicswestcreecwoo	CANADIAN SYLLABICS WEST-CREE CWOO
+149C	canadiansyllabicscwa	CANADIAN SYLLABICS CWA
+149D	canadiansyllabicswestcreecwa	CANADIAN SYLLABICS WEST-CREE CWA
+149E	canadiansyllabicscwaa	CANADIAN SYLLABICS CWAA
+149F	canadiansyllabicswestcreecwaa	CANADIAN SYLLABICS WEST-CREE CWAA
+14A0	canadiansyllabicsnaskapicwaa	CANADIAN SYLLABICS NASKAPI CWAA
+14A1	canadiansyllabicsc	CANADIAN SYLLABICS C
+14A2	canadiansyllabicssayisith	CANADIAN SYLLABICS SAYISI TH
+14A3	canadiansyllabicsme	CANADIAN SYLLABICS ME
+14A4	canadiansyllabicsmaai	CANADIAN SYLLABICS MAAI
+14A5	canadiansyllabicsmi	CANADIAN SYLLABICS MI
+14A6	canadiansyllabicsmii	CANADIAN SYLLABICS MII
+14A7	canadiansyllabicsmo	CANADIAN SYLLABICS MO
+14A8	canadiansyllabicsmoo	CANADIAN SYLLABICS MOO
+14A9	canadiansyllabicsycreemoo	CANADIAN SYLLABICS Y-CREE MOO
+14AA	canadiansyllabicsma	CANADIAN SYLLABICS MA
+14AB	canadiansyllabicsmaa	CANADIAN SYLLABICS MAA
+14AC	canadiansyllabicsmwe	CANADIAN SYLLABICS MWE
+14AD	canadiansyllabicswestcreemwe	CANADIAN SYLLABICS WEST-CREE MWE
+14AE	canadiansyllabicsmwi	CANADIAN SYLLABICS MWI
+14AF	canadiansyllabicswestcreemwi	CANADIAN SYLLABICS WEST-CREE MWI
+14B0	canadiansyllabicsmwii	CANADIAN SYLLABICS MWII
+14B1	canadiansyllabicswestcreemwii	CANADIAN SYLLABICS WEST-CREE MWII
+14B2	canadiansyllabicsmwo	CANADIAN SYLLABICS MWO
+14B3	canadiansyllabicswestcreemwo	CANADIAN SYLLABICS WEST-CREE MWO
+14B4	canadiansyllabicsmwoo	CANADIAN SYLLABICS MWOO
+14B5	canadiansyllabicswestcreemwoo	CANADIAN SYLLABICS WEST-CREE MWOO
+14B6	canadiansyllabicsmwa	CANADIAN SYLLABICS MWA
+14B7	canadiansyllabicswestcreemwa	CANADIAN SYLLABICS WEST-CREE MWA
+14B8	canadiansyllabicsmwaa	CANADIAN SYLLABICS MWAA
+14B9	canadiansyllabicswestcreemwaa	CANADIAN SYLLABICS WEST-CREE MWAA
+14BA	canadiansyllabicsnaskapimwaa	CANADIAN SYLLABICS NASKAPI MWAA
+14BB	canadiansyllabicsm	CANADIAN SYLLABICS M
+14BC	canadiansyllabicswestcreem	CANADIAN SYLLABICS WEST-CREE M
+14BD	canadiansyllabicsmh	CANADIAN SYLLABICS MH
+14BE	canadiansyllabicsathapascanm	CANADIAN SYLLABICS ATHAPASCAN M
+14BF	canadiansyllabicssayisim	CANADIAN SYLLABICS SAYISI M
+14C0	canadiansyllabicsne	CANADIAN SYLLABICS NE
+14C1	canadiansyllabicsnaai	CANADIAN SYLLABICS NAAI
+14C2	canadiansyllabicsni	CANADIAN SYLLABICS NI
+14C3	canadiansyllabicsnii	CANADIAN SYLLABICS NII
+14C4	canadiansyllabicsno	CANADIAN SYLLABICS NO
+14C5	canadiansyllabicsnoo	CANADIAN SYLLABICS NOO
+14C6	canadiansyllabicsycreenoo	CANADIAN SYLLABICS Y-CREE NOO
+14C7	canadiansyllabicsna	CANADIAN SYLLABICS NA
+14C8	canadiansyllabicsnaa	CANADIAN SYLLABICS NAA
+14C9	canadiansyllabicsnwe	CANADIAN SYLLABICS NWE
+14CA	canadiansyllabicswestcreenwe	CANADIAN SYLLABICS WEST-CREE NWE
+14CB	canadiansyllabicsnwa	CANADIAN SYLLABICS NWA
+14CC	canadiansyllabicswestcreenwa	CANADIAN SYLLABICS WEST-CREE NWA
+14CD	canadiansyllabicsnwaa	CANADIAN SYLLABICS NWAA
+14CE	canadiansyllabicswestcreenwaa	CANADIAN SYLLABICS WEST-CREE NWAA
+14CF	canadiansyllabicsnaskapinwaa	CANADIAN SYLLABICS NASKAPI NWAA
+14D0	canadiansyllabicsn	CANADIAN SYLLABICS N
+14D1	canadiansyllabicscarrierng	CANADIAN SYLLABICS CARRIER NG
+14D2	canadiansyllabicsnh	CANADIAN SYLLABICS NH
+14D3	canadiansyllabicsle	CANADIAN SYLLABICS LE
+14D4	canadiansyllabicslaai	CANADIAN SYLLABICS LAAI
+14D5	canadiansyllabicsli	CANADIAN SYLLABICS LI
+14D6	canadiansyllabicslii	CANADIAN SYLLABICS LII
+14D7	canadiansyllabicslo	CANADIAN SYLLABICS LO
+14D8	canadiansyllabicsloo	CANADIAN SYLLABICS LOO
+14D9	canadiansyllabicsycreeloo	CANADIAN SYLLABICS Y-CREE LOO
+14DA	canadiansyllabicsla	CANADIAN SYLLABICS LA
+14DB	canadiansyllabicslaa	CANADIAN SYLLABICS LAA
+14DC	canadiansyllabicslwe	CANADIAN SYLLABICS LWE
+14DD	canadiansyllabicswestcreelwe	CANADIAN SYLLABICS WEST-CREE LWE
+14DE	canadiansyllabicslwi	CANADIAN SYLLABICS LWI
+14DF	canadiansyllabicswestcreelwi	CANADIAN SYLLABICS WEST-CREE LWI
+14E0	canadiansyllabicslwii	CANADIAN SYLLABICS LWII
+14E1	canadiansyllabicswestcreelwii	CANADIAN SYLLABICS WEST-CREE LWII
+14E2	canadiansyllabicslwo	CANADIAN SYLLABICS LWO
+14E3	canadiansyllabicswestcreelwo	CANADIAN SYLLABICS WEST-CREE LWO
+14E4	canadiansyllabicslwoo	CANADIAN SYLLABICS LWOO
+14E5	canadiansyllabicswestcreelwoo	CANADIAN SYLLABICS WEST-CREE LWOO
+14E6	canadiansyllabicslwa	CANADIAN SYLLABICS LWA
+14E7	canadiansyllabicswestcreelwa	CANADIAN SYLLABICS WEST-CREE LWA
+14E8	canadiansyllabicslwaa	CANADIAN SYLLABICS LWAA
+14E9	canadiansyllabicswestcreelwaa	CANADIAN SYLLABICS WEST-CREE LWAA
+14EA	canadiansyllabicsl	CANADIAN SYLLABICS L
+14EB	canadiansyllabicswestcreel	CANADIAN SYLLABICS WEST-CREE L
+14EC	canadiansyllabicsmediall	CANADIAN SYLLABICS MEDIAL L
+14ED	canadiansyllabicsse	CANADIAN SYLLABICS SE
+14EE	canadiansyllabicssaai	CANADIAN SYLLABICS SAAI
+14EF	canadiansyllabicssi	CANADIAN SYLLABICS SI
+14F0	canadiansyllabicssii	CANADIAN SYLLABICS SII
+14F1	canadiansyllabicsso	CANADIAN SYLLABICS SO
+14F2	canadiansyllabicssoo	CANADIAN SYLLABICS SOO
+14F3	canadiansyllabicsycreesoo	CANADIAN SYLLABICS Y-CREE SOO
+14F4	canadiansyllabicssa	CANADIAN SYLLABICS SA
+14F5	canadiansyllabicssaa	CANADIAN SYLLABICS SAA
+14F6	canadiansyllabicsswe	CANADIAN SYLLABICS SWE
+14F7	canadiansyllabicswestcreeswe	CANADIAN SYLLABICS WEST-CREE SWE
+14F8	canadiansyllabicsswi	CANADIAN SYLLABICS SWI
+14F9	canadiansyllabicswestcreeswi	CANADIAN SYLLABICS WEST-CREE SWI
+14FA	canadiansyllabicsswii	CANADIAN SYLLABICS SWII
+14FB	canadiansyllabicswestcreeswii	CANADIAN SYLLABICS WEST-CREE SWII
+14FC	canadiansyllabicsswo	CANADIAN SYLLABICS SWO
+14FD	canadiansyllabicswestcreeswo	CANADIAN SYLLABICS WEST-CREE SWO
+14FE	canadiansyllabicsswoo	CANADIAN SYLLABICS SWOO
+14FF	canadiansyllabicswestcreeswoo	CANADIAN SYLLABICS WEST-CREE SWOO
+1500	canadiansyllabicsswa	CANADIAN SYLLABICS SWA
+1501	canadiansyllabicswestcreeswa	CANADIAN SYLLABICS WEST-CREE SWA
+1502	canadiansyllabicsswaa	CANADIAN SYLLABICS SWAA
+1503	canadiansyllabicswestcreeswaa	CANADIAN SYLLABICS WEST-CREE SWAA
+1504	canadiansyllabicsnaskapiswaa	CANADIAN SYLLABICS NASKAPI SWAA
+1505	canadiansyllabicss	CANADIAN SYLLABICS S
+1506	canadiansyllabicsathapascans	CANADIAN SYLLABICS ATHAPASCAN S
+1507	canadiansyllabicssw	CANADIAN SYLLABICS SW
+1508	canadiansyllabicsblackfoots	CANADIAN SYLLABICS BLACKFOOT S
+1509	canadiansyllabicsmoosecreesk	CANADIAN SYLLABICS MOOSE-CREE SK
+150A	canadiansyllabicsnaskapiskw	CANADIAN SYLLABICS NASKAPI SKW
+150B	canadiansyllabicsnaskapisw	CANADIAN SYLLABICS NASKAPI S-W
+150C	canadiansyllabicsnaskapispwa	CANADIAN SYLLABICS NASKAPI SPWA
+150D	canadiansyllabicsnaskapistwa	CANADIAN SYLLABICS NASKAPI STWA
+150E	canadiansyllabicsnaskapiskwa	CANADIAN SYLLABICS NASKAPI SKWA
+150F	canadiansyllabicsnaskapiscwa	CANADIAN SYLLABICS NASKAPI SCWA
+1510	canadiansyllabicsshe	CANADIAN SYLLABICS SHE
+1511	canadiansyllabicsshi	CANADIAN SYLLABICS SHI
+1512	canadiansyllabicsshii	CANADIAN SYLLABICS SHII
+1513	canadiansyllabicssho	CANADIAN SYLLABICS SHO
+1514	canadiansyllabicsshoo	CANADIAN SYLLABICS SHOO
+1515	canadiansyllabicssha	CANADIAN SYLLABICS SHA
+1516	canadiansyllabicsshaa	CANADIAN SYLLABICS SHAA
+1517	canadiansyllabicsshwe	CANADIAN SYLLABICS SHWE
+1518	canadiansyllabicswestcreeshwe	CANADIAN SYLLABICS WEST-CREE SHWE
+1519	canadiansyllabicsshwi	CANADIAN SYLLABICS SHWI
+151A	canadiansyllabicswestcreeshwi	CANADIAN SYLLABICS WEST-CREE SHWI
+151B	canadiansyllabicsshwii	CANADIAN SYLLABICS SHWII
+151C	canadiansyllabicswestcreeshwii	CANADIAN SYLLABICS WEST-CREE SHWII
+151D	canadiansyllabicsshwo	CANADIAN SYLLABICS SHWO
+151E	canadiansyllabicswestcreeshwo	CANADIAN SYLLABICS WEST-CREE SHWO
+151F	canadiansyllabicsshwoo	CANADIAN SYLLABICS SHWOO
+1520	canadiansyllabicswestcreeshwoo	CANADIAN SYLLABICS WEST-CREE SHWOO
+1521	canadiansyllabicsshwa	CANADIAN SYLLABICS SHWA
+1522	canadiansyllabicswestcreeshwa	CANADIAN SYLLABICS WEST-CREE SHWA
+1523	canadiansyllabicsshwaa	CANADIAN SYLLABICS SHWAA
+1524	canadiansyllabicswestcreeshwaa	CANADIAN SYLLABICS WEST-CREE SHWAA
+1525	canadiansyllabicssh	CANADIAN SYLLABICS SH
+1526	canadiansyllabicsye	CANADIAN SYLLABICS YE
+1527	canadiansyllabicsyaai	CANADIAN SYLLABICS YAAI
+1528	canadiansyllabicsyi	CANADIAN SYLLABICS YI
+1529	canadiansyllabicsyii	CANADIAN SYLLABICS YII
+152A	canadiansyllabicsyo	CANADIAN SYLLABICS YO
+152B	canadiansyllabicsyoo	CANADIAN SYLLABICS YOO
+152C	canadiansyllabicsycreeyoo	CANADIAN SYLLABICS Y-CREE YOO
+152D	canadiansyllabicsya	CANADIAN SYLLABICS YA
+152E	canadiansyllabicsyaa	CANADIAN SYLLABICS YAA
+152F	canadiansyllabicsywe	CANADIAN SYLLABICS YWE
+1530	canadiansyllabicswestcreeywe	CANADIAN SYLLABICS WEST-CREE YWE
+1531	canadiansyllabicsywi	CANADIAN SYLLABICS YWI
+1532	canadiansyllabicswestcreeywi	CANADIAN SYLLABICS WEST-CREE YWI
+1533	canadiansyllabicsywii	CANADIAN SYLLABICS YWII
+1534	canadiansyllabicswestcreeywii	CANADIAN SYLLABICS WEST-CREE YWII
+1535	canadiansyllabicsywo	CANADIAN SYLLABICS YWO
+1536	canadiansyllabicswestcreeywo	CANADIAN SYLLABICS WEST-CREE YWO
+1537	canadiansyllabicsywoo	CANADIAN SYLLABICS YWOO
+1538	canadiansyllabicswestcreeywoo	CANADIAN SYLLABICS WEST-CREE YWOO
+1539	canadiansyllabicsywa	CANADIAN SYLLABICS YWA
+153A	canadiansyllabicswestcreeywa	CANADIAN SYLLABICS WEST-CREE YWA
+153B	canadiansyllabicsywaa	CANADIAN SYLLABICS YWAA
+153C	canadiansyllabicswestcreeywaa	CANADIAN SYLLABICS WEST-CREE YWAA
+153D	canadiansyllabicsnaskapiywaa	CANADIAN SYLLABICS NASKAPI YWAA
+153E	canadiansyllabicsy	CANADIAN SYLLABICS Y
+153F	canadiansyllabicsbiblecreey	CANADIAN SYLLABICS BIBLE-CREE Y
+1540	canadiansyllabicswestcreey	CANADIAN SYLLABICS WEST-CREE Y
+1541	canadiansyllabicssayisiyi	CANADIAN SYLLABICS SAYISI YI
+1542	canadiansyllabicsre	CANADIAN SYLLABICS RE
+1543	canadiansyllabicsrcreere	CANADIAN SYLLABICS R-CREE RE
+1544	canadiansyllabicswestcreele	CANADIAN SYLLABICS WEST-CREE LE
+1545	canadiansyllabicsraai	CANADIAN SYLLABICS RAAI
+1546	canadiansyllabicsri	CANADIAN SYLLABICS RI
+1547	canadiansyllabicsrii	CANADIAN SYLLABICS RII
+1548	canadiansyllabicsro	CANADIAN SYLLABICS RO
+1549	canadiansyllabicsroo	CANADIAN SYLLABICS ROO
+154A	canadiansyllabicswestcreelo	CANADIAN SYLLABICS WEST-CREE LO
+154B	canadiansyllabicsra	CANADIAN SYLLABICS RA
+154C	canadiansyllabicsraa	CANADIAN SYLLABICS RAA
+154D	canadiansyllabicswestcreela	CANADIAN SYLLABICS WEST-CREE LA
+154E	canadiansyllabicsrwaa	CANADIAN SYLLABICS RWAA
+154F	canadiansyllabicswestcreerwaa	CANADIAN SYLLABICS WEST-CREE RWAA
+1550	canadiansyllabicsr	CANADIAN SYLLABICS R
+1551	canadiansyllabicswestcreer	CANADIAN SYLLABICS WEST-CREE R
+1552	canadiansyllabicsmedialr	CANADIAN SYLLABICS MEDIAL R
+1553	canadiansyllabicsfe	CANADIAN SYLLABICS FE
+1554	canadiansyllabicsfaai	CANADIAN SYLLABICS FAAI
+1555	canadiansyllabicsfi	CANADIAN SYLLABICS FI
+1556	canadiansyllabicsfii	CANADIAN SYLLABICS FII
+1557	canadiansyllabicsfo	CANADIAN SYLLABICS FO
+1558	canadiansyllabicsfoo	CANADIAN SYLLABICS FOO
+1559	canadiansyllabicsfa	CANADIAN SYLLABICS FA
+155A	canadiansyllabicsfaa	CANADIAN SYLLABICS FAA
+155B	canadiansyllabicsfwaa	CANADIAN SYLLABICS FWAA
+155C	canadiansyllabicswestcreefwaa	CANADIAN SYLLABICS WEST-CREE FWAA
+155D	canadiansyllabicsf	CANADIAN SYLLABICS F
+155E	canadiansyllabicsthe	CANADIAN SYLLABICS THE
+155F	canadiansyllabicsncreethe	CANADIAN SYLLABICS N-CREE THE
+1560	canadiansyllabicsthi	CANADIAN SYLLABICS THI
+1561	canadiansyllabicsncreethi	CANADIAN SYLLABICS N-CREE THI
+1562	canadiansyllabicsthii	CANADIAN SYLLABICS THII
+1563	canadiansyllabicsncreethii	CANADIAN SYLLABICS N-CREE THII
+1564	canadiansyllabicstho	CANADIAN SYLLABICS THO
+1565	canadiansyllabicsthoo	CANADIAN SYLLABICS THOO
+1566	canadiansyllabicstha	CANADIAN SYLLABICS THA
+1567	canadiansyllabicsthaa	CANADIAN SYLLABICS THAA
+1568	canadiansyllabicsthwaa	CANADIAN SYLLABICS THWAA
+1569	canadiansyllabicswestcreethwaa	CANADIAN SYLLABICS WEST-CREE THWAA
+156A	canadiansyllabicsth	CANADIAN SYLLABICS TH
+156B	canadiansyllabicstthe	CANADIAN SYLLABICS TTHE
+156C	canadiansyllabicstthi	CANADIAN SYLLABICS TTHI
+156D	canadiansyllabicsttho	CANADIAN SYLLABICS TTHO
+156E	canadiansyllabicsttha	CANADIAN SYLLABICS TTHA
+156F	canadiansyllabicstth	CANADIAN SYLLABICS TTH
+1570	canadiansyllabicstye	CANADIAN SYLLABICS TYE
+1571	canadiansyllabicstyi	CANADIAN SYLLABICS TYI
+1572	canadiansyllabicstyo	CANADIAN SYLLABICS TYO
+1573	canadiansyllabicstya	CANADIAN SYLLABICS TYA
+1574	canadiansyllabicsnunavikhe	CANADIAN SYLLABICS NUNAVIK HE
+1575	canadiansyllabicsnunavikhi	CANADIAN SYLLABICS NUNAVIK HI
+1576	canadiansyllabicsnunavikhii	CANADIAN SYLLABICS NUNAVIK HII
+1577	canadiansyllabicsnunavikho	CANADIAN SYLLABICS NUNAVIK HO
+1578	canadiansyllabicsnunavikhoo	CANADIAN SYLLABICS NUNAVIK HOO
+1579	canadiansyllabicsnunavikha	CANADIAN SYLLABICS NUNAVIK HA
+157A	canadiansyllabicsnunavikhaa	CANADIAN SYLLABICS NUNAVIK HAA
+157B	canadiansyllabicsnunavikh	CANADIAN SYLLABICS NUNAVIK H
+157C	canadiansyllabicsnunavuth	CANADIAN SYLLABICS NUNAVUT H
+157D	canadiansyllabicshk	CANADIAN SYLLABICS HK
+157E	canadiansyllabicsqaai	CANADIAN SYLLABICS QAAI
+157F	canadiansyllabicsqi	CANADIAN SYLLABICS QI
+1580	canadiansyllabicsqii	CANADIAN SYLLABICS QII
+1581	canadiansyllabicsqo	CANADIAN SYLLABICS QO
+1582	canadiansyllabicsqoo	CANADIAN SYLLABICS QOO
+1583	canadiansyllabicsqa	CANADIAN SYLLABICS QA
+1584	canadiansyllabicsqaa	CANADIAN SYLLABICS QAA
+1585	canadiansyllabicsq	CANADIAN SYLLABICS Q
+1586	canadiansyllabicstlhe	CANADIAN SYLLABICS TLHE
+1587	canadiansyllabicstlhi	CANADIAN SYLLABICS TLHI
+1588	canadiansyllabicstlho	CANADIAN SYLLABICS TLHO
+1589	canadiansyllabicstlha	CANADIAN SYLLABICS TLHA
+158A	canadiansyllabicswestcreere	CANADIAN SYLLABICS WEST-CREE RE
+158B	canadiansyllabicswestcreeri	CANADIAN SYLLABICS WEST-CREE RI
+158C	canadiansyllabicswestcreero	CANADIAN SYLLABICS WEST-CREE RO
+158D	canadiansyllabicswestcreera	CANADIAN SYLLABICS WEST-CREE RA
+158E	canadiansyllabicsngaai	CANADIAN SYLLABICS NGAAI
+158F	canadiansyllabicsngi	CANADIAN SYLLABICS NGI
+1590	canadiansyllabicsngii	CANADIAN SYLLABICS NGII
+1591	canadiansyllabicsngo	CANADIAN SYLLABICS NGO
+1592	canadiansyllabicsngoo	CANADIAN SYLLABICS NGOO
+1593	canadiansyllabicsnga	CANADIAN SYLLABICS NGA
+1594	canadiansyllabicsngaa	CANADIAN SYLLABICS NGAA
+1595	canadiansyllabicsng	CANADIAN SYLLABICS NG
+1596	canadiansyllabicsnng	CANADIAN SYLLABICS NNG
+1597	canadiansyllabicssayisishe	CANADIAN SYLLABICS SAYISI SHE
+1598	canadiansyllabicssayisishi	CANADIAN SYLLABICS SAYISI SHI
+1599	canadiansyllabicssayisisho	CANADIAN SYLLABICS SAYISI SHO
+159A	canadiansyllabicssayisisha	CANADIAN SYLLABICS SAYISI SHA
+159B	canadiansyllabicswoodscreethe	CANADIAN SYLLABICS WOODS-CREE THE
+159C	canadiansyllabicswoodscreethi	CANADIAN SYLLABICS WOODS-CREE THI
+159D	canadiansyllabicswoodscreetho	CANADIAN SYLLABICS WOODS-CREE THO
+159E	canadiansyllabicswoodscreetha	CANADIAN SYLLABICS WOODS-CREE THA
+159F	canadiansyllabicswoodscreeth	CANADIAN SYLLABICS WOODS-CREE TH
+15A0	canadiansyllabicslhi	CANADIAN SYLLABICS LHI
+15A1	canadiansyllabicslhii	CANADIAN SYLLABICS LHII
+15A2	canadiansyllabicslho	CANADIAN SYLLABICS LHO
+15A3	canadiansyllabicslhoo	CANADIAN SYLLABICS LHOO
+15A4	canadiansyllabicslha	CANADIAN SYLLABICS LHA
+15A5	canadiansyllabicslhaa	CANADIAN SYLLABICS LHAA
+15A6	canadiansyllabicslh	CANADIAN SYLLABICS LH
+15A7	canadiansyllabicsthcreethe	CANADIAN SYLLABICS TH-CREE THE
+15A8	canadiansyllabicsthcreethi	CANADIAN SYLLABICS TH-CREE THI
+15A9	canadiansyllabicsthcreethii	CANADIAN SYLLABICS TH-CREE THII
+15AA	canadiansyllabicsthcreetho	CANADIAN SYLLABICS TH-CREE THO
+15AB	canadiansyllabicsthcreethoo	CANADIAN SYLLABICS TH-CREE THOO
+15AC	canadiansyllabicsthcreetha	CANADIAN SYLLABICS TH-CREE THA
+15AD	canadiansyllabicsthcreethaa	CANADIAN SYLLABICS TH-CREE THAA
+15AE	canadiansyllabicsthcreeth	CANADIAN SYLLABICS TH-CREE TH
+15AF	canadiansyllabicsaivilikb	CANADIAN SYLLABICS AIVILIK B
+15B0	canadiansyllabicsblackfoote	CANADIAN SYLLABICS BLACKFOOT E
+15B1	canadiansyllabicsblackfooti	CANADIAN SYLLABICS BLACKFOOT I
+15B2	canadiansyllabicsblackfooto	CANADIAN SYLLABICS BLACKFOOT O
+15B3	canadiansyllabicsblackfoota	CANADIAN SYLLABICS BLACKFOOT A
+15B4	canadiansyllabicsblackfootwe	CANADIAN SYLLABICS BLACKFOOT WE
+15B5	canadiansyllabicsblackfootwi	CANADIAN SYLLABICS BLACKFOOT WI
+15B6	canadiansyllabicsblackfootwo	CANADIAN SYLLABICS BLACKFOOT WO
+15B7	canadiansyllabicsblackfootwa	CANADIAN SYLLABICS BLACKFOOT WA
+15B8	canadiansyllabicsblackfootne	CANADIAN SYLLABICS BLACKFOOT NE
+15B9	canadiansyllabicsblackfootni	CANADIAN SYLLABICS BLACKFOOT NI
+15BA	canadiansyllabicsblackfootno	CANADIAN SYLLABICS BLACKFOOT NO
+15BB	canadiansyllabicsblackfootna	CANADIAN SYLLABICS BLACKFOOT NA
+15BC	canadiansyllabicsblackfootke	CANADIAN SYLLABICS BLACKFOOT KE
+15BD	canadiansyllabicsblackfootki	CANADIAN SYLLABICS BLACKFOOT KI
+15BE	canadiansyllabicsblackfootko	CANADIAN SYLLABICS BLACKFOOT KO
+15BF	canadiansyllabicsblackfootka	CANADIAN SYLLABICS BLACKFOOT KA
+15C0	canadiansyllabicssayisihe	CANADIAN SYLLABICS SAYISI HE
+15C1	canadiansyllabicssayisihi	CANADIAN SYLLABICS SAYISI HI
+15C2	canadiansyllabicssayisiho	CANADIAN SYLLABICS SAYISI HO
+15C3	canadiansyllabicssayisiha	CANADIAN SYLLABICS SAYISI HA
+15C4	canadiansyllabicscarrierghu	CANADIAN SYLLABICS CARRIER GHU
+15C5	canadiansyllabicscarriergho	CANADIAN SYLLABICS CARRIER GHO
+15C6	canadiansyllabicscarrierghe	CANADIAN SYLLABICS CARRIER GHE
+15C7	canadiansyllabicscarrierghee	CANADIAN SYLLABICS CARRIER GHEE
+15C8	canadiansyllabicscarrierghi	CANADIAN SYLLABICS CARRIER GHI
+15C9	canadiansyllabicscarriergha	CANADIAN SYLLABICS CARRIER GHA
+15CA	canadiansyllabicscarrierru	CANADIAN SYLLABICS CARRIER RU
+15CB	canadiansyllabicscarrierro	CANADIAN SYLLABICS CARRIER RO
+15CC	canadiansyllabicscarrierre	CANADIAN SYLLABICS CARRIER RE
+15CD	canadiansyllabicscarrierree	CANADIAN SYLLABICS CARRIER REE
+15CE	canadiansyllabicscarrierri	CANADIAN SYLLABICS CARRIER RI
+15CF	canadiansyllabicscarrierra	CANADIAN SYLLABICS CARRIER RA
+15D0	canadiansyllabicscarrierwu	CANADIAN SYLLABICS CARRIER WU
+15D1	canadiansyllabicscarrierwo	CANADIAN SYLLABICS CARRIER WO
+15D2	canadiansyllabicscarrierwe	CANADIAN SYLLABICS CARRIER WE
+15D3	canadiansyllabicscarrierwee	CANADIAN SYLLABICS CARRIER WEE
+15D4	canadiansyllabicscarrierwi	CANADIAN SYLLABICS CARRIER WI
+15D5	canadiansyllabicscarrierwa	CANADIAN SYLLABICS CARRIER WA
+15D6	canadiansyllabicscarrierhwu	CANADIAN SYLLABICS CARRIER HWU
+15D7	canadiansyllabicscarrierhwo	CANADIAN SYLLABICS CARRIER HWO
+15D8	canadiansyllabicscarrierhwe	CANADIAN SYLLABICS CARRIER HWE
+15D9	canadiansyllabicscarrierhwee	CANADIAN SYLLABICS CARRIER HWEE
+15DA	canadiansyllabicscarrierhwi	CANADIAN SYLLABICS CARRIER HWI
+15DB	canadiansyllabicscarrierhwa	CANADIAN SYLLABICS CARRIER HWA
+15DC	canadiansyllabicscarrierthu	CANADIAN SYLLABICS CARRIER THU
+15DD	canadiansyllabicscarriertho	CANADIAN SYLLABICS CARRIER THO
+15DE	canadiansyllabicscarrierthe	CANADIAN SYLLABICS CARRIER THE
+15DF	canadiansyllabicscarrierthee	CANADIAN SYLLABICS CARRIER THEE
+15E0	canadiansyllabicscarrierthi	CANADIAN SYLLABICS CARRIER THI
+15E1	canadiansyllabicscarriertha	CANADIAN SYLLABICS CARRIER THA
+15E2	canadiansyllabicscarrierttu	CANADIAN SYLLABICS CARRIER TTU
+15E3	canadiansyllabicscarriertto	CANADIAN SYLLABICS CARRIER TTO
+15E4	canadiansyllabicscarriertte	CANADIAN SYLLABICS CARRIER TTE
+15E5	canadiansyllabicscarrierttee	CANADIAN SYLLABICS CARRIER TTEE
+15E6	canadiansyllabicscarriertti	CANADIAN SYLLABICS CARRIER TTI
+15E7	canadiansyllabicscarriertta	CANADIAN SYLLABICS CARRIER TTA
+15E8	canadiansyllabicscarrierpu	CANADIAN SYLLABICS CARRIER PU
+15E9	canadiansyllabicscarrierpo	CANADIAN SYLLABICS CARRIER PO
+15EA	canadiansyllabicscarrierpe	CANADIAN SYLLABICS CARRIER PE
+15EB	canadiansyllabicscarrierpee	CANADIAN SYLLABICS CARRIER PEE
+15EC	canadiansyllabicscarrierpi	CANADIAN SYLLABICS CARRIER PI
+15ED	canadiansyllabicscarrierpa	CANADIAN SYLLABICS CARRIER PA
+15EE	canadiansyllabicscarrierp	CANADIAN SYLLABICS CARRIER P
+15EF	canadiansyllabicscarriergu	CANADIAN SYLLABICS CARRIER GU
+15F0	canadiansyllabicscarriergo	CANADIAN SYLLABICS CARRIER GO
+15F1	canadiansyllabicscarrierge	CANADIAN SYLLABICS CARRIER GE
+15F2	canadiansyllabicscarriergee	CANADIAN SYLLABICS CARRIER GEE
+15F3	canadiansyllabicscarriergi	CANADIAN SYLLABICS CARRIER GI
+15F4	canadiansyllabicscarrierga	CANADIAN SYLLABICS CARRIER GA
+15F5	canadiansyllabicscarrierkhu	CANADIAN SYLLABICS CARRIER KHU
+15F6	canadiansyllabicscarrierkho	CANADIAN SYLLABICS CARRIER KHO
+15F7	canadiansyllabicscarrierkhe	CANADIAN SYLLABICS CARRIER KHE
+15F8	canadiansyllabicscarrierkhee	CANADIAN SYLLABICS CARRIER KHEE
+15F9	canadiansyllabicscarrierkhi	CANADIAN SYLLABICS CARRIER KHI
+15FA	canadiansyllabicscarrierkha	CANADIAN SYLLABICS CARRIER KHA
+15FB	canadiansyllabicscarrierkku	CANADIAN SYLLABICS CARRIER KKU
+15FC	canadiansyllabicscarrierkko	CANADIAN SYLLABICS CARRIER KKO
+15FD	canadiansyllabicscarrierkke	CANADIAN SYLLABICS CARRIER KKE
+15FE	canadiansyllabicscarrierkkee	CANADIAN SYLLABICS CARRIER KKEE
+15FF	canadiansyllabicscarrierkki	CANADIAN SYLLABICS CARRIER KKI
+1600	canadiansyllabicscarrierkka	CANADIAN SYLLABICS CARRIER KKA
+1601	canadiansyllabicscarrierkk	CANADIAN SYLLABICS CARRIER KK
+1602	canadiansyllabicscarriernu	CANADIAN SYLLABICS CARRIER NU
+1603	canadiansyllabicscarrierno	CANADIAN SYLLABICS CARRIER NO
+1604	canadiansyllabicscarrierne	CANADIAN SYLLABICS CARRIER NE
+1605	canadiansyllabicscarriernee	CANADIAN SYLLABICS CARRIER NEE
+1606	canadiansyllabicscarrierni	CANADIAN SYLLABICS CARRIER NI
+1607	canadiansyllabicscarrierna	CANADIAN SYLLABICS CARRIER NA
+1608	canadiansyllabicscarriermu	CANADIAN SYLLABICS CARRIER MU
+1609	canadiansyllabicscarriermo	CANADIAN SYLLABICS CARRIER MO
+160A	canadiansyllabicscarrierme	CANADIAN SYLLABICS CARRIER ME
+160B	canadiansyllabicscarriermee	CANADIAN SYLLABICS CARRIER MEE
+160C	canadiansyllabicscarriermi	CANADIAN SYLLABICS CARRIER MI
+160D	canadiansyllabicscarrierma	CANADIAN SYLLABICS CARRIER MA
+160E	canadiansyllabicscarrieryu	CANADIAN SYLLABICS CARRIER YU
+160F	canadiansyllabicscarrieryo	CANADIAN SYLLABICS CARRIER YO
+1610	canadiansyllabicscarrierye	CANADIAN SYLLABICS CARRIER YE
+1611	canadiansyllabicscarrieryee	CANADIAN SYLLABICS CARRIER YEE
+1612	canadiansyllabicscarrieryi	CANADIAN SYLLABICS CARRIER YI
+1613	canadiansyllabicscarrierya	CANADIAN SYLLABICS CARRIER YA
+1614	canadiansyllabicscarrierju	CANADIAN SYLLABICS CARRIER JU
+1615	canadiansyllabicssayisiju	CANADIAN SYLLABICS SAYISI JU
+1616	canadiansyllabicscarrierjo	CANADIAN SYLLABICS CARRIER JO
+1617	canadiansyllabicscarrierje	CANADIAN SYLLABICS CARRIER JE
+1618	canadiansyllabicscarrierjee	CANADIAN SYLLABICS CARRIER JEE
+1619	canadiansyllabicscarrierji	CANADIAN SYLLABICS CARRIER JI
+161A	canadiansyllabicssayisiji	CANADIAN SYLLABICS SAYISI JI
+161B	canadiansyllabicscarrierja	CANADIAN SYLLABICS CARRIER JA
+161C	canadiansyllabicscarrierjju	CANADIAN SYLLABICS CARRIER JJU
+161D	canadiansyllabicscarrierjjo	CANADIAN SYLLABICS CARRIER JJO
+161E	canadiansyllabicscarrierjje	CANADIAN SYLLABICS CARRIER JJE
+161F	canadiansyllabicscarrierjjee	CANADIAN SYLLABICS CARRIER JJEE
+1620	canadiansyllabicscarrierjji	CANADIAN SYLLABICS CARRIER JJI
+1621	canadiansyllabicscarrierjja	CANADIAN SYLLABICS CARRIER JJA
+1622	canadiansyllabicscarrierlu	CANADIAN SYLLABICS CARRIER LU
+1623	canadiansyllabicscarrierlo	CANADIAN SYLLABICS CARRIER LO
+1624	canadiansyllabicscarrierle	CANADIAN SYLLABICS CARRIER LE
+1625	canadiansyllabicscarrierlee	CANADIAN SYLLABICS CARRIER LEE
+1626	canadiansyllabicscarrierli	CANADIAN SYLLABICS CARRIER LI
+1627	canadiansyllabicscarrierla	CANADIAN SYLLABICS CARRIER LA
+1628	canadiansyllabicscarrierdlu	CANADIAN SYLLABICS CARRIER DLU
+1629	canadiansyllabicscarrierdlo	CANADIAN SYLLABICS CARRIER DLO
+162A	canadiansyllabicscarrierdle	CANADIAN SYLLABICS CARRIER DLE
+162B	canadiansyllabicscarrierdlee	CANADIAN SYLLABICS CARRIER DLEE
+162C	canadiansyllabicscarrierdli	CANADIAN SYLLABICS CARRIER DLI
+162D	canadiansyllabicscarrierdla	CANADIAN SYLLABICS CARRIER DLA
+162E	canadiansyllabicscarrierlhu	CANADIAN SYLLABICS CARRIER LHU
+162F	canadiansyllabicscarrierlho	CANADIAN SYLLABICS CARRIER LHO
+1630	canadiansyllabicscarrierlhe	CANADIAN SYLLABICS CARRIER LHE
+1631	canadiansyllabicscarrierlhee	CANADIAN SYLLABICS CARRIER LHEE
+1632	canadiansyllabicscarrierlhi	CANADIAN SYLLABICS CARRIER LHI
+1633	canadiansyllabicscarrierlha	CANADIAN SYLLABICS CARRIER LHA
+1634	canadiansyllabicscarriertlhu	CANADIAN SYLLABICS CARRIER TLHU
+1635	canadiansyllabicscarriertlho	CANADIAN SYLLABICS CARRIER TLHO
+1636	canadiansyllabicscarriertlhe	CANADIAN SYLLABICS CARRIER TLHE
+1637	canadiansyllabicscarriertlhee	CANADIAN SYLLABICS CARRIER TLHEE
+1638	canadiansyllabicscarriertlhi	CANADIAN SYLLABICS CARRIER TLHI
+1639	canadiansyllabicscarriertlha	CANADIAN SYLLABICS CARRIER TLHA
+163A	canadiansyllabicscarriertlu	CANADIAN SYLLABICS CARRIER TLU
+163B	canadiansyllabicscarriertlo	CANADIAN SYLLABICS CARRIER TLO
+163C	canadiansyllabicscarriertle	CANADIAN SYLLABICS CARRIER TLE
+163D	canadiansyllabicscarriertlee	CANADIAN SYLLABICS CARRIER TLEE
+163E	canadiansyllabicscarriertli	CANADIAN SYLLABICS CARRIER TLI
+163F	canadiansyllabicscarriertla	CANADIAN SYLLABICS CARRIER TLA
+1640	canadiansyllabicscarrierzu	CANADIAN SYLLABICS CARRIER ZU
+1641	canadiansyllabicscarrierzo	CANADIAN SYLLABICS CARRIER ZO
+1642	canadiansyllabicscarrierze	CANADIAN SYLLABICS CARRIER ZE
+1643	canadiansyllabicscarrierzee	CANADIAN SYLLABICS CARRIER ZEE
+1644	canadiansyllabicscarrierzi	CANADIAN SYLLABICS CARRIER ZI
+1645	canadiansyllabicscarrierza	CANADIAN SYLLABICS CARRIER ZA
+1646	canadiansyllabicscarrierz	CANADIAN SYLLABICS CARRIER Z
+1647	canadiansyllabicscarrierinitialz	CANADIAN SYLLABICS CARRIER INITIAL Z
+1648	canadiansyllabicscarrierdzu	CANADIAN SYLLABICS CARRIER DZU
+1649	canadiansyllabicscarrierdzo	CANADIAN SYLLABICS CARRIER DZO
+164A	canadiansyllabicscarrierdze	CANADIAN SYLLABICS CARRIER DZE
+164B	canadiansyllabicscarrierdzee	CANADIAN SYLLABICS CARRIER DZEE
+164C	canadiansyllabicscarrierdzi	CANADIAN SYLLABICS CARRIER DZI
+164D	canadiansyllabicscarrierdza	CANADIAN SYLLABICS CARRIER DZA
+164E	canadiansyllabicscarriersu	CANADIAN SYLLABICS CARRIER SU
+164F	canadiansyllabicscarrierso	CANADIAN SYLLABICS CARRIER SO
+1650	canadiansyllabicscarrierse	CANADIAN SYLLABICS CARRIER SE
+1651	canadiansyllabicscarriersee	CANADIAN SYLLABICS CARRIER SEE
+1652	canadiansyllabicscarriersi	CANADIAN SYLLABICS CARRIER SI
+1653	canadiansyllabicscarriersa	CANADIAN SYLLABICS CARRIER SA
+1654	canadiansyllabicscarriershu	CANADIAN SYLLABICS CARRIER SHU
+1655	canadiansyllabicscarriersho	CANADIAN SYLLABICS CARRIER SHO
+1656	canadiansyllabicscarriershe	CANADIAN SYLLABICS CARRIER SHE
+1657	canadiansyllabicscarriershee	CANADIAN SYLLABICS CARRIER SHEE
+1658	canadiansyllabicscarriershi	CANADIAN SYLLABICS CARRIER SHI
+1659	canadiansyllabicscarriersha	CANADIAN SYLLABICS CARRIER SHA
+165A	canadiansyllabicscarriersh	CANADIAN SYLLABICS CARRIER SH
+165B	canadiansyllabicscarriertsu	CANADIAN SYLLABICS CARRIER TSU
+165C	canadiansyllabicscarriertso	CANADIAN SYLLABICS CARRIER TSO
+165D	canadiansyllabicscarriertse	CANADIAN SYLLABICS CARRIER TSE
+165E	canadiansyllabicscarriertsee	CANADIAN SYLLABICS CARRIER TSEE
+165F	canadiansyllabicscarriertsi	CANADIAN SYLLABICS CARRIER TSI
+1660	canadiansyllabicscarriertsa	CANADIAN SYLLABICS CARRIER TSA
+1661	canadiansyllabicscarrierchu	CANADIAN SYLLABICS CARRIER CHU
+1662	canadiansyllabicscarriercho	CANADIAN SYLLABICS CARRIER CHO
+1663	canadiansyllabicscarrierche	CANADIAN SYLLABICS CARRIER CHE
+1664	canadiansyllabicscarrierchee	CANADIAN SYLLABICS CARRIER CHEE
+1665	canadiansyllabicscarrierchi	CANADIAN SYLLABICS CARRIER CHI
+1666	canadiansyllabicscarriercha	CANADIAN SYLLABICS CARRIER CHA
+1667	canadiansyllabicscarrierttsu	CANADIAN SYLLABICS CARRIER TTSU
+1668	canadiansyllabicscarrierttso	CANADIAN SYLLABICS CARRIER TTSO
+1669	canadiansyllabicscarrierttse	CANADIAN SYLLABICS CARRIER TTSE
+166A	canadiansyllabicscarrierttsee	CANADIAN SYLLABICS CARRIER TTSEE
+166B	canadiansyllabicscarrierttsi	CANADIAN SYLLABICS CARRIER TTSI
+166C	canadiansyllabicscarrierttsa	CANADIAN SYLLABICS CARRIER TTSA
+166D	canadiansyllabicschisign	CANADIAN SYLLABICS CHI SIGN
+166E	canadiansyllabicsfullstop	CANADIAN SYLLABICS FULL STOP
+166F	canadiansyllabicsqai	CANADIAN SYLLABICS QAI
+1670	canadiansyllabicsngai	CANADIAN SYLLABICS NGAI
+1671	canadiansyllabicsnngi	CANADIAN SYLLABICS NNGI
+1672	canadiansyllabicsnngii	CANADIAN SYLLABICS NNGII
+1673	canadiansyllabicsnngo	CANADIAN SYLLABICS NNGO
+1674	canadiansyllabicsnngoo	CANADIAN SYLLABICS NNGOO
+1675	canadiansyllabicsnnga	CANADIAN SYLLABICS NNGA
+1676	canadiansyllabicsnngaa	CANADIAN SYLLABICS NNGAA
+1677	canadiansyllabicswoodscreethwee	CANADIAN SYLLABICS WOODS-CREE THWEE
+1678	canadiansyllabicswoodscreethwi	CANADIAN SYLLABICS WOODS-CREE THWI
+1679	canadiansyllabicswoodscreethwii	CANADIAN SYLLABICS WOODS-CREE THWII
+167A	canadiansyllabicswoodscreethwo	CANADIAN SYLLABICS WOODS-CREE THWO
+167B	canadiansyllabicswoodscreethwoo	CANADIAN SYLLABICS WOODS-CREE THWOO
+167C	canadiansyllabicswoodscreethwa	CANADIAN SYLLABICS WOODS-CREE THWA
+167D	canadiansyllabicswoodscreethwaa	CANADIAN SYLLABICS WOODS-CREE THWAA
+167E	canadiansyllabicswoodscreefinalth	CANADIAN SYLLABICS WOODS-CREE FINAL TH
+167F	canadiansyllabicsblackfootw	CANADIAN SYLLABICS BLACKFOOT W

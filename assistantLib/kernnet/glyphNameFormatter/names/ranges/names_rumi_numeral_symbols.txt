@@ -1,0 +1,32 @@
+# Rumi Numeral Symbols 10E60 - 10E7F
+10E60	rumidigitone	RUMI DIGIT ONE
+10E61	rumidigittwo	RUMI DIGIT TWO
+10E62	rumidigitthree	RUMI DIGIT THREE
+10E63	rumidigitfour	RUMI DIGIT FOUR
+10E64	rumidigitfive	RUMI DIGIT FIVE
+10E65	rumidigitsix	RUMI DIGIT SIX
+10E66	rumidigitseven	RUMI DIGIT SEVEN
+10E67	rumidigiteight	RUMI DIGIT EIGHT
+10E68	rumidigitnine	RUMI DIGIT NINE
+10E69	ruminumberten	RUMI NUMBER TEN
+10E6A	ruminumbertwenty	RUMI NUMBER TWENTY
+10E6B	ruminumberthirty	RUMI NUMBER THIRTY
+10E6C	ruminumberforty	RUMI NUMBER FORTY
+10E6D	ruminumberfifty	RUMI NUMBER FIFTY
+10E6E	ruminumbersixty	RUMI NUMBER SIXTY
+10E6F	ruminumberseventy	RUMI NUMBER SEVENTY
+10E70	ruminumbereighty	RUMI NUMBER EIGHTY
+10E71	ruminumberninety	RUMI NUMBER NINETY
+10E72	ruminumberonehundred	RUMI NUMBER ONE HUNDRED
+10E73	ruminumbertwohundred	RUMI NUMBER TWO HUNDRED
+10E74	ruminumberthreehundred	RUMI NUMBER THREE HUNDRED
+10E75	ruminumberfourhundred	RUMI NUMBER FOUR HUNDRED
+10E76	ruminumberfivehundred	RUMI NUMBER FIVE HUNDRED
+10E77	ruminumbersixhundred	RUMI NUMBER SIX HUNDRED
+10E78	ruminumbersevenhundred	RUMI NUMBER SEVEN HUNDRED
+10E79	ruminumbereighthundred	RUMI NUMBER EIGHT HUNDRED
+10E7A	ruminumberninehundred	RUMI NUMBER NINE HUNDRED
+10E7B	rumifractiononehalf	RUMI FRACTION ONE HALF
+10E7C	rumifractiononequarter	RUMI FRACTION ONE QUARTER
+10E7D	rumifractiononethird	RUMI FRACTION ONE THIRD
+10E7E	rumifractiontwothirds	RUMI FRACTION TWO THIRDS

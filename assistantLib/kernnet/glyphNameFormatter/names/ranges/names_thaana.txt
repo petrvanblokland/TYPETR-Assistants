@@ -1,0 +1,51 @@
+# Thaana 0780 - 07BF
+0780	thaanaletterhaa	THAANA LETTER HAA
+0781	thaanalettershaviyani	THAANA LETTER SHAVIYANI
+0782	thaanaletternoonu	THAANA LETTER NOONU
+0783	thaanaletterraa	THAANA LETTER RAA
+0784	thaanaletterbaa	THAANA LETTER BAA
+0785	thaanaletterlhaviyani	THAANA LETTER LHAVIYANI
+0786	thaanaletterkaafu	THAANA LETTER KAAFU
+0787	thaanaletteralifu	THAANA LETTER ALIFU
+0788	thaanalettervaavu	THAANA LETTER VAAVU
+0789	thaanalettermeemu	THAANA LETTER MEEMU
+078A	thaanaletterfaafu	THAANA LETTER FAAFU
+078B	thaanaletterdhaalu	THAANA LETTER DHAALU
+078C	thaanaletterthaa	THAANA LETTER THAA
+078D	thaanaletterlaamu	THAANA LETTER LAAMU
+078E	thaanalettergaafu	THAANA LETTER GAAFU
+078F	thaanalettergnaviyani	THAANA LETTER GNAVIYANI
+0790	thaanaletterseenu	THAANA LETTER SEENU
+0791	thaanaletterdaviyani	THAANA LETTER DAVIYANI
+0792	thaanaletterzaviyani	THAANA LETTER ZAVIYANI
+0793	thaanalettertaviyani	THAANA LETTER TAVIYANI
+0794	thaanaletteryaa	THAANA LETTER YAA
+0795	thaanaletterpaviyani	THAANA LETTER PAVIYANI
+0796	thaanaletterjaviyani	THAANA LETTER JAVIYANI
+0797	thaanaletterchaviyani	THAANA LETTER CHAVIYANI
+0798	thaanaletterttaa	THAANA LETTER TTAA
+0799	thaanaletterhhaa	THAANA LETTER HHAA
+079A	thaanaletterkhaa	THAANA LETTER KHAA
+079B	thaanaletterthaalu	THAANA LETTER THAALU
+079C	thaanaletterzaa	THAANA LETTER ZAA
+079D	thaanalettersheenu	THAANA LETTER SHEENU
+079E	thaanalettersaadhu	THAANA LETTER SAADHU
+079F	thaanaletterdaadhu	THAANA LETTER DAADHU
+07A0	thaanaletterto	THAANA LETTER TO
+07A1	thaanaletterzo	THAANA LETTER ZO
+07A2	thaanaletterainu	THAANA LETTER AINU
+07A3	thaanaletterghainu	THAANA LETTER GHAINU
+07A4	thaanaletterqaafu	THAANA LETTER QAAFU
+07A5	thaanaletterwaavu	THAANA LETTER WAAVU
+07A6	thaanaabafili	THAANA ABAFILI
+07A7	thaanaaabaafili	THAANA AABAAFILI
+07A8	thaanaibifili	THAANA IBIFILI
+07A9	thaanaeebeefili	THAANA EEBEEFILI
+07AA	thaanaubufili	THAANA UBUFILI
+07AB	thaanaooboofili	THAANA OOBOOFILI
+07AC	thaanaebefili	THAANA EBEFILI
+07AD	thaanaeybeyfili	THAANA EYBEYFILI
+07AE	thaanaobofili	THAANA OBOFILI
+07AF	thaanaoaboafili	THAANA OABOAFILI
+07B0	thaanasukun	THAANA SUKUN
+07B1	thaanaletternaa	THAANA LETTER NAA

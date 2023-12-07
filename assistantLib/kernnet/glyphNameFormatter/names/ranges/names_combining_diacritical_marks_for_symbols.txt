@@ -1,0 +1,34 @@
+# Combining Diacritical Marks for Symbols 20D0 - 20FF
+20D0	combiningleftharpoonabove	COMBINING LEFT HARPOON ABOVE
+20D1	combiningrightharpoonabove	COMBINING RIGHT HARPOON ABOVE
+20D2	combininglongverticallineoverlay	COMBINING LONG VERTICAL LINE OVERLAY
+20D3	combiningshortverticallineoverlay	COMBINING SHORT VERTICAL LINE OVERLAY
+20D4	combininganticlockwisearrowabove	COMBINING ANTICLOCKWISE ARROW ABOVE
+20D5	combiningclockwisearrowabove	COMBINING CLOCKWISE ARROW ABOVE
+20D6	combiningleftarrowabove	COMBINING LEFT ARROW ABOVE
+20D7	combiningrightarrowabove	COMBINING RIGHT ARROW ABOVE
+20D8	combiningringoverlay	COMBINING RING OVERLAY
+20D9	combiningclockwiseringoverlay	COMBINING CLOCKWISE RING OVERLAY
+20DA	combininganticlockwiseringoverlay	COMBINING ANTICLOCKWISE RING OVERLAY
+20DB	combiningthreedotsabove	COMBINING THREE DOTS ABOVE
+20DC	combiningfourdotsabove	COMBINING FOUR DOTS ABOVE
+20DD	combiningenclosingcircle	COMBINING ENCLOSING CIRCLE
+20DE	combiningenclosingsquare	COMBINING ENCLOSING SQUARE
+20DF	combiningenclosingdiamond	COMBINING ENCLOSING DIAMOND
+20E0	combiningenclosingcirclebackslash	COMBINING ENCLOSING CIRCLE BACKSLASH
+20E1	combiningleftrightarrowabove	COMBINING LEFT RIGHT ARROW ABOVE
+20E2	combiningenclosingscreen	COMBINING ENCLOSING SCREEN
+20E3	combiningenclosingkeycap	COMBINING ENCLOSING KEYCAP
+20E4	combiningenclosingupwardpointingtriangle	COMBINING ENCLOSING UPWARD POINTING TRIANGLE
+20E5	combiningreversesolidusoverlay	COMBINING REVERSE SOLIDUS OVERLAY
+20E6	combiningdoubleverticalstrokeoverlay	COMBINING DOUBLE VERTICAL STROKE OVERLAY
+20E7	combiningannuitysymbol	COMBINING ANNUITY SYMBOL
+20E8	combiningtripleunderdot	COMBINING TRIPLE UNDERDOT
+20E9	combiningwidebridgeabove	COMBINING WIDE BRIDGE ABOVE
+20EA	combiningleftwardsarrowoverlay	COMBINING LEFTWARDS ARROW OVERLAY
+20EB	combininglongdoublesolidusoverlay	COMBINING LONG DOUBLE SOLIDUS OVERLAY
+20EC	combiningrightwardsharpoonwithbarbdownwards	COMBINING RIGHTWARDS HARPOON WITH BARB DOWNWARDS
+20ED	combiningleftwardsharpoonwithbarbdownwards	COMBINING LEFTWARDS HARPOON WITH BARB DOWNWARDS
+20EE	combiningleftarrowbelow	COMBINING LEFT ARROW BELOW
+20EF	combiningrightarrowbelow	COMBINING RIGHT ARROW BELOW
+20F0	combiningasteriskabove	COMBINING ASTERISK ABOVE

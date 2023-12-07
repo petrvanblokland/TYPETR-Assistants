@@ -1,0 +1,73 @@
+# Tai Viet AA80 - AADF
+AA80	taivietletterlowko	TAI VIET LETTER LOW KO
+AA81	taivietletterhighko	TAI VIET LETTER HIGH KO
+AA82	taivietletterlowkho	TAI VIET LETTER LOW KHO
+AA83	taivietletterhighkho	TAI VIET LETTER HIGH KHO
+AA84	taivietletterlowkhho	TAI VIET LETTER LOW KHHO
+AA85	taivietletterhighkhho	TAI VIET LETTER HIGH KHHO
+AA86	taivietletterlowgo	TAI VIET LETTER LOW GO
+AA87	taivietletterhighgo	TAI VIET LETTER HIGH GO
+AA88	taivietletterlowngo	TAI VIET LETTER LOW NGO
+AA89	taivietletterhighngo	TAI VIET LETTER HIGH NGO
+AA8A	taivietletterlowco	TAI VIET LETTER LOW CO
+AA8B	taivietletterhighco	TAI VIET LETTER HIGH CO
+AA8C	taivietletterlowcho	TAI VIET LETTER LOW CHO
+AA8D	taivietletterhighcho	TAI VIET LETTER HIGH CHO
+AA8E	taivietletterlowso	TAI VIET LETTER LOW SO
+AA8F	taivietletterhighso	TAI VIET LETTER HIGH SO
+AA90	taivietletterlownyo	TAI VIET LETTER LOW NYO
+AA91	taivietletterhighnyo	TAI VIET LETTER HIGH NYO
+AA92	taivietletterlowdo	TAI VIET LETTER LOW DO
+AA93	taivietletterhighdo	TAI VIET LETTER HIGH DO
+AA94	taivietletterlowto	TAI VIET LETTER LOW TO
+AA95	taivietletterhighto	TAI VIET LETTER HIGH TO
+AA96	taivietletterlowtho	TAI VIET LETTER LOW THO
+AA97	taivietletterhightho	TAI VIET LETTER HIGH THO
+AA98	taivietletterlowno	TAI VIET LETTER LOW NO
+AA99	taivietletterhighno	TAI VIET LETTER HIGH NO
+AA9A	taivietletterlowbo	TAI VIET LETTER LOW BO
+AA9B	taivietletterhighbo	TAI VIET LETTER HIGH BO
+AA9C	taivietletterlowpo	TAI VIET LETTER LOW PO
+AA9D	taivietletterhighpo	TAI VIET LETTER HIGH PO
+AA9E	taivietletterlowpho	TAI VIET LETTER LOW PHO
+AA9F	taivietletterhighpho	TAI VIET LETTER HIGH PHO
+AAA0	taivietletterlowfo	TAI VIET LETTER LOW FO
+AAA1	taivietletterhighfo	TAI VIET LETTER HIGH FO
+AAA2	taivietletterlowmo	TAI VIET LETTER LOW MO
+AAA3	taivietletterhighmo	TAI VIET LETTER HIGH MO
+AAA4	taivietletterlowyo	TAI VIET LETTER LOW YO
+AAA5	taivietletterhighyo	TAI VIET LETTER HIGH YO
+AAA6	taivietletterlowro	TAI VIET LETTER LOW RO
+AAA7	taivietletterhighro	TAI VIET LETTER HIGH RO
+AAA8	taivietletterlowlo	TAI VIET LETTER LOW LO
+AAA9	taivietletterhighlo	TAI VIET LETTER HIGH LO
+AAAA	taivietletterlowvo	TAI VIET LETTER LOW VO
+AAAB	taivietletterhighvo	TAI VIET LETTER HIGH VO
+AAAC	taivietletterlowho	TAI VIET LETTER LOW HO
+AAAD	taivietletterhighho	TAI VIET LETTER HIGH HO
+AAAE	taivietletterlowo	TAI VIET LETTER LOW O
+AAAF	taivietletterhigho	TAI VIET LETTER HIGH O
+AAB0	taivietmaikang	TAI VIET MAI KANG
+AAB1	taivietvowelaa	TAI VIET VOWEL AA
+AAB2	taivietvoweli	TAI VIET VOWEL I
+AAB3	taivietvowelue	TAI VIET VOWEL UE
+AAB4	taivietvowelu	TAI VIET VOWEL U
+AAB5	taivietvowele	TAI VIET VOWEL E
+AAB6	taivietvowelo	TAI VIET VOWEL O
+AAB7	taivietmaikhit	TAI VIET MAI KHIT
+AAB8	taivietvowelia	TAI VIET VOWEL IA
+AAB9	taivietvoweluea	TAI VIET VOWEL UEA
+AABA	taivietvowelua	TAI VIET VOWEL UA
+AABB	taivietvowelaue	TAI VIET VOWEL AUE
+AABC	taivietvowelay	TAI VIET VOWEL AY
+AABD	taivietvowelan	TAI VIET VOWEL AN
+AABE	taivietvowelam	TAI VIET VOWEL AM
+AABF	taiviettonemaiek	TAI VIET TONE MAI EK
+AAC0	taiviettonemainueng	TAI VIET TONE MAI NUENG
+AAC1	taiviettonemaitho	TAI VIET TONE MAI THO
+AAC2	taiviettonemaisong	TAI VIET TONE MAI SONG
+AADB	taivietsymbolkon	TAI VIET SYMBOL KON
+AADC	taivietsymbolnueng	TAI VIET SYMBOL NUENG
+AADD	taivietsymbolsam	TAI VIET SYMBOL SAM
+AADE	taivietsymbolhohoi	TAI VIET SYMBOL HO HOI
+AADF	taivietsymbolkoikoi	TAI VIET SYMBOL KOI KOI

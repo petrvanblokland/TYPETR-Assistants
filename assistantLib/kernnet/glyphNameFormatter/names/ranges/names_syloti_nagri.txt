@@ -1,0 +1,45 @@
+# Syloti Nagri A800 - A82F
+A800	sylotinagrilettera	SYLOTI NAGRI LETTER A
+A801	sylotinagriletteri	SYLOTI NAGRI LETTER I
+A802	sylotinagrisigndvisvara	SYLOTI NAGRI SIGN DVISVARA
+A803	sylotinagriletteru	SYLOTI NAGRI LETTER U
+A804	sylotinagrilettere	SYLOTI NAGRI LETTER E
+A805	sylotinagrilettero	SYLOTI NAGRI LETTER O
+A806	sylotinagrisignhasanta	SYLOTI NAGRI SIGN HASANTA
+A807	sylotinagriletterko	SYLOTI NAGRI LETTER KO
+A808	sylotinagriletterkho	SYLOTI NAGRI LETTER KHO
+A809	sylotinagrilettergo	SYLOTI NAGRI LETTER GO
+A80A	sylotinagrilettergho	SYLOTI NAGRI LETTER GHO
+A80B	sylotinagrisignanusvara	SYLOTI NAGRI SIGN ANUSVARA
+A80C	sylotinagriletterco	SYLOTI NAGRI LETTER CO
+A80D	sylotinagrilettercho	SYLOTI NAGRI LETTER CHO
+A80E	sylotinagriletterjo	SYLOTI NAGRI LETTER JO
+A80F	sylotinagriletterjho	SYLOTI NAGRI LETTER JHO
+A810	sylotinagrilettertto	SYLOTI NAGRI LETTER TTO
+A811	sylotinagriletterttho	SYLOTI NAGRI LETTER TTHO
+A812	sylotinagriletterddo	SYLOTI NAGRI LETTER DDO
+A813	sylotinagriletterddho	SYLOTI NAGRI LETTER DDHO
+A814	sylotinagriletterto	SYLOTI NAGRI LETTER TO
+A815	sylotinagrilettertho	SYLOTI NAGRI LETTER THO
+A816	sylotinagriletterdo	SYLOTI NAGRI LETTER DO
+A817	sylotinagriletterdho	SYLOTI NAGRI LETTER DHO
+A818	sylotinagriletterno	SYLOTI NAGRI LETTER NO
+A819	sylotinagriletterpo	SYLOTI NAGRI LETTER PO
+A81A	sylotinagriletterpho	SYLOTI NAGRI LETTER PHO
+A81B	sylotinagriletterbo	SYLOTI NAGRI LETTER BO
+A81C	sylotinagriletterbho	SYLOTI NAGRI LETTER BHO
+A81D	sylotinagrilettermo	SYLOTI NAGRI LETTER MO
+A81E	sylotinagriletterro	SYLOTI NAGRI LETTER RO
+A81F	sylotinagriletterlo	SYLOTI NAGRI LETTER LO
+A820	sylotinagriletterrro	SYLOTI NAGRI LETTER RRO
+A821	sylotinagriletterso	SYLOTI NAGRI LETTER SO
+A822	sylotinagriletterho	SYLOTI NAGRI LETTER HO
+A823	sylotinagrivowelsigna	SYLOTI NAGRI VOWEL SIGN A
+A824	sylotinagrivowelsigni	SYLOTI NAGRI VOWEL SIGN I
+A825	sylotinagrivowelsignu	SYLOTI NAGRI VOWEL SIGN U
+A826	sylotinagrivowelsigne	SYLOTI NAGRI VOWEL SIGN E
+A827	sylotinagrivowelsignoo	SYLOTI NAGRI VOWEL SIGN OO
+A828	sylotinagripoetrymark1	SYLOTI NAGRI POETRY MARK-1
+A829	sylotinagripoetrymark2	SYLOTI NAGRI POETRY MARK-2
+A82A	sylotinagripoetrymark3	SYLOTI NAGRI POETRY MARK-3
+A82B	sylotinagripoetrymark4	SYLOTI NAGRI POETRY MARK-4

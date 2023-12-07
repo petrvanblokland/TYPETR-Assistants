@@ -1,0 +1,19 @@
+# Tagbanwa 1760 - 177F
+1760	tagbanwalettera	TAGBANWA LETTER A
+1761	tagbanwaletteri	TAGBANWA LETTER I
+1762	tagbanwaletteru	TAGBANWA LETTER U
+1763	tagbanwaletterka	TAGBANWA LETTER KA
+1764	tagbanwaletterga	TAGBANWA LETTER GA
+1765	tagbanwaletternga	TAGBANWA LETTER NGA
+1766	tagbanwaletterta	TAGBANWA LETTER TA
+1767	tagbanwaletterda	TAGBANWA LETTER DA
+1768	tagbanwaletterna	TAGBANWA LETTER NA
+1769	tagbanwaletterpa	TAGBANWA LETTER PA
+176A	tagbanwaletterba	TAGBANWA LETTER BA
+176B	tagbanwaletterma	TAGBANWA LETTER MA
+176C	tagbanwaletterya	TAGBANWA LETTER YA
+176E	tagbanwaletterla	TAGBANWA LETTER LA
+176F	tagbanwaletterwa	TAGBANWA LETTER WA
+1770	tagbanwalettersa	TAGBANWA LETTER SA
+1772	tagbanwavowelsigni	TAGBANWA VOWEL SIGN I
+1773	tagbanwavowelsignu	TAGBANWA VOWEL SIGN U

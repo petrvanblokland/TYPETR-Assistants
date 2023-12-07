@@ -1,0 +1,82 @@
+# Saurashtra A880 - A8DF
+A880	saurashtrasignanusvara	SAURASHTRA SIGN ANUSVARA
+A881	saurashtrasignvisarga	SAURASHTRA SIGN VISARGA
+A882	saurashtralettera	SAURASHTRA LETTER A
+A883	saurashtraletteraa	SAURASHTRA LETTER AA
+A884	saurashtraletteri	SAURASHTRA LETTER I
+A885	saurashtraletterii	SAURASHTRA LETTER II
+A886	saurashtraletteru	SAURASHTRA LETTER U
+A887	saurashtraletteruu	SAURASHTRA LETTER UU
+A888	saurashtralettervocalicr	SAURASHTRA LETTER VOCALIC R
+A889	saurashtralettervocalicrr	SAURASHTRA LETTER VOCALIC RR
+A88A	saurashtralettervocalicl	SAURASHTRA LETTER VOCALIC L
+A88B	saurashtralettervocalicll	SAURASHTRA LETTER VOCALIC LL
+A88C	saurashtralettere	SAURASHTRA LETTER E
+A88D	saurashtraletteree	SAURASHTRA LETTER EE
+A88E	saurashtraletterai	SAURASHTRA LETTER AI
+A88F	saurashtralettero	SAURASHTRA LETTER O
+A890	saurashtraletteroo	SAURASHTRA LETTER OO
+A891	saurashtraletterau	SAURASHTRA LETTER AU
+A892	saurashtraletterka	SAURASHTRA LETTER KA
+A893	saurashtraletterkha	SAURASHTRA LETTER KHA
+A894	saurashtraletterga	SAURASHTRA LETTER GA
+A895	saurashtralettergha	SAURASHTRA LETTER GHA
+A896	saurashtraletternga	SAURASHTRA LETTER NGA
+A897	saurashtraletterca	SAURASHTRA LETTER CA
+A898	saurashtralettercha	SAURASHTRA LETTER CHA
+A899	saurashtraletterja	SAURASHTRA LETTER JA
+A89A	saurashtraletterjha	SAURASHTRA LETTER JHA
+A89B	saurashtraletternya	SAURASHTRA LETTER NYA
+A89C	saurashtralettertta	SAURASHTRA LETTER TTA
+A89D	saurashtraletterttha	SAURASHTRA LETTER TTHA
+A89E	saurashtraletterdda	SAURASHTRA LETTER DDA
+A89F	saurashtraletterddha	SAURASHTRA LETTER DDHA
+A8A0	saurashtraletternna	SAURASHTRA LETTER NNA
+A8A1	saurashtraletterta	SAURASHTRA LETTER TA
+A8A2	saurashtralettertha	SAURASHTRA LETTER THA
+A8A3	saurashtraletterda	SAURASHTRA LETTER DA
+A8A4	saurashtraletterdha	SAURASHTRA LETTER DHA
+A8A5	saurashtraletterna	SAURASHTRA LETTER NA
+A8A6	saurashtraletterpa	SAURASHTRA LETTER PA
+A8A7	saurashtraletterpha	SAURASHTRA LETTER PHA
+A8A8	saurashtraletterba	SAURASHTRA LETTER BA
+A8A9	saurashtraletterbha	SAURASHTRA LETTER BHA
+A8AA	saurashtraletterma	SAURASHTRA LETTER MA
+A8AB	saurashtraletterya	SAURASHTRA LETTER YA
+A8AC	saurashtraletterra	SAURASHTRA LETTER RA
+A8AD	saurashtraletterla	SAURASHTRA LETTER LA
+A8AE	saurashtraletterva	SAURASHTRA LETTER VA
+A8AF	saurashtralettersha	SAURASHTRA LETTER SHA
+A8B0	saurashtraletterssa	SAURASHTRA LETTER SSA
+A8B1	saurashtralettersa	SAURASHTRA LETTER SA
+A8B2	saurashtraletterha	SAURASHTRA LETTER HA
+A8B3	saurashtraletterlla	SAURASHTRA LETTER LLA
+A8B4	saurashtraconsonantsignhaaru	SAURASHTRA CONSONANT SIGN HAARU
+A8B5	saurashtravowelsignaa	SAURASHTRA VOWEL SIGN AA
+A8B6	saurashtravowelsigni	SAURASHTRA VOWEL SIGN I
+A8B7	saurashtravowelsignii	SAURASHTRA VOWEL SIGN II
+A8B8	saurashtravowelsignu	SAURASHTRA VOWEL SIGN U
+A8B9	saurashtravowelsignuu	SAURASHTRA VOWEL SIGN UU
+A8BA	saurashtravowelsignvocalicr	SAURASHTRA VOWEL SIGN VOCALIC R
+A8BB	saurashtravowelsignvocalicrr	SAURASHTRA VOWEL SIGN VOCALIC RR
+A8BC	saurashtravowelsignvocalicl	SAURASHTRA VOWEL SIGN VOCALIC L
+A8BD	saurashtravowelsignvocalicll	SAURASHTRA VOWEL SIGN VOCALIC LL
+A8BE	saurashtravowelsigne	SAURASHTRA VOWEL SIGN E
+A8BF	saurashtravowelsignee	SAURASHTRA VOWEL SIGN EE
+A8C0	saurashtravowelsignai	SAURASHTRA VOWEL SIGN AI
+A8C1	saurashtravowelsigno	SAURASHTRA VOWEL SIGN O
+A8C2	saurashtravowelsignoo	SAURASHTRA VOWEL SIGN OO
+A8C3	saurashtravowelsignau	SAURASHTRA VOWEL SIGN AU
+A8C4	saurashtrasignvirama	SAURASHTRA SIGN VIRAMA
+A8CE	saurashtradanda	SAURASHTRA DANDA
+A8CF	saurashtradoubledanda	SAURASHTRA DOUBLE DANDA
+A8D0	saurashtradigitzero	SAURASHTRA DIGIT ZERO
+A8D1	saurashtradigitone	SAURASHTRA DIGIT ONE
+A8D2	saurashtradigittwo	SAURASHTRA DIGIT TWO
+A8D3	saurashtradigitthree	SAURASHTRA DIGIT THREE
+A8D4	saurashtradigitfour	SAURASHTRA DIGIT FOUR
+A8D5	saurashtradigitfive	SAURASHTRA DIGIT FIVE
+A8D6	saurashtradigitsix	SAURASHTRA DIGIT SIX
+A8D7	saurashtradigitseven	SAURASHTRA DIGIT SEVEN
+A8D8	saurashtradigiteight	SAURASHTRA DIGIT EIGHT
+A8D9	saurashtradigitnine	SAURASHTRA DIGIT NINE

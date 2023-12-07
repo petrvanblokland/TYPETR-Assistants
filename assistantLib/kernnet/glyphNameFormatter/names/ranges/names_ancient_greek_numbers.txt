@@ -1,0 +1,76 @@
+# Ancient Greek Numbers 10140 - 1018F
+10140	greekacrophonicatticonequarter	GREEK ACROPHONIC ATTIC ONE QUARTER
+10141	greekacrophonicatticonehalf	GREEK ACROPHONIC ATTIC ONE HALF
+10142	greekacrophonicatticonedrachma	GREEK ACROPHONIC ATTIC ONE DRACHMA
+10143	greekacrophonicatticfive	GREEK ACROPHONIC ATTIC FIVE
+10144	greekacrophonicatticfifty	GREEK ACROPHONIC ATTIC FIFTY
+10145	greekacrophonicatticfivehundred	GREEK ACROPHONIC ATTIC FIVE HUNDRED
+10146	greekacrophonicatticfivethousand	GREEK ACROPHONIC ATTIC FIVE THOUSAND
+10147	greekacrophonicatticfiftythousand	GREEK ACROPHONIC ATTIC FIFTY THOUSAND
+10148	greekacrophonicatticfivetalents	GREEK ACROPHONIC ATTIC FIVE TALENTS
+10149	greekacrophonicattictentalents	GREEK ACROPHONIC ATTIC TEN TALENTS
+1014A	greekacrophonicatticfiftytalents	GREEK ACROPHONIC ATTIC FIFTY TALENTS
+1014B	greekacrophonicatticonehundredtalents	GREEK ACROPHONIC ATTIC ONE HUNDRED TALENTS
+1014C	greekacrophonicatticfivehundredtalents	GREEK ACROPHONIC ATTIC FIVE HUNDRED TALENTS
+1014D	greekacrophonicatticonethousandtalents	GREEK ACROPHONIC ATTIC ONE THOUSAND TALENTS
+1014E	greekacrophonicatticfivethousandtalents	GREEK ACROPHONIC ATTIC FIVE THOUSAND TALENTS
+1014F	greekacrophonicatticfivestaters	GREEK ACROPHONIC ATTIC FIVE STATERS
+10150	greekacrophonicattictenstaters	GREEK ACROPHONIC ATTIC TEN STATERS
+10151	greekacrophonicatticfiftystaters	GREEK ACROPHONIC ATTIC FIFTY STATERS
+10152	greekacrophonicatticonehundredstaters	GREEK ACROPHONIC ATTIC ONE HUNDRED STATERS
+10153	greekacrophonicatticfivehundredstaters	GREEK ACROPHONIC ATTIC FIVE HUNDRED STATERS
+10154	greekacrophonicatticonethousandstaters	GREEK ACROPHONIC ATTIC ONE THOUSAND STATERS
+10155	greekacrophonicattictenthousandstaters	GREEK ACROPHONIC ATTIC TEN THOUSAND STATERS
+10156	greekacrophonicatticfiftythousandstaters	GREEK ACROPHONIC ATTIC FIFTY THOUSAND STATERS
+10157	greekacrophonicattictenmnas	GREEK ACROPHONIC ATTIC TEN MNAS
+10158	greekacrophonicheraeumoneplethron	GREEK ACROPHONIC HERAEUM ONE PLETHRON
+10159	greekacrophonicthespianone	GREEK ACROPHONIC THESPIAN ONE
+1015A	greekacrophonichermionianone	GREEK ACROPHONIC HERMIONIAN ONE
+1015B	greekacrophonicepidaureantwo	GREEK ACROPHONIC EPIDAUREAN TWO
+1015C	greekacrophonicthespiantwo	GREEK ACROPHONIC THESPIAN TWO
+1015D	greekacrophoniccyrenaictwodrachmas	GREEK ACROPHONIC CYRENAIC TWO DRACHMAS
+1015E	greekacrophonicepidaureantwodrachmas	GREEK ACROPHONIC EPIDAUREAN TWO DRACHMAS
+1015F	greekacrophonictroezenianfive	GREEK ACROPHONIC TROEZENIAN FIVE
+10160	greekacrophonictroezenianten	GREEK ACROPHONIC TROEZENIAN TEN
+10161	greekacrophonictroezeniantenalternateform	GREEK ACROPHONIC TROEZENIAN TEN ALTERNATE FORM
+10162	greekacrophonichermionianten	GREEK ACROPHONIC HERMIONIAN TEN
+10163	greekacrophonicmessenianten	GREEK ACROPHONIC MESSENIAN TEN
+10164	greekacrophonicthespianten	GREEK ACROPHONIC THESPIAN TEN
+10165	greekacrophonicthespianthirty	GREEK ACROPHONIC THESPIAN THIRTY
+10166	greekacrophonictroezenianfifty	GREEK ACROPHONIC TROEZENIAN FIFTY
+10167	greekacrophonictroezenianfiftyalternateform	GREEK ACROPHONIC TROEZENIAN FIFTY ALTERNATE FORM
+10168	greekacrophonichermionianfifty	GREEK ACROPHONIC HERMIONIAN FIFTY
+10169	greekacrophonicthespianfifty	GREEK ACROPHONIC THESPIAN FIFTY
+1016A	greekacrophonicthespianonehundred	GREEK ACROPHONIC THESPIAN ONE HUNDRED
+1016B	greekacrophonicthespianthreehundred	GREEK ACROPHONIC THESPIAN THREE HUNDRED
+1016C	greekacrophonicepidaureanfivehundred	GREEK ACROPHONIC EPIDAUREAN FIVE HUNDRED
+1016D	greekacrophonictroezenianfivehundred	GREEK ACROPHONIC TROEZENIAN FIVE HUNDRED
+1016E	greekacrophonicthespianfivehundred	GREEK ACROPHONIC THESPIAN FIVE HUNDRED
+1016F	greekacrophoniccarystianfivehundred	GREEK ACROPHONIC CARYSTIAN FIVE HUNDRED
+10170	greekacrophonicnaxianfivehundred	GREEK ACROPHONIC NAXIAN FIVE HUNDRED
+10171	greekacrophonicthespianonethousand	GREEK ACROPHONIC THESPIAN ONE THOUSAND
+10172	greekacrophonicthespianfivethousand	GREEK ACROPHONIC THESPIAN FIVE THOUSAND
+10173	greekacrophonicdelphicfivemnas	GREEK ACROPHONIC DELPHIC FIVE MNAS
+10174	greekacrophonicstratianfiftymnas	GREEK ACROPHONIC STRATIAN FIFTY MNAS
+10175	greekonehalfsign	GREEK ONE HALF SIGN
+10176	greekonehalfsignalternateform	GREEK ONE HALF SIGN ALTERNATE FORM
+10177	greektwothirdssign	GREEK TWO THIRDS SIGN
+10178	greekthreequarterssign	GREEK THREE QUARTERS SIGN
+10179	greekyearsign	GREEK YEAR SIGN
+1017A	greektalentsign	GREEK TALENT SIGN
+1017B	greekdrachmasign	GREEK DRACHMA SIGN
+1017C	greekobolsign	GREEK OBOL SIGN
+1017D	greektwoobolssign	GREEK TWO OBOLS SIGN
+1017E	greekthreeobolssign	GREEK THREE OBOLS SIGN
+1017F	greekfourobolssign	GREEK FOUR OBOLS SIGN
+10180	greekfiveobolssign	GREEK FIVE OBOLS SIGN
+10181	greekmetretessign	GREEK METRETES SIGN
+10182	greekkyathosbasesign	GREEK KYATHOS BASE SIGN
+10183	greeklitrasign	GREEK LITRA SIGN
+10184	greekounkiasign	GREEK OUNKIA SIGN
+10185	greekxestessign	GREEK XESTES SIGN
+10186	greekartabesign	GREEK ARTABE SIGN
+10187	greekarourasign	GREEK AROURA SIGN
+10188	greekgrammasign	GREEK GRAMMA SIGN
+10189	greektryblionbasesign	GREEK TRYBLION BASE SIGN
+1018A	greekzerosign	GREEK ZERO SIGN

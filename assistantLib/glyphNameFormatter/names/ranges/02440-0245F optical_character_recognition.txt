@@ -1,0 +1,12 @@
+# Optical Character Recognition 02440 - 0245F
+2440	hook	OCR HOOK
+2441	ocr:chair	OCR CHAIR
+2442	fork	OCR FORK
+2443	invertedfork	OCR INVERTED FORK
+2444	beltbuckle	OCR BELT BUCKLE
+2445	ocr:bowtie	OCR BOW TIE
+2446	branchbankidentification	OCR BRANCH BANK IDENTIFICATION
+2447	amountofcheck	OCR AMOUNT OF CHECK
+2448	ocr:dash	OCR DASH
+2449	customeraccountnumber	OCR CUSTOMER ACCOUNT NUMBER
+244A	backslashdbl	OCR DOUBLE BACKSLASH

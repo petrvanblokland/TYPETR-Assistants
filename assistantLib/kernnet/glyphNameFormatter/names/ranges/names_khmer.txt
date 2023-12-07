@@ -1,0 +1,115 @@
+# Khmer 1780 - 17FF
+1780	khmerletterka	KHMER LETTER KA
+1781	khmerletterkha	KHMER LETTER KHA
+1782	khmerletterko	KHMER LETTER KO
+1783	khmerletterkho	KHMER LETTER KHO
+1784	khmerletterngo	KHMER LETTER NGO
+1785	khmerletterca	KHMER LETTER CA
+1786	khmerlettercha	KHMER LETTER CHA
+1787	khmerletterco	KHMER LETTER CO
+1788	khmerlettercho	KHMER LETTER CHO
+1789	khmerletternyo	KHMER LETTER NYO
+178A	khmerletterda	KHMER LETTER DA
+178B	khmerletterttha	KHMER LETTER TTHA
+178C	khmerletterdo	KHMER LETTER DO
+178D	khmerletterttho	KHMER LETTER TTHO
+178E	khmerletternno	KHMER LETTER NNO
+178F	khmerletterta	KHMER LETTER TA
+1790	khmerlettertha	KHMER LETTER THA
+1791	khmerletterto	KHMER LETTER TO
+1792	khmerlettertho	KHMER LETTER THO
+1793	khmerletterno	KHMER LETTER NO
+1794	khmerletterba	KHMER LETTER BA
+1795	khmerletterpha	KHMER LETTER PHA
+1796	khmerletterpo	KHMER LETTER PO
+1797	khmerletterpho	KHMER LETTER PHO
+1798	khmerlettermo	KHMER LETTER MO
+1799	khmerletteryo	KHMER LETTER YO
+179A	khmerletterro	KHMER LETTER RO
+179B	khmerletterlo	KHMER LETTER LO
+179C	khmerlettervo	KHMER LETTER VO
+179D	khmerlettersha	KHMER LETTER SHA
+179E	khmerlettersso	KHMER LETTER SSO
+179F	khmerlettersa	KHMER LETTER SA
+17A0	khmerletterha	KHMER LETTER HA
+17A1	khmerletterla	KHMER LETTER LA
+17A2	khmerletterqa	KHMER LETTER QA
+17A3	khmerindependentvowelqaq	KHMER INDEPENDENT VOWEL QAQ
+17A4	khmerindependentvowelqaa	KHMER INDEPENDENT VOWEL QAA
+17A5	khmerindependentvowelqi	KHMER INDEPENDENT VOWEL QI
+17A6	khmerindependentvowelqii	KHMER INDEPENDENT VOWEL QII
+17A7	khmerindependentvowelqu	KHMER INDEPENDENT VOWEL QU
+17A8	khmerindependentvowelquk	KHMER INDEPENDENT VOWEL QUK
+17A9	khmerindependentvowelquu	KHMER INDEPENDENT VOWEL QUU
+17AA	khmerindependentvowelquuv	KHMER INDEPENDENT VOWEL QUUV
+17AB	khmerindependentvowelry	KHMER INDEPENDENT VOWEL RY
+17AC	khmerindependentvowelryy	KHMER INDEPENDENT VOWEL RYY
+17AD	khmerindependentvowelly	KHMER INDEPENDENT VOWEL LY
+17AE	khmerindependentvowellyy	KHMER INDEPENDENT VOWEL LYY
+17AF	khmerindependentvowelqe	KHMER INDEPENDENT VOWEL QE
+17B0	khmerindependentvowelqai	KHMER INDEPENDENT VOWEL QAI
+17B1	khmerindependentvowelqootypeone	KHMER INDEPENDENT VOWEL QOO TYPE ONE
+17B2	khmerindependentvowelqootypetwo	KHMER INDEPENDENT VOWEL QOO TYPE TWO
+17B3	khmerindependentvowelqau	KHMER INDEPENDENT VOWEL QAU
+17B4	khmervowelinherentaq	KHMER VOWEL INHERENT AQ
+17B5	khmervowelinherentaa	KHMER VOWEL INHERENT AA
+17B6	khmervowelsignaa	KHMER VOWEL SIGN AA
+17B7	khmervowelsigni	KHMER VOWEL SIGN I
+17B8	khmervowelsignii	KHMER VOWEL SIGN II
+17B9	khmervowelsigny	KHMER VOWEL SIGN Y
+17BA	khmervowelsignyy	KHMER VOWEL SIGN YY
+17BB	khmervowelsignu	KHMER VOWEL SIGN U
+17BC	khmervowelsignuu	KHMER VOWEL SIGN UU
+17BD	khmervowelsignua	KHMER VOWEL SIGN UA
+17BE	khmervowelsignoe	KHMER VOWEL SIGN OE
+17BF	khmervowelsignya	KHMER VOWEL SIGN YA
+17C0	khmervowelsignie	KHMER VOWEL SIGN IE
+17C1	khmervowelsigne	KHMER VOWEL SIGN E
+17C2	khmervowelsignae	KHMER VOWEL SIGN AE
+17C3	khmervowelsignai	KHMER VOWEL SIGN AI
+17C4	khmervowelsignoo	KHMER VOWEL SIGN OO
+17C5	khmervowelsignau	KHMER VOWEL SIGN AU
+17C6	khmersignnikahit	KHMER SIGN NIKAHIT
+17C7	khmersignreahmuk	KHMER SIGN REAHMUK
+17C8	khmersignyuukaleapintu	KHMER SIGN YUUKALEAPINTU
+17C9	khmersignmuusikatoan	KHMER SIGN MUUSIKATOAN
+17CA	khmersigntriisap	KHMER SIGN TRIISAP
+17CB	khmersignbantoc	KHMER SIGN BANTOC
+17CC	khmersignrobat	KHMER SIGN ROBAT
+17CD	khmersigntoandakhiat	KHMER SIGN TOANDAKHIAT
+17CE	khmersignkakabat	KHMER SIGN KAKABAT
+17CF	khmersignahsda	KHMER SIGN AHSDA
+17D0	khmersignsamyoksannya	KHMER SIGN SAMYOK SANNYA
+17D1	khmersignviriam	KHMER SIGN VIRIAM
+17D2	khmersigncoeng	KHMER SIGN COENG
+17D3	khmersignbathamasat	KHMER SIGN BATHAMASAT
+17D4	khmersignkhan	KHMER SIGN KHAN
+17D5	khmersignbariyoosan	KHMER SIGN BARIYOOSAN
+17D6	khmersigncamnucpiikuuh	KHMER SIGN CAMNUC PII KUUH
+17D7	khmersignlektoo	KHMER SIGN LEK TOO
+17D8	khmersignbeyyal	KHMER SIGN BEYYAL
+17D9	khmersignphnaekmuan	KHMER SIGN PHNAEK MUAN
+17DA	khmersignkoomuut	KHMER SIGN KOOMUUT
+17DB	khmercurrencysymbolriel	KHMER CURRENCY SYMBOL RIEL
+17DC	khmersignavakrahasanya	KHMER SIGN AVAKRAHASANYA
+17DD	khmersignatthacan	KHMER SIGN ATTHACAN
+17E0	khmerdigitzero	KHMER DIGIT ZERO
+17E1	khmerdigitone	KHMER DIGIT ONE
+17E2	khmerdigittwo	KHMER DIGIT TWO
+17E3	khmerdigitthree	KHMER DIGIT THREE
+17E4	khmerdigitfour	KHMER DIGIT FOUR
+17E5	khmerdigitfive	KHMER DIGIT FIVE
+17E6	khmerdigitsix	KHMER DIGIT SIX
+17E7	khmerdigitseven	KHMER DIGIT SEVEN
+17E8	khmerdigiteight	KHMER DIGIT EIGHT
+17E9	khmerdigitnine	KHMER DIGIT NINE
+17F0	khmersymbollekattakson	KHMER SYMBOL LEK ATTAK SON
+17F1	khmersymbollekattakmuoy	KHMER SYMBOL LEK ATTAK MUOY
+17F2	khmersymbollekattakpii	KHMER SYMBOL LEK ATTAK PII
+17F3	khmersymbollekattakbei	KHMER SYMBOL LEK ATTAK BEI
+17F4	khmersymbollekattakbuon	KHMER SYMBOL LEK ATTAK BUON
+17F5	khmersymbollekattakpram	KHMER SYMBOL LEK ATTAK PRAM
+17F6	khmersymbollekattakprammuoy	KHMER SYMBOL LEK ATTAK PRAM-MUOY
+17F7	khmersymbollekattakprampii	KHMER SYMBOL LEK ATTAK PRAM-PII
+17F8	khmersymbollekattakprambei	KHMER SYMBOL LEK ATTAK PRAM-BEI
+17F9	khmersymbollekattakprambuon	KHMER SYMBOL LEK ATTAK PRAM-BUON

@@ -1,0 +1,45 @@
+# Mahjong Tiles 1F000 - 1F02F
+1F000	mahjongtileeastwind	MAHJONG TILE EAST WIND
+1F001	mahjongtilesouthwind	MAHJONG TILE SOUTH WIND
+1F002	mahjongtilewestwind	MAHJONG TILE WEST WIND
+1F003	mahjongtilenorthwind	MAHJONG TILE NORTH WIND
+1F004	mahjongtilereddragon	MAHJONG TILE RED DRAGON
+1F005	mahjongtilegreendragon	MAHJONG TILE GREEN DRAGON
+1F006	mahjongtilewhitedragon	MAHJONG TILE WHITE DRAGON
+1F007	mahjongtileoneofcharacters	MAHJONG TILE ONE OF CHARACTERS
+1F008	mahjongtiletwoofcharacters	MAHJONG TILE TWO OF CHARACTERS
+1F009	mahjongtilethreeofcharacters	MAHJONG TILE THREE OF CHARACTERS
+1F00A	mahjongtilefourofcharacters	MAHJONG TILE FOUR OF CHARACTERS
+1F00B	mahjongtilefiveofcharacters	MAHJONG TILE FIVE OF CHARACTERS
+1F00C	mahjongtilesixofcharacters	MAHJONG TILE SIX OF CHARACTERS
+1F00D	mahjongtilesevenofcharacters	MAHJONG TILE SEVEN OF CHARACTERS
+1F00E	mahjongtileeightofcharacters	MAHJONG TILE EIGHT OF CHARACTERS
+1F00F	mahjongtilenineofcharacters	MAHJONG TILE NINE OF CHARACTERS
+1F010	mahjongtileoneofbamboos	MAHJONG TILE ONE OF BAMBOOS
+1F011	mahjongtiletwoofbamboos	MAHJONG TILE TWO OF BAMBOOS
+1F012	mahjongtilethreeofbamboos	MAHJONG TILE THREE OF BAMBOOS
+1F013	mahjongtilefourofbamboos	MAHJONG TILE FOUR OF BAMBOOS
+1F014	mahjongtilefiveofbamboos	MAHJONG TILE FIVE OF BAMBOOS
+1F015	mahjongtilesixofbamboos	MAHJONG TILE SIX OF BAMBOOS
+1F016	mahjongtilesevenofbamboos	MAHJONG TILE SEVEN OF BAMBOOS
+1F017	mahjongtileeightofbamboos	MAHJONG TILE EIGHT OF BAMBOOS
+1F018	mahjongtilenineofbamboos	MAHJONG TILE NINE OF BAMBOOS
+1F019	mahjongtileoneofcircles	MAHJONG TILE ONE OF CIRCLES
+1F01A	mahjongtiletwoofcircles	MAHJONG TILE TWO OF CIRCLES
+1F01B	mahjongtilethreeofcircles	MAHJONG TILE THREE OF CIRCLES
+1F01C	mahjongtilefourofcircles	MAHJONG TILE FOUR OF CIRCLES
+1F01D	mahjongtilefiveofcircles	MAHJONG TILE FIVE OF CIRCLES
+1F01E	mahjongtilesixofcircles	MAHJONG TILE SIX OF CIRCLES
+1F01F	mahjongtilesevenofcircles	MAHJONG TILE SEVEN OF CIRCLES
+1F020	mahjongtileeightofcircles	MAHJONG TILE EIGHT OF CIRCLES
+1F021	mahjongtilenineofcircles	MAHJONG TILE NINE OF CIRCLES
+1F022	mahjongtileplum	MAHJONG TILE PLUM
+1F023	mahjongtileorchid	MAHJONG TILE ORCHID
+1F024	mahjongtilebamboo	MAHJONG TILE BAMBOO
+1F025	mahjongtilechrysanthemum	MAHJONG TILE CHRYSANTHEMUM
+1F026	mahjongtilespring	MAHJONG TILE SPRING
+1F027	mahjongtilesummer	MAHJONG TILE SUMMER
+1F028	mahjongtileautumn	MAHJONG TILE AUTUMN
+1F029	mahjongtilewinter	MAHJONG TILE WINTER
+1F02A	mahjongtilejoker	MAHJONG TILE JOKER
+1F02B	mahjongtileback	MAHJONG TILE BACK
