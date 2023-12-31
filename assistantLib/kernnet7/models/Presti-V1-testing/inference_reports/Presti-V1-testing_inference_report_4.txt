@@ -1,0 +1,12 @@
+Presti-V1-testing Inference report 4
+
+Average Kerning Error: 17
+
+Inference Data Root: E:\Petr Werk Files\Kerning V1\images_32_32
+
+Inference Data:
+
+images_32_32 
+    images_32_32 
+    Presti_Display-Regular_images_32_32 
+    Presti_Small-Bold_images_32_32 

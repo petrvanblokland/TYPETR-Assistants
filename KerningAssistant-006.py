@@ -419,7 +419,7 @@ class KerningAssistant(Subscriber):
         f = CurrentFont()     
         km = self.getKerningManager(f)       
         imageName = 'test.png'
-        kernImagePath = '/'.join(__file__.split('/')[:-1]) + '/assistantLib/kernnet/_imagePredict/' + imageName
+        kernImagePath = '/'.join(__file__.split('/')[:-1]) + '/assistantLib/kernnet7/_imagePredict/' + imageName
         iw = ih = 32
         r = 12
         r2 = 2*r

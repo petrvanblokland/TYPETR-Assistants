@@ -36,7 +36,7 @@ MAX_DIACRITICS = 150
 
 class FontData:
     def __init__(self, f):
-        """Build X-ref data from the font @f. Don't store the font itself, as it may be closed by the calling application."""
+        """Build X-ref data from the from. Don't store the font itself, as it may be close by the calling application."""
         self.path = f.path
         # Fins all glyphs that use this glyph as component
         self.base = {} # Key is glyphName. Value is list of component.baseGlyph names

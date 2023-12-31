@@ -23,15 +23,15 @@ SPACING_KEYS = ('typeRight', 'right', 'typeLeft', 'left')
 
 # Preselect sample script. This should become an option in KerningManager selection
 #MAIN_SAMPLES = CYRILLIC_KERNING
-MAIN_SAMPLES = GREEK_KERNING
-#MAIN_SAMPLES = SAMPLES
+#MAIN_SAMPLES = GREEK_KERNING
+MAIN_SAMPLES = SAMPLES
 
 class KerningManager:
     """Generic kerning manager"""
 
     def __init__(self, f, features=None, 
             sample=None, sampleCAPS=None, sampleC2SC=None,
-            simT=0.95, simSameCategory=True, simSameScript=True, simClip=300, simZones=None,
+            simT=0.90, simSameCategory=True, simSameScript=True, simClip=300, simZones=None,
             automaticGroups=True, verbose=True):
         assert f is not None
         self.f = f # Stored as weakref property
@@ -56,6 +56,8 @@ class KerningManager:
         #zones = tuple(zones)    # make sure the zones are a tuple
         #zones = None            # or make zones None to scane the full height
         self.simZones = simZones
+        self.similar2Base1 = {}
+        self.similar2Base2 = {}
 
         # X-ref unicode and names
         self.uni2glyphName = {}
@@ -337,8 +339,7 @@ class KerningManager:
 
     BASE1 = [ # Base glyphs on left side, similar to right margin 
         'A', 'H', 'O', 'X', 'n', 'o',  # Overall base glyphs
-    ]
-    BBB = [
+
         'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
         
         'period',
@@ -385,36 +386,42 @@ class KerningManager:
         'alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta', 'eta', 'theta', 'iota', 'kappa', 'lambda', 'mu', 'nu', 'xi', 'omicron', 'pi', 'rho', 'sigmafinal', 'sigma', 'tau', 'upsilon', 'phi', 'chi', 'psi', 'omega',
     ]
 
+    """Answer the sorted list of glyph names that are in self.BASE2 (similar on left side) while not similar to one 
+    of the other base glyphs. Also add the glyphs that don't fit in any of the similar groups, because these should 
+    have been base glyph.
+    Keep track of the glyphs that we examined, since the way similarity works, glyphs can be similar to multiple base
+    glyphs, while those base glyphs are not similar to each other when they fall outside the range."""
+
+    def _findSimilarBaseNames2(self, baseName, similarBaseNames, examinedNames):
+        if baseName in examinedNames:
+            return
+        if baseName in self.f:
+            g = self.f[baseName]
+            for similarName in self.getSimilarNames2(g):
+                if similarName not in examinedNames:
+                    if similarName in examinedNames:
+                        continue
+                    if baseName not in similarBaseNames:
+                        similarBaseNames[baseName] = set()
+                        examinedNames.add(baseName)
+                    similarBaseNames[baseName].add(similarName)
+                    self.similare2Base2[similarName] = baseName
+        # If the baseName was not covered here, then add it as similarBaseName
+        if baseName not in similarBaseNames:
+            similarBaseNames[baseName] = set()
+            examinedNames.add(baseName)
+            self.similare2Base2[baseName] = baseName # Base of itself
+
     def getSimilarBaseNames2(self):
-        """Answer the sorted list of glyph names that are in self.BASE2 (similar on left side) while not similar to one 
-        of the other base glyphs. Also add the glyphs that don't fit in any of the similar groups, because these should 
-        have been base glyph.
-        Keep track of the glyphs that we examined, since the way similarity works, glyphs can be similar to multiple base
-        glyphs, while those base glyphs are not similar to each other when they fall outside the range."""
+        """Answer the sorted list of glyph names that are in self.BASE2 while not similar to one of the other base glyphs.
+        Also add the glyphs that don't fit in any of the similar groups, because these should have been base glyph."""
         similarBaseNames = {}
         examinedNames = set()
         for baseName in self.BASE2:
-            if baseName in examinedNames:
-                continue
-            if baseName in self.f:
-                g = self.f[baseName]
-                for similarName in self.getSimilarNames2(g):
-                    if similarName not in examinedNames:
-                        if similarName in examinedNames:
-                            continue
-                        if baseName not in similarBaseNames:
-                            similarBaseNames[baseName] = set()
-                            examinedNames.add(baseName)
-                        similarBaseNames[baseName].add(similarName)
-            # If the baseName was not covered here, then add it as similarBaseName
-            if baseName not in similarBaseNames:
-                similarBaseNames[baseName] = set()
-                examinedNames.add(baseName)
+            self._findSimilarBaseNames2(baseName, similarBaseNames, examinedNames)
         # Now run again to make all glyphs into base that were not similar to one of the other glyphs
         for g in self.f:
-            if g.name not in examinedNames:
-                similarBaseNames[g.name] = set([g.name]) # Just similar to itself.
-                examinedNames.add(g.name)
+            self._findSimilarBaseNames2(g.name, similarBaseNames, examinedNames)
         return similarBaseNames
 
     def _findSimilarBaseNames1(self, baseName, similarBaseNames, examinedNames):
@@ -430,10 +437,12 @@ class KerningManager:
                         similarBaseNames[baseName] = set()
                         examinedNames.add(baseName)
                     similarBaseNames[baseName].add(similarName)
+                    self.similare2Base1[similarName] = baseName
         # If the baseName was not covered here, then add it as similarBaseName
         if baseName not in similarBaseNames:
             similarBaseNames[baseName] = set()
             examinedNames.add(baseName)
+            self.similare2Base1[baseName] = baseName # Base of itself
 
     def getSimilarBaseNames1(self):
         """Answer the sorted list of glyph names that are in self.BASE1 while not similar to one of the other base glyphs.
@@ -441,10 +450,10 @@ class KerningManager:
         similarBaseNames = {}
         examinedNames = set()
         for baseName in self.BASE1:
-            self._findSimilarBaseNames(baseName, similarBaseNames, examinedNames)
+            self._findSimilarBaseNames1(baseName, similarBaseNames, examinedNames)
         # Now run again to make all glyphs into base that were not similar to one of the other glyphs
         for g in self.f:
-            self._findSimilarBaseNames(g.name, similarBaseNames, examinedNames)
+            self._findSimilarBaseNames1(g.name, similarBaseNames, examinedNames)
         return similarBaseNames
 
     def getSimilar1(self, g):
@@ -467,7 +476,7 @@ class KerningManager:
 
     def getSimilarNames1(self, g):
         """Answer a simple list of similar glyphs to g."""
-        simNames = []
+        simNames = [g.name]
         for confidence, simGroup in self.getSimilar1(g).items():
             simNames += simGroup
         return sorted(set(simNames))
@@ -508,7 +517,7 @@ class KerningManager:
 
     def getSimilarNames2(self, g):
         """Answer a simple list of similar glyphs to g."""
-        simNames = []
+        simNames = [g.name]
         for confidence, simGroup in self.getSimilar2(g).items():
             simNames += simGroup
         return sorted(set(simNames))
