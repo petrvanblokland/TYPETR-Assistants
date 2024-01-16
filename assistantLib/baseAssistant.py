@@ -1,222 +1,362 @@
 # -*- coding: UTF-8 -*-
-# ------------------------------------------------------------------------------
-#     Copyright (c) 2023+ TYPETR
-#     Usage by MIT License
-# ..............................................................................
 #
-#    TYPETR baseAssistant.py
+#    BaseAssistant for RoboFont4
+#    
+#    Assistants inheriting from this base class, support a variety of functions,
+#    which can be selected, depending on how relevant it is for a certain family.
 #
-#    The BaseAssistantSubscriber provides both an example template as base class for writing Assistant tools,
-#    with specific knowledge about a typedesign project.
+#    Conversions triggered by selected or changed glyphs
+#    - Draw on “background” layer, with converted outlines in the “foreground” layer.
+#    -
 #
-
+#    Groups, spacing and kerning
+#    - Showing the group(s) of current glyph
+#    - Show editable line of related kerning pairs
+#
+#    Preview
+#    - Left/right glyphs for showing spacing/kerning, interpolation check
+#
+#    Design process
+#    - Color markers for individual designers after altering a glyph.
+#
+import sys
 import os
-import AppKit
+import codecs
+import merz
+import weakref
+import importlib
+from random import choice
+from copy import copy
 
-# Import the main entry into RoboFont subscriber and window controller classes and functions.
-from mojo.subscriber import (Subscriber, WindowController, 
-    registerGlyphEditorSubscriber, disableSubscriberEvents, getRegisteredSubscriberEvents,
-    unregisterGlyphEditorSubscriber, registerSubscriberEvent)
-from mojo.events import postEvent
+from vanilla import *
+from math import *
+from AppKit import *
+
+from mojo.events import extractNSEvent
 from mojo.UI import OpenGlyphWindow
-from mojo.roboFont import AllFonts, OpenFont, RFont, RGlyph, RPoint, CurrentGlyph, CurrentFont
+from mojo.roboFont import AllFonts, OpenFont, RGlyph, RPoint, CurrentGlyph, CurrentFont
+from mojo.subscriber import Subscriber, WindowController, registerGlyphEditorSubscriber, unregisterGlyphEditorSubscriber
 
-# Get the vanilla controls that are used in the UI window
-from vanilla import (Window, FloatingWindow, TextBox, EditText, PopUpButton, RadioGroup, 
-    CheckBox, Slider, List, Button, HorizontalRadioGroup)
+from fontTools.misc.transform import Transform
 
-# Unique key to identify Assistant events coming from helpers.
-DEFAULT_KEY = 'com.typetr.Assistant'
+# Add paths to libs in sibling repositories
+PATHS = ('../TYPETR-Assistants/',)
+for path in PATHS:
+    if not path in sys.path:
+        print('@@@ Append to sys.path', path)
+        sys.path.append(path)
 
-# PreviewDesignspace events
-EVENT_DO_OPEN_EDITWINDOW = f"{DEFAULT_KEY}.doOpenEditWindow"
-EVENT_SAVE_ALL = f"{DEFAULT_KEY}.saveAll"
+FAR = 100000 # Put drawing stuff outside the window
 
-class BaseAssistantSubscriber(Subscriber):
-    """This class interacts with the glyphs and UFO’s through events. It also holds
-    the Merz objects that are drawn in the EditorWindow that belongs to this Assistant subscriber.
-    Each EditorWindow gets its own Assistant, so there is not confusion about what the current
-    glyph is. 
-    All Assistant-Subscriber instances talk to the same AssistantController, sharing the window
-    of controls, following up on events. 
+class MasterData:
+    """Storing additional data about masters, without storing the actual RFont instance. 
+    The font can be retrieves by baseAssistant.getMaster(self.path)
     """
-    debug = True
-    controller = None
-    VERBOSE = False # Set to True for debugging the tool
+    def __init__(self, f, srcPath=None, orgPath=None, romanItalicPath=None,
+            kerningSrcPath=None, displaySrcPath=None,
+            m0=None, m1=None, m2=None, sm1=None, sm2=None, dsPosition=None,
+            tripletData1=None, tripletData2=None, featurePath=None, 
+            glyphData=None, metrics=None,
+            HStem=None, HThin=None, OStem=None, OThin=None,
+            HscStem=None, HscThin=None, OscStem=None, OscThin=None,
+            nStem=None, oStem=None, oThin=None, UThin=None, VThin=None, eThin=None,
+        ):
+        self.path = f.path
+        self.italicSkew = f.info.italicAngle
+        self.rotation = radians(f.info.italicAngle) 
+        self.isItalic = bool(f.info.italicAngle)
+        # Referencing related masters by relative path
+        self.srcPath = srcPath # "Original" master of this font, copy from here
+        self.orgPath = orgPath # "Original" master of this font
+        self.romanItalicPath = romanItalicPath # Roman <---> Italic master reference
+        self.kerningSrcPath = kerningSrcPath 
+        self.displaySrcPath = displaySrcPath # Show this outline on the background
+        # Interpolation & design space
+        self.interpolationFactor = 0.5
+        self.m0 = m0 # Regular origin
+        self.m1 = m1 # Direct interpolation master in "min" side
+        self.m2 = m2 # Direct interpolation master on "max" side
+        self.sm1 = sm1
+        self.sm2 = sm2, # Scalerpolate masters for condensed and extended making. 
+        self.dsPosition = dsPosition # Design space position (matching .designspace) to calculate triplet kerning
+        self.tripletData1 = tripletData1
+        self.tripletData2 = tripletData2, # Compatible triplet sets of (name1, name2, name3, kerning) tuples for interpolation.
+        self.featurePath = featurePath
+        # Glyphs
+        if glyphData is None:
+            glyphData = {}
+        self.glyphData = glyphData
+        if metrics is None:
+            metrics = {}
+        self.metrics = metrics 
+        self.HStem = HStem
+        self.HThin = HThin
+        self.OStem = OStem
+        self.OThin = OThin
+        self.HscStem = HscStem
+        self.HscThin = HscStem
+        self.OscStem = OscStem
+        self.OscThin = OscThin
+        self.nStem = nStem
+        self.oStem = oStem
+        self.oThin = oThin
+        self.UThin = UThin
+        self.VThin = VThin
+        self.eThin = eThin
+        # Info
+        self.ttfPath=None
+        self.ttfPath=None, platformID=None, platEncID=None, langID=None, 
+        unitsPerEm=UNITS_PER_EM,
+        copyright=COPYRIGHT, uniqueID=None, trademark=TRADEMARK, lowestRecPPEM=LOWEST_PPEM,
+        familyName=None, styleName=None,
+        fullName=None, version=None, versionMajor=VERSION_MAJOR, versionMinor=VERSION_MINOR,
+        postscriptName=None, preferredFamily=None, preferredSubFamily=None,
+        openTypeOS2WinAscent=OS2_WIN_ASCENT, openTypeOS2WinDescent=OS2_WIN_DESCENT,
+        openTypeOS2Type=[2, 8], # fsType, TN standard
+        vendorURL=VENDOR_URL, manufacturerURL=MANUFACTURER_URL, manufacturer=MANUFACTURER,
+        designerURL=DESIGNER_URL, designer=DESIGNER, 
+        eulaURL=EULA_URL, eulaDescription=EULA_DESCRIPTION,
+        underlinePosition=None, underlineThickness=UNDERLINE_THICKNESS
 
-    FAR = 100000 # Move Merz objects here to get them out of view.
-   
+class GlyphData:
+    def __init__(self, f, gName):
+        self.name = gName
+
+class BaseAssistant:
+    """Share functions and class variables for both Assistant and AssistantController"""
+
+    UFO_PATHS = None # Must be redefined by inheriting assistant classes
+
+    # Names of methods to call for initializeing and updating Merz. 
+    # To be defined by inheriting classes. 
+    INIT_MERZ_METHODS = []
+    UPDATE_MERZ_METHODS = []
+    MOUSE_MOVE_METHODS = []
+    MOUSE_DOWN_METHODS = []
+    # Controller methods
+    BUILD_UI_METHODS = []
+        
     def build(self):
-        # Build the Assistant subscriber object
-        if self.VERBOSE:
-            print('--- build')
+        
+        self.mouseClickPoint = None
+        self.mouseDraggedPoint = None
 
-        self.windowControllers = []
+    def filePath2ParentPath(self, filePath):
+        """Answer the parent path of filePath."""
+        return '/'.join(filePath.split('/')[:-1]) + '/'
+    
+    
+    def getUfoPaths(self, path):
+        """Answer all ufo paths in the path directory. If the class variable UFO_PATHS 
+        is defined by an inheriting assistant class, then these are returned."""
+        ufoPaths = self.UFO_PATHS
+        if ufoPaths is not None:
+            return ufoPaths
+        paths = []
+        for fileName in os.listdir(path):
+            if fileName.endswith('.ufo'):
+                paths.append(path + fileName)
+        return paths
+                
+    fonts = {}
+    def getFont(self, filePath):
+        """Answer the RFont if it is already open. Otherwise open it for read-only and store it into 
+        the class variable self.fonts[filePath]"""
+        for f in AllFonts():
+            if filePath == f.path:
+                if filePath in self.fonts: # It was opened before, but not RoboFont has it open.
+                    del self.fonts[filePath]
+                return f
+        
+        if filePath in self.fonts:
+            return self.fonts[filePath]
+            
+        if os.path.exists(filePath):
+            f = OpenFont(filePath, showInterface=False)
+            self.fonts[filePath] = f
+            return f
+        return None
+    
+    def getMasterData(self, f):
+        """Answer the MasterData instance for this font, containing meta-information about the entire font."""
+        md = MasterData(f)
+        return md 
 
-        # Get the GlyphEditor that relates to self.
+    def getGlyphData(self, f, gName):
+        """Answer the GlyphData instance for this glyph, containing meta-information."""
+        gd = GlyphData(f, gName)
+        return gd 
+
+class Assistant(BaseAssistant, Subscriber):
+
+    # Editor window drawing parameters
+    SPACE_MARKER_R = 16 # Radius of spacing markers at the baseline
+    POINT_MARKER_R = 6 # Radius of point markers
+    
+    controller = None
+    
+    #    B U I L D I N G
+    
+    def build(self):
         glyphEditor = self.getGlyphEditor()
+        self.isUpdating = False
 
-        self.foregroundContainer = glyphEditor.extensionContainer(
-            identifier="com.typetr.%s.foreground" % self.__class__.__name__,
+        assert glyphEditor is not None
+        
+        self.foregroundContainer = container = glyphEditor.extensionContainer(
+            identifier="com.roboFont.Assistant.foreground",
             location="foreground",
             clear=True
         )
-        self.backgroundContainer = glyphEditor.extensionContainer(
-            identifier="com.typetr.%s.background" % self.__class__.__name__,
+        
+        self.backgroundContainer = bgContainer = glyphEditor.extensionContainer(
+            identifier="com.roboFont.Assistant.background",
             location="background",
             clear=True
         )
+        # To be redefined by inheriting assistant classes, so they can define 
+        # their own set of components and UI."""
+        for initMerzMethodName in self.INIT_MERZ_METHODS:
+            getattr(self, initMerzMethodName)(container)
+                
+    # E V E N T S
 
-        """Register the events for this subscriber. The methodName is the method self.method responds to."""
-        registerSubscriberEvent(
-            subscriberEventName=EVENT_DO_OPEN_EDITWINDOW,
-            methodName="doOpenEditWindow",
-            lowLevelEventNames=[EVENT_DO_OPEN_EDITWINDOW],
-            dispatcher="roboFont",
-            documentation="Send when the Assistant UI did change parameters.",
-            delay=0,
-            debug=True
-        )
-        registerSubscriberEvent(
-            subscriberEventName=EVENT_SAVE_ALL,
-            methodName="saveAll",
-            lowLevelEventNames=[EVENT_SAVE_ALL],
-            dispatcher="roboFont",
-            documentation="Send when the Assistant UI did change parameters.",
-            delay=0,
-            debug=True
-        )
-        self.buildAssistant() # Build specifics of inheriting assistant classes.
-
-    def buildAssistant(self):
-        """Build the rest of the Assistant subscriber, such as adding all Merz drawing object,
-        in case the inheriting class wants to draw in the related EditorWindow.
-        To be redefined by inheriting Assistant-Subscriber classes.
-        Default behavior is to do nothing.
-        """
-        print('### BaseAssistantSubscriber.buildAssistant should be redefined by the inheriting Assistant class.')
-
-    def destroy(self):
-        """This is called if the glyphEditor is about to get closed. 
-        All containers are released there and so it the event binding."""
-        glyphEditor = self.getGlyphEditor()
-        container = glyphEditor.extensionContainer(DEFAULT_KEY, location='background')
-        container.clearSublayers()
-
-    #   G L Y P H
-
-    def getGlyph(self):
-        """Answer the glyph in the GlyphEditor that relates to this subscriber. This answer a DoodleGlyph"""
-        glyphEditor = self.getGlyphEditor()
-        #print(glyphEditor.getGlyph().__class__.__name__)
-        #print(CurrentGlyph().__class__.__name__)
-        return glyphEditor.getGlyph()
-
-    def getCurrentGlyph(self):
-        return CurrentGlyph()
-
-    def getCurrentFont(self):
-        return CurrentFont()
-
-    #   E V E N T S
-
-    def doOpenEditWindow(self, info):
-        if self.VERBOSE:
-            print(f"--- {self.__class__.__name__}.doOpenEditWindow {info['lowLevelEvents'][0]['info']['ufoName']}")
-
+    # Types of events to subscribe to
+    #self.glyphEditorGlyphDidChange(info)
+    #self.glyphEditorGlyphDidChangeInfo(info)
+    #self.glyphEditorGlyphDidChangeOutline(info)
+    #self.glyphEditorGlyphDidChangeComponents(info)
+    #self.glyphEditorGlyphDidChangeAnchors(info)
+    #self.glyphEditorGlyphDidChangeGuidelines(info)
+    #self.glyphEditorGlyphDidChangeImage(info)
+    #self.glyphEditorGlyphDidChangeMetrics(info)
+    #self.glyphEditorGlyphDidChangeContours(info)
+    #self.glyphEditorDidMouseDown(info)
+    #self.glyphEditorDidMouseUp(info)
+    #self.glyphEditorDidMouseDrag(info)
+    
+    def glyphEditorGlyphDidChange(self, info):
+        self.updateMerz(info)
+        
     def glyphEditorDidSetGlyph(self, info):
-        if self.VERBOSE:
-            print(f"--- {self.__class__.__name__}.glyphEditorDidSetGlyph {info['glyph'].name}")
-
+        self.updateMerz(info)
+        
+    def glyphEditorDidMouseDown(self, info):
+        g = info['glyph']
+        self.mouseClickPoint = p = info['locationInGlyph']
+        for mouseDownMethodName in self.MOUSE_DOWN_METHODS:
+            getattr(self, mouseDownMethodName)(g, p.x, p.y)
+    
     def glyphEditorDidMouseUp(self, info):
-        if self.VERBOSE:
-            print(f"--- {self.__class__.__name__}.glyphEditorDidMouseUp {info['glyph'].name}")
-
+        # Reset terminal stuff
+        self.mouseClickPoint = None
+        self.mouseDraggedPoint = None
+    
+    def glyphEditorDidMouseMove(self, info):
+        g = info['glyph']
+        p = info['locationInGlyph']
+        for mouseMoveMethodName in self.MOUSE_MOVE_METHODS:
+            getattr(self, mouseMoveMethodName)(g, p.x, p.y)
+    
     def glyphEditorDidMouseDrag(self, info):
-        if self.VERBOSE:
-            print(f"--- {self.__class__.__name__}.glyphEditorDidMouseDrag {info['glyph'].name}")
+        self.mouseDraggedPoint = info['locationInGlyph']
 
-    def glyphEditorGlyphDidChangeSelection(self, info):
-        if self.VERBOSE:
-            print(f"--- {self.__class__.__name__}.glyphEditorGlyphDidChangeSelection {info['glyph'].name}")
-
-    def currentFontDidSetFont(self):
-        if self.VERBOSE:
-            print(f"--- {self.__class__.__name__}.currentFontDidSetFont")
-        
-    def fontDocumentDidOpen(self, info):
-        if self.VERBOSE:
-            print(f"--- {self.__class__.__name__}.fontDocumentDidOpen {info['font'].path}")
-        
-    def fontDocumentDidClose(self, info):
-        if self.VERBOSE:
-            print(f"--- {self.__class__.__name__}.fontDocumentDidClose")
-
-    def saveAll(self, info):
-        # Save all open fonts and all fonts that are in the global openFonts dictionary.
-        print(f'--- {self.__class__.__name__}.saveAll')
-        for f in AllFonts():
-            f.save()
-        for ufoPath, f in openFonts.items():
-            f.save()
-
-class BaseAssistantController(WindowController):
-    """Define the base class the creates the UI window for the assistant tool.
-    Inheriting controller classes can define required functions by setting class flags to True.
-
-    This class mostly just defines the window, controls and interactions, calling events
-    for the Assistant-Subscriber to perform tasks on glyphs and UFO’s.
-
-    Helpers are generic tools that can perform a series of tasks. They know how to build their
-    part of the interface. They instruct the Assistant on which events the want to respond
-    and they know how to perform theirs tasks on glyph, current UFO or all UFOs.
-    Helpers can draw in the EditorWindow through Merz objects. And they can construct their
-    own window or canvas.
-    The selection and order of the helpers defines their top-down order in the Assistant window.
-    """
-    WINDOW_CLASS = Window # Or FloatingWindow
-    subscriberClass = BaseAssistantSubscriber
-    debug = True
-    VERBOSE = False
-
-    TITLE = 'Assistant'
-
-    X = Y = 50 # Position of the window, should eventually come from preference storage.
-    W, H = 400, 600 # Width and height of controller window
-    MINW, MINH, MAXW, MAXH = W, H, 3 * W, 3 * H # Min/max size of the window
-    M = 8 # Margin and gutter
-    L = 20 # Line height between controls
-    LL = 32 # Line height between functions
-    BH = 32 # Button height
-    TBH = 24 # Text box height
-    LH = 24 # Label height
-    POBH = 24 # Popup button height
-    CW = (W - 4 * M) / 3 # Column width
-    CW2 = 2 * CW + M # Column width
-    C0 = M # X position of column 0
-    C1 = C0 + CW + M # X position of column 1
-    C2 = C1 + CW + M # X position of column 2
-    
-    TITLE = subscriberClass.__name__ # Default is class subscriber class name
-    
-    def build(self):
-        self.fonts = {}
-        self.w = self.WINDOW_CLASS((self.X, self.Y, self.W, self.H), self.TITLE, 
-            minSize=(self.MINW, self.MINH), maxSize=(self.MAXW, self.MAXH))
-        self.buildUI()
-        self.w.open()
-
-    def buildUI(self):
-        """For inheriting classes to define the building of the user interface."""
-        pass
-        
     def started(self):
-        self.subscriberClass.controller = self
-        registerGlyphEditorSubscriber(self.subscriberClass)
+        pass
+            
+    def destroy(self):
+        self.foregroundContainer.clearSublayers()
+
+    def getController(self):
+        """Answer the controller. We need this method to be compatible in case of controller.getController()"""
+        return self.controller
+
+    def updateMerz(self, info):
+        """Update the Merz objects for all activated Merz components"""
+        if self.isUpdating:
+            return
+        self.isUpdating = True
+        for updateMerzMethodName in self.UPDATE_MERZ_METHODS:
+            getattr(self, updateMerzMethodName)(info)
+        self.isUpdating = False 
+
+class AssistantController(BaseAssistant, WindowController):
+
+    # Default constants, to be overwritten by inheriting classes
+    W, H = 250, 250 # Width and height of the main window
+    M = 8 # Margins and gutter of the main window UI
+    L = 22 # Distance between UI controls
+    COLS = 3 # Number of columns on the UI window
+            
+    # Editor window drawin parameters for kerning
+    KERN_LINE_SIZE = 32 # Number of glyphs on kerning line
+    KERN_SCALE = 0.15 # Calibration factor for AI kerning
+        
+    assistantGlyphEditorSubscriberClass = BaseAssistant
+
+    # Inheriting class can overwrite this default class variable to alter type of window 
+    #WINDOW_CLASS = vanilla.Window
+    WINDOW_CLASS = FloatingWindow
+        
+    NAME = 'Base Assistant'
+
+    def build(self):
+        """Build the controller window."""
+        
+        # Can't do these as class variable, since they may depend on inheritied self.W, self.H, self.COLS, etc.        
+        self.CW = (self.W - (self.COLS + 1) * self.M)/self.COLS
+        self.C0 = self.M
+        self.C1 = self.C0 + self.CW + self.M
+        self.C2 = self.C1 + self.CW + self.M
+
+        y = self.M
+        self.w = self.WINDOW_CLASS((self.W, self.H), self.NAME, minSize=(self.W, self.H))
+        y = self.buildUI(y) # y goes down, depending how much the UI components need
+        self.w.open()
+                
+    def buildUI(self, y):
+        """Default user interface controllers. The selection of controls by an inheriting
+        assistant class also defines the available functions."""
+        for buildUIMethodName in self.BUILD_UI_METHODS:
+            y = getattr(self, buildUIMethodName)(y)
+        return y
+
+    def updateEditor(self, sender):
+        g = CurrentGlyph()
+        if g is not None:
+            g.changed()
+                  
+    # Handle subscriptions to the EditorWindow events
+    
+    def started(self):
+        #print("started")
+        self.assistantGlyphEditorSubscriberClass.controller = self
+        registerGlyphEditorSubscriber(self.assistantGlyphEditorSubscriberClass)
 
     def destroy(self):
-        unregisterGlyphEditorSubscriber(self.subscriberClass)
-        self.subscriberClass.controller = None
+        #print("windowClose")
+        unregisterGlyphEditorSubscriber(self.assistantGlyphEditorSubscriberClass)
+        self.assistantGlyphEditorSubscriberClass.controller = None
 
-    #   F O N T
+    def getController(self):
+        """Answer the controller. We need this method to be compatible in case of controller.getController()"""
+        return self
+
+    LIB_KEY = 'com.typetr'
+
+    def getLib(self, fOrG, key, defaultValue):
+        if fOrG is None:
+            return defaultValue
+        if not self.LIB_KEY in fOrG.lib:
+            fOrG.lib[self.LIB_KEY] = {}
+        if not key in fOrG.lib[self.LIB_KEY]:
+            self.setLib(fOrG, key, defaultValue)
+        return fOrG.lib[self.LIB_KEY][key]
+
+    def setLib(self, fOrG, key, value):
+        if fOrG is not None:
+            if self.LIB_KEY not in fOrG.lib:
+                fOrG.lib[self.LIB_KEY] = {}
+            fOrG.lib[self.LIB_KEY][key] = value
+
 
