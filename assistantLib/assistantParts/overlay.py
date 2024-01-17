@@ -126,7 +126,14 @@ class AssistantPartOverlay(BaseAssistantPart):
     #    O V E R L A Y
     
     def buildOverlay(self, y):
-        """Build the overlay UI controls"""
+        """Build the overlay UI controls. Give control to show the following masters (if defined in the masterData)
+        md.srcPath              "Original" master of this font, copy from here
+        md.displaySrcPath       DisplaySrcPath # Show this outline on the background
+        md.orgPath              "Original" master of this font for overlay reference
+        md.romanItalicPath      romanItalicPath # Roman <---> Italic master reference
+        md.kerningSrcPath       kerningSrcPath # Used as kerning reference.
+
+        """
         # Calculate the column positions
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         c = self.getController()
