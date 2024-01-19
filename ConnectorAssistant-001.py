@@ -298,7 +298,7 @@ class ConnectorAssistant(Subscriber):
 
         # Adjust kerning
 
-        elif characters in '.>': # Increment right kerning
+        elif characters in 'bB': # Increment right kerning
             if shiftDown:
                 self._adjustRightKerning(g, 5) # 20
             else:
@@ -306,7 +306,7 @@ class ConnectorAssistant(Subscriber):
             changed = True            
             updatePreview = True
         
-        elif characters in ',<': # Decrement right kerning
+        elif characters in 'nN': # Decrement right kerning
             if shiftDown:
                 self._adjustRightKerning(g, -5) # 20
             else:
@@ -314,7 +314,7 @@ class ConnectorAssistant(Subscriber):
             changed = True            
             updatePreview = True
         
-        elif characters in 'Mm': # Decrement left kerning
+        elif characters in 'cC': # Decrement left kerning
             if shiftDown:
                 self._adjustLeftKerning(g, -5) # 20
             else:
@@ -322,7 +322,7 @@ class ConnectorAssistant(Subscriber):
             changed = True            
             updatePreview = True
         
-        elif characters in 'Nn': # Increment left kerning
+        elif characters in 'vV': # Increment left kerning
             if shiftDown:
                 self._adjustLeftKerning(g, 5) # 20
             else:
@@ -378,7 +378,7 @@ class ConnectorAssistant(Subscriber):
         if self.isUpdating:
             return
         f = g.font
-        unit = 4
+        unit = 1
         #self.isUpdating = True
         g.angledLeftMargin = int(round(g.angledLeftMargin/unit) + value) * unit
         #self.isUpdating = False
@@ -387,7 +387,7 @@ class ConnectorAssistant(Subscriber):
         if self.isUpdating:
             return
         f = g.font
-        unit = 4
+        unit = 1
         #self.isUpdating = True
         g.angledRightMargin = int(round(g.angledRightMargin/unit) + value) * unit
         #self.isUpdating = False
