@@ -696,6 +696,55 @@ class AssistantPartNeon(BaseAssistantPart):
     def initMerzNeon(self, container):    
         pass
     
+    def setGlyphNeon(self, g):
+        """Gets called when the EditorWindow selected a new glyph. Update the control values
+        for the Neon part from font.lib."""
+        c = self.getController()
+        f = g.font
+        thickness = self.getLib(f, self.LIB_THICKNESS, self.DEFAULT_THICKNESS)
+        c.w.thickness.set(thickness)
+        c.w.thicknessText.set(str(thickness))
+        print('setGlyphNeon: Set thickness', thickness)
+        """
+        contrast = int(c.w.contrast.get())
+        self.setLib(f, self.LIB_CONTRAST, contrast)
+        contrastAngle = int(c.w.contrastAngle.get())
+        self.setLib(f, self.LIB_CONTRAST_ANGLE, contrastAngle)
+        keepBounds = c.w.keepBounds.get()
+        self.setLib(f, self.LIB_KEEP_BOUNDS, keepBounds)
+        preserveComponents = bool(c.w.preserveComponents.get())
+        self.setLib(f, self.LIB_PRESERVE_COMPONENTS, preserveComponents)
+
+        miterLimit = int(c.w.miterLimit.get())
+        if c.w.connectmiterLimit.get():
+            miterLimit = thickness
+            c.w.miterLimit.set(miterLimit)
+        self.setLib(f, self.LIB_CONNECT_MITER_LIMIT, c.w.connectmiterLimit)
+        self.setLib(f, self.LIB_MITER_LIMIT, miterLimit)
+
+        corner = c.w.corner.getItems()[c.w.corner.get()]
+        self.setLib(f, self.LIB_CORNER, corner )
+
+        closeOpenPath = c.w.useCap.get()
+        self.setLib(f, self.LIB_CLOSE_OPEN_PATH, closeOpenPath)
+
+        cap = c.w.cap.getItems()[c.w.cap.get()]
+        self.setLib(f, self.LIB_CAP, cap )
+
+        drawOriginal = c.w.drawOriginal.get()
+        self.setLib(f, self.LIB_DRAW_ORIGINAL, drawOriginal)
+
+        drawInner = c.w.drawInner.get()
+        self.setLib(f, self.LIB_DRAW_INNER, drawInner)
+
+        drawOuter = c.w.drawOuter.get()
+        self.setLib(f, self.LIB_DRAW_OUTER, drawOuter)
+        
+        c.w.thicknessText.set("%i" % thickness)
+        c.w.contrastText.set("%i" % contrast)
+        c.w.contrastAngleText.set("%i" % contrastAngle)
+        c.w.miterLimitText.set("%i" % miterLimit)
+        """
     def updateMerzNeon(self, info):
         g = info['glyph']
         if g.layer.name == 'foreground':
@@ -710,25 +759,28 @@ class AssistantPartNeon(BaseAssistantPart):
         c = self.getController()
         if c is None:
             return
-        md = self.getMasterData(g.font)
-        thickness = md.thickness
 
-        contrast = 0
-        contrastAngle = 0
+        thickness = c.w.thickness.get()
+        contrast = c.w.contrast.get()
+        contrastAngle = c.w.contrastAngle.get()
+        keepBounds = c.w.keepBounds.get()
         
-        miterLimit = 14
+        if c.w.connectmiterLimit.get():
+            miterLimit = None
+        else:
+            miterLimit = c.w.miterLimit.get()
 
-        corner = 'Round'
-        cap = 'Round'
+        corner = c.w.corner.getItems()[c.w.corner.get()]
+        cap = c.w.cap.getItems()[c.w.cap.get()]
 
-        closeOpenPaths = True
+        closeOpenPaths = c.w.useCap.get()
 
-        drawOriginal = False
-        drawInner = True
-        drawOuter = True
+        drawOriginal = c.w.drawOriginal.get()
+        drawInner = c.w.drawInner.get()
+        drawOuter = c.w.drawOuter.get()
 
-        pen = OutlinePen(g.font,
-                            md.thickness,
+        pen = OutlinePen(g.getParent(),
+                            thickness,
                             contrast,
                             contrastAngle,
                             connection=corner,
@@ -744,6 +796,23 @@ class AssistantPartNeon(BaseAssistantPart):
                          drawOuter=drawOuter)
 
         result = pen.getGlyph()
+        if keepBounds:
+            if g.bounds and result.bounds:
+                minx1, miny1, maxx1, maxy1 = g.bounds
+                minx2, miny2, maxx2, maxy2 = result.bounds
+
+                h1 = maxy1 - miny1
+
+                w2 = maxx2 - minx2
+                h2 = maxy2 - miny2
+
+                s = h1 / h2
+
+                center = minx2 + w2 * .5, miny2 + h2 *.5
+
+                dummy = RGlyph(result)
+                dummy.scale((s, s), center)
+
         return result
 
     def updateOutline(self, g):
@@ -754,13 +823,403 @@ class AssistantPartNeon(BaseAssistantPart):
         
         outline = self.calculate(bgG.naked())
         # Only update for current glyph selection
-        if outline is not None and bgG.contours or bgG.components : # Clear only ff there is content
+        if bgG.contours or bgG.components : # Clear only of there is content
             for component in bgG.components:
                 if component.baseGlyph in f:
                     self.updateOutline(f[component.baseGlyph])
             fgG.clear()
             pen = fgG.naked().getPen()
             outline.draw(pen)
+
+    DEFAULT_THICKNESS = 10
+    DEFAULT_CONTRAST = 0
+    DEFAULT_CONTRAST_ANGLE = 0
+    DEFAULT_CONNECT_MITER_LIMIT = True
+    DEFAULT_MITER_LIMIT = 10
+    DEFAULT_PRESERVE_COMPONENTS = True
+    DEFAULT_CLOSE_OPEN_PATH = True
+    DEFAULT_CORNER = 'Round'
+    DEFAULT_CAP = 'Round'
+    DEFAULT_KEEP_BOUNDS = False
+
+    # font.lib[self.LIB_KEY][...] keys for this part
+    LIB_THICKNESS = 'neon.thickness'
+    LIB_CONTRAST = 'neon.contrast'
+    LIB_CONTRAST_ANGLE = 'neon.contrastAngle'
+    LIB_KEEP_BOUNDS = 'neon.keepBounds'
+    LIB_PRESERVE_COMPONENTS = 'neon.preserveComponents'
+    LIB_CONNECT_MITER_LIMIT = 'neon.connectMiterLimit'
+    LIB_MITER_LIMIT = 'neon.miterLimit'
+    LIB_CORNER = 'neon.corner'
+    LIB_CLOSE_OPEN_PATH = 'closeOpenPath'
+    LIB_CAP = 'neon.cap'
+    LIB_KEEP_BOUNDS = 'neon.keepBounds'
+    LIB_DRAW_ORIGINAL = 'neon.drawOriginal'
+    LIB_DRAW_INNER = 'neon.drawInner'
+    LIB_DRAW_OUTER = 'neon.drawOuter'
+    LIB_FILL = 'neon.fill'
+    LIB_STROKE = 'neon.stroke'
+    LIB_COLOR = 'neon.color'
+    LIB_PREVIEW = 'neon.preview'
+
+    def buildNeon(self, y):
+        """Build the Neon stuff: Merz components and """
+        # Calculate the column positions
+        C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
+
+        f = CurrentFont()
+
+        w = self.W
+        h = 700
+        middle = 135
+        textMiddle = middle - 27
+        y += 10
+        self.w._thickness = TextBox((0, y-3, textMiddle, 17), 'Thickness:', alignment="right")
+
+        thicknessValue = self.getLib(f, self.LIB_THICKNESS, self.DEFAULT_THICKNESS)
+
+        self.w.thickness = Slider((middle, y, -50, 15),
+                                 minValue=1,
+                                 maxValue=200,
+                                 callback=self.parametersChanged,
+                                 value=thicknessValue)
+        self.w.thicknessText = EditText((-40, y, -10, 17), thicknessValue,
+                                       callback=self.parametersTextChanged,
+                                       sizeStyle="small")
+        y += 33
+        self.w._contrast = TextBox((0, y-3, textMiddle, 17), 'Contrast:', alignment="right")
+
+        contrastValue = self.getLib(f, self.LIB_CONTRAST, self.DEFAULT_CONTRAST)
+
+        self.w.contrast = Slider((middle, y, -50, 15),
+                                 minValue=0,
+                                 maxValue=200,
+                                 callback=self.parametersChanged,
+                                 value=contrastValue)
+        self.w.contrastText = EditText((-40, y, -10, 17), contrastValue,
+                                       callback=self.parametersTextChanged,
+                                       sizeStyle="small")
+        y += 33
+        self.w._contrastAngle = TextBox((0, y-3, textMiddle, 17), 'Contrast Angle:', alignment="right")
+
+        contrastAngleValue = self.getLib(f, self.LIB_CONTRAST_ANGLE, self.DEFAULT_CONTRAST_ANGLE)
+
+        self.w.contrastAngle = Slider((middle, y-10, 30, 30),
+                                 minValue=0,
+                                 maxValue=360,
+                                 callback=self.contrastAngleCallback,
+                                 value=contrastAngleValue)
+        self.w.contrastAngle.getNSSlider().cell().setSliderType_(NSCircularSlider)
+        self.w.contrastAngleText = EditText((-40, y, -10, 17), contrastAngleValue,
+                                       callback=self.parametersTextChanged,
+                                       sizeStyle="small")
+
+        y += 33
+        
+        self.w._pointPen= TextBox((0, y-3, textMiddle, 17), 'Point Label:', alignment="right")
+
+        self.w.pointPen = Slider((middle, y, -50, 15),
+                                    minValue=50,
+                                    maxValue=110,
+                                    callback=self.pointPenChanged,
+                                    value=100)
+        self.w.pointPenText = EditText((-40, y, -10, 17), 100,
+                                          callback=self.pointPenTextChanged,
+                                          sizeStyle="small")
+        y += 24
+        x = 8
+        BX = 40
+        # Buttons with predefined values for PointPen labels
+        for bIndex, buttonValue in enumerate((50, 55, 60, 65, 70, 72, 75, 76, 78, 80, 82, 84, 85, 86, 88, 90, 92, 94, 96, 98, 100)):
+            button = Button((x, y, BX, 24), str(buttonValue), self.setPointPenByValue)
+            button.value = buttonValue
+            setattr(self.w, 'pointPenButton%d' % bIndex, button)
+            if bIndex in (6, 13):
+                x = 8
+                y += 24
+            else:
+                x += BX+2
+        
+        # Buttons with predefined right margins
+        mry = y + 130
+        x = 8
+        BX = 55
+        for bIndex, rm in enumerate([-65, -70, -75, -80, -85, -90, -95, -100, -105, -110, -115, -120, -125, -130, -135, -140, -145, -150, -165, -170, -175, -180, -185, -190, -195, -200]):
+            button = Button((x, mry, BX, 24), str(rm), self.setRightMarginByValue)
+            button.value = rm
+            setattr(self.w, 'rightMarginButton%d' % rm, button)
+            if bIndex % 2:
+                x = 8
+                mry += 24
+            else:
+                x += BX+2            
+        y += 33
+
+        self.w._miterLimit = TextBox((0, y-3, textMiddle, 17), 'MiterLimit:', alignment="right")
+
+        connectmiterLimitValue = self.getLib(f, self.LIB_CONNECT_MITER_LIMIT, self.DEFAULT_CONNECT_MITER_LIMIT)
+
+        self.w.connectmiterLimit = CheckBox((middle-22, y-3, 20, 17), "",
+                                             callback=self.connectmiterLimit,
+                                             value=connectmiterLimitValue)
+
+        miterLimitValue = self.getLib(f, self.LIB_MITER_LIMIT, self.DEFAULT_MITER_LIMIT)
+
+        self.w.miterLimit = Slider((middle, y, -50, 15),
+                                    minValue=1,
+                                    maxValue=200,
+                                    callback=self.parametersChanged,
+                                    value=miterLimitValue)
+        self.w.miterLimitText = EditText((-40, y, -10, 17), miterLimitValue,
+                                          callback=self.parametersTextChanged,
+                                          sizeStyle="small")
+
+        self.w.miterLimit.enable(not connectmiterLimitValue)
+        self.w.miterLimitText.enable(not connectmiterLimitValue)
+
+        y += 30
+
+        cornerAndCap = ["Square", "Round", "Butt"]
+
+        self.w._corner = TextBox((0, y, textMiddle, 17), 'Corner:', alignment="right")
+        self.w.corner = PopUpButton((middle-2, y-2, -48, 22), cornerAndCap, callback=self.parametersTextChanged)
+        self.w.corner.set(1)
+
+        y += 30
+
+        self.w._cap = TextBox((0, y, textMiddle, 17), 'Cap:', alignment="right")
+        useCapValue = self.getLib(f, self.LIB_CLOSE_OPEN_PATH, self.DEFAULT_CLOSE_OPEN_PATH)
+        self.w.useCap = CheckBox((middle-22, y, 20, 17), "",
+                                             callback=self.useCapCallback,
+                                             value=useCapValue)
+        self.w.cap = PopUpButton((middle-2, y-2, -48, 22), cornerAndCap, callback=self.parametersTextChanged)
+        self.w.cap.enable(useCapValue)
+        self.w.cap.set(1)
+
+        cornerValue = self.getLib(f, self.LIB_CORNER, self.DEFAULT_CORNER)
+        if cornerValue in cornerAndCap:
+            self.w.corner.set(cornerAndCap.index(cornerValue))
+
+        capValue = self.getLib(f, self.LIB_CAP, self.DEFAULT_CAP)
+        if capValue in cornerAndCap:
+            self.w.cap.set(cornerAndCap.index(capValue))
+
+        y += 33
+
+        self.w.keepBounds = CheckBox((middle-3, y, middle, 22), "Keep Bounds",
+                                   value=self.getLib(f, self.LIB_KEEP_BOUNDS, self.DEFAULT_KEEP_BOUNDS),
+                                   callback=self.parametersTextChanged)
+        y += 30
+        self.w.drawOriginal = CheckBox((middle-3, y, middle, 22), "Draw Source",
+                                   value=self.getLib(f, self.LIB_DRAW_ORIGINAL, False),
+                                   callback=self.parametersTextChanged)
+        y += 30
+        self.w.drawInner = CheckBox((middle-3, y, middle, 22), "Draw Inner",
+                                   value=self.getLib(f, self.LIB_DRAW_INNER, True),
+                                   callback=self.parametersTextChanged)
+        y += 30
+        self.w.drawOuter = CheckBox((middle-3, y, middle, 22), "Draw Outer",
+                                   value=self.getLib(f, self.LIB_DRAW_OUTER, True),
+                                   callback=self.parametersTextChanged)
+
+        y += 35
+        self.w.preview = CheckBox((middle-3, y, middle, 22), "Preview",
+                               value=self.getLib(f, self.LIB_PREVIEW, False),
+                               callback=self.previewCallback)
+        y += 30
+        self.w.fill = CheckBox((middle-3+10, y, middle, 22), "Fill",
+                               value=self.getLib(f, self.LIB_FILL, False),
+                               callback=self.fillCallback, sizeStyle="small")
+        y += 25
+        self.w.stroke = CheckBox((middle-3+10, y, middle, 22), "Stroke",
+                               value=self.getLib(f, self.LIB_STROKE, True),
+                               callback=self.strokeCallback, sizeStyle="small")
+
+        color = NSColor.colorWithCalibratedRed_green_blue_alpha_(0, 1, 1, .8)
+
+        self.w.color = ColorWell(((middle-5)*1.7, y-33, -10, 60),
+                                 color=color,
+                                 callback=self.colorCallback)
+
+        self.w.preserveComponents = CheckBox((10, -25, -10, 22), "Preserve Components", sizeStyle="small",
+                                value=self.getLib(f, self.LIB_PRESERVE_COMPONENTS, self.DEFAULT_PRESERVE_COMPONENTS),
+                                callback=self.parametersTextChanged)
+
+        self.previewCallback(self.w.preview)
+
+        return y
+
+    def parametersChanged(self, sender=None, g=None):
+        c = self.getController()
+        g = CurrentGlyph()
+        if g is None:
+            return
+        f = g.font
+        thickness = int(c.w.thickness.get())
+        self.setLib(f, self.LIB_THICKNESS, thickness)
+        contrast = int(c.w.contrast.get())
+        self.setLib(f, self.LIB_CONTRAST, contrast)
+        contrastAngle = int(c.w.contrastAngle.get())
+        self.setLib(f, self.LIB_CONTRAST_ANGLE, contrastAngle)
+        keepBounds = c.w.keepBounds.get()
+        self.setLib(f, self.LIB_KEEP_BOUNDS, keepBounds)
+        preserveComponents = bool(c.w.preserveComponents.get())
+        self.setLib(f, self.LIB_PRESERVE_COMPONENTS, preserveComponents)
+
+        miterLimit = int(c.w.miterLimit.get())
+        if c.w.connectmiterLimit.get():
+            miterLimit = thickness
+            c.w.miterLimit.set(miterLimit)
+        self.setLib(f, self.LIB_CONNECT_MITER_LIMIT, c.w.connectmiterLimit)
+        self.setLib(f, self.LIB_MITER_LIMIT, miterLimit)
+
+        corner = c.w.corner.getItems()[c.w.corner.get()]
+        self.setLib(f, self.LIB_CORNER, corner )
+
+        closeOpenPath = c.w.useCap.get()
+        self.setLib(f, self.LIB_CLOSE_OPEN_PATH, closeOpenPath)
+
+        cap = c.w.cap.getItems()[c.w.cap.get()]
+        self.setLib(f, self.LIB_CAP, cap )
+
+        drawOriginal = c.w.drawOriginal.get()
+        self.setLib(f, self.LIB_DRAW_ORIGINAL, drawOriginal)
+
+        drawInner = c.w.drawInner.get()
+        self.setLib(f, self.LIB_DRAW_INNER, drawInner)
+
+        drawOuter = c.w.drawOuter.get()
+        self.setLib(f, self.LIB_DRAW_OUTER, drawOuter)
+        
+        c.w.thicknessText.set("%i" % thickness)
+        c.w.contrastText.set("%i" % contrast)
+        c.w.contrastAngleText.set("%i" % contrastAngle)
+        c.w.miterLimitText.set("%i" % miterLimit)
+
+        g.getLayer('background').changed() # Make sure to update from the background
+
+    def parametersTextChanged(self, sender):
+        c = self.getController()
+        value = sender.get()
+        try:
+            value = int(float(value))
+        except ValueError:
+            value = 10
+            sender.set(value)
+
+        thickness = int(c.w.thicknessText.get())
+        c.w.thickness.set(thickness)
+        contrast = int(c.w.contrastText.get())
+        c.w.contrast.set(contrast)
+        contrastAngle = int(c.w.contrastAngleText.get())
+        c.w.contrastAngle.set(contrastAngle)
+        c.parametersChanged(sender)
+
+    def contrastAngleCallback(self, sender):
+        if NSEvent.modifierFlags() & NSShiftKeyMask:
+            value = sender.get()
+            value = roundValue(value, 45)
+            sender.set(value)
+        self.parametersChanged(sender)
+
+    def pointPenChanged(self, sender):
+        c = self.getController()
+        changed = False
+        value = int(round(sender.get()))
+        c.w.pointPenText.set(value)
+        g = CurrentGlyph()
+        if g is not None:
+            for contour in g:
+                for p in contour.points:
+                    if p.selected:
+                        if value == 100:
+                            p.labels = [] # On default, clear label
+                        else:
+                            p.labels = ['F%d' % value]
+                        changed = True
+        if changed:
+            self.updateView()
+        
+    def pointPenTextChanged(self, sender):
+        c = self.getController()
+        changed = False
+        try:
+            value = int(sender.get())
+            c.w.pointPen.set(value)
+            g = CurrentGlyph()
+            if g is not None:
+                for contour in g:
+                    for p in contour.points:
+                        if p.selected:
+                            p.labels = ['F%d' % value]
+                            changed = True
+        except ValueError:
+            pass
+        if changed:
+            self.updateView()
+
+    def setPointPenByValue(self, sender):
+        c = self.getController()
+        c.w.pointPen.set(sender.value)
+        c.w.pointPenText.set(sender.value)
+        g = CurrentGlyph()
+        if g is not None:
+            for contour in g:
+                for p in contour.points:
+                    if p.selected:
+                        if sender.value == 100:
+                            p.labels = []
+                        else:
+                            p.labels = ['F%d' % sender.value]
+                        changed = True
+        self.updateView()
+
+    def setRightMarginByValue(self, sender):
+        g = CurrentGlyph()
+        if g is not None:
+            g.angledRightMargin = sender.value
+
+    def connectmiterLimit(self, sender):
+        c = self.getController()
+        f = CurrentFont()
+        self.setLib(f, self.LIB_CONNECT_MITER_LIMIT, sender.get())
+        value = not sender.get()
+        c.w.miterLimit.enable(value)
+        c.w.miterLimitText.enable(value)
+        self.parametersChanged(sender)
+
+    def useCapCallback(self, sender):
+        c = self.getController()
+        f = CurrentFont()
+        value = sender.get()
+        self.setLib(f, self.LIB_CLOSE_OPEN_PATH, value)
+        c.w.cap.enable(value)
+        self.parametersChanged(sender)
+
+    def previewCallback(self, sender):
+        c = self.getController()
+        f = CurrentFont()
+        value = sender.get()
+        c.w.fill.enable(value)
+        c.w.stroke.enable(value)
+        c.w.color.enable(value)
+        self.setLib(f, self.LIB_CLOSE_OPEN_PATH, value)
+        self.updateView()
+
+    def fillCallback(self, sender):
+        f = CurrentFont()
+        self.setLib(f, self.LIB_FILL, sender.get()),
+        self.updateView()
+
+    def strokeCallback(self, sender):
+        f = CurrentFont()
+        self.setLib(f, self.LIB_STROKE, sender.get()),
+        self.updateView()
+
+    def colorCallback(self, sender):
+        f = CurrentFont()
+        self.setLib(f, self.LIB_COLOR, sender.get())
+        self.updateView()
 
     def updateView(self, sender=None):
         UpdateCurrentGlyphView()

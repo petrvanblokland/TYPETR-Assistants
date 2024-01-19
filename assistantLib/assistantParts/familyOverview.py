@@ -51,8 +51,9 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         
     def updateMerzFamilyOverview(self, info):
         g = info['glyph']
+        if g is None:
+            return
         nIndex = 0
-        print('Updating', g.name)
         if g is not None and self.controller.w.showFamilyOverview.get():
             f = g.font
             x = 0
@@ -62,8 +63,9 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                 if fIndex < len(self.familyOverviewGlyphs):
                     ufo = self.getFont(pth)
                     if ufo is not None and g.name in ufo:
-                        ufoG = ufo[g.name]
+                        ufoG = ufo[g.name] # Show the foreground layer.
                         glyphPath = ufoG.getRepresentation("merz.CGPath")
+                        #print('Updating family glyph path', pth, g.name)
                         self.familyOverviewGlyphs[fIndex].setPath(glyphPath)
                         self.familyOverviewGlyphs[fIndex].setPosition((x, y))
                         self.familyOverviewStyleName[fIndex].setText(ufo.info.styleName)
@@ -76,6 +78,8 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         
     def mouseMoveFamilyOverview(self, g, x, y):
         """Set the hoover color for the current selected glyph"""
+        if g is None:
+            return
         currentFont = g.font
         y1 = currentFont.info.unitsPerEm
         y2 = y1 + currentFont.info.unitsPerEm * self.FAMILY_OVERVIEW_SCALE
@@ -96,6 +100,8 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                     
     def mouseDownFamilyOverview(self, g, x, y):
         """Open Editor window on clicked glyph"""
+        if g is None:
+            return
         currentFont = g.font
         y1 = currentFont.info.unitsPerEm
         y2 = y1 + currentFont.info.unitsPerEm * self.FAMILY_OVERVIEW_SCALE

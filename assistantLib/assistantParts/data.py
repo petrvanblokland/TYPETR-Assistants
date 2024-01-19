@@ -16,9 +16,10 @@ class MasterData:
     """Storing additional data about masters, without storing the actual RFont instance. 
     The font can be retrieves by baseAssistant.getMaster(self.path)
     """
-    def __init__(self, name=None, ufoPath=UFO_PATH, srcPath=None, orgPath=None, romanItalicPath=None,
+    def __init__(self, name=None, ufoPath=UFO_PATH, 
+            srcUFOPath=None, someUFOPath=None, orgUFOPath=None, kerningSrcUFOPath=None, romanItalicUFOPath=None, 
             italicAngle=0, rotation=0, 
-            kerningSrcPath=None, displaySrcPath=None,
+            thickness=10, distance=16, # Used for Neon tubes
             m0=None, m1=None, m2=None, sm1=None, sm2=None, dsPosition=None,
             tripletData1=None, tripletData2=None, featurePath=None, 
             glyphData=None, metrics=None,
@@ -47,12 +48,15 @@ class MasterData:
         self.italicSkew = italicAngle
         self.rotation = rotation 
         self.isItalic = bool(italicAngle)
+        # Used by Neon for tube thickness and minimal tube distance
+        self.thickness = thickness
+        self.distance = distance
         # Referencing related masters by relative path, handled by the overlay assistant part
-        self.srcPath = srcPath # "Original" master of this font, copy from here
-        self.displaySrcPath = displaySrcPath # Show this outline on the background
-        self.orgPath = orgPath # "Original" master of this font for overlay reference
-        self.romanItalicPath = romanItalicPath # Roman <---> Italic master reference
-        self.kerningSrcPath = kerningSrcPath # Used as kerning reference.
+        self.srcUFOPath = srcUFOPath # "Original" master of this font, copy from here
+        self.someUFOPath = someUFOPath # Show this outline on the background
+        self.orgUFOPath = orgUFOPath # "Original" master of this font for overlay reference
+        self.romanItalicUFOPath = romanItalicUFOPath # Roman <---> Italic master reference
+        self.kerningSrcUFOPath = kerningSrcUFOPath # Used as kerning reference.
         # Interpolation & design space
         self.interpolationFactor = 0.5
         self.m0 = m0 # Regular origin

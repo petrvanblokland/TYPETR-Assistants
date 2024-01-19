@@ -39,6 +39,10 @@ from mojo.subscriber import Subscriber, WindowController, registerGlyphEditorSub
 
 from fontTools.misc.transform import Transform
 
+import assistantLib.assistantParts.data
+importlib.reload(assistantLib.assistantParts.data)
+from assistantLib.assistantParts.data import GlyphData, MasterData
+
 # Add paths to libs in sibling repositories
 PATHS = ('../TYPETR-Assistants/',)
 for path in PATHS:
@@ -52,12 +56,18 @@ FAR = 100000 # Put drawing stuff outside the window
 class BaseAssistant:
     """Share functions and class variables for both Assistant and AssistantController"""
 
-    UFO_PATHS = None # Must be redefined by inheriting assistant classes
+    # Must be redefined by inheriting assistant classes where to find the main UFO master files
+    UFO_PATH = 'ufo/' # Standard place for UFO files
+    UFO_PATHS = None 
+
+    # If there's masterData available, then this should be redefined as dictionaty by inheriting Assistant classes
+    MASTER_DATA = None 
 
     # Names of methods to call for initializeing and updating Merz. 
     # To be defined by inheriting classes. 
     INIT_MERZ_METHODS = []
     UPDATE_MERZ_METHODS = []
+    SET_GLYPH_METHODS = [] # Methods to be called when the EditorWindow selected a new current glyph 
     MOUSE_MOVE_METHODS = []
     MOUSE_DOWN_METHODS = []
     # Controller methods
@@ -84,35 +94,72 @@ class BaseAssistant:
             if fileName.endswith('.ufo'):
                 paths.append(path + fileName)
         return paths
-                
+
+    # Caching of open fonts without interface. Once a font get opened with a FontWindow,
+    # it will be removed from this dictionary.          
     fonts = {}
-    def getFont(self, filePath):
+    def getFont(self, filePath, showInterface=False):
         """Answer the RFont if it is already open. Otherwise open it for read-only and store it into 
         the class variable self.fonts[filePath]"""
+        if filePath is None:
+            return None
+
         for f in AllFonts():
             if filePath == f.path:
-                if filePath in self.fonts: # It was opened before, but not RoboFont has it open.
+                if filePath in self.fonts: # It was opened before, but now RoboFont has it open.
                     del self.fonts[filePath]
                 return f
         
         if filePath in self.fonts:
-            return self.fonts[filePath]
-            
+            f = self.fonts[filePath]
+            if showInterface:
+                # It was open without interface, open it for real
+                f.openInterface()
+                del self.fonts[filePath] # Now it is open, delete if from our local dictiona
+            # else: otherwise just return the cached font
+            return f
+        
         if os.path.exists(filePath):
             f = OpenFont(filePath, showInterface=False)
             self.fonts[filePath] = f
             return f
         return None
     
+    def path2UfoPath(self, path):
+        return path.split('/')[-1]
+
     def getMasterData(self, f):
         """Answer the MasterData instance for this font, containing meta-information about the entire font."""
-        md = MasterData(f)
-        return md 
+        ufoName = self.path2UfoPath(f.path)
+        if self.MASTER_DATA is not None and ufoName in self.MASTER_DATA:
+            return self.MASTER_DATA[ufoName]
+        # Otherwise just answer a default MasterData for f
+        print(f'### Cannot find MasterData for {ufoName}')
+        return MasterData(f)
 
     def getGlyphData(self, f, gName):
         """Answer the GlyphData instance for this glyph, containing meta-information."""
         gd = GlyphData(f, gName)
         return gd 
+
+    LIB_KEY = 'com.typetr'
+
+    def getLib(self, fOrG, key, defaultValue):
+        if fOrG is None:
+            return defaultValue
+        if not self.LIB_KEY in fOrG.lib:
+            fOrG.lib[self.LIB_KEY] = {}
+        if not key in fOrG.lib[self.LIB_KEY]:
+            self.setLib(fOrG, key, defaultValue)
+        return fOrG.lib[self.LIB_KEY][key]
+
+    def setLib(self, fOrG, key, value):
+        if fOrG is not None:
+            if self.LIB_KEY not in fOrG.lib:
+                fOrG.lib[self.LIB_KEY] = {}
+            fOrG.lib[self.LIB_KEY][key] = value
+
+
 
 class Assistant(BaseAssistant, Subscriber):
 
@@ -126,7 +173,7 @@ class Assistant(BaseAssistant, Subscriber):
     
     def build(self):
         glyphEditor = self.getGlyphEditor()
-        self.isUpdating = False
+        self.isUpdating = 0
 
         assert glyphEditor is not None
         
@@ -162,10 +209,27 @@ class Assistant(BaseAssistant, Subscriber):
     #self.glyphEditorDidMouseUp(info)
     #self.glyphEditorDidMouseDrag(info)
     
-    def glyphEditorGlyphDidChange(self, info):
+    #def glyphEditorGlyphDidChange(self, info) # Better no use this one, as it also is triggered on lib changes.
+    #   The editor selected another glyph. Update the visible Merz elements for the new glyph."""
+        
+    def glyphEditorGlyphDidChangeContours(self, info):
+        """The editor did change contours"""
+        #print("""The editor did change contours""", info['glyph'])
+        self.updateMerz(info)
+        
+    def glyphEditorGlyphDidChangeComponents(self, info):
+        """The editor change components"""
+        #print("""The editor did change components""", info['glyph'])
         self.updateMerz(info)
         
     def glyphEditorDidSetGlyph(self, info):
+        """Called when the GlyphEditor selects a new glyph"""
+        #print("""The editor did set glyph""", info['glyph'])
+        g = info['glyph']
+        cg = CurrentFont()
+        if g == cg:
+            for setGlyphMethodName in self.SET_GLYPH_METHODS: 
+                getattr(self, setGlyphMethodName)(g)
         self.updateMerz(info)
         
     def glyphEditorDidMouseDown(self, info):
@@ -205,7 +269,7 @@ class Assistant(BaseAssistant, Subscriber):
         self.isUpdating = True
         for updateMerzMethodName in self.UPDATE_MERZ_METHODS:
             getattr(self, updateMerzMethodName)(info)
-        self.isUpdating = False 
+        self.isUpdating = False
 
 class AssistantController(BaseAssistant, WindowController):
 
@@ -230,6 +294,9 @@ class AssistantController(BaseAssistant, WindowController):
     def build(self):
         """Build the controller window."""
         
+        f = CurrentFont()
+        f.lib[self.LIB_KEY] = {}
+
         # Can't do these as class variable, since they may depend on inheritied self.W, self.H, self.COLS, etc.        
         self.CW = (self.W - (self.COLS + 1) * self.M)/self.COLS
         self.C0 = self.M
@@ -268,22 +335,4 @@ class AssistantController(BaseAssistant, WindowController):
     def getController(self):
         """Answer the controller. We need this method to be compatible in case of controller.getController()"""
         return self
-
-    LIB_KEY = 'com.typetr'
-
-    def getLib(self, fOrG, key, defaultValue):
-        if fOrG is None:
-            return defaultValue
-        if not self.LIB_KEY in fOrG.lib:
-            fOrG.lib[self.LIB_KEY] = {}
-        if not key in fOrG.lib[self.LIB_KEY]:
-            self.setLib(fOrG, key, defaultValue)
-        return fOrG.lib[self.LIB_KEY][key]
-
-    def setLib(self, fOrG, key, value):
-        if fOrG is not None:
-            if self.LIB_KEY not in fOrG.lib:
-                fOrG.lib[self.LIB_KEY] = {}
-            fOrG.lib[self.LIB_KEY][key] = value
-
 
