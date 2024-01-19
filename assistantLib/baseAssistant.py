@@ -52,6 +52,10 @@ for path in PATHS:
 
 FAR = 100000 # Put drawing stuff outside the window
 
+ARROW_KEYS = [NSUpArrowFunctionKey, NSDownArrowFunctionKey,
+        NSLeftArrowFunctionKey, NSRightArrowFunctionKey, NSPageUpFunctionKey,
+        NSPageDownFunctionKey, NSHomeFunctionKey, NSEndFunctionKey]
+
 
 class BaseAssistant:
     """Share functions and class variables for both Assistant and AssistantController"""
@@ -227,6 +231,8 @@ class Assistant(BaseAssistant, Subscriber):
     #self.glyphEditorDidMouseDown(info)
     #self.glyphEditorDidMouseUp(info)
     #self.glyphEditorDidMouseDrag(info)
+    #self.glyphEditorDidKeyDown(info):
+
     
     #def glyphEditorGlyphDidChange(self, info) # Better no use this one, as it also is triggered on lib changes.
     #   The editor selected another glyph. Update the visible Merz elements for the new glyph."""
@@ -275,6 +281,10 @@ class Assistant(BaseAssistant, Subscriber):
     
     def glyphEditorDidMouseDrag(self, info):
         self.mouseDraggedPoint = info['locationInGlyph']
+
+    def glyphEditorDidKeyDown(self, info):
+        # User specific key strokes to be added here
+        self.updateMerz(info)
 
     def started(self):
         pass

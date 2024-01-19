@@ -693,18 +693,41 @@ class OutlinePen(BasePen):
 class AssistantPartNeon(BaseAssistantPart):
     #    N E O N
 
+    NEON_STROKE_DISTANCE_MARKER_COLOR = 0.2, 0.1, 0.8, 1
+
     def initMerzNeon(self, container):    
-        pass
+        self.neonDistancePointMarkers = []
+        for pIndex in range(self.MAX_POINT_MARKERS): # Max number of points to display in a glyph
+            self.neonDistancePointMarkers.append(container.appendOvalSublayer(name="neonDistancePoint%03d" % pIndex,
+                position=(FAR, 0),
+                size=(self.POINT_MARKER_R*2, self.POINT_MARKER_R*2),
+                fillColor=None,
+                strokeColor=self.NEON_STROKE_DISTANCE_MARKER_COLOR,
+                strokeWidth=1,
+            ))
     
     def updateMerzNeon(self, info):
         g = info['glyph']
-        if g.layer.name == 'foreground':
+        if g is None or g.layer.name == 'foreground':
             return
-        f = CurrentFont()
+        f = g.font
+        md = self.getMasterData(g.font)
+        d = md.distance
+        currentFont = CurrentFont()
 
-        if g is not None and f is not None and g.font.path == f.path:
-            print('updateMerzNeon', g.name)
+        pIndex = 0
+        if g is not None and currentFont is not None and currentFont.path == f.path:
+            #print('updateMerzNeon', g.name)
             self.updateOutline(g)
+            # Update the distance circle markers
+            for contour in g.contours:
+                for p in contour.points:
+                    if p.type != 'offcurve':
+                        self.neonDistancePointMarkers[pIndex].setSize((2*d, 2*d))
+                        self.neonDistancePointMarkers[pIndex].setPosition((p.x-d, p.y-d))
+                        pIndex += 1
+        for n in range(pIndex,len(self.neonDistancePointMarkers)):
+            self.neonDistancePointMarkers[n].setPosition((FAR, 0))
 
     def calculate(self, g, preserveComponents=True):
         c = self.getController()

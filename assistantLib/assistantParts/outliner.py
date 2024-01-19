@@ -785,7 +785,7 @@ class AssistantPartNeon(BaseAssistantPart):
         f = CurrentFont()
 
         if g is not None and f is not None and g.font.path == f.path:
-            print('updateMerzNeon', g.name)
+            #print('updateMerzNeon', g.name)
             self.updateOutline(g)
 
     def calculate(self, g, preserveComponents=True):
