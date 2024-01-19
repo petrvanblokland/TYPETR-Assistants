@@ -18,20 +18,34 @@ class AssistantPartOverlay(BaseAssistantPart):
 
     MAX_POINT_MARKERS = 100
     
+    OVERLAY_FILL_LEFT_COLOR = 0, 0, 0, 0.6
+    OVERLAY_FILL_COLOR = 0, 0, 0, 0.6
+    OVERLAY_FILL_RIGHT_COLOR = 0, 0, 0, 0.6
+
+    OVERLAY_STROKE_POINTMARKERS_COLOR = 0, 0.5, 0.5, 1
+
+    OVERLAY_FILL_SRC_COLOR = 0, 0.2, 0.8, 0.4
+    OVERLAY_STROKE_SOME_UFO_COLOR = 0, 0.8, 0.2, 0.6
+    OVERLAY_FILL_SRC_COLOR = 0, 0, 0, 0.6
+    OVERLAY_FILL_KERNING_COLOR = 0, 0.5, 0, 0.6
+    OVERLAY_STROKE_ROMANITALIC_COLOR = 1, 0, 0, 0.7
+
+    POINT_MARKER_R = 8
+
     def initMerzOverlay(self, container):    
         # Previewing current glyphs on left/right side. 
         # Triggered by w.previewGlyphLeft, w.previewGlyphOverlay and w.previewGlyphRight       
         self.previewGlyphLeft = container.appendPathSublayer(
             position=(FAR, 0),
-            fillColor=(0, 0, 0, 0.6),
+            fillColor=self.OVERLAY_FILL_LEFT_COLOR,
         )
         self.previewGlyphOverlay = container.appendPathSublayer(
             position=(FAR, 0),
-            fillColor=(0, 0, 0, 0.6),
+            fillColor=self.OVERLAY_FILL_COLOR,
         )
         self.previewGlyphRight = container.appendPathSublayer(
             position=(FAR, 0),
-            fillColor=(0, 0, 0, 0.6),
+            fillColor=self.OVERLAY_FILL_RIGHT_COLOR,
         )
         self.previewPointMarkers = []
         for pIndex in range(self.MAX_POINT_MARKERS): # Max number of points to display in a glyph
@@ -48,36 +62,36 @@ class AssistantPartOverlay(BaseAssistantPart):
                 position=(FAR, 0),
                 size=(self.POINT_MARKER_R*2, self.POINT_MARKER_R*2),
                 fillColor=None,
-                strokeColor=(0, 0.5, 0.5, 1),
+                strokeColor=self.OVERLAY_STROKE_POINTMARKERS_COLOR,
                 strokeWidth=1,
             ))
         # Triggered by w.srcUFOPathOverlay
         self.srcUFOPathOverlay = container.appendPathSublayer(
             position=(FAR, 0),
-            fillColor=(0, 0.2, 0.8, 0.4),
+            fillColor=self.OVERLAY_FILL_SRC_COLOR,
         )
         # Triggered by w.someUFOPathOverlay
         self.someUFOPathOverlay = container.appendPathSublayer(
             position=(FAR, 0),
             fillColor=None,
-            strokeColor=(0, 0.8, 0.2, 0.6),
+            strokeColor=self.OVERLAY_STROKE_SOME_UFO_COLOR,
             strokeWidth=1,
         )
         # Triggered by w.orgUFOPathOverlay
         self.orgUFOPathOverlay = container.appendPathSublayer(
             position=(FAR, 0),
-            fillColor=(0, 0, 0, 0.6),
+            fillColor=self.OVERLAY_FILL_SRC_COLOR,
         )
         # Triggered by w.kerningSrcPathOverlay
         self.kerningSrcPathOverlay = container.appendPathSublayer(
             position=(FAR, 0),
-            fillColor=(0, 0.5, 0, 0.6),
+            fillColor=self.OVERLAY_FILL_KERNING_COLOR,
         )
         # Triggered by w.romanItalicUFOPathOverlay
         self.romanItalicUFOPathOverlay = container.appendPathSublayer(
             position=(FAR, 0),
             fillColor=None,
-            strokeColor=(1, 0, 0, 0.7),
+            strokeColor=self.OVERLAY_STROKE_ROMANITALIC_COLOR,
             strokeWidth=1,
         )
 
@@ -123,12 +137,12 @@ class AssistantPartOverlay(BaseAssistantPart):
             self.previewGlyphRight.setPosition((FAR, 0))
 
         overlayName = c.w.overlayGlyphName.get()
-        if overlayName == '/?':
+        if overlayName == '/?' or not overlayName:
             overlayName = g.name
         
         pIndex = 0
         if overlayName and overlayName in f:
-            gOverlay = f[overlayName].getLayer('forground')
+            gOverlay = f[overlayName].getLayer('foreground')
             glyphPathOverlay = gOverlay.getRepresentation("merz.CGPath") 
             self.previewGlyphOverlay.setPath(glyphPathOverlay)
             
@@ -141,7 +155,7 @@ class AssistantPartOverlay(BaseAssistantPart):
             self.previewGlyphOverlay.setPosition((x, 0))
             
             if c.w.previewGlyphOverlay.get():
-                self.previewGlyphOverlay.setFillColor((0.7, 0.7, 0.7, 0.5))
+                self.previewGlyphOverlay.setFillColor(self.OVERLAY_FILL_COLOR)
             else:
                 self.previewGlyphOverlay.setFillColor(None)
             
@@ -149,10 +163,14 @@ class AssistantPartOverlay(BaseAssistantPart):
             for contour in gOverlay.contours:
                 for p in contour.points:
                     #print(pIndex, len(self.previewPointMarkers))
-                    #self.previewPointMarkers[pIndex].setPosition((x+p.x-POINT_MARKER_R, p.y-POINT_MARKER_R)) 
+                    self.previewPointMarkers[pIndex].setPosition((x+p.x-self.POINT_MARKER_R, p.y-self.POINT_MARKER_R)) 
                     pIndex += 1
         else:
             self.previewGlyphOverlay.setPosition((FAR, 0))            
+
+        # Then hide the rest of the point markers
+        for n in range(pIndex, len(self.previewPointMarkers)):
+            self.previewPointMarkers[n].setPosition((FAR, 0)) 
 
         # If there is not an path md defined for each type of overlay, then disable their checkboxes.
         drawn = False
@@ -205,9 +223,6 @@ class AssistantPartOverlay(BaseAssistantPart):
         if not drawn:
             self.romanItalicUFOPathOverlay.setPosition((FAR, 0)) 
 
-        # Then hide the rest of the point markers
-        for n in range(pIndex, len(self.previewPointMarkers)):
-            self.previewPointMarkers[n].setPosition((FAR, 0)) 
             
     #    O V E R L A Y
     

@@ -86,8 +86,9 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         x1 = 0
         parentPath = self.filePath2ParentPath(currentFont.path)
         for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
+            fullPath = self.path2FullPath(pth)
             if fIndex < len(self.familyOverviewGlyphs):
-                ufo = self.getFont(pth)
+                ufo = self.getFont(fullPath)
                 if ufo is not None and g.name in ufo:
                     ufoG = ufo[g.name]
                     x2 = x1 + max(ufo.info.unitsPerEm/2, ufoG.width + self.LABEL_SPACING) * self.FAMILY_OVERVIEW_SCALE
@@ -108,8 +109,9 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         x1 = 0
         parentPath = self.filePath2ParentPath(currentFont.path)
         for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
+            fullPath = self.path2FullPath(pth)
             if fIndex < len(self.familyOverviewGlyphs):
-                ufo = self.getFont(pth)
+                ufo = self.getFont(fullPath, showInterface=currentFont.path == fullPath) # Make sure RoboFont opens the current font.
                 if ufo is not None and g.name in ufo:
                     ufoG = ufo[g.name]
                     x2 = x1 + max(ufo.info.unitsPerEm/2, ufoG.width + self.LABEL_SPACING) * self.FAMILY_OVERVIEW_SCALE

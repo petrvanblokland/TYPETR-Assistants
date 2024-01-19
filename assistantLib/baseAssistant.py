@@ -97,33 +97,51 @@ class BaseAssistant:
 
     # Caching of open fonts without interface. Once a font get opened with a FontWindow,
     # it will be removed from this dictionary.          
-    fonts = {}
+    bgFonts = {} # Key is fullPath, value is RFont without showing interface
+
+    def path2FullPath(self, path):
+        """Using the class value PROJECT_PATH to construct the full path. If path is None,
+        then we can't make a full path. Then just answer None."""
+        if path is not None:
+            if path.startswith('/'):
+                return path
+            fullDirPath = self.PROJECT_PATH
+            if not fullDirPath.endswith('/'):
+                fullDirPath = '/'.join(fullDirPath.split('/')[:-1]) + '/'
+            return fullDirPath + path
+        return None # Can't make a full path.
+
     def getFont(self, filePath, showInterface=False):
         """Answer the RFont if it is already open. Otherwise open it for read-only and store it into 
-        the class variable self.fonts[filePath]"""
-        if filePath is None:
+        the class variable self.bgFonts[filePath]"""
+        fullPath = self.path2FullPath(filePath) # Make sure it's a full path, in case filePath is relative.
+
+        if fullPath is None or not os.path.exists(fullPath):
+            print(f'### Cannot find UFO {fullPath}')
             return None
 
-        for f in AllFonts():
-            if filePath == f.path:
-                if filePath in self.fonts: # It was opened before, but now RoboFont has it open.
-                    del self.fonts[filePath]
+        for f in AllFonts(): # Otherwise search if it already open
+            if fullPath == f.path:
+                if fullPath in self.bgFonts: # It was opened before, but now RoboFont has it open.
+                    del self.bgFonts[fullPath]
                 return f
-        
-        if filePath in self.fonts:
-            f = self.fonts[filePath]
-            if showInterface:
-                # It was open without interface, open it for real
+
+        if showInterface:
+            if fullPath in self.bgFonts: # It was opened before, but now RoboFont has it open.
+                f = self.bgFonts[fullPath]
                 f.openInterface()
-                del self.fonts[filePath] # Now it is open, delete if from our local dictiona
-            # else: otherwise just return the cached font
+                del self.bgFonts[fullPath]
+            else:
+                f = OpenFont(fullPath, showInterface=True) # Make sure it gets open
             return f
         
-        if os.path.exists(filePath):
-            f = OpenFont(filePath, showInterface=False)
-            self.fonts[filePath] = f
-            return f
-        return None
+        if fullPath in self.bgFonts: # If it was already opened in the background, then just answer it
+            return self.bgFonts[fullPath]
+        
+        # Otherwise just open it in the background and cache it
+        f = OpenFont(fullPath, showInterface=False)
+        self.bgFonts[fullPath] = f
+        return f
     
     def path2UfoPath(self, path):
         return path.split('/')[-1]
