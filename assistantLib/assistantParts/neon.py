@@ -697,8 +697,16 @@ class AssistantPartNeon(BaseAssistantPart):
 
     def initMerzNeon(self, container):    
         self.neonDistancePointMarkers = []
+        self.neonOvershootPointMarkers = []
         for pIndex in range(self.MAX_POINT_MARKERS): # Max number of points to display in a glyph
-            self.neonDistancePointMarkers.append(container.appendOvalSublayer(name="neonDistancePoint%03d" % pIndex,
+            self.neonDistancePointMarkers.append(container.appendOvalSublayer(name="neonDistancePointMarker%03d" % pIndex,
+                position=(FAR, 0),
+                size=(self.POINT_MARKER_R*2, self.POINT_MARKER_R*2),
+                fillColor=None,
+                strokeColor=self.NEON_STROKE_DISTANCE_MARKER_COLOR,
+                strokeWidth=1,
+            ))
+            self.neonOvershootPointMarkers.append(container.appendOvalSublayer(name="neonOvershootPointMarker%03d" % pIndex,
                 position=(FAR, 0),
                 size=(self.POINT_MARKER_R*2, self.POINT_MARKER_R*2),
                 fillColor=None,
@@ -712,7 +720,8 @@ class AssistantPartNeon(BaseAssistantPart):
             return
         f = g.font
         md = self.getMasterData(g.font)
-        d = md.distance
+        d = md.distance # Minimal distance between tubes
+        overshoot = md.overshoot # Radius of the overshoot point marker
         currentFont = CurrentFont()
 
         pIndex = 0
@@ -725,9 +734,12 @@ class AssistantPartNeon(BaseAssistantPart):
                     if p.type != 'offcurve':
                         self.neonDistancePointMarkers[pIndex].setSize((2*d, 2*d))
                         self.neonDistancePointMarkers[pIndex].setPosition((p.x-d, p.y-d))
+                        self.neonOvershootPointMarkers[pIndex].setSize((2*overshoot, 2*overshoot))
+                        self.neonOvershootPointMarkers[pIndex].setPosition((p.x-overshoot, p.y-overshoot))
                         pIndex += 1
         for n in range(pIndex,len(self.neonDistancePointMarkers)):
             self.neonDistancePointMarkers[n].setPosition((FAR, 0))
+            self.neonOvershootPointMarkers[n].setPosition((FAR, 0))
 
     def calculate(self, g, preserveComponents=True):
         c = self.getController()

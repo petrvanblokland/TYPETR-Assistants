@@ -45,8 +45,11 @@ class AssistantPartPersonalize(BaseAssistantPart):
 
     def updateMerzPersonalize(self, info):
         g = info['glyph']
-        if g is not None and g.markColor != self.VISITED_MARKER: # NO_MARKER
-            g.markColor = self.VISITED_MARKER
+        if g is None:
+            return
+        fg = g.getLayer('foreground')
+        if fg.markColor != self.VISITED_MARKER: # NO_MARKER
+            fg.markColor = self.VISITED_MARKER
 
     def buildPersonalize(self, y):
         pass
