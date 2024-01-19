@@ -69,6 +69,7 @@ class BaseAssistant:
     UPDATE_MERZ_METHODS = []
     SET_GLYPH_METHODS = [] # Methods to be called when the EditorWindow selected a new current glyph 
     MOUSE_MOVE_METHODS = []
+    MOUSE_UP_METHODS = []
     MOUSE_DOWN_METHODS = []
     # Controller methods
     BUILD_UI_METHODS = []
@@ -252,15 +253,20 @@ class Assistant(BaseAssistant, Subscriber):
         
     def glyphEditorDidMouseDown(self, info):
         g = info['glyph']
+        g.prepareUndo()
         self.mouseClickPoint = p = info['locationInGlyph']
         for mouseDownMethodName in self.MOUSE_DOWN_METHODS:
             getattr(self, mouseDownMethodName)(g, p.x, p.y)
+        self.updateMerz(info)
     
     def glyphEditorDidMouseUp(self, info):
         # Reset terminal stuff
         self.mouseClickPoint = None
         self.mouseDraggedPoint = None
-    
+        for mouseDownMethodName in self.MOUSE_UP_METHODS:
+            getattr(self, mouseDownMethodName)(g, p.x, p.y)
+        self.updateMerz(info)
+
     def glyphEditorDidMouseMove(self, info):
         g = info['glyph']
         p = info['locationInGlyph']

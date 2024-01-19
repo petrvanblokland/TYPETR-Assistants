@@ -159,12 +159,13 @@ class AssistantPartOverlay(BaseAssistantPart):
             else:
                 self.previewGlyphOverlay.setFillColor(None)
             
-            # Move point markers to this glyph, as much of the list as we need. 
-            for contour in gOverlay.contours:
-                for p in contour.points:
-                    #print(pIndex, len(self.previewPointMarkers))
-                    self.previewPointMarkers[pIndex].setPosition((x+p.x-self.POINT_MARKER_R, p.y-self.POINT_MARKER_R)) 
-                    pIndex += 1
+            if c.w.previewPointsOverlay.get():
+                # Move point markers to this glyph, as much of the list as we need. 
+                for contour in gOverlay.contours:
+                    for p in contour.points:
+                        #print(pIndex, len(self.previewPointMarkers))
+                        self.previewPointMarkers[pIndex].setPosition((x+p.x-self.POINT_MARKER_R, p.y-self.POINT_MARKER_R)) 
+                        pIndex += 1
         else:
             self.previewGlyphOverlay.setPosition((FAR, 0))            
 
@@ -242,7 +243,8 @@ class AssistantPartOverlay(BaseAssistantPart):
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         c = self.getController()
         c.w.previewGlyphLeft = CheckBox((C0, y, CW, L), 'Preview Left', value=True, callback=self.updateEditor)
-        c.w.previewGlyphOverlay = CheckBox((C1, y, CW, L), 'Fill current', value=False, callback=self.updateEditor)
+        c.w.previewGlyphOverlay = CheckBox((C1, y, CW, L), 'Fill', value=True, callback=self.updateEditor)
+        c.w.previewPointsOverlay = CheckBox((C1 + CW/2, y, CW, L), 'Points', value=False, callback=self.updateEditor)
         c.w.previewGlyphRight = CheckBox((C2, y, CW, L), 'Preview Right', value=True, callback=self.updateEditor)
         y += L
         c.w.previewGlyphLeftName = EditText((C0, y, CW, L), callback=self.updateEditor)
