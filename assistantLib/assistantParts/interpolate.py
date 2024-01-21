@@ -19,7 +19,7 @@ class AssistantPartInterpolate(BaseAssistantPart):
     """
     def initMerzInterpolate(self, container):
         """Update any Merz objects that exist in the EditWindow"""
-        self.registerKeyStroke('§', 'curvesB2QGlyphKey')
+        self.registerKeyStroke('§', 'interpolateGlyphKey')
 
     def updateInterpolate(self, info):
         c = self.getController()
@@ -37,7 +37,7 @@ class AssistantPartInterpolate(BaseAssistantPart):
         y += L + LL
         return y
 
-    def curvesB2QGlyphKey(self, g, c, event):
+    def interpolateGlyphKey(self, g, c, event):
         self.interpolateCallback(g)
 
     def interpolateCallback(self, sender=None):

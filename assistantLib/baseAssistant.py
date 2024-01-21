@@ -164,7 +164,7 @@ class BaseAssistant:
         fullPath = self.path2FullPath(filePath) # Make sure it's a full path, in case filePath is relative.
 
         if fullPath is None or not os.path.exists(fullPath):
-            print(f'### Cannot find UFO {fullPath}')
+            print(f'### getFont: Cannot find UFO {fullPath}')
             return None
 
         for f in AllFonts(): # Otherwise search if it already open

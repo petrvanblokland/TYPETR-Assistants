@@ -61,7 +61,7 @@ class AssistantPartCurves(BaseAssistantPart):
         if g is not None:
             self.curvesConvert(g, POINTTYPE_QUADRATIC, POINTTYPE_BEZIER, FACTOR)
 
-    def curvesB2QGlyphKey(self, g, c, event):
+    def curvesQ2BGlyphKey(self, g, c, event):
         """Callback for registered event on key stroke"""
 
         # Current we don't need any of these modifiers
@@ -81,7 +81,7 @@ class AssistantPartCurves(BaseAssistantPart):
         if g is not None:
             self.curvesConvert(g, POINTTYPE_BEZIER, POINTTYPE_QUADRATIC, 1/FACTOR)
 
-    def curvesQ2BGlyphKey(self, g, c, event):
+    def curvesB2QGlyphKey(self, g, c, event):
         """Callback for registered event on key stroke"""
 
         # Current we don't need any of these modifiers
@@ -90,7 +90,7 @@ class AssistantPartCurves(BaseAssistantPart):
         # controlDown = event['controlDown']
         # optionDown = event['optionDown']
         # capLock = event['capLockDown']
-        
+
         self.curvesConvert(g, POINTTYPE_BEZIER, POINTTYPE_QUADRATIC, 1/FACTOR)
 
     def factorizeOffCurve(self, onCurve, offCurve, factor):
@@ -126,6 +126,14 @@ class AssistantPartCurves(BaseAssistantPart):
         for contour in g.contours:
             for p in contour.points:
                 if p.type == POINTTYPE_BEZIER:
+                    return True
+        return False
+
+    def isCurved(self, g):
+        """Answer the boolean flag if this glyph has off-curve points"""
+        for contour in g.contours:
+            for p in contour.points:
+                if p.type == POINTTYPE_OFFCURVE:
                     return True
         return False
 

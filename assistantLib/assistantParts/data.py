@@ -18,7 +18,7 @@ class MasterData:
     """
     def __init__(self, name=None, ufoPath=UFO_PATH, 
             srcUFOPath=None, someUFOPath=None, orgUFOPath=None, kerningSrcUFOPath=None, romanItalicUFOPath=None, 
-            italicAngle=0, italicSkew=None, italicRotation=0, isItalic=False,
+            italicAngle=0, italicSkew=None, italicRotation=None, isItalic=False,
             thickness=10, distance=16, overshoot=12, # Used for Neon tubes
             m0=None, m1=None, m2=None, sm1=None, sm2=None, dsPosition=None,
             tripletData1=None, tripletData2=None, featurePath=None, 
@@ -45,22 +45,28 @@ class MasterData:
         self.familyName = familyName
         self.styleName = styleName
 
-        self.italicAngle = italicAngle
+        # Angle, italic skew and rotation
+        self.italicAngle = italicAngle or 0
         if italicSkew is None:
-            italicSkew = italicAngle
+            italicSkew = italicAngle * 0.5 # Default, can be overwritten if needed.
         self.italicSkew = italicSkew # In case italicize is partical skew and rotation
+        if italicRotation is None:
+            italicRotation = italicAngle * 0.5
         self.italicRotation = italicRotation 
         self.isItalic = bool(italicAngle) or isItalic or 'Italic' in name
+
         # Used by Neon for tube thickness and minimal tube distance
         self.thickness = thickness
         self.distance = distance
         self.overshoot = overshoot # For generic use /O. Also used by the Neon for the size of the inner gap circle marker
+        
         # Referencing related masters by relative path, handled by the overlay assistant part
         self.srcUFOPath = srcUFOPath # "Original" master of this font, copy from here
         self.someUFOPath = someUFOPath # Show this outline on the background
         self.orgUFOPath = orgUFOPath # "Original" master of this font for overlay reference
         self.romanItalicUFOPath = romanItalicUFOPath # Roman <---> Italic master reference
         self.kerningSrcUFOPath = kerningSrcUFOPath # Used as kerning reference.
+        
         # Interpolation & design space
         self.interpolationFactor = 0.5
         self.m0 = m0 # Regular origin
@@ -68,10 +74,14 @@ class MasterData:
         self.m2 = m2 # Direct interpolation master on "max" side
         self.sm1 = sm1
         self.sm2 = sm2, # Scalerpolate masters for condensed and extended making. 
-        self.dsPosition = dsPosition # Design space position (matching .designspace) to calculate triplet kerning
+        
+        # Design space position (matching .designspace) to calculate triplet kerning.
+        # This can be different from HStem (with m1, m2) interpolation.
+        self.dsPosition = dsPosition 
         self.tripletData1 = tripletData1
         self.tripletData2 = tripletData2, # Compatible triplet sets of (name1, name2, name3, kerning) tuples for interpolation.
         self.featurePath = featurePath
+        
         # Glyphs
         if glyphData is None:
             glyphData = {}
@@ -79,7 +89,7 @@ class MasterData:
         if metrics is None:
             metrics = {}
         self.metrics = metrics 
-        self.HStem = HStem
+        self.HStem = HStem # Used for m1->m2 interpolation
         self.HThin = HThin
         self.OStem = OStem
         self.OThin = OThin
@@ -93,6 +103,7 @@ class MasterData:
         self.UThin = UThin
         self.VThin = VThin
         self.eThin = eThin
+
         # Info
         self.ttfPath = ttfPath
         self.platformID = platformID

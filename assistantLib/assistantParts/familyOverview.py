@@ -21,6 +21,9 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
 
     MAX_FAMILY_OVERVIEW = 50
     FAMILY_OVERVIEW_SCALE = 0.15
+    MAX_FAMILY_START_POINTS = 100
+    FAMILY_OVERVIEW_START_POINT_SIZE = 12/FAMILY_OVERVIEW_SCALE
+    FAMILY_OVERVIEW_START_POINT_COLOR = 1, 0, 0, 1
     LABEL_FONT = 'Verdana'
     LABEL_SIZE = 12
     LABEL_SPACING = 400 # Distance between the styles
@@ -49,6 +52,16 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
             subLayer.setHorizontalAlignment('center')
             self.familyOverviewStyleName.append(subLayer)
         
+        self.familyOverviewStartPoints = []
+        for spIndex in range(self.MAX_FAMILY_START_POINTS): # Max amount of start points to show
+            subLayer = container.appendOvalSublayer(name="familyOverviewStartPoint%03d" % spIndex,
+                position=(FAR, 0),
+                size=(self.FAMILY_OVERVIEW_START_POINT_SIZE, self.FAMILY_OVERVIEW_START_POINT_SIZE),
+                fillColor=self.FAMILY_OVERVIEW_START_POINT_COLOR,
+            )
+            subLayer.addScaleTransformation(self.FAMILY_OVERVIEW_SCALE)
+            self.familyOverviewStartPoints.append(subLayer)            
+        
     def updateMerzFamilyOverview(self, info):
         g = info['glyph']
         if g is None:
@@ -59,6 +72,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
             x = 0
             y = f.info.unitsPerEm / self.FAMILY_OVERVIEW_SCALE
             parentPath = self.filePath2ParentPath(f.path)
+            spIndex = 0 # Index of start point Merz 
             for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
                 if fIndex < len(self.familyOverviewGlyphs):
                     ufo = self.getFont(pth)
@@ -70,12 +84,23 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                         self.familyOverviewGlyphs[fIndex].setPosition((x, y))
                         self.familyOverviewStyleName[fIndex].setText(ufo.info.styleName)
                         self.familyOverviewStyleName[fIndex].setPosition((x+ufoG.width/2, y+ufo.info.descender))
-                        x += max(f.info.unitsPerEm/2, ufoG.width + self.LABEL_SPACING) # Add a wordspace between the styles
+
                         nIndex += 1
+                        # Position start points
+                        for contour in ufoG.contours:
+                            p = contour.points[0]
+                            pos = x + p.x - self.FAMILY_OVERVIEW_START_POINT_SIZE/2, y + p.y - self.FAMILY_OVERVIEW_START_POINT_SIZE/2
+                            self.familyOverviewStartPoints[spIndex].setPosition(pos)
+                            spIndex += 1
+
+                        x += max(f.info.unitsPerEm/2, ufoG.width + self.LABEL_SPACING) # Add a wordspace between the styles
+
         for n in range(nIndex, len(self.familyOverviewGlyphs)):
             self.familyOverviewGlyphs[n].setPosition((FAR, 0))
             self.familyOverviewStyleName[n].setPosition((FAR, 0))
-        
+        for n in range(spIndex, len(self.familyOverviewStartPoints)):
+            self.familyOverviewStartPoints[n].setPosition((FAR, 0))
+
     def mouseMoveFamilyOverview(self, g, x, y):
         """Set the hoover color for the current selected glyph"""
         if g is None:

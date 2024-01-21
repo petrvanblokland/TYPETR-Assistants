@@ -76,14 +76,6 @@ class AssistantPartItalicize(BaseAssistantPart):
 
         g.prepareUndo()
 
-        #if self.getController().w.skewRotate or gd.useSkewRotate: # Glyphs like /O better use skew+rotate to italicize   
-        if c.w.skewRotate.get(): # Glyphs like /O better use skew+rotate to italicize, just look at the checkbox, not at the GLYPH_DATA flags.
-            skew = radians(-md.italicSkew)
-            rotation = radians(md.italicRotation)
-        else:
-            skew = radians(-md.italicAngle)
-            rotation = 0
-        
         addComponents = c.w.addItalicizedComponents.get()
         skipComponents = c.w.skipItalicizedComponents.get()
         addExtremes = c.w.addItalicizedExtremes.get()
@@ -96,16 +88,27 @@ class AssistantPartItalicize(BaseAssistantPart):
             print(f'### Italic source glyph {gName} does not exist.')
             return
 
-        print(f'... Italicize: Skew {skew } & Rotate {rotation}', )    
+        srcG = srcF[gName]
 
-        src = srcF[gName]
+        # Glyphs like /O better use skew+rotate to italicize, just look at the checkbox, not at the GLYPH_DATA flags.
+        # self.isCurved is inherited from the italicize Assistant part
+        print('4322423', c.w.skewRotate.get(), self.isCurved(srcG))
+        if c.w.skewRotate.get() and self.isCurved(srcG): 
+            print(f'... Using Skew ({md.italicSkew}) & Rotate ({md.italicRotation})')
+            skew = radians(-md.italicSkew)
+            rotation = radians(md.italicRotation)
+        else:
+            skew = radians(-md.italicAngle)
+            rotation = 0
+
+        print(f'... Italicize: Skew {skew } & Rotate {rotation}', )    
         
-        f[gName] = src # Copy from roman
+        f[gName] = srcG # Copy from roman
         dstG = f[gName]
         
         if not addComponents:
             for component in dstG.components:
-                pointPen = DecomposePointPen(src.layer, dest.getPointPen(), component.transformation)
+                pointPen = DecomposePointPen(srcG.layer, dest.getPointPen(), component.transformation)
                 component.drawPoints(pointPen)
                 dest.removeComponent(component)
 
@@ -130,7 +133,7 @@ class AssistantPartItalicize(BaseAssistantPart):
                     bPoint.anchorLabels = ["extremePoint"]
 
         cx, cy = 0, 0
-        box = src.bounds
+        box = srcG.bounds
         if box:
             cx = box[0] + (box[2] - box[0]) * .5
             cy = box[1] + (box[3] - box[1]) * .5
@@ -148,7 +151,7 @@ class AssistantPartItalicize(BaseAssistantPart):
             # this seems to work !!!
             for component in dstG.components:
                 # get component center
-                _box = src.layer[component.baseGlyph].bounds
+                _box = srcG.layer[component.baseGlyph].bounds
                 if not _box:
                     continue
                 _cx = _box[0] + (_box[2] - _box[0]) * .5
@@ -175,8 +178,8 @@ class AssistantPartItalicize(BaseAssistantPart):
             self.addExtremePoints(dstG, doSelect=True)
 
         dstG.round()
-        dstG.angledLeftMargin = src.angledLeftMargin
-        dstG.angledRightMargin = src.angledRightMargin
+        dstG.angledLeftMargin = srcG.angledLeftMargin
+        dstG.angledRightMargin = srcG.angledRightMargin
         
         dstG.copyToLayer('background', dstG)
         #dstG.removeSelection()
