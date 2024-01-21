@@ -18,7 +18,7 @@ class MasterData:
     """
     def __init__(self, name=None, ufoPath=UFO_PATH, 
             srcUFOPath=None, someUFOPath=None, orgUFOPath=None, kerningSrcUFOPath=None, romanItalicUFOPath=None, 
-            italicAngle=0, rotation=0, 
+            italicAngle=0, italicSkew=None, italicRotation=0, isItalic=False,
             thickness=10, distance=16, overshoot=12, # Used for Neon tubes
             m0=None, m1=None, m2=None, sm1=None, sm2=None, dsPosition=None,
             tripletData1=None, tripletData2=None, featurePath=None, 
@@ -45,9 +45,12 @@ class MasterData:
         self.familyName = familyName
         self.styleName = styleName
 
-        self.italicSkew = italicAngle
-        self.rotation = rotation 
-        self.isItalic = bool(italicAngle)
+        self.italicAngle = italicAngle
+        if italicSkew is None:
+            italicSkew = italicAngle
+        self.italicSkew = italicSkew # In case italicize is partical skew and rotation
+        self.italicRotation = italicRotation 
+        self.isItalic = bool(italicAngle) or isItalic or 'Italic' in name
         # Used by Neon for tube thickness and minimal tube distance
         self.thickness = thickness
         self.distance = distance
@@ -115,13 +118,16 @@ class MasterData:
 MD = MasterData
 
 class GlyphData:
-    def __init__(self, f, gName, uni=None):
+    def __init__(self, f, gName, uni=None,
+            addItalicExtremePoints=True,
+        ):
         self.name = gName
         if gName in f:
             g = f[gName]
             self.uni = g.unicode
         else:
             self.uni = uni 
+        self.addItalicExtremePoints = addItalicExtremePoints
 
 GD = GlyphData
 

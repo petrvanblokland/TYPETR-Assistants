@@ -11,7 +11,8 @@ for path in PATHS:
         print('@@@ Append to sys.path', path)
         sys.path.append(path)
 
-from mojo.roboFont import OpenWindow, CurrentGlyph, CurrentFont
+from fontTools.misc.transform import Transform
+from mojo.roboFont import OpenWindow, CurrentGlyph, CurrentFont, OpenFont, AllFonts, RGlyph, RPoint
 
 from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart, FAR
 
@@ -19,32 +20,47 @@ class AssistantPartItalicize(BaseAssistantPart):
     """The Italicize assistant part italicizes the current glyph in RoboFont.
     """
 
-    def initItalicize(self, container):
-        pass
+    def initMerzItalicize(self, container):
+        self.registerKeyStroke('i', 'italicizeGlyphKey')
 
     def updateItalicize(self, info):
-        pass
+        g = info['glyph']
+        if g.components or g.contours: # Not empty, do nothing
+            return
+        # Glyph is empty (by italicizeCallback or manually by user
+        self.italicizeGlyph(g)
 
     def buildItalicize(self, y):
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         LL = 18
  
-        self.w.addItalicizedComponents = CheckBox((C1, y, CW, L), 'Add components', value=True, sizeStyle='small')
-        self.w.skipItalicizedComponents = CheckBox((C1, y+LL, CW, L), 'Skip components', value=True, sizeStyle='small')
-        self.w.addItalicizedExtremes = CheckBox((C1, y+2*LL, CW, L), 'Add extremes', value=True, sizeStyle='small')
-        self.w.skewRotate = CheckBox((C1, y+3*LL, CW, L), 'Skew & rotate', value=False, sizeStyle='small')
-        y += L
+        self.w.addItalicizedComponents = CheckBox((C0, y, CW, L), 'Add components', value=True, sizeStyle='small')
+        self.w.skipItalicizedComponents = CheckBox((C1, y, CW, L), 'Skip components', value=True, sizeStyle='small')
+        self.w.addItalicizedExtremes = CheckBox((C0, y+LL, CW, L), 'Add extremes', value=True, sizeStyle='small')
+        self.w.skewRotate = CheckBox((C1, y+LL, CW, L), 'Skew & rotate', value=False, sizeStyle='small')
 
-        self.w.italicizeButton = Button((C0, y, CW, L), 'Italicize', callback=self.italicizeCallback)
-        y += L*1.5
+        self.w.italicizeButton = Button((C2, y+LL/2, CW, L), 'Italicize', callback=self.italicizeCallback)
+        y += L + LL
 
         return y
 
     def italicizeCallback(self, sender):
         g = CurrentGlyph()
-        if g is not None:
-            self.italicizeGlyph(g)
- 
+        g.clear() 
+        g.changed() # Force update. UpdateItalize will then rebuild the glyph.
+
+    def italicizeGlyphKey(self, g, c, event):
+        """Callback for registered event on key stroke"""
+
+        # Current we don't need any of these modifiers
+        # commandDown = event['commandDown']
+        # shiftDown = event['shiftDown']
+        # controlDown = event['controlDown']
+        # optionDown = event['optionDown']
+        # capLock = event['capLockDown']
+        
+        self.italicizeGlyph(g)
+
     # Function mostly copied from the Slanter extension
     def italicizeGlyph(self, g):
         f = g.font
@@ -53,30 +69,35 @@ class AssistantPartItalicize(BaseAssistantPart):
         gName = g.name
         c = self.getController()
 
+        if not md.isItalic:
+            print(f'### Glyph {md.name}/{g.name} is not italic.')
+            return
+
         g.prepareUndo()
 
         #if self.getController().w.skewRotate or gd.useSkewRotate: # Glyphs like /O better use skew+rotate to italicize   
-        if controller.w.skewRotate.get(): # Glyphs like /O better use skew+rotate to italicize, just look at the checkbox, not at the GLYPH_DATA flags.
-            skew = radians(md.italicSkew or -f.info.italicAngle)
+        if c.w.skewRotate.get(): # Glyphs like /O better use skew+rotate to italicize, just look at the checkbox, not at the GLYPH_DATA flags.
+            skew = radians(-md.italicSkew)
             rotation = radians(md.italicRotation)
         else:
-            skew = radians(-f.info.italicAngle)
+            skew = radians(-md.italicAngle)
             rotation = 0
-        print(f'... Italicize: Skew {skew } & Rotate {rotation}', )    
         
-        if not md.isItalic:
-            return
-
-
         addComponents = c.w.addItalicizedComponents.get()
         skipComponents = c.w.skipItalicizedComponents.get()
         addExtremes = c.w.addItalicizedExtremes.get()
 
-        if md.italicRomanUfo is None:
-            md.italicRomanUfo = getMaster(md.italicRomanPath, showInterface=False)
-            if md.italicRomanUfo is None:
-                return
-        src = md.italicRomanUfo[gName]
+        srcF = self.getFont(md.romanItalicUFOPath)
+        if srcF is None:
+            print(f'### Cannot find italic source {md.romanItalicUFOPath}.')
+            return
+        if gName not in srcF:
+            print(f'### Italic source glyph {gName} does not exist.')
+            return
+
+        print(f'... Italicize: Skew {skew } & Rotate {rotation}', )    
+
+        src = srcF[gName]
         
         f[gName] = src # Copy from roman
         dstG = f[gName]

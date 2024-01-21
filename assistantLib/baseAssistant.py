@@ -36,6 +36,7 @@ from mojo.events import extractNSEvent
 from mojo.UI import OpenGlyphWindow
 from mojo.roboFont import AllFonts, OpenFont, RGlyph, RPoint, CurrentGlyph, CurrentFont
 from mojo.subscriber import Subscriber, WindowController, registerGlyphEditorSubscriber, unregisterGlyphEditorSubscriber
+from mojo.events import extractNSEvent
 
 from fontTools.misc.transform import Transform
 
@@ -56,9 +57,37 @@ ARROW_KEYS = [NSUpArrowFunctionKey, NSDownArrowFunctionKey,
         NSLeftArrowFunctionKey, NSRightArrowFunctionKey, NSPageUpFunctionKey,
         NSPageDownFunctionKey, NSHomeFunctionKey, NSEndFunctionKey]
 
-
 class BaseAssistant:
-    """Share functions and class variables for both Assistant and AssistantController"""
+    """Share functions and class variables for both Assistant and AssistantController.
+    - Personalized marker colors for visited glyphs in the FontWindow
+    - Personalized dictionary for function keys
+    """
+
+    # Select the color by user
+    VISITED_MARKERS = [
+        #('/Users/petr/Desktop/TYPETR-git', (40/255, 120/255, 255/255, 0.6), keys), # "Final" marker Blue (Petr))    
+        ('/Users/petr/Desktop/TYPETR-git', (50/255, 70/255, 230/255, 0.8), {}), # "Final" marker Blue (Petr))    
+        ('/Users/edwarddzulaj/Documents', (92/255, 149/255, 190/255, 1), {}), # Edward
+        ('/Users/graemeswank/Documents', (255/255, 83/255, 73/255, 1), {}),
+        ('/Users/graeme/Documents', (255/255, 83/255, 73/255, 1), {}),
+        ('/Users/caterinasantullo/Desktop', (226/255, 69/255, 0/255, 1), {}),
+        ('/Users/til/Documents', (0.9, 0.75, 1.0, 1.0), {}),
+        ('/Users/anna/Downloads/Dropbox', (57/255, 163/255, 160/255, 1), {}),
+        ('/Users/lenalepommelet/Documents', (138/255, 43/255,  226/255, 1), {})
+    ]
+    
+    # Key translations from personalized key strokes are handled by the BaseAssistant.glyphEditorDidKeyDown
+    TRANSLATE_KEYS = {} # Key strokes can be redefined if defined as dict(b='B', B=None, g='G', q='#')
+    
+    VISITED_MARKER = None
+    for path, color, keys in VISITED_MARKERS:
+        if __file__.startswith(path):
+            VISITED_MARKER = color
+            print('User color for',  path, color)
+            TRANSLATE_KEYS = keys
+            break
+    if VISITED_MARKER is None:
+        VISITED_MARKER = (1, 1, 1, 1) # Clear to white
 
     # Must be redefined by inheriting assistant classes where to find the main UFO master files
     UFO_PATH = 'ufo/' # Standard place for UFO files
@@ -70,24 +99,37 @@ class BaseAssistant:
     # Names of methods to call for initializeing and updating Merz. 
     # To be defined by inheriting classes. 
     INIT_MERZ_METHODS = []
+    UPDATE_METHODS = [] # Something changed to the glyph. Check if something else needs to be done
     UPDATE_MERZ_METHODS = []
     SET_GLYPH_METHODS = [] # Methods to be called when the EditorWindow selected a new current glyph 
     MOUSE_MOVE_METHODS = []
     MOUSE_UP_METHODS = []
     MOUSE_DOWN_METHODS = []
+    # Dictionary with key-method combinations where each part wants to subscribe on.
+    # Each parts adds their key-method by self.registerKeyStroke(key, methodName).
+    # The receiving method must be able to handle self.mePartMethodKey(g, c, event), where:
+    # commandDown = event['commandDown']
+    # shiftDown = event['shiftDown']
+    # controlDown = event['controlDown']
+    # optionDown = event['optionDown']
+    # capLock = event['capLockDown']
+
+    KEY_STROKE_METHODS = {}
     # Controller methods
     BUILD_UI_METHODS = []
-        
-    def build(self):
-        
-        self.mouseClickPoint = None
-        self.mouseDraggedPoint = None
+    
+    ITALIC_ANGLE = 0
+
+    def registerKeyStroke(self, c, methodName):
+        """Let parts register the keyStroke-methodName combination that they want to listen to."""
+        if not c in self.KEY_STROKE_METHODS:
+            self.KEY_STROKE_METHODS[c] = []
+        self.KEY_STROKE_METHODS[c].append(methodName)
 
     def filePath2ParentPath(self, filePath):
         """Answer the parent path of filePath."""
         return '/'.join(filePath.split('/')[:-1]) + '/'
-    
-    
+      
     def getUfoPaths(self, path):
         """Answer all ufo paths in the path directory. If the class variable UFO_PATHS 
         is defined by an inheriting assistant class, then these are returned."""
@@ -148,12 +190,12 @@ class BaseAssistant:
         self.bgFonts[fullPath] = f
         return f
     
-    def path2UfoPath(self, path):
+    def path2UfoName(self, path):
         return path.split('/')[-1]
 
     def getMasterData(self, f):
         """Answer the MasterData instance for this font, containing meta-information about the entire font."""
-        ufoName = self.path2UfoPath(f.path)
+        ufoName = self.path2UfoName(f.path)
         if self.MASTER_DATA is not None and ufoName in self.MASTER_DATA:
             return self.MASTER_DATA[ufoName]
         # Otherwise just answer a default MasterData for f
@@ -195,6 +237,9 @@ class Assistant(BaseAssistant, Subscriber):
     #    B U I L D I N G
     
     def build(self):
+        self.mouseClickPoint = None
+        self.mouseDraggedPoint = None
+
         glyphEditor = self.getGlyphEditor()
         self.isUpdating = 0
 
@@ -211,7 +256,7 @@ class Assistant(BaseAssistant, Subscriber):
             location="background",
             clear=True
         )
-        # To be redefined by inheriting assistant classes, so they can define 
+        # self.INIT_MERZ_METHODS is to be redefined by inheriting assistant classes, so they can define 
         # their own set of components and UI."""
         for initMerzMethodName in self.INIT_MERZ_METHODS:
             getattr(self, initMerzMethodName)(container)
@@ -234,17 +279,19 @@ class Assistant(BaseAssistant, Subscriber):
     #self.glyphEditorDidKeyDown(info):
 
     
-    #def glyphEditorGlyphDidChange(self, info) # Better no use this one, as it also is triggered on lib changes.
+    #def glyphEditorGlyphDidChange(self, info) # Better not use this one, as it also is triggered on lib changes.
     #   The editor selected another glyph. Update the visible Merz elements for the new glyph."""
         
     def glyphEditorGlyphDidChangeContours(self, info):
         """The editor did change contours"""
         #print("""The editor did change contours""", info['glyph'])
+        self.update(info) # Check if something else needs to be updated
         self.updateMerz(info)
         
     def glyphEditorGlyphDidChangeComponents(self, info):
         """The editor change components"""
         #print("""The editor did change components""", info['glyph'])
+        self.update(info) # Check if something else needs to be updated
         self.updateMerz(info)
         
     def glyphEditorDidSetGlyph(self, info):
@@ -255,6 +302,7 @@ class Assistant(BaseAssistant, Subscriber):
         if g == cg:
             for setGlyphMethodName in self.SET_GLYPH_METHODS: 
                 getattr(self, setGlyphMethodName)(g)
+        self.update(info) # Check if something else needs to be updated
         self.updateMerz(info)
         
     def glyphEditorDidMouseDown(self, info):
@@ -271,6 +319,7 @@ class Assistant(BaseAssistant, Subscriber):
         self.mouseDraggedPoint = None
         for mouseDownMethodName in self.MOUSE_UP_METHODS:
             getattr(self, mouseDownMethodName)(g, p.x, p.y)
+        self.update(info) # Check if something else needs to be updated
         self.updateMerz(info)
 
     def glyphEditorDidMouseMove(self, info):
@@ -284,7 +333,33 @@ class Assistant(BaseAssistant, Subscriber):
 
     def glyphEditorDidKeyDown(self, info):
         # User specific key strokes to be added here
-        self.updateMerz(info)
+
+        g = info['glyph']
+        cg = CurrentGlyph()
+        if g.font.path != cg.font.path:
+            # Not the current glyph, ignore the key stroke
+            return
+
+        gd = self.getGlyphData(g.font, g.name)
+         
+        event = extractNSEvent(info['NSEvent'])
+        cc = event['keyDown']
+       
+        #commandDown = event['commandDown']
+        #shiftDown = event['shiftDown']
+        #controlDown = event['controlDown']
+        #optionDown = event['optionDown']
+        #self.capLock = event['capLockDown']
+
+        changed = False
+
+        """Translate the user key stroke to application key stroke. Of the user based TRANSLATE_KEYS
+        is None, then answer None, indicating the assistant should ingnore this key."""
+        c = self.TRANSLATE_KEYS.get(cc, cc) # Answer c if not define in the dictionary.
+        if c is not None and c in self.KEY_STROKE_METHODS: # Otherwise skip the key stroke
+            for keyStrokeMethodName in self.KEY_STROKE_METHODS[c]:
+                print(f'... [{c}] {keyStrokeMethodName} {g.name}')
+                getattr(self, keyStrokeMethodName)(g, c, event)
 
     def started(self):
         pass
@@ -296,11 +371,30 @@ class Assistant(BaseAssistant, Subscriber):
         """Answer the controller. We need this method to be compatible in case of controller.getController()"""
         return self.controller
 
+    def update(self, info):
+        """The glyph changed. Check is something else needs to be done."""
+        if self.isUpdating:
+            return
+        self.isUpdating = True
+        # Let the parts do updating work too, in case that is necessary
+        for updateMethod in self.UPDATE_METHODS:
+            getattr(self, updateMethod)(info)
+        self.isUpdating = False
+
     def updateMerz(self, info):
         """Update the Merz objects for all activated Merz components"""
         if self.isUpdating:
             return
         self.isUpdating = True
+
+        g = info['glyph']
+        if g is None:
+            return
+        fg = g.getLayer('foreground')
+        if fg.markColor != self.VISITED_MARKER: # NO_MARKER or different marker
+            fg.markColor = self.VISITED_MARKER # Change to the marker color of this user
+
+        # Update Merz elements, in case things changed to the shapes
         for updateMerzMethodName in self.UPDATE_MERZ_METHODS:
             getattr(self, updateMerzMethodName)(info)
         self.isUpdating = False
@@ -339,7 +433,7 @@ class AssistantController(BaseAssistant, WindowController):
 
         y = self.M
         self.w = self.WINDOW_CLASS((self.W, self.H), self.NAME, minSize=(self.W, self.H))
-        y = self.buildUI(y) # y goes down, depending how much the UI components need
+        self.buildUI(y) # y goes down, depending how much the UI components need
         self.w.open()
                 
     def buildUI(self, y):
@@ -347,7 +441,12 @@ class AssistantController(BaseAssistant, WindowController):
         assistant class also defines the available functions."""
         for buildUIMethodName in self.BUILD_UI_METHODS:
             y = getattr(self, buildUIMethodName)(y)
-        return y
+        self.w.saveAllButton = Button((self.C2, -self.L-self.M, self.CW, self.L), 'Save all', callback=self.saveAllCallback)
+
+    def saveAllCallback(self, sender):
+        for f in AllFonts():
+            print(f'... Save {f.path}')
+            f.save()
 
     def updateEditor(self, sender):
         g = CurrentGlyph()

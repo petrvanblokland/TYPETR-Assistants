@@ -156,6 +156,6 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         """Build the overlay stuff: Merz components and """
         # Calculate the column positions
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
-        self.w.showFamilyOverview = CheckBox((C0, y, CW, L), 'Show family overview', value=True, callback=self.updateEditor)
+        self.w.showFamilyOverview = CheckBox((C0, y, CW, L), 'Show family overview', value=True, sizeStyle='small', callback=self.updateEditor)
         y += L
         return y
