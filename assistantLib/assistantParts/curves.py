@@ -26,8 +26,14 @@ class AssistantPartCurves(BaseAssistantPart):
     """The Curves assistant part converts between Quadratics and Bezier.
     """
     def initMerzCurves(self, container):
-        self.registerKeyStroke('q', 'curvesB2QGlyphKey')
-        self.registerKeyStroke('b', 'curvesQ2BGlyphKey')
+        keyStrokes = dict(
+            q='curvesB2QGlyphKey', 
+            b='curvesQ2BGlyphKey',
+            e='curvesSetStartPoint', # Choose selected point as start point
+            E='curvesSetStartPoint', # Auto selection of start points on best match
+        )
+        for key, methodName in keyStrokes.items():
+            self.registerKeyStroke(key, methodName)
 
     def updateCurves(self, info):
         c = self.getController()
@@ -137,3 +143,49 @@ class AssistantPartCurves(BaseAssistantPart):
                     return True
         return False
 
+    #    C O N T O U R S
+    
+    def curvesSetStartPoint(self, g, c, event):
+        """Set the start point to the selected points on [e]. Auto select the point on [E] key."""
+        doSelect = True
+        doAuto = c == c.upper() # Auto select if uppercase of key was used:
+        selectedContours = []
+        autoContours = []
+        g.prepareUndo()
+        for contour in g.contours:
+            selected = auto = x = y = None
+            points = contour.points
+            numPoints = len(points)
+            for pIndex, point in enumerate(points):
+                if point.type == 'offcurve':
+                    continue
+                if point.selected:
+                    selected = pIndex
+                if auto is None or x is None or y is None or point.y < y or (point.y == y and point.x < x):
+                    auto = pIndex
+                    x = point.x
+                    y = point.y
+            if selected:
+                selectedContours.append((selected, contour))
+            if auto:
+                autoContours.append((auto, contour))
+    
+        if doSelect and selectedContours: # Ignore the auto
+            #print('... %s: Set start for %d contours' % (glyph.name, len(selectedContours)))
+            for pIndex, contour in selectedContours:
+                contour.naked().setStartPoint(pIndex)
+            g.changed()
+        elif doAuto:
+            changed = False
+            #print('... %s: Auto start for %d contours' % (glyph.name, len(autoContours)))
+            for pIndex, contour in autoContours:
+                if pIndex:
+                    # Make x show same as angled value in EditorWindow
+                    x = contour.points[pIndex].x - int(round((tan(radians(-g.font.info.italicAngle or 0)) * contour.points[pIndex].y)))
+                    print(f'... Altering startpoint to {(x, contour.points[pIndex].y)}')
+                    contour.naked().setStartPoint(pIndex)
+                    changed = True
+            if changed:
+                g.changed()
+
+                

@@ -148,13 +148,8 @@ class AssistantPartOverlay(BaseAssistantPart):
             gOverlay = f[overlayName].getLayer('foreground')
             glyphPathOverlay = gOverlay.getRepresentation("merz.CGPath") 
             self.previewGlyphOverlay.setPath(glyphPathOverlay)
-            
-            if c.w.overlayAlignment.get() == 0:
-                x = 0 # Left aligned 
-            elif c.w.overlayAlignment.get() == 1:
-                x = (g.width - gOverlay.width)/2
-            else:
-                x = g.width - gOverlay.width
+ 
+            x = c.w.overlayPositionSlider.get() / self.MAX_OVERLAY_SLIDER * (g.width - gOverlay.width)
             self.previewGlyphOverlay.setPosition((x, 0))
             
             if c.w.previewGlyphOverlay.get():
@@ -227,9 +222,105 @@ class AssistantPartOverlay(BaseAssistantPart):
         if not drawn:
             self.romanItalicUFOPathOverlay.setPosition((FAR, 0)) 
 
-            
+    def overlaySnap2Overlay(self, g, c, event):     
+        """Snap the selected points of the current glyph onto points that are within range on the background glyph."""
+        self.snapSelectionToNearestPoint(g)
+
+    def snapSelectionToNearestPoint(self, g):
+        c = self.getController()
+        f = g.font
+
+        overlayText = c.w.overlayGlyphName.get()
+        snapped = False
+
+        for gName in overlayText.split('/'):
+            #print('---', gName, f.path)
+            gName = gName.strip()
+            if gName and f is not None and gName in f:
+                og = f[gName] # Use current font as overlay
+                offsetX = c.w.overlayPositionSlider.get() / self.MAX_OVERLAY_SLIDER * (g.width - og.width)
+                snapped = snapped or self.snapGlyphPoints(g, og, offsetX)
+        
+        if snapped:
+            g.changed()
+
+    def snapGlyphPoints(self, g, srcGlyph, offsetX=0):
+        g.prepareUndo()
+        snapped = False
+        for contour in g.contours:
+            offCurves = []
+            used = set()
+            points = contour.points
+            for pIndex, p in enumerate(points): # First do on-curves + offcurves
+                if p.selected and p.type != 'offcurve':
+                    distance = None
+                    nearestX = nearestY = None 
+                    for gContour in srcGlyph.contours:
+                        for gp in gContour.points:
+                            gpx = gp.x + offsetX
+                            gpy = gp.y
+                            if (gpx, gpy)in used:
+                                continue
+                            if gp.type != 'offcurve':
+                                d = self.distance(p.x, p.y, gpx, gpy)
+                                if distance is None or d < distance:
+                                    nearestX = gpx
+                                    nearestY = gpy
+                                    distance = d
+                    if nearestX is not None:
+                        dx = nearestX - p.x
+                        dy = nearestY - p.y
+                        p.x = int(round(nearestX))
+                        p.y = int(round(nearestY))
+                        used.add((p.x, p.y))
+                        p_1 = points[pIndex-1]
+
+                        # Move neighbour offcurves relative to p
+                        if p_1.type == 'offcurve':
+                            p_1.x = int(round(p_1.x + dx))
+                            p_1.y = int(round(p_1.y + dy))
+                            offCurves.append(p_1)
+                        if pIndex < len(contour.points)-1:
+                            p1 = points[pIndex+1]
+                            if p1.type == 'offcurve':
+                                p1.x = int(round(p1.x + dx))
+                                p1.y = int(round(p1.y + dy))
+                                offCurves.append(p1)
+                        else:
+                            p1 = points[0]
+                            if p1.type == 'offcurve':
+                                p1.x = int(round(p1.x + dx))
+                                p1.y = int(round(p1.y + dy))
+                                offCurves.append(p1)
+                        snapped = True
+
+            for p in points: # Then do off-curves after, if selected or previously moved
+                if p.selected and p.type == 'offcurve' or p in offCurves:
+                    distance = None
+                    nearestX = nearestY = None 
+                    for gContour in srcGlyph.contours:
+                        for gp in gContour.points:
+                            gpx = gp.x + offsetX
+                            gpy = gp.y
+                            if (gpx, gpy) in used:
+                                continue
+                            if gp.type == 'offcurve':
+                                d = self.distance(p.x, p.y, gpx, gpy)
+                                if distance is None or d < distance:
+                                    nearestX = gpx
+                                    nearestY = gpy
+                                    distance = d
+                    if nearestX is not None:
+                        p.x = int(round(nearestX))
+                        p.y = int(round(nearestY))
+                        used.add((p.x, p.y))
+                        snapped = True
+        return snapped
+
     #    O V E R L A Y
     
+    MAX_OVERLAY_SLIDER = 2048
+
     def buildOverlay(self, y):
         """Build the overlay UI controls. Give control to show the following masters (if defined in the masterData)
         5 types of overlay. They checkboxes are disabled if the current glyph master data does not have one of
@@ -254,8 +345,11 @@ class AssistantPartOverlay(BaseAssistantPart):
         c.w.overlayGlyphName = EditText((C1, y, CW, L), callback=self.updateEditor)
         c.w.previewGlyphRightName = EditText((C2, y, CW, L), callback=self.updateEditor)
         y += L
-        c.w.overlayAlignment = RadioGroup((C1, y, CW, L), ('L', 'C', 'R'), isVertical=False, sizeStyle='small', callback=self.updateEditor)
+        c.w.overlayAlignment = RadioGroup((C1, y, CW, L), ('L', 'C', 'R'), isVertical=False, sizeStyle='small', callback=self.updateOverlayPositionCallback)
         c.w.overlayAlignment.set(0)
+        y += L
+        c.w.overlayPositionSlider = Slider((C1, y, CW, L), minValue=0, maxValue=self.MAX_OVERLAY_SLIDER, value=0, 
+            sizeStyle='small', continuous=True, callback=self.updateOverlayPositionSliderCallback)
         y += L
         c.w.srcUFOPathOverlay = CheckBox((C0, y, CW, L), 'Source UFO overlay', value=True, sizeStyle='small', callback=self.updateEditor)
         c.w.someUFOPathOverlay = CheckBox((C1, y, CW, L), 'Some UFO overlay', value=False, sizeStyle='small', callback=self.updateEditor)
@@ -265,3 +359,22 @@ class AssistantPartOverlay(BaseAssistantPart):
         c.w.romanItalicUFOPathOverlay = CheckBox((C1, y, CW, L), 'Roman/italic', value=False, sizeStyle='small', callback=self.updateEditor)
         y += L * 1.5
         return y
+
+    def updateOverlayPositionCallback(self, sender):
+        position = self.w.overlayAlignment.get()
+        self.w.overlayPositionSlider.set(position/2*self.MAX_OVERLAY_SLIDER)
+        self.updateEditor(sender)
+
+    def updateOverlayPositionSliderCallback(self, sender):
+        position = int(round(self.w.overlayPositionSlider.get()))
+        if position == 0:
+            align = 0
+        elif position == self.MAX_OVERLAY_SLIDER/2:
+            align = 1
+        elif position == self.MAX_OVERLAY_SLIDER:
+            align = 2
+        else:
+            align = 1
+        self.w.overlayAlignment.set(align)
+        self.updateEditor(sender)
+

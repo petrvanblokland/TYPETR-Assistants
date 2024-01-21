@@ -21,6 +21,7 @@
 #
 import sys
 import os
+import math
 import codecs
 import merz
 import weakref
@@ -120,11 +121,15 @@ class BaseAssistant:
     
     ITALIC_ANGLE = 0
 
+    #   E V E N T S
+
     def registerKeyStroke(self, c, methodName):
         """Let parts register the keyStroke-methodName combination that they want to listen to."""
         if not c in self.KEY_STROKE_METHODS:
             self.KEY_STROKE_METHODS[c] = set()
         self.KEY_STROKE_METHODS[c].add(methodName)
+
+    #   F I L E P A T H S
 
     def filePath2ParentPath(self, filePath):
         """Answer the parent path of filePath."""
@@ -193,6 +198,8 @@ class BaseAssistant:
     def path2UfoName(self, path):
         return path.split('/')[-1]
 
+    #   D A T A
+
     def getMasterData(self, f):
         """Answer the MasterData instance for this font, containing meta-information about the entire font."""
         ufoName = self.path2UfoName(f.path)
@@ -206,6 +213,8 @@ class BaseAssistant:
         """Answer the GlyphData instance for this glyph, containing meta-information."""
         gd = GlyphData(f, gName)
         return gd 
+
+    #   L I B
 
     LIB_KEY = 'com.typetr'
 
@@ -224,6 +233,8 @@ class BaseAssistant:
                 fOrG.lib[self.LIB_KEY] = {}
             fOrG.lib[self.LIB_KEY][key] = value
 
+    #   G L Y P H
+
     def copyGlyph(self, srcFont, glyphName, dstFont=None, dstGlyphName=None, copyUnicode=True):
         """If dstFont is omitted, then the dstGlyphName (into the same font) should be defined.
         If dstGlyphName is omitted, then dstFont (same glyph into another font) should be defined.
@@ -238,7 +249,12 @@ class BaseAssistant:
         srcGlyph = srcFont[glyphName]
         dstFont.insertGlyph(srcGlyph, name=dstGlyphName)
         return dstFont[dstGlyphName]
-        
+
+    #   P O I N T S
+
+    def distance(self, px1, py1, px2, py2):
+        return math.sqrt((px1 - px2)**2 + (py1 - py2)**2)
+
 class Assistant(BaseAssistant, Subscriber):
 
     # Editor window drawing parameters
