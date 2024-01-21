@@ -14,9 +14,6 @@ for path in PATHS:
 
 from mojo.roboFont import CurrentGlyph
 
-import assistantLib.toolbox.qbqconverter
-importlib.reload(assistantLib.toolbox.qbqconverter)
-from assistantLib.toolbox.qbqconverter import *
 from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart, FAR
 
 POINTTYPE_BEZIER = 'curve'

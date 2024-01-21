@@ -94,7 +94,7 @@ class BaseAssistant:
     UFO_PATHS = None 
 
     # If there's masterData available, then this should be redefined as dictionaty by inheriting Assistant classes
-    MASTER_DATA = None 
+    #MASTER_DATA = None 
 
     # Names of methods to call for initializeing and updating Merz. 
     # To be defined by inheriting classes. 
@@ -123,8 +123,8 @@ class BaseAssistant:
     def registerKeyStroke(self, c, methodName):
         """Let parts register the keyStroke-methodName combination that they want to listen to."""
         if not c in self.KEY_STROKE_METHODS:
-            self.KEY_STROKE_METHODS[c] = []
-        self.KEY_STROKE_METHODS[c].append(methodName)
+            self.KEY_STROKE_METHODS[c] = set()
+        self.KEY_STROKE_METHODS[c].add(methodName)
 
     def filePath2ParentPath(self, filePath):
         """Answer the parent path of filePath."""
@@ -224,8 +224,21 @@ class BaseAssistant:
                 fOrG.lib[self.LIB_KEY] = {}
             fOrG.lib[self.LIB_KEY][key] = value
 
-
-
+    def copyGlyph(self, srcFont, glyphName, dstFont=None, dstGlyphName=None, copyUnicode=True):
+        """If dstFont is omitted, then the dstGlyphName (into the same font) should be defined.
+        If dstGlyphName is omitted, then dstFont (same glyph into another font) should be defined.
+        Note that this also overwrites/copies the anchors.
+        """
+        assert glyphName in srcFont, (f'### copyGlyph: Glyph /{glyphName} does not exist source font {srcFont.path}')
+        if dstFont is None:
+            dstFont = srcFont
+        if dstGlyphName is None:
+            dstGlyphName = glyphName
+        assert srcFont != dstFont or glyphName != dstGlyphName, ('### copyGlyph: Either dstFont or dstGlyphName should be defined.')
+        srcGlyph = srcFont[glyphName]
+        dstFont.insertGlyph(srcGlyph, name=dstGlyphName)
+        return dstFont[dstGlyphName]
+        
 class Assistant(BaseAssistant, Subscriber):
 
     # Editor window drawing parameters
@@ -358,7 +371,7 @@ class Assistant(BaseAssistant, Subscriber):
         c = self.TRANSLATE_KEYS.get(cc, cc) # Answer c if not define in the dictionary.
         if c is not None and c in self.KEY_STROKE_METHODS: # Otherwise skip the key stroke
             for keyStrokeMethodName in self.KEY_STROKE_METHODS[c]:
-                print(f'... [{c}] {keyStrokeMethodName} {g.name}')
+                print(f'... [{c}] {keyStrokeMethodName} {g.name} {g.font.path}')
                 getattr(self, keyStrokeMethodName)(g, c, event)
 
     def started(self):
@@ -422,6 +435,10 @@ class AssistantController(BaseAssistant, WindowController):
     def build(self):
         """Build the controller window."""
         
+        # Reference to the redefined MASTER_DATA and PROJECT_PATH from the main Assistant class
+        self.MASTER_DATA = self.assistantGlyphEditorSubscriberClass.MASTER_DATA
+        self.PROJECT_PATH = self.assistantGlyphEditorSubscriberClass.PROJECT_PATH
+
         f = CurrentFont()
         f.lib[self.LIB_KEY] = {}
 

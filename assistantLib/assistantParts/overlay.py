@@ -35,6 +35,9 @@ class AssistantPartOverlay(BaseAssistantPart):
     def initMerzOverlay(self, container):    
         # Previewing current glyphs on left/right side. 
         # Triggered by w.previewGlyphLeft, w.previewGlyphOverlay and w.previewGlyphRight       
+
+        self.registerKeyStroke('g', 'overlaySnap2Overlay')
+
         self.previewGlyphLeft = container.appendPathSublayer(
             position=(FAR, 0),
             fillColor=self.OVERLAY_FILL_LEFT_COLOR,
