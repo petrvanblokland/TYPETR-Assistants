@@ -47,7 +47,7 @@ from fontTools.pens.pointPen import ReverseContourPointPen, AbstractPointPen, Po
 from mojo.UI import UpdateCurrentGlyphView
 #from mojo.extensions import getExtensionDefault, setExtensionDefault, getExtensionDefaultColor, setExtensionDefaultColor
 from mojo.UI import UpdateCurrentGlyphView
-from mojo.roboFont import OpenWindow, CurrentGlyph, CurrentFont
+from mojo.roboFont import OpenWindow
 from defcon import Glyph
 
 # Add paths to libs in sibling repositories
@@ -274,7 +274,7 @@ class OutlinePen(BasePen):
 
         self.closeOpenPaths = closeOpenPaths
         
-        self.glyph = CurrentGlyph()
+        self.glyph = self.currentGlyph()
         self.points = {}
         for contour in self.glyph.contours:
             for point in contour.points:
@@ -1084,7 +1084,7 @@ class AssistantPartNeon(BaseAssistantPart):
 
     def parametersChanged(self, sender=None, g=None):
         c = self.getController()
-        g = CurrentGlyph()
+        g = self.currentGlyph()
         if g is None:
             return
         f = g.font
@@ -1160,7 +1160,7 @@ class AssistantPartNeon(BaseAssistantPart):
         changed = False
         value = int(round(sender.get()))
         c.w.pointPenText.set(value)
-        g = CurrentGlyph()
+        g = self.currentGlyph()
         if g is not None:
             for contour in g:
                 for p in contour.points:
@@ -1179,7 +1179,7 @@ class AssistantPartNeon(BaseAssistantPart):
         try:
             value = int(sender.get())
             c.w.pointPen.set(value)
-            g = CurrentGlyph()
+            g = self.currentGlyph()
             if g is not None:
                 for contour in g:
                     for p in contour.points:
@@ -1195,7 +1195,7 @@ class AssistantPartNeon(BaseAssistantPart):
         c = self.getController()
         c.w.pointPen.set(sender.value)
         c.w.pointPenText.set(sender.value)
-        g = CurrentGlyph()
+        g = self.currentGlyph()
         if g is not None:
             for contour in g:
                 for p in contour.points:
@@ -1208,7 +1208,7 @@ class AssistantPartNeon(BaseAssistantPart):
         self.updateView()
 
     def setRightMarginByValue(self, sender):
-        g = CurrentGlyph()
+        g = self.currentGlyph()
         if g is not None:
             g.angledRightMargin = sender.value
 

@@ -12,7 +12,7 @@ for path in PATHS:
         sys.path.append(path)
 
 from fontTools.misc.transform import Transform
-from mojo.roboFont import OpenWindow, CurrentGlyph, CurrentFont, OpenFont, AllFonts, RGlyph, RPoint
+from mojo.roboFont import OpenWindow, OpenFont, AllFonts, RGlyph, RPoint
 
 from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart, FAR
 
@@ -22,7 +22,7 @@ class AssistantPartItalicize(BaseAssistantPart):
 
     def initMerzItalicize(self, container):
         """Register key stroke cap-I. [i] is reserved for the spacing part"""
-        self.registerKeyStroke('I', 'italicizeGlyphKey')
+        self.registerKeyStroke('s', 'italicizeGlyphKey')
 
     def updateItalicize(self, info):
         g = info['glyph']
@@ -46,7 +46,7 @@ class AssistantPartItalicize(BaseAssistantPart):
         return y
 
     def italicizeCallback(self, sender):
-        g = CurrentGlyph()
+        g = self.currentGlyph()
         g.clear() 
         g.changed() # Force update. UpdateItalize will then rebuild the glyph.
 
@@ -92,7 +92,6 @@ class AssistantPartItalicize(BaseAssistantPart):
 
         # Glyphs like /O better use skew+rotate to italicize, just look at the checkbox, not at the GLYPH_DATA flags.
         # self.isCurved is inherited from the italicize Assistant part
-        print('4322423', c.w.skewRotate.get(), self.isCurved(srcG))
         if c.w.skewRotate.get() and self.isCurved(srcG): 
             print(f'... Using Skew ({md.italicSkew}) & Rotate ({md.italicRotation})')
             skew = radians(-md.italicSkew)
@@ -102,7 +101,7 @@ class AssistantPartItalicize(BaseAssistantPart):
             rotation = 0
 
         print(f'... Italicize: Skew {skew } & Rotate {rotation}', )    
-        
+
         f[gName] = srcG # Copy from roman
         dstG = f[gName]
         
@@ -118,6 +117,7 @@ class AssistantPartItalicize(BaseAssistantPart):
 
         if skew == 0 and rotation == 0:
             return
+
 
         for contour in dstG:
             for bPoint in contour.bPoints:

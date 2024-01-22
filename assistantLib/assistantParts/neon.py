@@ -14,7 +14,7 @@ from fontTools.pens.pointPen import ReverseContourPointPen, AbstractPointPen, Po
 from mojo.UI import UpdateCurrentGlyphView
 #from mojo.extensions import getExtensionDefault, setExtensionDefault, getExtensionDefaultColor, setExtensionDefaultColor
 from mojo.UI import UpdateCurrentGlyphView
-from mojo.roboFont import OpenWindow, CurrentGlyph, CurrentFont
+from mojo.roboFont import OpenWindow
 from defcon import Glyph
 
 # Add paths to libs in sibling repositories
@@ -722,7 +722,7 @@ class AssistantPartNeon(BaseAssistantPart):
         md = self.getMasterData(g.font)
         d = md.distance # Minimal distance between tubes
         overshoot = md.overshoot # Radius of the overshoot point marker
-        currentFont = CurrentFont()
+        currentFont = self.currentFont()
 
         pIndex = 0
         if g is not None and currentFont is not None and currentFont.path == f.path:

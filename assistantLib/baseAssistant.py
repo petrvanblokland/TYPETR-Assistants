@@ -233,6 +233,13 @@ class BaseAssistant:
                 fOrG.lib[self.LIB_KEY] = {}
             fOrG.lib[self.LIB_KEY][key] = value
 
+    #   F O N T
+
+    def currentFont(self):
+        """Answer the current font. By default this the result of CurrentFont, but it can be altered by
+        inheriting assistant classes to force another current font selection."""
+        return CurrentFont()
+        
     #   G L Y P H
 
     def copyGlyph(self, srcFont, glyphName, dstFont=None, dstGlyphName=None, copyUnicode=True):
@@ -250,10 +257,29 @@ class BaseAssistant:
         dstFont.insertGlyph(srcGlyph, name=dstGlyphName)
         return dstFont[dstGlyphName]
 
+    def currentGlyph(self, layerName='foreground'):
+        """Answer the current glyph. By default this the result of CurrentGlyph, but it can be altered by
+        inheriting assistant classes to force the current glyph as another layer (e.g. as in Responder and Upgrade Neon,
+        where the "background" layer is return as working area. Answer None if there is no current glyph selected."""
+        g = CurrentGlyph()
+        if g is not None:
+            return g.getLayer(layerName)
+        return None
+
     #   P O I N T S
 
     def distance(self, px1, py1, px2, py2):
         return math.sqrt((px1 - px2)**2 + (py1 - py2)**2)
+
+    def hasSelectedPoints(self, g):
+        """Answer the boolean flag if there is one or more points selected. E.g. italicize is using this
+        to decide if the skew/rotate should be applied to the whole glyph (in case there is nothing or all selected).
+        If there is a partial selection, then only skew/rotate the selected points."""
+        for contour in g.contours:
+            for p in contour.points:
+                if p.selected:
+                    return True
+        return False
 
 class Assistant(BaseAssistant, Subscriber):
 
@@ -364,7 +390,7 @@ class Assistant(BaseAssistant, Subscriber):
         # User specific key strokes to be added here
 
         g = info['glyph']
-        cg = CurrentGlyph()
+        cg = self.currentGlyph()
         if g.font.path != cg.font.path:
             # Not the current glyph, ignore the key stroke
             return
@@ -483,7 +509,7 @@ class AssistantController(BaseAssistant, WindowController):
             f.save()
 
     def updateEditor(self, sender):
-        g = CurrentGlyph()
+        g = self.currenyGlyph()
         if g is not None:
             g.changed()
                   

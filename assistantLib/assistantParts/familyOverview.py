@@ -3,7 +3,7 @@
 import sys
 from vanilla import *
 
-from mojo.roboFont import AllFonts, OpenFont, RGlyph, RPoint, CurrentGlyph, CurrentFont
+from mojo.roboFont import AllFonts, OpenFont, RGlyph, RPoint
 from mojo.UI import OpenGlyphWindow, CurrentGlyphWindow, getGlyphViewDisplaySettings, setGlyphViewDisplaySettings
 
 # Add paths to libs in sibling repositories

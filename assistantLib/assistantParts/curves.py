@@ -12,8 +12,6 @@ for path in PATHS:
         print('@@@ Append to sys.path', path)
         sys.path.append(path)
 
-from mojo.roboFont import CurrentGlyph
-
 from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart, FAR
 
 POINTTYPE_BEZIER = 'curve'
@@ -63,7 +61,7 @@ class AssistantPartCurves(BaseAssistantPart):
 
     def Q2BCallback(self, sender):
         """Callback from button"""
-        g = CurrentGlyph()
+        g = self.currentGlyph()
         if g is not None:
             self.curvesConvert(g, POINTTYPE_QUADRATIC, POINTTYPE_BEZIER, FACTOR)
 
@@ -83,7 +81,7 @@ class AssistantPartCurves(BaseAssistantPart):
         
     def B2QCallback(self, sender):
         """Callback from button"""
-        g = CurrentGlyph()
+        g = self.currentGlyph()
         if g is not None:
             self.curvesConvert(g, POINTTYPE_BEZIER, POINTTYPE_QUADRATIC, 1/FACTOR)
 

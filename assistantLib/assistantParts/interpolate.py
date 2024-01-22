@@ -10,8 +10,8 @@ for path in PATHS:
         print('@@@ Append to sys.path', path)
         sys.path.append(path)
 
+from mojo.roboFont import OpenFont, AllFonts, RGlyph, RPoint
 from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart, FAR
-from mojo.roboFont import CurrentFont
 
 class AssistantPartInterpolate(BaseAssistantPart):
     """The Interpolate assistant part, checks on interpolation errors and
@@ -41,7 +41,7 @@ class AssistantPartInterpolate(BaseAssistantPart):
         self.interpolateCallback(g)
 
     def interpolateCallback(self, sender=None):
-        g = CurrentGlyph()
+        g = self.currentGlyph()
         if g is None:
             return
         md = self.getMasterData(g.font)
