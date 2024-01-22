@@ -13,7 +13,6 @@ from fontTools.pens.reverseContourPen import ReverseContourPen
 from fontTools.pens.pointPen import ReverseContourPointPen, AbstractPointPen, PointToSegmentPen
 from mojo.UI import UpdateCurrentGlyphView
 #from mojo.extensions import getExtensionDefault, setExtensionDefault, getExtensionDefaultColor, setExtensionDefaultColor
-from mojo.UI import UpdateCurrentGlyphView
 from mojo.roboFont import OpenWindow
 from defcon import Glyph
 
@@ -241,7 +240,7 @@ class OutlinePen(BasePen):
 
         self.closeOpenPaths = closeOpenPaths
         
-        self.glyph = CurrentGlyph()
+        self.glyph = self.currentGlyph()
         self.points = {}
         for contour in self.glyph.contours:
             for point in contour.points:
