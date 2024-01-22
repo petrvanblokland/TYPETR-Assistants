@@ -24,6 +24,9 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
     MAX_FAMILY_START_POINTS = 50 # Masters * max number of contours
     FAMILY_OVERVIEW_START_POINT_SIZE = 10/FAMILY_OVERVIEW_SCALE
     FAMILY_OVERVIEW_START_POINT_COLOR = 0.9, 0.2, 0.6, 0.8
+    FAMILY_DEFAULT_FILL_COLOR = 0, 0, 0, 1
+    FAMILY_HOVER_FILL_COLOR = 1, 0, 0, 1
+    FAMILY_INTERPOLATION_ERROR_FILL_COLOR = 0.3, 0.2, 1, 1 # Error color of interpolation is not compatible
     LABEL_FONT = 'Verdana'
     LABEL_SIZE = 12
     LABEL_SPACING = 400 # Distance between the styles
@@ -46,7 +49,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                 text='',
                 font=self.LABEL_FONT,
                 pointSize=self.LABEL_SIZE,
-                fillColor=(0, 0, 0, 1),
+                fillColor=self.FAMILY_DEFAULT_FILL_COLOR, # Can be set to FAMILY_INTERPOLATION_ERROR_FILL_COLOR
             )
             subLayer.addScaleTransformation(self.FAMILY_OVERVIEW_SCALE)
             subLayer.setHorizontalAlignment('center')
@@ -63,11 +66,12 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
             self.familyOverviewStartPoints.append(subLayer)            
         
     def updateMerzFamilyOverview(self, info):
+        c = self.getController()
         g = info['glyph']
         if g is None:
             return
         nIndex = 0
-        if g is not None and self.controller.w.showFamilyOverview.get():
+        if g is not None and c.w.showFamilyOverview.get():
             f = g.font
             x = 0
             y = f.info.unitsPerEm / self.FAMILY_OVERVIEW_SCALE
@@ -78,10 +82,15 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                     ufo = self.getFont(pth)
                     if ufo is not None and g.name in ufo:
                         ufoG = ufo[g.name] # Show the foreground layer.
+                        if not self.isCurrentGlyph(ufoG) or not c.w.showFamilyInterpolation.get() or self.doesInterpolate(ufoG):
+                            fillColor = self.FAMILY_DEFAULT_FILL_COLOR
+                        else:
+                            fillColor = self.FAMILY_INTERPOLATION_ERROR_FILL_COLOR
                         glyphPath = ufoG.getRepresentation("merz.CGPath")
                         #print('Updating family glyph path', pth, g.name)
                         self.familyOverviewGlyphs[fIndex].setPath(glyphPath)
                         self.familyOverviewGlyphs[fIndex].setPosition((x, y))
+                        self.familyOverviewGlyphs[fIndex].setFillColor(fillColor)
                         self.familyOverviewStyleName[fIndex].setText(ufo.info.styleName)
                         self.familyOverviewStyleName[fIndex].setPosition((x+ufoG.width/2, y+ufo.info.descender))
 
@@ -105,6 +114,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         """Set the hoover color for the current selected glyph"""
         if g is None:
             return
+        c = self.getController()
         currentFont = g.font
         y1 = currentFont.info.unitsPerEm
         y2 = y1 + currentFont.info.unitsPerEm * self.FAMILY_OVERVIEW_SCALE
@@ -118,10 +128,12 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                     ufoG = ufo[g.name]
                     x2 = x1 + max(ufo.info.unitsPerEm/2, ufoG.width + self.LABEL_SPACING) * self.FAMILY_OVERVIEW_SCALE
                     if y1 <= y <= y2 and x1 <= x <= x2:
-                        c = 1, 0, 0, 1
+                        fillColor = self.FAMILY_HOVER_FILL_COLOR
+                    elif not self.isCurrentGlyph(ufoG) or not c.w.showFamilyInterpolation.get() or self.doesInterpolate(ufoG):
+                        fillColor = self.FAMILY_DEFAULT_FILL_COLOR
                     else:
-                        c = 0, 0, 0, 0.8
-                    self.familyOverviewGlyphs[fIndex].setFillColor(c)
+                        fillColor = self.FAMILY_INTERPOLATION_ERROR_FILL_COLOR
+                    self.familyOverviewGlyphs[fIndex].setFillColor(fillColor)
                     x1 = x2
                     
     def mouseDownFamilyOverview(self, g, x, y):
@@ -182,5 +194,6 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         # Calculate the column positions
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         self.w.showFamilyOverview = CheckBox((C0, y, CW, L), 'Show family overview', value=True, sizeStyle='small', callback=self.updateEditor)
+        self.w.showFamilyInterpolation = CheckBox((C1, y, CW, L), 'Show interpolation test', value=True, sizeStyle='small', callback=self.updateEditor)
         y += L
         return y

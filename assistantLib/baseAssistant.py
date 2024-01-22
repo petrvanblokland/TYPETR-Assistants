@@ -262,9 +262,51 @@ class BaseAssistant:
         inheriting assistant classes to force the current glyph as another layer (e.g. as in Responder and Upgrade Neon,
         where the "background" layer is return as working area. Answer None if there is no current glyph selected."""
         g = CurrentGlyph()
-        if g is not None:
-            return g.getLayer(layerName)
-        return None
+        if g is None:
+            return False
+        return g.getLayer(layerName)
+
+    def isCurrentGlyph(self, g):
+        """Answers te boolean flag if the g is the current glyph."""
+        if g is None:
+            return False
+        cg = self.currentGlyph()
+        return g.name == cg.name and g.font.path == cg.font.path
+
+    def doesInterpolate(self, g):
+        """Answer the boolean flag if this glyphs interpolates with the md.m0 master. Note that this is quick check,
+        mostly on the amount of points for each contour."""
+        f = g.font
+        md = self.getMasterData(f)
+        ref = self.getFont(md.m0)
+        if ref is not None and g.name in ref:
+            refG = ref[g.name]
+            # Test components
+            if len(refG.components) != len(g.components):
+                print(f'### {md.name} /{g.name} Incompatible amount of components {len(g.components)} -- {len(refG.components)}')
+                return False
+            for cIndex, refComponent in enumerate(refG.components):
+                component = g.components[cIndex]
+                if component.baseGlyph != refComponent.baseGlyph:
+                    print(f'### {md.name} /{g.name} Incompatible baseGlyph in component {cIndex} /{component.baseGlyph} -- /{refComponent.baseGlyph}')
+                    return False
+            # Test contours
+            if len(refG.contours) != len(g.contours):
+                print(f'### {md.name} /{g.name} Incompatible amount of contours {len(g.contours)} -- {len(refG.contours)})')
+                return False
+            for cIndex, refContour in enumerate(refG.contours):
+                contour = g.contours[cIndex]
+                points = contour.points
+                refPoints = refContour.points
+                if len(refPoints) != len(points):
+                    print(f'### {md.name} /{g.name} Incompatible amount of points in contour {cIndex} {len(points)} -- {len(refPoints)})')
+                    return False
+                for pIndex, refP in enumerate(refPoints):
+                    p = points[pIndex]
+                    if refP.type != p.type:
+                        print(f'### {md.name} /{g.name} Incompatible amount points type in contour {cIndex} #{pIndex} {p.type} -- {refP.type})')
+                        return False
+        return True
 
     #   P O I N T S
 

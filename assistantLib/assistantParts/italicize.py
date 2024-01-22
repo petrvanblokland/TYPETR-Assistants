@@ -22,7 +22,7 @@ class AssistantPartItalicize(BaseAssistantPart):
 
     def initMerzItalicize(self, container):
         """Register key stroke cap-I. [i] is reserved for the spacing part"""
-        self.registerKeyStroke('s', 'italicizeGlyphKey')
+        self.registerKeyStroke('r', 'italicizeGlyphKey')
 
     def updateItalicize(self, info):
         g = info['glyph']
