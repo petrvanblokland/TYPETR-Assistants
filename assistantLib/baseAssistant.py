@@ -456,6 +456,7 @@ class AssistantController(BaseAssistant, WindowController):
         self.PROJECT_PATH = self.assistantGlyphEditorSubscriberClass.PROJECT_PATH
 
         f = CurrentFont()
+        assert f is not None, ('### Open a UFO before starting the assistant')
         f.lib[self.LIB_KEY] = {}
 
         # Can't do these as class variable, since they may depend on inheritied self.W, self.H, self.COLS, etc.        
