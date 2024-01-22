@@ -509,7 +509,7 @@ class AssistantController(BaseAssistant, WindowController):
             f.save()
 
     def updateEditor(self, sender):
-        g = self.currenyGlyph()
+        g = self.currentGlyph()
         if g is not None:
             g.changed()
                   
