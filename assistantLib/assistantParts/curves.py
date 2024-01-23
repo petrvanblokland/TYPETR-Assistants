@@ -27,8 +27,8 @@ class AssistantPartCurves(BaseAssistantPart):
         keyStrokes = dict(
             q='curvesB2QGlyphKey', 
             b='curvesQ2BGlyphKey',
-            e='curvesSetStartPoint', # Choose selected point as start point
-            E='curvesSetStartPoint', # Auto selection of start points on best match
+            E='curvesSetStartPoint', # Choose selected point as start point
+            e='curvesSetStartPoint', # Auto selection of start points on best match
         )
         for key, methodName in keyStrokes.items():
             self.registerKeyStroke(key, methodName)
@@ -146,7 +146,7 @@ class AssistantPartCurves(BaseAssistantPart):
     def curvesSetStartPoint(self, g, c, event):
         """Set the start point to the selected points on [e]. Auto select the point on [E] key."""
         doSelect = True
-        doAuto = c == c.upper() # Auto select if uppercase of key was used:
+        doAuto = c != c.upper() # Auto select if lowercase of key was used:
         selectedContours = []
         autoContours = []
         g.prepareUndo()
@@ -168,12 +168,7 @@ class AssistantPartCurves(BaseAssistantPart):
             if auto:
                 autoContours.append((auto, contour))
     
-        if doSelect and selectedContours: # Ignore the auto
-            #print('... %s: Set start for %d contours' % (glyph.name, len(selectedContours)))
-            for pIndex, contour in selectedContours:
-                contour.naked().setStartPoint(pIndex)
-            g.changed()
-        elif doAuto:
+        if doAuto: # Find the best match, ignoring any selections
             changed = False
             #print('... %s: Auto start for %d contours' % (glyph.name, len(autoContours)))
             for pIndex, contour in autoContours:
@@ -185,5 +180,9 @@ class AssistantPartCurves(BaseAssistantPart):
                     changed = True
             if changed:
                 g.changed()
+        elif doSelect and selectedContours: # Uppercase key stroke: only do the selected points
+            #print('... %s: Set start for %d contours' % (glyph.name, len(selectedContours)))
+            for pIndex, contour in selectedContours:
+                contour.naked().setStartPoint(pIndex)
+            g.changed()
 
-                

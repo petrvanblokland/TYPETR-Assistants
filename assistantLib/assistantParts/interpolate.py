@@ -75,8 +75,8 @@ class AssistantPartInterpolate(BaseAssistantPart):
         for cIndex, component in enumerate(g.components):
             try:
                 t = list(component.transformation)
-                t1 = list(gMaster1.components[cIndex].transformation)
-                t2 = list(gMaster2.components[cIndex].transformation)
+                t1 = gMaster1.components[cIndex].transformation
+                t2 = gMaster2.components[cIndex].transformation
                 t[-2] = self._interpolateValue(t1[-2], t2[-2], ix, doRound) # Interpolate tx
                 t[-1] = self._interpolateValue(t1[-1], t2[-1], iy, doRound) # Interpolate ty
                 component.transformation = t
