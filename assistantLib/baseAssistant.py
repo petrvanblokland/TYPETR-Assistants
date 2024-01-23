@@ -166,11 +166,12 @@ class BaseAssistant:
     def getFont(self, filePath, showInterface=False):
         """Answer the RFont if it is already open. Otherwise open it for read-only and store it into 
         the class variable self.bgFonts[filePath]"""
+        if filePath is None:
+            return None
+
         fullPath = self.path2FullPath(filePath) # Make sure it's a full path, in case filePath is relative.
 
-        if fullPath is None or not os.path.exists(fullPath):
-            print(f'### getFont: Cannot find UFO {fullPath}')
-            return None
+        assert fullPath is not None and os.path.exists(fullPath), (f'### Cannot find {fullPath}')
 
         for f in AllFonts(): # Otherwise search if it already open
             if fullPath == f.path:
@@ -322,6 +323,10 @@ class BaseAssistant:
                 if p.selected:
                     return True
         return False
+
+    def italicX(self, g, x, y):
+        """Answer the italic x value on position e, depending on the italic angle of the font."""
+        return x + int(round(math.tan(math.radians(-g.font.info.italicAngle or 0)) * y))
 
 class Assistant(BaseAssistant, Subscriber):
 

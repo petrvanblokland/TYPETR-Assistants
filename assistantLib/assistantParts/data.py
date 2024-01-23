@@ -2,6 +2,47 @@
 #
 #   Main recent data, used by build.py
 #
+#   Most common anchor names
+#   Anchors with an initial underscore belong in diacritics.
+#   In the diacritics cloud and in engines such as Harfbuzz, the anchors are matche with their counter parts
+#   on glyph to get their position on top or below.
+#   Stacking diacritics can have both, to allow other diacritics floating on top.
+#
+_TOP = '_top'
+TOP_ = 'top'
+_BOTTOM = '_bottom'
+BOTTOM_ = 'bottom'
+_RING = '_ring'
+RING_ = 'ring'
+_OGONEK = '_ogonek'
+OGONEK_ = 'ogonek'
+_VERT = '_vert'
+VERT_ = 'vert'
+_DOT = '_dot'
+DOT_ = 'dot'
+_TILDE = '_tilde'
+TILDE_ = 'tilde'
+_TONOS = '_tonos'
+TONOS_ = 'tonos'
+_HORN = '_horn'
+HORN_ = 'horn'
+_MIDDLE = '_middle'
+MIDDLE_ = 'middle'
+
+CONNECTED_ANCHORS = {
+    _TOP: TOP_,
+    _BOTTOM: BOTTOM_,
+    _RING: RING_,
+    _OGONEK: OGONEK_,
+    _VERT: VERT_,
+    _DOT: DOT_,
+    _TILDE: TILDE_,
+    _TONOS: TONOS_, # Also anchor of the other -uc accents
+    _HORN: HORN_,
+    _MIDDLE: MIDDLE_,
+}
+
+# Master data default values
 UNITS_PER_EM = 1000
 COPYRIGHT = ""
 TRADEMARK = ""

@@ -33,6 +33,9 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
 
     def initMerzFamilyOverview(self, container):    
         # Previewing current glyphs on left/right side, with the style name of each master        
+        self.registerKeyStroke('}', 'familyOverviewNextGlyph')
+        self.registerKeyStroke('{', 'familyOverviewPrevGlyph')
+
         self.familyOverviewGlyphs = []
         self.familyOverviewStyleName = []
         for ufoIndex in range(self.MAX_FAMILY_OVERVIEW): # Max number glyphs in family overview
@@ -118,7 +121,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         currentFont = g.font
         y1 = currentFont.info.unitsPerEm
         y2 = y1 + currentFont.info.unitsPerEm * self.FAMILY_OVERVIEW_SCALE
-        x1 = 0
+        x1 = -self.LABEL_SPACING * self.FAMILY_OVERVIEW_SCALE
         parentPath = self.filePath2ParentPath(currentFont.path)
         for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
             fullPath = self.path2FullPath(pth)
@@ -143,7 +146,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         currentFont = g.font
         y1 = currentFont.info.unitsPerEm
         y2 = y1 + currentFont.info.unitsPerEm * self.FAMILY_OVERVIEW_SCALE
-        x1 = 0
+        x1 = -self.LABEL_SPACING * self.FAMILY_OVERVIEW_SCALE 
         parentPath = self.filePath2ParentPath(currentFont.path)
         for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
             fullPath = self.path2FullPath(pth)
@@ -197,3 +200,47 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         self.w.showFamilyInterpolation = CheckBox((C1, y, CW, L), 'Show interpolation test', value=True, sizeStyle='small', callback=self.updateEditor)
         y += L
         return y
+
+    #   G L Y P H  S E L E C T I O N
+
+    def familyOverviewNextGlyph(self, g, c, event):
+        """Open the EditorWindow on the next glyph in the list"""
+        currentFont = g.font
+        parentPath = self.filePath2ParentPath(currentFont.path)
+        ufoPaths = self.getUfoPaths(parentPath)
+        for fIndex in range(len(ufoPaths)):
+            pth_1, pth = ufoPaths[fIndex-1], ufoPaths[fIndex]
+            fullPath_1 = self.path2FullPath(pth_1)
+            fullPath = self.path2FullPath(pth)
+            if fullPath_1 == currentFont.path:
+                nextUfo = self.getFont(fullPath, showInterface=True) # Make sure RoboFont opens the current font.
+                if g.name in nextUfo:
+                    nextG = nextUfo[g.name]
+                    rr = self.getGlyphWindowPosSize()
+                    if rr is not None:
+                        currentLayerName = g.layer.name
+                        p, s, settings, viewFrame, viewScale = rr
+                        self.setGlyphWindowPosSize(nextG, p, s, settings=settings, viewFrame=viewFrame, viewScale=viewScale, layerName=currentLayerName)
+
+
+    def familyOverviewPrevGlyph(self, g, c, event):
+        """Open the EditorWindow on the previous glyph in the list"""
+        currentFont = g.font
+        parentPath = self.filePath2ParentPath(currentFont.path)
+        ufoPaths = self.getUfoPaths(parentPath)
+        for fIndex in range(len(ufoPaths)):
+            pth_1, pth = ufoPaths[fIndex-1], ufoPaths[fIndex]
+            fullPath_1 = self.path2FullPath(pth_1)
+            fullPath = self.path2FullPath(pth)
+            if fullPath == currentFont.path:
+                prevUfo = self.getFont(fullPath_1, showInterface=True) # Make sure RoboFont opens the current font.
+                if g.name in prevUfo:
+                    prevG = prevUfo[g.name]
+                    rr = self.getGlyphWindowPosSize()
+                    if rr is not None:
+                        currentLayerName = g.layer.name
+                        p, s, settings, viewFrame, viewScale = rr
+                        self.setGlyphWindowPosSize(prevG, p, s, settings=settings, viewFrame=viewFrame, viewScale=viewScale, layerName=currentLayerName)
+
+
+
