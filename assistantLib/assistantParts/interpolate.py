@@ -27,18 +27,32 @@ class AssistantPartInterpolate(BaseAssistantPart):
         if g is None:
             return
         md = self.getMasterData(g.font)
-        c.w.InterpolateButton.enable(None not in (md.m1, md.m2))
+        c.w.interpolateButton.enable(None not in (md.m1, md.m2))
 
     def buildInterpolate(self, y):
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         LL = L/2
         c = self.getController()
-        c.w.InterpolateButton = Button((C2, y, CW, L), 'Interpolate', callback=self.interpolateCallback)
+        c.w.copyFromRomanButton = Button((C1, y, CW, L), 'Copy from Roman', callback=self.copyFromRomanCallback)
+        c.w.interpolateButton = Button((C2, y, CW, L), 'Interpolate', callback=self.interpolateCallback)
         y += L + LL
         return y
 
     def interpolateGlyphKey(self, g, c, event):
         self.interpolateCallback(g)
+
+    def copyFromRomanCallback(self, sender=None):
+        """Copy the glyph from roman to alter it manually, instead of interpolating or italicizing."""
+        g = self.currentGlyph()
+        if g is None:
+            return
+        f = g.font
+        md = self.getMasterData(f)
+        if md.romanItalicUFOPath is not None:
+            rf = self.getFont(md.romanItalicUFOPath)
+            if g.name in rf:
+                f[g.name] = rf[g.name]
+                f[g.name].changed()
 
     def interpolateCallback(self, sender=None):
         g = self.currentGlyph()

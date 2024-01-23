@@ -34,7 +34,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         0:  ('enclosingkeycapcomb',)
     }
     SPACER_FIXED_WIDTH_PATTERNS = {
-        0: ('cmb|', 'comb|', '.component'), # "|" matches pattern on end of name"
+        0: ('cmb|', 'comb|', 'comb-cy|', '.component'), # "|" matches pattern on end of name"
         650: ('.tab|', '.tnum|')
     }
 
@@ -161,7 +161,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             baseG = g.font[component.baseGlyph]
             self.checkFixGlyphLeftMargin(baseG) # Recursively check-fix the spacing of the base glyph
 
-        # Now we check all the components that may influence the margins, check on the glyph itself.
+        # Now we checked all the components that may influence the margins, check on the glyph itself.
         # First we do all hard coded rules
 
         for width, patterns in self.SPACER_FIXED_WIDTH_PATTERNS.items(): # Predefined list by inheriting assistant class

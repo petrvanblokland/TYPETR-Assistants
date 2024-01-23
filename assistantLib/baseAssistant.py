@@ -274,12 +274,13 @@ class BaseAssistant:
         cg = self.currentGlyph()
         return g.name == cg.name and g.font.path == cg.font.path
 
-    def doesInterpolate(self, g):
+    def doesInterpolate(self, g, fix=True):
         """Answer the boolean flag if this glyphs interpolates with the md.m0 master. Note that this is quick check,
         mostly on the amount of points for each contour."""
         f = g.font
         md = self.getMasterData(f)
         ref = self.getFont(md.m0)
+        changed = False
         if ref is not None and g.name in ref:
             refG = ref[g.name]
             # Test components
@@ -290,7 +291,11 @@ class BaseAssistant:
                 component = g.components[cIndex]
                 if component.baseGlyph != refComponent.baseGlyph:
                     print(f'### {md.name} /{g.name} Incompatible baseGlyph in component {cIndex} /{component.baseGlyph} -- /{refComponent.baseGlyph}')
-                    return False
+                    if fix: # We can do this simple fix here, if allowed
+                        component.baseGlyph = refComponent.baseGlyph
+                        changed = True
+                    else:
+                        return False
             # Test contours
             if len(refG.contours) != len(g.contours):
                 print(f'### {md.name} /{g.name} Incompatible amount of contours {len(g.contours)} -- {len(refG.contours)})')
@@ -307,6 +312,9 @@ class BaseAssistant:
                     if refP.type != p.type:
                         print(f'### {md.name} /{g.name} Incompatible amount points type in contour {cIndex} #{pIndex} {p.type} -- {refP.type})')
                         return False
+        
+        if changed: # Fixed something, the report
+            g.changed()
         return True
 
     #   P O I N T S

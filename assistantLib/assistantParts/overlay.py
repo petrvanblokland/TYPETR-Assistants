@@ -116,11 +116,11 @@ class AssistantPartOverlay(BaseAssistantPart):
             gLeft = f[leftName].getLayer('foreground')
             glyphPathLeft = gLeft.getRepresentation("merz.CGPath") 
             self.previewGlyphLeft.setPath(glyphPathLeft)
-            self.previewGlyphLeft.setPosition((-gLeft.width, 0))
+            self.previewGlyphLeft.setPosition((min(-gLeft.width, gLeft.angledLeftMargin-500), 0)) # Make sure not to overlap on zero-width
 
         elif c.w.previewGlyphLeft.get():
             self.previewGlyphLeft.setPath(glyphPath)
-            self.previewGlyphLeft.setPosition((-g.width, 0))
+            self.previewGlyphLeft.setPosition((min(-g.width, g.angledLeftMargin-500), 0)) # Make sure not to overlap on zero-width
 
         else:
             self.previewGlyphLeft.setPosition((FAR, 0)) # Far, far away
@@ -130,11 +130,11 @@ class AssistantPartOverlay(BaseAssistantPart):
             gRight = f[rightName].getLayer('foreground')
             glyphPathRight = gRight.getRepresentation("merz.CGPath") 
             self.previewGlyphRight.setPath(glyphPathRight)
-            self.previewGlyphRight.setPosition((g.width, 0))
+            self.previewGlyphRight.setPosition((max(g.width, -g.angledRightMargin+500), 0)) # Make sure not to overlap on zero-width
         
         elif c.w.previewGlyphRight.get():
             self.previewGlyphRight.setPath(glyphPath)
-            self.previewGlyphRight.setPosition((g.width, 0))
+            self.previewGlyphRight.setPosition((max(g.width, -g.angledRightMargin+500), 0)) # Make sure not to overlap on zero-width
         
         else:
             self.previewGlyphRight.setPosition((FAR, 0))

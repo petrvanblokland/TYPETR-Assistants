@@ -21,7 +21,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
 
     MAX_FAMILY_OVERVIEW = 50
     FAMILY_OVERVIEW_SCALE = 0.15
-    MAX_FAMILY_START_POINTS = 50 # Masters * max number of contours
+    MAX_FAMILY_START_POINTS = 100 # Masters * max number of contours
     FAMILY_OVERVIEW_START_POINT_SIZE = 10/FAMILY_OVERVIEW_SCALE
     FAMILY_OVERVIEW_START_POINT_COLOR = 0.9, 0.2, 0.6, 0.8
     FAMILY_DEFAULT_FILL_COLOR = 0, 0, 0, 1
