@@ -22,6 +22,7 @@ class AssistantPartSpacer(BaseAssistantPart):
     """
 
     SPACER_FIXED_WIDTH_MARKER_COLOR = 0.5, 0.5, 0.5, 0.5
+    SPACER_FIXED_MARGIN_MARKER_COLOR = 0.8, 0.2, 0.4, 0.7
     SPACER_LABEL_SIZE = 18
     SPACER_MARKER_R = 22 # Radius of space marker
 
@@ -68,8 +69,8 @@ class AssistantPartSpacer(BaseAssistantPart):
             return
         changed = False
 
-        #changed |= self.checkFixGlyphLeftMargin(g)
-        #changed |= self.checkFixGlyphRightMargin(g)
+        changed |= self.checkFixGlyphLeftMargin(g)
+        changed |= self.checkFixGlyphRightMargin(g)
         changed |= self.checkFixGlyphWidth(g)
         if changed:
             g.changed()
@@ -93,14 +94,14 @@ class AssistantPartSpacer(BaseAssistantPart):
             return True
         return False
 
-    def _fixLeftMargin(self, g, lm):
+    def _fixGlyphLeftMargin(self, g, lm):
         if abs(g.angledLeftMargin - lm) >= 1:
             print(f'... Fix left margin: Set /{g.name} from {g.angledLeftMargin} to {lm}')
             g.angledLeftMargin = lm
             return True
         return False
 
-    def _fixRightMargin(self, g, rm):
+    def _fixGlyphhRightMargin(self, g, rm):
         if abs(g.angledRightMargin - rm) >= 1:
             print(f'... Fix left margin: Set /{g.name} from {g.angledRightMargin} to {rm}')
             g.angledRightMargin = rm
@@ -114,74 +115,41 @@ class AssistantPartSpacer(BaseAssistantPart):
         label = ''
         color = 0, 0, 0, 0
         md = self.getMasterData(g.font)
-        ss = md.similaritySpacer
-
-        for width, patterns in ss.fixedMarginWidthPatterns.items(): # Predefined list by inheriting assistant class
-            for pattern in patterns:
-                if (pattern.endswith('|') and g.name.endswith(pattern[:-1])) or pattern in g.name:
-                    changed |= self._fixGlyphWidth(g, width)
-                    label = 'Width=%d' % g.width
-                    color = self.SPACER_FIXED_WIDTH_MARKER_COLOR
-                    break
-            if changed:
-                break
+        width = md.similaritySpacer.getWidth(g)
+        if width is not None:
+            changed = self._fixGlyphWidth(g, width)
+            label = 'Width=%d' % g.width
+            color = self.SPACER_FIXED_WIDTH_MARKER_COLOR
 
         self.fixedSpaceMarkerRight.setPosition((g.width - self.SPACER_MARKER_R, -self.SPACER_MARKER_R))
         self.fixedSpaceMarkerRight.setFillColor(color)
-        self.rightSpaceSourceLabel.setText(label)
         self.rightSpaceSourceLabel.setPosition((g.width, -self.SPACER_MARKER_R*1.5))
+        self.rightSpaceSourceLabel.setText(label)
 
         return changed
 
-    def checkFixGlyphLeftMargin(self, g, fixedGlyphs=None):
-        """Check if this glyph should have spacing altered. If it has components, then fix those first.
-        If something changed, then answer True."""
-        if fixedGlyphs is None: # Optization to not re-check glyphs are are already done.
-            fixedGlyphs = set()
-        if g.name in fixedGlyphs: # Already done this one, back out
-            return False
-        fixedGlyphs.add(g.name)
+    def checkFixGlyphLeftMargin(self, g):
         changed = False
-        for component in g.components:
-            if component.baseGlyph in fixedGlyph:
-                continue
-            if not component.baseGlyph in g.font:
-                print('### Missing base blyph /{component.baseGlyph} in /{g.name}')
-                continue
-            baseG = g.font[component.baseGlyph]
-            self.checkFixGlyphLeftMargin(baseG) # Recursively check-fix the spacing of the base glyph
+        label = ''
+        color = 0, 0, 0, 0
+        md = self.getMasterData(g.font)
+        lm = md.similaritySpacer.getLeftMargin(g)
+        if lm is not None:
+            changed = self._fixGlyphLeftMargin(g, lm)
+            label = 'Left=%d' % g.width
+            color = self.SPACER_FIXED_MARGIN_MARKER_COLOR
 
-        # Now we checked all the components that may influence the margins, check on the glyph itself.
-        # First we do all hard coded rules
-
-        for width, patterns in self.SPACER_FIXED_WIDTH_PATTERNS.items(): # Predefined list by inheriting assistant class
-            for pattern in patterns:
-                if pattern.endswith('|') and g.name.endswith(pattern[:-1]):
-                    changed |= self._fixGlyphWidth(g, width)
-                    return True
-                if pattern in g.name:
-                    self._fixGlyphWidth(g, width)
-                    return True
-        return False
-
-        if g.name in self.SPACER_ZERO_WIDTH:
-                return self._fixGlyphWidth(g, 0)
-        # Nothing defined, try to guess based on name
-        for pattern in self.SPACER_ZERO_WIDTH_END_PATTERNS:
-            if g.name.endswith(pattern):
-                return self._fixGlyphWidth(g, 0)
-        for pattern in self.SPACER_ZERO_WIDTH_PATTERNS:
-            if pattern in g.name:
-                return self._fixGlyphWidth(g, 0)
+        self.fixedSpaceMarkerLeft.setPosition((-self.SPACER_MARKER_R, -self.SPACER_MARKER_R))
+        self.fixedSpaceMarkerRight.setFillColor(color)
+        self.rightSpaceSourceLabel.setPosition((0, -self.SPACER_MARKER_R*1.5))
+        self.rightSpaceSourceLabel.setText(label)
 
         return False
 
-    def checkFixGlyphLeftMargin(g):
+    def checkFixGlyphRightMargin(self, g):
         pass
-
-    def checkFixGlyphRightMargin(g):
-        pass
-
+        return False
+        
     def spacerCenterGlyph(self, g, c, event):     
         """Snap the selected points of the current glyph onto points that are within range on the background glyph."""
         lm = g.angledLeftMargin
