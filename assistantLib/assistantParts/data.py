@@ -48,6 +48,8 @@ COPYRIGHT = ""
 TRADEMARK = ""
 LOWEST_PPEM = 5
 
+TAB_WIDTH = 650
+
 VERSION_MAJOR = 1
 VERSION_MINOR = 0
 
@@ -67,6 +69,7 @@ class MasterData:
             HStem=None, HThin=None, OStem=None, OThin=None,
             HscStem=None, HscThin=None, OscStem=None, OscThin=None,
             nStem=None, oStem=None, oThin=None, UThin=None, VThin=None, eThin=None,
+            similaritySpacer=None,
             ttfPath=None, platformID=None, platEncID=None, langID=None, 
             unitsPerEm=UNITS_PER_EM, copyright=COPYRIGHT, uniqueID=None, trademark=TRADEMARK, 
             lowestRecPPEM=LOWEST_PPEM,
@@ -123,6 +126,11 @@ class MasterData:
         self.tripletData2 = tripletData2, # Compatible triplet sets of (name1, name2, name3, kerning) tuples for interpolation.
         self.featurePath = featurePath
         
+        # Spacing patterns
+        # A Spacer instance contains all info to decide how the margins and width for a glyph can be guessed.
+        # The instance also contains all intermediate cached Similarity data for a font.
+        self.similaritySpacer = similaritySpacer 
+
         # Glyphs
         if glyphData is None:
             glyphData = {}

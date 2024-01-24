@@ -274,7 +274,7 @@ class BaseAssistant:
         cg = self.currentGlyph()
         return g.name == cg.name and g.font.path == cg.font.path
 
-    def doesInterpolate(self, g, fix=True):
+    def doesInterpolate(self, g, fix=True, verbose=False):
         """Answer the boolean flag if this glyphs interpolates with the md.m0 master. Note that this is quick check,
         mostly on the amount of points for each contour."""
         f = g.font
@@ -285,12 +285,14 @@ class BaseAssistant:
             refG = ref[g.name]
             # Test components
             if len(refG.components) != len(g.components):
-                print(f'### {md.name} /{g.name} Incompatible amount of components {len(g.components)} -- {len(refG.components)}')
+                if verbose:
+                    print(f'### {md.name} /{g.name} Incompatible amount of components {len(g.components)} -- {len(refG.components)}')
                 return False
             for cIndex, refComponent in enumerate(refG.components):
                 component = g.components[cIndex]
                 if component.baseGlyph != refComponent.baseGlyph:
-                    print(f'### {md.name} /{g.name} Incompatible baseGlyph in component {cIndex} /{component.baseGlyph} -- /{refComponent.baseGlyph}')
+                    if verbose:
+                        print(f'### {md.name} /{g.name} Incompatible baseGlyph in component {cIndex} /{component.baseGlyph} -- /{refComponent.baseGlyph}')
                     if fix: # We can do this simple fix here, if allowed
                         component.baseGlyph = refComponent.baseGlyph
                         changed = True
@@ -305,12 +307,14 @@ class BaseAssistant:
                 points = contour.points
                 refPoints = refContour.points
                 if len(refPoints) != len(points):
-                    print(f'### {md.name} /{g.name} Incompatible amount of points in contour {cIndex} {len(points)} -- {len(refPoints)})')
+                    if verbose:
+                        print(f'### {md.name} /{g.name} Incompatible amount of points in contour {cIndex} {len(points)} -- {len(refPoints)})')
                     return False
                 for pIndex, refP in enumerate(refPoints):
                     p = points[pIndex]
                     if refP.type != p.type:
-                        print(f'### {md.name} /{g.name} Incompatible amount points type in contour {cIndex} #{pIndex} {p.type} -- {refP.type})')
+                        if verbose:
+                            print(f'### {md.name} /{g.name} Incompatible amount points type in contour {cIndex} #{pIndex} {p.type} -- {refP.type})')
                         return False
         
         if changed: # Fixed something, the report

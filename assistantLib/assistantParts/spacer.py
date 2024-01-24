@@ -25,19 +25,6 @@ class AssistantPartSpacer(BaseAssistantPart):
     SPACER_LABEL_SIZE = 18
     SPACER_MARKER_R = 22 # Radius of space marker
 
-    # Dictionaries with spacing values and names of glyphs. To be redefined by inheriting assistant classes.
-    # These tables can be redefined by inheriting spacer classes
-    SPACER_FIXED_MARGIN_LEFT_PATTERNS = {
-        0:  ('enclosingkeycapcomb',)
-    }
-    SPACER_FIXED_MARGIN_RIGHT_PATTERNS = {
-        0:  ('enclosingkeycapcomb',)
-    }
-    SPACER_FIXED_WIDTH_PATTERNS = {
-        0: ('cmb|', 'comb|', 'comb-cy|', '.component'), # "|" matches pattern on end of name"
-        650: ('.tab|', '.tnum|')
-    }
-
     def initMerzSpacer(self, container):
         """Define the Merz elements for feedback about where margins/width comes from."""
         self.registerKeyStroke('=', 'spacerCenterGlyph')
@@ -126,7 +113,10 @@ class AssistantPartSpacer(BaseAssistantPart):
         changed = False
         label = ''
         color = 0, 0, 0, 0
-        for width, patterns in self.SPACER_FIXED_WIDTH_PATTERNS.items(): # Predefined list by inheriting assistant class
+        md = self.getMasterData(g.font)
+        ss = md.similaritySpacer
+
+        for width, patterns in ss.fixedMarginWidthPatterns.items(): # Predefined list by inheriting assistant class
             for pattern in patterns:
                 if (pattern.endswith('|') and g.name.endswith(pattern[:-1])) or pattern in g.name:
                     changed |= self._fixGlyphWidth(g, width)
