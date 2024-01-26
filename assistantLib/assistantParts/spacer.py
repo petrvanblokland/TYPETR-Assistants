@@ -85,7 +85,7 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         return y
 
-    #   G U E S S  W I D T H S
+    #   G U E S S  S P A C I N G  &  K E R N I N G
 
     def _fixGlyphWidth(self, g, width):
         if g.width != width:
@@ -114,8 +114,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         changed = False
         label = ''
         color = 0, 0, 0, 0
-        md = self.getMasterData(g.font)
-        width = md.similaritySpacer.getWidth(g)
+        km = self.getKerningManager(g.font)
+        width = km.getWidth(g)
         if width is not None:
             changed = self._fixGlyphWidth(g, width)
             label = 'Width=%d' % g.width
@@ -132,8 +132,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         changed = False
         label = ''
         color = 0, 0, 0, 0
-        md = self.getMasterData(g.font)
-        lm = md.similaritySpacer.getLeftMargin(g)
+        km = self.getKerningManager(g.font)
+        lm = km.getLeftMargin(g)
         if lm is not None:
             changed = self._fixGlyphLeftMargin(g, lm)
             label = 'Left=%d' % g.width
@@ -147,7 +147,22 @@ class AssistantPartSpacer(BaseAssistantPart):
         return False
 
     def checkFixGlyphRightMargin(self, g):
-        pass
+        changed = False
+        label = ''
+        color = 0, 0, 0, 0
+        km = self.getKerningManager(g.font)
+        lm = km.getLeftMargin(g)
+        if lm is not None:
+            changed = self._fixGlyphLeftMargin(g, lm)
+            label = 'Right=%d' % g.width
+            color = self.SPACER_FIXED_MARGIN_MARKER_COLOR
+
+        self.fixedSpaceMarkerLeft.setPosition((-self.SPACER_MARKER_R, -self.SPACER_MARKER_R))
+        self.fixedSpaceMarkerRight.setFillColor(color)
+        self.rightSpaceSourceLabel.setPosition((0, -self.SPACER_MARKER_R*1.5))
+        self.rightSpaceSourceLabel.setText(label)
+
+
         return False
         
     def spacerCenterGlyph(self, g, c, event):     

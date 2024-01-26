@@ -26,13 +26,20 @@ SPACING_KEYS = ('typeRight', 'right', 'typeLeft', 'left')
 #MAIN_SAMPLES = GREEK_KERNING
 MAIN_SAMPLES = SAMPLES
 
+TAB_WIDTH = 650 # Default tab width.
+
 class KerningManager:
     """Generic kerning manager"""
 
     def __init__(self, f, features=None, 
             sample=None, sampleCAPS=None, sampleC2SC=None,
             simT=0.90, simSameCategory=True, simSameScript=True, simClip=300, simZones=None,
-            automaticGroups=True, verbose=True):
+            automaticGroups=True, verbose=True,
+            tabWidth=TAB_WIDTH, fixedLeftMarginPatterns=None, fixedRightMarginPatterns=None, fixedWidthPatterns=None):
+        """Calculate all values, patterns and similarity caching to guess margins for individual glyphs.
+        For reasons of validity, the font itself is not stored in the spacer instance.
+        The spacer can be initialize with a font later."""
+        
         assert f is not None
         self.f = f # Stored as weakref property
         if features is None:
@@ -59,37 +66,44 @@ class KerningManager:
         self.similar2Base1 = {}
         self.similar2Base2 = {}
 
-        # X-ref unicode and names
-        self.uni2glyphName = {}
-        self.chr2glyphName = {}
-        for g in f:
-            if g.unicode:
-                self.uni2glyphName[g.unicode] = g.name
-                self.chr2glyphName[chr(g.unicode)] = g.name
+        # X-ref unicode and names. Initialize attributes upon usage.
+        self._uni2glyphName = None
+        self._chr2glyphName = None
 
         self.automaticGroups = automaticGroups # Generated new groups for glyphs that don't belong.
 
-        # Do some caching on groups
-        self.glyphName2GroupName1 = {}
-        self.glyphName2Group1 = {}
-        self.glyphName2GroupName2 = {}
-        self.glyphName2Group2 = {}
-        for groupName, group in f.groups.items():
-            if 'kern1' in groupName:
-                for glyphName in group:
-                    self.glyphName2GroupName1[glyphName] = groupName
-                    self.glyphName2Group1[glyphName] = group
-            elif 'kern2' in groupName:
-                for glyphName in group:
-                    self.glyphName2GroupName2[glyphName] = groupName
-                    self.glyphName2Group2[glyphName] = group
+        # Do some caching on groups. Initialize attributes upon usage
+        self._glyphName2GroupName1 = {}
+        self._glyphName2Group1 = {}
+        self._glyphName2GroupName2 = {}
+        self._glyphName2Group2 = {}
 
-        if sample is None: # Allows to define the sample, avoiding multiple generators if a whole family is open.
-            sample, sampleCAPS, sampleC2SC = self._initSamples() 
-        self.sample = sample
-        self.sampleC2SC = sampleC2SC
-        self.sampleCAPS = sampleCAPS
+        self._sample = sample
+        self._sampleC2SC = sampleC2SC
+        self._sampleCAPS = sampleCAPS
 
+        self.tabWidth = tabWidth
+
+        # Generic fixed spacing patterns
+        if fixedLeftMarginPatterns is None:
+            fixedLeftMarginPatterns = { # Key is right margin, value is list of glyph names
+            0:  ('enclosingkeycapcomb',)
+        }
+        self.fixedLeftMarginPatterns = fixedLeftMarginPatterns # Key is margin, value is list of glyph names
+
+        if fixedRightMarginPatterns is None:
+            fixedRightMarginPatterns = { # Key is right margin, value is list of glyph names
+            0:  ('enclosingkeycapcomb',)
+        }
+        self.fixedRightMarginPatterns = fixedRightMarginPatterns # Key is margin, value is list of glyph names
+
+        if fixedWidthPatterns is None:
+            fixedWidthPatterns = { # Key is right margin, value is list of glyph names
+            0: ('cmb|', 'comb|', 'comb-cy|', '.component', 'zerowidthspace', 'zerowidthjoiner', 
+                'zerowidthnonjoiner', 'righttoleftmark'), # "|" matches pattern on end of name"
+            self.tabWidth: ('.tab|', '.tnum|')
+        }
+        self.fixedWidthPatterns = fixedWidthPatterns # Key is margin, value is list of glyph names
 
     def _get_f(self):
         return self._f
@@ -98,6 +112,71 @@ class KerningManager:
         self._f = f
         #self._f = weakref.ref(f)
     f = property(_get_f, _set_f)
+
+    #   I N I T I A L I Z E  O N  U S A G E
+
+    # Initialize time-consuming attributes upon usage
+    def _initialize2glyphName(self):
+        self._uni2glyphName = {}
+        self._chr2glyphName = {}
+        for g in self.f:
+            if g.unicode:
+                self._uni2glyphName[g.unicode] = g.name
+                self._chr2glyphName[chr(g.unicode)] = g.name
+    def _get_uni2glyphName(self):
+        if self._uni2glyphName is None:
+            self._initialize2glyphName() 
+            return self.uni2glyphName 
+    uni2glyphName = property(_get_uni2glyphName)      
+    def _get_chr2glyphName(self):
+        if self._chr2glyphName is None:
+            self._initialize2glyphName() 
+            return self._chr2glyphName 
+    chr2glyphName = property(_get_chr2glyphName)      
+
+
+    def _initializeGlyph2Group(self):
+        self._glyphName2GroupName1 = {}
+        self._glyphName2Group1 = {}
+        self._glyphName2GroupName2 = {}
+        self._glyphName2Group2 = {}
+
+        for groupName, group in self.f.groups.items():
+            if 'kern1' in groupName:
+                for glyphName in group:
+                    self._glyphName2GroupName1[glyphName] = groupName
+                    self._glyphName2Group1[glyphName] = group
+            elif 'kern2' in groupName:
+                for glyphName in group:
+                    self._glyphName2GroupName2[glyphName] = groupName
+                    self._glyphName2Group2[glyphName] = group
+    def _get_glyphName2GroupName1(self):
+        if self._glyphName2GroupName1 is None:
+            self._initializeGlyph2Group()
+            return self._glyphName2GroupName1
+    glyphName2GroupName1 = property(_get_glyphName2GroupName1)
+    def _get_glyphName2Group1(self):
+        if self._glyphName2GroupName1 is None:
+            self._initializeGlyph2Group()
+            return self._glyphName2GroupName1
+    glyphName2Group1 = property(_get_glyphName2Group1)
+    def _get_glyphName2GroupName2(self):
+        if self._glyphName2GroupName2 is None:
+            self._initializeGlyph2Group()
+            return self._glyphName2GroupName2
+    glyphName2GroupName2 = property(_get_glyphName2GroupName2)
+    def _get_glyphName2Group2(self):
+        if self._glyphName2GroupName1 is None:
+            self._initializeGlyph2Group()
+            return self._glyphName2GroupName2
+    glyphName2Group2 = property(_get_glyphName2Group2)
+
+    def _initializeSamples(self):
+        if sample is None: # Allows to define the sample, avoiding multiple generators if a whole family is open.
+            sample, sampleCAPS, sampleC2SC = self._initSamples() 
+        self._sample = sample
+        self._sampleC2SC = sampleC2SC
+        self._sampleCAPS = sampleCAPS
 
     #   G R O U P S
 
@@ -330,6 +409,22 @@ class KerningManager:
                     refG = g.font[value]
                     rm = self.getLeftMargin(refG)
         return rm
+
+    #   W I D T H
+
+    def getWidth(self, g):
+        """Try different strategies to find the width of the glyph:
+        - Search by patterns.
+        - Try groups
+        - Similarity check
+        """
+        for width, patterns in self.fixedWidthPatterns.items(): # Predefined list by inheriting assistant class
+            for pattern in patterns:
+                if (pattern.endswith('|') and g.name.endswith(pattern[:-1])) or pattern in g.name:
+                    return width
+        # Could not find a valid width guess for this glyph.
+        return None
+
 
     #   S I M I L A R I T Y
 

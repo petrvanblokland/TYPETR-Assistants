@@ -45,6 +45,10 @@ import assistantLib.assistantParts.data
 importlib.reload(assistantLib.assistantParts.data)
 from assistantLib.assistantParts.data import GlyphData, MasterData
 
+import assistantLib.assistantParts.spacingKerning.kerningManager
+importlib.reload(assistantLib.assistantParts.spacingKerning.kerningManager)
+from assistantLib.assistantParts.spacingKerning.kerningManager import KerningManager
+
 # Add paths to libs in sibling repositories
 PATHS = ('../TYPETR-Assistants/',)
 for path in PATHS:
@@ -214,6 +218,16 @@ class BaseAssistant:
         """Answer the GlyphData instance for this glyph, containing meta-information."""
         gd = GlyphData(f, gName)
         return gd 
+
+    #   S P A C I N G  &  K E R N I N G
+
+    kerningManagers = {} # Key is font path, value is the related KerningManager instance.
+
+    def getKerningManager(self, f):
+        if not f.path in self.kerningManagers:
+            md = self.getMasterData(f)
+            self.kerningManagers[f.path] = KerningManager(f, tabWidth=md.tabWidth)
+        return self.kerningManagers[f.path]
 
     #   L I B
 

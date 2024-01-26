@@ -23,7 +23,7 @@ class SimilaritySpacer:
         self.fixedRightMarginPatterns = { # Key is right margin, value is list of glyph names
             0:  ('enclosingkeycapcomb',)
         }
-        self.fixedMarginWidthPatterns = {
+        self.fixedWidthPatterns = {
             0: ('cmb|', 'comb|', 'comb-cy|', '.component'), # "|" matches pattern on end of name"
             self.tabWidth: ('.tab|', '.tnum|')
     }
