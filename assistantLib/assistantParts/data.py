@@ -1,4 +1,10 @@
 # -*- coding: UTF-8 -*-
+# ------------------------------------------------------------------------------
+#     Copyright (c) 2023+ TYPETR
+#     Usage by MIT License
+# ..............................................................................
+#
+#   data.py
 #
 #   Main recent data, used by build.py
 #
@@ -49,7 +55,8 @@ COPYRIGHT = ""
 TRADEMARK = ""
 LOWEST_PPEM = 5
 
-TAB_WIDTH = 650
+DEFAULT_TAB_WIDTH = 650
+DEFAULT_OVERSHOOT = 12
 
 VERSION_MAJOR = 1
 VERSION_MINOR = 0
@@ -63,14 +70,22 @@ class MasterData:
     def __init__(self, name=None, ufoPath=UFO_PATH, 
             srcUFOPath=None, someUFOPath=None, orgUFOPath=None, kerningSrcUFOPath=None, romanItalicUFOPath=None, 
             italicAngle=0, italicSkew=None, italicRotation=None, isItalic=False,
-            thickness=10, distance=16, overshoot=12, # Used for Neon tubes
+            thickness=10, distance=16, # Used for Neon tubes
             m0=None, m1=None, m2=None, sm1=None, sm2=None, dsPosition=None,
             tripletData1=None, tripletData2=None, featurePath=None, 
-            glyphData=None, metrics=None,
+            glyphData=None, 
+            # Vertical metrics
+            baseline=0, overshoot=None, capOvershoot=None, scOvershoot=None, supsOvershoot=None,
+            xHeight=None, capHeight=None, scHeight=None, supsHeight=None,
+            diacriticsTop=None, capDiacriticsTop=None, scDiacriticsTop=None, # Baseline of top diacritics
+            diacticicsBottom=None, # Top of bottom diacritis
+            numrBaseline=None, supsBaseline=None, sinfBaseline=None, dnomBaseline=None,
+            middlexHeight=None, middleCapHeight=None,
+            # Horizontal metrics
             HStem=None, HThin=None, OStem=None, OThin=None,
             HscStem=None, HscThin=None, OscStem=None, OscThin=None,
             nStem=None, oStem=None, oThin=None, UThin=None, VThin=None, eThin=None,
-            tabWidth=TAB_WIDTH,
+            tabWidth=DEFAULT_TAB_WIDTH,
             ttfPath=None, platformID=None, platEncID=None, langID=None, 
             unitsPerEm=UNITS_PER_EM, copyright=COPYRIGHT, uniqueID=None, trademark=TRADEMARK, 
             lowestRecPPEM=LOWEST_PPEM,
@@ -133,9 +148,79 @@ class MasterData:
         if glyphData is None:
             glyphData = {}
         self.glyphData = glyphData
-        if metrics is None:
-            metrics = {}
-        self.metrics = metrics 
+        
+        # Vertical metrics. Do some guessing for missing values. 
+        # This may not be matching the current font, as we don't have it available as open RFont here.
+
+        if baseline is None:
+            baseline = 0
+        self.baseline = baseline
+
+        if overshoot is None: # Generic overshoot, specifically for lower case
+            overshoot = self.DEFAULT_OVERSHOOT
+        self.overshoot = overshoot
+        if capOvershoot is None: # Overshoot for capitals
+            capOvershoot = overshoot
+        self.capOvershoot = capOvershoot
+        if scOvershoot is None: # Overshoot for smallcaps, mod, etc.
+            scOvershoot = overshoot
+        self.scOvershoot = scOvershoot
+        if supsOvershoot is None: # Overshoot for sups, numr, sinf and dnom
+            supsOvershoot = overshoot
+        self.supsOvershoot = supsOvershoot
+
+        if unitsPerEm is None:
+            unitsPerEm = DEFAILT_UNITS_PER_EM
+        self.unitsPerEm = unitsPerEm
+        if ascender is None:
+            ascender = DEFAULT_ASCENDER
+        self.ascender = ascender
+        if descender is None:
+            descender = DEFAULT_DESCENDER
+        self.descender = descender
+        if xHeight is None:
+            xHeight = DEFAULT_XHEIGHT
+        self.xHeight = xHeight
+        if capHeight is None:
+            capHeight = DEFAULT_CAPHEIGHT
+        self.capHeight = capHeight
+        if scHeight is None:
+            scHeight = xHeight * 1.1
+        self.scHeight = scHeight
+        if middlexHeight is None:
+            middlexHeight = xHeight/2,
+        self.middlexHeight = middlexHeight        
+        if middleCapHeight is None:
+            middleCapHeight = capHeight/2
+        self.middleCapHeight = middleCapHeight
+
+        if diacriticsTop is None: # Baseline of top diacritics
+            diacriticsTop = xheight * 1.2
+        self.diacriticsTop = diacriticsTop
+        if capDiacriticsTop is None:
+            capDiacriticsTop = capHeight * 1.1
+        self.capDiacriticsTop = capDiacriticsTop
+        if diacriticsBottom is None: # Top of bottom diacritis
+            diacriticsBottom = -4 * overshoot
+        self.diacriticsBottom = diacriticsBottom
+
+        if supsHeight is None:
+            supsHeight = xHeight * 2/3
+        self.supsHeight = supsHeight
+        if supsBaseline is None:
+            supsBaseline = xHeight
+        self.supsBaseline =supsBaseline
+        if numrBaseline is None: 
+            numrBaseline = ascender - supsHeight  
+        self.numrBaseline = numrBaseline
+        if dnomBaseline is None: 
+            dnomBaseline = baseline  
+        self.dnomBaseline = dnomBaseline
+        if sinfBaseline is None: 
+            sinfBaseline = descender  
+        self.sinfBaseline = sinfBaseline
+
+        # Horizontal metrics
         self.HStem = HStem # Used for m1->m2 interpolation
         self.HThin = HThin
         self.OStem = OStem
@@ -175,19 +260,6 @@ class MasterData:
 
 MD = MasterData
 
-class GlyphData:
-    def __init__(self, f, gName, uni=None,
-            addItalicExtremePoints=True,
-        ):
-        self.name = gName
-        if gName in f:
-            g = f[gName]
-            self.uni = g.unicode
-        else:
-            self.uni = uni 
-        self.addItalicExtremePoints = addItalicExtremePoints
-
-GD = GlyphData
 
 
 

@@ -1,4 +1,10 @@
 # -*- coding: UTF-8 -*-
+# ------------------------------------------------------------------------------
+#     Copyright (c) 2023+ TYPETR
+#     Usage by MIT License
+# ..............................................................................
+#
+#   neon.py
 #
 #   BaseAssistant part for Neon tubes.
 #   Simplified version of Outliner part, we only need tube thicknes and minimal distance defined.

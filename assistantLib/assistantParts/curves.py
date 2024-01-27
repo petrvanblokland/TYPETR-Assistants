@@ -1,5 +1,11 @@
 # -*- coding: UTF-8 -*-
-
+# ------------------------------------------------------------------------------
+#     Copyright (c) 2023+ TYPETR
+#     Usage by MIT License
+# ..............................................................................
+#
+#   curves.py
+#
 import sys
 from math import *
 from vanilla import *

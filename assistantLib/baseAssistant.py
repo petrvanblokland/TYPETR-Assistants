@@ -1,4 +1,10 @@
 # -*- coding: UTF-8 -*-
+# ------------------------------------------------------------------------------
+#     Copyright (c) 2023+ TYPETR
+#     Usage by MIT License
+# ..............................................................................
+#
+#   baseAssistant.py
 #
 #    BaseAssistant for RoboFont4
 #    
@@ -43,7 +49,7 @@ from fontTools.misc.transform import Transform
 
 import assistantLib.assistantParts.data
 importlib.reload(assistantLib.assistantParts.data)
-from assistantLib.assistantParts.data import GlyphData, MasterData
+from assistantLib.assistantParts.data import MasterData
 
 import assistantLib.assistantParts.spacingKerning.kerningManager
 importlib.reload(assistantLib.assistantParts.spacingKerning.kerningManager)
@@ -99,7 +105,7 @@ class BaseAssistant:
     UFO_PATHS = None 
 
     # If there's masterData available, then this should be redefined as dictionaty by inheriting Assistant classes
-    #MASTER_DATA = None 
+    MASTER_DATA = None 
 
     # Names of methods to call for initializeing and updating Merz. 
     # To be defined by inheriting classes. 
@@ -214,10 +220,10 @@ class BaseAssistant:
         print(f'### Cannot find MasterData for {ufoName}')
         return MasterData(f)
 
-    def getGlyphData(self, f, gName):
-        """Answer the GlyphData instance for this glyph, containing meta-information."""
-        gd = GlyphData(f, gName)
-        return gd 
+    def getGlyphData(self, g):
+        """Answer the GlyphData instance for this glyph, containing meta-information. It's either derives from g.lib
+        or constructed from guessed information."""
+        return GlyphData(g, self.getLib(g, 'glyphData', {}))
 
     #   S P A C I N G  &  K E R N I N G
 
