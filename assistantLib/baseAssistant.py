@@ -551,8 +551,8 @@ class AssistantController(BaseAssistant, WindowController):
     assistantGlyphEditorSubscriberClass = BaseAssistant
 
     # Inheriting class can overwrite this default class variable to alter type of window 
-    #WINDOW_CLASS = vanilla.Window
-    WINDOW_CLASS = FloatingWindow
+    WINDOW_CLASS = vanilla.Window
+    #WINDOW_CLASS = FloatingWindow
         
     NAME = 'Base Assistant'
 
