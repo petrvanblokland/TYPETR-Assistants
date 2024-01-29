@@ -6,20 +6,129 @@
 #
 #   glyphData.py
 #
-class GlyphData:
-    """Glyph data element that contains all individual data for glyph, not contained by the standard EGlyph.
-    """
+#   GlyphData is the container for all parameters of one glyph.
+#   It functions as model for what an RGlyph should contain. 
+#   That's why we cannot derive the info from CurrentGlyph, etc. 
+#   Assistants use this info to fill the parameters in their related RGlyph instances.
+#   Values, such as width and vertical metrics, use category names instead of real values.
+#   The actual values are derived from their settings in the MasterData instance for easch master.
+#
+# Note that names cannot start with an underscore, or else the cannot be imported by other sources.
+TOP = '_top'
+TOP_ = 'top'
+BOTTOM = '_bottom'
+BOTTOM_ = 'bottom'
+RING = '_ring'
+RING_ = 'ring'
+OGONEK = '_ogonek'
+OGONEK_ = 'ogonek'
+VERT = '_vert'
+VERT_ = 'vert'
+DOT = '_dot'
+DOT_ = 'dot'
+TILDE = '_tilde'
+TILDE_ = 'tilde'
+TONOS = '_tonos'
+TONOS_ = 'tonos'
+HORN = '_horn'
+HORN_ = 'horn'
+MIDDLE = '_middle'
+MIDDLE_ = 'middle'
 
+CONNECTED_ANCHORS = {
+    TOP: TOP_,
+    BOTTOM: BOTTOM_,
+    RING: RING_,
+    OGONEK: OGONEK_,
+    VERT: VERT_,
+    DOT: DOT_,
+    TILDE: TILDE_,
+    TONOS: TONOS_, # Also anchor of the other -uc accents
+    HORN: HORN_,
+    MIDDLE: MIDDLE_,
+}
+
+# Types of mods, parts of glyph names
+MOD_SUPERIOR = 'superior'
+MOD_INFERIOR = 'inferior'
+MOD_SINF = 'sinf'
+MOD_SUPS = 'sups'
+MOD_NUMR = 'numr'
+MOD_DNOM = 'dnom'
+MOD = 'mod'
+
+# Categories of spacing and size
+CAT_EM = 'em'
+CAT_EM2 = 'em2'
+CAT_CENTER = 'center'
+CAT_MIN_RIGHT = 'minRight'
+# Categories of width
+CAT_ACCENT_WIDTH = 'accentWidth'
+CAT_TAB_WIDTH = 'tabWidth'
+CAT_MATH_WIDTH = 'mathWidth'
+CAT_EM_WIDTH = 'emWidth'
+CAT_EM2_WIDTH = 'em2Width' # Half emWidth
+CAT_WORD_SPACE = 'wordSpace'
+# Categories of height
+CAT_XHEIGHT = 'xHeight'
+CAT_CAP_HEIGHT = 'capHeight'
+CAT_SC_HEIGHT = 'scHeight'
+CAT_SUPS_HEIGHT = 'supsHeight' # Height of .sups, .sinf, .numr, .dnom and mod
+# Categories of overshoot
+CAT_OVERSHOOT = 'overshoot'
+CAT_CAP_OVERSHOOT = 'capOvershoot'
+CAT_SUPS_OVERSHOOT = 'supsOvershoot'
+CAT_SC_OVERSHOOT = 'scOvershoot'
+# Categories of baselines
+CAT_BASELINE = 'baseline'
+CAT_MOD_BASELINE = 'modBaseline'
+CAT_NUMR_BASELINE = 'numrBaseline'
+CAT_SINF_BASELINE = 'sinfBaseline'
+CAT_SUPS_BASELINE = 'supsBaseline'
+CAT_DNOM_BASELINE = 'dnomBaseline'
+
+# Allowed category names
+CAT_OVERSHOOTS = (None, CAT_OVERSHOOT, CAT_CAP_OVERSHOOT, CAT_SUPS_OVERSHOOT, CAT_SC_OVERSHOOT)
+CAT_BASELINES = (None, CAT_BASELINE, CAT_MOD_BASELINE, CAT_NUMR_BASELINE, CAT_SINF_BASELINE, CAT_SUPS_BASELINE, CAT_DNOM_BASELINE)
+CAT_HEIGHTS = (None, CAT_XHEIGHT, CAT_CAP_HEIGHT, CAT_SC_HEIGHT, CAT_SUPS_HEIGHT)
+CAT_WIDTHS = (None, CAT_ACCENT_WIDTH, CAT_TAB_WIDTH, CAT_MATH_WIDTH, CAT_EM_WIDTH, CAT_EM2_WIDTH, CAT_WORD_SPACE)
+
+class GlyphData:
+    """Glyph data element that contains all individual data for glyphs.
+
+    >>> gd = GlyphData(l2r='A', uni=65, c='A', name='A', srcName='A', hex='0041', comment='A Uppercase Alphabet, Latin', gid=35)
+    >>> gd
+    <GlyphData A>
+    >>> gd.uni
+    65
+    """    
     def __init__(self, uni=None, c=None, gid=None, name=None, srcName=None, hex=None, composites=None,
-            unicodes=None, base=None, accents=None, comment=None, spacing=None, fixAccents=True,
-            fixSpacing=True, fixAnchors=False, rightMin=None, top_y=None, blackVersion=1, anchors=None, anchorSrc=None,
+            unicodes=None, 
+            # Define component reference glyph names.
+            base=None, accents=None, 
+            comment=None, spacing=None, fixAccents=True,
+            fixSpacing=True, fixAnchors=False, rightMin=None, top_y=None, blackVersion=1, 
+            # Anchors
+            anchors=None, # Force list of anchor names
+            anchorSrc=None, # Glyph name to copy anchors from
+            # Force spacing dependencies
             l=None, r=None, w=None, il=None, ir=None, iw=None, ml=None, mr=None, 
-            l2r=None, r2l=None, il2r=None, ir2l=None, isLower=None,
+            l2r=None, r2l=None, il2r=None, ir2l=None, 
+            # Type of glyph. Guess if undefined as None.
+            isLower=None, isMod=None, isSc=None,
+            # Italicize
             useSkewRotate=False, addItalicExtremePoints=False, 
+            # Glyphs to copy from, initially before editing starts
             src=None, # Not used here
             src180=None, # Not used here
-            g1=None, g2=None, height=None, ascender=None, descender=None, baseline=None, overshoot=None,
+            g1=None, g2=None, 
+            ascender=None, descender=None, 
+            # # In case hard value needs to overwrite category value
+            overshoot=None, height=None, baseline=None, width=None,
+            # Categories of vertical metrics, if not None they overwrite the master-wide guessed value by parent MasterData
+            catOvershoot=None, catHeight=None, catBaseline=None, catWidth=None, 
             ): 
+        self.parent = None # 
         self.uni = uni
         self.unicodes = unicodes
         if c is None and uni:
@@ -38,10 +147,16 @@ class GlyphData:
         if srcName == name:
             srcName = None
         self.srcName = srcName
-        self.base = base
-        self.accents = accents or []
+        
+        self._isLower = isLower # If not None, force the flag. Otherwise try to guess.
+        self._isSc = isSc # Is smallcap
+        self._isMod = isMod # Glyph is a modifier.
+
+        self.base = base # Base component if used
+        self.accents = accents or [] # List of other component names, besides the base
         self.comment = comment or ''
-        self.spacing = spacing
+        self.spacing = spacing # Obsolete?
+
         self.fixAccents = fixAccents
         self.fixAnchors = fixAnchors
         self.fixSpacing = fixSpacing
@@ -53,9 +168,76 @@ class GlyphData:
         self.useSkewRotate = useSkewRotate
         self.addItalicExtremePoints = addItalicExtremePoints
 
+        self.overshoot = overshoot # In case hard value needs to overwrite category value of self.catOvershoot
+        self.height = height # In case hard value needs to overwrite category value of self.catHeight
+        self.baseline = baseline # In case hard value needs to overwrite category value of self.catBaseline
+        self.width = width # In case hard value needs to overwrite category value of self.catHeight
+
+        # Categories of vertical metrics, if not None they overwrite the master-wide guessed value by parent MasterData
+        assert catOvershoot in CAT_OVERSHOOTS
+        assert catHeight in CAT_HEIGHTS
+        assert catBaseline in CAT_BASELINES
+        assert catWidth in CAT_WIDTHS
+
+        self.catOvershoot = catOvershoot
+        self.catHeight = catHeight 
+        self.catBaseline = catBaseline 
+        self.catWidth = catWidth 
+
     def __repr__(self):
         return(f'<{self.__class__.__name__} {self.name}>')
-        '''
+
+    def _get_isUpper(self):
+        return not self.isLower
+    isUpper = property(_get_isUpper)
+
+    def _get_isLower(self):
+        """Answer the boolean flag if this glyph is lowercase. If the flag is undefined in self._isLower
+        then take a guess.
+        """
+        if self._isLower is not None:
+            return self._isLower
+        return bool(self.name[0].upper() != self.name[0]) # This is an uppercase.
+    isLower = property(_get_isLower)
+
+    def _get_isMod(self):
+        """Answer the boolean flag if this glyph is a modifier. If the flag is undefined in self._isMod
+        then take a guess.
+        """
+        if self._isMod is not None:
+            return self._isMod
+        return self.name.endswith(MOD)
+    isMod = property(_get_isMod)
+
+    def _get_isSups(self):
+        return self.name.endswith(MOD_SUPS)
+    isSups = property(_get_isSups)
+            
+    def _get_isSinf(self):
+        return self.name.endswith(MOD_SINF)
+    isSinf = property(_get_isSinf)
+            
+    def _get_isNumr(self):
+        return self.name.endswith(MOD_NUMR)
+    isNumr = property(_get_isNumr)
+            
+    def _get_isDnom(self):
+        return self.name.endswith(MOD_DNOM)
+    isDnom = property(_get_isDnom)
+            
+    def _get_isSc(self):
+        """Answer the boolean flag if this glyph is a smallcap. If the flag is undefined in self._isSc
+        then take a guess.
+        """
+        if self._isSc is not None:
+            return self._isSc
+        for ext in ('.sc', 'small'):
+            if self.name.endswith(ext):
+                return True
+        return False
+    isSc = property(_get_isSc)
+        
+    '''
         self.top_y = top_y
         self.blackVersion = blackVersion # Default (1) Latin. 
         if isLower is None: # Undefined, try to guess
@@ -994,3 +1176,9 @@ class GlyphSet:
     '''
 
 GD = GlyphData
+
+if __name__ == '__main__':
+    import doctest
+    import sys
+    sys.exit(doctest.testmod()[0])
+

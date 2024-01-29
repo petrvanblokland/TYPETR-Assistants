@@ -79,7 +79,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         g = info['glyph']
         if g is None:
             return
-        nIndex = 0
+        nIndex = spIndex = 0
         if g is not None and c.w.showFamilyOverview.get():
             f = g.font
             x = 0

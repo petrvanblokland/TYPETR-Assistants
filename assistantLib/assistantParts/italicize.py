@@ -72,7 +72,7 @@ class AssistantPartItalicize(BaseAssistantPart):
     def italicizeGlyph(self, g):
         f = g.font
         md = self.getMasterData(f)
-        gd = self.getGlyphData(f, g.name)
+        gd = self.getGlyphData(g)
         gName = g.name
         c = self.getController()
 

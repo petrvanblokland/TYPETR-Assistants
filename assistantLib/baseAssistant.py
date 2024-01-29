@@ -223,7 +223,10 @@ class BaseAssistant:
     def getGlyphData(self, g):
         """Answer the GlyphData instance for this glyph, containing meta-information. It's either derives from g.lib
         or constructed from guessed information."""
-        return GlyphData(g, self.getLib(g, 'glyphData', {}))
+        md = self.getMasterData(g.font)
+        if md is not None:
+            return md.glyphSet.get(g.name)
+        return None
 
     #   S P A C I N G  &  K E R N I N G
 
@@ -474,7 +477,7 @@ class Assistant(BaseAssistant, Subscriber):
             # Not the current glyph, ignore the key stroke
             return
 
-        gd = self.getGlyphData(g.font, g.name)
+        gd = self.getGlyphData(g)
          
         event = extractNSEvent(info['NSEvent'])
         cc = event['keyDown']
