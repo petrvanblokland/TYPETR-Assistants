@@ -180,7 +180,7 @@ class AssistantPartItalicize(BaseAssistantPart):
             anchor.x += int(round(tan(radians(skew or 0)) * anchor.y)) # Correct for italic angle offset in x
 
         # check if "add extremes" is set to True
-        if gd.addItalicExtremePoints and addExtremes:
+        if gd.addItalicExtremePoints or addExtremes:
             self.addExtremePoints(dstG, doSelect=True)
 
         dstG.round()
