@@ -116,8 +116,8 @@ class GlyphData:
             l2r=None, r2l=None, il2r=None, ir2l=None, 
             # Type of glyph. Guess if undefined as None.
             isLower=None, isMod=None, isSc=None,
-            # Italicize
-            useSkewRotate=False, addItalicExtremePoints=False, 
+            # Italicize forcing conversion behavior
+            useSkewRotate=False, addItalicExtremePoints=True, 
             # Glyphs to copy from, initially before editing starts
             src=None, # Not used here
             src180=None, # Not used here
