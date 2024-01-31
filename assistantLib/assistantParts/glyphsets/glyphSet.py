@@ -43,10 +43,10 @@ class GlyphSet:
         return(f'<{self.__class__.__name__} {len(self.glyphs)} glyphs>')
 
     def __getitem__(self, gName):
-        return self.glyphs.get(gName, None) 
+        return self.glyphs.get(gName, None)
 
-    def get(self, gName):
-        return self[gName]
+    def get(self, gName, default=None):
+        return self.glyphs.get(gName, default) 
 
 if __name__ == '__main__':
     import doctest

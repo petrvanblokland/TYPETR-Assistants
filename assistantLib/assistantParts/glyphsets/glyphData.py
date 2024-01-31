@@ -121,12 +121,14 @@ class GlyphData:
             # Glyphs to copy from, initially before editing starts
             src=None, # Not used here
             src180=None, # Not used here
+            # Groups
             g1=None, g2=None, 
             ascender=None, descender=None, 
             # # In case hard value needs to overwrite category value
             overshoot=None, height=None, baseline=None, width=None,
             # Categories of vertical metrics, if not None they overwrite the master-wide guessed value by parent MasterData
             catOvershoot=None, catHeight=None, catBaseline=None, catWidth=None, 
+            #
             ): 
         self.parent = None # 
         self.uni = uni

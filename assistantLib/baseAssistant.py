@@ -131,6 +131,16 @@ class BaseAssistant:
     
     ITALIC_ANGLE = 0
 
+    # Point types
+    POINTTYPE_BEZIER = 'curve'
+    POINTTYPE_QUADRATIC = 'qcurve'
+    POINTTYPE_OFFCURVE = 'offcurve'
+
+    # Attaching layer functions to layer names.
+    EDIT_LAYER = 'foreground' # Name of the main layer to edit. Could be on background, such as Upgrade Neon
+    BACKGROUND_LAYER = 'background'
+    PRESENTATION_LAYER = 'background'
+
     #   E V E N T S
 
     def registerKeyStroke(self, c, methodName):
@@ -225,7 +235,7 @@ class BaseAssistant:
         or constructed from guessed information."""
         md = self.getMasterData(g.font)
         if md is not None:
-            return md.glyphSet.get(g.name)
+            return md.glyphSet[g.name]
         return None
 
     #   S P A C I N G  &  K E R N I N G
@@ -362,6 +372,28 @@ class BaseAssistant:
     def italicX(self, g, x, y):
         """Answer the italic x value on position e, depending on the italic angle of the font."""
         return x + int(round(math.tan(math.radians(-g.font.info.italicAngle or 0)) * y))
+
+    def isQuadratic(self, g):
+        for contour in g.contours:
+            for p in contour.points:
+                if p.type == self.POINTTYPE_QUADRATIC:
+                    return True
+        return False
+
+    def isBezier(self, g):
+        for contour in g.contours:
+            for p in contour.points:
+                if p.type == self.POINTTYPE_BEZIER:
+                    return True
+        return False
+
+    def isCurved(self, g):
+        """Answer the boolean flag if this glyph has off-curve points"""
+        for contour in g.contours:
+            for p in contour.points:
+                if p.type == self.POINTTYPE_OFFCURVE:
+                    return True
+        return False
 
 class Assistant(BaseAssistant, Subscriber):
 

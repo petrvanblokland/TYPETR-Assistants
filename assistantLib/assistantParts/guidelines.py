@@ -92,3 +92,8 @@ class AssistantPartGuidelines(BaseAssistantPart):
             g.appendGuideline((xo + tg * (md.descender - overshoot), md.descender - overshoot), 0, name='%d (%d)' % (md.descender - overshoot, overshoot))
             g.appendGuideline((x + tg * md.descender, md.descender), 0, name='Descender %d' % md.descender)
 
+        if md.stemOvershoot is not None: # Font is using single stem overshoots, e.g. with rounded stems as in Upgrade Neon
+            g.appendGuideline((xo + tg * (height + md.stemOvershoot), height + md.stemOvershoot), 0, name='%d (%d)' % (height + md.stemOvershoot, md.stemOvershoot))
+            g.appendGuideline((xo + tg * (baseline - md.stemOvershoot), baseline - md.stemOvershoot), 0, name='%d (%d)' % (baseline - md.stemOvershoot, md.stemOvershoot))
+
+

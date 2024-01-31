@@ -20,10 +20,6 @@ for path in PATHS:
 
 from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart, FAR
 
-POINTTYPE_BEZIER = 'curve'
-POINTTYPE_QUADRATIC = 'qcurve'
-POINTTYPE_OFFCURVE = 'offcurve'
-
 FACTOR = 1.340   # This estimated value gives amazingly accurate conversion.
 
 class AssistantPartCurves(BaseAssistantPart):
@@ -124,28 +120,6 @@ class AssistantPartCurves(BaseAssistantPart):
             for p in contour.points:
                 p.selected = False
         g.changed()
-
-    def isQuadratic(self, g):
-        for contour in g.contours:
-            for p in contour.points:
-                if p.type == POINTTYPE_QUADRATIC:
-                    return True
-        return False
-
-    def isBezier(self, g):
-        for contour in g.contours:
-            for p in contour.points:
-                if p.type == POINTTYPE_BEZIER:
-                    return True
-        return False
-
-    def isCurved(self, g):
-        """Answer the boolean flag if this glyph has off-curve points"""
-        for contour in g.contours:
-            for p in contour.points:
-                if p.type == POINTTYPE_OFFCURVE:
-                    return True
-        return False
 
     #    C O N T O U R S
     

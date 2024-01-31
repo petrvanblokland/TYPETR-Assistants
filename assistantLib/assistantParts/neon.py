@@ -726,7 +726,7 @@ class AssistantPartNeon(BaseAssistantPart):
         f = g.font
         md = self.getMasterData(g.font)
         d = md.distance # Minimal distance between tubes
-        overshoot = md.overshoot # Radius of the overshoot point marker
+        stemRadius = md.thickness - md.stemOvershoot # Radius of the stem overshoot point marker
         currentFont = self.currentFont()
 
         pIndex = 0
@@ -739,8 +739,8 @@ class AssistantPartNeon(BaseAssistantPart):
                     if p.type != 'offcurve':
                         self.neonDistancePointMarkers[pIndex].setSize((2*d, 2*d))
                         self.neonDistancePointMarkers[pIndex].setPosition((p.x-d, p.y-d))
-                        self.neonOvershootPointMarkers[pIndex].setSize((2*overshoot, 2*overshoot))
-                        self.neonOvershootPointMarkers[pIndex].setPosition((p.x-overshoot, p.y-overshoot))
+                        self.neonOvershootPointMarkers[pIndex].setSize((2*stemRadius, 2*stemRadius))
+                        self.neonOvershootPointMarkers[pIndex].setPosition((p.x-stemRadius, p.y-stemRadius))
                         pIndex += 1
         for n in range(pIndex,len(self.neonDistancePointMarkers)):
             self.neonDistancePointMarkers[n].setPosition((FAR, 0))

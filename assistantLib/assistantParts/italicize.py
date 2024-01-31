@@ -53,8 +53,7 @@ class AssistantPartItalicize(BaseAssistantPart):
 
     def italicizeCallback(self, sender):
         g = self.currentGlyph()
-        g.clear() 
-        g.changed() # Force update. UpdateItalize will then rebuild the glyph.
+        self.italicizeGlyph(g)
 
     def italicizeGlyphKey(self, g, c, event):
         """Callback for registered event on key stroke"""
@@ -109,7 +108,7 @@ class AssistantPartItalicize(BaseAssistantPart):
         print(f'... Italicize: Skew {skew } & Rotate {rotation}', )    
 
         f[gName] = srcG # Copy from roman
-        dstG = f[gName]
+        dstG = f[gName].getLayer(self.EDIT_LAYER)
         
         if not addComponents:
             for component in dstG.components:
@@ -117,9 +116,9 @@ class AssistantPartItalicize(BaseAssistantPart):
                 component.drawPoints(pointPen)
                 dest.removeComponent(component)
 
-        for contour in list(dstG.contours):
-            if contour.open:
-                dstG.removeContour(contour)
+        #for contour in list(dstG.contours):
+        #    if contour.open:
+        #        dstG.removeContour(contour)
 
         if skew == 0 and rotation == 0:
             return

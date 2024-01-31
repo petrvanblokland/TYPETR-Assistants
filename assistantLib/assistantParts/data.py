@@ -74,11 +74,13 @@ class MasterData:
     BASELINE = 0
     TAB_WIDTH = 650
     BASE_OVERSHOOT = 12
+    STEM_OVERSHOOT = 0 # Used for small  dovershoot if single stems, e.g. in rounded terminals such as Upgrade Neon
     ASCENDER = 750
     DESCENDER = -250
     XHEIGHT = 500
     CAPHEIGHT = 750
-
+    DEFAULT_TAB_WIDTH = 650
+    
     VERSION_MAJOR = 1
     VERSION_MINOR = 0
 
@@ -87,13 +89,12 @@ class MasterData:
     def __init__(self, name=None, ufoPath=None, 
             srcUFOPath=None, someUFOPath=None, orgUFOPath=None, kerningSrcUFOPath=None, romanItalicUFOPath=None, 
             italicAngle=0, italicSkew=None, italicRotation=None, isItalic=False,
-            thickness=10, distance=16, # Used for Neon tubes
             m0=None, m1=None, m2=None, sm1=None, sm2=None, dsPosition=None,
             tripletData1=None, tripletData2=None, featurePath=None, 
             # GlyphSet instance, descibing the glyph set and GlyphData characteristics. This attribute must be defined
             glyphSet=None, 
             # Vertical metrics
-            baseline=0, baseOvershoot=None, capOvershoot=None, scOvershoot=None, supsOvershoot=None,
+            baseline=0, stemOvershoot=STEM_OVERSHOOT, baseOvershoot=None, capOvershoot=None, scOvershoot=None, supsOvershoot=None,
             ascender=None, descender=None,
             xHeight=None, capHeight=None, scHeight=None, supsHeight=None,
             baseDiacriticsTop=None, capDiacriticsTop=None, scDiacriticsTop=None, # Baseline of top diacritics
@@ -104,7 +105,9 @@ class MasterData:
             HStem=None, HThin=None, OStem=None, OThin=None,
             HscStem=None, HscThin=None, OscStem=None, OscThin=None,
             nStem=None, oStem=None, oThin=None, UThin=None, VThin=None, eThin=None,
+            thickness=10, distance=16, # Used for Neon tubes, can be overwritten from GlyphData.thickness
             tabWidth=None,
+            # Table stuff
             ttfPath=None, platformID=None, platEncID=None, langID=None, 
             unitsPerEm=UNITS_PER_EM, copyright=COPYRIGHT, uniqueID=None, trademark=TRADEMARK, 
             lowestRecPPEM=LOWEST_PPEM,
@@ -134,7 +137,7 @@ class MasterData:
         self.italicRotation = italicRotation 
         self.isItalic = bool(italicAngle) or isItalic or 'Italic' in name
 
-        # Used by Neon for tube thickness and minimal tube distance
+        # Used by Neon for tube thickness and minimal tube distance. Overwritten if GlyphData.thickness is not None
         self.thickness = thickness
         self.distance = distance
         
@@ -174,6 +177,9 @@ class MasterData:
         if baseOvershoot is None: # Generic overshoot value, specifically for lower case
             baseOvershoot = self.BASE_OVERSHOOT
         self.baseOvershoot = baseOvershoot
+        if stemOvershoot is None:
+            stemOvershoot = self.STEM_OVERSHOOT
+        self.stemOvershoot = stemOvershoot
         if capOvershoot is None: # Overshoot value for capitals
             capOvershoot = baseOvershoot
         self.capOvershoot = capOvershoot
