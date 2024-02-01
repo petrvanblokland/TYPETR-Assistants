@@ -12,7 +12,7 @@ import weakref
 # We use Letterrors' Similarity to find matching groups
 # Install cosineSimilarity extensions via Mechanic 2
 # But here we import it as separate source in assistantLib.
-import assistantLib.similarity.cosineSimilarity
+#import assistantLib.similarity.cosineSimilarity
 #from assistantLib.similarity.cosineSimilarity import cosineSimilarity, SimilarGlyphsKey
 from assistantLib.kerningSamples import SAMPLES, CYRILLIC_KERNING, GREEK_KERNING
 

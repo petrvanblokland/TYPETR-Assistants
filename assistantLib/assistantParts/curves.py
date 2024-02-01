@@ -63,7 +63,7 @@ class AssistantPartCurves(BaseAssistantPart):
 
     def Q2BCallback(self, sender):
         """Callback from button"""
-        g = self.currentGlyph()
+        g = self.getCurrentGlyph()
         if g is not None:
             self.curvesConvert(g, POINTTYPE_QUADRATIC, POINTTYPE_BEZIER, FACTOR)
 
@@ -83,7 +83,7 @@ class AssistantPartCurves(BaseAssistantPart):
         
     def B2QCallback(self, sender):
         """Callback from button"""
-        g = self.currentGlyph()
+        g = self.getCurrentGlyph()
         if g is not None:
             self.curvesConvert(g, POINTTYPE_BEZIER, POINTTYPE_QUADRATIC, 1/FACTOR)
 

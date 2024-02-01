@@ -39,8 +39,6 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
 
     def initMerzFamilyOverview(self, container):    
         # Previewing current glyphs on left/right side, with the style name of each master        
-        self.registerKeyStroke('}', 'familyOverviewNextGlyph')
-        self.registerKeyStroke('{', 'familyOverviewPrevGlyph')
 
         self.familyOverviewGlyphs = []
         self.familyOverviewStyleName = []
@@ -200,6 +198,9 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
     
     def buildFamilyOverview(self, y):
         """Build the overlay stuff: Merz components and """
+        self.registerKeyStroke('}', 'familyOverviewNextGlyph')
+        self.registerKeyStroke('{', 'familyOverviewPrevGlyph')
+
         # Calculate the column positions
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         self.w.showFamilyOverview = CheckBox((C0, y, CW, L), 'Show family overview', value=True, sizeStyle='small', callback=self.updateEditor)
