@@ -42,8 +42,6 @@ class AssistantPartOverlay(BaseAssistantPart):
         # Previewing current glyphs on left/right side. 
         # Triggered by w.previewGlyphLeft, w.previewGlyphOverlay and w.previewGlyphRight       
 
-        self.registerKeyStroke('g', 'overlaySnap2Overlay')
-
         self.previewGlyphLeft = container.appendPathSublayer(
             position=(FAR, 0),
             fillColor=self.OVERLAY_FILL_LEFT_COLOR,
@@ -232,6 +230,11 @@ class AssistantPartOverlay(BaseAssistantPart):
         """Snap the selected points of the current glyph onto points that are within range on the background glyph."""
         self.snapSelectionToNearestPoint(g)
 
+    def overlaySnap2OverlayCallback(self):
+        g = self.getCurrentGlyph()
+        if g is not None:
+            self.snapSelectionToNearestPoint(g)
+
     def snapSelectionToNearestPoint(self, g):
         c = self.getController()
         f = g.font
@@ -339,8 +342,11 @@ class AssistantPartOverlay(BaseAssistantPart):
         md.kerningSrcPath       Used as kerning reference.
 
         """
+        personalKey = self.registerKeyStroke('g', 'overlaySnap2Overlay')
+
         # Calculate the column positions
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
+
         c = self.getController()
         c.w.previewGlyphLeft = CheckBox((C0, y, CW, L), 'Preview Left', value=True, callback=self.updateEditor)
         c.w.previewGlyphOverlay = CheckBox((C1, y, CW, L), 'Fill', value=True, callback=self.updateEditor)
@@ -363,6 +369,8 @@ class AssistantPartOverlay(BaseAssistantPart):
         y += L
         c.w.kerningSrcUFOPathOverlay = CheckBox((C0, y, CW, L), 'Kerning overlay', value=False, sizeStyle='small', callback=self.updateEditor)
         c.w.romanItalicUFOPathOverlay = CheckBox((C1, y, CW, L), 'Roman/italic', value=False, sizeStyle='small', callback=self.updateEditor)
+        y += L
+        c.w.snapOnBackgroundButton = Button((C2, y, CW, L), 'Snap on BF [%s]' % personalKey, callback=self.overlaySnap2OverlayCallback)
         y += L * 1.5
         return y
 

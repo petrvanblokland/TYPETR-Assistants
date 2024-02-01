@@ -26,14 +26,7 @@ class AssistantPartCurves(BaseAssistantPart):
     """The Curves assistant part converts between Quadratics and Bezier.
     """
     def initMerzCurves(self, container):
-        keyStrokes = dict(
-            q='curvesB2QGlyphKey', 
-            b='curvesQ2BGlyphKey',
-            E='curvesSetStartPoint', # Choose selected point as start point
-            e='curvesSetStartPoint', # Auto selection of start points on best match
-        )
-        for key, methodName in keyStrokes.items():
-            self.registerKeyStroke(key, methodName)
+        pass
 
     def updateCurves(self, info):
         c = self.getController()
@@ -50,11 +43,18 @@ class AssistantPartCurves(BaseAssistantPart):
         c.w.B2QButton.enable(b2qEnable)
 
     def buildCurves(self, y):
+
+        personalKey_q = self.registerKeyStroke('q', 'curvesB2QGlyphKey')
+        personalKey_b = self.registerKeyStroke('b', 'curvesQ2BGlyphKey')
+        personalKey_E = self.registerKeyStroke('E', 'curvesSetStartPoint') # Choose selected point as start point
+        personalKey_e = self.registerKeyStroke('e', 'curvesSetStartPoint') # Auto selection of start points on best match
+
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         LL = 18
         c = self.getController()
-        c.w.Q2BButton = Button((C1, y, CW, L), 'Q --> B', callback=self.Q2BCallback)
-        c.w.B2QButton = Button((C2, y, CW, L), 'B --> Q', callback=self.B2QCallback)
+        c.w.setStartPointButton = Button((C0, y, CW, L), 'Set start [%s]' % personalKey_e, callback=self.curvesSetStartPointCallback)
+        c.w.Q2BButton = Button((C1, y, CW, L), 'Q --> B [%s]' % personalKey_b, callback=self.Q2BCallback)
+        c.w.B2QButton = Button((C2, y, CW, L), 'B --> Q [%s]' % personalKey_q, callback=self.B2QCallback)
         y += L + LL
 
         return y
@@ -122,8 +122,13 @@ class AssistantPartCurves(BaseAssistantPart):
         g.changed()
 
     #    C O N T O U R S
-    
-    def curvesSetStartPoint(self, g, c, event):
+
+    def curvesSetStartPointCallback(self, sender):
+        g = self.getCurrentGlyph()
+        if g is not None:
+            self.curvesSetStartPoint(g)
+
+    def curvesSetStartPoint(self, g, c=None, event=None):
         """Set the start point to the selected points on [e]. Auto select the point on [E] key."""
         doSelect = True
         doAuto = c != c.upper() # Auto select if lowercase of key was used:

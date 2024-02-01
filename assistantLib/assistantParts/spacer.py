@@ -34,7 +34,6 @@ class AssistantPartSpacer(BaseAssistantPart):
 
     def initMerzSpacer(self, container):
         """Define the Merz elements for feedback about where margins/width comes from."""
-        self.registerKeyStroke('=', 'spacerCenterGlyph')
 
         self.fixedSpaceMarkerLeft = container.appendOvalSublayer(name="spaceMarkerLeft",
             position=(-self.SPACER_MARKER_R, -self.SPACER_MARKER_R),
@@ -81,12 +80,17 @@ class AssistantPartSpacer(BaseAssistantPart):
         if changed:
             g.changed()
 
+    KEY_CENTER_GLYPH = '='
+
     def buildSpacer(self, y):
         """Build the assistant UI for anchor controls."""
+        personalKey = self.registerKeyStroke(self.KEY_CENTER_GLYPH, 'spacerCenterGlyph')
+
+        c = self.getController()
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         LL = 18
- 
-        self.w.autoSpace = CheckBox((C0, y, CW, L), 'Auto space', value=True, sizeStyle='small')
+        c.w.centerGlyphButton = Button((C0, y, CW, L), 'Center width [%s]' % personalKey, callback=self.spacerCenterGlyphCallback)
+        c.w.autoSpace = CheckBox((C1, y, CW, L), 'Auto space', value=True, sizeStyle='small')
         y += L + LL
 
         return y
@@ -170,7 +174,12 @@ class AssistantPartSpacer(BaseAssistantPart):
 
 
         return False
-        
+    
+    def spacerCenterGlyphCallback(self, sender):
+        g = self.getCurrentGlyph()
+        if g is not None:
+            self.spacerCenterGlyhph(g)
+
     def spacerCenterGlyph(self, g, c, event):     
         """Snap the selected points of the current glyph onto points that are within range on the background glyph."""
         lm = g.angledLeftMargin

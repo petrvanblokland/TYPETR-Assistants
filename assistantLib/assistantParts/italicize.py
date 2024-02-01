@@ -27,8 +27,7 @@ class AssistantPartItalicize(BaseAssistantPart):
     """
 
     def initMerzItalicize(self, container):
-        """Register key stroke cap-I. [i] is reserved for the spacing part"""
-        self.registerKeyStroke('r', 'italicizeGlyphKey')
+        pass
 
     def updateItalicize(self, info):
         g = info['glyph']
@@ -38,6 +37,9 @@ class AssistantPartItalicize(BaseAssistantPart):
         self.italicizeGlyph(g)
 
     def buildItalicize(self, y):
+        """Register key stroke cap-I. [i] is reserved for the spacing part"""
+        personalKey = self.registerKeyStroke('r', 'italicizeGlyphKey')
+
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         LL = 18
  
@@ -46,16 +48,17 @@ class AssistantPartItalicize(BaseAssistantPart):
         self.w.addItalicizedExtremes = CheckBox((C0, y+LL, CW, L), 'Add extremes', value=True, sizeStyle='small')
         self.w.skewRotate = CheckBox((C1, y+LL, CW, L), 'Skew & rotate', value=False, sizeStyle='small')
 
-        self.w.italicizeButton = Button((C2, y+LL/2, CW, L), 'Italicize', callback=self.italicizeCallback)
+        self.w.italicizeButton = Button((C2, y+LL/2, CW, L), 'Italicize [%s]' % personalKey, callback=self.italicizeCallback)
         y += L + LL
 
         return y
 
     def italicizeCallback(self, sender):
-        g = self.currentGlyph()
-        self.italicizeGlyph(g)
+        g = self.getCurrentGlyph()
+        if g is not None:
+            self.italicizeGlyph(g)
 
-    def italicizeGlyphKey(self, g, c, event):
+    def italicizeGlyphKey(self, g, c=None, event=None):
         """Callback for registered event on key stroke"""
 
         # Current we don't need any of these modifiers

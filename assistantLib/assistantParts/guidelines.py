@@ -27,7 +27,7 @@ class AssistantPartGuidelines(BaseAssistantPart):
 
     def initMerzGuidelines(self, container):
         """Define the Merz elements for feedback about where margins/width comes from."""
-        self.registerKeyStroke('±', 'makeGuidelines')
+        pass
 
     def updateGuidelines(self, info):
         """If the checkbox is set, then automatic build guidelines if another glyph is selected."""
@@ -40,11 +40,13 @@ class AssistantPartGuidelines(BaseAssistantPart):
 
     def buildGuidelines(self, y):
         """Build the assistant UI for guidelines controls."""
+        personalKey = self.registerKeyStroke('±', 'makeGuidelines')
+
         c = self.getController()
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         LL = 18
  
-        c.w.makeGuidelines = Button((C0, y, CW, L), 'Make guides', callback=self.makeGuidesCallback)
+        c.w.makeGuidelines = Button((C0, y, CW, L), 'Make guides [%s]' % personalKey, callback=self.makeGuidesCallback)
         c.w.automakeGuidelines = CheckBox((C1, y, CW, L), 'Auto make', value=True, sizeStyle='small', callback=self.updateEditor)
         y += L + LL
 
@@ -54,12 +56,12 @@ class AssistantPartGuidelines(BaseAssistantPart):
         """Make the guidelines for the current glyph. Same as [±] keys."""
         self.makeGuidelines()
 
-    def makeGuidelines(self):
+    def makeGuidelines(self, g=None, c=None, event=None):
         """Build the guide lines from the definition in masterData, based on real values and categories. 
         Also try to guess which glyphs need which guidelines based on patterns in glyph names.
         """
 
-        g = self.currentGlyph()
+        g = self.getCurrentGlyph()
         if g is None:
             return
         md = self.getMasterData(g.font)

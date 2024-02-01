@@ -19,7 +19,7 @@ from fontTools.pens.reverseContourPen import ReverseContourPen
 from fontTools.pens.pointPen import ReverseContourPointPen, AbstractPointPen, PointToSegmentPen
 from mojo.UI import UpdateCurrentGlyphView
 #from mojo.extensions import getExtensionDefault, setExtensionDefault, getExtensionDefaultColor, setExtensionDefaultColor
-from mojo.roboFont import OpenWindow, CurrentGlyph
+from mojo.roboFont import OpenWindow
 from defcon import Glyph
 
 # Add paths to libs in sibling repositories
@@ -246,7 +246,7 @@ class OutlinePen(BasePen):
 
         self.closeOpenPaths = closeOpenPaths
         
-        self.glyph = CurrentGlyph()
+        self.glyph = self.getCurrentGlyph()
         self.points = {}
         for contour in self.glyph.contours:
             for point in contour.points:
@@ -768,7 +768,7 @@ class AssistantPartNeon(BaseAssistantPart):
         drawOuter = True
 
         pen = OutlinePen(g.font,
-                            md.thickness,
+                            thickness,
                             contrast,
                             contrastAngle,
                             connection=corner,

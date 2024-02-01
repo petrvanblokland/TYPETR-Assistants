@@ -35,6 +35,7 @@ class GlyphSet:
     GLYPH_DATA = {}
 
     def __init__(self, glyphData=None):
+        self.name = self.__class__.__name__
         if glyphData is None:
             glyphData = self.GLYPH_DATA
         self.glyphs = deepcopy(glyphData) # Deep copy the data, in case it's altered in the instance.

@@ -77,7 +77,7 @@ class BaseAssistant:
     # Select the color by user
     VISITED_MARKERS = [
         #('/Users/petr/Desktop/TYPETR-git', (40/255, 120/255, 255/255, 0.6), keys), # "Final" marker Blue (Petr))    
-        ('/Users/petr/Desktop/TYPETR-git', (50/255, 70/255, 230/255, 0.8), {}), # "Final" marker Blue (Petr))    
+        ('/Users/petr/Desktop/TYPETR-git', (50/255, 70/255, 230/255, 0.8), {'§':''}), # "Final" marker Blue (Petr))    
         ('/Users/edwarddzulaj/Documents', (92/255, 149/255, 190/255, 1), {}), # Edward
         ('/Users/graemeswank/Documents', (255/255, 83/255, 73/255, 1), {}),
         ('/Users/graeme/Documents', (255/255, 83/255, 73/255, 1), {}),
@@ -88,7 +88,7 @@ class BaseAssistant:
     ]
     
     # Key translations from personalized key strokes are handled by the BaseAssistant.glyphEditorDidKeyDown
-    TRANSLATE_KEYS = {} # Key strokes can be redefined if defined as dict(b='B', B=None, g='G', q='#')
+    TRANSLATE_KEYS = {} # Key strokes can be redefined as <org>:<local> if defined as dict(b='B', B=None, g='G', q='#')
     
     VISITED_MARKER = None
     for path, color, keys in VISITED_MARKERS:
@@ -144,10 +144,13 @@ class BaseAssistant:
     #   E V E N T S
 
     def registerKeyStroke(self, c, methodName):
-        """Let parts register the keyStroke-methodName combination that they want to listen to."""
+        """Let parts register the keyStroke-methodName combination that they want to listen to.
+        Answer the actual personalized key, depending if it's redefined in self.TRANSLATE_KEYS."""
+        c = self.TRANSLATE_KEYS.get(c, c)
         if not c in self.KEY_STROKE_METHODS:
             self.KEY_STROKE_METHODS[c] = set()
         self.KEY_STROKE_METHODS[c].add(methodName)
+        return c # Answer the personalize key that this method got registered to.
 
     #   F I L E P A T H S
 
@@ -291,7 +294,7 @@ class BaseAssistant:
         dstFont.insertGlyph(srcGlyph, name=dstGlyphName)
         return dstFont[dstGlyphName]
 
-    def currentGlyph(self, layerName='foreground'):
+    def getCurrentGlyph(self, layerName='foreground'):
         """Answer the current glyph. By default this the result of CurrentGlyph, but it can be altered by
         inheriting assistant classes to force the current glyph as another layer (e.g. as in Responder and Upgrade Neon,
         where the "background" layer is return as working area. Answer None if there is no current glyph selected."""
@@ -304,7 +307,7 @@ class BaseAssistant:
         """Answers te boolean flag if the g is the current glyph."""
         if g is None:
             return False
-        cg = self.currentGlyph()
+        cg = self.getCurrentGlyph()
         return g.name == cg.name and g.font.path == cg.font.path
 
     def doesInterpolate(self, g, fix=True, verbose=False):
@@ -353,6 +356,15 @@ class BaseAssistant:
         if changed: # Fixed something, the report
             g.changed()
         return True
+
+    #   A N C H O R S
+
+    def getAnchors(self, g):
+        """Answer a dictionary with the anchors of g"""
+        anchors = {}
+        for a in g.anchors:
+            anchors[a.name] = a
+        return anchors
 
     #   P O I N T S
 
@@ -504,7 +516,7 @@ class Assistant(BaseAssistant, Subscriber):
         # User specific key strokes to be added here
 
         g = info['glyph']
-        cg = self.currentGlyph()
+        cg = self.getCurrentGlyph()
         if g.font.path != cg.font.path:
             # Not the current glyph, ignore the key stroke
             return
@@ -623,7 +635,7 @@ class AssistantController(BaseAssistant, WindowController):
             f.save()
 
     def updateEditor(self, sender):
-        g = self.currentGlyph()
+        g = self.getCurrentGlyph()
         if g is not None:
             g.changed()
                   
