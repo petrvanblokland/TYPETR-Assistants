@@ -246,7 +246,7 @@ class OutlinePen(BasePen):
 
         self.closeOpenPaths = closeOpenPaths
         
-        self.glyph = self.getCurrentGlyph()
+        self.glyph = self.CurrentGlyph()
         self.points = {}
         for contour in self.glyph.contours:
             for point in contour.points:
