@@ -48,6 +48,11 @@ class AssistantPartGuidelines(BaseAssistantPart):
  
         c.w.makeGuidelines = Button((C0, y, CW, L), 'Make guides [%s]' % personalKey, callback=self.makeGuidesCallback)
         c.w.automakeGuidelines = CheckBox((C1, y, CW, L), 'Auto make', value=True, sizeStyle='small', callback=self.updateEditor)
+        # Line color is crashing RF
+        #y += L # Closing line for the part UI
+        #c.w.guidelinesFooterLine = HorizontalLine((self.M, y+4, -self.M, 2))
+        #c.w.guidelinesFooterLine.setBorderColor((0, 0, 0, 1))
+        #y += 8
         y += L + LL
 
         return y

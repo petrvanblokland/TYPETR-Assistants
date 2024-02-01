@@ -46,13 +46,10 @@ class AssistantPartCurves(BaseAssistantPart):
 
         personalKey_q = self.registerKeyStroke('q', 'curvesB2QGlyphKey')
         personalKey_b = self.registerKeyStroke('b', 'curvesQ2BGlyphKey')
-        personalKey_E = self.registerKeyStroke('E', 'curvesSetStartPoint') # Choose selected point as start point
-        personalKey_e = self.registerKeyStroke('e', 'curvesSetStartPoint') # Auto selection of start points on best match
 
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         LL = 18
         c = self.getController()
-        c.w.setStartPointButton = Button((C0, y, CW, L), 'Set start [%s]' % personalKey_e, callback=self.curvesSetStartPointCallback)
         c.w.Q2BButton = Button((C1, y, CW, L), 'Q --> B [%s]' % personalKey_b, callback=self.Q2BCallback)
         c.w.B2QButton = Button((C2, y, CW, L), 'B --> Q [%s]' % personalKey_q, callback=self.B2QCallback)
         y += L + LL
@@ -120,54 +117,4 @@ class AssistantPartCurves(BaseAssistantPart):
             for p in contour.points:
                 p.selected = False
         g.changed()
-
-    #    C O N T O U R S
-
-    def curvesSetStartPointCallback(self, sender):
-        g = self.getCurrentGlyph()
-        if g is not None:
-            self.curvesSetStartPoint(g)
-
-    def curvesSetStartPoint(self, g, c=None, event=None):
-        """Set the start point to the selected points on [e]. Auto select the point on [E] key."""
-        doSelect = True
-        doAuto = c != c.upper() # Auto select if lowercase of key was used:
-        selectedContours = []
-        autoContours = []
-        g.prepareUndo()
-        for contour in g.contours:
-            selected = auto = x = y = None
-            points = contour.points
-            numPoints = len(points)
-            for pIndex, point in enumerate(points):
-                if point.type == 'offcurve':
-                    continue
-                if point.selected:
-                    selected = pIndex
-                if auto is None or x is None or y is None or point.y < y or (point.y == y and point.x < x):
-                    auto = pIndex
-                    x = point.x
-                    y = point.y
-            if selected:
-                selectedContours.append((selected, contour))
-            if auto:
-                autoContours.append((auto, contour))
-    
-        if doAuto: # Find the best match, ignoring any selections
-            changed = False
-            #print('... %s: Auto start for %d contours' % (glyph.name, len(autoContours)))
-            for pIndex, contour in autoContours:
-                if pIndex:
-                    # Make x show same as angled value in EditorWindow
-                    x = contour.points[pIndex].x - int(round((tan(radians(-g.font.info.italicAngle or 0)) * contour.points[pIndex].y)))
-                    print(f'... Altering startpoint to {(x, contour.points[pIndex].y)}')
-                    contour.naked().setStartPoint(pIndex)
-                    changed = True
-            if changed:
-                g.changed()
-        elif doSelect and selectedContours: # Uppercase key stroke: only do the selected points
-            #print('... %s: Set start for %d contours' % (glyph.name, len(selectedContours)))
-            for pIndex, contour in selectedContours:
-                contour.naked().setStartPoint(pIndex)
-            g.changed()
 

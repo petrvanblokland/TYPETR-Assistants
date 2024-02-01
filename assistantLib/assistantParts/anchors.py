@@ -48,11 +48,13 @@ class AssistantPartAnchors(BaseAssistantPart):
 
         c.w.fixAnchorsButton = Button((C0, y, CW, L), 'Fix anchors [%s]' % personalKey, callback=self.anchorsCallback)
         c.w.autoAnchors = CheckBox((C1, y, CW, L), 'Auto anchors', value=True, sizeStyle='small')
-        c.w.copyRomanAnchors = CheckBox((C2, y, CW, L), 'Copy roman/italic', value=True, sizeStyle='small')
-        y += L
-        #c.w.anchorLine = Box((self.M, y+4, -self.M, 1), borderColor=(0, 0, 0, 1), fillColor=(0, 0, 0, 1))
+        c.w.copyRomanAnchors = CheckBox((C2, y, CW, L), 'Copy roman-->italic', value=True, sizeStyle='small')
+        # Line color is crashing RoboFont
+        #y += L # Closing line for the part UI
+        #c.w.anchorsLine = HorizontalLine((self.M, y+4, -self.M, 0))
         #y += 8
-
+        y += L
+        
         return y
 
     def anchorsCallback(self, sender):

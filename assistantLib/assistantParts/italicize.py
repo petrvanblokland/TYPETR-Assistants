@@ -55,6 +55,7 @@ class AssistantPartItalicize(BaseAssistantPart):
 
     def italicizeCallback(self, sender):
         g = self.getCurrentGlyph()
+        print(g) 
         if g is not None:
             self.italicizeGlyph(g)
 
