@@ -370,7 +370,7 @@ class AssistantPartOverlay(BaseAssistantPart):
         c.w.kerningSrcUFOPathOverlay = CheckBox((C0, y, CW, L), 'Kerning overlay', value=False, sizeStyle='small', callback=self.updateEditor)
         c.w.romanItalicUFOPathOverlay = CheckBox((C1, y, CW, L), 'Roman/italic', value=False, sizeStyle='small', callback=self.updateEditor)
         y += L
-        c.w.snapOnBackgroundButton = Button((C2, y, CW, L), 'Snap on BF [%s]' % personalKey, callback=self.overlaySnap2OverlayCallback)
+        c.w.snapOnBackgroundButton = Button((C2, y, CW, L), 'Snap on BG [%s]' % personalKey, callback=self.overlaySnap2OverlayCallback)
         y += L * 1.5
         return y
 
