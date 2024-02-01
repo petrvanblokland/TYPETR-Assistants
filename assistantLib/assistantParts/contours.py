@@ -30,16 +30,22 @@ class AssistantPartContours(BaseAssistantPart):
     def updateContours(self, info):
         c = self.getController()
         g = info['glyph']
+        if g is None:
+            return
+        self.checkFixContours(g)
+
+    def checkFixContours(self, g):
+        changed = False
+        changed |= self.checkFixComponents(g)
+        changed |= self.checkFixComponentPositions(g)
+        if changed:
+            g.changed()
 
     def buildContours(self, y):
-
-        personalKey_E = self.registerKeyStroke('E', 'curvesSetStartPoint') # Choose selected point as start point
-        personalKey_e = self.registerKeyStroke('e', 'curvesSetStartPoint') # Auto selection of start points on best match
-
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
 
         c = self.getController()
-        c.w.setStartPointButton = Button((C2, y, CW, L), 'Set start [%s]' % personalKey_e, callback=self.curvesSetStartPointCallback)
+        c.w.setStartPointButton = Button((C1, y, CW, L), 'Set start [%s]' % personalKey_e, callback=self.curvesSetStartPointCallback)
         y += L
 
         return y
@@ -59,6 +65,7 @@ class AssistantPartContours(BaseAssistantPart):
         selectedContours = []
         autoContours = []
         openContours = []
+        
         g.prepareUndo()
         for cIndex, contour in enumerate(g.contours):
             selected = auto = x = y = None
@@ -110,3 +117,36 @@ class AssistantPartContours(BaseAssistantPart):
         if changed:
             g.changed()
 
+    def checkFixComponents(self, g):
+        """Check the existence of gd.base and gd.accent component. Create them when necessary.
+        And delete components that are not defined in the GlyphData.
+        These are the checks:
+        1 There are components but there should be none
+        2 There are no components but there should be one or more
+        3 The number of existing components is larger than it should be
+        4 The number of existing components is smaller than it should be
+        5 The number of components it right,  but their baseGlyph names are wrong
+        6 The number and names of existing components are just right
+         """
+        changed = False
+        md = self.getMasterData(g.font)
+        gd = md.glyphset.get(g.name)
+        if gd is None:
+            print(f'### checkFixComponents: Glyph /{g.name} does not exist in glyphset {gd.__class__.__name__}')
+            if g.components:
+                if gd.base and gd.base != g.components[0].baseGlyph:
+                    g.components[0].baseGlyph = gd.base
+                    print(f'... Set base component of /{g.name} to ')
+        return changed
+
+    def checkFixComponentPositions(self, g):
+        """For all components check if they are in place. If the base component has an anchor
+        and there are diacritic components that have the matching achor, then move the diacritics
+        so the positions of the anchors match up."""
+        if not g.components: # This must be a base glyph, check for drawing the diacritics cloud of glyphs that have g as base.
+            pass
+        else:
+            for component in g.components:
+                pass
+
+        return False

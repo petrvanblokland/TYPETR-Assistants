@@ -54,7 +54,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         #c.w.anchorsLine = HorizontalLine((self.M, y+4, -self.M, 0))
         #y += 8
         y += L
-        
+
         return y
 
     def anchorsCallback(self, sender):
@@ -79,8 +79,6 @@ class AssistantPartAnchors(BaseAssistantPart):
         changed = False
         changed |= self.checkFixZeroWidthAnchorPosition(g)
         changed |= self.checkFixRomanItalicAnchors(g)
-        changed |= self.checkFixComponents(g)
-        changed |= self.checkFixComponentPositions(g)
         if changed:
             g.changed()
 
@@ -125,36 +123,3 @@ class AssistantPartAnchors(BaseAssistantPart):
                     return True
         return False # Did not change
 
-    def checkFixComponents(self, g):
-        """Check the existence of gd.base and gd.accent component. Create them when necessary.
-        And delete components that are not defined in the GlyphData.
-        These are the checks:
-        1 There are components but there should be none
-        2 There are no components but there should be one or more
-        3 The number of existing components is larger than it should be
-        4 The number of existing components is smaller than it should be
-        5 The number of components it right,  but their baseGlyph names are wrong
-        6 The number and names of existing components are just right
-         """
-        changed = False
-        md = self.getMasterData(g.font)
-        gd = md.glyphset.get(g.name)
-        if gd is None:
-            print(f'### checkFixComponents: Glyph /{g.name} does not exist in glyphset {gd.__class__.__name__}')
-            if g.components:
-                if gd.base and gd.base != g.components[0].baseGlyph:
-                    g.components[0].baseGlyph = gd.base
-                    print(f'... Set base component of /{g.name} to ')
-        return changed
-
-    def checkFixComponentPositions(self, g):
-        """For all components check if they are in place. If the base component has an anchor
-        and there are diacritic components that have the matching achor, then move the diacritics
-        so the positions of the anchors match up."""
-        if not g.components: # This must be a base glyph, check for drawing the diacritics cloud of glyphs that have g as base.
-            pass
-        else:
-            for component in g.components:
-                pass
-
-        return False

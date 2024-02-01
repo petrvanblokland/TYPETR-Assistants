@@ -294,7 +294,7 @@ class BaseAssistant:
         dstFont.insertGlyph(srcGlyph, name=dstGlyphName)
         return dstFont[dstGlyphName]
 
-    def getCurrentGlyph(self, layerName='foreground'):
+    def getCurrentGlyph(self, layerName=EDIT_LAYER):
         """Answer the current glyph. By default this the result of CurrentGlyph, but it can be altered by
         inheriting assistant classes to force the current glyph as another layer (e.g. as in Responder and Upgrade Neon,
         where the "background" layer is return as working area. Answer None if there is no current glyph selected."""

@@ -111,7 +111,7 @@ class AssistantPartItalicize(BaseAssistantPart):
 
         print(f'... Italicize: Skew {skew } & Rotate {rotation}', )    
 
-        f[gName] = srcG # Copy from roman
+        f[gName] = srcG # Copy all layers from roman
         dstG = f[gName].getLayer(self.EDIT_LAYER)
         
         if not addComponents:
@@ -126,7 +126,6 @@ class AssistantPartItalicize(BaseAssistantPart):
 
         if skew == 0 and rotation == 0:
             return
-
 
         for contour in dstG:
             for bPoint in contour.bPoints:

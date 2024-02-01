@@ -93,7 +93,9 @@ class AssistantPartGuidelines(BaseAssistantPart):
         g.appendGuideline((x + tg * height, height), 0, name='Height %d' % height)
         g.appendGuideline((x + tg * middle, middle), 0, name='Middle %d' % middle)
 
-        if gd.isLower:
+        if gd is None:
+            print(f'### Cannot find /{g.name} in GlyphData {md.glyphData.__class__.__name__}')
+        elif gd.isLower:
             g.appendGuideline((xo + tg * (md.ascender + overshoot), md.ascender + overshoot), 0, name='%d (%d)' % (md.ascender + overshoot, overshoot))
             g.appendGuideline((x + tg * md.ascender, md.ascender), 0, name='Ascender %d' % md.ascender)
             g.appendGuideline((xo + tg * (md.descender - overshoot), md.descender - overshoot), 0, name='%d (%d)' % (md.descender - overshoot, overshoot))
