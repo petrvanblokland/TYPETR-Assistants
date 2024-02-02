@@ -42,10 +42,12 @@ class AssistantPartContours(BaseAssistantPart):
             g.changed()
 
     def buildContours(self, y):
+        personalKey_e = self.registerKeyStroke('e', 'curvesSetStartPoint')
+
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
 
         c = self.getController()
-        c.w.setStartPointButton = Button((C1, y, CW, L), 'Set start [%s]' % personalKey_e, callback=self.curvesSetStartPointCallback)
+        c.w.setStartPointButton = Button((C2, y, CW, L), 'Set start [%s]' % personalKey_e, callback=self.curvesSetStartPointCallback)
         y += L
 
         return y
@@ -65,14 +67,13 @@ class AssistantPartContours(BaseAssistantPart):
         selectedContours = []
         autoContours = []
         openContours = []
-        
+
         g.prepareUndo()
         for cIndex, contour in enumerate(g.contours):
             selected = auto = x = y = None
             points = contour.points
             numPoints = len(points)
             if contour.open: # Just select between the start and end point
-                print('Open contour', cIndex)
                 openContours.append((cIndex, contour))
             else:
                 for pIndex, point in enumerate(points):
@@ -130,7 +131,7 @@ class AssistantPartContours(BaseAssistantPart):
          """
         changed = False
         md = self.getMasterData(g.font)
-        gd = md.glyphset.get(g.name)
+        gd = md.glyphSet.get(g.name)
         if gd is None:
             print(f'### checkFixComponents: Glyph /{g.name} does not exist in glyphset {gd.__class__.__name__}')
             if g.components:

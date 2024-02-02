@@ -77,7 +77,7 @@ class BaseAssistant:
     # Select the color by user
     VISITED_MARKERS = [
         #('/Users/petr/Desktop/TYPETR-git', (40/255, 120/255, 255/255, 0.6), keys), # "Final" marker Blue (Petr))    
-        ('/Users/petr/Desktop/TYPETR-git', (50/255, 70/255, 230/255, 0.8), {'§':''}), # "Final" marker Blue (Petr))    
+        ('/Users/petr/Desktop/TYPETR-git', (50/255, 70/255, 230/255, 0.8), {'§':'§'}), # "Final" marker Blue (Petr))    
         ('/Users/edwarddzulaj/Documents', (92/255, 149/255, 190/255, 1), {}), # Edward
         ('/Users/graemeswank/Documents', (255/255, 83/255, 73/255, 1), {}),
         ('/Users/graeme/Documents', (255/255, 83/255, 73/255, 1), {}),
@@ -300,7 +300,7 @@ class BaseAssistant:
         where the "background" layer is return as working area. Answer None if there is no current glyph selected."""
         g = CurrentGlyph()
         if g is None:
-            return False
+            return None
         return g.getLayer(layerName)
 
     def isCurrentGlyph(self, g):
@@ -625,14 +625,41 @@ class AssistantController(BaseAssistant, WindowController):
     def buildUI(self, y):
         """Default user interface controllers. The selection of controls by an inheriting
         assistant class also defines the available functions."""
+        c = self.getController()
         for buildUIMethodName in self.BUILD_UI_METHODS:
             y = getattr(self, buildUIMethodName)(y)
-        self.w.saveAllButton = Button((self.C2, -self.L-self.M, self.CW, self.L), 'Save all', callback=self.saveAllCallback)
+        # Some default buttons that every assistant window should have
+        y = -self.L-self.M
+        c.w.fixGlyphSet = CheckBox((self.C0, y, self.CW, self.L), 'Fix glyphset', value=False, sizeStyle='small')
+        c.w.checkFixGlyphsetButton = Button((self.C1, y, self.CW, self.L), 'Fix glyphset', callback=self.checkFixGlyphsetCallback)
+        c.w.saveAllButton = Button((self.C2, y, self.CW, self.L), 'Save all', callback=self.saveAllCallback)
 
     def saveAllCallback(self, sender):
         for f in AllFonts():
             print(f'... Save {f.path}')
             f.save()
+
+    def checkFixGlyphsetCallback(self, sender):
+        """Check/fix the glyphset according to the defined MasterData.glyphSet records."""
+        cg = self.getCurrentGlyph()
+        md = self.getMasterData(cg.font)
+        # Find missing glyphs
+        for gName in sorted(md.glyphSet.keys()):
+            if not gName in cg.font:
+                if self.w.fixGlyphSet.get():
+                    print(f'... Create missing glyph /{gName}')
+                    cg.font.newGlyph(gName)
+                else:
+                    print(f'### Missing glyph /{gName}')
+
+        # Find obsolete glyphs to delete
+        for gName in sorted(cg.font.keys()):
+            if not gName in md.glyphSet.keys():
+                if self.w.fixGlyphSet.get():
+                    print(f'... Delete obsolete glyph /{gName}')
+                    del cg.font[gName]
+                else:
+                    print(f'### Obsolete glyph /{gName}')
 
     def updateEditor(self, sender):
         g = self.getCurrentGlyph()

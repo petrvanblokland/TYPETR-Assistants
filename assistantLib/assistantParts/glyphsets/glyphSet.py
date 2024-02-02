@@ -48,6 +48,9 @@ class GlyphSet:
     def get(self, gName, default=None):
         return self.glyphs.get(gName, default) 
 
+    def keys(self):
+        return self.glyphs.keys()
+        
 if __name__ == '__main__':
     import doctest
     import sys

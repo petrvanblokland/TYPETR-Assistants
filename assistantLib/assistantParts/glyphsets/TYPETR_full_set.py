@@ -27,7 +27,7 @@ class TYPETR_GlyphSet(GlyphSet):
     >>> gs['B']
     <GlyphData B>
     """
-    
+
     # The "c" attribtes are redundant, if the @uni or @hex atre defined, but they are offer easy searching in the source by char.
 
     GLYPH_DATA = {

@@ -46,9 +46,9 @@ class AssistantPartAnchors(BaseAssistantPart):
         c = self.getController()
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
 
-        c.w.fixAnchorsButton = Button((C0, y, CW, L), 'Fix anchors [%s]' % personalKey, callback=self.anchorsCallback)
-        c.w.autoAnchors = CheckBox((C1, y, CW, L), 'Auto anchors', value=True, sizeStyle='small')
-        c.w.copyRomanAnchors = CheckBox((C2, y, CW, L), 'Copy roman-->italic', value=True, sizeStyle='small')
+        c.w.autoAnchors = CheckBox((C0, y, CW, L), 'Auto anchors', value=True, sizeStyle='small')
+        c.w.copyRomanAnchors = CheckBox((C1, y, CW, L), 'Copy roman-->italic', value=True, sizeStyle='small')
+        c.w.fixAnchorsButton = Button((C2, y, CW, L), 'Fix anchors [%s]' % personalKey, callback=self.anchorsCallback)
         # Line color is crashing RoboFont
         #y += L # Closing line for the part UI
         #c.w.anchorsLine = HorizontalLine((self.M, y+4, -self.M, 0))

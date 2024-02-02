@@ -89,8 +89,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         c = self.getController()
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         LL = 18
-        c.w.centerGlyphButton = Button((C0, y, CW, L), 'Center width [%s]' % personalKey, callback=self.spacerCenterGlyphCallback)
         c.w.autoSpace = CheckBox((C1, y, CW, L), 'Auto space', value=True, sizeStyle='small')
+        c.w.centerGlyphButton = Button((C2, y, CW, L), 'Center width [%s]' % personalKey, callback=self.spacerCenterGlyphCallback)
         y += L + LL
 
         return y
