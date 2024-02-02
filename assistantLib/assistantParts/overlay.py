@@ -368,7 +368,7 @@ class AssistantPartOverlay(BaseAssistantPart):
         c.w.orgUFOPathOverlay = CheckBox((C2, y, CW, L), 'Original UFO overlay', value=False, sizeStyle='small', callback=self.updateEditor)
         y += L
         c.w.kerningSrcUFOPathOverlay = CheckBox((C0, y, CW, L), 'Kerning overlay', value=False, sizeStyle='small', callback=self.updateEditor)
-        c.w.romanItalicUFOPathOverlay = CheckBox((C1, y, CW, L), 'Roman/italic', value=False, sizeStyle='small', callback=self.updateEditor)
+        c.w.romanItalicUFOPathOverlay = CheckBox((C1, y, CW, L), 'Roman/italic', value=True, sizeStyle='small', callback=self.updateEditor)
         y += L
         c.w.snapOnBackgroundButton = Button((C2, y, CW, L), 'Snap on BG [%s]' % personalKey, callback=self.overlaySnap2OverlayCallback)
         y += L * 1.5
