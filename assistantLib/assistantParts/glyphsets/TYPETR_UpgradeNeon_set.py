@@ -28,7 +28,7 @@ class TYPETR_UpgradeNeonGlyphSet(TYPETR_GlyphSet):
     <GlyphData B>
     """
 
-    # The "c" attribtes are redundant, if the @uni or @hex atre defined, but they are offer easy searching in the source by char.
+    # The "c" attribtes are redundant, if the @uni or @hex atre defined, but they offer easy searching in the source by char.
 
     gds = GLYPH_DATA = deepcopy(TYPETR_GlyphSet.GLYPH_DATA)
 

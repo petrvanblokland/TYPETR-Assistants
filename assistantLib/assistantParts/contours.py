@@ -42,24 +42,24 @@ class AssistantPartContours(BaseAssistantPart):
             g.changed()
 
     def buildContours(self, y):
-        personalKey_e = self.registerKeyStroke('e', 'curvesSetStartPoint')
+        personalKey_e = self.registerKeyStroke('e', 'contoursSetStartPoint')
 
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
 
         c = self.getController()
-        c.w.setStartPointButton = Button((C2, y, CW, L), 'Set start [%s]' % personalKey_e, callback=self.curvesSetStartPointCallback)
+        c.w.setStartPointButton = Button((C2, y, CW, L), 'Set start [%s]' % personalKey_e, callback=self.contourssSetStartPointCallback)
         y += L
 
         return y
 
     #    C O N T O U R S
 
-    def curvesSetStartPointCallback(self, sender):
+    def contourssSetStartPointCallback(self, sender):
         g = self.getCurrentGlyph()
         if g is not None:
             self.curvesSetStartPoint(g)
 
-    def curvesSetStartPoint(self, g, c=None, event=None):
+    def contoursSetStartPoint(self, g, c=None, event=None):
         """Set the start point to the selected points on [e]. Auto select the point on [E] key."""
         changed = False
         doSelect = True
@@ -134,10 +134,40 @@ class AssistantPartContours(BaseAssistantPart):
         gd = md.glyphSet.get(g.name)
         if gd is None:
             print(f'### checkFixComponents: Glyph /{g.name} does not exist in glyphset {gd.__class__.__name__}')
-            if g.components:
-                if gd.base and gd.base != g.components[0].baseGlyph:
-                    g.components[0].baseGlyph = gd.base
-                    print(f'... Set base component of /{g.name} to ')
+            return False
+        # 1
+        if g.components and not gd.components: # Clear existing components
+            print(f'... Clear {len(g.components)} components of /{g.name}')
+            g.clearComponents()
+            changed = True
+        # 2
+        elif not g.components and gd.components: # Create missing components
+            for componentName in gd.components:
+                g.appendComponent(componentName)
+            changed = True
+        # 3
+        elif len(g.components) > len(gd.components): # More components than necessary
+            # @@@ Seems to update the whole glyph, recreating the anchorts too?
+            components = g.components  # Convert to a list
+            g.clearComponents()
+            for n in range(len(g.components) - len(gd.components)): # Recontruct the amount components that we need
+                print(f'... Remove {len(g.components) - len(gd.components)} component(s) from /{g.name}')
+                g.appendComponent(g.baseGlyph, transformation=component.transformation)
+            changed = True
+        # 4
+        elif len(g.components) < len(gd.components): # Fewer components than necessary
+            for componentName in gd.components[len(g.components):]:
+                print(f'... Add component {componentName} to /{g.name}')
+                g.appendComponent(componentName)
+            changed = True
+        # 5 # Recheck all of the above the for the right baseGlyph reference
+        if len(g.components) == len(gd.components): # May still not be eqaul, due to recursive update from lines above.
+            for cIndex, component in enumerate(g.components):
+                if component.baseGlyph != gd.components[cIndex]:
+                    print(f'... Rename component {cIndex} {component.baseGlyph} to {gd.components[cIndex]} in /{g.name}')
+                    component.baseGlyph = gd.components[cIndex]
+                    changed = True
+        # 6 All done
         return changed
 
     def checkFixComponentPositions(self, g):
