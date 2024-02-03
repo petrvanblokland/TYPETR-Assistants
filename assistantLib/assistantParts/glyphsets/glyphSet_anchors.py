@@ -41,7 +41,12 @@ CONNECTED_ANCHORS = {
     _TONOS: TONOS_, # Also anchor of the other -uc accents
     _HORN: HORN_,
     _MIDDLE: MIDDLE_,
-}
+
+} 
+# Make X-ref
+for key, value in list(CONNECTED_ANCHORS.items()):
+    CONNECTED_ANCHORS[value] = key
+print(CONNECTED_ANCHORS)
 
 ACCENT_DATA = {
     'acutecmb': _TOP,

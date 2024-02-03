@@ -27,7 +27,9 @@ class AssistantPartAnchors(BaseAssistantPart):
     """
 
     def initMerzAnchors(self, container):
-        pass
+        """Initialize the Merz object for this assistant part.
+        Note that the diacritics-cloud object are supported by the contours part.
+        """
 
     def updateAnchors(self, info):
         """If the checkbox is set, then try to check and fix automated margins and width."""

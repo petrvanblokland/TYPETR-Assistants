@@ -239,6 +239,11 @@ class GlyphData:
         return False
     isSc = property(_get_isSc)
     
+    def _get_isDiacritic(self):
+        """Answer the boolean flag if this glyph is a diacritic."""
+        return self.name.endswith('cmb') or self.name.endswith('comb')
+    isDiacritic = property(_get_isDiacritic)
+
     def _get_components(self):
         """Answer the list of all component names. An empty list if there are no components in the glyph."""
         components = []

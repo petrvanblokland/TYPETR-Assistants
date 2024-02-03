@@ -59,34 +59,50 @@ class GlyphSet:
             glyphData = self.GLYPH_DATA # Redefined by inheriting class
         self.glyphs = deepcopy(glyphData) # Deep copy the data, in case it's altered by the instance.
 
-        self._unicode2GlyphName = {} # Key is unicode, value is glyph name
-        self._anchors = set() # Names of anchors 
+        self.unicode2GlyphName = {} # Key is unicode, value is glyph name
+        self.anchor2GlyphNames = {} # Key is names of anchors. Value if a list of glyph names that implement the anchor.
+        self.anchor2DiacriticNames = {} # Key is names of anchors, Value is a list of diacritics that support the anchor placement.
+        self.diacritic2GlyphNames = {} # Key is name of a diacritic. Value is a list of glyph names that use the diacritic as component
+
         for gName, gd in sorted(self.glyphs.items()):
             if gd.uni:
                 #assert gd.uni not in UNICODE2GLYPH, ("Unicode %04x already defined for /%s" % (gd.uni, gName))
-                self._unicode2GlyphName[gd.uni] = gd.name
-        
+                self.unicode2GlyphName[gd.uni] = gd.name
+            # Make the dict of disacritics --> List of glyphs that use them
+            for componentName in gd.components:
+                gdc = self.glyphs.get(componentName)
+                if gdc is not None and gdc.isDiacritic:
+                    if not gdc.name in self.diacritic2GlyphNames:
+                        self.diacritic2GlyphNames[gdc.name] = []
+                    self.diacritic2GlyphNames[gdc.name].append(gd.name)
+
             gdBase = None
             if gd.base is not None: # If there is a base defined, take the x-ref base reference.
                 gdBase = gd.base
                 gd.composites.add(gName)
-            '''
-            for accentName in gd.accents: # It's an accent, x-ref this glyph to accents
-                if accentName in ACCENT_DATA:
-                    ad = ACCENT_DATA[accentName]
-                    ad['composites'].add(gName)
-                    accentAnchor = ad['anchor']
-                    if gdBase is not None:  
-                        gdBase.anchors.add(CONNECTED_ANCHORS[accentAnchor])
-                    gdAccent = gds[accentName]
-                    gdAccent.anchors.add(accentAnchor)
-            '''
+
+            if gd.anchors is not None:
+                for anchorName in gd.anchors:
+                    if not anchorName in self.anchor2GlyphNames:
+                        self.anchor2GlyphNames[anchorName] = []
+                    self.anchor2GlyphNames[anchorName].append(gName)
+                    if not anchorName in self.anchor2DiacriticNames:
+                        self.anchor2DiacriticNames[anchorName] = []
+                    self.anchor2DiacriticNames[anchorName].append(gName)
 
     def __repr__(self):
         return(f'<{self.__class__.__name__} {len(self.glyphs)} glyphs>')
 
     def __getitem__(self, gName):
         return self.glyphs.get(gName, None)
+
+    def getAnchorGlyphNames(self, anchorName):
+        """Answer the list of glyphs that have this anchor"""
+        return self.anchor2GlyphNames.get(anchorName)
+
+    def getAnchorDiacriticNames(self, anchorName):
+        """Answer the list of diacritic glyph names that have this anchor"""
+        return self.anchor2DiacriticNames.get(anchorName)
 
     def checkFixFromFont(self, f):
         """Check the validity of unicode, components, achors, etc."""
@@ -141,9 +157,6 @@ class GlyphSet:
 
     def keys(self):
         return self.glyphs.keys()
-
-    def unicode2GlyphName(self, uni):
-        return self._unicode2GlyphName.get(uni)
 
     def saveGlyphSetSource(self):
         """Write Python code source for the current self.GLYPH_DATA table."""

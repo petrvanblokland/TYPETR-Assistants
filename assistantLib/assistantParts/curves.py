@@ -48,11 +48,11 @@ class AssistantPartCurves(BaseAssistantPart):
         personalKey_b = self.registerKeyStroke('b', 'curvesQ2BGlyphKey')
 
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
-        LL = 18
+
         c = self.getController()
         c.w.Q2BButton = Button((C1, y, CW, L), 'Q --> B [%s]' % personalKey_b, callback=self.Q2BCallback)
         c.w.B2QButton = Button((C2, y, CW, L), 'B --> Q [%s]' % personalKey_q, callback=self.B2QCallback)
-        y += L + LL
+        y += L*1.5
 
         return y
 
@@ -62,7 +62,7 @@ class AssistantPartCurves(BaseAssistantPart):
         """Callback from button"""
         g = self.getCurrentGlyph()
         if g is not None:
-            self.curvesConvert(g, POINTTYPE_QUADRATIC, POINTTYPE_BEZIER, FACTOR)
+            self.curvesConvert(g, self.POINTTYPE_QUADRATIC, self.POINTTYPE_BEZIER, FACTOR)
 
     def curvesQ2BGlyphKey(self, g, c, event):
         """Callback for registered event on key stroke"""
@@ -74,7 +74,7 @@ class AssistantPartCurves(BaseAssistantPart):
         # optionDown = event['optionDown']
         # capLock = event['capLockDown']
         
-        self.curvesConvert(g, POINTTYPE_QUADRATIC, POINTTYPE_BEZIER, FACTOR)
+        self.curvesConvert(g, self.POINTTYPE_QUADRATIC, self.POINTTYPE_BEZIER, FACTOR)
 
     #    B E Z I E R --> Q U A D R A T I C
         
@@ -82,7 +82,7 @@ class AssistantPartCurves(BaseAssistantPart):
         """Callback from button"""
         g = self.getCurrentGlyph()
         if g is not None:
-            self.curvesConvert(g, POINTTYPE_BEZIER, POINTTYPE_QUADRATIC, 1/FACTOR)
+            self.curvesConvert(g, self.POINTTYPE_BEZIER, self.POINTTYPE_QUADRATIC, 1/FACTOR)
 
     def curvesB2QGlyphKey(self, g, c, event):
         """Callback for registered event on key stroke"""
@@ -94,7 +94,7 @@ class AssistantPartCurves(BaseAssistantPart):
         # optionDown = event['optionDown']
         # capLock = event['capLockDown']
 
-        self.curvesConvert(g, POINTTYPE_BEZIER, POINTTYPE_QUADRATIC, 1/FACTOR)
+        self.curvesConvert(g, self.POINTTYPE_BEZIER, self.POINTTYPE_QUADRATIC, 1/FACTOR)
 
     def factorizeOffCurve(self, onCurve, offCurve, factor):
         dx = offCurve.x - onCurve.x
@@ -110,9 +110,9 @@ class AssistantPartCurves(BaseAssistantPart):
                 p_0, p_1, p_2, p_3 = points[n], points[n-1], points[n-2], points[n-3]
                 if p_0.type == fromType:
                     p_0.type = toType
-                    if p_1.type == POINTTYPE_OFFCURVE:
+                    if p_1.type == self.POINTTYPE_OFFCURVE:
                         self.factorizeOffCurve(p_0, p_1, factor)
-                    if p_2.type == POINTTYPE_OFFCURVE:
+                    if p_2.type == self.POINTTYPE_OFFCURVE:
                         self.factorizeOffCurve(p_3, p_2, factor)
             for p in contour.points:
                 p.selected = False

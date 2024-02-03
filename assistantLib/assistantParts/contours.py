@@ -19,13 +19,23 @@ for path in PATHS:
         sys.path.append(path)
 
 from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart, FAR
+from assistantLib.assistantParts.glyphsets.glyphSet_anchors import CONNECTED_ANCHORS
 
 
 class AssistantPartContours(BaseAssistantPart):
     """Set startpoint and other contour functions
     """
+    MAX_DIACRITICS_CLOUD = 40
+
     def initMerzContours(self, container):
-        pass
+        """Initialize the Merz instances for this assistant part.""" 
+        self.contoursDiacritics = [] # Storage of diacritics images
+        for dIndex in range(self.MAX_DIACRITICS_CLOUD): # Max number of diacritics in a glyph. @@@ If too low, some diacritics don't show
+            self.contoursDiacritics.append(self.backgroundContainer.appendPathSublayer(
+                name='diacritics-%d' % dIndex,
+                position=(FAR, 0),
+                fillColor=(0, 0, 0.5, 0.2),
+            ))
 
     def updateContours(self, info):
         c = self.getController()
@@ -48,7 +58,7 @@ class AssistantPartContours(BaseAssistantPart):
 
         c = self.getController()
         c.w.setStartPointButton = Button((C2, y, CW, L), 'Set start [%s]' % personalKey_e, callback=self.contourssSetStartPointCallback)
-        y += L
+        y += L*1.5
 
         return y
 
@@ -149,7 +159,7 @@ class AssistantPartContours(BaseAssistantPart):
         elif len(g.components) > len(gd.components): # More components than necessary
             # @@@ Seems to update the whole glyph, recreating the anchorts too?
             components = g.components  # Convert to a list
-            g.clearComponents()
+            #g.clearComponents()
             for n in range(len(g.components) - len(gd.components)): # Recontruct the amount components that we need
                 print(f'... Remove {len(g.components) - len(gd.components)} component(s) from /{g.name}')
                 g.appendComponent(g.baseGlyph, transformation=component.transformation)
@@ -157,7 +167,7 @@ class AssistantPartContours(BaseAssistantPart):
         # 4
         elif len(g.components) < len(gd.components): # Fewer components than necessary
             for componentName in gd.components[len(g.components):]:
-                print(f'... Add component {componentName} to /{g.name}')
+                print(f'... Append component {componentName} to /{g.name}')
                 g.appendComponent(componentName)
             changed = True
         # 5 # Recheck all of the above the for the right baseGlyph reference
@@ -171,13 +181,96 @@ class AssistantPartContours(BaseAssistantPart):
         return changed
 
     def checkFixComponentPositions(self, g):
-        """For all components check if they are in place. If the base component has an anchor
+        """For all components check if they are on the right poaition. If the base component has an anchor
         and there are diacritic components that have the matching achor, then move the diacritics
         so the positions of the anchors match up."""
+        changed = False
+        md = self.getMasterData(g.font)
+        gd = md.glyphSet.get(g.name)
+        assert gd is not None # Otherwise the glyph data does not exist.
         if not g.components: # This must be a base glyph, check for drawing the diacritics cloud of glyphs that have g as base.
-            pass
-        else:
+            diacritics = []
+            for a in g.anchors:
+                d = md.glyphSet.getAnchorDiacriticNames(CONNECTED_ANCHORS[a.name])
+                #print(d)
+
+        else: # Otherwise the components should match their positions with the corresponding anchors
             for component in g.components:
                 pass
 
-        return False
+        return changed
+
+    def XXXXX(self):
+        f = g.font
+        gd = getGlyphData(f, g.name)
+        if gd is None:
+            print('### Missing glyph:', g.name, 'in', f.path.split('/')[-1])
+            return False
+            
+        cIndex = 0 # Index of layer slot, showing diacritics
+        for compositeName in gd.composites: # @glyph is the base glyph of theses composite glyphs
+            if compositeName not in f:
+                f.newGlyph(compositeName)
+                print('### Create new glyph /%s' % compositeName)
+            self.fixFlourishesCloud(f[compositeName])
+            self.fixComponents(f[compositeName]) # Check if it needs something
+            # If the compositeName glyph is an exception, not to be positioned by an anchor
+            # in the base glyph, then this is indicated by the gs.fixAccents flag set to False
+            cgd = getGlyphData(f, compositeName)
+            if not cgd.fixAccents: # Skip if flag is False
+                continue
+            
+            accentedGlyphSrc = f[compositeName]
+            for accentName in cgd.accents: # This is (one of) the accent for this glyph
+                # Match position of the accent anchor with the anchor of mg
+                if not accentName in f:
+                    f.newGlyph(accentName)
+                    print('### Create new accent glyph /%s' % accentName)
+                self.fixFlourishesCloud(f[accentName])
+                self.fixComponents(f[accentName]) # Check if it needs something
+                accentGlyph = accentGlyphSrc = f[accentName]
+                accentAnchor = getAccentAnchor(accentGlyphSrc, accentName)
+                if accentAnchor is None: # Anchor does not exist on the accent glyph yet, create it.
+                    self.fixAnchors(accentGlyph)
+                    accentAnchor = getAccentAnchor(accentGlyphSrc, accentName)
+
+                gAnchor = getBaseAnchor(g, accentName)
+
+                if accentAnchor is not None and gAnchor is not None and cIndex < len(self.diacritics):
+                    diacriticsLayer = self.diacritics[cIndex] # Get layer for this diacritics glyph
+                    diacriticsPath = accentGlyph.getRepresentation("merz.CGPath") 
+                    diacriticsLayer.setPath(diacriticsPath)
+                    ax = gAnchor.x - accentAnchor.x
+                    ay = gAnchor.y - accentAnchor.y
+                    diacriticsLayer.setPosition((ax, ay))
+                    cIndex += 1
+                    # Adjust the components if they are not in the right anchor positions 
+                    # Check if the accented glyph has the component on the same position
+                    # otherwise correct it.
+                    changed = False
+                    
+                    self.fixFlourishesCloud(accentedGlyphSrc)
+                    self.fixComponents(accentedGlyphSrc) # Make sure the necessary component exist.
+                    for component in accentedGlyphSrc.components:
+                        if component.baseGlyph == accentName:
+                            t = list(component.transformation)
+                            if abs(t[-2] - gAnchor.x + accentAnchor.x) > 0.5 or abs(t[-1] - gAnchor.y + accentAnchor.y) > 0.5:
+                                t[-1] = gAnchor.y - accentAnchor.y
+                                t[-2] = gAnchor.x - accentAnchor.x
+                                print('... Fix accent position "%s --> %s' % (component.baseGlyph, accentedGlyphSrc.name))
+                                component.transformation = t
+                                changed = True
+                    if changed:
+                        accentGlyph.changed()
+                        accentGlyphSrc.changed()
+                        accentedGlyphSrc.changed()
+                        #print(component.baseGlyph, accentedAnchor.x - accentAnchor.x, accentedAnchor.x, accentAnchor.x, t[-2], t[-1] )
+                        
+        for n in range(cIndex, len(self.diacritics)):
+            self.diacritics[n].setPosition((FAR, 0)) # Move the unused layers out of view
+
+        if VERBOSE3 and changed :
+            print('+++ Changed by fixAccentCloud', )
+
+        return changed
+        
