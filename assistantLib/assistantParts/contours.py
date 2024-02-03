@@ -147,27 +147,33 @@ class AssistantPartContours(BaseAssistantPart):
             return False
         # 1
         if g.components and not gd.components: # Clear existing components
-            print(f'... Clear {len(g.components)} components of /{g.name}')
+            print(f'... Clear {len(g.components)} component(s) of /{g.name}')
             g.clearComponents()
             changed = True
         # 2
         elif not g.components and gd.components: # Create missing components
             for componentName in gd.components:
+                print(f'... Append missing component /{componentName} to /{g.name}')
                 g.appendComponent(componentName)
             changed = True
         # 3
         elif len(g.components) > len(gd.components): # More components than necessary
-            # @@@ Seems to update the whole glyph, recreating the anchorts too?
+            obsoleteComponents = len(g.components) - len(gd.components)
             components = g.components  # Convert to a list
-            #g.clearComponents()
-            for n in range(len(g.components) - len(gd.components)): # Recontruct the amount components that we need
-                print(f'... Remove {len(g.components) - len(gd.components)} component(s) from /{g.name}')
-                g.appendComponent(g.baseGlyph, transformation=component.transformation)
-            changed = True
+            for cIndex, component in enumerate(components):
+                if cIndex < len(gd.components): # Keep it?
+                    component.selected = False
+                else: # Select it to be removed
+                    component.selected = True
+                    changed = True
+            if changed:
+                print(f'... Remove {obsoleteComponents} obsolete component(s) in /{g.name}')
+
+            g.removeSelection(removePoints=False, removeAnchors=False, removeImages=False)
         # 4
         elif len(g.components) < len(gd.components): # Fewer components than necessary
             for componentName in gd.components[len(g.components):]:
-                print(f'... Append component {componentName} to /{g.name}')
+                print(f'... Append component /{componentName} to /{g.name}')
                 g.appendComponent(componentName)
             changed = True
         # 5 # Recheck all of the above the for the right baseGlyph reference
