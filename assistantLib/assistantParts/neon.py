@@ -787,6 +787,7 @@ class AssistantPartNeon(BaseAssistantPart):
         return result
 
     def updateOutline(self, g):
+        changed = False
         self.expandedPoints = {}
         bgG = g.getLayer('background')
         fgG = g.getLayer('foreground')
@@ -801,6 +802,8 @@ class AssistantPartNeon(BaseAssistantPart):
             fgG.clear()
             pen = fgG.naked().getPen()
             outline.draw(pen)
+            changed = True
+        return changed
 
     def updateView(self, sender=None):
         UpdateCurrentGlyphView()
