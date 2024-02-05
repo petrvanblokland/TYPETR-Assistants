@@ -27,12 +27,14 @@ class AssistantPartInterpolate(BaseAssistantPart):
         """Update any Merz objects that exist in the EditWindow"""
 
     def updateInterpolate(self, info):
+        changed = False
         c = self.getController()
         g = info['glyph']
         if g is None:
-            return
+            return False # Nothing changed to the glyph
         md = self.getMasterData(g.font)
         c.w.interpolateButton.enable(None not in (md.m1, md.m2))
+        return changed
 
     KEY_INTERPOLATE = '§'
 

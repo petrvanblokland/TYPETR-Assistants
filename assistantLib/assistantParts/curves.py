@@ -41,7 +41,8 @@ class AssistantPartCurves(BaseAssistantPart):
                 b2qEnable = True
         c.w.Q2BButton.enable(q2bEnable)
         c.w.B2QButton.enable(b2qEnable)
-
+        return False # Nothing changed to the glyph
+        
     def buildCurves(self, y):
 
         personalKey_q = self.registerKeyStroke('q', 'curvesB2QGlyphKey')

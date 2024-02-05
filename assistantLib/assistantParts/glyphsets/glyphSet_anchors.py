@@ -46,7 +46,17 @@ CONNECTED_ANCHORS = {
 # Make X-ref
 for key, value in list(CONNECTED_ANCHORS.items()):
     CONNECTED_ANCHORS[value] = key
-print(CONNECTED_ANCHORS)
+
+# Diacritics to show a subset-cloud by the contours part.
+EXAMPLE_DIACRITICS = {
+    TOP_: ('gravecomb', 'acutecomb', 'circumflexcomb', 'macroncomb', 'dotaccentcomb', 'dieresiscomb', 'tildecomb',
+           'gravecmb', 'acutecmb', 'circumflexcmb', 'macroncmb', 'dotaccentcmb', 'dieresiscmb', 'tildecmb',),
+    BOTTOM_: ('plusbelowcomb', 'ringbelowcomb', 'cedillacomb', 
+              'plusbelowcmb', 'ringbelowcmb', 'cedillacmb'),
+    MIDDLE_: ('slashshortcomb', 'slashshortcmb'),
+    OGONEK_: ('ogonekcomb', 'ogonekcmb'),
+    TONOS_: ('tonoscomb', 'tonoscmb'),
+}
 
 ACCENT_DATA = {
     'acutecmb': _TOP,
@@ -83,6 +93,27 @@ ACCENT_DATA = {
     'ringacutecmb.uc': _TOP,
     'tildecmb.uc': _TOP,
     'commaturnedabovecmb.uc': _TOP,
+
+    # Segoe naming
+    'acutecomb': _TOP,
+    'brevecomb': _TOP,
+    'caroncomb': _TOP,
+    'caroncomb.vert': _VERT,
+    'cedillacomb': _BOTTOM,
+    'circumflexcomb': _TOP,
+    'macroncomb': _TOP,
+    'ogonekcomb': _OGONEK,
+    'eogonekcomb': _OGONEK,
+    'dieresiscomb': _TOP,
+    'dotaccentcomb': _TOP,
+    'gravecomb': _TOP,
+    'hungarumlautcomb': _TOP,
+    'ringcomb': _TOP,
+    'ringacutecomb': _TOP,
+    'tildecomb': _TOP,
+    'dotmiddlecomb': _MIDDLE,
+    'commabelowcomb': _BOTTOM,
+    'commaturnedabovecomb': _TOP,
 }
 
 TOP_ANCHORS = ['A', 'A-cy', 'AE', 'AEacute', 'AEmacron', 'Aacute', 'Abreve', 'Abreve-cy', 'Abreve.component', 'Abreve.component1', 'Abreve.component2', 

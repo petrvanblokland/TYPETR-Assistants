@@ -19,7 +19,7 @@ for path in PATHS:
         sys.path.append(path)
 
 from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart, FAR
-from assistantLib.assistantParts.glyphsets.glyphSet_anchors import CONNECTED_ANCHORS
+from assistantLib.assistantParts.glyphsets.glyphSet_anchors import CONNECTED_ANCHORS, EXAMPLE_DIACRITICS
 
 
 class AssistantPartContours(BaseAssistantPart):
@@ -41,15 +41,14 @@ class AssistantPartContours(BaseAssistantPart):
         c = self.getController()
         g = info['glyph']
         if g is None:
-            return
-        self.checkFixContours(g)
+            return False # Nothing changed
+        return self.checkFixContours(g)
 
     def checkFixContours(self, g):
         changed = False
         changed |= self.checkFixComponents(g)
         changed |= self.checkFixComponentPositions(g)
-        if changed:
-            g.changed()
+        return changed
 
     def buildContours(self, y):
         personalKey_e = self.registerKeyStroke('e', 'contoursSetStartPoint')
@@ -158,6 +157,7 @@ class AssistantPartContours(BaseAssistantPart):
             changed = True
         # 3
         elif len(g.components) > len(gd.components): # More components than necessary
+            # g.component cannot be set,  so we following the protocol of deleting selected components.
             obsoleteComponents = len(g.components) - len(gd.components)
             components = g.components  # Convert to a list
             for cIndex, component in enumerate(components):
@@ -193,12 +193,28 @@ class AssistantPartContours(BaseAssistantPart):
         changed = False
         md = self.getMasterData(g.font)
         gd = md.glyphSet.get(g.name)
+        dIndex = 0 # Index into showing diacritics Merz layers
         assert gd is not None # Otherwise the glyph data does not exist.
         if not g.components: # This must be a base glyph, check for drawing the diacritics cloud of glyphs that have g as base.
-            diacritics = []
             for a in g.anchors:
-                d = md.glyphSet.getAnchorDiacriticNames(CONNECTED_ANCHORS[a.name])
-                #print(d)
+                """
+                accentGlyph = accentGlyphSrc = f[accentName]
+                accentAnchor = getAccentAnchor(accentGlyphSrc, accentName)
+                if accentAnchor is None: # Anchor does not exist on the accent glyph yet, create it.
+                    self.fixAnchors(accentGlyph)
+                    accentAnchor = getAccentAnchor(accentGlyphSrc, accentName)
+
+                gAnchor = getBaseAnchor(g, accentName)
+
+                if accentAnchor is not None and gAnchor is not None and cIndex < len(self.diacritics):
+                    diacriticsLayer = self.diacritics[cIndex] # Get layer for this diacritics glyph
+                    diacriticsPath = accentGlyph.getRepresentation("merz.CGPath") 
+                    diacriticsLayer.setPath(diacriticsPath)
+                    ax = gAnchor.x - accentAnchor.x
+                    ay = gAnchor.y - accentAnchor.y
+                    diacriticsLayer.setPosition((ax, ay))
+                    cIndex += 1
+                """
 
         else: # Otherwise the components should match their positions with the corresponding anchors
             for component in g.components:

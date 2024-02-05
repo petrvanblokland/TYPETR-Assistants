@@ -31,12 +31,14 @@ class AssistantPartGuidelines(BaseAssistantPart):
 
     def updateGuidelines(self, info):
         """If the checkbox is set, then automatic build guidelines if another glyph is selected."""
+        changed = False
         c = self.getController()
         g = info['glyph']
         if g is None:
-            return
+            return False # Nothing changed to the glyph
         if c.w.automakeGuidelines.get():
-            self.makeGuidelines() # Always make them when glyph is selected. 
+            changed |= self.checkFixGuidelines() # Always make them when glyph is selected. 
+        return changed
 
     def buildGuidelines(self, y):
         """Build the assistant UI for guidelines controls."""
@@ -59,23 +61,25 @@ class AssistantPartGuidelines(BaseAssistantPart):
 
     def makeGuidesCallback(self, sender):
         """Make the guidelines for the current glyph. Same as [±] keys."""
-        self.makeGuidelines()
+        self.checkFixGuidelines(forced=True)
 
-    def makeGuidelines(self, g=None, c=None, event=None):
+    def makeGuidelines(self, g, c, event):
+        self.checkFixGuidelines(forced=True)
+
+    def checkFixGuidelines(self, forced=False):
         """Build the guide lines from the definition in masterData, based on real values and categories. 
         Also try to guess which glyphs need which guidelines based on patterns in glyph names.
         """
-
+        changed = False
         g = self.getCurrentGlyph()
         if g is None:
-            return
+            return False # Nothing changed
         md = self.getMasterData(g.font)
         gd = self.getGlyphData(g)
 
         # Guideline label position angled for italics
         tg = tan(radians(-g.font.info.italicAngle or 0))
 
-        g.clearGuidelines()
         overshoot = md.getOvershoot(g.name) # Get the right kind of overshoot for this glyph cetegory
         baseline = md.getBaseline(g.name)
         height = md.getHeight(g.name)
@@ -84,25 +88,43 @@ class AssistantPartGuidelines(BaseAssistantPart):
         x = -300 # Label position on the left
         xo = -50 # Label position for overshoot values
 
+        guidelines = []
         if baseline: 
-            g.appendGuideline((x + tg * baseline, baseline), 0, name='Baseline %d' % baseline)
-            g.appendGuideline((xo + tg * (baseline - overshoot), baseline - overshoot), 0, name='%d (%d)' % (baseline - overshoot, overshoot))
+            guidelines.append((x + tg * baseline, baseline, 0, 'Baseline %d' % baseline))
+            guidelines.append((xo + tg * (baseline - overshoot), baseline - overshoot, 0, '%d (%d)' % (baseline - overshoot, overshoot)))
         else: # Don't overwrite y == 0 position
-            g.appendGuideline((xo + tg * (baseline - overshoot), baseline - overshoot), 0, name='(%d)' % overshoot)            
-        g.appendGuideline((xo + tg * (height + overshoot), height + overshoot), 0, name='%d (%d)' % (height + overshoot, overshoot))
-        g.appendGuideline((x + tg * height, height), 0, name='Height %d' % height)
-        g.appendGuideline((x + tg * middle, middle), 0, name='Middle %d' % middle)
+            guidelines.append((xo + tg * (baseline - overshoot), baseline - overshoot, 0, '(%d)' % overshoot))            
+        guidelines.append((xo + tg * (height + overshoot), height + overshoot, 0, '%d (%d)' % (height + overshoot, overshoot)))
+        guidelines.append((x + tg * height, height, 0, 'Height %d' % height))
+        guidelines.append((x + tg * middle, middle, 0, 'Middle %d' % middle))
 
         if gd is None:
             print(f'### Cannot find /{g.name} in GlyphData {md.glyphData.__class__.__name__}')
         elif gd.isLower:
-            g.appendGuideline((xo + tg * (md.ascender + overshoot), md.ascender + overshoot), 0, name='%d (%d)' % (md.ascender + overshoot, overshoot))
-            g.appendGuideline((x + tg * md.ascender, md.ascender), 0, name='Ascender %d' % md.ascender)
-            g.appendGuideline((xo + tg * (md.descender - overshoot), md.descender - overshoot), 0, name='%d (%d)' % (md.descender - overshoot, overshoot))
-            g.appendGuideline((x + tg * md.descender, md.descender), 0, name='Descender %d' % md.descender)
+            guidelines.append((xo + tg * (md.ascender + overshoot), md.ascender + overshoot, 0, '%d (%d)' % (md.ascender + overshoot, overshoot)))
+            guidelines.append((x + tg * md.ascender, md.ascender, 0, 'Ascender %d' % md.ascender))
+            guidelines.append((xo + tg * (md.descender - overshoot), md.descender - overshoot, 0, '%d (%d)' % (md.descender - overshoot, overshoot)))
+            guidelines.append((x + tg * md.descender, md.descender, 0, 'Descender %d' % md.descender))
 
         if md.stemOvershoot is not None: # Font is using single stem overshoots, e.g. with rounded stems as in Upgrade Neon
-            g.appendGuideline((xo + tg * (height + md.stemOvershoot), height + md.stemOvershoot), 0, name='%d (%d)' % (height + md.stemOvershoot, md.stemOvershoot))
-            g.appendGuideline((xo + tg * (baseline - md.stemOvershoot), baseline - md.stemOvershoot), 0, name='%d (%d)' % (baseline - md.stemOvershoot, md.stemOvershoot))
+            guidelines.append((xo + tg * (height + md.stemOvershoot), height + md.stemOvershoot, 0, '%d (%d)' % (height + md.stemOvershoot, md.stemOvershoot)))
+            guidelines.append((xo + tg * (baseline - md.stemOvershoot), baseline - md.stemOvershoot, 0, '%d (%d)' % (baseline - md.stemOvershoot, md.stemOvershoot)))
 
+        if forced or len(g.guidelines) != len(guidelines):
+            # Amounts are different, too complex to compare. Just rebuild all guidelines.
+            changed = True
+            g.clearGuidelines()
+            for x, y, angle, name in guidelines:
+                g.appendGuideline((x, y), angle, name=name)
+        else: # The amount of guidelines match, check if the position and names are stil the same.
+            for gIndex, guideline in enumerate(g.guidelines):
+                x, y, angle, name = guidelines[gIndex]
+                if guideline.x != x or guideline.y != y or guideline.name != name:
+                    print('Set guide', x, y, name)
+                    guideline.x = x
+                    guideline.y = y
+                    guideline.name = name
+                    guideline.changed() # Handle the update for just the guideline.
+
+        return changed
 

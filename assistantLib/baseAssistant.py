@@ -55,6 +55,8 @@ import assistantLib.assistantParts.spacingKerning.kerningManager
 importlib.reload(assistantLib.assistantParts.spacingKerning.kerningManager)
 from assistantLib.assistantParts.spacingKerning.kerningManager import KerningManager
 
+from assistantLib.assistantParts.glyphsets.glyphSet_anchors import ACCENT_DATA
+
 # Add paths to libs in sibling repositories
 PATHS = ('../TYPETR-Assistants/',)
 for path in PATHS:
@@ -359,13 +361,43 @@ class BaseAssistant:
 
     #   A N C H O R S
 
-    def getAnchors(self, g):
-        """Answer a dictionary with the anchors of g"""
+    def getAnchorsDict(self, g):
+        """Answer a dictionary with the anchors of g by their name."""
         anchors = {}
         for a in g.anchors:
             anchors[a.name] = a
         return anchors
 
+    def getAnchors(self, g):
+        """Answerm the selected anchors. If no anchors are selected, then answer a list with all anchors."""
+        anchors = []
+        for anchor in g.anchors:
+            if anchor.selected:
+                anchors.append(anchor)
+        if anchors:
+            return anchors # Just answer the selected anchor
+        return g.anchors # Nothing selected, answer them all
+        
+    def getAccentAnchor(self, g, accentName):
+        """Answer the named anchor, if it exits and if it an accent. Answer None otherwise."""
+        if accentName in ACCENT_DATA:
+            return getAnchor(g, ACCENT_DATA[accentName]) 
+        return None
+
+    def getBaseAnchor(self, g, accentName):
+        """Answer the counterpart connected anchor of accentName, if it exits. Answer None otherwise."""
+        if accentName in ACCENT_DATA:
+            anchorName = ACCENT_DATA[accentName] 
+            return getAnchor(g, CONNECTED_ANCHORS[anchorName])
+        return None
+                     
+    def getAnchor(self, g, anchorName):
+        """Answer the named anchor, if it exits. Answer None otherwise."""
+        for anchor in g.anchors:
+            if anchor.name == anchorName:
+                return anchor
+        return None
+        
     #   P O I N T S
 
     def distance(self, px1, py1, px2, py2):
@@ -480,7 +512,7 @@ class Assistant(BaseAssistant, Subscriber):
         #print("""The editor did set glyph""", info['glyph'])
         g = info['glyph']
         cg = CurrentFont()
-        if g == cg:
+        if g == cg: # Handle subscribed methods of assistant parts, for current glyph only.
             for setGlyphMethodName in self.SET_GLYPH_METHODS: 
                 getattr(self, setGlyphMethodName)(g)
         self.update(info) # Check if something else needs to be updated
@@ -554,12 +586,15 @@ class Assistant(BaseAssistant, Subscriber):
 
     def update(self, info):
         """The glyph changed. Check is something else needs to be done."""
+        changed = False
         if self.isUpdating:
             return
         self.isUpdating = True
         # Let the parts do updating work too, in case that is necessary
         for updateMethod in self.UPDATE_METHODS:
-            getattr(self, updateMethod)(info)
+            changed |= getattr(self, updateMethod)(info)
+        if changed:
+            info['glyph'].changed()
         self.isUpdating = False
 
     def updateMerz(self, info):

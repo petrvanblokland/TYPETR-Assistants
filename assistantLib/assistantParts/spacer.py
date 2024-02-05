@@ -68,17 +68,16 @@ class AssistantPartSpacer(BaseAssistantPart):
         self.rightSpaceSourceLabel.setHorizontalAlignment('center')
 
     def updateSpacer(self, info):
-        """If the checkbox is set, then try to check and fix automated margins and width."""
+        """If the checkbox is set, then try to check and fix automated margins and width.
+        Answer the boolean flag if something was changed to the glyph."""
         g = info['glyph']
         if g is None:
-            return
+            return False # Nothing changed.
         changed = False
-
         changed |= self.checkFixGlyphLeftMargin(g)
         changed |= self.checkFixGlyphRightMargin(g)
         changed |= self.checkFixGlyphWidth(g)
-        if changed:
-            g.changed()
+        return changed
 
     KEY_CENTER_GLYPH = '='
 

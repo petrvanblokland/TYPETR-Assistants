@@ -30,11 +30,12 @@ class AssistantPartItalicize(BaseAssistantPart):
         pass
 
     def updateItalicize(self, info):
+        """Subscribed update method should answer a “changed” boolean."""
         g = info['glyph']
         if g.components or g.contours: # Not empty, do nothing
-            return
+            return False
         # Glyph is empty (by italicizeCallback or manually by user
-        self.italicizeGlyph(g)
+        return self.italicizeGlyph(g)
 
     def buildItalicize(self, y):
         """Register key stroke cap-I. [i] is reserved for the spacing part"""
@@ -57,7 +58,8 @@ class AssistantPartItalicize(BaseAssistantPart):
         g = self.getCurrentGlyph()
         print(g) 
         if g is not None:
-            self.italicizeGlyph(g)
+            if self.italicizeGlyph(g):
+                g.changed()
 
     def italicizeGlyphKey(self, g, c=None, event=None):
         """Callback for registered event on key stroke"""
@@ -69,7 +71,7 @@ class AssistantPartItalicize(BaseAssistantPart):
         # optionDown = event['optionDown']
         # capLock = event['capLockDown']
         
-        self.italicizeGlyph(g)
+        return self.italicizeGlyph(g)
 
     # Function mostly copied from the Slanter extension
     def italicizeGlyph(self, g):
@@ -81,7 +83,7 @@ class AssistantPartItalicize(BaseAssistantPart):
 
         if not md.isItalic:
             print(f'### Glyph {md.name}/{g.name} is not italic.')
-            return
+            return False # Nothing changed
 
         g.prepareUndo()
 
@@ -92,10 +94,10 @@ class AssistantPartItalicize(BaseAssistantPart):
         srcF = self.getFont(md.romanItalicUFOPath)
         if srcF is None:
             print(f'### Cannot find italic source {md.romanItalicUFOPath}.')
-            return
+            return False # Nothing changed
         if gName not in srcF:
             print(f'### Italic source glyph {gName} does not exist.')
-            return
+            return False # Nothing changed
 
         srcG = srcF[gName]
 
@@ -191,7 +193,7 @@ class AssistantPartItalicize(BaseAssistantPart):
         
         dstG.copyToLayer('background', dstG)
         #dstG.removeSelection()
-        dstG.changed()
+        return True # Glyph changed
 
     def addExtremePoints(self, g, doSelect=False):
         g.extremePoints(round=0)
@@ -202,5 +204,6 @@ class AssistantPartItalicize(BaseAssistantPart):
                     point.smooth = True
                 else:
                     point.selected = doSelect
+        return True # Glyph changed
        
  

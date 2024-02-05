@@ -18,43 +18,11 @@
 try:
     from assistantLib.assistantParts.glyphsets.glyphData import * #GD, TOP, TOP_, _BOTTOM, BOTTOM_, CAT_CAP_OVERSHOOT, etc.
     from assistantLib.assistantParts.glyphsets.glyphSet import GlyphSet
+    from assistantLib.assistantParts.glyphsets.glyphSet_anchors import CONNECTED_ANCHORS
 except ModuleNotFoundError:
     from glyphsets.glyphData import * #GD, TOP, TOP_, _BOTTOM, BOTTOM_, CAT_CAP_OVERSHOOT, etc.
     from glyphsets.glyphSet import GlyphSet
-
-_TOP = '_top'
-TOP_ = 'top'
-_BOTTOM = '_bottom'
-BOTTOM_ = 'bottom'
-_RING = '_ring'
-RING_ = 'ring'
-_OGONEK = '_ogonek'
-OGONEK_ = 'ogonek'
-_VERT = '_vert'
-VERT_ = 'vert'
-_DOT = '_dot'
-DOT_ = 'dot'
-_TILDE = '_tilde'
-TILDE_ = 'tilde'
-_TONOS = '_tonos'
-TONOS_ = 'tonos'
-_HORN = '_horn'
-HORN_ = 'horn'
-_MIDDLE = '_middle'
-MIDDLE_ = 'middle'
-
-CONNECTED_ANCHORS = {
-    _TOP: TOP_,
-    _BOTTOM: BOTTOM_,
-    _RING: RING_,
-    _OGONEK: OGONEK_,
-    _VERT: VERT_,
-    _DOT: DOT_,
-    _TILDE: TILDE_,
-    _TONOS: TONOS_, # Also anchor of the other -uc accents
-    _HORN: HORN_,
-    _MIDDLE: MIDDLE_,
-}
+    from glyphsets.glyphSet_anchors import CONNECTED_ANCHORS
 
 class MasterData:
     """Storing additional data about masters, without storing the actual RFont instance. 
