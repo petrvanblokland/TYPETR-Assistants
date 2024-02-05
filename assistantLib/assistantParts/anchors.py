@@ -97,8 +97,8 @@ class AssistantPartAnchors(BaseAssistantPart):
 
     def anchorsCallback(self, sender):
         g = self.getCurrentGlyph()
-        #g.clear() 
-        g.changed() # Force update. UpdateItalize will then rebuild the glyph.
+        if self.checkFixAnchors(g):
+            g.changed() # Force update. UpdateItalize will then rebuild the glyph.
 
     def anchorsGlyphKey(self, g, c, event):
         """Callback for registered event on key stroke"""
@@ -110,7 +110,8 @@ class AssistantPartAnchors(BaseAssistantPart):
         # optionDown = event['optionDown']
         # capLock = event['capLockDown']
         
-        self.checkFixAnchors(g)
+        if self.checkFixAnchors(g):
+            g.changed()
 
     def checkFixAnchors(self, g):
         changed = False

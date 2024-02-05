@@ -390,7 +390,11 @@ class BaseAssistant:
             anchorName = AD.ACCENT_DATA[accentName] 
             return getAnchor(g, AD.CONNECTED_ANCHORS[anchorName])
         return None
-                     
+    
+    def getCorrespondingAnchor(self, g, anchorName):
+        """Answer the corresponding anchor in g if it exists. Answer None otherwise."""
+        return self.getAnchor(g, AD.CONNECTED_ANCHORS.get(anchorName))
+    
     def getAnchor(self, g, anchorName):
         """Answer the named anchor, if it exits. Answer None otherwise."""
         for anchor in g.anchors:

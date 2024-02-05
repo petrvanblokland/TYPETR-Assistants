@@ -45,9 +45,12 @@ class AnchorData:
         _MIDDLE: MIDDLE_,
 
     } 
+    DIACRITICS_ANCHORS = [] # List of _<anchorName> as used in diacritics positioning
+
     # Make X-ref
     for key, value in list(CONNECTED_ANCHORS.items()):
         CONNECTED_ANCHORS[value] = key
+        DIACRITICS_ANCHORS.append(key)
 
     # Diacritics to show a subset-cloud by the contours part.
     EXAMPLE_DIACRITICS = {
@@ -116,7 +119,13 @@ class AnchorData:
         'dotmiddlecomb': _MIDDLE,
         'commabelowcomb': _BOTTOM,
         'commaturnedabovecomb': _TOP,
+
+        # Exception Segoe names
+        'perispomeni': _TOP,
+        'dialytikaperispomeni': _TOP,
     }
+
+    # Tables below are mainly use to export _export/Exported_Glyphset.py, etc.
 
     TOP_ANCHORS = ['A', 'A-cy', 'AE', 'AEacute', 'AEmacron', 'Aacute', 'Abreve', 'Abreve-cy', 'Abreve.component', 'Abreve.component1', 'Abreve.component2', 
         'Abreve.component3', 'Abreveacute', 'Abrevedotbelow', 'Abrevegrave', 'Abrevehookabove', 'Abrevetilde', 'Acaron', 'Acircumflex', 'Acircumflexacute', 

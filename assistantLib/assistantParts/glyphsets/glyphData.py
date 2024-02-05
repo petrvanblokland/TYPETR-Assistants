@@ -15,6 +15,7 @@
 #
 # Note that names cannot start with an underscore, or else the cannot be imported by other sources.
 #
+from assistantLib.assistantParts.glyphsets.anchorData import AD
 
 class GlyphData:
     """Glyph data element that contains all individual data for glyphs.
@@ -237,7 +238,7 @@ class GlyphData:
     
     def _get_isDiacritic(self):
         """Answer the boolean flag if this glyph is a diacritic."""
-        return self.name.endswith('cmb') or self.name.endswith('comb')
+        return self.name in AD.ACCENT_DATA
     isDiacritic = property(_get_isDiacritic)
 
     def _get_components(self):
