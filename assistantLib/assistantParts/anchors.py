@@ -32,6 +32,13 @@ class AssistantPartAnchors(BaseAssistantPart):
         """Initialize the Merz object for this assistant part.
         Note that the diacritics-cloud object are supported by the contours part.
         """
+        self.anchorsDiacriticsCloud = [] # Storage of diacritics images
+        for dIndex in range(self.MAX_DIACRITICS_CLOUD): # Max number of diacritics in a glyph. @@@ If too low, some diacritics don't show
+            self.anchorsDiacriticsCloud.append(self.backgroundContainer.appendPathSublayer(
+                name='diacritics-%d' % dIndex,
+                position=(FAR, 0),
+                fillColor=(0, 0, 0.5, 0.2),
+            ))
 
     def updateMerzAnchors(self, info):
         """Update the diacritics cloud, depending on the existing anchors"""
@@ -42,12 +49,12 @@ class AssistantPartAnchors(BaseAssistantPart):
         dIndex = 0 # Index into showing diacritics Merz layers
         assert gd is not None # Otherwise the glyph data does not exist.
         for a in g.anchors:
-            for dName in EXAMPLE_DIACRITICS.get(a.name, []):
+            for dName in AD.EXAMPLE_DIACRITICS.get(a.name, []):
                 if dName in g.font:
                     dg = g.font[dName]
-                    dAnchor = self.getAnchor(dg, CONNECTED_ANCHORS[a.name])
+                    dAnchor = self.getAnchor(dg, AD.CONNECTED_ANCHORS[a.name])
                     if dAnchor is not None:
-                        diacriticsLayer = self.contoursDiacritics[dIndex] # Get layer for this diacritics glyph
+                        diacriticsLayer = self.anchorsDiacriticsCloud[dIndex] # Get layer for this diacritics glyph
                         diacriticsPath = dg.getRepresentation("merz.CGPath") 
                         diacriticsLayer.setPath(diacriticsPath)
                         ax = a.x - dAnchor.x
@@ -55,8 +62,8 @@ class AssistantPartAnchors(BaseAssistantPart):
                         diacriticsLayer.setPosition((ax, ay))
                         dIndex += 1
 
-        for n in range(dIndex, len(self.contoursDiacritics)):
-            self.contoursDiacritics[n].setPosition((FAR, 0))
+        for n in range(dIndex, len(self.anchorsDiacriticsCloud)):
+            self.anchorsDiacriticsCloud[n].setPosition((FAR, 0))
         
     def updateAnchors(self, info):
         """If the checkbox is set, then try to check and fix automated margins and width."""
@@ -103,8 +110,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         # optionDown = event['optionDown']
         # capLock = event['capLockDown']
         
-        print('... anchorsGlyphKey')
-        #self.italicizeGlyph(g)
+        self.checkFixAnchors(g)
 
     def checkFixAnchors(self, g):
         changed = False
