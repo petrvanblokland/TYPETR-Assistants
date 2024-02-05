@@ -78,7 +78,8 @@ class AssistantPartAnchors(BaseAssistantPart):
 
     def buildAnchors(self, y):
         """Register key stroke [a] to sync anchor positions"""
-        personalKey = self.registerKeyStroke('a', 'anchorsGlyphKey')
+        personalKey_a = self.registerKeyStroke('a', 'anchorsGlyphKey')
+        personalKey_exclam = self.registerKeyStroke('!', 'anchorsCenterOnWidth')
 
         """Build the assistant UI for anchor controls."""
         c = self.getController()
@@ -86,7 +87,7 @@ class AssistantPartAnchors(BaseAssistantPart):
 
         c.w.autoAnchors = CheckBox((C0, y, CW, L), 'Auto anchors', value=True, sizeStyle='small')
         c.w.copyRomanAnchors = CheckBox((C1, y, CW, L), 'Copy roman-->italic', value=True, sizeStyle='small')
-        c.w.fixAnchorsButton = Button((C2, y, CW, L), 'Fix anchors [%s]' % personalKey, callback=self.anchorsCallback)
+        c.w.fixAnchorsButton = Button((C2, y, CW, L), 'Fix anchors [%s]' % personalKey_a, callback=self.anchorsCallback)
         # Line color is crashing RoboFont
         #y += L # Closing line for the part UI
         #c.w.anchorsLine = HorizontalLine((self.M, y+4, -self.M, 0))
@@ -113,6 +114,23 @@ class AssistantPartAnchors(BaseAssistantPart):
         if self.checkFixAnchors(g):
             g.changed()
 
+    def anchorsCenterOnWidth(self, g, c, event):
+        """If there are anchors selected, then center them on the width. If no anchors are selected,
+        the center all on width."""
+        changed = False
+        for a in self.getAnchors(g): # Answers selected anchors or all
+            if not a.name in AD.CENTERING_ANCHORS: # Does this anchor center?
+                continue # Otherwise ignore
+            x = int(round(g.width/2 + a.y * tan(radians(-g.font.info.italicAngle or 0))))
+            y = int(round(a.y))
+            if abs(a.x - x) > 1 or abs(a.y - y) > 1:
+                print(f'... Centering anchor “{a.name} of /{g.name}')
+                a.x = x
+                a.y = y
+                changed = True
+        if changed:
+            g.changed()
+
     def checkFixAnchors(self, g):
         changed = False
         changed |= self.checkFixZeroWidthAnchorPosition(g)
@@ -120,12 +138,13 @@ class AssistantPartAnchors(BaseAssistantPart):
         return changed
 
     def checkFixRomanItalicAnchors(self, g):
-        """Check if the anchors in the counterpart roman or italic glyph is the same as for the current font.
+        """If there is a base glyph, then Check if the anchors in the counterpart roman or italic glyph is the same as for the current font.
         If not, then add the missing anchor and position it on slanted position.
         Note that will be other checking/fixing done too, so the filter should be exclusive."""
         changed = False
         f = g.font
         md = self.getMasterData(f)
+        gd = self.getGlyphData(g)
         src = self.getFont(md.romanItalicUFOPath)
         if g.name in src:
             srcG = src[g.name]

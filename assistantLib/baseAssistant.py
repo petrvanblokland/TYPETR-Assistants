@@ -575,7 +575,7 @@ class Assistant(BaseAssistant, Subscriber):
         c = self.TRANSLATE_KEYS.get(cc, cc) # Answer c if not define in the dictionary.
         if c is not None and c in self.KEY_STROKE_METHODS: # Otherwise skip the key stroke
             for keyStrokeMethodName in self.KEY_STROKE_METHODS[c]:
-                print(f'... [{c}] {keyStrokeMethodName} {g.name} {g.font.path}')
+                print(f'... {keyStrokeMethodName} [{c}] {g.name} {g.font.path.split("/")[-1]}')
                 getattr(self, keyStrokeMethodName)(g, c, event)
 
     def started(self):

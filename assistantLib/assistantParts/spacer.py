@@ -70,13 +70,15 @@ class AssistantPartSpacer(BaseAssistantPart):
     def updateSpacer(self, info):
         """If the checkbox is set, then try to check and fix automated margins and width.
         Answer the boolean flag if something was changed to the glyph."""
+        changed = False
         g = info['glyph']
         if g is None:
-            return False # Nothing changed.
-        changed = False
+            return changed # Nothing changed.
+        
         changed |= self.checkFixGlyphLeftMargin(g)
         changed |= self.checkFixGlyphRightMargin(g)
         changed |= self.checkFixGlyphWidth(g)
+        
         return changed
 
     KEY_CENTER_GLYPH = '='
@@ -153,7 +155,10 @@ class AssistantPartSpacer(BaseAssistantPart):
         self.rightSpaceSourceLabel.setPosition((0, -self.SPACER_MARKER_R*1.5))
         self.rightSpaceSourceLabel.setText(label)
 
-        return False
+        ##### FOR NOW
+        # Add leftmargin stuff here
+
+        return changed
 
     def checkFixGlyphRightMargin(self, g):
         changed = False
@@ -171,20 +176,26 @@ class AssistantPartSpacer(BaseAssistantPart):
         self.rightSpaceSourceLabel.setPosition((0, -self.SPACER_MARKER_R*1.5))
         self.rightSpaceSourceLabel.setText(label)
 
+        ##### FOR NOW
+        # Add rightmargin stuff here
 
-        return False
+        return changed
     
     def spacerCenterGlyphCallback(self, sender):
         g = self.getCurrentGlyph()
         if g is not None:
-            self.spacerCenterGlyhph(g)
+            if self.spacerCenterGlyhph(g):
+                g.changed()
 
     def spacerCenterGlyph(self, g, c, event):     
         """Snap the selected points of the current glyph onto points that are within range on the background glyph."""
+        changed = False
         lm = g.angledLeftMargin
         rm = g.angledRightMargin
         w = g.width
         if lm is not None:
             g.angledLeftMargin = (lm + rm)/2
             g.width = w
-            g.changed()
+            changed = True
+
+        return changed

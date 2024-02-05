@@ -46,12 +46,14 @@ class AnchorData:
 
     } 
     DIACRITICS_ANCHORS = [] # List of _<anchorName> as used in diacritics positioning
-
     # Make X-ref
     for key, value in list(CONNECTED_ANCHORS.items()):
         CONNECTED_ANCHORS[value] = key
         DIACRITICS_ANCHORS.append(key)
 
+    CENTERING_ANCHORS = [ # List of anchors that do center on width. Ignore TONOS, HORN, OGONEK, VERT
+        TOP_, BOTTOM_, RING_, DOT_, TILDE_, MIDDLE_,
+    ]
     # Diacritics to show a subset-cloud by the contours part.
     EXAMPLE_DIACRITICS = {
         TOP_: ('gravecomb', 'acutecomb', 'circumflexcomb', 'macroncomb', 'dotaccentcomb', 'dieresiscomb', 'tildecomb',
