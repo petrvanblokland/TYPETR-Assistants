@@ -12,21 +12,19 @@ import os
 
 try:
     from assistantLib.assistantParts.glyphsets.glyphData import *
-    from assistantLib.assistantParts.glyphsets.glyphSet_anchors import (_TOP, _BOTTOM, _RING, _MIDDLE, _OGONEK, _VERT, _DOT, _TILDE, _TONOS, _HORN, _MIDDLE,
-        _TOP_ANCHORS, _MIDDLE_ANCHORS, _BOTTOM_ANCHORS, _OGONEK_ANCHORS, _DOT_ANCHORS, _TONOS_ANCHORS, _VERT_ANCHORS) 
+    from assistantLib.assistantParts.glyphsets.anchorData import AD 
 except ModuleNotFoundError:
     from glyphData import *
-    from glyphSet_anchors import (_TOP, _BOTTOM, _RING, _MIDDLE, _OGONEK, _VERT, _DOT, _TILDE, _TONOS, _HORN, _MIDDLE,
-        _TOP_ANCHORS, _MIDDLE_ANCHORS, _BOTTOM_ANCHORS, _OGONEK_ANCHORS, _DOT_ANCHORS, _TONOS_ANCHORS, _VERT_ANCHORS) 
+    from anchorData import AD 
 
 class GlyphSet:
     """GlyphSet behaves like a dictionary of GlyphData instances.
 
     >>> from glyphData import *
-    >>> from glyphSet_anchors import *
+    >>> from anchorData import AD
     >>> glyphs = {}
-    >>> glyphs['A'] = GD(l2r='A', uni=65, c='A', name='A', srcName='A', hex='0041', anchors=(TOP_, MIDDLE_, BOTTOM_), comment='A Uppercase Alphabet, Latin', gid=35)
-    >>> glyphs['Aacute'] = GD(l='A', r='A', uni=193, c='Á', name='Aacute', srcName='Aacute', hex='00c1', anchors=(TOP_, MIDDLE_, BOTTOM_),  base='A', accents=['acutecmb'], comment='Á A WITH ACUTE, LATIN CAPITAL LETTER', gid=130)
+    >>> glyphs['A'] = GD(l2r='A', uni=65, c='A', name='A', srcName='A', hex='0041', anchors=(AD.TOP_, AD.MIDDLE_, AD.BOTTOM_), comment='A Uppercase Alphabet, Latin', gid=35)
+    >>> glyphs['Aacute'] = GD(l='A', r='A', uni=193, c='Á', name='Aacute', srcName='Aacute', hex='00c1', anchors=(AD.TOP_, AD.MIDDLE_, AD.BOTTOM_),  base='A', accents=['acutecmb'], comment='Á A WITH ACUTE, LATIN CAPITAL LETTER', gid=130)
     >>> gs = GlyphSet(glyphs)
     >>> gs
     <GlyphSet 2 glyphs>
@@ -121,34 +119,34 @@ class GlyphSet:
                     print(f'### /{g.name} has wrong accent glyph /{component.baseGlyph} in component {cIndex}, should one of /{gs.accents}?')
             anchors = []
             if g.name in TOP_ANCHORS:
-                anchors.append(TOP_)                   
+                anchors.append(AD.TOP_)                   
             if g.name in MIDDLE_ANCHORS:
-                anchors.append(MIDDLE_)                   
+                anchors.append(AD.MIDDLE_)                   
             if g.name in BOTTOM_ANCHORS:
-                anchors.append(BOTTOM_)                   
+                anchors.append(AD.BOTTOM_)                   
             if g.name in OGONEK_ANCHORS:
-                anchors.append(OGONEK_)                   
+                anchors.append(AD.OGONEK_)                   
             if g.name in DOT_ANCHORS:
-                anchors.append(DOT_)                   
+                anchors.append(AD.DOT_)                   
             if g.name in TONOS_ANCHORS:
-                anchors.append(TONOS_)                   
+                anchors.append(AD.TONOS_)                   
             if g.name in VERT_ANCHORS:
-                anchors.append(VERT_)                   
+                anchors.append(AD.VERT_)                   
         
             if g.name in _TOP_ANCHORS:
-                anchors.append(_TOP)                   
+                anchors.append(AD._TOP)                   
             if g.name in _MIDDLE_ANCHORS:
-                anchors.append(_MIDDLE)                   
+                anchors.append(AD._MIDDLE)                   
             if g.name in _BOTTOM_ANCHORS:
-                anchors.append(_BOTTOM)                   
+                anchors.append(AD._BOTTOM)                   
             if g.name in _OGONEK_ANCHORS:
-                anchors.append(_OGONEK)                   
+                anchors.append(AD._OGONEK)                   
             if g.name in _DOT_ANCHORS:
-                anchors.append(_DOT)                   
+                anchors.append(AD._DOT)                   
             if g.name in _TONOS_ANCHORS:
-                anchors.append(_TONOS)                   
+                anchors.append(AD._TONOS)                   
             if g.name in _VERT_ANCHORS:
-                anchors.append(_VERT)                   
+                anchors.append(AD._VERT)                   
         
             gs.anchors = anchors
 

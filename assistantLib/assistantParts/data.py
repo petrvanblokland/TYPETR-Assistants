@@ -16,13 +16,13 @@
 #
 
 try:
-    from assistantLib.assistantParts.glyphsets.glyphData import * #GD, TOP, TOP_, _BOTTOM, BOTTOM_, CAT_CAP_OVERSHOOT, etc.
+    from assistantLib.assistantParts.glyphsets.glyphData import * 
     from assistantLib.assistantParts.glyphsets.glyphSet import GlyphSet
-    from assistantLib.assistantParts.glyphsets.glyphSet_anchors import CONNECTED_ANCHORS
+    from assistantLib.assistantParts.glyphsets.anchorData import AD
 except ModuleNotFoundError:
-    from glyphsets.glyphData import * #GD, TOP, TOP_, _BOTTOM, BOTTOM_, CAT_CAP_OVERSHOOT, etc.
+    from glyphsets.glyphData import * 
     from glyphsets.glyphSet import GlyphSet
-    from glyphsets.glyphSet_anchors import CONNECTED_ANCHORS
+    from glyphsets.anchorData import AD
 
 class MasterData:
     """Storing additional data about masters, without storing the actual RFont instance. 
@@ -159,10 +159,10 @@ class MasterData:
         self.supsOvershoot = supsOvershoot
         
         self.cat2Overshoot = { # Category --> overshoot
-            CAT_OVERSHOOT: baseOvershoot,
-            CAT_CAP_OVERSHOOT: capOvershoot,
-            CAT_SUPS_OVERSHOOT: supsOvershoot,
-            CAT_SC_OVERSHOOT: scOvershoot,
+            GD.CAT_OVERSHOOT: baseOvershoot,
+            GD.CAT_CAP_OVERSHOOT: capOvershoot,
+            GD.CAT_SUPS_OVERSHOOT: supsOvershoot,
+            GD.CAT_SC_OVERSHOOT: scOvershoot,
         }
         
         if unitsPerEm is None:
@@ -197,10 +197,10 @@ class MasterData:
         self.middleCapHeight = middleCapHeight
 
         self.cat2Height = { # Category --> height
-            CAT_XHEIGHT: xHeight,
-            CAT_CAP_HEIGHT: capHeight,
-            CAT_SC_HEIGHT: scHeight,
-            CAT_SUPS_HEIGHT: supsHeight, # Height of .sups, .sinf, .numr, .dnom and mod
+            GD.CAT_XHEIGHT: xHeight,
+            GD.CAT_CAP_HEIGHT: capHeight,
+            GD.CAT_SC_HEIGHT: scHeight,
+            GD.CAT_SUPS_HEIGHT: supsHeight, # Height of .sups, .sinf, .numr, .dnom and mod
         }
 
         if baseDiacriticsTop is None: # Baseline of top diacritics
@@ -233,12 +233,12 @@ class MasterData:
         self.sinfBaseline = sinfBaseline
 
         self.cat2Baseline = {
-            CAT_BASELINE: baseline,
-            CAT_MOD_BASELINE: modBaseline,
-            CAT_NUMR_BASELINE: numrBaseline,
-            CAT_SINF_BASELINE: sinfBaseline,
-            CAT_SUPS_BASELINE: supsBaseline,
-            CAT_DNOM_BASELINE: dnomBaseline ,
+            GD.CAT_BASELINE: baseline,
+            GD.CAT_MOD_BASELINE: modBaseline,
+            GD.CAT_NUMR_BASELINE: numrBaseline,
+            GD.CAT_SINF_BASELINE: sinfBaseline,
+            GD.CAT_SUPS_BASELINE: supsBaseline,
+            GD.CAT_DNOM_BASELINE: dnomBaseline ,
         }
 
         # Horizontal metrics

@@ -19,7 +19,7 @@ for path in PATHS:
         sys.path.append(path)
 
 from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart, FAR
-from assistantLib.assistantParts.glyphsets.glyphSet_anchors import CONNECTED_ANCHORS, EXAMPLE_DIACRITICS
+from assistantLib.assistantParts.glyphsets.anchorData import AD
 
 
 class AssistantPartContours(BaseAssistantPart):

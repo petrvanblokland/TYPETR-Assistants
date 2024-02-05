@@ -55,7 +55,7 @@ import assistantLib.assistantParts.spacingKerning.kerningManager
 importlib.reload(assistantLib.assistantParts.spacingKerning.kerningManager)
 from assistantLib.assistantParts.spacingKerning.kerningManager import KerningManager
 
-from assistantLib.assistantParts.glyphsets.glyphSet_anchors import ACCENT_DATA
+from assistantLib.assistantParts.glyphsets.anchorData import AD
 
 # Add paths to libs in sibling repositories
 PATHS = ('../TYPETR-Assistants/',)
@@ -380,15 +380,15 @@ class BaseAssistant:
         
     def getAccentAnchor(self, g, accentName):
         """Answer the named anchor, if it exits and if it an accent. Answer None otherwise."""
-        if accentName in ACCENT_DATA:
-            return getAnchor(g, ACCENT_DATA[accentName]) 
+        if accentName in AD.ACCENT_DATA:
+            return getAnchor(g, AD.ACCENT_DATA[accentName]) 
         return None
 
     def getBaseAnchor(self, g, accentName):
         """Answer the counterpart connected anchor of accentName, if it exits. Answer None otherwise."""
-        if accentName in ACCENT_DATA:
-            anchorName = ACCENT_DATA[accentName] 
-            return getAnchor(g, CONNECTED_ANCHORS[anchorName])
+        if accentName in AD.ACCENT_DATA:
+            anchorName = AD.ACCENT_DATA[accentName] 
+            return getAnchor(g, AD.CONNECTED_ANCHORS[anchorName])
         return None
                      
     def getAnchor(self, g, anchorName):

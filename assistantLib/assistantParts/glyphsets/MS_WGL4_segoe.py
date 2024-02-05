@@ -9,11 +9,11 @@
 try:
     from assistantLib.assistantParts.glyphsets.glyphData import *
     from assistantLib.assistantParts.glyphsets.glyphSet import GlyphSet
-    from assistantLib.assistantParts.glyphsets.glyphSet_anchors import *
+    from assistantLib.assistantParts.glyphsets.anchorData import AD
 except ModuleNotFoundError:
     from glyphData import *
     from glyphSet import GlyphSet
-    from glyphSet_anchors import *
+    from anchorData import AD
 
 class MS_GlyphSet(GlyphSet):
     """GlyphSet for the SegoeUI family
