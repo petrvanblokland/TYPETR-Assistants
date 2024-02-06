@@ -245,12 +245,14 @@ class BaseAssistant:
 
     #   S P A C I N G  &  K E R N I N G
 
+    SIM_CLIP = 300 # Default range to look "into" glyph sides for 1000 em. Will be corrected for actual f.info.unitsPerEm
     kerningManagers = {} # Key is font path, value is the related KerningManager instance.
 
     def getKerningManager(self, f):
         if not f.path in self.kerningManagers:
             md = self.getMasterData(f)
-            self.kerningManagers[f.path] = KerningManager(f, tabWidth=md.tabWidth)
+            simClip = self.SIM_CLIP * f.info.unitsPerEm / 1000 # Correct for other em-squares.
+            self.kerningManagers[f.path] = KerningManager(f, tabWidth=md.tabWidth, simClip=simClip)
         return self.kerningManagers[f.path]
 
     #   L I B

@@ -125,6 +125,9 @@ class AnchorData:
         # Exception Segoe names
         'perispomeni': _TOP,
         'dialytikaperispomeni': _TOP,
+        'macroncomb.component1': _TOP,
+
+        'dasiavaria-uc': _TONOS,
     }
 
     # Tables below are mainly use to export _export/Exported_Glyphset.py, etc.
