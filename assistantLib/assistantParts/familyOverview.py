@@ -8,6 +8,7 @@
 #
 import sys
 from vanilla import *
+from math import *
 
 from mojo.roboFont import AllFonts, OpenFont, RGlyph, RPoint
 from mojo.UI import OpenGlyphWindow, CurrentGlyphWindow, getGlyphViewDisplaySettings, setGlyphViewDisplaySettings
@@ -26,7 +27,8 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
     #    O V E R L A Y
 
     MAX_FAMILY_OVERVIEW = 50
-    FAMILY_OVERVIEW_SCALE = 0.15
+    FAMILY_OVERVIEW_SCALE = 0.12 # Relates to spacer.KERN_SCALE
+
     MAX_FAMILY_START_POINTS = 100 # Masters * max number of contours
     FAMILY_OVERVIEW_START_POINT_SIZE = 10/FAMILY_OVERVIEW_SCALE
     FAMILY_OVERVIEW_START_POINT_COLOR = 0.9, 0.2, 0.6, 0.8
@@ -73,6 +75,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
             self.familyOverviewStartPoints.append(subLayer)            
         
     def updateMerzFamilyOverview(self, info):
+        """Position the overview Merz elements on x = 0 and y = g.font.info.unitsPerEm""" 
         c = self.getController()
         g = info['glyph']
         if g is None:
@@ -80,8 +83,9 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         nIndex = spIndex = 0
         if g is not None and c.w.showFamilyOverview.get():
             f = g.font
-            x = 0
             y = f.info.unitsPerEm / self.FAMILY_OVERVIEW_SCALE
+            x = y * tan(radians(-g.font.info.italicAngle or 0)) # Correct for italic angle
+
             parentPath = self.filePath2ParentPath(f.path)
             spIndex = 0 # Index of start point Merz 
             for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
@@ -125,7 +129,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         currentFont = g.font
         y1 = currentFont.info.unitsPerEm
         y2 = y1 + currentFont.info.unitsPerEm * self.FAMILY_OVERVIEW_SCALE
-        x1 = -self.LABEL_SPACING * self.FAMILY_OVERVIEW_SCALE
+        x1 = -self.LABEL_SPACING * self.FAMILY_OVERVIEW_SCALE + y1 * tan(radians(-currentFont.info.italicAngle or 0))
         parentPath = self.filePath2ParentPath(currentFont.path)
         for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
             fullPath = self.path2FullPath(pth)
@@ -150,7 +154,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         currentFont = g.font
         y1 = currentFont.info.unitsPerEm
         y2 = y1 + currentFont.info.unitsPerEm * self.FAMILY_OVERVIEW_SCALE
-        x1 = -self.LABEL_SPACING * self.FAMILY_OVERVIEW_SCALE 
+        x1 = -self.LABEL_SPACING * self.FAMILY_OVERVIEW_SCALE + y1 * tan(radians(-currentFont.info.italicAngle or 0)) # Correct for italic angle
         parentPath = self.filePath2ParentPath(currentFont.path)
         for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
             fullPath = self.path2FullPath(pth)

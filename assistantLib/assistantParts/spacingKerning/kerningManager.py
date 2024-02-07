@@ -4,7 +4,7 @@
 #     Usage by MIT License
 # ..............................................................................
 #
-#   tp_kerningSamples.py
+#   kerningManager.py
 #
 import os, sys
 import weakref
@@ -12,8 +12,8 @@ import weakref
 # We use Letterrors' Similarity to find matching groups
 # Install cosineSimilarity extensions via Mechanic 2
 # But here we import it as separate source in assistantLib.
-#import assistantLib.similarity.cosineSimilarity
-#from assistantLib.similarity.cosineSimilarity import cosineSimilarity, SimilarGlyphsKey
+import assistantLib.similarity.cosineSimilarity
+from assistantLib.similarity.cosineSimilarity import cosineSimilarity, SimilarGlyphsKey
 from assistantLib.kerningSamples import SAMPLES, CYRILLIC_KERNING, GREEK_KERNING
 
 # Defines types of spacing dependencies
@@ -100,7 +100,8 @@ class KerningManager:
         if fixedWidthPatterns is None:
             fixedWidthPatterns = { # Key is right margin, value is list of glyph names
             0: ('cmb|', 'comb|', 'comb-cy|', '.component', 'zerowidthspace', 'zerowidthjoiner', 
-                'zerowidthnonjoiner', 'righttoleftmark'), # "|" matches pattern on end of name"
+                'zerowidthnonjoiner', 'righttoleftmark',
+                'dasiavaria-uc', ), # "|" matches pattern on end of name"
             self.tabWidth: ('.tab|', '.tnum|')
         }
         self.fixedWidthPatterns = fixedWidthPatterns # Key is margin, value is list of glyph names
@@ -586,6 +587,14 @@ class KerningManager:
                     simGroups.add(groupName)
         return sorted(simGroups)
 
+    def getSimilarMargins1(self, g):
+        """Answer a dictionary of glyphs with similar right margins. Key is glyph name, value is angled right margin"""
+        margins = {}
+        f = g.font
+        for gName in self.getSimilarNames1(g):
+            margins[gName] = int(round(f[gName].angledRightMargin))
+        return margins
+
     def getSimilarGroups1(self, g):
         """Answer a dict for each found group with a list of tuples (glyph names, confidence %, isCurrent flag) 
         that are similar to g, including the group that glyph g is already in. 
@@ -627,6 +636,14 @@ class KerningManager:
                     simGroups.add(groupName)
         return sorted(simGroups)
 
+    def getSimilarMargins2(self, g):
+        """Answer a dictionary of glyphs with similar left margins. Key is glyph name, value if angled left margin"""
+        margins = {}
+        f = g.font
+        for gName in self.getSimilarNames2(g):
+            margins[gName] = int(round(f[gName].angledLeftMargin))
+        return margins
+
     def getSimilarGroups2(self, g):
         """Answer a dict for each found group with a list of tuples (glyph names, confidence %, isCurrent flag) 
         that are similar to g, including the group that glyph g is already in. 
@@ -651,7 +668,7 @@ class KerningManager:
 
         return simGroups
 
-    #   S A M P L E
+    #   S A M P L E S
 
     def _initSamples(self):
         """Answer lists of glyph names for the MAIN_SAMPLES. If a lower case glyph exists as small cap then add it to sampleCAPS.
@@ -994,6 +1011,12 @@ class KerningManager:
 
             KERNING_RF_SAMPLES = KERNING_RF_SAMPLES_ITALIC = SPECIMEN_RF.getNames()
         """
+
+    def getSpacingSample(self, g, length=40):
+        sample = [g.name, g.name, g.name, 'H', 'a', 'm', 'b', 'u', 'r', 'g', 'e', 'f', 'o', 'n', 't', 's', 't', 'i', 'v', 'I', g.name, 'I', g.name, 'O', g.name, 'O', 'i', g.name, 'i', g.name, 'o', g.name, 'o']
+        while len(sample) < length:
+            sample.append(g.name)
+        return sample
 
     def expandFractions(self, s):
         for c1 in s:
