@@ -102,8 +102,10 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                         self.familyOverviewGlyphs[fIndex].setPath(glyphPath)
                         self.familyOverviewGlyphs[fIndex].setPosition((x, y))
                         self.familyOverviewGlyphs[fIndex].setFillColor(fillColor)
+                        self.familyOverviewGlyphs[fIndex].setVisible(True)
                         self.familyOverviewStyleName[fIndex].setText(ufo.info.styleName)
                         self.familyOverviewStyleName[fIndex].setPosition((x+ufoG.width/2, y+ufo.info.descender))
+                        self.familyOverviewStyleName[fIndex].setVisible(True)
 
                         nIndex += 1
                         # Position start points
@@ -111,15 +113,16 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                             p = contour.points[0]
                             pos = x + p.x - self.FAMILY_OVERVIEW_START_POINT_SIZE/2, y + p.y - self.FAMILY_OVERVIEW_START_POINT_SIZE/2
                             self.familyOverviewStartPoints[spIndex].setPosition(pos)
+                            self.familyOverviewStartPoints[n].setVisible(True)
                             spIndex += 1
 
                         x += max(f.info.unitsPerEm/2, ufoG.width + self.FAMILY_LABEL_SPACING) # Add a wordspace between the styles
 
         for n in range(nIndex, len(self.familyOverviewGlyphs)):
-            self.familyOverviewGlyphs[n].setPosition((FAR, 0))
-            self.familyOverviewStyleName[n].setPosition((FAR, 0))
+            self.familyOverviewGlyphs[n].setVisible(False)
+            self.familyOverviewStyleName[n].setVisible(False)
         for n in range(spIndex, len(self.familyOverviewStartPoints)):
-            self.familyOverviewStartPoints[n].setPosition((FAR, 0))
+            self.familyOverviewStartPoints[n].setVisible(False)
 
     def mouseMoveFamilyOverview(self, g, x, y):
         """Set the hoover color for the current selected glyph"""

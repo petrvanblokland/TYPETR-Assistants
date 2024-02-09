@@ -38,7 +38,7 @@ class KerningManager:
 
     """
 
-    def __init__(self, f, features=None, 
+    def __init__(self, f, md, features=None, 
             sample=None, sampleCAPS=None, sampleC2SC=None,
             simT=0.90, simSameCategory=True, simSameScript=True, simClip=300, simZones=None,
             automaticGroups=True, verbose=True,
@@ -49,6 +49,8 @@ class KerningManager:
         
         assert f is not None
         self.f = f # Stored as weakref property
+        assert md is not None
+        self.md = md # Contains the self.md.gs glyphset, useful for the KerningManager to have.
         if features is None:
             features = {}
         self.features = features # Dictionary of open type features to show in the samples
@@ -91,7 +93,8 @@ class KerningManager:
 
         self.tabWidth = tabWidth
 
-        # Generic fixed spacing patterns
+        # @@@ Generic fixed spacing patterns. These are gluphset dependent, so their should go into the GlyphSet class. 
+
         if fixedLeftMarginPatterns is None:
             fixedLeftMarginPatterns = { # Key is right margin, value is list of glyph names
             0:  ('enclosingkeycapcomb',)
