@@ -37,7 +37,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
     FAMILY_INTERPOLATION_ERROR_FILL_COLOR = 0.3, 0.2, 1, 1 # Error color of interpolation is not compatible
     FAMILY_LABEL_FONT = 'Verdana'
     FAMILY_LABEL_SIZE = 12
-    FAMILY_LABEL_SPACING = 400 # Distance between the styles
+    FAMILY_LABEL_SPACING = 1.5 # Factor to unitsPerEm distance between the styles, leave space for the style names
 
     def initMerzFamilyOverview(self, container):    
         # Previewing current glyphs on left/right side, with the style name of each master        
@@ -119,7 +119,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                             self.familyOverviewStartPoints[spIndex].setVisible(True)
                             spIndex += 1
 
-                        x += max(f.info.unitsPerEm/2, ufoG.width + self.FAMILY_LABEL_SPACING) # Add a wordspace between the styles
+                        x += max(f.info.unitsPerEm/2, ufoG.width + f.info.unitsPerEm * self.FAMILY_LABEL_SPACING) # Add a wordspace between the styles
 
         for n in range(nIndex, len(self.familyOverviewGlyphs)):
             self.familyOverviewGlyphs[n].setVisible(False)
@@ -135,7 +135,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         currentFont = g.font
         y1 = currentFont.info.unitsPerEm
         y2 = y1 + currentFont.info.unitsPerEm * self.FAMILY_OVERVIEW_SCALE
-        x1 = -self.FAMILY_LABEL_SPACING * self.FAMILY_OVERVIEW_SCALE + y1 * tan(radians(-currentFont.info.italicAngle or 0))
+        x1 = -currentFont.info.unitsPerEm * self.FAMILY_LABEL_SPACING * self.FAMILY_OVERVIEW_SCALE + y1 * tan(radians(-currentFont.info.italicAngle or 0))
         parentPath = self.filePath2ParentPath(currentFont.path)
         for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
             fullPath = self.path2FullPath(pth)
@@ -143,7 +143,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                 ufo = self.getFont(fullPath)
                 if ufo is not None and g.name in ufo:
                     ufoG = ufo[g.name]
-                    x2 = x1 + max(ufo.info.unitsPerEm/2, ufoG.width + self.FAMILY_LABEL_SPACING) * self.FAMILY_OVERVIEW_SCALE
+                    x2 = x1 + max(ufo.info.unitsPerEm/2, ufoG.width + currentFont.info.unitsPerEm * self.FAMILY_LABEL_SPACING) * self.FAMILY_OVERVIEW_SCALE
                     if y1 <= y <= y2 and x1 <= x <= x2:
                         fillColor = self.FAMILY_HOVER_FILL_COLOR
                     elif not self.isCurrentGlyph(ufoG) or not c.w.showFamilyInterpolation.get() or self.doesInterpolate(ufoG):
@@ -160,7 +160,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         currentFont = g.font
         y1 = currentFont.info.unitsPerEm
         y2 = y1 + currentFont.info.unitsPerEm * self.FAMILY_OVERVIEW_SCALE
-        x1 = -self.FAMILY_LABEL_SPACING * self.FAMILY_OVERVIEW_SCALE + y1 * tan(radians(-currentFont.info.italicAngle or 0)) # Correct for italic angle
+        x1 = -currentFont.info.unitsPerEm * self.FAMILY_LABEL_SPACING * self.FAMILY_OVERVIEW_SCALE + y1 * tan(radians(-currentFont.info.italicAngle or 0)) # Correct for italic angle
         parentPath = self.filePath2ParentPath(currentFont.path)
         for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
             fullPath = self.path2FullPath(pth)
@@ -168,7 +168,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                 ufo = self.getFont(fullPath, showInterface=currentFont.path == fullPath) # Make sure RoboFont opens the current font.
                 if ufo is not None and g.name in ufo:
                     ufoG = ufo[g.name]
-                    x2 = x1 + max(ufo.info.unitsPerEm/2, ufoG.width + self.FAMILY_LABEL_SPACING) * self.FAMILY_OVERVIEW_SCALE
+                    x2 = x1 + max(ufo.info.unitsPerEm/2, ufoG.width + currentFont.info.unitsPerEm * self.FAMILY_LABEL_SPACING) * self.FAMILY_OVERVIEW_SCALE
                     if y1 <= y <= y2 and x1 <= x <= x2:
                         if currentFont.path != ufo.path:
                             rr = self.getGlyphWindowPosSize()

@@ -250,7 +250,14 @@ class AssistantPartSpacer(BaseAssistantPart):
         visible = c.w.showSpacingSampleLine.get()
 
         km = self.getKerningManager(g.font)
-        sample = km.getSpacingSample(g, len(self.kerningLine)) # Get a spacing sample for the right amount of glyphs
+        sampleContext = c.w.spacerMode.get()
+        # 0    Glyphset
+        # 1    According to similarity
+        # 2    Byt group mode context
+        # 3    By spacing mode context
+        # 4    By kerning mode context
+        # Get a spacing sample for the right amount of glyphs for the selected context
+        sample = km.getSpacingSample(g, context=sampleContext, length=len(self.kerningLine)) 
 
         self.spacerGlyphPositions = [] # Reset the list of KerningLineGlyphPosition instances.
 
@@ -412,7 +419,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         c.w.incRightMarginButton = Button((C2+3*CW/4, y, CW/4, L), '[%s]>' % personalKey_p, callback=self.spacerIncRightMarginCallback)
         y += L
         c.w.spacerMode = RadioGroup((C0, y, 2*CW, L), ('Glyphs', 'Similar', 'Group', 'Space', 'Kern'), isVertical=False, sizeStyle='small', callback=self.updateEditor)
-        c.w.spacerMode.set(1)
+        c.w.spacerMode.set(3)
         #c.w.decKern2Button = Button((C2, y, CW/4, L), '<[%s]' % personalKey_m, callback=self.spacerDecKern2Callback)
         #c.w.incKern2Button = Button((C2+CW/4, y, CW/4, L), '[%s]>' % personalKey_n, callback=self.spacerIncKern2Callback)
         #c.w.decKern1Button = Button((C2+2*CW/4, y, CW/4, L), '<[%s]' % personalKey_period, callback=self.spacerDecKern1Callback)
