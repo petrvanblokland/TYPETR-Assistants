@@ -9,14 +9,9 @@
 
 from copy import deepcopy
 
-try:
-    from assistantLib.assistantParts.glyphsets.glyphData import GD 
-    from assistantLib.assistantParts.glyphsets.anchorData import AD
-    from assistantLib.assistantParts.glyphsets.glyphSet import GlyphSet
-except ModuleNotFoundError:
-    from glyphData import GD
-    from anchorData import AD
-    from glyphSet import GlyphSet
+from assistantLib.assistantParts.glyphsets.glyphData import GD 
+from assistantLib.assistantParts.glyphsets.anchorData import AD
+from assistantLib.assistantParts.glyphsets.glyphSet import GlyphSet
 
 class TYPETR_GlyphSet(GlyphSet):
     """GlyphSet for the default TYPETR families
