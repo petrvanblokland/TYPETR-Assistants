@@ -17,6 +17,8 @@ import sys
 from math import *
 from vanilla import *
 
+from mojo.UI import OpenGlyphWindow
+
 # Add paths to libs in sibling repositories
 PATHS = ('../TYPETR-Assistants/',)
 for path in PATHS:
@@ -24,19 +26,20 @@ for path in PATHS:
         print('@@@ Append to sys.path', path)
         sys.path.append(path)
 
-from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart, FAR
+from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart
 from assistantLib.assistantParts.data import * # Import anchors names
 
 class KerningLineGlyphPosition:
     """Element that holds position and name of glyphs in the spacer/kerning line. This makes it easier 
     for mouseover to detect clicks on the line"""
-    def __init__(self, name, x, y, w, h, k):
-        self.name = name # Glyph name
+    def __init__(self, glyph, x, y, w, h, k, fillColor):
+        self.glyph = glyph # RGlyph object 
         self.x = x
         self.y = y
         self.w = w
         self.h = h
         self.k = k # Kerning with previoud glyph
+        self.fillColor = fillColor
 
 class AssistantPartSpacer(BaseAssistantPart):
     """The Spacer assistant part handles all margins and widths that can be automated.
@@ -56,6 +59,11 @@ class AssistantPartSpacer(BaseAssistantPart):
     SPACER_LABEL_FONT = 'Verdana'
     SPACER_LABEL_SIZE = 10
 
+    SPACER_FILL_COLOR = 0.2, 0.2, 0.2, 1 # Default color
+    SPACER_SELECTED_COLOR = 0.2, 0.2, 0.5, 1 # Current glyph
+    SPACER_HOVER_COLOR = 1, 0, 0, 1 # Mouse goes over the element
+    SPACER_LINE_BOX_COLOR = 0, 0, 0, 0.5 # Stroke color of space box
+
     def initMerzSpacer(self, container):
         """Define the Merz elements for feedback about where margins/width comes from."""
 
@@ -68,88 +76,107 @@ class AssistantPartSpacer(BaseAssistantPart):
         self.kerningLineNames = [] # List of glyph name layers
         self.kerningLineBoxes = [] # List of kerned glyph em-boxes
         self.kerningSelectedGlyph = None # Name of the glyph selected by the kerning editor
+
+        # White rectangle as background of spacer/kerning line
+        self.spacerWhiteBackground = container.appendRectangleSublayer(name="spacesWhiteBackground",
+            position=(0, 0),
+            size=(1, 1),
+            fillColor=(1, 1, 1, 1),
+            visible=False,
+        )
+        self.spacerWhiteBackground.addScaleTransformation(self.KERN_SCALE)
         
+        # Glyphs cells on the spacer/kerning line
+
         for gIndex in range(self.KERN_LINE_SIZE):
             # Previewing current glyphs on left/right side.        
-            im = self.backgroundContainer.appendPathSublayer(
+            im = container.appendPathSublayer(
                 name='kernedGlyph-%d' % gIndex,
-                position=(FAR, 0),
-                fillColor=(0, 0, 0, 1),
+                position=(0, 0),
+                fillColor=self.SPACER_FILL_COLOR,
+                visible=False,
             )
             im.addScaleTransformation(self.KERN_SCALE)
             self.kerningLine.append(im)
             
-            kerningLineValue = self.backgroundContainer.appendTextLineSublayer(
+            kerningLineValue = container.appendTextLineSublayer(
                 name='kernedValue-%d' % gIndex,
-                position=(FAR, 0),
+                position=(0, 0),
                 text='xxx\nxxx',
                 font=self.SPACER_LABEL_FONT,
                 pointSize=self.SPACER_LABEL_SIZE,
-                fillColor=(0, 0, 0, 1), # Can be red (negative kerning) or green (positive kerning)
+                fillColor=self.SPACER_FILL_COLOR, # Can be red (negative kerning) or green (positive kerning)
+                visible=False,
             )
             kerningLineValue.addScaleTransformation(self.KERN_SCALE)
             kerningLineValue.setHorizontalAlignment('center')
             self.kerningLineValues.append(kerningLineValue)
 
-            kerningLineBox = self.backgroundContainer.appendRectangleSublayer(
+            kerningLineBox = container.appendRectangleSublayer(
                 name='kernedBox-%d' % gIndex,
-                position=(FAR, 0),
+                position=(0, 0),
                 size=(1, 1),
                 fillColor=None,
-                strokeColor=(0, 0, 0, 0.5),
+                strokeColor=self.SPACER_LINE_BOX_COLOR,
                 strokeWidth=1,
+                visible=False,
             )
             kerningLineBox.addScaleTransformation(self.KERN_SCALE)
             self.kerningLineBoxes.append(kerningLineBox)
 
-            kerningLineName = self.backgroundContainer.appendTextLineSublayer(
+            kerningLineName = container.appendTextLineSublayer(
                 name='kernedName-%d' % gIndex,
-                position=(FAR, 0),
+                position=(0, 0),
                 text='xxx\nxxx',
                 font=self.SPACER_LABEL_FONT,
                 pointSize=self.SPACER_LABEL_SIZE,
-                fillColor=(0, 0, 0, 1),
+                fillColor=self.SPACER_FILL_COLOR, # Default line glyph color
+                visible=False,
             )
             kerningLineName.addScaleTransformation(self.KERN_SCALE)
             kerningLineName.setHorizontalAlignment('center')
             self.kerningLineNames.append(kerningLineName)
 
-        self.kerningSelectedGlyphMarker = self.backgroundContainer.appendRectangleSublayer(
+        self.kerningSelectedGlyphMarker = container.appendRectangleSublayer(
             name='kerningSelectedGlyphMarker',
-            position=(FAR, 0),
+            position=(0, 0),
             size=(1, 20),
             fillColor=(1, 0, 0, 1),
             strokeColor=None,
             strokeWidth=1,
+            visible=False,
         )
         self.kerningSelectedGlyphMarker.addScaleTransformation(self.KERN_SCALE)
 
-        self.kerning1Value = self.backgroundContainer.appendTextLineSublayer(
+        self.kerning1Value = container.appendTextLineSublayer(
             name="kerning1Value",
-            position=(FAR, 0),
+            position=(0, 0),
             text='xxx\nxxx',
             font='Courier',
             pointSize=32,
             fillColor=(1, 0, 0, 1),
+            visible=False,
         )
         self.kerning1Value.setHorizontalAlignment('center')
-        self.kerning2Value = self.backgroundContainer.appendTextLineSublayer(
+        self.kerning2Value = container.appendTextLineSublayer(
             name="kerning2Value",
-            position=(FAR, 0),
+            position=(0, 0),
             text='xxx\nxxx',
             font='Courier',
             pointSize=32,
             fillColor=(1, 0, 0, 1),
+            visible=False,
         )
         self.kerning2Value.setHorizontalAlignment('center')
 
-        self.kerningCursorBox = self.backgroundContainer.appendTextLineSublayer(
+        self.kerningCursorBox = container.appendTextLineSublayer(
             name="kerningCursorBox",
-            position=(FAR, 0),
+            position=(0, 0),
             text='xxx\nxxx',
             font='Courier',
             pointSize=14,
             fillColor=(0.6, 0.6, 0.6, 1),
+            visible=False,
         )
 
 
@@ -163,11 +190,12 @@ class AssistantPartSpacer(BaseAssistantPart):
             strokeWidth=1,
         )
         self.leftSpaceSourceLabel = container.appendTextLineSublayer(name="leftSpaceSourceLabel",
-            position=(FAR, -self.SPACER_MARKER_R*2),
+            position=(0, -self.SPACER_MARKER_R*2),
             text='LSB',
             font='Courier',
             pointSize=self.SPACER_LABEL_SIZE,
             fillColor=(0, 0, 0, 1),
+            visible=False,
         )
         self.leftSpaceSourceLabel.setHorizontalAlignment('center')
         
@@ -177,13 +205,15 @@ class AssistantPartSpacer(BaseAssistantPart):
             fillColor=None,
             strokeColor=None,
             strokeWidth=1,
+            visible=False,
         )
         self.rightSpaceSourceLabel = container.appendTextLineSublayer(name="rightSpaceSourceLabel",
-            position=(FAR, -self.SPACER_MARKER_R*2),
+            position=(0, -self.SPACER_MARKER_R*2),
             text='RSB',
             font='Courier',
             pointSize=self.SPACER_LABEL_SIZE,
             fillColor=(0, 0, 0, 1),
+            visible=False,
         )
         self.rightSpaceSourceLabel.setHorizontalAlignment('center')
 
@@ -201,335 +231,120 @@ class AssistantPartSpacer(BaseAssistantPart):
 
     def hideMerzSpacerKerningLine(self):
         for kerningGlyphLayer in self.kerningLine:
-            kerningGlyphLayer.setPosition((FAR, 0))
+            kerningGlyphLayer.setVisible(False)
+        for kerningNameLayer in self.kerningLineNames:
+            kerningNameLayer.setVisible(False)
+        self.spacerWhiteBackground.setVisible(False)
 
     def updateMerzSpacerKerningLine(self, g):
         """Update the spacing/kerning/sample line for the current glyphs and its settings."""
+        c = self.getController()
         f = g.font
 
-        x = 0 # Adjusted from the previous line calculation
-        y = (f.info.descender - 300)/self.KERN_SCALE
-        k = 0 # For now
         h = f.info.unitsPerEm
+        m = h/5 # Margin around white rectangle.
+        x = 0 # Adjusted from the previous line calculation
+        y = (f.info.descender - 1.5*m)/self.KERN_SCALE
+        k = 0 # For now
+
+        visible = c.w.showSpacingSampleLine.get()
 
         km = self.getKerningManager(g.font)
-        sample = km.getSpacingSample(g, len(self.kerningLine)) # Get a spacing sample for the right amount of glyphs
+        sampleContext = c.w.spacerMode.get()
+        # 0    Glyphset
+        # 1    According to similarity
+        # 2    Byt group mode context
+        # 3    By spacing mode context
+        # 4    By kerning mode context
+        # Get a spacing sample for the right amount of glyphs for the selected context
+        sample = km.getSpacingSample(g, context=sampleContext, length=len(self.kerningLine)) 
 
         self.spacerGlyphPositions = [] # Reset the list of KerningLineGlyphPosition instances.
 
-        # We need to do this in 2 runs, unfortunately, to center the line by its total width.
+        # We need to do this in 2 runs unfortunately, constructing the list of spacerGlyphPositions first,
+        # in order to center the line by its total width.
         for gIndex, kerningGlyphLayer in enumerate(self.kerningLine): # List of kerned glyph images
             spaceG = f[sample[gIndex]]
-            kerningGlyphLayer.setFillColor((0, 0, 0, 1))
-            kerningGlyphLayer.setPath(spaceG.getRepresentation("merz.CGPath"))
-            self.spacerGlyphPositions.append(KerningLineGlyphPosition(spaceG.name, x, y, spaceG.width, h, k))
+            if g.name == spaceG.name:
+                color = self.SPACER_SELECTED_COLOR
+            else:
+                color = self.SPACER_FILL_COLOR
+            self.spacerGlyphPositions.append(KerningLineGlyphPosition(spaceG, x, y, spaceG.width, h, k, color))
             x += spaceG.width + k
 
-        x = g.width/2 - x/2 + y * tan(radians(-f.info.italicAngle or 0))
+        gpFirst = self.spacerGlyphPositions[0]
+        gpLast = self.spacerGlyphPositions[-1]
+
+        offsetX = g.width/2/self.KERN_SCALE - (gpLast.x - gpFirst.x)/2 + y * tan(radians(-f.info.italicAngle or 0))
+
+        self.spacerWhiteBackground.setPosition((gpFirst.x + offsetX - 2*m, y + f.info.descender - m))
+        self.spacerWhiteBackground.setSize((gpLast.x - gpFirst.x + gpLast.w + 4*m, h + 2*m))
+        self.spacerWhiteBackground.setVisible(True)
+
         for gIndex, kerningGlyphLayer in enumerate(self.kerningLine):
             gp = self.spacerGlyphPositions[gIndex]
-            kerningGlyphLayer.setPosition((gp.x + x, y))
+            
+            if self.mouseMovePoint is not None and gp.x <= self.mouseMovePoint.x/self.KERN_SCALE <= gp.x + gp.y:
+                color = self.SPACER_HOVER_COLOR
+            else:
+                color = gp.fillColor 
+            kerningGlyphLayer.setFillColor(color)
+            kerningGlyphLayer.setPath(gp.glyph.getRepresentation("merz.CGPath"))
+            kerningGlyphLayer.setPosition((gp.x + offsetX, y))
+            kerningGlyphLayer.setVisible(visible)
+
             kerningNameLayer = self.kerningLineNames[gIndex]
-            kerningNameLayer.setText(gp.name)
-            kerningNameLayer.setPosition((gp.x + x + gp.w/2, y + f.info.descender))
-
-    """
-            kerningSrc = None
-                            
-            xLeft = int(c.w.kerningLeftX.get())      
-            xo = x = xLeft/self.KERN_SCALE # Get left position of kerning samples
-            y1 = 1.75*f.info.descender/self.KERN_SCALE # Glyph image position
-            y3 = y1 + f.info.descender # Box position
-            y2 = y3 - 100 # Kerning value position
-            y4 = -150 # Position of current kerning values
-            y6 = -250 # Position of kerning-cursor box
-
-            start = kerningCursor = int(round(self.controller.w.kerningSampleSelectSlider.get()))
-            stop = start + self.KERN_LINE_SIZE
-            prevName = None
-            for gIndex, kerningGlyphLayer in enumerate(self.kerningLine): # List of kerned glyph images
-                gName = km.sample[start + gIndex]
-                if gName is not None and gName in f:
-                    gKern = f[gName]
-                    if gIndex == kerningSelectedIndex:
-                        self.kerningSelectedGlyphMarker.setPosition((x + k, y2-100))
-                        self.kerningSelectedGlyphMarker.setSize((gKern.width, 100))
-
-                        if self.controller.w.showKerningFilled.get():
-                            self.kernGlyphImage.setPath(gKern.getRepresentation("merz.CGPath"))
-                            self.kernGlyphImage.setPosition((0, 0))
-                        else:
-                            self.kernGlyphImage.setPosition((FAR, 0))
-                        self.kernGlyphImage.setFillColor((0, 0, 0, 1))
-                                            
-                        if prevName is not None: # Kerning glyph on left side of current glyph
-
-                            prev = f[prevName]
-                            k, groupK, kerningType = km.getKerning(prevName, gKern.name) # Get the kerning from the groups of these glyphs
-                            kSrcString = ''
-                            self.kernGlyphImage1.setPath(prev.getRepresentation("merz.CGPath"))
-                            self.kernGlyphImage1.setPosition((-prev.width - k, 0))
-                            if gName != g.name: # Other current glyph than selected in kerning line
-                                #print(gName, prev.name, g.name)
-                                gray = 0.4
-                                self.kernGlyphImage2.setFillColor((gray, gray, gray, 0.7)) # Just show as light gray
-                                self.kernGlyphImage.setFillColor((gray, gray, gray, 0.7)) # Just show as light gray
-                                self.kernGlyphImage1.setFillColor((gray, gray, gray, 0.7)) # Just show as light gray
-                            elif kerningType in (1, 2) and k != groupK: # Show that we are kerning group<-->glyph
-                                if self.controller.w.showKerningLeftFilled.get():
-                                    self.kernGlyphImage1.setFillColor(GROUPGLYPH_COLOR)
-                                    self.kernGlyphImage1.setStrokeColor(None)
-                                    self.kernGlyphImage.setFillColor(GROUPGLYPH_COLOR)
-                                    self.kernGlyphImage.setStrokeColor(None)
-                                else:
-                                    self.kernGlyphImage1.setFillColor(None)
-                                    self.kernGlyphImage1.setStrokeColor(GROUPGLYPH_COLOR)
-                                    self.kernGlyphImage.setFillColor(None)
-                                    self.kernGlyphImage.setStrokeColor(GROUPGLYPH_COLOR)
-
-                            elif kerningType == 3 and k != groupK: # Show that we are in kerning glyph<-->glyph
-                                if self.controller.w.showKerningLeftFilled.get():
-                                    self.kernGlyphImage1.setFillColor(GLYPHGLYPH_COLOR)
-                                    self.kernGlyphImage1.setStrokeColor(None)
-                                    self.kernGlyphImage.setFillColor(GLYPHGLYPH_COLOR)
-                                    self.kernGlyphImage.setStrokeColor(None)
-                                else:
-                                    self.kernGlyphImage1.setFillColor(None)
-                                    self.kernGlyphImage1.setStrokeColor(GLYPHGLYPH_COLOR)
-                                    self.kernGlyphImage.setFillColor(None)
-                                    self.kernGlyphImage.setStrokeColor(GLYPHGLYPH_COLOR)
-
-                            elif self.controller.w.showKerningFilled.get():
-                                self.kernGlyphImage1.setFillColor((0, 0, 0, 1))
-                                self.kernGlyphImage1.setStrokeColor(None)
-
-                            else:
-                                self.kernGlyphImage1.setFillColor(None)
-                                self.kernGlyphImage1.setStrokeColor(None)
-                                
-                            if kerningType in (1, 2):
-                                self.kerning1Value.setFillColor(GROUPGLYPH_COLOR)
-                            elif kerningType == 3:
-                                self.kerning1Value.setFillColor(GLYPHGLYPH_COLOR)
-                            elif k < 0:
-                                self.kerning1Value.setFillColor((1, 0, 0, 1))
-                            elif k > 0:
-                                self.kerning1Value.setFillColor((0, 0.5, 0, 1))
-                            else:
-                                self.kerning1Value.setFillColor((0.6, 0.6, 0.6, 1))
-                            self.kerning1Value.setPosition((-k, y4))
-                            #if k != self.predictedKerning1:
-                            #    predicted = f'\n({self.predictedKerning1})'
-                            #else:
-                            #    predicted = '' 
-                            #if k != groupK: 
-                            #    self.kerning1Value.setText('%d:G%d%s%s' % (k, groupK, kSrcString, predicted))
-                            #else:
-                            #    self.kerning1Value.setText('%d%s%s' % (k, kSrcString, predicted))
-                            if k != groupK: 
-                                self.kerning1Value.setText('%d:G%d%s' % (k, groupK, kSrcString))
-                            else:
-                                self.kerning1Value.setText('%d%s' % (k, kSrcString))
-                                
-                    elif gIndex == kerningSelectedIndex + 1: # Kerning glyph on right side of current glyph
-                        if prevName is not None:  
-                            prev = f[prevName]
-                            k, groupK, kerningType = km.getKerning(prevName, gKern.name) # Get the kerning from the groups of these glyphs
-                            kSrcString = ''
-                            self.kernGlyphImage2.setPath(gKern.getRepresentation("merz.CGPath"))
-                            self.kernGlyphImage2.setPosition((prev.width + k, 0))
-                            if gName != g.name: # Other current glyph than selected in kerning line
-                                gray = 0.4
-                                self.kernGlyphImage2.setFillColor((gray, gray, gray, 0.7)) # Just show as light gray
-                                self.kernGlyphImage.setFillColor((gray, gray, gray, 0.7)) # Just show as light gray
-                                self.kernGlyphImage1.setFillColor((gray, gray, gray, 0.7)) # Just show as light gray
-                            elif kerningType in (1, 2) and k != groupK: # Show that we are kerning group<-->glyph
-                                if self.controller.w.showKerningRightFilled.get():
-                                    self.kernGlyphImage2.setFillColor(GROUPGLYPH_COLOR)
-                                    self.kernGlyphImage2.setStrokeColor(None)
-                                    self.kernGlyphImage.setFillColor(GROUPGLYPH_COLOR)
-                                    self.kernGlyphImage.setStrokeColor(None)
-                                else:
-                                    self.kernGlyphImage2.setFillColor(None)
-                                    self.kernGlyphImage2.setStrokeColor(GROUPGLYPH_COLOR)
-                                    self.kernGlyphImage.setFillColor(None)
-                                    self.kernGlyphImage.setStrokeColor(GROUPGLYPH_COLOR)
-
-                            elif kerningType == 3 and k != groupK: # Show that we are in kerning glyph<-->glyph
-                                if self.controller.w.showKerningRightFilled.get():
-                                    self.kernGlyphImage2.setFillColor(GLYPHGLYPH_COLOR)
-                                    self.kernGlyphImage2.setStrokeColor(None)
-                                    self.kernGlyphImage.setFillColor(GLYPHGLYPH_COLOR)
-                                    self.kernGlyphImage.setStrokeColor(None)
-                                else:
-                                    self.kernGlyphImage2.setFillColor(None)
-                                    self.kernGlyphImage2.setStrokeColor(GLYPHGLYPH_COLOR)
-                                    self.kernGlyphImage.setFillColor(None)
-                                    self.kernGlyphImage.setStrokeColor(GLYPHGLYPH_COLOR)
-
-                            elif self.controller.w.showKerningFilled.get():
-                                self.kernGlyphImage2.setFillColor((0, 0, 0, 1))
-                                self.kernGlyphImage2.setStrokeColor(None)
-
-                            else:
-                                self.kernGlyphImage1.setFillColor(None)
-                                self.kernGlyphImage1.setStrokeColor(None)
-                                
-                            if kerningType in (1,2):
-                                self.kerning2Value.setFillColor(GROUPGLYPH_COLOR)
-                            elif kerningType == 3:
-                                self.kerning2Value.setFillColor(GLYPHGLYPH_COLOR)
-                            elif k < 0:
-                                self.kerning2Value.setFillColor((1, 0, 0, 1))
-                            elif k > 0:
-                                self.kerning2Value.setFillColor((0, 0.5, 0, 1))
-                            else:
-                                self.kerning2Value.setFillColor((0.6, 0.6, 0.6, 1))
-                            self.kerning2Value.setPosition((prev.width + k, y4))
-                            if k != self.predictedKerning2:
-                                predicted = f'\n({self.predictedKerning2})'
-                            else:
-                                predicted = '' 
-                            if k != groupK:        
-                                self.kerning2Value.setText('%d:G%d%s%s' % (k, groupK, kSrcString, predicted))
-                            else:
-                                self.kerning2Value.setText('%d%s%s' % (k, kSrcString, predicted))
-
-                    k = 0
-                    if prevName is not None:
-                        k, groupK, kerningType = km.getKerning(prevName, gName) # Get the kerning from the groups of these glyphs
-                        if kerningType is not None:
-                            kSrc = 0
-                            kSrcString = ''
-                            klv = self.kerningLineValues[gIndex] # List of kerning value layers
-                            if k or kSrc:
-                                klv.setPosition((x, y2))
-                                if k != groupK:
-                                    klv.setText('%d:G%d%s' % (k, groupK, kSrcString))
-                                else:
-                                    klv.setText('%d%s' % (k, kSrcString))
-                                if kerningType in (1, 2) and k != groupK: # Other than group<-->group                            
-                                    klv.setFillColor(GROUPGLYPH_COLOR)
-                                elif kerningType == 3 and k != groupK: # Other than group<-->group                            
-                                    klv.setFillColor(GLYPHGLYPH_COLOR)
-                                elif k < 0:
-                                    klv.setFillColor((1, 0, 0, 1))
-                                elif k > 0:
-                                    klv.setFillColor((0, 0.5, 0, 1))
-                                else:
-                                    klv.setFillColor((0.6, 0.6, 0.6, 1))
-                            else:
-                                klv.setPosition((FAR, y2))
-
-                    kerningGlyphLayer.setFillColor((0, 0, 0, 1))
-                    kerningGlyphLayer.setPath(gKern.getRepresentation("merz.CGPath"))
-                    kerningGlyphLayer.setPosition((x + k, y1))
-        
-                    klb = self.kerningLineBoxes[gIndex]
-                    if self.controller.w.showKerningBox.get():
-                        klb.setPosition((x + k, y3))
-                        klb.setSize((gKern.width, f.info.unitsPerEm))
-                    else:
-                        klb.setPosition((FAR, y3))
-                        
-                    x += gKern.width + k
-                    prevName = gName
-                    
-            kerningCursor = int(round(self.controller.w.kerningSampleSelectSlider.get()))
-            s = '%d/%d Pairs %d' % (kerningCursor/self.KERN_LINE_SIZE, len(km.sample)/self.KERN_LINE_SIZE, len(f.kerning))
-            self.kerningCursorBox.setText(s)
-            self.kerningCursorBox.setPosition((xLeft, 40)) # y6
-        else:
-            for kerningLine in self.kerningLine:
-                kerningLine.setPosition((FAR, 0))
-            for kerningLineValue in self.kerningLineValues:
-                kerningLineValue.setPosition((FAR, 0))
-            for kerningLineBox in self.kerningLineBoxes:
-                kerningLineBox.setPosition((FAR, 0))
-            self.kerningCursorBox.setPosition((FAR, 0))
-            self.kernGlyphImage1.setPosition((FAR, 0))
-            self.kernGlyphImage2.setPosition((FAR, 0))
-            self.kerning1Value.setPosition((FAR, 0))
-            self.kernGlyphImage.setPosition((FAR, 0))
-            self.kerning2Value.setPosition((FAR, 0))
-
-        kerningSelectedIndex = int(self.KERN_LINE_SIZE/2)
-        kerningCursor = int(round(self.controller.w.kerningSampleSelectSlider.get()))
-        self.kernGlyph1 = km.sample[kerningCursor + kerningSelectedIndex - 1]
-        self.kernGlyph2 = km.sample[kerningCursor + kerningSelectedIndex + 1]
-
-        # Update the groups lists for the new current glyph
-        self.group1TextLeftLayer.setText('\n'.join(sorted(km.glyphName2Group1.get(self.kernGlyph1, []))))
-        self.group2TextLeftLayer.setText('\n'.join(sorted(km.glyphName2Group2.get(g.name, []))))
-        self.group1TextRightLayer.setText('\n'.join(sorted(km.glyphName2Group1.get(g.name, []))))
-        self.group2TextRightLayer.setText('\n'.join(sorted(km.glyphName2Group2.get(self.kernGlyph2, []))))
-
-        if self.controller.w.showKerningLists.get():
-            self.group1TextLeftLayer.setPosition((-g.width-2*self.groupTextLayer_colW, 0))
-            self.group2TextLeftLayer.setPosition((-g.width-self.groupTextLayer_colW, 0))
-            self.group1TextRightLayer.setPosition((g.width*2+self.groupTextLayer_colW, 0)) # Some extra on the right, in case of italics
-            self.group2TextRightLayer.setPosition((g.width*2+2*self.groupTextLayer_colW, 0))
-        else:
-            self.group1TextLeftLayer.setPosition((FAR, 0))
-            self.group2TextLeftLayer.setPosition((FAR, 0))
-            self.group1TextRightLayer.setPosition((FAR, 0))
-            self.group2TextRightLayer.setPosition((FAR, 0))
-        """
+            kerningNameLayer.setFillColor(color)
+            kerningNameLayer.setText(gp.glyph.name)
+            kerningNameLayer.setPosition((gp.x + offsetX + gp.w/2, y + f.info.descender))
+            kerningNameLayer.setVisible(False) # Will be shown on mouse over hover
 
     def mouseMoveSpacer(self, g, x, y):
         """Set the hoover color for the current selected glyph"""
-        if g is None:
+        if g is None or not self.spacerGlyphPositions or self.mouseMovePoint is None:
             return
-        c = self.getController()
-        currentFont = g.font
-        y1 = currentFont.info.unitsPerEm
-        y2 = y1 + currentFont.info.unitsPerEm * self.FAMILY_OVERVIEW_SCALE
-        x1 = -self.SPACER_LABEL_SPACING * self.FAMILY_OVERVIEW_SCALE + y1 * tan(radians(-currentFont.info.italicAngle or 0))
-        parentPath = self.filePath2ParentPath(currentFont.path)
-        for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
-            fullPath = self.path2FullPath(pth)
-            if fIndex < len(self.familyOverviewGlyphs):
-                ufo = self.getFont(fullPath)
-                if ufo is not None and g.name in ufo:
-                    ufoG = ufo[g.name]
-                    x2 = x1 + max(ufo.info.unitsPerEm/2, ufoG.width + self.LABEL_SPACING) * self.FAMILY_OVERVIEW_SCALE
-                    if y1 <= y <= y2 and x1 <= x <= x2:
-                        fillColor = self.FAMILY_HOVER_FILL_COLOR
-                    elif not self.isCurrentGlyph(ufoG) or not c.w.showFamilyInterpolation.get() or self.doesInterpolate(ufoG):
-                        fillColor = self.FAMILY_DEFAULT_FILL_COLOR
-                    else:
-                        fillColor = self.FAMILY_INTERPOLATION_ERROR_FILL_COLOR
-                    self.familyOverviewGlyphs[fIndex].setFillColor(fillColor)
-                    x1 = x2
+
+        gpFirst = self.spacerGlyphPositions[0]
+        gpLast = self.spacerGlyphPositions[-1]
+        offsetX = g.width/2/self.KERN_SCALE - (gpLast.x - gpFirst.x)/2# + y * tan(radians(-g.font.info.italicAngle or 0))
+
+        sx = x/self.KERN_SCALE - offsetX
+        sy = y/self.KERN_SCALE
+
+        for gIndex, gp in enumerate(self.spacerGlyphPositions):
+            #print(gp.x, sx, gp.x + gp.w)
+            if gp.x <= sx <= gp.x + gp.w and gp.y - gp.h <= sy <= gp.y + gp.h:
+                color = self.SPACER_HOVER_COLOR
+                visible = True
+            elif gp.glyph.name == g.name:
+                color = self.SPACER_SELECTED_COLOR
+                visible = False
+            else:
+                color = self.SPACER_FILL_COLOR
+                visible = False
+            self.kerningLineNames[gIndex].setFillColor(color)
+            self.kerningLine[gIndex].setFillColor(color)
+            self.kerningLineNames[gIndex].setVisible(visible)
+        return
                     
     def mouseDownSpacer(self, g, x, y):
         """Open Editor window on clicked glyph"""
-        if g is None:
+        if g is None or not self.spacerGlyphPositions or self.mouseMovePoint is None:
             return
-        print(x, y, self.spacerGlyphPositions[0].x, self.spacerGlyphPositions[0].y)
-        return
 
-        currentFont = g.font
-        y1 = currentFont.info.unitsPerEm
-        y2 = y1 + currentFont.info.unitsPerEm * self.FAMILY_OVERVIEW_SCALE
-        x1 = -self.LABEL_SPACING * self.FAMILY_OVERVIEW_SCALE + y1 * tan(radians(-currentFont.info.italicAngle or 0)) # Correct for italic angle
-        parentPath = self.filePath2ParentPath(currentFont.path)
-        for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
-            fullPath = self.path2FullPath(pth)
-            if fIndex < len(self.familyOverviewGlyphs):
-                ufo = self.getFont(fullPath, showInterface=currentFont.path == fullPath) # Make sure RoboFont opens the current font.
-                if ufo is not None and g.name in ufo:
-                    ufoG = ufo[g.name]
-                    x2 = x1 + max(ufo.info.unitsPerEm/2, ufoG.width + self.LABEL_SPACING) * self.FAMILY_OVERVIEW_SCALE
-                    if y1 <= y <= y2 and x1 <= x <= x2:
-                        if currentFont.path != ufo.path:
-                            rr = self.getGlyphWindowPosSize()
-                            if rr is not None:
-                                currentLayerName = g.layer.name
-                                p, s, settings, viewFrame, viewScale = rr
-                                self.setGlyphWindowPosSize(ufoG, p, s, settings=settings, viewFrame=viewFrame, viewScale=viewScale, layerName=currentLayerName)
-                        return 
-                    x1 = x2
+        gpFirst = self.spacerGlyphPositions[0]
+        gpLast = self.spacerGlyphPositions[-1]
+        offsetX = g.width/2/self.KERN_SCALE - (gpLast.x - gpFirst.x)/2# + y * tan(radians(-g.font.info.italicAngle or 0))
+
+        sx = x/self.KERN_SCALE - offsetX
+        sy = y/self.KERN_SCALE
+
+        for gIndex, gp in enumerate(self.spacerGlyphPositions):
+            #print(gp.x, sx, gp.x + gp.w)
+            if gp.x <= sx <= gp.x + gp.w and gp.y - gp.h <= sy <= gp.y + gp.h:
+                OpenGlyphWindow(glyph=gp.glyph, newWindow=False)
+                break
+        return
 
     def updateSpacer(self, info):
         """If the checkbox is set, then try to check and fix automated margins and width.
@@ -603,8 +418,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         c.w.decRightMarginButton = Button((C2+2*CW/4, y, CW/4, L), '<[%s]' % personalKey_o, callback=self.spacerDecRightMarginCallback)
         c.w.incRightMarginButton = Button((C2+3*CW/4, y, CW/4, L), '[%s]>' % personalKey_p, callback=self.spacerIncRightMarginCallback)
         y += L
-        c.w.spacerMode = RadioGroup((C1, y, CW, L), ('Sim', 'Spc', 'Kern'), isVertical=False, sizeStyle='small', callback=self.updateEditor)
-        c.w.spacerMode.set(1)
+        c.w.spacerMode = RadioGroup((C0, y, 2*CW, L), ('Glyphs', 'Similar', 'Group', 'Space', 'Kern'), isVertical=False, sizeStyle='small', callback=self.updateEditor)
+        c.w.spacerMode.set(3)
         #c.w.decKern2Button = Button((C2, y, CW/4, L), '<[%s]' % personalKey_m, callback=self.spacerDecKern2Callback)
         #c.w.incKern2Button = Button((C2+CW/4, y, CW/4, L), '[%s]>' % personalKey_n, callback=self.spacerIncKern2Callback)
         #c.w.decKern1Button = Button((C2+2*CW/4, y, CW/4, L), '<[%s]' % personalKey_period, callback=self.spacerDecKern1Callback)

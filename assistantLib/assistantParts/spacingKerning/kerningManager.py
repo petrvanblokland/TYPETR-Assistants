@@ -38,7 +38,7 @@ class KerningManager:
 
     """
 
-    def __init__(self, f, features=None, 
+    def __init__(self, f, md, features=None, 
             sample=None, sampleCAPS=None, sampleC2SC=None,
             simT=0.90, simSameCategory=True, simSameScript=True, simClip=300, simZones=None,
             automaticGroups=True, verbose=True,
@@ -49,6 +49,8 @@ class KerningManager:
         
         assert f is not None
         self.f = f # Stored as weakref property
+        assert md is not None
+        self.md = md # Contains the self.md.gs glyphset, useful for the KerningManager to have.
         if features is None:
             features = {}
         self.features = features # Dictionary of open type features to show in the samples
@@ -91,7 +93,8 @@ class KerningManager:
 
         self.tabWidth = tabWidth
 
-        # Generic fixed spacing patterns
+        # @@@ Generic fixed spacing patterns. These are gluphset dependent, so their should go into the GlyphSet class. 
+
         if fixedLeftMarginPatterns is None:
             fixedLeftMarginPatterns = { # Key is right margin, value is list of glyph names
             0:  ('enclosingkeycapcomb',)
@@ -1019,8 +1022,23 @@ class KerningManager:
             KERNING_RF_SAMPLES = KERNING_RF_SAMPLES_ITALIC = SPECIMEN_RF.getNames()
         """
 
-    def getSpacingSample(self, g, length=40):
-        sample = [g.name, g.name, g.name, 'H', 'a', 'm', 'b', 'u', 'r', 'g', 'e', 'f', 'o', 'n', 't', 's', 't', 'i', 'v', 'I', g.name, 'I', g.name, 'O', g.name, 'O', 'i', g.name, 'i', g.name, 'o', g.name, 'o']
+    def getSpacingSample(self, g, context=0, length=40, index=0):
+        """Answer a single sample line of the defined length for the selected context.
+        If the index in defined and the possible sample is larger than length, the slice the sample around the index.
+        0    Glyphset
+        1    According to similarity
+        2    By group mode context
+        3    By spacing mode context
+        4    By kerning mode context
+
+        """
+        sample = {
+            0: ['O', g.name, 'O', g.name, 'O', g.name, 'O', 'H', g.name, 'H', g.name, 'H', g.name, 'H'],  
+            1: ['O', g.name, 'O', g.name, 'O', g.name, 'O', 'H', g.name, 'H', g.name, 'H', g.name, 'H'], 
+            2: ['O', g.name, 'O', g.name, 'O', g.name, 'O', 'H', g.name, 'H', g.name, 'H', g.name, 'H'], 
+            3: [g.name, g.name, g.name, 'H', 'a', 'm', 'b', 'u', 'r', 'g', 'e', 'f', 'o', 'n', 't', 's', 't', 'i', 'v', 'I', g.name, 'I', g.name, 'O', g.name, 'O', 'i', g.name, 'i', g.name, 'o', g.name, 'o'],
+            4: ['O', g.name, 'O', g.name, 'O', g.name, 'O', 'H', g.name, 'H', g.name, 'H', g.name, 'H'],  
+        }[context]
         while len(sample) < length:
             sample.append(g.name)
         return sample

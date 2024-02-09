@@ -16,7 +16,7 @@ for path in PATHS:
         print('@@@ Append to sys.path', path)
         sys.path.append(path)
 
-from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart, FAR
+from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart
 
 class AssistantPartOverlay(BaseAssistantPart):
 
@@ -43,63 +43,73 @@ class AssistantPartOverlay(BaseAssistantPart):
         # Triggered by w.previewGlyphLeft, w.previewGlyphOverlay and w.previewGlyphRight       
 
         self.previewGlyphLeft = container.appendPathSublayer(
-            position=(FAR, 0),
+            position=(0, 0),
             fillColor=self.OVERLAY_FILL_LEFT_COLOR,
+            visible=False,
         )
         self.previewGlyphOverlay = container.appendPathSublayer(
-            position=(FAR, 0),
+            position=(0, 0),
             fillColor=self.OVERLAY_FILL_COLOR,
+            visible=False,
         )
         self.previewGlyphRight = container.appendPathSublayer(
-            position=(FAR, 0),
+            position=(0, 0),
             fillColor=self.OVERLAY_FILL_RIGHT_COLOR,
+            visible=False,
         )
         self.previewPointMarkers = []
         for pIndex in range(self.MAX_POINT_MARKERS): # Max number of points to display in a glyph
             self.previewPointMarkers.append(container.appendRectangleSublayer(name="point%03d" % pIndex,
-                position=(FAR, 0),
+                position=(0, 0),
                 size=(self.POINT_MARKER_R*2, self.POINT_MARKER_R*2),
                 fillColor=None,
                 strokeColor=(0, 0.5, 0, 1),
                 strokeWidth=1,
+                visible=False,
             ))
         self.backgroundPointMarkers = []
         for pIndex in range(self.MAX_POINT_MARKERS): # Max number of points to display in a glyph from the background glyph layer
             self.backgroundPointMarkers.append(container.appendRectangleSublayer(name="bgPoint%03d" % pIndex,
-                position=(FAR, 0),
+                position=(0, 0),
                 size=(self.POINT_MARKER_R*2, self.POINT_MARKER_R*2),
                 fillColor=None,
                 strokeColor=self.OVERLAY_STROKE_POINTMARKERS_COLOR,
                 strokeWidth=1,
+                visible=False,
             ))
         # Triggered by w.srcUFOPathOverlay
         self.srcUFOPathOverlay = container.appendPathSublayer(
-            position=(FAR, 0),
+            position=(0, 0),
             fillColor=self.OVERLAY_FILL_SRC_COLOR,
+                visible=False,
         )
         # Triggered by w.someUFOPathOverlay
         self.someUFOPathOverlay = container.appendPathSublayer(
-            position=(FAR, 0),
+            position=(0, 0),
             fillColor=None,
             strokeColor=self.OVERLAY_STROKE_SOME_UFO_COLOR,
             strokeWidth=1,
+            visible=False,
         )
         # Triggered by w.orgUFOPathOverlay
         self.orgUFOPathOverlay = container.appendPathSublayer(
-            position=(FAR, 0),
+            position=(0, 0),
             fillColor=self.OVERLAY_FILL_SRC_COLOR,
+            visible=False,
         )
         # Triggered by w.kerningSrcPathOverlay
         self.kerningSrcPathOverlay = container.appendPathSublayer(
-            position=(FAR, 0),
+            position=(0, 0),
             fillColor=self.OVERLAY_FILL_KERNING_COLOR,
+            visible=False,
         )
         # Triggered by w.romanItalicUFOPathOverlay
         self.romanItalicUFOPathOverlay = container.appendPathSublayer(
-            position=(FAR, 0),
+            position=(0, 0),
             fillColor=None,
             strokeColor=self.OVERLAY_STROKE_ROMANITALIC_COLOR,
             strokeWidth=1,
+            visible=False,
         )
 
     def updateMerzOverlay(self, info):
@@ -121,13 +131,15 @@ class AssistantPartOverlay(BaseAssistantPart):
             glyphPathLeft = gLeft.getRepresentation("merz.CGPath") 
             self.previewGlyphLeft.setPath(glyphPathLeft)
             self.previewGlyphLeft.setPosition((min(-gLeft.width, gLeft.angledLeftMargin-500), 0)) # Make sure not to overlap on zero-width
+            self.previewGlyphLeft.setVisible(True)
 
         elif c.w.previewGlyphLeft.get():
             self.previewGlyphLeft.setPath(glyphPath)
             self.previewGlyphLeft.setPosition((min(-g.width, g.angledLeftMargin-500), 0)) # Make sure not to overlap on zero-width
+            self.previewGlyphLeft.setVisible(True)
 
         else:
-            self.previewGlyphLeft.setPosition((FAR, 0)) # Far, far away
+            self.previewGlyphLeft.setVisible(False)
 
         rightName = c.w.previewGlyphRightName.get()
         if rightName and rightName in f:
@@ -135,13 +147,15 @@ class AssistantPartOverlay(BaseAssistantPart):
             glyphPathRight = gRight.getRepresentation("merz.CGPath") 
             self.previewGlyphRight.setPath(glyphPathRight)
             self.previewGlyphRight.setPosition((max(g.width, -g.angledRightMargin+500), 0)) # Make sure not to overlap on zero-width
+            self.previewGlyphRight.setVisible(True)
         
         elif c.w.previewGlyphRight.get():
             self.previewGlyphRight.setPath(glyphPath)
             self.previewGlyphRight.setPosition((max(g.width, -g.angledRightMargin+500), 0)) # Make sure not to overlap on zero-width
+            self.previewGlyphRight.setVisible(True)
         
         else:
-            self.previewGlyphRight.setPosition((FAR, 0))
+            self.previewGlyphRight.setVisible(False)
 
         overlayName = c.w.overlayGlyphName.get()
         if overlayName == '/?' or not overlayName:
@@ -155,6 +169,7 @@ class AssistantPartOverlay(BaseAssistantPart):
  
             x = c.w.overlayPositionSlider.get() / self.MAX_OVERLAY_SLIDER * (g.width - gOverlay.width)
             self.previewGlyphOverlay.setPosition((x, 0))
+            self.previewGlyphOverlay.setVisible(True)
             
             if c.w.previewGlyphOverlay.get():
                 self.previewGlyphOverlay.setFillColor(self.OVERLAY_FILL_COLOR)
@@ -167,13 +182,14 @@ class AssistantPartOverlay(BaseAssistantPart):
                     for p in contour.points:
                         #print(pIndex, len(self.previewPointMarkers))
                         self.previewPointMarkers[pIndex].setPosition((x+p.x-self.POINT_MARKER_R, p.y-self.POINT_MARKER_R)) 
+                        self.previewPointMarkers[pIndex].setVisible(True)
                         pIndex += 1
         else:
-            self.previewGlyphOverlay.setPosition((FAR, 0))            
+            self.previewGlyphOverlay.setVisible(False)
 
         # Then hide the rest of the point markers
         for n in range(pIndex, len(self.previewPointMarkers)):
-            self.previewPointMarkers[n].setPosition((FAR, 0)) 
+            self.previewPointMarkers[n].setVisible(False)
 
         # If there is not an path md defined for each type of overlay, then disable their checkboxes.
         drawn = False
@@ -184,9 +200,10 @@ class AssistantPartOverlay(BaseAssistantPart):
                 glyphPath = og.getRepresentation("merz.CGPath") 
                 self.srcUFOPathOverlay.setPath(glyphPath)
                 self.srcUFOPathOverlay.setPosition((0, 0)) 
+                self.srcUFOPathOverlay.setVisible(True)
                 drawn = True
         if not drawn:
-            self.srcUFOPathOverlay.setPosition((FAR, 0)) 
+            self.srcUFOPathOverlay.setVisible(False)
 
         drawn = False
         if md.someUFOPath is not None and c.w.someUFOPathOverlay.get():
@@ -196,9 +213,10 @@ class AssistantPartOverlay(BaseAssistantPart):
                 glyphPath = og.getRepresentation("merz.CGPath") 
                 self.someUFOPathOverlay.setPath(glyphPath)
                 self.someUFOPathOverlay.setPosition((0, 0)) 
+                self.someUFOPathOverlay.setVisible(True)
                 drawn = True
         if not drawn:
-            self.someUFOPathOverlay.setPosition((FAR, 0)) 
+            self.someUFOPathOverlay.setVisible(False)
 
         drawn = False
         if md.orgUFOPath is not None and c.w.orgUFOPathOverlay.get():
@@ -210,9 +228,10 @@ class AssistantPartOverlay(BaseAssistantPart):
                 glyphPath = og.getRepresentation("merz.CGPath") 
                 self.orgUFOPathOverlay.setPath(glyphPath)
                 self.orgUFOPathOverlay.setPosition((0, 0)) 
+                self.orgUFOPathOverlay.setVisible(True)
                 drawn = True
         if not drawn:
-            self.orgUFOPathOverlay.setPosition((FAR, 0)) 
+            self.orgUFOPathOverlay.setVisible(False) 
 
         drawn = False
         if md.romanItalicUFOPath is not None and c.w.romanItalicUFOPathOverlay.get():
@@ -222,9 +241,10 @@ class AssistantPartOverlay(BaseAssistantPart):
                 glyphPath = og.getRepresentation("merz.CGPath") 
                 self.romanItalicUFOPathOverlay.setPath(glyphPath)
                 self.romanItalicUFOPathOverlay.setPosition((0, 0)) 
+                self.romanItalicUFOPathOverlay.setVisible(True)
                 drawn = True
         if not drawn:
-            self.romanItalicUFOPathOverlay.setPosition((FAR, 0)) 
+            self.romanItalicUFOPathOverlay.setVisible(False) 
 
     def overlaySnap2Overlay(self, g, c, event):     
         """Snap the selected points of the current glyph onto points that are within range on the background glyph."""
