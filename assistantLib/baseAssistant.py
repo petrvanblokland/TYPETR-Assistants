@@ -445,7 +445,7 @@ class BaseAssistant:
                 if p.type == self.POINTTYPE_OFFCURVE:
                     return True
         return False
-
+        
 class Assistant(BaseAssistant, Subscriber):
 
     # Editor window drawing parameters
@@ -501,6 +501,12 @@ class Assistant(BaseAssistant, Subscriber):
     
     #def glyphEditorGlyphDidChange(self, info) # Better not use this one, as it also is triggered on lib changes.
     #   The editor selected another glyph. Update the visible Merz elements for the new glyph."""
+        
+    def glyphEditorGlyphDidChangeMetrics(self, info):
+        """The editor did change width"""
+        #print("""The editor did change width""", info['glyph'])
+        self.update(info) # Check if something else needs to be updated
+        self.updateMerz(info)
         
     def glyphEditorGlyphDidChangeContours(self, info):
         """The editor did change contours"""

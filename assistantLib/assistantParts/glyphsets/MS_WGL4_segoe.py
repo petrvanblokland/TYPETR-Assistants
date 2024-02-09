@@ -6,14 +6,10 @@
 #
 #   MS_WGL3_segoe.py
 #
-try:
-    from assistantLib.assistantParts.glyphsets.glyphData import *
-    from assistantLib.assistantParts.glyphsets.glyphSet import GlyphSet
-    from assistantLib.assistantParts.glyphsets.anchorData import AD
-except ModuleNotFoundError:
-    from glyphData import *
-    from glyphSet import GlyphSet
-    from anchorData import AD
+
+from assistantLib.assistantParts.glyphsets.glyphData import *
+from assistantLib.assistantParts.glyphsets.glyphSet import GlyphSet
+from assistantLib.assistantParts.glyphsets.anchorData import AD
 
 class MS_GlyphSet(GlyphSet):
     """GlyphSet for the SegoeUI family
@@ -2768,12 +2764,3 @@ class MS_GlyphSet(GlyphSet):
         044A
     """
 
-if __name__ == '__main__':
-
-             
-    gs = MS_GlyphSet()
-    #f = CurrentFont()
-    #gs.checkFixFromFont(f)
-    gs.saveGlyphSetSource()
-
-    print('Done')

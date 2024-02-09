@@ -10,12 +10,8 @@ from copy import deepcopy
 import codecs
 import os
 
-try:
-    from assistantLib.assistantParts.glyphsets.glyphData import *
-    from assistantLib.assistantParts.glyphsets.anchorData import AD 
-except ModuleNotFoundError:
-    from glyphData import *
-    from anchorData import AD 
+from assistantLib.assistantParts.glyphsets.glyphData import *
+from assistantLib.assistantParts.glyphsets.anchorData import AD 
 
 class GlyphSet:
     """GlyphSet behaves like a dictionary of GlyphData instances.
@@ -187,11 +183,6 @@ GLYPH_DATA = {
             out.write(gd.asSourceLine())
         out.write('}\n')
         out.close()
-
-if __name__ == '__main__':
-    import doctest
-    import sys
-    sys.exit(doctest.testmod()[0])
 
 
 

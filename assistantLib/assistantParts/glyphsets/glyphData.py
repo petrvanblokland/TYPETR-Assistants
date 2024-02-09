@@ -15,7 +15,7 @@
 #
 # Note that names cannot start with an underscore, or else the cannot be imported by other sources.
 #
-from assistantLib.assistantParts.glyphsets.anchorData import AD
+from assistantLib.assistantParts.glyphsets.anchorData import AD 
 
 class GlyphData:
     """Glyph data element that contains all individual data for glyphs.
@@ -100,10 +100,9 @@ class GlyphData:
             # Groups
             g1=None, g2=None, 
             ascender=None, descender=None, 
-            # # In case hard value needs to overwrite category value
+            # In case hard value needs to overwrite category value, use numbers
+            # Otherwise categories of vertical metrics or None. They overwrite the master-wide guessed value by parent MasterData
             overshoot=None, height=None, baseline=None, width=None,
-            # Categories of vertical metrics, if not None they overwrite the master-wide guessed value by parent MasterData
-            catOvershoot=None, catHeight=None, catBaseline=None, catWidth=None, 
             #
             ): 
         self.parent = None # 
@@ -167,21 +166,15 @@ class GlyphData:
         self.ascender = ascender
         self.descender = descender
 
-        self.overshoot = overshoot # In case hard value needs to overwrite category value of self.catOvershoot
-        self.height = height # In case hard value needs to overwrite category value of self.catHeight
-        self.baseline = baseline # In case hard value needs to overwrite category value of self.catBaseline
-        self.width = width # In case hard value needs to overwrite category value of self.catHeight
-
-        # Categories of vertical metrics, if not None they overwrite the master-wide guessed value by parent MasterData
-        assert catOvershoot in self.CAT_OVERSHOOTS
-        assert catHeight in self.CAT_HEIGHTS
-        assert catBaseline in self.CAT_BASELINES
-        assert catWidth in self.CAT_WIDTHS
-
-        self.catOvershoot = catOvershoot
-        self.catHeight = catHeight 
-        self.catBaseline = catBaseline 
-        self.catWidth = catWidth 
+        # These values must be valid category names or real numbers or can be None
+        assert overshoot in self.CAT_OVERSHOOTS or isinstance(overshoot, (int, float))
+        assert height in self.CAT_HEIGHTS or isinstance(height, (int, float))
+        assert baseline in self.CAT_BASELINES or isinstance(baseline, (int, float))
+        assert width in self.CAT_WIDTHS or isinstance(width, (int, float))
+        self.overshoot = overshoot # Hard value or category name
+        self.height = height
+        self.baseline = baseline
+        self.width = width
 
     def __repr__(self):
         return(f'<{self.__class__.__name__} {self.name}>')
@@ -388,10 +381,5 @@ class GlyphData:
     rightSpaceSourceLabel = property(_get_rightSpaceSourceLabel)
 
 GD = GlyphData
-
-if __name__ == '__main__':
-    import doctest
-    import sys
-    sys.exit(doctest.testmod()[0])
 
 

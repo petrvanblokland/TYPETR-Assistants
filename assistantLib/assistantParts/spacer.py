@@ -53,6 +53,9 @@ class AssistantPartSpacer(BaseAssistantPart):
     SPACER_LABEL_SIZE = 18
     SPACER_MARKER_R = 22 # Radius of space marker
 
+    SPACER_LABEL_FONT = 'Verdana'
+    SPACER_LABEL_SIZE = 10
+
     def initMerzSpacer(self, container):
         """Define the Merz elements for feedback about where margins/width comes from."""
 
@@ -80,8 +83,8 @@ class AssistantPartSpacer(BaseAssistantPart):
                 name='kernedValue-%d' % gIndex,
                 position=(FAR, 0),
                 text='xxx\nxxx',
-                font='Courier',
-                pointSize=16,
+                font=self.SPACER_LABEL_FONT,
+                pointSize=self.SPACER_LABEL_SIZE,
                 fillColor=(0, 0, 0, 1), # Can be red (negative kerning) or green (positive kerning)
             )
             kerningLineValue.addScaleTransformation(self.KERN_SCALE)
@@ -103,11 +106,12 @@ class AssistantPartSpacer(BaseAssistantPart):
                 name='kernedName-%d' % gIndex,
                 position=(FAR, 0),
                 text='xxx\nxxx',
-                font='Courier',
-                pointSize=12,
-                fillColor=(0.6, 0.6, 0.6, 1),
+                font=self.SPACER_LABEL_FONT,
+                pointSize=self.SPACER_LABEL_SIZE,
+                fillColor=(0, 0, 0, 1),
             )
             kerningLineName.addScaleTransformation(self.KERN_SCALE)
+            kerningLineName.setHorizontalAlignment('center')
             self.kerningLineNames.append(kerningLineName)
 
         self.kerningSelectedGlyphMarker = self.backgroundContainer.appendRectangleSublayer(
@@ -186,9 +190,18 @@ class AssistantPartSpacer(BaseAssistantPart):
     def updateMerzSpacer(self, info):
         """Update the spacing/kerning sample line"""
         c = self.getController()
+        g = info['glyph']
+        if g is None:
+            return 
         if c.w.showSpacingSampleLine.get():
-            g = info['glyph']
             self.updateMerzSpacerKerningLine(g)
+        else:
+            self.hideMerzSpacerKerningLine()
+            g.changed()
+
+    def hideMerzSpacerKerningLine(self):
+        for kerningGlyphLayer in self.kerningLine:
+            kerningGlyphLayer.setPosition((FAR, 0))
 
     def updateMerzSpacerKerningLine(self, g):
         """Update the spacing/kerning/sample line for the current glyphs and its settings."""
@@ -202,17 +215,23 @@ class AssistantPartSpacer(BaseAssistantPart):
         km = self.getKerningManager(g.font)
         sample = km.getSpacingSample(g, len(self.kerningLine)) # Get a spacing sample for the right amount of glyphs
 
+        self.spacerGlyphPositions = [] # Reset the list of KerningLineGlyphPosition instances.
+
         # We need to do this in 2 runs, unfortunately, to center the line by its total width.
         for gIndex, kerningGlyphLayer in enumerate(self.kerningLine): # List of kerned glyph images
             spaceG = f[sample[gIndex]]
             kerningGlyphLayer.setFillColor((0, 0, 0, 1))
             kerningGlyphLayer.setPath(spaceG.getRepresentation("merz.CGPath"))
-            self.spacerGlyphPositions.append(KerningLineGlyphPosition(g.name, x, y, spaceG.width, h, k))
+            self.spacerGlyphPositions.append(KerningLineGlyphPosition(spaceG.name, x, y, spaceG.width, h, k))
             x += spaceG.width + k
 
         x = g.width/2 - x/2 + y * tan(radians(-f.info.italicAngle or 0))
         for gIndex, kerningGlyphLayer in enumerate(self.kerningLine):
-            kerningGlyphLayer.setPosition((self.spacerGlyphPositions[gIndex].x + x, y))
+            gp = self.spacerGlyphPositions[gIndex]
+            kerningGlyphLayer.setPosition((gp.x + x, y))
+            kerningNameLayer = self.kerningLineNames[gIndex]
+            kerningNameLayer.setText(gp.name)
+            kerningNameLayer.setPosition((gp.x + x + gp.w/2, y + f.info.descender))
 
     """
             kerningSrc = None
@@ -457,6 +476,61 @@ class AssistantPartSpacer(BaseAssistantPart):
             self.group2TextRightLayer.setPosition((FAR, 0))
         """
 
+    def mouseMoveSpacer(self, g, x, y):
+        """Set the hoover color for the current selected glyph"""
+        if g is None:
+            return
+        c = self.getController()
+        currentFont = g.font
+        y1 = currentFont.info.unitsPerEm
+        y2 = y1 + currentFont.info.unitsPerEm * self.FAMILY_OVERVIEW_SCALE
+        x1 = -self.SPACER_LABEL_SPACING * self.FAMILY_OVERVIEW_SCALE + y1 * tan(radians(-currentFont.info.italicAngle or 0))
+        parentPath = self.filePath2ParentPath(currentFont.path)
+        for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
+            fullPath = self.path2FullPath(pth)
+            if fIndex < len(self.familyOverviewGlyphs):
+                ufo = self.getFont(fullPath)
+                if ufo is not None and g.name in ufo:
+                    ufoG = ufo[g.name]
+                    x2 = x1 + max(ufo.info.unitsPerEm/2, ufoG.width + self.LABEL_SPACING) * self.FAMILY_OVERVIEW_SCALE
+                    if y1 <= y <= y2 and x1 <= x <= x2:
+                        fillColor = self.FAMILY_HOVER_FILL_COLOR
+                    elif not self.isCurrentGlyph(ufoG) or not c.w.showFamilyInterpolation.get() or self.doesInterpolate(ufoG):
+                        fillColor = self.FAMILY_DEFAULT_FILL_COLOR
+                    else:
+                        fillColor = self.FAMILY_INTERPOLATION_ERROR_FILL_COLOR
+                    self.familyOverviewGlyphs[fIndex].setFillColor(fillColor)
+                    x1 = x2
+                    
+    def mouseDownSpacer(self, g, x, y):
+        """Open Editor window on clicked glyph"""
+        if g is None:
+            return
+        print(x, y, self.spacerGlyphPositions[0].x, self.spacerGlyphPositions[0].y)
+        return
+
+        currentFont = g.font
+        y1 = currentFont.info.unitsPerEm
+        y2 = y1 + currentFont.info.unitsPerEm * self.FAMILY_OVERVIEW_SCALE
+        x1 = -self.LABEL_SPACING * self.FAMILY_OVERVIEW_SCALE + y1 * tan(radians(-currentFont.info.italicAngle or 0)) # Correct for italic angle
+        parentPath = self.filePath2ParentPath(currentFont.path)
+        for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
+            fullPath = self.path2FullPath(pth)
+            if fIndex < len(self.familyOverviewGlyphs):
+                ufo = self.getFont(fullPath, showInterface=currentFont.path == fullPath) # Make sure RoboFont opens the current font.
+                if ufo is not None and g.name in ufo:
+                    ufoG = ufo[g.name]
+                    x2 = x1 + max(ufo.info.unitsPerEm/2, ufoG.width + self.LABEL_SPACING) * self.FAMILY_OVERVIEW_SCALE
+                    if y1 <= y <= y2 and x1 <= x <= x2:
+                        if currentFont.path != ufo.path:
+                            rr = self.getGlyphWindowPosSize()
+                            if rr is not None:
+                                currentLayerName = g.layer.name
+                                p, s, settings, viewFrame, viewScale = rr
+                                self.setGlyphWindowPosSize(ufoG, p, s, settings=settings, viewFrame=viewFrame, viewScale=viewScale, layerName=currentLayerName)
+                        return 
+                    x1 = x2
+
     def updateSpacer(self, info):
         """If the checkbox is set, then try to check and fix automated margins and width.
         Answer the boolean flag if something was changed to the glyph."""
@@ -481,6 +555,15 @@ class AssistantPartSpacer(BaseAssistantPart):
     KEY_DEC_LEFT_MARGIN_CAP = 'U'
     KEY_DEC_LEFT_MARGIN = 'u'
 
+    KEY_INC_KERN2_CAP = '>'
+    KEY_INC_KERN2 = '.'
+    KEY_DEC_KERN2_CAP = '<'
+    KEY_DEC_KERN2 = ','
+    KEY_INC_KERN1_CAP = 'M'
+    KEY_INC_KERN1 = 'm'
+    KEY_DEC_KERN1_CAP = 'N'
+    KEY_DEC_KERN1 = 'n'
+
     def buildSpacer(self, y):
         """Build the assistant UI for anchor controls."""
         personalKey_eq = self.registerKeyStroke(self.KEY_CENTER_GLYPH, 'spacerCenterGlyph')
@@ -494,6 +577,16 @@ class AssistantPartSpacer(BaseAssistantPart):
         personalKey_o = self.registerKeyStroke(self.KEY_DEC_RIGHT_MARGIN, 'spacerDecRightMargin')
         personalKey_P = self.registerKeyStroke(self.KEY_INC_RIGHT_MARGIN_CAP, 'spacerIncRightMarginCap')
         personalKey_p = self.registerKeyStroke(self.KEY_INC_RIGHT_MARGIN, 'spacerIncRightMargin')
+
+        personalKey_larger = self.registerKeyStroke(self.KEY_INC_KERN2_CAP, 'spacerDecKern2Cap')
+        personalKey_period = self.registerKeyStroke(self.KEY_INC_KERN2, 'spacerDecKern2')
+        personalKey_smaller = self.registerKeyStroke(self.KEY_DEC_KERN2_CAP, 'spacerIncKern2Cap')
+        personalKey_comma = self.registerKeyStroke(self.KEY_DEC_KERN2, 'spacerIncKern2')
+
+        personalKey_M = self.registerKeyStroke(self.KEY_INC_KERN1_CAP, 'spacerDecKern1Cap')
+        personalKey_m = self.registerKeyStroke(self.KEY_INC_KERN1, 'spacerDecKern1')
+        personalKey_N = self.registerKeyStroke(self.KEY_DEC_KERN1_CAP, 'spacerIncKern1Cap')
+        personalKey_n = self.registerKeyStroke(self.KEY_DEC_KERN1, 'spacerIncKern1')
 
         c = self.getController()
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
@@ -509,11 +602,18 @@ class AssistantPartSpacer(BaseAssistantPart):
         c.w.incLeftMarginButton = Button((C2+CW/4, y, CW/4, L), '[%s]>' % personalKey_i, callback=self.spacerIncLeftMarginCallback)
         c.w.decRightMarginButton = Button((C2+2*CW/4, y, CW/4, L), '<[%s]' % personalKey_o, callback=self.spacerDecRightMarginCallback)
         c.w.incRightMarginButton = Button((C2+3*CW/4, y, CW/4, L), '[%s]>' % personalKey_p, callback=self.spacerIncRightMarginCallback)
+        y += L
+        c.w.spacerMode = RadioGroup((C1, y, CW, L), ('Sim', 'Spc', 'Kern'), isVertical=False, sizeStyle='small', callback=self.updateEditor)
+        c.w.spacerMode.set(1)
+        #c.w.decKern2Button = Button((C2, y, CW/4, L), '<[%s]' % personalKey_m, callback=self.spacerDecKern2Callback)
+        #c.w.incKern2Button = Button((C2+CW/4, y, CW/4, L), '[%s]>' % personalKey_n, callback=self.spacerIncKern2Callback)
+        #c.w.decKern1Button = Button((C2+2*CW/4, y, CW/4, L), '<[%s]' % personalKey_period, callback=self.spacerDecKern1Callback)
+        #c.w.incKern1Button = Button((C2+3*CW/4, y, CW/4, L), '[%s]>' % personalKey_comma, callback=self.spacerIncKern1Callback)
         y += L + LL
 
         return y
 
-    #   S P A C I N G | K E R N I N G  K E Y S
+    #   S P A C I N G  K E Y S
 
     def spacerDecLeftMarginCallback(self, sender):
         self._adjustLeftMargin(g, -1)
@@ -561,6 +661,57 @@ class AssistantPartSpacer(BaseAssistantPart):
         g.changed()
 
     def spacerIncRightMargin(self, g, c, event):
+        self._adjustRightMargin(g, 1)
+        g.changed()
+
+    #   K E R N I N G  K E Y S
+
+    def spacerDecKern2Callback(self, sender):
+        self._adjustLeftMargin(g, -1)
+        g.changed()
+
+    def spacerIncKern2Callback(self, sender):
+        self._adjustLeftMargin(g, 1)
+        g.changed()
+
+    def spacerDecKern1Callback(self, sender):
+        self._adjustRightMargin(g, -1)
+        g.changed()
+
+    def spacerIncKern1Callback(self, sender):
+        self._adjustRightMargin(g, 1)
+        g.changed()
+
+
+    def spacerDecKern2Cap(self, g, c, event):
+        self._adjustLeftMargin(g, -5)
+        g.changed()
+
+    def spacerDecKern2(self, g, c, event):
+        self._adjustLeftMargin(g, -1)
+        g.changed()
+
+    def spacerIncKern2Cap(self, g, c, event):
+        self._adjustLeftMargin(g, 5)
+        g.changed()
+
+    def spacerIncKern2(self, g, c, event):
+        self._adjustLeftMargin(g, 1)
+        g.changed()
+
+    def spacerDecKern1Cap(self, g, c, event):
+        self._adjustRightMargin(g, -5)
+        g.changed()
+
+    def spacerDecKern1(self, g, c, event):
+        self._adjustRightMargin(g, -1)
+        g.changed()
+
+    def spacerIncKern1Cap(self, g, c, event):
+        self._adjustRightMargin(g, 5)
+        g.changed()
+
+    def spacerIncKern1(self, g, c, event):
         self._adjustRightMargin(g, 1)
         g.changed()
 
@@ -718,9 +869,6 @@ class AssistantPartSpacer(BaseAssistantPart):
         self.fixedSpaceMarkerRight.setFillColor(color)
         self.rightSpaceSourceLabel.setPosition((0, -self.SPACER_MARKER_R*1.5))
         self.rightSpaceSourceLabel.setText(label)
-
-        ##### FOR NOW
-        # Add rightmargin stuff here
 
         return changed
     

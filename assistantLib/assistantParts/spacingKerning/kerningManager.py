@@ -29,7 +29,14 @@ MAIN_SAMPLES = SAMPLES
 TAB_WIDTH = 650 # Default tab width.
 
 class KerningManager:
-    """Generic kerning manager"""
+    """Generic kerning manager, the spacing WizzKid. It knows all about spacing and kerning and it offers several strategies for it:
+    by groups, by specification in the GlyphData, by Similarity and by KernNet-AI. It is up to the calling assistant to decide
+    which strategy fits best to a certain design and to a certain phase in the design process.
+
+    The KerningManager also is able to supply sample lists of glyphname, that fit best to the current task (spacing or kerning)
+    for a specific glyph.
+
+    """
 
     def __init__(self, f, features=None, 
             sample=None, sampleCAPS=None, sampleC2SC=None,
@@ -99,7 +106,7 @@ class KerningManager:
 
         if fixedWidthPatterns is None:
             fixedWidthPatterns = { # Key is right margin, value is list of glyph names
-            0: ('cmb|', 'comb|', 'comb-cy|', '.component', 'zerowidthspace', 'zerowidthjoiner', 
+            0: ('cmb|', 'comb|', 'comb-cy|', '-uc|', '.component', 'zerowidthspace', 'zerowidthjoiner', 
                 'zerowidthnonjoiner', 'righttoleftmark',
                 'dasiavaria-uc', ), # "|" matches pattern on end of name"
             self.tabWidth: ('.tab|', '.tnum|')

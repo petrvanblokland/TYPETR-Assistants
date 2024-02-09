@@ -15,22 +15,15 @@
 #   Stacking diacritics can have both, to allow other diacritics floating on top.
 #
 
-try:
-    from assistantLib.assistantParts.glyphsets.glyphData import * 
-    from assistantLib.assistantParts.glyphsets.glyphSet import GlyphSet
-    from assistantLib.assistantParts.glyphsets.anchorData import AD
-except ModuleNotFoundError:
-    from glyphsets.glyphData import * 
-    from glyphsets.glyphSet import GlyphSet
-    from glyphsets.anchorData import AD
+from assistantLib.assistantParts.glyphsets.glyphData import * 
+from assistantLib.assistantParts.glyphsets.glyphSet import GlyphSet
+from assistantLib.assistantParts.glyphsets.anchorData import AD
 
 class MasterData:
     """Storing additional data about masters, without storing the actual RFont instance. 
     The font can be retrieves by baseAssistant.getMaster(self.path)
 
-    >>> from glyphsets.TYPETR_full_set import TYPETR_GlyphSet 
-    >>> glyphSet = TYPETR_GlyphSet()
-    >>> md = MasterData(glyphSet=glyphSet)
+    >>> # Doctesting is done via more global docTestAssistants.py
 
     """
     # Master data default values
@@ -90,6 +83,8 @@ class MasterData:
             underlinePosition=None, underlineThickness=None
 
         ):
+        if name is None:
+            name = 'Untitled'
         self.name = name
         self.ufoPath = ufoPath or self.UFO_PATH # Ufo file path = self.ufoPath + self.name
         self.familyName = familyName
@@ -279,17 +274,22 @@ class MasterData:
         #eulaURL=EULA_URL, eulaDescription=EULA_DESCRIPTION,
         #underlinePosition=None, underlineThickness=UNDERLINE_THICKNESS
 
+    def isNumber(self, v):
+        return isinstance(v, (int, float))
+
     def getOvershoot(self, gName):
         """Answer the overshoot for this glyph based on the settings of the related GlyphData and otherwise guessing on its name."""
         gd = self.glyphSet.get(gName)
         if gd is None:
             print(f'### getOvershoot: Unknown glyph /{gName} in glyphSet of {self.name}')
             return self.baseOvershoot
-        if gd.overshoot is not None: # If there a hard coded value, then answer it
+        if gd.overshoot is None: # Nothing defined in the glyph, use the default
+            return self.baseOvershoot
+        if isinstance(gd.overshoot, (int, float)): 
             return gd.overshoot
         # If there is a category defined in the glyphData for this glyph, then answer the referenced category value.
-        if gd.catOvershoot is not None:
-            return self.cat2Overshoot[gd.catOvershoot]
+        if gd.overshoot in self.cat2Overshoot:
+            return self.cat2Overshoot[gd.overshoot]
         # Not defined in the GlyphSet/GlyphData for this glyph. We need to do some quessing, based on the name.
         if gd.isUpper: # All glyph that start with initial cap
             return self.cat2Overshoot[GD.CAT_CAP_OVERSHOOT]
@@ -306,11 +306,13 @@ class MasterData:
         if gd is None:
             print(f'### getBaseline: Unknown glyph /{gName} in glyphSet of {self.name}')
             return self.BASELINE
-        if gd.baseline is not None: # If there a hard coded value, then answer it
+        if gd.baseline is None: # Nothing defined in the glyph, use the default
+            return self.BASELINE
+        if isinstance(gd.baseline, (int, float)): 
             return gd.baseline
         # If there is a category defined in the glyphData for this glyph, then answer the referenced category value.
-        if gd.catBaseline is not None:
-            return self.cat2Baseline[gd.catBaseline]
+        if gd.baseline in cat2Baseline:
+            return self.cat2Baseline[gd.baseline]
         # Not defined in the GlyphSet/GlyphData for this glyph. We need to do some quessing, based on the type of glyph or its name.
         if gd.isMod:
             return self.modBaseline
@@ -330,7 +332,9 @@ class MasterData:
         if gd is None:
             print(f'### getHeight: Unknown glyph /{gName} in glyphSet of {self.name}')
             return self.capHeight
-        if gd.height is not None: # If there a hard coded value, then answer it
+        if gd.height is None: # Nothing defined in the glyph, use the default
+            return self.capHeight
+        if isinstance(gd.height, (int, float)): 
             return gd.height
         # If there is a category defined in the glyphData for this glyph, then answer the referenced category value.
         # Smallcaps

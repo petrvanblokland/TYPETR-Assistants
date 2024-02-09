@@ -9,12 +9,8 @@
 
 from copy import deepcopy
 
-try:
-    from assistantLib.assistantParts.glyphsets.glyphData import * #GD, TOP, TOP_, _BOTTOM, BOTTOM_ etc.
-    from assistantLib.assistantParts.glyphsets.TYPETR_full_set import TYPETR_GlyphSet
-except ModuleNotFoundError:
-    from glyphData import * #GD, TOP, TOP_, _BOTTOM, BOTTOM_, etc.
-    from TYPETR_full_set import TYPETR_GlyphSet
+from assistantLib.assistantParts.glyphsets.glyphData import * #GD, TOP, TOP_, _BOTTOM, BOTTOM_ etc.
+from assistantLib.assistantParts.glyphsets.TYPETR_full_set import TYPETR_GlyphSet
 
 class TYPETR_UpgradeNeonGlyphSet(TYPETR_GlyphSet):
     """GlyphSet for the default TYPETR families
