@@ -43,8 +43,9 @@ class AssistantPartOverlay(BaseAssistantPart):
         # Triggered by w.previewGlyphLeft, w.previewGlyphOverlay and w.previewGlyphRight       
 
         self.previewGlyphLeft = container.appendPathSublayer(
-            position=(FAR, 0),
+            position=(0, 0),
             fillColor=self.OVERLAY_FILL_LEFT_COLOR,
+            visible=False,
         )
         self.previewGlyphOverlay = container.appendPathSublayer(
             position=(FAR, 0),

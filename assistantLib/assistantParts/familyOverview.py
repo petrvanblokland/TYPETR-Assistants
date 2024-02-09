@@ -20,7 +20,7 @@ for path in PATHS:
         print('@@@ Append to sys.path', path)
         sys.path.append(path)
 
-from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart, FAR
+from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart
 
 class AssistantPartFamilyOverview(BaseAssistantPart):
 
@@ -46,30 +46,33 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         self.familyOverviewStyleName = []
         for ufoIndex in range(self.MAX_FAMILY_OVERVIEW): # Max number glyphs in family overview
             subLayer = container.appendPathSublayer(name="familyOverview%03d" % ufoIndex,
-                position=(FAR, 0),
+                position=(0, 0),
                 fillColor=(0, 0, 0, 1),
                 strokeColor=None,
+                visibdle=False,
             )
             subLayer.addScaleTransformation(self.FAMILY_OVERVIEW_SCALE)
             self.familyOverviewGlyphs.append(subLayer)            
 
             subLayer = container.appendTextLineSublayer(name="familyOverviewStyleName%03d" % ufoIndex,
-                position=(FAR, 0),
+                position=(0, 0),
                 text='',
                 font=self.FAMILY_LABEL_FONT,
                 pointSize=self.FAMILY_LABEL_SIZE,
                 fillColor=self.FAMILY_DEFAULT_FILL_COLOR, # Can be set to FAMILY_INTERPOLATION_ERROR_FILL_COLOR
+                visible=False,
             )
-            subLayer.addScaleTransformation(self.FAMILY_OVERVIEW_SCALE)
+            subLayer.addScaleTransformation(self.FAMILY_OVERVIEW_SCALE)            
             subLayer.setHorizontalAlignment('center')
             self.familyOverviewStyleName.append(subLayer)
         
         self.familyOverviewStartPoints = []
         for spIndex in range(self.MAX_FAMILY_START_POINTS): # Max amount of start points to show
             subLayer = container.appendOvalSublayer(name="familyOverviewStartPoint%03d" % spIndex,
-                position=(FAR, 0),
+                position=(0, 0),
                 size=(self.FAMILY_OVERVIEW_START_POINT_SIZE, self.FAMILY_OVERVIEW_START_POINT_SIZE),
                 fillColor=self.FAMILY_OVERVIEW_START_POINT_COLOR,
+                visible=False,
             )
             subLayer.addScaleTransformation(self.FAMILY_OVERVIEW_SCALE)
             self.familyOverviewStartPoints.append(subLayer)            
@@ -113,7 +116,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                             p = contour.points[0]
                             pos = x + p.x - self.FAMILY_OVERVIEW_START_POINT_SIZE/2, y + p.y - self.FAMILY_OVERVIEW_START_POINT_SIZE/2
                             self.familyOverviewStartPoints[spIndex].setPosition(pos)
-                            self.familyOverviewStartPoints[n].setVisible(True)
+                            self.familyOverviewStartPoints[spIndex].setVisible(True)
                             spIndex += 1
 
                         x += max(f.info.unitsPerEm/2, ufoG.width + self.FAMILY_LABEL_SPACING) # Add a wordspace between the styles

@@ -458,8 +458,9 @@ class Assistant(BaseAssistant, Subscriber):
     
     def build(self):
         self.mouseClickPoint = None
-        self.mouseDraggedPoint = None
-
+        self.mouseDragPoint = None
+        self.mouseMovePoint = None
+        
         glyphEditor = self.getGlyphEditor()
         self.isUpdating = 0
 
@@ -542,7 +543,7 @@ class Assistant(BaseAssistant, Subscriber):
     def glyphEditorDidMouseUp(self, info):
         # Reset terminal stuff
         self.mouseClickPoint = None
-        self.mouseDraggedPoint = None
+        self.mouseDragPoint = None
         for mouseDownMethodName in self.MOUSE_UP_METHODS:
             getattr(self, mouseDownMethodName)(g, p.x, p.y)
         self.update(info) # Check if something else needs to be updated
@@ -550,12 +551,13 @@ class Assistant(BaseAssistant, Subscriber):
 
     def glyphEditorDidMouseMove(self, info):
         g = info['glyph']
-        p = info['locationInGlyph']
-        for mouseMoveMethodName in self.MOUSE_MOVE_METHODS:
-            getattr(self, mouseMoveMethodName)(g, p.x, p.y)
+        # Save for assistant parts to use on an update, so they don't need their own even call.
+        self.mouseMovePoint = p = info['locationInGlyph'] # Constantly keep track where the mouse is
+        for mouseMoveMethodName in self.MOUSE_MOVE_METHODS: # In case the update is more urgent than a normal update call,
+            getattr(self, mouseMoveMethodName)(g, p.x, p.y) # The assistant parts should implement and subscribe this method.
     
     def glyphEditorDidMouseDrag(self, info):
-        self.mouseDraggedPoint = info['locationInGlyph']
+        self.mouseDragPoint = info['locationInGlyph']
 
     def glyphEditorDidKeyDown(self, info):
         # User specific key strokes to be added here
