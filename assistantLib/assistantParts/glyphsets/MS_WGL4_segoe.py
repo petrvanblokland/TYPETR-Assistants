@@ -393,7 +393,7 @@ class MS_GlyphSet(GlyphSet):
        'Iepigraphicsideways': GD(name='Iepigraphicsideways', uni=0xA7F7, hex='A7F7', c='ꟷ'),
        'Igrave': GD(name='Igrave', uni=0x00CC, hex='00CC', c='Ì', w='I', base='I', accents=['gravecomb'], anchors=['top', 'middle', 'bottom'], gid=141, comment='Ì I WITH GRAVE, LATIN CAPITAL LETTER'),
        'Ihookabove': GD(name='Ihookabove', uni=0x1EC8, hex='1EC8', c='Ỉ', w='I', base='I', accents=['hookabovecomb'], anchors=['top', 'middle', 'bottom'], gid=1123, comment='Ỉ LATIN CAPITAL LETTER I WITH HOOK ABOVE'),
-       'Ii-cy': GD(name='Ii-cy', uni=0x0418, hex='0418', c='И', l='H', r='H', base='u', anchors=['top'], gid=669),
+       'Ii-cy': GD(name='Ii-cy', uni=0x0418, hex='0418', c='И', l='H', r='H', anchors=['top'], gid=669),
        'Iigrave-cy': GD(name='Iigrave-cy', uni=0x040D, hex='040D', c='Ѝ', l='H', r='H', base='Ii-cy', accents=['gravecomb'], anchors=['top'], gid=658),
        'Iinvertedbreve': GD(name='Iinvertedbreve', uni=0x020A, hex='020A', c='Ȋ', w='I', base='I', accents=['perispomeni'], anchors=['top', 'middle', 'bottom']),
        'Iishort-cy': GD(name='Iishort-cy', uni=0x0419, hex='0419', c='Й', l='H', r='H', base='Ii-cy', accents=['brevecomb.component'], anchors=['top'], gid=670),
