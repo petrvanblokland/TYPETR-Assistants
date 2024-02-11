@@ -526,7 +526,7 @@ class MS_GlyphSet(GlyphSet):
        'Ncaron': GD(name='Ncaron', uni=0x0147, hex='0147', c='Ň', l='H', r='H', base='N', accents=['caroncomb'], anchors=['top', 'middle', 'bottom'], gid=264, comment='Ň'),
        'Ncircumflexbelow': GD(name='Ncircumflexbelow', uni=0x1E4A, hex='1E4A', c='Ṋ', l='H', r='H', base='N', accents=['circumflexbelow'], srcName='uni1E4A', anchors=['top', 'middle', 'bottom'], gid=997),
        'Ncommaaccent': GD(name='Ncommaaccent', uni=0x0145, hex='0145', c='Ņ', l='H', r='H', base='N', accents=['cedillacomb.component'], anchors=['top', 'middle', 'bottom'], gid=262, comment='Ņ'),
-       'Ndescender': GD(name='Ndescender', uni=0xA790, hex='A790', c='Ꞑ', anchors=['top', 'middle', 'bottom']),
+       'Ndescender': GD(name='Ndescender', uni=0xA790, hex='A790', c='Ꞑ', base='N', anchors=['top', 'middle', 'bottom']),
        'Ndotaccent': GD(name='Ndotaccent', uni=0x1E44, hex='1E44', c='Ṅ', l='H', r='H', base='N', accents=['dotaccentcomb'], srcName='uni1E44', anchors=['top', 'middle', 'bottom'], gid=991),
        'Ndotbelow': GD(name='Ndotbelow', uni=0x1E46, hex='1E46', c='Ṇ', l='H', r='H', base='N', accents=['dotbelowcomb'], srcName='uni1E46', anchors=['top', 'middle', 'bottom'], gid=993),
        'Ngrave': GD(name='Ngrave', uni=0x01F8, hex='01F8', c='Ǹ', l='H', r='H', base='N', accents=['gravecomb'], srcName='uni01F8', anchors=['top', 'middle', 'bottom'], gid=441),

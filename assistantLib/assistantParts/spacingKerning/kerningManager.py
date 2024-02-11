@@ -108,9 +108,11 @@ class KerningManager:
         self.fixedRightMarginPatterns = fixedRightMarginPatterns # Key is margin, value is list of glyph names
 
         if fixedWidthPatterns is None:
+            # @@@ TODO: these are specific for Segoe, make these into tables of GlyphSet
             fixedWidthPatterns = { # Key is right margin, value is list of glyph names
             0: ('cmb|', 'comb|', 'comb-cy|', '-uc|', '.component', 'zerowidthspace', 'zerowidthjoiner', 
-                'zerowidthnonjoiner', 'righttoleftmark',
+                'zerowidthnonjoiner', 'righttoleftmark', 'Otilde.component1',
+                'perispomeni', 
                 'dasiavaria-uc', ), # "|" matches pattern on end of name"
             self.tabWidth: ('.tab|', '.tnum|')
         }
@@ -1032,17 +1034,55 @@ class KerningManager:
         4    By kerning mode context
 
         """
-        sample = {
-            0: ['O', g.name, 'O', g.name, 'O', g.name, 'O', 'H', g.name, 'H', g.name, 'H', g.name, 'H'],  
-            1: ['O', g.name, 'O', g.name, 'O', g.name, 'O', 'H', g.name, 'H', g.name, 'H', g.name, 'H'], 
-            2: ['O', g.name, 'O', g.name, 'O', g.name, 'O', 'H', g.name, 'H', g.name, 'H', g.name, 'H'], 
-            3: [g.name, g.name, g.name, 'H', 'a', 'm', 'b', 'u', 'r', 'g', 'e', 'f', 'o', 'n', 't', 's', 't', 'i', 'v', 'I', g.name, 'I', g.name, 'O', g.name, 'O', 'i', g.name, 'i', g.name, 'o', g.name, 'o'],
-            4: ['O', g.name, 'O', g.name, 'O', g.name, 'O', 'H', g.name, 'H', g.name, 'H', g.name, 'H'],  
-        }[context]
+        return getattr(self, self.SAMPLE_MODES[context])(g, length, index)
+
+    def getSpacingSample_Glyphset(self, g, length, index):
+        """Sample mode 0. Answer the sample, containing the full glyphset in the current RoboFont sorting"""
+        sample = ['O', g.name, 'O', g.name, 'O', g.name, 'O', 'H', g.name, 'H', g.name, 'H', g.name, 'H']
         while len(sample) < length:
             sample.append(g.name)
         return sample
 
+    def getSpacingSample_Similarity(self, g, length, index):
+        """Sample mode 1. Answer the sample with glyphs matching the two similar sides of g"""
+        sample = []
+        for perc, names in sorted(self.getSimilar2(g).items(), reverse=True):
+            sample += names
+        sample += ['hyphen', g.name, 'hyphen']
+        for perc, names in sorted(self.getSimilar1(g).items(), reverse=True):
+            sample += names
+        while len(sample) < length:
+            sample.append(g.name)
+        return sample
+
+    def getSpacingSample_Group(self, g, length, index):
+        """Sample mode 2. Answer the sample, containing glyphs in the same groups as g"""
+        sample = ['B', g.name, 'B', g.name, 'O', g.name, 'O', 'H', g.name, 'H', g.name, 'H', g.name, 'H']
+        while len(sample) < length:
+            sample.append(g.name)
+        return sample
+
+    def getSpacingSample_Spacing(self, g, length, index):
+        """Sample mode 3. Answer the sample, containing glyphs in the same spacing types as defined in the GlyphData"""
+        sample = [g.name, g.name, g.name, 'H', 'a', 'm', 'b', 'u', 'r', 'g', 'e', 'f', 'o', 'n', 't', 's', 't', 'i', 'v', 'I', g.name, 'I', g.name, 'O', g.name, 'O', 'i', g.name, 'i', g.name, 'o', g.name, 'o']
+        while len(sample) < length:
+            sample.append(g.name)
+        return sample
+
+    def getSpacingSample_Kerning(self, g, length, index):
+        """Sample mode 3. Answer the sample for kerning matching the script of g"""
+        sample = ['C', g.name, 'C', g.name, 'O', g.name, 'O', 'H', g.name, 'H', g.name, 'H', g.name, 'H']
+        while len(sample) < length:
+            sample.append(g.name)
+        return sample
+
+    SAMPLE_MODES = {
+        0: 'getSpacingSample_GlyphSet',
+        1: 'getSpacingSample_Similarity',
+        2: 'getSpacingSample_Group',
+        3: 'getSpacingSample_Spacing',
+        4: 'getSpacingSample_Kerning',
+    }
     def expandFractions(self, s):
         for c1 in s:
             for c2 in s:
