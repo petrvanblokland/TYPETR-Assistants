@@ -49,7 +49,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                 position=(0, 0),
                 fillColor=(0, 0, 0, 1),
                 strokeColor=None,
-                visibdle=False,
+                visible=False,
             )
             subLayer.addScaleTransformation(self.FAMILY_OVERVIEW_SCALE)
             self.familyOverviewGlyphs.append(subLayer)            
