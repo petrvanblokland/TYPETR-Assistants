@@ -17,7 +17,7 @@ for path in PATHS:
         print('@@@ Append to sys.path', path)
         sys.path.append(path)
 
-from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart, FAR
+from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart
 from assistantLib.assistantParts.data import * # Import anchors names
 
 class AssistantPartGuidelines(BaseAssistantPart):

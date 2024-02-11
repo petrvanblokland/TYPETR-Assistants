@@ -17,7 +17,7 @@ for path in PATHS:
         sys.path.append(path)
 
 from mojo.roboFont import OpenFont, AllFonts, RGlyph, RPoint
-from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart, FAR
+from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart
 
 class AssistantPartInterpolate(BaseAssistantPart):
     """The Interpolate assistant part, checks on interpolation errors and

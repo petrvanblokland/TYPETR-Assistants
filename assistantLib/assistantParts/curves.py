@@ -18,7 +18,7 @@ for path in PATHS:
         print('@@@ Append to sys.path', path)
         sys.path.append(path)
 
-from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart, FAR
+from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart
 
 FACTOR = 1.340   # This estimated value gives amazingly accurate conversion.
 

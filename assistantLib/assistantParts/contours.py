@@ -18,7 +18,7 @@ for path in PATHS:
         print('@@@ Append to sys.path', path)
         sys.path.append(path)
 
-from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart, FAR
+from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart
 from assistantLib.assistantParts.glyphsets.anchorData import AD
 
 
@@ -49,6 +49,7 @@ class AssistantPartContours(BaseAssistantPart):
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
 
         c = self.getController()
+        c.w.autoFixComponentPositions = CheckBox((C0, y, CW, L), 'Auto fix components', value=True, sizeStyle='small')
         c.w.setStartPointButton = Button((C2, y, CW, L), 'Set start [%s]' % personalKey_e, callback=self.contourssSetStartPointCallback)
         y += L*1.5
 
@@ -131,12 +132,17 @@ class AssistantPartContours(BaseAssistantPart):
         5 The number of components it right,  but their baseGlyph names are wrong
         6 The number and names of existing components are just right
          """
+        c = self.getController()
         changed = False
         md = self.getMasterData(g.font)
         gd = md.glyphSet.get(g.name)
         if gd is None:
             print(f'### checkFixComponents: Glyph /{g.name} does not exist in glyphset {gd.__class__.__name__}')
             return False
+        # Check if autofixing
+        if gd.autoFixComponentPositions or not c.w.autoFixComponentPositions.get():
+            return False
+
         # 1
         if g.components and not gd.components: # Clear existing components
             print(f'... Clear {len(g.components)} component(s) of /{g.name}')
@@ -183,9 +189,11 @@ class AssistantPartContours(BaseAssistantPart):
         """For all components check if they are on the right poaition. If the base component has an anchor
         and there are diacritic components that have the matching achor, then move the diacritics
         so the positions of the anchors match up."""
+        c = self.getController()
         changed = False
         md = self.getMasterData(g.font)
         gd = md.glyphSet.get(g.name)
+        # Check if autofixing
         dIndex = 0 # Index into showing diacritics Merz layers
         assert gd is not None # Otherwise the glyph data does not exist.
         if not g.components: # This must be a base glyph, check for drawing the diacritics cloud of glyphs that have g as base.
@@ -210,7 +218,8 @@ class AssistantPartContours(BaseAssistantPart):
                     cIndex += 1
                 """
 
-        else: # Otherwise the components should match their positions with the corresponding anchors
+        elif gd.autoFixComponentPositions and c.w.autoFixComponentPositions.get():
+            # Otherwise the components should match their positions with the corresponding anchors
             assert gd.base # If there are components, there always must be a base glyph defined.
             baseG = g.font[gd.base]
             baseAnchors = self.getAnchorsDict(baseG) # Collect the anchors that are used in the base glyph

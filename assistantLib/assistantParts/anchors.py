@@ -17,7 +17,7 @@ for path in PATHS:
         print('@@@ Append to sys.path', path)
         sys.path.append(path)
 
-from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart, FAR
+from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart
 from assistantLib.assistantParts.data import * # Import anchors names
 
 class AssistantPartAnchors(BaseAssistantPart):
@@ -36,8 +36,9 @@ class AssistantPartAnchors(BaseAssistantPart):
         for dIndex in range(self.MAX_DIACRITICS_CLOUD): # Max number of diacritics in a glyph. @@@ If too low, some diacritics don't show
             self.anchorsDiacriticsCloud.append(self.backgroundContainer.appendPathSublayer(
                 name='diacritics-%d' % dIndex,
-                position=(FAR, 0),
+                position=(0, 0),
                 fillColor=(0, 0, 0.5, 0.2),
+                visible=False,
             ))
 
     def updateMerzAnchors(self, info):
@@ -60,10 +61,11 @@ class AssistantPartAnchors(BaseAssistantPart):
                         ax = a.x - dAnchor.x
                         ay = a.y - dAnchor.y
                         diacriticsLayer.setPosition((ax, ay))
+                        diacriticsLayer.setVisible(True)
                         dIndex += 1
 
         for n in range(dIndex, len(self.anchorsDiacriticsCloud)):
-            self.anchorsDiacriticsCloud[n].setPosition((FAR, 0))
+            self.anchorsDiacriticsCloud[n].setVisible(False)
         
     def updateAnchors(self, info):
         """If the checkbox is set, then try to check and fix automated margins and width."""

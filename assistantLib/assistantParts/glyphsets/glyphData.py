@@ -97,6 +97,8 @@ class GlyphData:
             # Glyphs to copy from, initially before editing starts
             src=None, # Not used here
             src180=None, # Not used here
+            # Components
+            autoFixComponentPositions=True,
             # Groups
             g1=None, g2=None, 
             ascender=None, descender=None, 
@@ -128,6 +130,9 @@ class GlyphData:
         self.composites = set() # Glyph names that refer to self as component. Collected by GlyphSet
         self.anchors = anchors # (Sorted) list of anchor names for this glyph
         self.anchorSrc = anchorSrc # Master name to copy anchors from
+
+        # Flag to prevent assistant moving components, even in auto mode. They will be name fixed and created still
+        self.autoFixComponentPositions = autoFixComponentPositions 
 
         self._isLower = isLower # If not None, force the flag. Otherwise try to guess.
         self._isSc = isSc # Is smallcap

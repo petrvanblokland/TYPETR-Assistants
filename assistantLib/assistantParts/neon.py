@@ -29,7 +29,7 @@ for path in PATHS:
         print('@@@ Append to sys.path', path)
         sys.path.append(path)
 
-from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart, FAR
+from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart
 
 def roundFloat(f):
     error = 1000000.
@@ -705,18 +705,20 @@ class AssistantPartNeon(BaseAssistantPart):
         self.neonOvershootPointMarkers = []
         for pIndex in range(self.MAX_POINT_MARKERS): # Max number of points to display in a glyph
             self.neonDistancePointMarkers.append(container.appendOvalSublayer(name="neonDistancePointMarker%03d" % pIndex,
-                position=(FAR, 0),
+                position=(0, 0),
                 size=(self.POINT_MARKER_R*2, self.POINT_MARKER_R*2),
                 fillColor=None,
                 strokeColor=self.NEON_STROKE_DISTANCE_MARKER_COLOR,
                 strokeWidth=1,
+                visible=False,
             ))
             self.neonOvershootPointMarkers.append(container.appendOvalSublayer(name="neonOvershootPointMarker%03d" % pIndex,
-                position=(FAR, 0),
+                position=(0, 0),
                 size=(self.POINT_MARKER_R*2, self.POINT_MARKER_R*2),
                 fillColor=None,
                 strokeColor=self.NEON_STROKE_DISTANCE_MARKER_COLOR,
                 strokeWidth=1,
+                visible=False,
             ))
     
     def updateMerzNeon(self, info):
@@ -739,12 +741,14 @@ class AssistantPartNeon(BaseAssistantPart):
                     if p.type != 'offcurve':
                         self.neonDistancePointMarkers[pIndex].setSize((2*d, 2*d))
                         self.neonDistancePointMarkers[pIndex].setPosition((p.x-d, p.y-d))
+                        self.neonDistancePointMarkers[pIndex].setVisible(True)
                         self.neonOvershootPointMarkers[pIndex].setSize((2*stemRadius, 2*stemRadius))
                         self.neonOvershootPointMarkers[pIndex].setPosition((p.x-stemRadius, p.y-stemRadius))
+                        self.neonOvershootPointMarkers[pIndex].setVisible(True)
                         pIndex += 1
         for n in range(pIndex,len(self.neonDistancePointMarkers)):
-            self.neonDistancePointMarkers[n].setPosition((FAR, 0))
-            self.neonOvershootPointMarkers[n].setPosition((FAR, 0))
+            self.neonDistancePointMarkers[n].setVisible(False)
+            self.neonOvershootPointMarkers[n].setVisible(False)
 
     def calculate(self, g, preserveComponents=True):
         c = self.getController()

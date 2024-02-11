@@ -20,7 +20,7 @@ for path in PATHS:
 from fontTools.misc.transform import Transform
 from mojo.roboFont import OpenWindow, OpenFont, AllFonts, RGlyph, RPoint
 
-from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart, FAR
+from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart
 
 class AssistantPartItalicize(BaseAssistantPart):
     """The Italicize assistant part italicizes the current glyph in RoboFont.

@@ -355,7 +355,7 @@ class MS_GlyphSet(GlyphSet):
        'Hbarmod': GD(name='Hbarmod', uni=0xA7F8, hex='A7F8', c='ꟸ', isMod=True),
        'Hbrevebelow': GD(name='Hbrevebelow', uni=0x1E2A, hex='1E2A', c='Ḫ', l='H', r='H', base='H', accents=['brevebelowcomb'], srcName='uni1E2A', anchors=['top', 'middle', 'bottom'], gid=965),
        'Hcaron': GD(name='Hcaron', uni=0x021E, hex='021E', c='Ȟ', base='H', accents=['caroncomb'], anchors=['top', 'middle', 'bottom']),
-       'Hcedilla': GD(name='Hcedilla', uni=0x1E28, hex='1E28', c='Ḩ', w='H', base='H', accents=['cedillacomb'], srcName='uni1E28', fixAccents=False, anchors=['top', 'middle', 'bottom'], gid=963),
+       'Hcedilla': GD(name='Hcedilla', autoFixComponentPositions=False, uni=0x1E28, hex='1E28', c='Ḩ', w='H', base='H', accents=['cedillacomb'], srcName='uni1E28', fixAccents=False, anchors=['top', 'middle', 'bottom'], gid=963),
        'Hcircumflex': GD(name='Hcircumflex', uni=0x0124, hex='0124', c='Ĥ', l='H', r='H', base='H', accents=['circumflexcomb'], anchors=['top', 'middle', 'bottom'], gid=229, comment='Ĥ'),
        'Hdescender': GD(name='Hdescender', uni=0x2C67, hex='2C67', c='Ⱨ', l='H', r='Tse-cy', base='Endescender-cy'),
        'Hdieresis': GD(name='Hdieresis', uni=0x1E26, hex='1E26', c='Ḧ', l='H', r='H', base='H', accents=['dieresiscomb'], srcName='uni1E26', anchors=['top', 'middle', 'bottom'], gid=961),
