@@ -48,7 +48,7 @@ class AssistantPartSpacer(BaseAssistantPart):
     The assistant part gives feedback about where the automated values came from, so it's easier to debug.
     """
 
-    KERN_LINE_SIZE = 40 # Number of glyphs on kerning line
+    KERN_LINE_SIZE = 100 # Number of glyphs on kerning line
     KERN_SCALE = 0.12 #0.2 Scaler for glyphs on kerning line
 
     SPACER_FIXED_WIDTH_MARKER_COLOR = 0.5, 0.5, 0.5, 0.5
@@ -57,7 +57,7 @@ class AssistantPartSpacer(BaseAssistantPart):
     SPACER_MARKER_R = 22 # Radius of space marker
 
     SPACER_LABEL_FONT = 'Verdana'
-    SPACER_LABEL_SIZE = 10
+    SPACER_LABEL_SIZE = 16
 
     SPACER_FILL_COLOR = 0.2, 0.2, 0.2, 1 # Default color
     SPACER_SELECTED_COLOR = 0.2, 0.2, 0.5, 1 # Current glyph
@@ -265,6 +265,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         # We need to do this in 2 runs unfortunately, constructing the list of spacerGlyphPositions first,
         # in order to center the line by its total width.
         for gIndex, kerningGlyphLayer in enumerate(self.kerningLine): # List of kerned glyph images
+            if gIndex >= len(sample):
+                break
             spaceG = f[sample[gIndex]]
             if g.name == spaceG.name:
                 color = self.SPACER_SELECTED_COLOR
@@ -283,6 +285,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         self.spacerWhiteBackground.setVisible(True)
 
         for gIndex, kerningGlyphLayer in enumerate(self.kerningLine):
+            if gIndex >= len(self.spacerGlyphPositions):
+                break
             gp = self.spacerGlyphPositions[gIndex]
             
             if self.mouseMovePoint is not None and gp.x <= self.mouseMovePoint.x/self.KERN_SCALE <= gp.x + gp.y:
@@ -300,6 +304,10 @@ class AssistantPartSpacer(BaseAssistantPart):
             kerningNameLayer.setPosition((gp.x + offsetX + gp.w/2, y + f.info.descender))
             kerningNameLayer.setVisible(False) # Will be shown on mouse over hover
 
+        for n in range(gIndex, len(self.kerningLine)):
+            self.kerningLine[n].setVisible(False)
+            self.kerningLineNames[n].setVisible(False)
+
     def mouseMoveSpacer(self, g, x, y):
         """Set the hoover color for the current selected glyph"""
         if g is None or not self.spacerGlyphPositions or self.mouseMovePoint is None:
@@ -307,7 +315,7 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         gpFirst = self.spacerGlyphPositions[0]
         gpLast = self.spacerGlyphPositions[-1]
-        offsetX = g.width/2/self.KERN_SCALE - (gpLast.x - gpFirst.x)/2# + y * tan(radians(-g.font.info.italicAngle or 0))
+        offsetX = g.width/2/self.KERN_SCALE - (gpLast.x - gpFirst.x)/2 - y * tan(radians(-g.font.info.italicAngle or 0))
 
         sx = x/self.KERN_SCALE - offsetX
         sy = y/self.KERN_SCALE
@@ -335,7 +343,7 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         gpFirst = self.spacerGlyphPositions[0]
         gpLast = self.spacerGlyphPositions[-1]
-        offsetX = g.width/2/self.KERN_SCALE - (gpLast.x - gpFirst.x)/2# + y * tan(radians(-g.font.info.italicAngle or 0))
+        offsetX = g.width/2/self.KERN_SCALE - (gpLast.x - gpFirst.x)/2 - y * tan(radians(-g.font.info.italicAngle or 0))
 
         sx = x/self.KERN_SCALE - offsetX
         sy = y/self.KERN_SCALE
@@ -357,7 +365,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         
         changed |= self.checkFixGlyphLeftMargin(g)
         changed |= self.checkFixGlyphRightMargin(g)
-        changed |= self.checkFixGlyphWidth(g)
+        #changed |= self.checkFixGlyphWidth(g)
         
         return changed
 
@@ -420,7 +428,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         c.w.incRightMarginButton = Button((C2+3*CW/4, y, CW/4, L), '[%s]>' % personalKey_p, callback=self.spacerIncRightMarginCallback)
         y += L
         c.w.spacerMode = RadioGroup((C0, y, 2*CW, L), ('Glyphs', 'Similar', 'Group', 'Space', 'Kern'), isVertical=False, sizeStyle='small', callback=self.updateEditor)
-        c.w.spacerMode.set(3)
+        c.w.spacerMode.set(1)
         #c.w.decKern2Button = Button((C2, y, CW/4, L), '<[%s]' % personalKey_m, callback=self.spacerDecKern2Callback)
         #c.w.incKern2Button = Button((C2+CW/4, y, CW/4, L), '[%s]>' % personalKey_n, callback=self.spacerIncKern2Callback)
         #c.w.decKern1Button = Button((C2+2*CW/4, y, CW/4, L), '<[%s]' % personalKey_period, callback=self.spacerDecKern1Callback)
@@ -597,7 +605,7 @@ class AssistantPartSpacer(BaseAssistantPart):
 
     def _fixGlyphRightMargin(self, g, rm):
         if abs(g.angledRightMargin - rm) >= 1:
-            print(f'... Fix left margin: Set /{g.name} from {g.angledRightMargin} to {rm}')
+            print(f'... Fix right margin: Set /{g.name} from {g.angledRightMargin} to {rm}')
             g.angledRightMargin = rm
             return True
         return False
@@ -622,8 +630,11 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         self.fixedSpaceMarkerRight.setPosition((g.width - self.SPACER_MARKER_R, -self.SPACER_MARKER_R))
         self.fixedSpaceMarkerRight.setFillColor(color)
-        self.rightSpaceSourceLabel.setPosition((g.width, -self.SPACER_MARKER_R*1.5))
+        self.fixedSpaceMarkerRight.setVisible(True)
+
+        self.rightSpaceSourceLabel.setPosition((g.width, -self.SPACER_MARKER_R*4))
         self.rightSpaceSourceLabel.setText(label)
+        self.rightSpaceSourceLabel.setVisible(True)
 
         return changed
 
@@ -640,6 +651,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         label = ''
         color = 0, 0, 0, 0
 
+        """
         if c.w.simSpace.get():
             km.simSameCategory = km.simSameScript = not c.w.splitSimScripts.get()
             similar2 = km.getSimilarMargins2(g)
@@ -650,11 +662,22 @@ class AssistantPartSpacer(BaseAssistantPart):
             changed = self._fixGlyphLeftMargin(g, lm)
             label = 'Left=%d' % g.width
             color = self.SPACER_FIXED_MARGIN_MARKER_COLOR
+        """
+        similarName2 = km.getSimilarBaseName2(g)
+        if similarName2 is not None:
+            srcG2 = g.font[similarName2]
+            label = f'Sim /{srcG2.name} {int(round(srcG2.angledLeftMargin))}'
+            self._fixGlyphLeftMargin(g, srcG2.angledLeftMargin)
+        else:
+            label = f'No sim source'
 
         self.fixedSpaceMarkerLeft.setPosition((-self.SPACER_MARKER_R, -self.SPACER_MARKER_R))
-        self.fixedSpaceMarkerRight.setFillColor(color)
-        self.rightSpaceSourceLabel.setPosition((0, -self.SPACER_MARKER_R*1.5))
-        self.rightSpaceSourceLabel.setText(label)
+        self.fixedSpaceMarkerLeft.setFillColor(color)
+        self.fixedSpaceMarkerLeft.setVisible(True)
+
+        self.leftSpaceSourceLabel.setPosition((0, -self.SPACER_MARKER_R*4))
+        self.leftSpaceSourceLabel.setText(label)
+        self.leftSpaceSourceLabel.setVisible(True)
 
         return changed
 
@@ -665,11 +688,13 @@ class AssistantPartSpacer(BaseAssistantPart):
         """
         c = self.getController()
         changed = False
-        km = self.getKerningManager(g.font)
+        if km is None:
+            km = self.getKerningManager(g.font)
 
         label = ''
         color = 0, 0, 0, 0
 
+        """
         if c.w.simSpace.get():
             km.simSameCategory = km.simSameScript = not c.w.splitSimScripts.get()
             similar1 = km.getSimilarMargins1(g)
@@ -680,11 +705,22 @@ class AssistantPartSpacer(BaseAssistantPart):
             changed = self._fixGlyphRightMargin(g, rm)
             label = 'Right=%d' % g.width
             color = self.SPACER_FIXED_MARGIN_MARKER_COLOR
+        """
+        similarName1 = km.getSimilarBaseName1(g)
+        if similarName1 is not None:
+            srcG1 = g.font[similarName1]
+            label = f'Sim /{srcG1.name} {int(round(srcG1.angledRightMargin))}'
+            self._fixGlyphRightMargin(g, srcG1.angledRightMargin)
+        else:
+            label = f'No sim source'
 
-        self.fixedSpaceMarkerLeft.setPosition((-self.SPACER_MARKER_R, -self.SPACER_MARKER_R))
+        self.fixedSpaceMarkerRight.setPosition((g.width - self.SPACER_MARKER_R, -self.SPACER_MARKER_R))
         self.fixedSpaceMarkerRight.setFillColor(color)
-        self.rightSpaceSourceLabel.setPosition((0, -self.SPACER_MARKER_R*1.5))
+        self.fixedSpaceMarkerRight.setVisible(True)
+        
+        self.rightSpaceSourceLabel.setPosition((g.width, -self.SPACER_MARKER_R*4))
         self.rightSpaceSourceLabel.setText(label)
+        self.rightSpaceSourceLabel.setVisible(True)
 
         return changed
     

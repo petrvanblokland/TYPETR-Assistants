@@ -1009,7 +1009,7 @@ class MS_GlyphSet(GlyphSet):
        'alphapsilivaria': GD(name='alphapsilivaria', uni=0x1F02, hex='1F02', c='ἂ', base='alpha', accents=['psilivaria'], isLower=True, anchors=['top', 'bottom'], gid=1175),
        'alphapsilivariaypogegrammeni': GD(name='alphapsilivariaypogegrammeni', uni=0x1F82, hex='1F82', c='ᾂ', base='alpha', accents=['psilivaria', 'prosgegrammeni'], isLower=True, anchors=['top', 'bottom'], gid=1289),
        'alphapsiliypogegrammeni': GD(name='alphapsiliypogegrammeni', uni=0x1F80, hex='1F80', c='ᾀ', base='alpha', accents=['psili', 'prosgegrammeni'], isLower=True, anchors=['top', 'bottom'], gid=1287),
-       'alpharetroflexhook': GD(name='alpharetroflexhook', uni=0x1D90, hex='1D90', c='ᶐ', base='alpha-latin', isLower=True),
+       'alpharetroflexhook': GD(name='alpharetroflexhook', uni=0x1D90, hex='1D90', c='ᶐ', src='alpha-latin', isLower=True),
        'alphatonos': GD(name='alphatonos', uni=0x03AC, hex='03AC', c='ά', base='alpha', accents=['tonos'], isLower=True, anchors=['top', 'bottom'], gid=561),
        'alphaturned-latin': GD(name='alphaturned-latin', uni=0x0252, hex='0252', c='ɒ', isLower=True),
        'alphaturnedmod-latin': GD(name='alphaturnedmod-latin', uni=0x1D9B, hex='1D9B', c='ᶛ', isLower=True),

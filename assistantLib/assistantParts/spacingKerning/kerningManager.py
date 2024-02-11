@@ -444,6 +444,8 @@ class KerningManager:
     # Glyph names that are used as base for the seeds for the similarity checks
     # This means that all other glyphs in the set are within the tolerance range of these base glyphs.
     # These are the only ones that need to be spaced.
+    # These lists are scanned in sequential order. If one of the glyphs existin in the similarity groups of the current glyphs,
+    # the it is used a source for the sidebearing. 
 
     BASE1 = [ # Base glyphs on left side, similar to right margin 
         'A', 'H', 'O', 'X', 'n', 'o',  # Overall base glyphs
@@ -489,7 +491,7 @@ class KerningManager:
         'ia-cy', 'iegrave-cy', 'io-cy', 'dje-cy', 'gje-cy', 'e-cy', 'dze-cy', 'i-cy', 'yi-cy', 'je-cy', 'lje-cy', 'nje-cy', 'tshe-cy', 'kje-cy', 'iigrave-cy', 
         'ushort-cy', 'dzhe-cy', 'Omega-cy', 'omega-cy', 'Yat-cy', 'yat-cy', 'Eiotified-cy', 'eiotified-cy', 'Yuslittle-cy', 'yuslittle-cy', 'Yuslittleiotified-cy', 
         'yuslittleiotified-cy', 'Yusbig-cy', 'yusbig-cy', 'Yusbigiotified-cy', 'yusbigiotified-cy', 'Ksi-cy', 'ksi-cy',
-
+        'Hdescender', 
         'Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Zeta', 'Eta', 'Theta', 'Iota', 'Kappa', 'Lambda', 'Mu', 'Nu', 'Xi', 'Omicron', 'Pi', 'Rho', 'Sigma', 'Tau', 'Upsilon', 'Phi', 'Chi', 'Psi', 'Omega',    
         'alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta', 'eta', 'theta', 'iota', 'kappa', 'lambda', 'mu', 'nu', 'xi', 'omicron', 'pi', 'rho', 'sigmafinal', 'sigma', 'tau', 'upsilon', 'phi', 'chi', 'psi', 'omega',
     ]
@@ -564,6 +566,26 @@ class KerningManager:
             self._findSimilarBaseNames1(g.name, similarBaseNames, examinedNames)
         return similarBaseNames
 
+    def getSimilarBaseName1(self, g):
+        """Scan BASE1 in sequential order. If the glyph exits in self.similar1(g), then use it as source for the right margin.
+        This avoid "inbreed" of similarity selections.
+        If not found. The right side of g is too unique or there is not a base defined for it."""
+        similar = set(self.getSimilarNames1(g))
+        for gName in self.BASE1:
+            if gName in similar:
+                return gName
+        return None # Not found. The right side of g is too unique or there is not a base defined for it.
+        
+    def getSimilarBaseName2(self, g):
+        """Scan BASE2 in sequential order. If the glyph exits in self.similar2(g), then use it as source for the right margin.
+        This avoid "inbreed" of similarity selections.
+        If not found. The right side of g is too unique or there is not a base defined for it."""
+        similar = set(self.getSimilarNames2(g))
+        for gName in self.BASE2:
+            if gName in similar:
+                return gName
+        return None # Not found. The right side of g is too unique or there is not a base defined for it.
+        
     def getSimilar1(self, g):
         """Answer the similar representation from the glyph with SimilarGlyphsKey"""
         return self._getSimilar(g, 'right')
@@ -1051,8 +1073,6 @@ class KerningManager:
         sample += ['hyphen', g.name, 'hyphen']
         for perc, names in sorted(self.getSimilar1(g).items(), reverse=True):
             sample += names
-        while len(sample) < length:
-            sample.append(g.name)
         return sample
 
     def getSpacingSample_Group(self, g, length, index):
