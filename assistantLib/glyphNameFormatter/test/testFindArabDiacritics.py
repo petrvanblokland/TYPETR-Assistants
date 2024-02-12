@@ -15,7 +15,7 @@ inevitableExceptions = [
 ]
 
 biditypes = {}
-from glyphNameFormatter import GlyphName
+from assistantLib.glyphNameFormatter import GlyphName
 for uniNumber in range(1, 0xffff):
     g = GlyphName(uniNumber)
     if not g.bidiType in biditypes:

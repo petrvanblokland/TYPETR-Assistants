@@ -1,4 +1,4 @@
-from glyphNameFormatter.tools import camelCase
+from assistantLib.glyphNameFormatter.tools import camelCase
 
 
 def process(self):
@@ -29,5 +29,5 @@ def process(self):
 
 
 if __name__ == "__main__":
-    from glyphNameFormatter.exporters import printRange
+    from assistantLib.glyphNameFormatter.exporters import printRange
     printRange("Arabic Supplement")

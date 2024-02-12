@@ -121,6 +121,8 @@ class AssistantPartContours(BaseAssistantPart):
         if changed:
             g.changed()
 
+    #   C O M P O N E N T S
+    
     def checkFixComponents(self, g):
         """Check the existence of gd.base and gd.accent component. Create them when necessary.
         And delete components that are not defined in the GlyphData.

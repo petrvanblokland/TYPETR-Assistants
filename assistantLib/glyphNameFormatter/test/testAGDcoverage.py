@@ -1,7 +1,7 @@
 from __future__ import print_function
-from glyphNameFormatter.unicodeRangeNames import getRangeName, getAllRangeNames, rangeNameToModuleName
+from assistantLib.glyphNameFormatter.unicodeRangeNames import getRangeName, getAllRangeNames, rangeNameToModuleName
 
-from glyphNameFormatter.data import name2unicode_AGD
+from assistantLib.glyphNameFormatter.data import name2unicode_AGD
 import importlib
 
 

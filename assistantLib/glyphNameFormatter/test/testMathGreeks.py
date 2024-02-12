@@ -1,7 +1,7 @@
 
 
-from glyphNameFormatter import GlyphName
-from glyphNameFormatter.unicodeRangeNames import *
+from assistantLib.glyphNameFormatter import GlyphName
+from assistantLib.glyphNameFormatter.unicodeRangeNames import *
 
 greekSymbols = []
 pi = []

@@ -34,6 +34,7 @@ class KerningLineGlyphPosition:
     for mouseover to detect clicks on the line"""
     def __init__(self, glyph, x, y, w, h, k, fillColor):
         self.glyph = glyph # RGlyph object 
+        self.name = glyph.name
         self.x = x
         self.y = y
         self.w = w
@@ -53,11 +54,9 @@ class AssistantPartSpacer(BaseAssistantPart):
 
     SPACER_FIXED_WIDTH_MARKER_COLOR = 0.5, 0.5, 0.5, 0.5
     SPACER_FIXED_MARGIN_MARKER_COLOR = 0.8, 0.2, 0.4, 0.7
-    SPACER_LABEL_SIZE = 18
-    SPACER_MARKER_R = 22 # Radius of space marker
-
     SPACER_LABEL_FONT = 'Verdana'
-    SPACER_LABEL_SIZE = 16
+    SPACER_LABEL_SIZE = 14
+    SPACER_MARKER_R = 32 # Radius of space marker
 
     SPACER_FILL_COLOR = 0.2, 0.2, 0.2, 1 # Default color
     SPACER_SELECTED_COLOR = 0.2, 0.2, 0.5, 1 # Current glyph
@@ -153,7 +152,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             name="kerning1Value",
             position=(0, 0),
             text='xxx\nxxx',
-            font='Courier',
+            font=self.SPACER_LABEL_FONT,
             pointSize=32,
             fillColor=(1, 0, 0, 1),
             visible=False,
@@ -174,7 +173,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             name="kerningCursorBox",
             position=(0, 0),
             text='xxx\nxxx',
-            font='Courier',
+            font=self.SPACER_LABEL_FONT,
             pointSize=14,
             fillColor=(0.6, 0.6, 0.6, 1),
             visible=False,
@@ -245,7 +244,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         h = f.info.unitsPerEm
         m = h/5 # Margin around white rectangle.
         x = 0 # Adjusted from the previous line calculation
-        y = (f.info.descender - 1.5*m)/self.KERN_SCALE
+        y = f.info.descender - 1.5*m/self.KERN_SCALE
         k = 0 # For now
 
         visible = c.w.showSpacingSampleLine.get()
@@ -315,14 +314,15 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         gpFirst = self.spacerGlyphPositions[0]
         gpLast = self.spacerGlyphPositions[-1]
-        offsetX = g.width/2/self.KERN_SCALE - (gpLast.x - gpFirst.x)/2 - y * tan(radians(-g.font.info.italicAngle or 0))
 
-        sx = x/self.KERN_SCALE - offsetX
         sy = y/self.KERN_SCALE
+        offsetX = g.width/2/self.KERN_SCALE - (gpLast.x - gpFirst.x)/2 + sy * tan(radians(-g.font.info.italicAngle or 0))
+        sx = x/self.KERN_SCALE - offsetX
 
         for gIndex, gp in enumerate(self.spacerGlyphPositions):
             #print(gp.x, sx, gp.x + gp.w)
             if gp.x <= sx <= gp.x + gp.w and gp.y - gp.h <= sy <= gp.y + gp.h:
+                #print(gp.name)
                 color = self.SPACER_HOVER_COLOR
                 visible = True
             elif gp.glyph.name == g.name:
@@ -343,14 +343,16 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         gpFirst = self.spacerGlyphPositions[0]
         gpLast = self.spacerGlyphPositions[-1]
-        offsetX = g.width/2/self.KERN_SCALE - (gpLast.x - gpFirst.x)/2 - y * tan(radians(-g.font.info.italicAngle or 0))
 
-        sx = x/self.KERN_SCALE - offsetX
         sy = y/self.KERN_SCALE
+        offsetX = g.width/2/self.KERN_SCALE - (gpLast.x - gpFirst.x)/2 - sy * tan(radians(-g.font.info.italicAngle or 0))
+        sx = x/self.KERN_SCALE - offsetX
 
         for gIndex, gp in enumerate(self.spacerGlyphPositions):
             #print(gp.x, sx, gp.x + gp.w)
+            #print('...', gp.name)
             if gp.x <= sx <= gp.x + gp.w and gp.y - gp.h <= sy <= gp.y + gp.h:
+                print('####', gp.name)
                 OpenGlyphWindow(glyph=gp.glyph, newWindow=False)
                 break
         return
@@ -440,116 +442,116 @@ class AssistantPartSpacer(BaseAssistantPart):
     #   S P A C I N G  K E Y S
 
     def spacerDecLeftMarginCallback(self, sender):
-        self._adjustLeftMargin(g, -1)
+        self._adjustLeftMarginByUnits(g, -1)
         g.changed()
 
     def spacerIncLeftMarginCallback(self, sender):
-        self._adjustLeftMargin(g, 1)
+        self._adjustLeftMarginByUnits(g, 1)
         g.changed()
 
     def spacerDecRightMarginCallback(self, sender):
-        self._adjustRightMargin(g, -1)
+        self._adjustRightMarginByUnits(g, -1)
         g.changed()
 
     def spacerIncRightMarginCallback(self, sender):
-        self._adjustRightMargin(g, 1)
+        self._adjustRightMarginByUnits(g, 1)
         g.changed()
 
 
     def spacerDecLeftMarginCap(self, g, c, event):
-        self._adjustLeftMargin(g, -5)
+        self._adjustLeftMarginByUnits(g, -5)
         g.changed()
 
     def spacerDecLeftMargin(self, g, c, event):
-        self._adjustLeftMargin(g, -1)
+        self._adjustLeftMarginByUnits(g, -1)
         g.changed()
 
     def spacerIncLeftMarginCap(self, g, c, event):
-        self._adjustLeftMargin(g, 5)
+        self._adjustLeftMarginByUnits(g, 5)
         g.changed()
 
     def spacerIncLeftMargin(self, g, c, event):
-        self._adjustLeftMargin(g, 1)
+        self._adjustLeftMarginByUnits(g, 1)
         g.changed()
 
     def spacerDecRightMarginCap(self, g, c, event):
-        self._adjustRightMargin(g, -5)
+        self._adjustRightMarginByUnits(g, -5)
         g.changed()
 
     def spacerDecRightMargin(self, g, c, event):
-        self._adjustRightMargin(g, -1)
+        self._adjustRightMarginByUnits(g, -1)
         g.changed()
 
     def spacerIncRightMarginCap(self, g, c, event):
-        self._adjustRightMargin(g, 5)
+        self._adjustRightMarginByUnits(g, 5)
         g.changed()
 
     def spacerIncRightMargin(self, g, c, event):
-        self._adjustRightMargin(g, 1)
+        self._adjustRightMarginByUnits(g, 1)
         g.changed()
 
     #   K E R N I N G  K E Y S
 
     def spacerDecKern2Callback(self, sender):
-        self._adjustLeftMargin(g, -1)
+        self._adjustLeftMarginByUnits(g, -1)
         g.changed()
 
     def spacerIncKern2Callback(self, sender):
-        self._adjustLeftMargin(g, 1)
+        self._adjustLeftMarginByUnits(g, 1)
         g.changed()
 
     def spacerDecKern1Callback(self, sender):
-        self._adjustRightMargin(g, -1)
+        self._adjustRightMarginByUnits(g, -1)
         g.changed()
 
     def spacerIncKern1Callback(self, sender):
-        self._adjustRightMargin(g, 1)
+        self._adjustRightMarginByUnits(g, 1)
         g.changed()
 
 
     def spacerDecKern2Cap(self, g, c, event):
-        self._adjustLeftMargin(g, -5)
+        self._adjustLeftMarginByUnits(g, -5)
         g.changed()
 
     def spacerDecKern2(self, g, c, event):
-        self._adjustLeftMargin(g, -1)
+        self._adjustLeftMarginByUnits(g, -1)
         g.changed()
 
     def spacerIncKern2Cap(self, g, c, event):
-        self._adjustLeftMargin(g, 5)
+        self._adjustLeftMarginByUnits(g, 5)
         g.changed()
 
     def spacerIncKern2(self, g, c, event):
-        self._adjustLeftMargin(g, 1)
+        self._adjustLeftMarginByUnits(g, 1)
         g.changed()
 
     def spacerDecKern1Cap(self, g, c, event):
-        self._adjustRightMargin(g, -5)
+        self._adjustRightMarginByUnits(g, -5)
         g.changed()
 
     def spacerDecKern1(self, g, c, event):
-        self._adjustRightMargin(g, -1)
+        self._adjustRightMarginByUnits(g, -1)
         g.changed()
 
     def spacerIncKern1Cap(self, g, c, event):
-        self._adjustRightMargin(g, 5)
+        self._adjustRightMarginByUnits(g, 5)
         g.changed()
 
     def spacerIncKern1(self, g, c, event):
-        self._adjustRightMargin(g, 1)
+        self._adjustRightMarginByUnits(g, 1)
         g.changed()
 
     #    A D J U S T  S P A C I N G
 
     SPACING_UNIT = 4
 
-    def _adjustLeftMargin(self, g, value): # This moved to TYPETR-Assistants/KerningAssistant-005.py
+    def _adjustLeftMarginByUnits(self, g, value): 
         if self.isUpdating:
             return
         f = g.font        
         g.angledLeftMargin = int(round(g.angledLeftMargin/self.SPACING_UNIT) + value) * self.SPACING_UNIT
                           
-    def _adjustRightMargin(self, g, value): # This moved to TYPETR-Assistants/KerningAssistant-005.py
+    def _adjustRightMarginByUnits(self, g, value): # This moved to TYPETR-Assistants/KerningAssistant-005.py
         if self.isUpdating:
             return
         f = g.font
@@ -596,16 +598,18 @@ class AssistantPartSpacer(BaseAssistantPart):
             return True
         return False
 
-    def _fixGlyphLeftMargin(self, g, lm):
+    def _fixGlyphLeftMargin(self, g, lm, label=''):
+        """If the left margin is different from the current g value, then change it. Label is optional information about why it changed."""
         if abs(g.angledLeftMargin - lm) >= 1:
-            print(f'... Fix left margin: Set /{g.name} from {g.angledLeftMargin} to {lm}')
+            print(f'... Fix left margin: Set /{g.name} from {g.angledLeftMargin} to {lm} {label}')
             g.angledLeftMargin = lm
             return True
         return False
 
-    def _fixGlyphRightMargin(self, g, rm):
+    def _fixGlyphRightMargin(self, g, rm, label=''):
+        """If the right margin is different from the current g value, then change it. Label is optional information about why is changed."""
         if abs(g.angledRightMargin - rm) >= 1:
-            print(f'... Fix right margin: Set /{g.name} from {g.angledRightMargin} to {rm}')
+            print(f'... Fix right margin: Set /{g.name} from {g.angledRightMargin} to {rm} {label}')
             g.angledRightMargin = rm
             return True
         return False
@@ -644,81 +648,99 @@ class AssistantPartSpacer(BaseAssistantPart):
         If something changed, then answer True. 
         """
         c = self.getController()
+        md = self.getMasterData(g.font)
+        gd = md.glyphSet[g.name]
         changed = False
         if km is None:
             km = self.getKerningManager(g.font)
 
         label = ''
-        color = 0, 0, 0, 0
+        fillColor = 0, 0, 0, 0.5
+        strokeColor = 0, 0, 0, 0
 
-        """
-        if c.w.simSpace.get():
-            km.simSameCategory = km.simSameScript = not c.w.splitSimScripts.get()
-            similar2 = km.getSimilarMargins2(g)
-            print('Similar left', similar2)
-
-        lm = km.getLeftMargin(g)
-        if lm is not None:
-            changed = self._fixGlyphLeftMargin(g, lm)
-            label = 'Left=%d' % g.width
-            color = self.SPACER_FIXED_MARGIN_MARKER_COLOR
-        """
-        similarName2 = km.getSimilarBaseName2(g)
-        if similarName2 is not None:
-            srcG2 = g.font[similarName2]
-            label = f'Sim /{srcG2.name} {int(round(srcG2.angledLeftMargin))}'
-            self._fixGlyphLeftMargin(g, srcG2.angledLeftMargin)
+        hasReference = gd.leftSpaceSourceLabel
+        if hasReference:
+            lm = km.getLeftMarginByGlyphSetReference(g)
+            label = f'Ref {hasReference} {int(round(lm))}'
+            fillColor = 0, 1, 0, 0.5
+            strokeColor = None
+            changed |= self._fixGlyphLeftMargin(g, lm, label)
         else:
-            label = f'No sim source'
+            similarName2 = km.getSimilarBaseName2(g)
+            if similarName2 is not None:
+                srcG2 = g.font[similarName2]
+                if similarName2 == g.name:
+                    label = f'Sim base /{srcG2.name} {int(round(srcG2.angledLeftMargin))}'
+                    fillColor = None
+                    strokeColor = 0, 0, 0, 0.5
+                else:
+                    label = f'Sim /{srcG2.name} {int(round(srcG2.angledLeftMargin))}'
+                    fillColor = 1, 0, 0, 0.5
+                    strokeColor = None
+                changed |= self._fixGlyphLeftMargin(g, srcG2.angledLeftMargin, label)
+            else:
+                label = f'{int(round(g.angledLeftMargin))}' # No reference or similarity. This margin can be changed. Just show the value
+                fillColor = None
+                strokeColor = 0, 0, 0, 0.5
 
         self.fixedSpaceMarkerLeft.setPosition((-self.SPACER_MARKER_R, -self.SPACER_MARKER_R))
-        self.fixedSpaceMarkerLeft.setFillColor(color)
+        self.fixedSpaceMarkerLeft.setFillColor(fillColor)
+        self.fixedSpaceMarkerLeft.setStrokeColor(strokeColor)
         self.fixedSpaceMarkerLeft.setVisible(True)
 
-        self.leftSpaceSourceLabel.setPosition((0, -self.SPACER_MARKER_R*4))
+        self.leftSpaceSourceLabel.setPosition((0, -self.SPACER_MARKER_R*2))
         self.leftSpaceSourceLabel.setText(label)
         self.leftSpaceSourceLabel.setVisible(True)
 
         return changed
 
     def checkFixGlyphRightMargin(self, g, km=None):
-        """Use the KerningManager for the current font to determine the best roght margin for this glyph. 
+        """Use the KerningManager for the current font to determine the best right margin for this glyph. 
         Check if this glyph should have its right margin altered. If it has components, then fix those first.
         If something changed, then answer True. 
         """
         c = self.getController()
+        md = self.getMasterData(g.font)
+        gd = md.glyphSet[g.name]
         changed = False
         if km is None:
             km = self.getKerningManager(g.font)
 
         label = ''
-        color = 0, 0, 0, 0
+        fillColor = 0, 0, 0, 0.5
+        strokeColor = 0, 0, 0, 0
 
-        """
-        if c.w.simSpace.get():
-            km.simSameCategory = km.simSameScript = not c.w.splitSimScripts.get()
-            similar1 = km.getSimilarMargins1(g)
-            print('Similar right', similar1)
-        
-        rm = km.getRightMargin(g)
-        if rm is not None:
-            changed = self._fixGlyphRightMargin(g, rm)
-            label = 'Right=%d' % g.width
-            color = self.SPACER_FIXED_MARGIN_MARKER_COLOR
-        """
-        similarName1 = km.getSimilarBaseName1(g)
-        if similarName1 is not None:
-            srcG1 = g.font[similarName1]
-            label = f'Sim /{srcG1.name} {int(round(srcG1.angledRightMargin))}'
-            self._fixGlyphRightMargin(g, srcG1.angledRightMargin)
+        hasReference = gd.rightSpaceSourceLabel
+        if hasReference:
+            rm = km.getRightMarginByGlyphSetReference(g)
+            label = f'Ref {hasReference} {int(round(rm))}'
+            fillColor = 0, 1, 0, 0.5
+            strokeColor = None
+            changed |= self._fixGlyphRightMargin(g, rm, label)
         else:
-            label = f'No sim source'
+            similarName1 = km.getSimilarBaseName1(g)
+            if similarName1 is not None:
+                srcG1 = g.font[similarName1]
+                if similarName1 == g.name:
+                    label = f'Sim base /{srcG1.name} {int(round(srcG1.angledLeftMargin))}'
+                    fillColor = None
+                    strokeColor = 0, 0, 0, 0.5
+                else:
+                    label = f'Sim /{srcG1.name} {int(round(srcG1.angledLeftMargin))}'
+                    fillColor = 1, 0, 0, 0.5
+                    strokeColor = None
+                changed |= self._fixGlyphRightMargin(g, srcG1.angledRightMargin, label)
+            else:
+                label = f'{int(round(g.angledRightMargin))}' # No reference or similarity. This margin can be changed. Just show the value
+                fillColor = None
+                strokeColor = 0, 0, 0, 0.5
 
         self.fixedSpaceMarkerRight.setPosition((g.width - self.SPACER_MARKER_R, -self.SPACER_MARKER_R))
-        self.fixedSpaceMarkerRight.setFillColor(color)
+        self.fixedSpaceMarkerRight.setFillColor(fillColor)
+        self.fixedSpaceMarkerRight.setStrokeColor(strokeColor)
         self.fixedSpaceMarkerRight.setVisible(True)
         
-        self.rightSpaceSourceLabel.setPosition((g.width, -self.SPACER_MARKER_R*4))
+        self.rightSpaceSourceLabel.setPosition((g.width, -self.SPACER_MARKER_R*2))
         self.rightSpaceSourceLabel.setText(label)
         self.rightSpaceSourceLabel.setVisible(True)
 

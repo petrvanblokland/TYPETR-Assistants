@@ -37,9 +37,9 @@ def process(self):
     self.scriptPrefix()
 
 if __name__ == "__main__":
-    from glyphNameFormatter.exporters import printRange
+    from assistantLib.glyphNameFormatter.exporters import printRange
     printRange("Devanagari")
-    from glyphNameFormatter.tools import debug
+    from assistantLib.glyphNameFormatter.tools import debug
     debug(0x0955)
     debug(0x0900)    
     debug(0x0901)        

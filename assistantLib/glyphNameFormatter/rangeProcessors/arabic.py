@@ -1,4 +1,4 @@
-from glyphNameFormatter.tools import debug
+from assistantLib.glyphNameFormatter.tools import debug
 
 
 def process(self):
@@ -166,7 +166,7 @@ def process(self):
     self.compress()
 
 if __name__ == "__main__":
-    from glyphNameFormatter.exporters import printRange
+    from assistantLib.glyphNameFormatter.exporters import printRange
     printRange("Arabic")
     debug(0x060C)
     # debug(0x066F)

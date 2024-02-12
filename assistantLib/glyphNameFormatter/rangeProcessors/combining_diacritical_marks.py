@@ -106,9 +106,9 @@ def process(self):
     self.scriptPrefix()
 
 if __name__ == "__main__":
-    from glyphNameFormatter.exporters import printRange
+    from assistantLib.glyphNameFormatter.exporters import printRange
     printRange("Combining Diacritical Marks")
 
 
-    #from glyphNameFormatter.tools import debug
+    #from assistantLib.glyphNameFormatter.tools import debug
     #debug(0x0323)

@@ -1,8 +1,8 @@
 from __future__ import print_function
-from glyphNameFormatter.unicodeRangeNames import getAllRangeNames, rangeNameToModuleName, getRangeByName
-from glyphNameFormatter import GlyphName
+from assistantLib.glyphNameFormatter.unicodeRangeNames import getAllRangeNames, rangeNameToModuleName, getRangeByName
+from assistantLib.glyphNameFormatter import GlyphName
 
-from glyphNameFormatter.data import name2unicode_AGD, unicodeVersion
+from assistantLib.glyphNameFormatter.data import name2unicode_AGD, unicodeVersion
 import importlib
 from pprint import pprint
 

@@ -1,4 +1,4 @@
-from glyphNameFormatter.data.scriptPrefixes import scriptPrefixes
+from assistantLib.glyphNameFormatter.data.scriptPrefixes import scriptPrefixes
 
 
 def process(self):
@@ -29,5 +29,5 @@ def process(self):
 
 
 if __name__ == "__main__":
-    from glyphNameFormatter.exporters import printRange
+    from assistantLib.glyphNameFormatter.exporters import printRange
     printRange("Halfwidth and Fullwidth Forms")

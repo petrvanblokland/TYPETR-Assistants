@@ -14,6 +14,7 @@ import weakref
 # But here we import it as separate source in assistantLib.
 import assistantLib.similarity.cosineSimilarity
 from assistantLib.similarity.cosineSimilarity import cosineSimilarity, SimilarGlyphsKey
+
 from assistantLib.kerningSamples import SAMPLES, CYRILLIC_KERNING, GREEK_KERNING
 
 # Defines types of spacing dependencies
@@ -280,7 +281,83 @@ class KerningManager:
             return None
         return self.f[baseGlyphName]
         
-    #   S P A C I N G  D E P E N D E N C I E S
+    #   S P A C I N G  D E P E N D E N C I E S  B Y  G L Y P H  D A T A 
+
+    #   This approach searched in glyph data if there are any references to source glyph for left an right margin
+
+    def getLeftMarginByGlyphSetReference(self, g, useBase=True, doneLeft=None, doneRight=None):
+        """Answer the angled leftmargin, indicated by "l" reference in glyphdata. Answer None if there is no left reference.
+        Test if there is a recursive reference """
+        if doneLeft is None:
+            doneLeft = set()
+        assert not g.name in doneLeft, (f'### Circular reference in left margin for /{g.name}') # Check on possible circular references.
+        doneLeft.add(g.name)
+
+        gd = self.md.glyphSet.get(g.name)
+        if gd is None:
+            return None # No entry in this glyphset for this glyph.
+        if gd.l is not None:
+            if isinstance(gd.l, (int, float)): # It can be a value intead of a reference name
+                return gd.l
+            assert gd.l in g.font, (f'### "gd.l={gd.l}" reference glyph for /{g.name} does not exist.') # Using "md.l" it should exist
+            return self.getLeftMarginByGlyphSetReference(g.font[gd.l], useBase, doneLeft, doneRight) # Get the left margin of the referenced glyph
+        if gd.ml is not None:
+            if isinstance(gd.ml, (int, float)): # Not entirely right, but we'll support values here too.
+                return gd.ml
+            assert gd.ml in g.font, (f'### "gd.ml={gd.ml}" reference glyph for /{g.name} does not exist.') # Using "md.ml" it should exist
+            return self.getLeftMarginByGlyphSetReference(g.font[gd.ml], True, doneLeft, doneRight) # Get the left margin of the referenced glyph
+        if gd.r2l is not None:
+            assert gd.r2l in g.font, (f'### "gd.r2l={gd.r2l}" reference glyph for /{g.name} does not exist.') # Using "md.r2l" it should exist
+            return self.getRightMarginByGlyphSetReference(g.font[gd.r2l], useBase, doneLeft, doneRight) # Get the right margin of the referenced glyph
+        if gd.mr2l is not None:
+            assert gd.mr2l in g.font, (f'### "gd.mr2l={gd.mr2l}" reference glyph for /{g.name} does not exist.') # Using "md.mr2l" it should exist
+            return self.getRightMarginByGlyphSetReference(g.font[gd.mr2l], useBase, doneLeft, doneRight) # Get the right margin of the referenced glyph
+        # If there is a base in the glyphdata, we go for that.
+        if useBase and gd.base:
+            assert gd.base in g.font, (f'### "gd.base={gd.base}" reference glyph for /{g.name} does not exist.') # Using "md.base" it should exist
+            return self.getLeftMarginByGlyphSetReference(g.font[gd.base], useBase, doneLeft, doneRight)
+        # End of reference sequence, just answer the left margin of this glyph
+        if not hasattr(g, 'angledLeftMargin'):
+            return g.leftMargin
+        return g.angledLeftMargin
+
+    def getRightMarginByGlyphSetReference(self, g, useBase=True, doneLeft=None, doneRight=None):
+        """Answer the angled rightmargin, indicated by "r" reference in glyphdata. Answer None if there is no right reference.
+        Test if there is a recursive reference """
+        if doneRight is None:
+            doneRight = set()
+        assert not g.name in doneRight, (f'### Circular reference in right margin for /{g.name}') # Check on possible circular references.
+        doneRight.add(g.name)
+
+        gd = self.md.glyphSet.get(g.name)
+        if gd is None:
+            return None # No entry in this glyphset for this glyph.
+        if gd.r is not None:
+            if isinstance(gd.r, (int, float)): # It can be a value intead of a reference name
+                return gd.r
+            assert gd.r in g.font, (f'### "gd.r={gd.r}" reference glyph for /{g.name} does not exist.') # Using "md.r" it should exist
+            return self.getRightMarginByGlyphSetReference(g.font[gd.r], useBase, doneLeft, doneRight) # Get the right margin of the referenced glyph
+        if gd.mr is not None:
+            if isinstance(gd.mr, (int, float)): # Not entirely right, but we'll support values here too.
+                return gd.mr
+            assert gd.mr in g.font, (f'### "gd.mr={gd.mr}" reference glyph for /{g.name} does not exist.') # Using "md.mr" it should exist
+            return self.getRightMarginByGlyphSetReference(g.font[gd.mr], True, doneLeft, doneRight) # Get the right margin of the referenced glyph
+        if gd.l2r is not None:
+            assert gd.l2r in g.font, (f'### "gd.l2r={gd.l2r}" reference glyph for /{g.name} does not exist.') # Using "md.l2r" it should exist
+            return self.getLeftMarginByGlyphSetReference(g.font[gd.l2r], useBase, doneLeft, doneRight) # Get the left margin of the referenced glyph
+        if gd.ml2r is not None:
+            assert gd.ml2r in g.font, (f'### "gd.ml2r={gd.ml2r}" reference glyph for /{g.name} does not exist.') # Using "md.ml2r" it should exist
+            return self.getLeftMarginByGlyphSetReference(g.font[gd.ml2r], useBase, doneLeft, doneRight) # Get the left margin of the referenced glyph
+        # If there is a base in the glyphdata, we go for that.
+        if useBase and gd.base:
+            assert gd.base in g.font, (f'### "gd.base={gd.base}" reference glyph for /{g.name} does not exist.') # Using "md.base" it should exist
+            return self.getRightMarginByGlyphSetReference(g.font[gd.base], True, doneLeft, doneRight)
+        # End of reference sequence, just answer the left margin of this glyph
+        if not hasattr(g, 'angledRightMargin'):
+            return g.rightMargin
+        return g.angledRightMargin
+
+    #   S P A C I N G  D E P E N D E N C I E S  B Y  G L Y P H  L I B
 
     #   This is a different approach from similarity of groups. Sometimes margins need to be forced,
     #   even if the shapes are not similar, such as inferior --> superior. Also copying from side to side

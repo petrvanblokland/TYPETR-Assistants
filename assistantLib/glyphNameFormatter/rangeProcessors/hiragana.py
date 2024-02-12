@@ -13,5 +13,5 @@ def process(self):
     self.scriptPrefix()
 
 if __name__ == "__main__":
-    from glyphNameFormatter.exporters import printRange
+    from assistantLib.glyphNameFormatter.exporters import printRange
     printRange("Hiragana")

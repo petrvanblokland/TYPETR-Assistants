@@ -1,7 +1,7 @@
 import os
 from xml.etree import ElementTree as ET
 
-from glyphNameFormatter.tools import GlyphNameFormatterError
+from assistantLib.glyphNameFormatter.tools import GlyphNameFormatterError
 
 
 SCRIPTSEPARATOR = ":"
@@ -154,7 +154,7 @@ if __name__ == "__main__":
     def testAllPrefixes():
         # let's not just assume all prefixes that end up the same
         # will also be able to disambiguate names.
-        from glyphNameFormatter.unicodeRangeNames import getAllRangeNames
+        from assistantLib.glyphNameFormatter.unicodeRangeNames import getAllRangeNames
         prefixes = {}
         for n in getAllRangeNames():
             pf = scriptPrefixes[n]

@@ -22,7 +22,7 @@ def process(self):
 
 
 if __name__ == "__main__":
-    from glyphNameFormatter.exporters import printRange
-    from glyphNameFormatter.tools import debug
+    from assistantLib.glyphNameFormatter.exporters import printRange
+    from assistantLib.glyphNameFormatter.tools import debug
     printRange("Gujarati")
     debug(0x0AFA)

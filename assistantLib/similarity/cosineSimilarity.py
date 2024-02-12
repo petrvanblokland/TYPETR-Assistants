@@ -8,7 +8,7 @@ import defcon
 
 from numpy import dot
 from numpy.linalg import norm
-from glyphNameFormatter.reader import u2r, u2c
+from assistantLib.glyphNameFormatter.reader import u2r, u2c
 from .multipleMarginPen import MultipleMarginPen
 import fontTools.unicodedata
 

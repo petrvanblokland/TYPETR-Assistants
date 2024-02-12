@@ -1,9 +1,9 @@
 # -*- coding: UTF-8 -*-
 from __future__ import print_function, absolute_import
 
-import glyphNameFormatter
-from glyphNameFormatter.unicodeRangeNames import getRangeByName, getAllRangeNames, getSupportedRangeNames
-from glyphNameFormatter.data import upperToLower, lowerToUpper
+import assistantLib.glyphNameFormatter
+from assistantLib.glyphNameFormatter.unicodeRangeNames import getRangeByName, getAllRangeNames, getSupportedRangeNames
+from assistantLib.glyphNameFormatter.data import upperToLower, lowerToUpper
 
 import os
 
@@ -133,7 +133,7 @@ def _parse(path):
 			uni2name[value] = name
 			uni2cat[value] = cat
 
-root = os.path.dirname(glyphNameFormatter.__file__)
+root = os.path.dirname(assistantLib.glyphNameFormatter.__file__)
 path = os.path.join(root, 'data', sanctionedNameList)
 if os.path.exists(path):
 	_parse(path)

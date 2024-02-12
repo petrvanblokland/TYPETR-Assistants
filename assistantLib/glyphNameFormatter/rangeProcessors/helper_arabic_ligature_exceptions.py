@@ -1,5 +1,5 @@
 from __future__ import print_function
-from glyphNameFormatter.tools import camelCase
+from assistantLib.glyphNameFormatter.tools import camelCase
 
 
 doNotProcessAsLigatureRanges = [
@@ -36,7 +36,7 @@ def process(self):
 
 
 if __name__ == "__main__":
-    from glyphNameFormatter import GlyphName
+    from assistantLib.glyphNameFormatter import GlyphName
 
     print("\ndoNotProcessAsLigatureRanges", doNotProcessAsLigatureRanges)
     odd = 0xfe76

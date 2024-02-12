@@ -27,7 +27,7 @@ def charToUnicode(char):
 
 def debug(uniNumber):
     # dump the steps of building the name
-    import glyphNameFormatter
+    import assistantLib.glyphNameFormatter
     g = glyphNameFormatter.GlyphName(uniNumber)
     name = g.getName(extension=True)
     count = 0

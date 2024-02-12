@@ -5,10 +5,10 @@ def process(self):
     self.compress()
 
 if __name__ == "__main__":
-    from glyphNameFormatter.exporters import printRange
+    from assistantLib.glyphNameFormatter.exporters import printRange
     printRange("Greek Extended")
 
     # https://github.com/LettError/glyphNameFormatter/issues/38
-    from glyphNameFormatter import GlyphName
+    from assistantLib.glyphNameFormatter import GlyphName
     g = GlyphName(0x1FBE)
     assert g.getName() == "iotaadscript"

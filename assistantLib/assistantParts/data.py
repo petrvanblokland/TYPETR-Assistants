@@ -311,7 +311,7 @@ class MasterData:
         if isinstance(gd.baseline, (int, float)): 
             return gd.baseline
         # If there is a category defined in the glyphData for this glyph, then answer the referenced category value.
-        if gd.baseline in cat2Baseline:
+        if gd.baseline in self.cat2Baseline:
             return self.cat2Baseline[gd.baseline]
         # Not defined in the GlyphSet/GlyphData for this glyph. We need to do some quessing, based on the type of glyph or its name.
         if gd.isMod:

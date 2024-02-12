@@ -1,10 +1,10 @@
 # -*- coding: UTF-8 -*-
 from __future__ import print_function
 
-from glyphNameFormatter.unicodeRangeNames import getRangeByName
-from glyphNameFormatter import GlyphName
+from assistantLib.glyphNameFormatter.unicodeRangeNames import getRangeByName
+from assistantLib.glyphNameFormatter import GlyphName
 
-from glyphNameFormatter.data import unicode2name_AGD, unicode2name_GLYPHS
+from assistantLib.glyphNameFormatter.data import unicode2name_AGD, unicode2name_GLYPHS
 
 
 def _rangeNameToRange(rangeName):
@@ -119,7 +119,7 @@ def testGLIFFileName(rangeName, toFile=None):
 
 
 if __name__ == "__main__":
-    from glyphNameFormatter.unicodeRangeNames import getAllRangeNames
+    from assistantLib.glyphNameFormatter.unicodeRangeNames import getAllRangeNames
 
     # time test
     import time

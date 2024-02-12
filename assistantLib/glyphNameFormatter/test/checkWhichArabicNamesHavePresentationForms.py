@@ -9,7 +9,7 @@
 
 import os
 from pprint import pprint
-from glyphNameFormatter.reader import *
+from assistantLib.glyphNameFormatter.reader import *
 arabicRanges = []
 for name in rangeNames:
     if "Ara" in name:
@@ -68,7 +68,7 @@ def readJoiningTypes(path):
         joiningTypes[uni] = jT
     return joiningTypes
 
-import glyphNameFormatter
+import assistantLib.glyphNameFormatter
 jTPath = os.path.join(os.path.dirname(glyphNameFormatter.__file__), "data", "joiningTypes.txt")
 joiningTypes = readJoiningTypes(jTPath)
 #print('joiningTypes', joiningTypes)

@@ -1,6 +1,6 @@
 from __future__ import print_function
-import glyphNameFormatter
-from glyphNameFormatter.unicodeRangeNames import getRangeByName, getAllRangeNames, getSupportedRangeNames
+import assistantLib.glyphNameFormatter
+from assistantLib.glyphNameFormatter.unicodeRangeNames import getRangeByName, getAllRangeNames, getSupportedRangeNames
 import os
 
 skipped = {}

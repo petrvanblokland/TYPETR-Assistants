@@ -1,8 +1,8 @@
 # -*- coding: UTF-8 -*-
 from __future__ import print_function, absolute_import
-from glyphNameFormatter.data import unicodeRangeNames
+from assistantLib.glyphNameFormatter.data import unicodeRangeNames
 
-from glyphNameFormatter import rangeProcessors
+from assistantLib.glyphNameFormatter import rangeProcessors
 # reload(rangeProcessors)
 
 

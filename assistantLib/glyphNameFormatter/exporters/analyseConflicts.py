@@ -2,9 +2,9 @@ from __future__ import print_function
 import shutil
 import os
 
-import glyphNameFormatter
-from glyphNameFormatter.unicodeRangeNames import getRangeByName, getAllRangeNames
-from glyphNameFormatter.data import unicode2name_AGD
+import assistantLib.glyphNameFormatter
+from assistantLib.glyphNameFormatter.unicodeRangeNames import getRangeByName, getAllRangeNames
+from assistantLib.glyphNameFormatter.data import unicode2name_AGD
 
 #   Find duplicate names for different unicodes
 

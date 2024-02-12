@@ -85,8 +85,8 @@ class AssistantPartGuidelines(BaseAssistantPart):
         height = md.getHeight(g.name)
         middle = md.getMiddleHeight(g.name)
         
-        x = -300 # Label position on the left
-        xo = -50 # Label position for overshoot values
+        x = -550 # Label position on the left
+        xo = -300 # Label position for overshoot values
 
         guidelines = []
         if baseline: 

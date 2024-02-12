@@ -7,5 +7,5 @@ def process(self):
     
 
 if __name__ == "__main__":
-    from glyphNameFormatter.exporters import printRange
+    from assistantLib.glyphNameFormatter.exporters import printRange
     printRange("Transport and Map Symbols")

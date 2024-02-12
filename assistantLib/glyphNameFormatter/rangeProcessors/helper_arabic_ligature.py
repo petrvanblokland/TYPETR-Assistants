@@ -1,5 +1,5 @@
 from __future__ import print_function
-from glyphNameFormatter.tools import camelCase
+from assistantLib.glyphNameFormatter.tools import camelCase
 
 
 def process(self):
@@ -101,7 +101,7 @@ def process(self):
         self.uniNameProcessed = "_".join(ligaName)
 
 if __name__ == "__main__":
-    from glyphNameFormatter import GlyphName
+    from assistantLib.glyphNameFormatter import GlyphName
     assert GlyphName(uniNumber=0xFDFA).getName() == "SallallahouAlayheWasallam"
     assert GlyphName(uniNumber=0xFDC4).getName() == "ain.init_jeem.medi_meem.medi"
     assert GlyphName(uniNumber=0xFC5D).getName() == "alefmaksura.init_superscriptalef.fina"

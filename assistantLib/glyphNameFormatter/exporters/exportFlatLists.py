@@ -6,11 +6,11 @@ import time
 
 import subprocess
 
-from glyphNameFormatter import GlyphName, __version__
-from glyphNameFormatter.unicodeRangeNames import getAllRangeNames, getRangeByName, rangeNameToModuleName
-from glyphNameFormatter.data.scriptPrefixes import SCRIPTSEPARATOR, SCRIPTASPREFIX
-from glyphNameFormatter.data import unicodeVersion, unicodeCategories
-from glyphNameFormatter.exporters.analyseConflicts import findConflict
+from assistantLib.glyphNameFormatter import GlyphName, __version__
+from assistantLib.glyphNameFormatter.unicodeRangeNames import getAllRangeNames, getRangeByName, rangeNameToModuleName
+from assistantLib.glyphNameFormatter.data.scriptPrefixes import SCRIPTSEPARATOR, SCRIPTASPREFIX
+from assistantLib.glyphNameFormatter.data import unicodeVersion, unicodeCategories
+from assistantLib.glyphNameFormatter.exporters.analyseConflicts import findConflict
 
 
 def _getHasGit():

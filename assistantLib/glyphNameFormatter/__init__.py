@@ -3,15 +3,15 @@ from __future__ import print_function, absolute_import
 
 import unicodedata
 
-from glyphNameFormatter.data import unicodelist, mathUniNumbers
-from glyphNameFormatter.data.scriptConflictNames import scriptConflictNames
-from glyphNameFormatter.data.preferredAGLNames import preferredAGLNames
-from glyphNameFormatter.data.scriptPrefixes import scriptPrefixes, addScriptPrefix, SCRIPTSEPARATOR, SCRIPTASPREFIX
+from assistantLib.glyphNameFormatter.data import unicodelist, mathUniNumbers
+from assistantLib.glyphNameFormatter.data.scriptConflictNames import scriptConflictNames
+from assistantLib.glyphNameFormatter.data.preferredAGLNames import preferredAGLNames
+from assistantLib.glyphNameFormatter.data.scriptPrefixes import scriptPrefixes, addScriptPrefix, SCRIPTSEPARATOR, SCRIPTASPREFIX
 #from .data.mathUniNumbers import mathUniNumbers
 
-from glyphNameFormatter.unicodeRangeNames import getRangeName, getRangeProcessor, getRangeProcessorByRangeName
+from assistantLib.glyphNameFormatter.unicodeRangeNames import getRangeName, getRangeProcessor, getRangeProcessorByRangeName
 
-from glyphNameFormatter.tools import unicodeToChar
+from assistantLib.glyphNameFormatter.tools import unicodeToChar
 
 
 __version__ = "0.7"
