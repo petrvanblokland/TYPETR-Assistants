@@ -417,8 +417,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         c = self.getController()
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         LL = 18
-        c.w.simSpace = CheckBox((C0, y, CW, L), 'Similar space', value=False, sizeStyle='small')
-        c.w.autoSpace = CheckBox((C1, y, CW, L), 'Auto space', value=True, sizeStyle='small')
+        c.w.autoSpace = CheckBox((C1, y, CW, L), 'Auto space', value=False, sizeStyle='small', callback=self.updateEditor)
         c.w.centerGlyphButton = Button((C2, y, CW, L), 'Center width [%s]' % personalKey_eq, callback=self.spacerCenterGlyphCallback)
         y += L
         c.w.splitSimScripts = CheckBox((C0, y, CW, L), 'Split Sim scripts', value=True, sizeStyle='small')
@@ -648,40 +647,48 @@ class AssistantPartSpacer(BaseAssistantPart):
         If something changed, then answer True. 
         """
         c = self.getController()
-        md = self.getMasterData(g.font)
-        gd = md.glyphSet[g.name]
         changed = False
-        if km is None:
-            km = self.getKerningManager(g.font)
-
-        label = ''
-        fillColor = 0, 0, 0, 0.5
+        fillColor = 0, 0, 0, 0.2
         strokeColor = 0, 0, 0, 0
 
-        hasReference = gd.leftSpaceSourceLabel
-        if hasReference:
-            lm = km.getLeftMarginByGlyphSetReference(g)
-            label = f'Ref {hasReference} {int(round(lm))}'
-            fillColor = 0, 1, 0, 0.5
-            strokeColor = None
-            changed |= self._fixGlyphLeftMargin(g, lm, label)
-        else:
-            similarName2 = km.getSimilarBaseName2(g)
-            if similarName2 is not None:
-                srcG2 = g.font[similarName2]
-                if similarName2 == g.name:
-                    label = f'Sim base /{srcG2.name} {int(round(srcG2.angledLeftMargin))}'
+        if c.w.autoSpace.get():
+
+            md = self.getMasterData(g.font)
+            gd = md.glyphSet[g.name]
+            if km is None:
+                km = self.getKerningManager(g.font)
+
+            label = ''
+
+            hasReference = gd.leftSpaceSourceLabel
+            if hasReference:
+                lm = km.getLeftMarginByGlyphSetReference(g)
+                label = f'Ref {hasReference} {int(round(lm))}'
+                fillColor = 0, 1, 0, 0.5
+                strokeColor = None
+                changed |= self._fixGlyphLeftMargin(g, lm, label)
+            else:
+                similarName2 = km.getSimilarBaseName2(g)
+                if similarName2 is not None:
+                    srcG2 = g.font[similarName2]
+                    if similarName2 == g.name:
+                        label = f'Sim base /{srcG2.name} {int(round(srcG2.angledLeftMargin))}'
+                        fillColor = None
+                        strokeColor = 0, 0, 0, 0.5
+                    else:
+                        label = f'Sim /{srcG2.name} {int(round(srcG2.angledLeftMargin))}'
+                        fillColor = 1, 0, 0, 0.5
+                        strokeColor = None
+                    changed |= self._fixGlyphLeftMargin(g, srcG2.angledLeftMargin, label)
+                else:
+                    label = f'{int(round(g.angledLeftMargin))}' # No reference or similarity. This margin can be changed. Just show the value
                     fillColor = None
                     strokeColor = 0, 0, 0, 0.5
-                else:
-                    label = f'Sim /{srcG2.name} {int(round(srcG2.angledLeftMargin))}'
-                    fillColor = 1, 0, 0, 0.5
-                    strokeColor = None
-                changed |= self._fixGlyphLeftMargin(g, srcG2.angledLeftMargin, label)
-            else:
-                label = f'{int(round(g.angledLeftMargin))}' # No reference or similarity. This margin can be changed. Just show the value
-                fillColor = None
-                strokeColor = 0, 0, 0, 0.5
+
+        else:
+            label = str(int(round(g.angledLeftMargin)))
+            fillColor = None
+            strokeColor = 0, 0, 0, 0.5
 
         self.fixedSpaceMarkerLeft.setPosition((-self.SPACER_MARKER_R, -self.SPACER_MARKER_R))
         self.fixedSpaceMarkerLeft.setFillColor(fillColor)
@@ -700,40 +707,50 @@ class AssistantPartSpacer(BaseAssistantPart):
         If something changed, then answer True. 
         """
         c = self.getController()
-        md = self.getMasterData(g.font)
-        gd = md.glyphSet[g.name]
         changed = False
-        if km is None:
-            km = self.getKerningManager(g.font)
-
-        label = ''
-        fillColor = 0, 0, 0, 0.5
+        fillColor = 0, 0, 0, 0.2
         strokeColor = 0, 0, 0, 0
 
-        hasReference = gd.rightSpaceSourceLabel
-        if hasReference:
-            rm = km.getRightMarginByGlyphSetReference(g)
-            label = f'Ref {hasReference} {int(round(rm))}'
-            fillColor = 0, 1, 0, 0.5
-            strokeColor = None
-            changed |= self._fixGlyphRightMargin(g, rm, label)
-        else:
-            similarName1 = km.getSimilarBaseName1(g)
-            if similarName1 is not None:
-                srcG1 = g.font[similarName1]
-                if similarName1 == g.name:
-                    label = f'Sim base /{srcG1.name} {int(round(srcG1.angledLeftMargin))}'
+        if c.w.autoSpace.get():
+
+            md = self.getMasterData(g.font)
+            gd = md.glyphSet[g.name]
+            if km is None:
+                km = self.getKerningManager(g.font)
+
+            label = ''
+            fillColor = 0, 0, 0, 0.5
+            strokeColor = 0, 0, 0, 0
+
+            hasReference = gd.rightSpaceSourceLabel
+            if hasReference:
+                rm = km.getRightMarginByGlyphSetReference(g)
+                label = f'Ref {hasReference} {int(round(rm))}'
+                fillColor = 0, 1, 0, 0.5
+                strokeColor = None
+                changed |= self._fixGlyphRightMargin(g, rm, label)
+            else:
+                similarName1 = km.getSimilarBaseName1(g)
+                if similarName1 is not None:
+                    srcG1 = g.font[similarName1]
+                    if similarName1 == g.name:
+                        label = f'Sim base /{srcG1.name} {int(round(srcG1.angledLeftMargin))}'
+                        fillColor = None
+                        strokeColor = 0, 0, 0, 0.5
+                    else:
+                        label = f'Sim /{srcG1.name} {int(round(srcG1.angledLeftMargin))}'
+                        fillColor = 1, 0, 0, 0.5
+                        strokeColor = None
+                    changed |= self._fixGlyphRightMargin(g, srcG1.angledRightMargin, label)
+                else:
+                    label = f'{int(round(g.angledRightMargin))}' # No reference or similarity. This margin can be changed. Just show the value
                     fillColor = None
                     strokeColor = 0, 0, 0, 0.5
-                else:
-                    label = f'Sim /{srcG1.name} {int(round(srcG1.angledLeftMargin))}'
-                    fillColor = 1, 0, 0, 0.5
-                    strokeColor = None
-                changed |= self._fixGlyphRightMargin(g, srcG1.angledRightMargin, label)
-            else:
-                label = f'{int(round(g.angledRightMargin))}' # No reference or similarity. This margin can be changed. Just show the value
-                fillColor = None
-                strokeColor = 0, 0, 0, 0.5
+
+        else:
+            label = str(int(round(g.angledRightMargin)))
+            fillColor = None
+            strokeColor = 0, 0, 0, 0.5
 
         self.fixedSpaceMarkerRight.setPosition((g.width - self.SPACER_MARKER_R, -self.SPACER_MARKER_R))
         self.fixedSpaceMarkerRight.setFillColor(fillColor)
