@@ -865,7 +865,7 @@ class MS_GlyphSet(GlyphSet):
 
         #   X
 
-       'X': GD(name='X', uni=0x0058, hex='0058', c='X', anchors=['top', 'middle', 'bottom'], gid=58, comment='X'),
+       'X': GD(l2r='X', name='X', uni=0x0058, hex='0058', c='X', anchors=['top', 'middle', 'bottom'], gid=58, comment='X'),
        'Xdieresis': GD(name='Xdieresis', uni=0x1E8C, hex='1E8C', c='Ẍ', base='X', accents=['dieresiscomb'], srcName='uni1E8C', anchors=['top', 'middle', 'bottom'], gid=1063),
        'Xdotaccent': GD(name='Xdotaccent', uni=0x1E8A, hex='1E8A', c='Ẋ', base='X', accents=['dotaccentcomb'], srcName='uni1E8A', anchors=['top', 'middle', 'bottom'], gid=1061),
        'Xi': GD(name='Xi', uni=0x039E, hex='039E', c='Ξ', l2r='Xi', gid=548),

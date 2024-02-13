@@ -113,7 +113,7 @@ class KerningManager:
             fixedWidthPatterns = { # Key is right margin, value is list of glyph names
             0: ('cmb|', 'comb|', 'comb-cy|', '-uc|', '.component', 'zerowidthspace', 'zerowidthjoiner', 
                 'zerowidthnonjoiner', 'righttoleftmark', 'Otilde.component1',
-                'perispomeni', 
+                'perispomeni', 'cedillacomb.component',
                 'dasiavaria-uc', ), # "|" matches pattern on end of name"
             self.tabWidth: ('.tab|', '.tnum|')
         }
@@ -290,7 +290,10 @@ class KerningManager:
         Test if there is a recursive reference """
         if doneLeft is None:
             doneLeft = set()
-        assert not g.name in doneLeft, (f'### Circular reference in left margin for /{g.name}') # Check on possible circular references.
+        if g.name in doneLeft,
+            print(f'### Circular reference in left margin for /{g.name}') # Check on possible circular references.
+            return g.angledLeftMargin
+
         doneLeft.add(g.name)
 
         gd = self.md.glyphSet.get(g.name)
@@ -326,7 +329,10 @@ class KerningManager:
         Test if there is a recursive reference """
         if doneRight is None:
             doneRight = set()
-        assert not g.name in doneRight, (f'### Circular reference in right margin for /{g.name}') # Check on possible circular references.
+        if g.name in doneRight:
+            print(f'### Circular reference in right margin for /{g.name}') # Check on possible circular references.
+            return g.angledRightMargin
+            
         doneRight.add(g.name)
 
         gd = self.md.glyphSet.get(g.name)
