@@ -290,7 +290,7 @@ class KerningManager:
         Test if there is a recursive reference """
         if doneLeft is None:
             doneLeft = set()
-        if g.name in doneLeft,
+        if g.name in doneLeft:
             print(f'### Circular reference in left margin for /{g.name}') # Check on possible circular references.
             return g.angledLeftMargin
 
