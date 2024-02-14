@@ -59,12 +59,15 @@ class AssistantPartOverlay(BaseAssistantPart):
         )
         self.previewPointMarkers = []
         for pIndex in range(self.MAX_POINT_MARKERS): # Max number of points to display in a glyph
-            self.previewPointMarkers.append(container.appendRectangleSublayer(name="point%03d" % pIndex,
+            self.previewPointMarkers.append(container.appendSymbolSublayer(name="point%03d" % pIndex,
                 position=(0, 0),
-                size=(self.POINT_MARKER_R*2, self.POINT_MARKER_R*2),
-                fillColor=None,
-                strokeColor=(0, 0.5, 0, 1),
-                strokeWidth=1,
+                imageSettings=dict(
+                    name="rectangle",
+                    size=(self.POINT_MARKER_R*2, self.POINT_MARKER_R*2),
+                    fillColor=None,
+                    strokeColor=(0, 0.5, 0, 1),
+                    strokeWidth=1,
+                ),
                 visible=False,
             ))
         self.backgroundPointMarkers = []
@@ -181,7 +184,7 @@ class AssistantPartOverlay(BaseAssistantPart):
                 for contour in gOverlay.contours:
                     for p in contour.points:
                         #print(pIndex, len(self.previewPointMarkers))
-                        self.previewPointMarkers[pIndex].setPosition((x+p.x-self.POINT_MARKER_R, p.y-self.POINT_MARKER_R)) 
+                        self.previewPointMarkers[pIndex].setPosition((x+p.x, p.y))
                         self.previewPointMarkers[pIndex].setVisible(True)
                         pIndex += 1
         else:
