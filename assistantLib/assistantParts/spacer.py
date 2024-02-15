@@ -18,6 +18,7 @@ from math import *
 from vanilla import *
 
 from mojo.UI import OpenGlyphWindow
+from mojo.roboFont import CurrentFont
 
 # Add paths to libs in sibling repositories
 PATHS = ('../TYPETR-Assistants/',)
@@ -434,11 +435,58 @@ class AssistantPartSpacer(BaseAssistantPart):
         #c.w.incKern2Button = Button((C2+CW/4, y, CW/4, L), '[%s]>' % personalKey_n, callback=self.spacerIncKern2Callback)
         #c.w.decKern1Button = Button((C2+2*CW/4, y, CW/4, L), '<[%s]' % personalKey_period, callback=self.spacerDecKern1Callback)
         #c.w.incKern1Button = Button((C2+3*CW/4, y, CW/4, L), '[%s]>' % personalKey_comma, callback=self.spacerIncKern1Callback)
+        y += L + L
+        c.w.reportSpacingButton = Button((C2, y, CW, L), 'Report spacing', callback=self.reportSpacingCallback)
         y += L + LL
 
         return y
 
-    #   S P A C I N G  K E Y S
+    def reportSpacingCallback(self, sender):
+        """Report/fix margins for the current font that don't fit the epexted value as it would have been auto spaced.
+        This method both allowed to get feedback on how accurate the autospacer works. And it gives a list of glyphs
+        that need extra attention."""
+        f = CurrentFont()
+        md = self.getMasterData(f)
+        km = self.getKerningManager(f)
+
+        # First check all glyphs without component
+        for g in f:
+            if g.components:
+                continue
+            if not g.name in md.glyphSet:
+                print(f'### Missing glyph /{g,name} in glypset-->glyphData.')
+                continue
+            gd = md.glyphSet.get(g.name)
+
+            lm = km.getLeftMarginByGlyphSetReference(g)
+            alm = g.angledLeftMargin
+            if alm is not None and lm is not None and not self._equalGlyphLeftMargin(g, lm):
+                print(f'... Diff {int(round(alm - lm))} in left margin {alm} for /{g.name} and expected auto space {lm}')
+            
+            rm = km.getRightMarginByGlyphSetReference(g)
+            arm = g.angledRightMargin
+            if arm is not None and rm is not None and not self._equalGlyphRightMargin(g, rm):
+                print(f'... Diff {int(round(arm - lm))} in right margin {arm} for /{g.name} and expected auto space {rm}')
+
+        # Then check all glyphs with components
+        for g in f:
+            if not g.components:
+                continue
+            if not g.name in md.glyphSet:
+                print(f'### Missing glyph /{g,name} in glypset-->glyphData.')
+                continue
+            gd = md.glyphSet.get(g.name)
+
+            lm = km.getLeftMarginByGlyphSetReference(g)
+            alm = g.angledLeftMargin
+            if alm is not None and lm is not None and not self._equalGlyphLeftMargin(g, lm):
+                print(f'... Diff {int(round(alm - lm))} in left margin {alm} for /{g.name} and expected auto space {lm}')
+            
+            rm = km.getRightMarginByGlyphSetReference(g)
+            arm = g.angledRightMargin
+            if arm is not None and rm is not None and not self._equalGlyphRightMargin(g, rm):
+                print(f'... Diff {int(round(arm - lm))} in right margin {arm} for /{g.name} and expected auto space {rm}')
+
 
     def spacerDecLeftMarginCallback(self, sender):
         self._adjustLeftMarginByUnits(g, -1)
@@ -590,6 +638,20 @@ class AssistantPartSpacer(BaseAssistantPart):
 
     #   G U E S S  S P A C I N G  &  K E R N I N G
 
+    def _equalGlyphLeftMargin(self, g, lm):
+        """Answer the boolean flag if the left margin is different from the current g value,"""
+        alm = g.angledLeftMargin
+        if None in (alm, lm):
+            return None
+        return abs(alm - lm) <= 1
+
+    def _equalGlyphRightMargin(self, g, rm):
+        """Answer the boolean flag if the right margin is different from the current g value,"""
+        arm = g.angledRightMargin
+        if None in (arm, rm):
+            return None
+        return abs(arm - rm) <= 1
+
     def _fixGlyphWidth(self, g, width):
         if g.width != width:
             print(f'... Fix glyph width: Set /{g.name} width from {g.width} to {width}')
@@ -599,7 +661,7 @@ class AssistantPartSpacer(BaseAssistantPart):
 
     def _fixGlyphLeftMargin(self, g, lm, label=''):
         """If the left margin is different from the current g value, then change it. Label is optional information about why it changed."""
-        if abs(g.angledLeftMargin - lm) >= 1:
+        if not self._equalGlyphLeftMargin(g, lm):
             print(f'... Fix left margin: Set /{g.name} from {g.angledLeftMargin} to {lm} {label}')
             g.angledLeftMargin = lm
             return True
@@ -607,7 +669,7 @@ class AssistantPartSpacer(BaseAssistantPart):
 
     def _fixGlyphRightMargin(self, g, rm, label=''):
         """If the right margin is different from the current g value, then change it. Label is optional information about why is changed."""
-        if abs(g.angledRightMargin - rm) >= 1:
+        if not self._equalGlyphRightMargin(g, rm):
             print(f'... Fix right margin: Set /{g.name} from {g.angledRightMargin} to {rm} {label}')
             g.angledRightMargin = rm
             return True

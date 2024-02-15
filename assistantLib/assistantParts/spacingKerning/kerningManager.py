@@ -113,7 +113,7 @@ class KerningManager:
             fixedWidthPatterns = { # Key is right margin, value is list of glyph names
             0: ('cmb|', 'comb|', 'comb-cy|', '-uc|', '.component', 'zerowidthspace', 'zerowidthjoiner', 
                 'zerowidthnonjoiner', 'righttoleftmark', 'Otilde.component1',
-                'perispomeni', 'cedillacomb.component',
+                'perispomeni', 'cedillacomb.component', 'psili', 'dblgravecomb',
                 'dasiavaria-uc', ), # "|" matches pattern on end of name"
             self.tabWidth: ('.tab|', '.tnum|')
         }
