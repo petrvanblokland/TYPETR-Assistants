@@ -36,7 +36,7 @@ class AssistantPartOverlay(BaseAssistantPart):
     OVERLAY_FILL_KERNING_COLOR = 0, 0.5, 0, 0.6
     OVERLAY_STROKE_ROMANITALIC_COLOR = 1, 0, 0, 0.7
 
-    POINT_MARKER_R = 8
+    POINT_MARKER_R = 7
 
     def initMerzOverlay(self, container):    
         # Previewing current glyphs on left/right side. 
@@ -253,7 +253,7 @@ class AssistantPartOverlay(BaseAssistantPart):
         """Snap the selected points of the current glyph onto points that are within range on the background glyph."""
         self.snapSelectionToNearestPoint(g)
 
-    def overlaySnap2OverlayCallback(self):
+    def overlaySnap2OverlayCallback(self, sender):
         g = self.getCurrentGlyph()
         if g is not None:
             self.snapSelectionToNearestPoint(g)
