@@ -436,6 +436,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         #c.w.decKern1Button = Button((C2+2*CW/4, y, CW/4, L), '<[%s]' % personalKey_period, callback=self.spacerDecKern1Callback)
         #c.w.incKern1Button = Button((C2+3*CW/4, y, CW/4, L), '[%s]>' % personalKey_comma, callback=self.spacerIncKern1Callback)
         y += L + L
+        c.w.fixReportedSpacingDifferences = CheckBox((C1, y, CW, L), 'Fix reported', value=False, sizeStyle='small')
         c.w.reportSpacingButton = Button((C2, y, CW, L), 'Report spacing', callback=self.reportSpacingCallback)
         y += L + LL
 
@@ -445,6 +446,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         """Report/fix margins for the current font that don't fit the epexted value as it would have been auto spaced.
         This method both allowed to get feedback on how accurate the autospacer works. And it gives a list of glyphs
         that need extra attention."""
+        changed = False
+        c = self.getController()
         f = CurrentFont()
         md = self.getMasterData(f)
         km = self.getKerningManager(f)
@@ -453,40 +456,60 @@ class AssistantPartSpacer(BaseAssistantPart):
         for g in f:
             if g.components:
                 continue
-            if not g.name in md.glyphSet:
-                print(f'### Missing glyph /{g,name} in glypset-->glyphData.')
+
+            if not g.name in md.glyphSet.glyphs:
+                print(f'### Missing glyph /{g.name} in glypset-->glyphData.')
                 continue
+
             gd = md.glyphSet.get(g.name)
 
             lm = km.getLeftMarginByGlyphSetReference(g)
             alm = g.angledLeftMargin
             if alm is not None and lm is not None and not self._equalGlyphLeftMargin(g, lm):
                 print(f'... Diff {int(round(alm - lm))} in left margin {alm} for /{g.name} and expected auto space {lm}')
-            
+                if c.w.fixReportedSpacingDifferences.get():
+                    g.angledLeftMargin = lm
+                    changed = True
+
             rm = km.getRightMarginByGlyphSetReference(g)
             arm = g.angledRightMargin
             if arm is not None and rm is not None and not self._equalGlyphRightMargin(g, rm):
                 print(f'... Diff {int(round(arm - lm))} in right margin {arm} for /{g.name} and expected auto space {rm}')
+                if c.w.fixReportedSpacingDifferences.get():
+                    g.angledRightMargin = rm
+                    changed = True
 
         # Then check all glyphs with components
         for g in f:
             if not g.components:
                 continue
-            if not g.name in md.glyphSet:
-                print(f'### Missing glyph /{g,name} in glypset-->glyphData.')
+
+            if not g.name in md.glyphSet.glyphs:
+                print(f'### Missing glyph /{g.name} in glypset-->glyphData.')
                 continue
+
             gd = md.glyphSet.get(g.name)
 
             lm = km.getLeftMarginByGlyphSetReference(g)
             alm = g.angledLeftMargin
             if alm is not None and lm is not None and not self._equalGlyphLeftMargin(g, lm):
                 print(f'... Diff {int(round(alm - lm))} in left margin {alm} for /{g.name} and expected auto space {lm}')
+                if c.w.fixReportedSpacingDifferences.get():
+                    g.angledLeftMargin = lm
+                    changed = True
             
             rm = km.getRightMarginByGlyphSetReference(g)
             arm = g.angledRightMargin
             if arm is not None and rm is not None and not self._equalGlyphRightMargin(g, rm):
                 print(f'... Diff {int(round(arm - lm))} in right margin {arm} for /{g.name} and expected auto space {rm}')
+                if c.w.fixReportedSpacingDifferences.get():
+                    g.angledRightMargin = rm
+                    changed = True
 
+        if changed:
+            g.changed()
+        else:
+            print(f'Done reporting on spacing {md.name}, no differences')
 
     def spacerDecLeftMarginCallback(self, sender):
         self._adjustLeftMarginByUnits(g, -1)

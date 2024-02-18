@@ -311,10 +311,10 @@ class KerningManager:
             return self.getLeftMarginByGlyphSetReference(g.font[gd.ml], True, doneLeft, doneRight) # Get the left margin of the referenced glyph
         if gd.r2l is not None:
             assert gd.r2l in g.font, (f'### "gd.r2l={gd.r2l}" reference glyph for /{g.name} does not exist.') # Using "md.r2l" it should exist
-            return self.getRightMarginByGlyphSetReference(g.font[gd.r2l], useBase, doneLeft, doneRight) # Get the right margin of the referenced glyph
+            return self.getRightMarginByGlyphSetReference(g.font[gd.r2l], useBase, doneLeft, None) # Get the right margin of the referenced glyph
         if gd.mr2l is not None:
             assert gd.mr2l in g.font, (f'### "gd.mr2l={gd.mr2l}" reference glyph for /{g.name} does not exist.') # Using "md.mr2l" it should exist
-            return self.getRightMarginByGlyphSetReference(g.font[gd.mr2l], useBase, doneLeft, doneRight) # Get the right margin of the referenced glyph
+            return self.getRightMarginByGlyphSetReference(g.font[gd.mr2l], useBase, doneLeft, None) # Get the right margin of the referenced glyph
         # If there is a base in the glyphdata, we go for that.
         if useBase and gd.base:
             assert gd.base in g.font, (f'### "gd.base={gd.base}" reference glyph for /{g.name} does not exist.') # Using "md.base" it should exist
@@ -332,7 +332,7 @@ class KerningManager:
         if g.name in doneRight:
             print(f'### Circular reference in right margin for /{g.name}') # Check on possible circular references.
             return g.angledRightMargin
-            
+
         doneRight.add(g.name)
 
         gd = self.md.glyphSet.get(g.name)
@@ -350,10 +350,10 @@ class KerningManager:
             return self.getRightMarginByGlyphSetReference(g.font[gd.mr], True, doneLeft, doneRight) # Get the right margin of the referenced glyph
         if gd.l2r is not None:
             assert gd.l2r in g.font, (f'### "gd.l2r={gd.l2r}" reference glyph for /{g.name} does not exist.') # Using "md.l2r" it should exist
-            return self.getLeftMarginByGlyphSetReference(g.font[gd.l2r], useBase, doneLeft, doneRight) # Get the left margin of the referenced glyph
+            return self.getLeftMarginByGlyphSetReference(g.font[gd.l2r], useBase, None, doneRight) # Get the left margin of the referenced glyph
         if gd.ml2r is not None:
             assert gd.ml2r in g.font, (f'### "gd.ml2r={gd.ml2r}" reference glyph for /{g.name} does not exist.') # Using "md.ml2r" it should exist
-            return self.getLeftMarginByGlyphSetReference(g.font[gd.ml2r], useBase, doneLeft, doneRight) # Get the left margin of the referenced glyph
+            return self.getLeftMarginByGlyphSetReference(g.font[gd.ml2r], useBase, None, doneRight) # Get the left margin of the referenced glyph
         # If there is a base in the glyphdata, we go for that.
         if useBase and gd.base:
             assert gd.base in g.font, (f'### "gd.base={gd.base}" reference glyph for /{g.name} does not exist.') # Using "md.base" it should exist
