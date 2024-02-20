@@ -1070,7 +1070,7 @@ class MS_GlyphSet(GlyphSet):
        'bdotaccent': GD(name='bdotaccent', uni=0x1E03, hex='1E03', c='ḃ', base='b', accents=['dotaccentcomb'], srcName='uni1E03', isLower=True, anchors=['top', 'middle', 'bottom'], gid=926),
        'bdotbelow': GD(name='bdotbelow', uni=0x1E05, hex='1E05', c='ḅ', base='b', accents=['dotbelowcomb'], srcName='uni1E05', isLower=True, anchors=['top', 'middle', 'bottom'], gid=928),
        'be-cy': GD(name='be-cy', uni=0x0431, hex='0431', c='б', l='o', r='o', isLower=True, gid=694),
-       'be-cy.loclSRB': GD(name='be-cy.loclSRB', isLower=True),
+       'be-cy.loclSRB': GD(name='be-cy.loclSRB', l='o', r='o', isLower=True),
        'beginhightonemod': GD(name='beginhightonemod', uni=0x02F9, hex='02F9', c='˹', isLower=True, isMod=True),
        'beginlowtonemod': GD(name='beginlowtonemod', uni=0x02FB, hex='02FB', c='˻', isLower=True, isMod=True),
        'beta': GD(name='beta', uni=0x03B2, hex='03B2', c='β', isLower=True, gid=567),
@@ -1549,7 +1549,7 @@ class MS_GlyphSet(GlyphSet):
         #   h
 
        'h': GD(name='h', uni=0x0068, hex='0068', c='h', isLower=True, anchors=['top', 'middle', 'bottom', 'dot'], gid=74, comment='h'),
-       'hPalatalhook': GD(name='hPalatalhook', uni=0xA795, hex='A795', c='ꞕ', bl='h', br='jdotless', base='h', accents=['dpalatalhook.component'], isLower=True, anchors=['top', 'middle', 'bottom']),
+       'hPalatalhook': GD(name='hPalatalhook', uni=0xA795, hex='A795', c='ꞕ', bl='h', r='jdotless', base='h', accents=['dpalatalhook.component'], isLower=True, anchors=['top', 'middle', 'bottom']),
        'ha-cy': GD(name='ha-cy', uni=0x0445, hex='0445', c='х', l='x', r='x', base='x', isLower=True, anchors=['top', 'middle', 'bottom'], gid=714),
        'haabkhasian-cy': GD(name='haabkhasian-cy', uni=0x04A9, hex='04A9', c='ҩ', l='o', isLower=True, gid=814),
        'hadescender-cy': GD(name='hadescender-cy', uni=0x04B3, hex='04B3', c='ҳ', l='x', r='kadescender-cy', isLower=True, gid=824),
