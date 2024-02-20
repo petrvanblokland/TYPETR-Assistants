@@ -368,7 +368,7 @@ class KerningManager:
             else:
                 assert gd.l in g.font, (f'### "gd.l={gd.l}" reference glyph for /{g.name} does not exist.') # Using "md.l" it should exist
                 lm = self.getLeftMarginByGlyphSetReference(g.font[gd.l], useBase, doneLeft, doneRight) # Get the left margin of the referenced glyph
-            changed |= self.fixLeftMargin(g, lm, f'(bl={gd.l})')
+            changed |= self.fixLeftMargin(g, lm, f'(l={gd.l})')
         
         elif gd.bl is not None: # Based left margin
             if isinstance(gd.bl, (int, float)): # Not entirely right, but we'll support values here too.
