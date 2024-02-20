@@ -89,9 +89,8 @@ class GlyphData:
             anchorSrc=None, # Glyph name to copy anchors from
             # Force spacing dependencies
             l=None, r=None, w=None, 
-            ml=None, mr=None, # Base glyph references
-            l2r=None, r2l=None, # Switch margins
-            ml2r=None, mr2l=None, # Switch margins of base glyph 
+            bl=None, br=None, # Based glyph references
+            l2r=None, r2l=None, bl2r=None, br2l=None, l2br=None, r2bl=None, bl2br=None, br2bl=None, # Switch margins
             # Type of glyph. Guess if undefined as None.
             isLower=None, isMod=None, isSc=None,
             # Italicize forcing conversion behavior
@@ -149,12 +148,16 @@ class GlyphData:
         self.l = l # Overall angled left margin of referenced glyph
         self.r = r # Overall angled right margin of referenced glyph
         self.w = w # Width of referenced glyph
-        self.ml = ml # Left of base glyph
-        self.mr = mr # Right of base glyph
-        self.l2r = l2r
+        self.bl = bl # Left of base glyph
+        self.br = br # Right of base glyph
+        self.l2r = l2r # Switch margins
         self.r2l = r2l
-        self.ml2r = ml2r # Left of base glyph to right
-        self.mr2l = mr2l # Right of base glyph to left
+        self.bl2r = bl2r # Base left to right
+        self.br2l = br2l # Base right to left
+        self.l2br = l2br # Left to base right
+        self.r2bl = r2bl # Right to base left
+        self.bl2br = bl2br # Base left to base right
+        self.br2bl = br2bl # Base right to base left
 
         # Deprecated legacy references
         #self.il = il
@@ -269,7 +272,7 @@ class GlyphData:
                 out += ", uni=0x%04X, hex='%04X', c='%s'" % (self.uni, self.uni, chr(self.uni))
         if self.unicodes:
             out += f", unicodes=%s" % str(self.unicodes)
-        for spaceType in ('l', 'r', 'w', 'ml', 'mr', 'l2r', 'r2l', 'ml2r', 'mr2l', ):
+        for spaceType in ('l', 'r', 'w', 'bl', 'br', 'l2r', 'r2l', 'bl2r', 'br2l', 'l2br', 'r2bl', 'bl2br', 'br2bl', ):
             v = getattr(self, spaceType)
             if v is not None:
                 out += ", %s='%s'" % (spaceType, v)
@@ -344,50 +347,58 @@ class GlyphData:
     w = property(_get_w, _set_w)
 
     def _get_fixedLeft(self):
-        return bool(self.l or self.ml or self.r2l or self.l2r or self.mr2l or self.ml2r)
+        return bool(self.l or self.bl or self.r2l or self.br2l or self.r2bl or self.br2bl)
     fixedLeft = property(_get_fixedLeft)
     
     def _get_fixedRight(self):
-        return bool(self.r or self.mr or self.l2r or self.ml2r or self.w)
+        return bool(self.r or self.mr or self.l2r or self.bl2r or self.l2br or self.bl2br or self.w)
     fixedRight = property(_get_fixedRight)
     
     def _get_leftSpaceSource(self):
-        return self.l or self.ml or self.r2l or self.mr2l or None
+        return self.l or self.bl or self.r2l or self.br2l or self.r2bl or self.br2bl or None
     leftSpaceSource = property(_get_leftSpaceSource)
     
     def _get_rightSpaceSource(self):
-        return self.r or self.mr or self.l2r or self.ml2r or self.w or None
+        return self.r or self.mr or self.l2r or self.bl2r or self.l2br or self.bl2br or self.w
     rightSpaceSource = property(_get_rightSpaceSource)
     
     def _get_leftSpaceSourceLabel(self):
         """Answer the string where this space gets from. Answer None if there is non source."""
-        if self.l:
+        if self.l is not None:
             return 'Left /%s' % self.l
-        if self.ml:
-            return 'Base left /%s' % self.ml
-        if self.r2l:
+        if self.bl is not None:
+            return 'Base left /%s' % self.bl
+        if self.r2l is not None:
             return 'R-->L /%s' % self.r2l
-        if self.mr2l:
-            return 'Base R-->L /%s' % self.mr2l
-        if self.base:
+        if self.br2l is not None:
+            return 'Base R-->L /%s' % self.br2l
+        if self.r2bl is not None:
+            return 'R-->Base L /%s' % self.r2bl
+        if self.br2bl is not None:
+            return 'Base R-->Base L /%s' % self.br2bl
+        if self.base is not None:
             return 'Base /%s' % self.base
         return None
     leftSpaceSourceLabel = property(_get_leftSpaceSourceLabel)
         
     def _get_rightSpaceSourceLabel(self):
         """Answer the string where this space gets from. Answer None if there is non source."""
-        if self.r:
+        if self.w is not None:
+            return 'W /%s' % self.w
+        if self.r is not None:
             return 'Right /%s' % self.r
-        if self.mr:
-            return 'Base left /%s' % self.mr
-        if self.l2r:
+        if self.br is not None:
+            return 'Base left /%s' % self.br
+        if self.l2r is not None:
             return 'L-->R /%s' % self.l2r
-        if self.ml2r:
-            return 'Base L-->R /%s' % self.ml2r
-        if self.base:
+        if self.bl2r is not None:
+            return 'Base L-->R /%s' % self.bl2r
+        if self.l2br is not None:
+            return 'L-->Base R /%s' % self.l2br
+        if self.bl2br is not None:
+            return 'Base L-->Base R /%s' % self.bl2br
+        if self.base is not None:
             return 'Base /%s' % self.base
-        if self.w:
-            return 'W %s' % self.w
         return None
     rightSpaceSourceLabel = property(_get_rightSpaceSourceLabel)
 

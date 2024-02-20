@@ -52,7 +52,7 @@ class MasterData:
             italicAngle=0, italicSkew=None, italicRotation=None, isItalic=False,
             m0=None, m1=None, m2=None, sm1=None, sm2=None, dsPosition=None,
             tripletData1=None, tripletData2=None, featurePath=None, 
-            # GlyphSet instance, descibing the glyph set and GlyphData characteristics. This attribute must be defined
+            # GlyphSet instance, describing the glyph set and GlyphData characteristics. This attribute must be defined
             glyphSet=None, 
             # Vertical metrics
             baseline=0, stemOvershoot=STEM_OVERSHOOT, baseOvershoot=None, capOvershoot=None, scOvershoot=None, supsOvershoot=None,
@@ -131,7 +131,7 @@ class MasterData:
         self.tabWidth = tabWidth
 
         # Glyphs
-        assert glyphSet is not None
+        assert glyphSet is not None, (f'### Glyphset {glyphSet} should be defined')
         self.glyphSet = glyphSet
         
         # Vertical metrics. Do some guessing for missing values. 

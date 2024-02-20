@@ -7,7 +7,7 @@
 import math
 from copy import copy
 from merz import MerzView
-from vanilla import Window, PopUpButton, CheckBox
+from vanilla import Window, PopUpButton, CheckBox, Button
 from AppKit import *
 
 from mojo.events import extractNSEvent
@@ -40,7 +40,6 @@ UNSELECTED_COLOR = (0, 0.5, 0, 0.85)
 
 MAX_CELLS = 80 # More?
 MAX_POINTS = 80 # More?
-FAR = 10000 # Move element to invisible position
 # Min and max range of the grid. Make sure that the values cannot overlap.
 MIN_RANGE = range(60, 19, -5) # (60, 55, 50, 45, 40, 35, 30, 25, 20)
 MAX_RANGE = range(100, 65-1, -5) # (100, 95, 90, 85, 80, 75, 70, 65)
@@ -395,35 +394,40 @@ class CurvePaletteController(WindowController):
         for n in range(MAX_CELLS): # Color markers on the grid
             # Square cell markers, indicating the rounded value/button
             self.cellRects.append(container.appendRectangleSublayer(
-                position=(FAR, 0),
+                position=(0, 0),
+                visible=False,
                 size=(cw, cw),
                 fillColor=INVISIBLE_BUTTON_COLOR,
             ))
         self.cellPoints = []
         for n in range(MAX_POINTS):
             self.cellPoints.append(container.appendOvalSublayer(
-                position=(FAR, 0),
+                position=(0, 0),
+                visible=False,
                 size=(POINT_SIZE, POINT_SIZE),
                 fillColor=POINT_FILL_COLOR,
                 strokeWidth=1,
                 strokeColor=POINT_STROKE_COLOR,
             ))
-        self.bestCircleCell = container.appendOvalSublayer(
-                position=(FAR, 0),
+        self.bestCircleCell = container.appendOvalSublayer( # Showing the cell with the best approximation of a circle
+                position=(0, 0),
+                visible=False,
                 size=(cw, cw),
                 fillColor=BEST_CIRCLE_FILL_COLOR,
                 strokeColor=BEST_CIRCLE_CELL_COLOR,
                 strokeWidth=2,
             )    
-        self.bestSuperCircleCell = container.appendOvalSublayer(
-                position=(FAR, 0),
+        self.bestSuperCircleCell = container.appendOvalSublayer( # Showing the cell with the best approximation of a circle with different algorithm
+                position=(0, 0),
+                visible=False,
                 size=(cw, cw),
                 fillColor=BEST_CIRCLE_FILL_COLOR,
                 strokeColor=BEST_CIRCLE_CELL_COLOR,
                 strokeWidth=2,
             )    
         self.selectionMarquee = container.appendRectangleSublayer(
-                position=(FAR, 0),
+                position=(0, 0),
+                visible=False,
                 size=(cw, cw),
                 strokeColor=None,
                 fillColor=MARQUEE_COLOR,
@@ -448,9 +452,13 @@ class CurvePaletteController(WindowController):
         
         self.w.showPointsCheckBox = CheckBox((ML, y, W/3, POPUP_HEIGHT), 'Show points', value=False, 
             callback=self.updateUI, sizeStyle='small')
-            
+        #self.w.makeCircleButton = Button((W/2, y, W/3, BUTTON_HEIGHT), 'Make circle', callback=self.makeCircleCallback)
+        
         self.w.open()
 
+    def makeCircleCallback(self, sender):
+        """Make the current selection of points into circle curves"""
+        
     def getCellWidth(self):
         """Answer the width of a cell with the current preference settings."""
         return W / self.preferences['gridSize']
@@ -503,6 +511,7 @@ class CurvePaletteController(WindowController):
     def getMouseCellPosition(self, event):
         x, y = self.getMousePosition(event)
         cw = self.getCellWidth()
+        print('Cell =', int(x / cw), int(y / cw) )
         return int(x / cw), int(y / cw)
                      
     def mouseDown(self, view, event):
@@ -576,7 +585,8 @@ class CurvePaletteController(WindowController):
                             p.selected = False
 
         self.lastMouseDrag = self.selectedDragPoints = None # No longer marquee operating
-        self.selectionMarquee.setPosition((FAR, 0))
+        self.selectionMarquee.setPosition((0, 0))
+        self.selectionMarquee.setVisible(False)
 
     def glyphEditorDidSetGlyph(self, info):
         # Passed this on from the subscriber. How to do this better?
@@ -794,26 +804,20 @@ class CurvePaletteController(WindowController):
         and the size of the selection boxes."""
         cw = self.getCellWidth()
         for x, line in enumerate(self.gridLinesVertical):
-            if x < self.preferences['gridSize']:
-                px = x * cw
-            else:
-                px = FAR
+            px = x * cw
+            line.setVisible(x < self.preferences['gridSize'])
             line.setStartPoint((px, 0))
             line.setEndPoint((px, H))
         
         for y, line in enumerate(self.gridLinesHorizontal):
-            if y < self.preferences['gridSize']:
-                py = y * cw
-            else:
-                py = FAR
+            py = y * cw
+            line.setVisible(y < self.preferences['gridSize'])
             line.setStartPoint((0, py))
             line.setEndPoint((W, py))
 
         for xy, gridDiagonal in enumerate(self.gridDiagonals):
-            if xy < self.preferences['gridSize']:
-                p = xy * cw
-            else:
-                p = FAR
+            p = xy * cw
+            line.setVisible(xy < self.preferences['gridSize'])
             gridDiagonal.setPosition((p, p))
             gridDiagonal.setSize((cw, cw))
             
@@ -849,6 +853,7 @@ class CurvePaletteController(WindowController):
                 if (cx, cy) in selected and (cx, cy) in unselected:
                     c = PART_SELECTED_COLOR
                 cell.setFillColor(c)
+                cell.setVisible(True)
                 cellIndex += 1
                 
                 originX = originY = cw/2 - POINT_SIZE/2
@@ -862,21 +867,25 @@ class CurvePaletteController(WindowController):
                         else:
                             w = 1
                         tensionPoint.setStrokeWidth(w)
+                        tensionPoint.setVisible(True)
                         pointIndex += 1
 
         for n in range(cellIndex, len(self.cellRects)):
-            self.cellRects[n].setPosition((FAR, 0))
+            self.cellRects[n].setVisible(False)
                     
         for n in range(pointIndex, len(self.cellPoints)):
-            self.cellPoints[n].setPosition((FAR, 0))
+            self.cellPoints[n].setVisible(False)
 
         # Set the position of the best circles marker
-        c = (4/3) * (math.tan(math.pi/8)) # 0.5522847498 or more common approximation 4/3 * (math.sqrt(2) - 1)
+        c = ((4/3) * (math.tan(math.pi/8)) - rMin) / r # 0.5522847498 or more common approximation 4/3 * (math.sqrt(2) - 1)
         self.bestCircleCell.setPosition((c * W, c * H))
-        self.bestCircleCell.setSize((cw*1.2, cw*1.2))
-        c = (4/3) * (math.sqrt(2) - 1) # More common approximation 4/3 * (math.sqrt(2) - 1)
-        self.bestSuperCircleCell.setPosition(((c-1) * W, (c-1) * H))
-        self.bestSuperCircleCell.setSize((cw*1.2, cw*1.2))
+        self.bestCircleCell.setSize((cw*1.5, cw*1.5))
+        self.bestCircleCell.setVisible(True)
+        # Both formulas seem to be equally accurate
+        #c = ((4/3) * (math.sqrt(2) - 1) - rMin) / r # More common approximation 4/3 * (math.sqrt(2) - 1)
+        #self.bestSuperCircleCell.setPosition((c * W, c * H))
+        #self.bestSuperCircleCell.setSize((cw*1.5, cw*1.5))
+        #self.bestSuperCircleCell.setVisible(True)
                     
 if __name__ == '__main__':
     OpenWindow(CurvePaletteController)
