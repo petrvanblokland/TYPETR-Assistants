@@ -384,7 +384,7 @@ class GlyphData:
     def _get_rightSpaceSourceLabel(self):
         """Answer the string where this space gets from. Answer None if there is non source."""
         if self.w is not None:
-            return 'W /%s' % self.w
+            return 'Width /%s' % self.w
         if self.r is not None:
             return 'Right /%s' % self.r
         if self.br is not None:
