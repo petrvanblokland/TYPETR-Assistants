@@ -87,10 +87,12 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         if g is not None and c.w.showFamilyOverview.get():
             f = g.font
             y = f.info.unitsPerEm / self.FAMILY_OVERVIEW_SCALE
-            x = y * tan(radians(-g.font.info.italicAngle or 0)) # Correct for italic angle
 
             parentPath = self.filePath2ParentPath(f.path)
             spIndex = 0 # Index of start point Merz 
+
+            startPos, totalFamilyOverviewSingleWidth = self.getStartPointAndSingleWidthFamilyOverview(g)
+                        
             for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
                 if fIndex < len(self.familyOverviewGlyphs):
                     ufo = self.getFont(pth)
@@ -100,6 +102,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                             fillColor = self.FAMILY_DEFAULT_FILL_COLOR
                         else:
                             fillColor = self.FAMILY_INTERPOLATION_ERROR_FILL_COLOR
+                        x = startPos + totalFamilyOverviewSingleWidth*nIndex
                         glyphPath = ufoG.getRepresentation("merz.CGPath")
                         #print('Updating family glyph path', pth, g.name)
                         self.familyOverviewGlyphs[fIndex].setPath(glyphPath)
@@ -119,13 +122,28 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                             self.familyOverviewStartPoints[spIndex].setVisible(True)
                             spIndex += 1
 
-                        x += max(f.info.unitsPerEm/2, ufoG.width + f.info.unitsPerEm * self.FAMILY_LABEL_SPACING) # Add a wordspace between the styles
-
         for n in range(nIndex, len(self.familyOverviewGlyphs)):
             self.familyOverviewGlyphs[n].setVisible(False)
             self.familyOverviewStyleName[n].setVisible(False)
         for n in range(spIndex, len(self.familyOverviewStartPoints)):
             self.familyOverviewStartPoints[n].setVisible(False)
+            
+    def getStartPointAndSingleWidthFamilyOverview(self, g):
+        f = g.font
+        y = f.info.unitsPerEm / self.FAMILY_OVERVIEW_SCALE
+        parentPath = self.filePath2ParentPath(f.path)
+        totalFamilyOverviewWidth = 0
+        for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
+            if fIndex < len(self.familyOverviewGlyphs):
+                ufo = self.getFont(pth)
+                if ufo is not None and g.name in ufo:
+                    ufoG = ufo[g.name]
+                    totalFamilyOverviewWidth += max(f.info.unitsPerEm/2, ufoG.width + f.info.unitsPerEm * self.FAMILY_LABEL_SPACING)
+
+        totalFamilyOverviewSingleWidth = totalFamilyOverviewWidth/len(self.getUfoPaths(parentPath))
+        italicOffset = y * tan(radians(-g.font.info.italicAngle or 0))
+        startPos = (g.width/self.FAMILY_OVERVIEW_SCALE - totalFamilyOverviewWidth)/2 + italicOffset
+        return startPos, totalFamilyOverviewSingleWidth
 
     def mouseMoveFamilyOverview(self, g, x, y):
         """Set the hoover color for the current selected glyph"""
@@ -135,15 +153,18 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         currentFont = g.font
         y1 = currentFont.info.unitsPerEm
         y2 = y1 + currentFont.info.unitsPerEm * self.FAMILY_OVERVIEW_SCALE
-        x1 = -currentFont.info.unitsPerEm * self.FAMILY_LABEL_SPACING * self.FAMILY_OVERVIEW_SCALE + y1 * tan(radians(-currentFont.info.italicAngle or 0))
         parentPath = self.filePath2ParentPath(currentFont.path)
+        
+        startPos, totalFamilyOverviewSingleWidth = self.getStartPointAndSingleWidthFamilyOverview(g)
+        x1 = (startPos - totalFamilyOverviewSingleWidth/2) * self.FAMILY_OVERVIEW_SCALE
+        
         for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
             fullPath = self.path2FullPath(pth)
             if fIndex < len(self.familyOverviewGlyphs):
                 ufo = self.getFont(fullPath)
                 if ufo is not None and g.name in ufo:
                     ufoG = ufo[g.name]
-                    x2 = x1 + max(ufo.info.unitsPerEm/2, ufoG.width + currentFont.info.unitsPerEm * self.FAMILY_LABEL_SPACING) * self.FAMILY_OVERVIEW_SCALE
+                    x2 = x1 + totalFamilyOverviewSingleWidth * self.FAMILY_OVERVIEW_SCALE
                     if y1 <= y <= y2 and x1 <= x <= x2:
                         fillColor = self.FAMILY_HOVER_FILL_COLOR
                     elif not self.isCurrentGlyph(ufoG) or not c.w.showFamilyInterpolation.get() or self.doesInterpolate(ufoG):
@@ -160,7 +181,8 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         currentFont = g.font
         y1 = currentFont.info.unitsPerEm
         y2 = y1 + currentFont.info.unitsPerEm * self.FAMILY_OVERVIEW_SCALE
-        x1 = -currentFont.info.unitsPerEm * self.FAMILY_LABEL_SPACING * self.FAMILY_OVERVIEW_SCALE + y1 * tan(radians(-currentFont.info.italicAngle or 0)) # Correct for italic angle
+        startPos, totalFamilyOverviewSingleWidth = self.getStartPointAndSingleWidthFamilyOverview(g)
+        x1 = (startPos - totalFamilyOverviewSingleWidth/2) * self.FAMILY_OVERVIEW_SCALE
         parentPath = self.filePath2ParentPath(currentFont.path)
         for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
             fullPath = self.path2FullPath(pth)
@@ -168,7 +190,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                 ufo = self.getFont(fullPath, showInterface=currentFont.path == fullPath) # Make sure RoboFont opens the current font.
                 if ufo is not None and g.name in ufo:
                     ufoG = ufo[g.name]
-                    x2 = x1 + max(ufo.info.unitsPerEm/2, ufoG.width + currentFont.info.unitsPerEm * self.FAMILY_LABEL_SPACING) * self.FAMILY_OVERVIEW_SCALE
+                    x2 = x1 + totalFamilyOverviewSingleWidth * self.FAMILY_OVERVIEW_SCALE
                     if y1 <= y <= y2 and x1 <= x <= x2:
                         if currentFont.path != ufo.path:
                             rr = self.getGlyphWindowPosSize()
