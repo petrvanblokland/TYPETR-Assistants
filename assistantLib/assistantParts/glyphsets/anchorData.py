@@ -62,7 +62,8 @@ class AnchorData:
                   'plusbelowcmb', 'ringbelowcmb', 'cedillacmb'),
         MIDDLE_: ('slashshortcomb', 'slashshortcmb'),
         OGONEK_: ('ogonekcomb', 'ogonekcmb'),
-        TONOS_: ('tonoscomb', 'tonoscmb'),
+        TONOS_: ('tonoscomb', 'tonoscmb', 'tonos-uc',),
+        VERT_: ('caronvert.component',)
     }
 
     ACCENT_DATA = {

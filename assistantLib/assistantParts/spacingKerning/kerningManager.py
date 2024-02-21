@@ -363,7 +363,9 @@ class KerningManager:
             return None # No entry in this glyphset for this glyph.
 
         if gd.l is not None: # Plain angled left margin
-            if isinstance(gd.l, (int, float)): # It can be a value intead of a reference name
+            if gd.l == 'off': # No automatic spacing, do manually
+                return False
+            elif isinstance(gd.l, (int, float)): # It can be a value intead of a reference name
                 lm = gd.l
             else:
                 assert gd.l in g.font, (f'### "gd.l={gd.l}" reference glyph for /{g.name} does not exist.') # Using "md.l" it should exist
@@ -430,7 +432,9 @@ class KerningManager:
             changed |= self.fixGlyphWidth(g, w, f'(w={gd.w})')
 
         elif gd.r is not None: # Plain angled right margin
-            if isinstance(gd.r, (int, float)): # It can be a value intead of a reference name
+            if gd.r == 'off': # No automatic spacing, do manually
+                return False
+            elif isinstance(gd.r, (int, float)): # It can be a value intead of a reference name
                 rm = gd.r
             else:
                 assert gd.r in g.font, (f'### "gd.r={gd.r}" reference glyph for /{g.name} does not exist.') # Using "md.r" it should exist
@@ -488,7 +492,9 @@ class KerningManager:
             return None # No entry in this glyphset for this glyph.
         
         if gd.l is not None: # Plain angled left margin
-            if isinstance(gd.l, (int, float)): # It can be a value intead of a reference name
+            if gd.l == 'off':
+                return g.angledLeftMargin # Nothing changed, adjust manually
+            elif isinstance(gd.l, (int, float)): # It can be a value intead of a reference name
                 return gd.l
             assert gd.l in g.font, (f'### "gd.l={gd.l}" reference glyph for /{g.name} does not exist.') # Using "md.l" it should exist
             return self.getLeftMarginByGlyphSetReference(g.font[gd.l], useBase, doneLeft, doneRight) # Get the left margin of the referenced glyph
@@ -541,7 +547,9 @@ class KerningManager:
             return None # No entry in this glyphset for this glyph.
         
         if gd.r is not None:
-            if isinstance(gd.r, (int, float)): # It can be a value instead of a reference name
+            if gd.r == 'off':
+                return g.angledRightMargin # Nothing changed, adjust manually
+            elif isinstance(gd.r, (int, float)): # It can be a value instead of a reference name
                 return gd.r
             assert gd.r in g.font, (f'### "gd.r={gd.r}" reference glyph for /{g.name} does not exist.') # Using "md.r" it should exist
             return self.getRightMarginByGlyphSetReference(g.font[gd.r], useBase, doneLeft, doneRight) # Get the right margin of the referenced glyph

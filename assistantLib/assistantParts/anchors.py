@@ -6,7 +6,18 @@
 #
 #   anchors.py
 #
-import sys
+#   Strategies for anchor placements
+#   - Type and amount of anchors are defined by the anchors list in the GlyphSet/GlyphData
+#   - Or by the anchors of base glyphs
+#   - Or by the anchors in the roman/italic companion masters
+#   - Anchors that refer to a base, get their (relative) horizontal (slanted) positions from it.
+#   - Vertical position too, unless there are already diacritics lower and/or higher, then the vertical position is adjusted to fit the glyph bounding box.
+#   - Otherwise check if there is a set of predefined vertical position for each anchor type
+#   - The assistant decides on an initial strategy, but then the user can alter that.
+#   - If an anchor was dragged, this is stored in the glyph.lib, so it will not change by the assistant anymore.
+#   - Unless that flag is cleared.
+#
+import sys, copy
 from math import *
 from vanilla import *
 
@@ -90,6 +101,12 @@ class AssistantPartAnchors(BaseAssistantPart):
         c.w.autoAnchors = CheckBox((C0, y, CW, L), 'Auto anchors', value=True, sizeStyle='small')
         c.w.copyRomanAnchors = CheckBox((C1, y, CW, L), 'Copy roman-->italic', value=True, sizeStyle='small')
         c.w.fixAnchorsButton = Button((C2, y, CW, L), 'Fix anchors [%s]' % personalKey_a, callback=self.anchorsCallback)
+        y += L
+        # Radios to select the type of anchor mode for the current glyph, in this order.
+        # So if there are no components, then the horizontal position of boundingbox/2 is used.
+        c.w.anchorModes = RadioGroup((C0, y, 2*CW, L), ('Base', 'Box/2', 'Rom/Ita' 'Width/2', 'Manual'), isVertical=False, sizeStyle='small', callback=self.anchorsCallback)
+        c.w.anchorModes.set(0)
+
         # Line color is crashing RoboFont
         #y += L # Closing line for the part UI
         #c.w.anchorsLine = HorizontalLine((self.M, y+4, -self.M, 0))
@@ -102,6 +119,20 @@ class AssistantPartAnchors(BaseAssistantPart):
         g = self.getCurrentGlyph()
         if self.checkFixAnchors(g):
             g.changed() # Force update. UpdateItalize will then rebuild the glyph.
+
+    #   E V E N T S
+
+    ANCHORS_DEFAULT_LIB_KEY = dict(
+        mode=0, # Default anchors from base glyph, if it exists
+    )
+
+    def setGlyphAnchors(self, g):
+        """Called when the EditWindow selected a new glyph. Try to  find previous anchor info in g.lib,
+        about mode by which the current anchors are set and if they were manually moved."""
+        d = self.getLib(g, 'Anchors', copy.deepcopy(self.ANCHORS_DEFAULT_LIB_KEY))
+        print('... setGlyphAnchors', g.name, d)
+
+    #   K E Y S
 
     def anchorsGlyphKey(self, g, c, event):
         """Callback for registered event on key stroke"""

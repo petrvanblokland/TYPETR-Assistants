@@ -608,8 +608,8 @@ class AssistantPartSpacer(BaseAssistantPart):
     def spacerIncKern1(self, g, c, event):
         self._adjustRightMarginByUnits(g, 1)
         g.changed()
-
-    #    A D J U S T  S P A C I N G
+        
+    #   A D J U S T  S P A C I N G
 
     SPACING_UNIT = 4
 

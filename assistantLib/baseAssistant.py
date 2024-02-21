@@ -525,7 +525,7 @@ class Assistant(BaseAssistant, Subscriber):
         """Called when the GlyphEditor selects a new glyph"""
         #print("""The editor did set glyph""", info['glyph'])
         g = info['glyph']
-        cg = CurrentFont()
+        cg = CurrentGlyph()
         if g == cg: # Handle subscribed methods of assistant parts, for current glyph only.
             for setGlyphMethodName in self.SET_GLYPH_METHODS: 
                 getattr(self, setGlyphMethodName)(g)
