@@ -63,7 +63,8 @@ class AnchorData:
         MIDDLE_: ('slashshortcomb', 'slashshortcmb'),
         OGONEK_: ('ogonekcomb', 'ogonekcmb'),
         TONOS_: ('tonoscomb', 'tonoscmb', 'tonos-uc',),
-        VERT_: ('caronvert.component',)
+        VERT_: ('caronvert.component',),
+        DOT_: ('dotmiddle.component',),
     }
 
     ACCENT_DATA = {

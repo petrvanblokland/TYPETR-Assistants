@@ -104,7 +104,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         y += L
         # Radios to select the type of anchor mode for the current glyph, in this order.
         # So if there are no components, then the horizontal position of boundingbox/2 is used.
-        c.w.anchorModes = RadioGroup((C0, y, 2*CW, L), ('Base', 'Box/2', 'Rom/Ita' 'Width/2', 'Manual'), isVertical=False, sizeStyle='small', callback=self.anchorsCallback)
+        c.w.anchorModes = RadioGroup((C0, y, 2.5*CW, L), ('Base', 'Box/2', 'Rom/Ita', 'Width/2', 'Manual'), isVertical=False, sizeStyle='small', callback=self.anchorModesCallback)
         c.w.anchorModes.set(0)
 
         # Line color is crashing RoboFont
@@ -120,6 +120,10 @@ class AssistantPartAnchors(BaseAssistantPart):
         if self.checkFixAnchors(g):
             g.changed() # Force update. UpdateItalize will then rebuild the glyph.
 
+    def anchorModesCallback(self, sender):
+        g = self.getCurrentGlyph()
+        self.getLib(g, 'Anchors', {})['mode'] = sender.get()
+
     #   E V E N T S
 
     ANCHORS_DEFAULT_LIB_KEY = dict(
@@ -129,7 +133,9 @@ class AssistantPartAnchors(BaseAssistantPart):
     def setGlyphAnchors(self, g):
         """Called when the EditWindow selected a new glyph. Try to  find previous anchor info in g.lib,
         about mode by which the current anchors are set and if they were manually moved."""
+        c = self.getController()
         d = self.getLib(g, 'Anchors', copy.deepcopy(self.ANCHORS_DEFAULT_LIB_KEY))
+        c.w.anchorModes.set(d.get('mode', 0))
         print('... setGlyphAnchors', g.name, d)
 
     #   K E Y S
