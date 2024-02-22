@@ -120,7 +120,7 @@ class AssistantPartGuidelines(BaseAssistantPart):
             for gIndex, guideline in enumerate(g.guidelines):
                 x, y, angle, name = guidelines[gIndex]
                 if guideline.x != x or guideline.y != y or guideline.name != name:
-                    print('Set guide', x, y, name)
+                    print('... Set guide', x, y, name)
                     guideline.x = x
                     guideline.y = y
                     guideline.name = name
