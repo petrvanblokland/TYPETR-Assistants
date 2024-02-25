@@ -1097,7 +1097,7 @@ class MS_GlyphSet(GlyphSet):
        'bracketright': GD(name='bracketright', uni=0x005D, hex='005D', c=']', l2r='bracketleft', r2l='bracketleft', isLower=True, gid=63, comment='] SQUARE BRACKET, RIGHT'),
        'breve': GD(name='breve', uni=0x02D8, hex='02D8', c='˘', w=0, base='brevecomb', isLower=True, anchors=['top'], gid=479, comment='˘ Spacing Clones of Diacritics'),
        'brevebelow': GD(name='brevebelow', uni=0x032E, hex='032E', c='̮', w=0, isLower=True, anchors=['bottom', '_bottom'], gid=1623),
-       'brevebelowcomb': GD(name='brevebelowcomb', isLower=True),
+       'brevebelowcomb': GD(name='brevebelowcomb', base='brevecomb', anchors=['bottom', '_bottom'], isLower=True),
        'brevecomb': GD(name='brevecomb', uni=0x0306, hex='0306', c='̆', w=0, srcName='uni0306', isLower=True, anchors=['top', '_top'], gid=492),
        'brevecomb.component': GD(name='brevecomb.component', w=0, isLower=True, anchors=['top', '_top'], gid=1624),
        'breveinvertedbelowcomb': GD(name='breveinvertedbelowcomb', uni=0x032F, hex='032F', c='̯', w=0, base='perispomeni', isLower=True, anchors=['bottom', '_bottom']),

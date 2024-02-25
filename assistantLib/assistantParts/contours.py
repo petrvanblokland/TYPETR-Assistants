@@ -50,17 +50,17 @@ class AssistantPartContours(BaseAssistantPart):
 
         c = self.getController()
         c.w.autoFixComponentPositions = CheckBox((C0, y, CW, L), 'Auto fix components', value=True, sizeStyle='small')
-        c.w.setStartPointButton = Button((C2, y, CW, L), 'Set start [%s]' % personalKey_e, callback=self.contourssSetStartPointCallback)
+        c.w.setStartPointButton = Button((C2, y, CW, L), 'Set start [%s]' % personalKey_e, callback=self.contoursSetStartPointCallback)
         y += L*1.5
 
         return y
 
     #    C O N T O U R S
 
-    def contourssSetStartPointCallback(self, sender):
+    def contoursSetStartPointCallback(self, sender):
         g = self.getCurrentGlyph()
         if g is not None:
-            self.curvesSetStartPoint(g)
+            self.contoursSetStartPoint(g)
 
     def contoursSetStartPoint(self, g, c=None, event=None):
         """Set the start point to the selected points on [e]. Auto select the point on [E] key."""
@@ -133,7 +133,7 @@ class AssistantPartContours(BaseAssistantPart):
         4 The number of existing components is smaller than it should be
         5 The number of components it right,  but their baseGlyph names are wrong
         6 The number and names of existing components are just right
-         """
+        """
         c = self.getController()
         changed = False
         md = self.getMasterData(g.font)
@@ -142,7 +142,7 @@ class AssistantPartContours(BaseAssistantPart):
             print(f'### checkFixComponents: Glyph /{g.name} does not exist in glyphset {gd.__class__.__name__}')
             return False
         # Check if autofixing
-        if gd.autoFixComponentPositions or not c.w.autoFixComponentPositions.get():
+        if not c.w.autoFixComponentPositions.get():
             return False
 
         # 1
