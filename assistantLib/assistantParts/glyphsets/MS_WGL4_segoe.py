@@ -40,7 +40,7 @@ class MS_GlyphSet(GlyphSet):
 
        '.notdef': GD(name='.notdef'),
        '.null': GD(name='.null', uni=0x0000, hex='0000', unicodes=(0, 13), gid=1),
-
+       'spacemarker': GD(name='spacemarker', w=0),
         #   A
 
        'A': GD(name='A', uni=0x0041, hex='0041', c='A', l2r='A', anchors=['top', 'middle', 'bottom', 'ogonek', 'tonos'], gid=35, comment='A Uppercase Alphabet, Latin'),

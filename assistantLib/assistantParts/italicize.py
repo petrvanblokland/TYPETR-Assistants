@@ -29,12 +29,12 @@ class AssistantPartItalicize(BaseAssistantPart):
     def initMerzItalicize(self, container):
         pass
 
-    def updateItalicize(self, info):
+    def XXXupdateItalicize(self, info):
         """Subscribed update method should answer a “changed” boolean."""
         g = info['glyph']
         if g.components or g.contours: # Not empty, do nothing
             return False
-        # Glyph is empty (by italicizeCallback or manually by user
+        # Glyph is empty (by italicizeCallback or manually by user)
         return self.italicizeGlyph(g)
 
     def buildItalicize(self, y):
@@ -56,7 +56,6 @@ class AssistantPartItalicize(BaseAssistantPart):
 
     def italicizeCallback(self, sender):
         g = self.getCurrentGlyph()
-        print(g) 
         if g is not None:
             if self.italicizeGlyph(g):
                 g.changed()

@@ -104,9 +104,11 @@ class AssistantPartAnchors(BaseAssistantPart):
         y += L
         # Radios to select the type of anchor mode for the current glyph, in this order.
         # So if there are no components, then the horizontal position of boundingbox/2 is used.
-        c.w.anchorModes = RadioGroup((C0, y, 2.5*CW, L), ('Base', 'Box/2', 'Rom/Ita', 'Width/2', 'Manual'), isVertical=False, sizeStyle='small', callback=self.anchorModesCallback)
-        c.w.anchorModes.set(0)
-
+        c.w.anchorXModes = RadioGroup((C0, y, 3*CW, L), ('X-Base', 'X-Box/2', 'X-Rom/Ita', 'X-Width/2', 'X-Manual'), isVertical=False, sizeStyle='small', callback=self.anchorXModesCallback)
+        c.w.anchorXModes.set(0)
+        y += L
+        c.w.anchorYModes = RadioGroup((C0, y, 3*CW, L), ('YBase', 'Y-Box/2', 'Y-Rom/Ita', 'Y-Width/2', 'Y-Manual'), isVertical=False, sizeStyle='small', callback=self.anchorYModesCallback)
+        c.w.anchorYModes.set(0)
         # Line color is crashing RoboFont
         #y += L # Closing line for the part UI
         #c.w.anchorsLine = HorizontalLine((self.M, y+4, -self.M, 0))
@@ -120,14 +122,19 @@ class AssistantPartAnchors(BaseAssistantPart):
         if self.checkFixAnchors(g):
             g.changed() # Force update. UpdateItalize will then rebuild the glyph.
 
-    def anchorModesCallback(self, sender):
+    def anchorXModesCallback(self, sender):
         g = self.getCurrentGlyph()
-        self.getLib(g, 'Anchors', {})['mode'] = sender.get()
+        self.getLib(g, 'Anchors', {})['Xmode'] = sender.get()
+
+    def anchorYModesCallback(self, sender):
+        g = self.getCurrentGlyph()
+        self.getLib(g, 'Anchors', {})['Ymode'] = sender.get()
 
     #   E V E N T S
 
     ANCHORS_DEFAULT_LIB_KEY = dict(
-        mode=0, # Default anchors from base glyph, if it exists
+        Xmode=0, # Default anchors for X from base glyph, if it exists
+        Ymode=0, # Default anchors for Y from base glyph, if it exists
     )
 
     def setGlyphAnchors(self, g):
@@ -135,7 +142,8 @@ class AssistantPartAnchors(BaseAssistantPart):
         about mode by which the current anchors are set and if they were manually moved."""
         c = self.getController()
         d = self.getLib(g, 'Anchors', copy.deepcopy(self.ANCHORS_DEFAULT_LIB_KEY))
-        c.w.anchorModes.set(d.get('mode', 0))
+        c.w.anchorXModes.set(d.get('Xmode', 0))
+        c.w.anchorYModes.set(d.get('Ymode', 0))
         print('... setGlyphAnchors', g.name, d)
 
     #   K E Y S

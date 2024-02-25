@@ -76,6 +76,8 @@ class BaseAssistant:
     - Personalized dictionary for function keys
     """
 
+    BUILD_VERSION = 0 # Build version number. To be redefined by inheriting assistant classes.
+
     # Select the color by user
     VISITED_MARKERS = [
         #('/Users/petr/Desktop/TYPETR-git', (40/255, 120/255, 255/255, 0.6), keys), # "Final" marker Blue (Petr))    
@@ -106,6 +108,7 @@ class BaseAssistant:
     # Must be redefined by inheriting assistant classes where to find the main UFO master files
     UFO_PATH = 'ufo/' # Standard place for UFO files
     UFO_PATHS = None 
+    #DESIGN_SPACE_VF = None # To be redefined by inheriting assistant class.
 
     # If there's masterData available, then this should be redefined as dictionaty by inheriting Assistant classes
     MASTER_DATA = None 

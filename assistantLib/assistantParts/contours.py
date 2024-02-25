@@ -197,7 +197,7 @@ class AssistantPartContours(BaseAssistantPart):
         gd = md.glyphSet.get(g.name)
         # Check if autofixing
         dIndex = 0 # Index into showing diacritics Merz layers
-        assert gd is not None # Otherwise the glyph data does not exist.
+        assert gd is not None, (f'### Glyph data for /{g.name} not found') # Otherwise the glyph data does not exist.
         if not g.components: # This must be a base glyph, check for drawing the diacritics cloud of glyphs that have g as base.
             """
             # Here stuff goes to checkFix the position of all glyphs that have the current glyph as component
