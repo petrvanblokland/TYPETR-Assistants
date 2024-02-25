@@ -108,7 +108,6 @@ class BaseAssistant:
     # Must be redefined by inheriting assistant classes where to find the main UFO master files
     UFO_PATH = 'ufo/' # Standard place for UFO files
     UFO_PATHS = None 
-    #DESIGN_SPACE_VF = None # To be redefined by inheriting assistant class.
 
     # If there's masterData available, then this should be redefined as dictionaty by inheriting Assistant classes
     MASTER_DATA = None 
@@ -364,6 +363,22 @@ class BaseAssistant:
         if changed: # Fixed something, the report
             g.changed()
         return True
+
+    def getBaseGlyph(self, g):
+        """If g has a base glyph component, then answer the base glyph. Otherwise answer None."""
+        gd = self.getGlyphData(g)
+        if gd is not None and gd.base and gd.base in g.font:
+            return g.font[gd.base]
+        return None
+
+    def getBaseGlyphOffset(self, g):
+        """If the offset of the component is needed, then use this method. It answers the base glyph and a tuple for the transformation offset."""
+        gd = self.getGlyphData(g)
+        if gd is not None and gd.base and gd.base in g.font:
+            for component in g.components:
+                if gd.base == component.baseGlyph:
+                     return g.font[gd.base], component.transformation[-2:]
+        return None, (0, 0)
 
     #   A N C H O R S
 

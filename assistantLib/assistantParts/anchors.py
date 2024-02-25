@@ -30,6 +30,7 @@ for path in PATHS:
 
 from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart
 from assistantLib.assistantParts.data import * # Import anchors names
+from assistantLib.assistantParts.glyphsets.anchorData import AD
 
 class AssistantPartAnchors(BaseAssistantPart):
     """The Anchors assistant part handles all creation and placement of anchors.
@@ -107,7 +108,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         c.w.anchorXModes = RadioGroup((C0, y, 3*CW, L), ('X-Base', 'X-Box/2', 'X-Rom/Ita', 'X-Width/2', 'X-Manual'), isVertical=False, sizeStyle='small', callback=self.anchorXModesCallback)
         c.w.anchorXModes.set(0)
         y += L
-        c.w.anchorYModes = RadioGroup((C0, y, 3*CW, L), ('YBase', 'Y-Box/2', 'Y-Rom/Ita', 'Y-Width/2', 'Y-Manual'), isVertical=False, sizeStyle='small', callback=self.anchorYModesCallback)
+        c.w.anchorYModes = RadioGroup((C0, y, 3*CW, L), ('Y-Base', 'Y-Box/2', 'Y-Rom/Ita', 'Y-Width/2', 'Y-Manual'), isVertical=False, sizeStyle='small', callback=self.anchorYModesCallback)
         c.w.anchorYModes.set(0)
         # Line color is crashing RoboFont
         #y += L # Closing line for the part UI
@@ -119,18 +120,111 @@ class AssistantPartAnchors(BaseAssistantPart):
 
     def anchorsCallback(self, sender):
         g = self.getCurrentGlyph()
-        if self.checkFixAnchors(g):
-            g.changed() # Force update. UpdateItalize will then rebuild the glyph.
+        if self.checkFixAnchors(g): # Create missing anchors and check X and Y position of anchors
+            g.changed() # Force update. UpdateAnchors will then check and update.
 
     def anchorXModesCallback(self, sender):
         g = self.getCurrentGlyph()
-        self.getLib(g, 'Anchors', {})['Xmode'] = sender.get()
+        self._fixGlyphAnchorsX(g)
 
     def anchorYModesCallback(self, sender):
         g = self.getCurrentGlyph()
-        self.getLib(g, 'Anchors', {})['Ymode'] = sender.get()
+        self._fixGlyphAnchorsY(g)
+
+    def _fixGlyphAnchorsX(self, g):
+        changed = False
+        done = False
+        gd = self.getGlyphData(g)
+        d = self.getLib(g, 'Anchors', {})['Xmode'] = sender.get()
+        for a in g.anchors:
+            if not a.name in AD.CENTERING_ANCHORS:
+                continue
+            if d == 0: # X-Base: If there is a base glyph, then set the x-position identical, shifted by the base offset.
+                print('X-Base')
+                baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g)
+                if baseGlyph is not None:
+                    ba = self.getAnchor(baseGlyph, a.name)
+                    if ba is not None:
+                        changed = self._setAnchorX(g, a, ba.x + dx)
+                        done = True
+
+            if not done and d == 1: # X-Box/2
+                print('X-Box/2')
+                bounds = g.bounds
+                if bounds is not None:
+                    x1, _, x2, _ = bounds
+                    changed = self._setAnchorsX(g, x1 + (x2 - x1)/2)
+                    done = True
+
+            if not done and d == 2: # X-Rom/Ita
+                print('X-Rom/Ita')
+                changed = self.checkFixRomanItalicAnchors(g, doX=True)
+                done = True
+
+            if not done and d == 3: # X-Width/2
+                print('X-Width/2')
+                changed = self._setAnchorsX(g, g.width/2)
+                done = True
+
+            if not done: # d == 4: # X-Manual
+                print('X-Manual')
+                changed = False
+
+            if changed:
+                g.changed()
+
+    def _fixGlyphAnchorsY(self, g):
+        """Fix the anchors X-position if it is different from where it should be according to the current mode."""
+        return False
+
+        d = self.getLib(g, 'Anchors', {})['Ymode'] = sender.get()
+        if d == 0: # Y-Base
+            print('Y-Base')
+        
+        elif d == 1: # Y-Box/2
+            print('Y-Box/2')
+            bounds = g.bounds
+            if bounds is not None:
+                _, y1, _, y2 = bounds
+                for a in g.anchors:
+                    if not a.name in AD.CENTERING_ANCHORS:
+                        continue
+                    changed |= self._setAnchorsY(g, y1 + (y2 - y1)/2)
+        
+        elif d == 2: # Y-Rom/Ita
+            print('Y-Rom/Ita')
+            changed = self.checkFixRomanItalicAnchors(g, doY=True)
+            done = True
+
+        elif d == 3: # Y-Width/2
+            print('Y-Width/2')
+        
+        else: # d == 4: # Y-Manual
+            print('Y-Manual')
+        
+        if changed:
+            g.changed()
+
+    def _setAnchorX(self, g, a, x):
+        changed = False
+        ax = int(round(self.italicX(g, x, a.y)))
+        if abs(ax - a.x) >= 1: # Too different, correct it
+            print(f'... Set anchor {a.name}.x from {a.x:0.2f} to {ax}')
+            a.x = ax
+            changed = True
+        return changed
+
+    def _setAnchorsY(self, g, y):
+        changed = False
+        return changed
 
     #   E V E N T S
+
+    def checkFixAnchors(self, g):
+        changed = False
+        changed |= self.checkFixZeroWidthAnchorPosition(g)
+        changed |= self.checkFixRomanItalicAnchors(g)
+        return changed
 
     ANCHORS_DEFAULT_LIB_KEY = dict(
         Xmode=0, # Default anchors for X from base glyph, if it exists
@@ -144,7 +238,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         d = self.getLib(g, 'Anchors', copy.deepcopy(self.ANCHORS_DEFAULT_LIB_KEY))
         c.w.anchorXModes.set(d.get('Xmode', 0))
         c.w.anchorYModes.set(d.get('Ymode', 0))
-        print('... setGlyphAnchors', g.name, d)
+        #print('... setGlyphAnchors', g.name, d)
 
     #   K E Y S
 
@@ -178,13 +272,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         if changed:
             g.changed()
 
-    def checkFixAnchors(self, g):
-        changed = False
-        changed |= self.checkFixZeroWidthAnchorPosition(g)
-        changed |= self.checkFixRomanItalicAnchors(g)
-        return changed
-
-    def checkFixRomanItalicAnchors(self, g):
+    def checkFixRomanItalicAnchors(self, g, doX=False, doY=False):
         """If there is a base glyph, then Check if the anchors in the counterpart roman or italic glyph is the same as for the current font.
         If not, then add the missing anchor and position it on slanted position.
         Note that will be other checking/fixing done too, so the filter should be exclusive."""
@@ -207,10 +295,14 @@ class AssistantPartAnchors(BaseAssistantPart):
                 else:
                     a = anchors[aName]
                     if abs(a.x - x) >= 1 or abs(a.y - y) >= 1:
-                        a.x = x
-                        a.y = y
-                        print(f'... Fix anchor "{aName}" of /{g.name} to ({x}, {y})')
-                        changed = True
+                        if doX:
+                            a.x = x
+                            print(f'... Fix anchor.x "{aName}" of /{g.name} to ({x}, {y})')
+                            changed = True
+                        if doY:
+                            a.y = y
+                            print(f'... Fix anchor.y "{aName}" of /{g.name} to ({x}, {y})')
+                            changed = True
         return changed
 
     def checkFixZeroWidthAnchorPosition(self, g):
@@ -224,7 +316,7 @@ class AssistantPartAnchors(BaseAssistantPart):
                 ix = self.italicX(g, 0, a.y)
                 if abs(ix - a.x) >= 1: # Not in position, move it
                     print(f'... Move /{g.name} anchor {a.name} from {a.x} to {ix}')
-                    a.x = ix
+                    a.x = ix # Only change x position for this.
                     changed = True
                     break
         return changed
