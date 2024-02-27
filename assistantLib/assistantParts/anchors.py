@@ -40,6 +40,8 @@ class AssistantPartAnchors(BaseAssistantPart):
     Most generic/basic anchor methods are support by self (inheriting from BaseAssistant) 
     """
 
+    MAX_DIACRITICS_CLOUD = 40
+
     def initMerzAnchors(self, container):
         """Initialize the Merz object for this assistant part.
         Note that the diacritics-cloud object are supported by the contours part.

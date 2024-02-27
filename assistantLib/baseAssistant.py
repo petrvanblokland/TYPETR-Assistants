@@ -130,6 +130,8 @@ class BaseAssistant:
     # optionDown = event['optionDown']
     # capLock = event['capLockDown']
 
+    MAX_DIACRITICS_CLOUDS = 40
+
     KEY_STROKE_METHODS = {}
     # Controller methods
     BUILD_UI_METHODS = []
@@ -395,7 +397,7 @@ class BaseAssistant:
         for a in g.anchors:
             anchors.append(a.name)
         return sorted(anchors)
-        
+
     def getAnchors(self, g):
         """Answer the selected anchors. If no anchors are selected, then answer a list with all anchors."""
         anchors = []
