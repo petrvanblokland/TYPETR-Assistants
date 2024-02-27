@@ -793,6 +793,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             label = str(int(round(g.angledRightMargin)))
             fillColor = None
             strokeColor = 0, 0, 0, 0.5
+        label += f'\n(w={g.width})'
 
         self.fixedSpaceMarkerRight.setPosition((g.width - self.SPACER_MARKER_R, -self.SPACER_MARKER_R))
         self.fixedSpaceMarkerRight.setFillColor(fillColor)

@@ -373,40 +373,40 @@ class GlyphData:
     def _get_leftSpaceSourceLabel(self):
         """Answer the string where this space gets from. Answer None if there is non source."""
         if self.l is not None:
-            return 'Left /%s' % self.l
+            return f'Left /{self.l}'
         if self.bl is not None:
-            return 'Base left /%s' % self.bl
+            return f'Base left /{self.bl}'
         if self.r2l is not None:
-            return 'R-->L /%s' % self.r2l
+            return f'R-->L /{self.r2l}'
         if self.br2l is not None:
-            return 'Base R-->L /%s' % self.br2l
+            return f'Base R-->L /{self.br2l}'
         if self.r2bl is not None:
-            return 'R-->Base L /%s' % self.r2bl
+            return f'R-->Base L /{self.r2bl}'
         if self.br2bl is not None:
-            return 'Base R-->Base L /%s' % self.br2bl
+            return f'Base R-->Base L /{self.br2bl}'
         if self.base is not None:
-            return 'Base /%s' % self.base
+            return f'Base /{self.base}'
         return None
     leftSpaceSourceLabel = property(_get_leftSpaceSourceLabel)
         
     def _get_rightSpaceSourceLabel(self):
         """Answer the string where this space gets from. Answer None if there is non source."""
         if self.w is not None:
-            return 'Width /%s' % self.w
+            return f'Width /{self.w}'
         if self.r is not None:
-            return 'Right /%s' % self.r
+            return f'Right /{self.r}'
         if self.br is not None:
-            return 'Base left /%s' % self.br
+            return f'Base left /{self.br}'
         if self.l2r is not None:
-            return 'L-->R /%s' % self.l2r
+            return f'L-->R /{self.l2r}'
         if self.bl2r is not None:
-            return 'Base L-->R /%s' % self.bl2r
+            return f'Base L-->R /{self.bl2r}'
         if self.l2br is not None:
-            return 'L-->Base R /%s' % self.l2br
+            return f'L-->Base R /{self.l2br}'
         if self.bl2br is not None:
-            return 'Base L-->Base R /%s' % self.bl2br
+            return f'Base L-->Base R /{self.bl2br}'
         if self.base is not None:
-            return 'Base /%s' % self.base
+            return f'Base /{self.base}'
         return None
     rightSpaceSourceLabel = property(_get_rightSpaceSourceLabel)
 
