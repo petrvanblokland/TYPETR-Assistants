@@ -11,8 +11,9 @@
 import sys, os
 from math import *
 from vanilla import *
-import subprocess
 import drawBot as db
+
+from fontmake.font_project import FontProject
 
 from mojo.UI import OpenGlyphWindow
 from mojo.roboFont import CurrentFont, AllFonts
@@ -64,8 +65,8 @@ class AssistantPartBuilder(BaseAssistantPart):
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         LL = 18
  
-        c.w.buildOTFButton = Button((C1, y, CW, L), 'Build OTF', callback=self.buildOTFCallback)
-        #c.w.buildVFButton = Button((C1, y, CW, L), 'Build VF', enabled=False, callback=self.buildVFCallback)
+        c.w.buildOTFButton = Button((C0, y, CW, L), 'Build OTF', callback=self.buildOTFCallback)
+        c.w.buildVFButton = Button((C1, y, CW, L), 'Build VF', callback=self.buildVFCallback)
         c.w.proofButton = Button((C2, y, CW, L), 'Proof PDF', callback=self.proofCallback)
         y += L
 
@@ -95,15 +96,41 @@ class AssistantPartBuilder(BaseAssistantPart):
         errorPath = projectPath + f'build-errors-{self.BUILD_VERSION:03d}.txt'
         vfPath = vfDirPath + self.DESIGN_SPACE_VF.replace('.designspace', '-%03d.ttf' % self.BUILD_VERSION)
 
-        os.system(f'rm {vfPath}/*.ttf')
-        command = ["/usr/local/bin/fontmake", "-o", "variable", "-m", dsPath, "--output-path", vfPath, ">", errorPath, "2>", errorPath]
-        print(' '.join(command))
+        #os.system(f'rm {vfPath}/*.ttf')
+        #command = ["/usr/local/bin/fontmake", "-o", "variable", "-m", dsPath, "--output-path", vfPath, ">", errorPath, "2>", errorPath]
+        #print(' '.join(command))
+        #try:
+        #    subprocess.run(command, check=True)
+        #    print("Fontmake completed successfully.")
+        #except subprocess.CalledProcessError as e:
+        #    print(f"Fontmake failed with error: {e}")
+        #    #subprocess.run(('open', errorPath))
+
+        print(f'... Generating VF from {dsPath}')
+        fontProject = FontProject()
         try:
-            subprocess.run(command, check=True)
-            print("Fontmake completed successfully.")
-        except subprocess.CalledProcessError as e:
-            print(f"Fontmake failed with error: {e}")
-            #subprocess.run(('open', errorPath))
+            fontProject.run_from_designspace(dsPath, 
+                output='variable',
+                output_dir=vfDirPath, 
+                interpolate=True, 
+                #remove_overlaps=True, 
+                #optimize_cff=True, 
+                autohint=True, 
+                #use_afdko=True, 
+                #subset=True, 
+                #keep_glyphnames=True, 
+                #keep_overlaps=True, 
+                #keep_direction=True, 
+                #notoSans=True, 
+                #optimize=True, 
+                #family_name=None, 
+                #style_name=None, 
+                #mtlk=False, 
+                #notdef_outline=False, 
+                verbose=True)
+            print("... Font build successful!")
+        except Exception as e:
+            print(f"... Font build failed: {e}")
 
     def proofCallback(self, sender):
         f = CurrentFont() # Get it for checking glyph widths, unicodes, etc.

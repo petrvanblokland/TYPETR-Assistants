@@ -92,6 +92,7 @@ class AssistantPartAnchors(BaseAssistantPart):
 
     def buildAnchors(self, y):
         """Register key stroke [a] to sync anchor positions"""
+        personalKey_A = self.registerKeyStroke('A', 'anchorsGlyphKey') # Check/fix all glyphs in the current font
         personalKey_a = self.registerKeyStroke('a', 'anchorsGlyphKey')
         personalKey_exclam = self.registerKeyStroke('!', 'anchorsCenterOnWidth')
 
@@ -221,7 +222,12 @@ class AssistantPartAnchors(BaseAssistantPart):
     #   E V E N T S
 
     def checkFixAnchors(self, g):
+        """Check and fix the anchors of g. First try to determine if the right number of anchors exists. There are
+        2 ways (based on legacy data) to find the anchors that this glyph needs: as defined in the glyphData if named 
+        anchors are part of the tables. But GlyphData already includes GLYPH_ANCHORS if no anchor attribute is defined.
+        So, looking into G;lyphData is enough."""
         changed = False
+        changed |= self.checkFixRequiredAnchors(g) # First make sure that they all exist.
         changed |= self.checkFixZeroWidthAnchorPosition(g)
         changed |= self.checkFixRomanItalicAnchors(g)
         return changed
@@ -230,6 +236,33 @@ class AssistantPartAnchors(BaseAssistantPart):
         Xmode=0, # Default anchors for X from base glyph, if it exists
         Ymode=0, # Default anchors for Y from base glyph, if it exists
     )
+
+    def checkFixRequiredAnchors(self, g):
+        """Check/fix the required anchors if they don't all exist or if there are too many."""
+        changed = False
+        gd = self.getGlyphData(g)
+        done = [] # Remember which are already done, to detect duplicate anchors
+        requiredAnchorNames = gd.anchors  
+        anchorNames = self.getAnchorNames(g)
+        if requiredAnchorNames != anchorNames:
+            for a in g.anchors[:]: # Make a copy of the list, as it may be altered
+                if a.name in done: # Detact duplicate anchors
+                    print(f'... Remove duplucate anchor "{a.name}" in /{g.name}')
+                    g.removeAnchor(a)
+                    changed = True
+                elif a.name not in requiredAnchorNames:  
+                    print(f'... Remove obsolete anchor "{a.name}" in /{g.name}')
+                    g.removeAnchor(a)
+                    changed = True
+                else:
+                    done.append(a.name)
+
+            for aName in requiredAnchorNames:
+                if aName not in anchorNames:
+                    print(f'... Add missing anchor "{aName}" in /{g.name}')
+                    g.appendAnchor(name=aName, position=(0, 0)) # Just put at origin, position will be set in later checks.
+                    changed = True        
+        return changed
 
     def setGlyphAnchors(self, g):
         """Called when the EditWindow selected a new glyph. Try to  find previous anchor info in g.lib,
@@ -251,9 +284,13 @@ class AssistantPartAnchors(BaseAssistantPart):
         # controlDown = event['controlDown']
         # optionDown = event['optionDown']
         # capLock = event['capLockDown']
-        
-        if self.checkFixAnchors(g):
-            g.changed()
+        if c.lower() == c: # Just the current glyph
+            glyphs = [g]
+        else:
+            glyphs = g.font
+        for gg in glyphs:
+            if self.checkFixAnchors(gg):
+                gg.changed()
 
     def anchorsCenterOnWidth(self, g, c, event):
         """If there are anchors selected, then center them on the width. If no anchors are selected,

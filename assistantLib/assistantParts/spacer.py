@@ -82,7 +82,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         self.spacerWhiteBackground = container.appendRectangleSublayer(name="spacesWhiteBackground",
             position=(0, 0),
             size=(1, 1),
-            fillColor=(1, 1, 1, 1),
+            fillColor=(1, 1, 1, 0.6), # Slightly transparant, so rest of EditorWindow can be seen through.
             visible=False,
         )
         self.spacerWhiteBackground.addScaleTransformation(self.KERN_SCALE)

@@ -26,7 +26,7 @@ class AnchorData:
     _TILDE = '_tilde'
     TILDE_ = 'tilde'
     _TONOS = '_tonos'
-    TONOS_ = 'tonos'
+    TONOS_ = 'tonos_'
     _HORN = '_horn'
     HORN_ = 'horn'
     _MIDDLE = '_middle'
@@ -132,9 +132,9 @@ class AnchorData:
         'dasiavaria-uc': _TONOS,
     }
 
-    # Tables below are mainly use to export _export/Exported_Glyphset.py, etc.
+    # Tables below are mainly use to export _export/Exported_Glyphset.py, etc. or to initialize in GlyphData contruction.
 
-    TOP_ANCHORS = ['A', 'A-cy', 'AE', 'AEacute', 'AEmacron', 'Aacute', 'Abreve', 'Abreve-cy', 'Abreve.component', 'Abreve.component1', 'Abreve.component2', 
+    TOP_ANCHORS = {'A', 'A-cy', 'AE', 'AEacute', 'AEmacron', 'Aacute', 'Abreve', 'Abreve-cy', 'Abreve.component', 'Abreve.component1', 'Abreve.component2', 
         'Abreve.component3', 'Abreveacute', 'Abrevedotbelow', 'Abrevegrave', 'Abrevehookabove', 'Abrevetilde', 'Acaron', 'Acircumflex', 'Acircumflexacute', 
         'Acircumflexdotbelow', 'Acircumflexgrave', 'Acircumflexhookabove', 'Acircumflextilde', 'Adblgrave', 'Adieresis', 'Adieresis-cy', 'Adieresismacron', 
         'Adotaccent', 'Adotbelow', 'Adotmacron', 'Agrave', 'Ahookabove', 'Aie-cy', 'Ainvertedbreve', 'Alpha', 'Alphadasia', 'Alphadasiaoxia', 
@@ -243,7 +243,7 @@ class AnchorData:
         'sdotbelowdotaccent', 'secondtonechinese', 'shha-cy', 'sigmaLunateDottedSymbol', 'sigmaLunateSymbol', 'smiddletilde', 'sobliquestroke', 'spalatalhook', 
          'suspensioncomb', 't', 'tcaron', 'tcedilla', 'tcircumflexbelow', 'tcomb', 'tcommaaccent', 'tdiagonalstroke', 
         'tdieresis', 'tdotaccent', 'tdotbelow', 'thstrikethrough', 'tilde', 'tildecomb', 'tildecomb.component', 'tildedoublecomb', 'tildeverticalcomb', 
-        'titlocomb-cy', 'tlinebelow', 'tmiddletilde', 'tonos', 'u', 'u-cy', 'uacute', 'ubar', 'ubreve', 'ucaron', 'ucircumflex', 'ucircumflexbelow', 'ucomb', 'udblgrave', 
+        'titlocomb-cy', 'tlinebelow', 'tmiddletilde', 'u', 'u-cy', 'uacute', 'ubar', 'ubreve', 'ucaron', 'ucircumflex', 'ucircumflexbelow', 'ucomb', 'udblgrave', 
         'udieresis', 'udieresis-cy', 'udieresis.component', 'udieresisacute', 'udieresisbelow', 'udieresiscaron', 'udieresisgrave', 'udieresismacron', 'udotbelow', 'ugrave', 
         'uhookabove', 'uhorn', 'uhornacute', 'uhorndotbelow', 'uhorngrave', 'uhornhookabove', 'uhorntilde', 'uhungarumlaut', 'uhungarumlaut-cy', 'uinvertedbreve', 'umacron', 
         'umacron-cy', 'umacron.component', 'umacrondieresis', 'uni047E', 'uni047E.component', 'uni047F', 'uogonek', 'upsilon', 'upsilondasia', 'upsilondasiaoxia', 
@@ -255,9 +255,9 @@ class AnchorData:
         'yeru-cy', 'yerudieresis-cy', 'ygrave', 'yhookabove', 'yi-cy', 'ymacron', 'yring', 'ystroke', 'ytilde', 'z', 'zacute', 'zcaron', 'zcircumflex', 'zdotaccent', 
         'zdotbelow', 'ze-cy', 'zedieresis-cy', 'zhe-cy', 'zhebreve-cy', 'zhedieresis-cy', 'zigzagabovecomb', 'zlinebelow', 'zmiddletilde', 'zpalatalhook',
         'dottedCircle', 'ringhalfleft',
-    ]
+    }
 
-    MIDDLE_ANCHORS = ['A', 'A-cy', 'AE', 'AEacute', 'AEmacron', 'Aacute', 'Abreve', 'Abreve-cy', 'Abreveacute', 'Abrevedotbelow', 
+    MIDDLE_ANCHORS = {'A', 'A-cy', 'AE', 'AEacute', 'AEmacron', 'Aacute', 'Abreve', 'Abreve-cy', 'Abreveacute', 'Abrevedotbelow', 
         'Abrevegrave', 'Abrevehookabove', 'Abrevetilde', 'Acaron', 'Acircumflex', 'Acircumflexacute', 'Acircumflexdotbelow', 
         'Acircumflexgrave', 'Acircumflexhookabove', 'Acircumflextilde', 'Adblgrave', 'Adieresis', 'Adieresis-cy', 'Adieresismacron', 
         'Adotaccent', 'Adotbelow', 'Adotmacron', 'Agrave', 'Ahookabove', 'Aie-cy', 'Ainvertedbreve', 'Alpha', 'Alphadasia', 
@@ -344,9 +344,9 @@ class AnchorData:
         'zcircumflex', 'zdotaccent', 'zdotbelow', 'zlinebelow', 'zmiddletilde', 'zpalatalhook', 
         'tildeoverlaycomb', 'strokeshortcomb', 'strokelongcomb', 'slashshortcomb', 'slashlongcomb',  'idieresisacute', 'ihookabove', 'igrave',
         'iacute','icircumflex', 'idieresis', 
-        ]
+        }
 
-    BOTTOM_ANCHORS = ['A', 'A-cy', 'AE', 'AEacute', 'AEmacron', 'Aacute', 'Abreve', 'Abreve-cy', 'Abreveacute', 'Abrevedotbelow', 
+    BOTTOM_ANCHORS = {'A', 'A-cy', 'AE', 'AEacute', 'AEmacron', 'Aacute', 'Abreve', 'Abreve-cy', 'Abreveacute', 'Abrevedotbelow', 
         'Abrevegrave', 'Abrevehookabove', 'Abrevetilde', 'Acaron', 'Acircumflex', 'Acircumflexacute', 'Acircumflexdotbelow', 
         'Acircumflexgrave', 'Acircumflexhookabove', 'Acircumflextilde', 'Adblgrave', 'Adieresis', 'Adieresis-cy', 'Adieresismacron', 
         'Adotaccent', 'Adotbelow', 'Adotmacron', 'Agrave', 'Ahookabove', 'Aie-cy', 'Ainvertedbreve', 'Alpha', 'Alphadasia', 
@@ -434,7 +434,7 @@ class AnchorData:
          'oslashacute', 'otilde', 'otildeacute', 'otildedieresis', 'otildemacron', 'p', 'pacute', 'palatalhookcomb', 'palochka-cy', 'pdotaccent', 
          'plusbelowcomb', 'pmiddletilde', 'ppalatalhook', 'prosgegrammeni', 'pstroke', 'pstrokethroughdescender', 'q', 'qdiagonalstroke', 
          'qstrokethroughdescender', 'r', 'r.salt', 'racute', 'rbelowcomb', 'rcaron', 'rcommaaccent', 'rdblgrave', 'rdotaccent', 'rdotbelow', 'rdotbelowmacron', 
-         'righttackbelowcomb', 'ringbelow', 'ringbelowcomb', 'ringhalfleftbelowcomb', 'ringhalfrightbelowcomb', 'rinvertedbreve', 'rlinebelow', 'rmiddletilde', 
+         'righttackbelowcomb', 'ringbelowcomb', 'ringhalfleftbelowcomb', 'ringhalfrightbelowcomb', 'rinvertedbreve', 'rlinebelow', 'rmiddletilde', 
          'robliquestroke', 'rpalatalhook', 'rstroke', 'rum', 's', 'sacute', 'sacutedotaccent', 'scaron', 'scarondotaccent', 'scedilla', 'scircumflex', 
          'scommaaccent', 'sdotaccent', 'sdotbelow', 'sdotbelowdotaccent', 'seagullbelowcomb', 'shha-cy', 'sigmaLunateDottedSymbol', 'sigmaLunateSymbol', 
          'smiddletilde', 'snakebelowcomb', 'sobliquestroke', 'spalatalhook', 'squarebelowcomb', 't', 'tcaron', 'tcedilla', 'tcircumflexbelow', 'tcommaaccent', 
@@ -448,22 +448,22 @@ class AnchorData:
          'ydotbelow', 'ygrave', 'yhookabove', 'ymacron', 'yot', 'ypogegrammeni', 'ypogegrammenicomb', 'yring', 'ystroke', 'ytilde', 'z', 'zacute', 
          'zcaron', 'zcircumflex', 'zdotaccent', 'zdotbelow', 'zlinebelow', 'zmiddletilde', 'zpalatalhook','dottedCircle', 'idieresisacute', 'ihookabove',
          'arrowheadrightheaddownbelow', 'igrave', 'iacute', 'icircumflex', 'idieresis',  
-    ]
+    }
 
-    OGONEK_ANCHORS = ['A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u']
+    OGONEK_ANCHORS = {'A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u'}
 
-    DOT_ANCHORS = ['C', 'L', 'SigmaLunateReversedSymbol', 'c', 'h', 'l', 'oopen']
+    DOT_ANCHORS = {'C', 'L', 'SigmaLunateReversedSymbol', 'c', 'h', 'l', 'oopen'}
 
-    TONOS_ANCHORS = ['A', 'E', 'H', 'I', 'O', 'Ohm', 'P', 'UpsilonhookSymbol', 'Y']
+    TONOS_ANCHORS = {'A', 'E', 'H', 'I', 'O', 'Ohm', 'P', 'UpsilonhookSymbol', 'Y'}
 
-    VERT_ANCHORS = ['L', 'd', 'l', 't']
+    VERT_ANCHORS = {'L', 'd', 'l', 't'}
 
     # Tilde anchors changed into top anchor.
     #TILDE_ANCHORS = ['Utilde', 'ytilde', 'lowtildemod', 'atilde', 'ohorntilde', 'utilde', 'Uhorntilde', 'Ntilde', 'Ytilde', 'Otilde', 
     #    'uhorntilde', 'Etilde', 'Ohorntilde', 'otilde', 'ntilde', 'vtilde', 'Atilde', 'tildeoverlaycomb', 'perispomenicomb', 
     #    'Vtilde', 'Itilde', 'etilde', 'itilde']
 
-    _TOP_ANCHORS = ['Abreve.component', 'Abreve.component1', 'Abreve.component2', 'Abreve.component3', 'Idieresis.component', 'Otilde.component', 
+    _TOP_ANCHORS = {'Abreve.component', 'Abreve.component1', 'Abreve.component2', 'Abreve.component3', 'Idieresis.component', 'Otilde.component', 
         'Otilde.component1', 'Sacute.component', 'Scaron.component', 'Udieresis.component', 'Umacron.component', 'abreve.component', 
         'abreve.component1', 'abreve.component2', 'abreve.component3', 'acomb', 'acutecomb', 'acutecomb.component', 'acutecomb.component1', 
         'acutecomb.component3', 'acutecomb.component5', 'acutedottedcomb', 'acutegraveacutecomb', 'acutemacroncomb', 'acutetonecomb', 'almostequaltoabovecomb', 
@@ -495,18 +495,18 @@ class AnchorData:
         #'zero.pnum_enclosingkeycapcomb',
         #'one.pnum_enclosingkeycapcomb',
         #'two.pnum_enclosingkeycapcomb]',
-    ]
+    }
 
     _MIDDLE_ANCHORS = ['slashlongcomb', 'strokelongcomb', 'strokeshortcomb', 'slashshortcomb', 'tildeoverlaycomb',
         'middlegraveaccentmod', 'dagesh-hb',]
 
-    _BOTTOM_ANCHORS = ['acutebelowcomb', 'arrowdoublerightbelowcomb', 'arrowheadleftbelowcomb', 'arrowheadrightbelowcomb', 'arrowheadrightheadupbelowcomb', 
+    _BOTTOM_ANCHORS = {'acutebelowcomb', 'arrowdoublerightbelowcomb', 'arrowheadleftbelowcomb', 'arrowheadrightbelowcomb', 'arrowheadrightheadupbelowcomb', 
     'arrowleftrightbelowcomb', 'arrowupbelowcomb', 'asteriskbelowcomb', 'brevebelow', 'breveinvertedbelowcomb', 'bridgebelowcomb', 'bridgeinvertedbelowcomb', 
     'caronbelowcomb', 'cedillacomb', 'cedillacomb.component', 'circumflexbelow', 'circumflexbelowcomb', 'commaaccentcomb', 
     'dblarchinvertedbelowcomb', 'dbllowlinecomb', 'dieresisbelow', 'dotbelowcomb', 'doublebrevebelowcomb', 'doubleringbelowcomb', 'doubleverticallinebelowcomb', 
     'downtackbelowcomb', 'equalbelowcomb', 'gravebelowcomb', 'leftanglebelowcomb', 'lefttackbelowcomb', 'lowlinecomb', 'macronbelow', 
     'macronbelowcomb', 'minusbelowcomb', 'ogonekcomb', 'palatalhookcomb', 'plusbelowcomb', 'prosgegrammeni', 'rbelowcomb', 'retroflexhookcomb', 'righttackbelowcomb', 
-    'ringbelow', 'ringbelowcomb', 'ringhalfleftbelowcomb', 'ringhalfrightbelowcomb', 'seagullbelowcomb', 'snakebelowcomb', 'squarebelowcomb', 'tildebelow', 
+    'ringbelowcomb', 'ringhalfleftbelowcomb', 'ringhalfrightbelowcomb', 'seagullbelowcomb', 'snakebelowcomb', 'squarebelowcomb', 'tildebelow', 
     'uptackbelowcomb', 'verticallinebelowcomb', 'xbelowcomb', 'ypogegrammenicomb', 'dblmacronbelowcomb', 'voicingmod', 'lowringmod',
     'arrowheadrightheaddownbelow',
         #'six.pnum_enclosingkeycapcomb',
@@ -521,16 +521,16 @@ class AnchorData:
         #'zero.pnum_enclosingkeycapcomb',
         #'one.pnum_enclosingkeycapcomb',
         #'two.pnum_enclosingkeycapcomb]',
-    ]
+    }
 
-    _OGONEK_ANCHORS = ['ogonek']
+    _OGONEK_ANCHORS = {'ogonek'}
 
-    _DOT_ANCHORS = ['dotmiddle.component']
+    _DOT_ANCHORS = {'dotmiddle.component'}
 
-    _TONOS_ANCHORS = ['dasia-uc', 'dasiaoxia-uc', 'dasiaperispomeni-uc', 'dasiavaria-uc', 'oxia-uc', 'psili-uc', 'psilioxia-uc', 'psiliperispomeni-uc', 
-    'psilivaria-uc', 'tonos-uc', 'varia-uc']
+    _TONOS_ANCHORS = {'dasia-uc', 'dasiaoxia-uc', 'dasiaperispomeni-uc', 'dasiavaria-uc', 'oxia-uc', 'psili-uc', 'psilioxia-uc', 
+    'psiliperispomeni-uc', 'psilivaria-uc', 'tonoscomb', 'tonoscmb', 'tonos-uc', 'varia-uc'}
 
-    _VERT_ANCHORS = ['caronvert.component']
+    _VERT_ANCHORS = {'caronvert.component'}
 
     ANCHORS = {
         TOP_: TOP_ANCHORS,
@@ -548,6 +548,14 @@ class AnchorData:
         _TONOS: _TONOS_ANCHORS,
         _VERT: _VERT_ANCHORS,
     }
-
+    GLYPH_ANCHORS = { # Anchor names --> glyphs that contain these anchors.
+        TOP_: TOP_ANCHORS,
+        MIDDLE_: MIDDLE_ANCHORS,
+        BOTTOM_: BOTTOM_ANCHORS,
+        OGONEK_: OGONEK_ANCHORS,
+        DOT_: DOT_ANCHORS,
+        TONOS_: TONOS_ANCHORS,
+        VERT_: VERT_ANCHORS,
+    }
 AD = AnchorData
 

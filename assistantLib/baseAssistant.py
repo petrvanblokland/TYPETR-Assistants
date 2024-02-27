@@ -389,8 +389,15 @@ class BaseAssistant:
             anchors[a.name] = a
         return anchors
 
+    def getAnchorNames(self, g):
+        """Answer a sorted list of anchor names in the glyph."""
+        anchors = []
+        for a in g.anchors:
+            anchors.append(a.name)
+        return sorted(anchors)
+        
     def getAnchors(self, g):
-        """Answerm the selected anchors. If no anchors are selected, then answer a list with all anchors."""
+        """Answer the selected anchors. If no anchors are selected, then answer a list with all anchors."""
         anchors = []
         for anchor in g.anchors:
             if anchor.selected:
