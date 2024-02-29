@@ -192,8 +192,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         )
         self.leftSpaceSourceLabel = container.appendTextLineSublayer(name="leftSpaceSourceLabel",
             position=(0, -self.SPACER_MARKER_R*2),
-            text='LSB',
-            font='Courier',
+            text=' '*40,
+            font='Verdana',
             pointSize=self.SPACER_LABEL_SIZE,
             fillColor=(0, 0, 0, 1),
             visible=False,
@@ -210,8 +210,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         )
         self.rightSpaceSourceLabel = container.appendTextLineSublayer(name="rightSpaceSourceLabel",
             position=(0, -self.SPACER_MARKER_R*2),
-            text='RSB',
-            font='Courier',
+            text=' '*40,
+            font='Verdana',
             pointSize=self.SPACER_LABEL_SIZE,
             fillColor=(0, 0, 0, 1),
             visible=False,

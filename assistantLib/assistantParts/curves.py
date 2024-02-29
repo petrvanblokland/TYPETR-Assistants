@@ -30,6 +30,8 @@ class AssistantPartCurves(BaseAssistantPart):
 
     def updateCurves(self, info):
         c = self.getController()
+        if c is None: # Window could just have been closed.
+            return False
         g = info['glyph']
         q2bEnable = b2qEnable = False
         if g is not None:

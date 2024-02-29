@@ -29,6 +29,8 @@ class AssistantPartInterpolate(BaseAssistantPart):
     def updateInterpolate(self, info):
         changed = False
         c = self.getController()
+        if c is None: # Assistant window may just have been closed.
+            return False
         g = info['glyph']
         if g is None:
             return False # Nothing changed to the glyph

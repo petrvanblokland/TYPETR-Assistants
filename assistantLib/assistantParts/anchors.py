@@ -156,7 +156,6 @@ class AssistantPartAnchors(BaseAssistantPart):
         gd = self.getGlyphData(g)
         xMode = self.getLib(g, 'Anchors', {})['Xmode']
         for a in g.anchors:
-            done = False
 
             """Check on the (horizontal) position of anchors for glyphs with zero with.
             Make sure that the implementation of the anchors in assistants is done after checking the spacing.
@@ -168,8 +167,8 @@ class AssistantPartAnchors(BaseAssistantPart):
                     print(f'... Move /{g.name} anchor {a.name} from {a.x} to {ix}')
                     a.x = ix # Only change x position for this.
                     changed = True
-                    done = True
-                    
+                continue
+
             if a.name not in AD.CENTERING_ANCHORS: # Only for these. Diacritics like /ogonekcomb and /tonoscomb need positions manually in x.
                 continue
 
@@ -180,29 +179,29 @@ class AssistantPartAnchors(BaseAssistantPart):
                     ba = self.getAnchor(baseGlyph, a.name)
                     if ba is not None:
                         changed = self._setAnchorX(g, a, ba.x + dx, italicize=False) # Anchors from base are already italicized.
-                        done = True
+                    continue
 
-            if not done and xMode <= 1: # X-Box/2
+            if xMode <= 1: # X-Box/2
                 #print(xMode, 'X-Box/2', a.name)
-                bounds = g.bounds
-                if bounds is not None:
-                    x1, _, x2, _ = bounds
-                    changed = self._setAnchorX(g, a, x1 + (x2 - x1)/2)
-                    done = True
+                x1 = g.angledLeftMargin
+                x2 = g.width - g.angledRightMargin
+                changed = self._setAnchorX(g, a, x1 + (x2 - x1)/2)
+                continue
 
-            if not done and xMode <= 2: # X-Rom/Ita
+            if xMode <= 2: # X-Rom/Ita
                 #print(xMode, 'X-Rom/Ita', a.name)
                 changed = self.checkFixRomanItalicAnchors(g, doX=True)
-                done = True
+                continue
 
-            if not done and xMode <= 3: # X-Width/2
+            if xMode <= 3: # X-Width/2
                 #print(xMode, 'X-Width/2', a.name)
                 changed = self._setAnchorX(g, a, g.width/2)
-                done = True
+                continue
 
-            if not done and xMode <= 4: # X-Manual
+            if xMode <= 4: # X-Manual
                 #print(xMode, 'X-Manual', a.name)
                 changed = False
+                continue
 
         return changed
 
@@ -220,13 +219,19 @@ class AssistantPartAnchors(BaseAssistantPart):
         changed = False
         md = self.getMasterData(g.font)
         gd = self.getGlyphData(g)
-        yMode = self.getLib(g, 'Anchors', {})['Ymode']
+        yMode = self.getLib(g, 'Anchors', {}).get('Ymode')
+        if yMode is None: # Lib was not complete, reinitialize. Maybe make this more generic later.
+            self.setLib(g, 'Anchors', copy.copy(self.ANCHORS_DEFAULT_LIB_KEY))
+            yMode = self.getLib(g, 'Anchors', {}).get('Ymode')
+
         for a in g.anchors:
             done = None
             y = None
             # First guess, if there is a base, the use that as a start.
             if a.name == AD.TOP_:
-                y = md.getHeight(g.name) - md.getAnchorOvershoot(g.name)    
+                y = md.getHeight(g.name) - md.getAnchorOvershoot(g.name) 
+                if gd.isUpper:
+                    y -= 62 # Extra lower for capitals. Make this in a more generic rule.   
             elif a.name == AD.MIDDLE_:
                 y = md.getHeight2(g.name)
             elif a.name == AD.BOTTOM_:
@@ -249,14 +254,14 @@ class AssistantPartAnchors(BaseAssistantPart):
 
         return changed
 
-    def _setAnchorX(self, g, a, x, italicize=False):
+    def _setAnchorX(self, g, a, x, italicize=True):
         changed = False
         if italicize:
             ax = int(round(self.italicX(g, x, a.y)))
         else:
             ax = x
         if abs(ax - a.x) >= 1: # Too different, correct it
-            print(f'... Set anchor {a.name}.x from {int(round(a.x))} to {ax}')
+            print(f'... Set /{g.name} anchor {a.name}.x from {int(round(a.x))} to {ax}')
             a.x = ax
             changed = True
         return changed
@@ -264,7 +269,7 @@ class AssistantPartAnchors(BaseAssistantPart):
     def _setAnchorY(self, g, a, y):
         changed = False
         if abs(y - a.y) >= 1: # Too different, correct it
-            print(f'... Set anchor {a.name}.y from {int(round(a.y))} to {y}')
+            print(f'... Set /{g.name} anchor {a.name}.y from {int(round(a.y))} to {y}')
             a.y = y
             changed = True
         return changed
@@ -298,7 +303,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         if requiredAnchorNames != anchorNames:
             for a in g.anchors[:]: # Make a copy of the list, as it may be altered
                 if a.name in done: # Detact duplicate anchors
-                    print(f'... Remove duplucate anchor "{a.name}" in /{g.name}')
+                    print(f'... Remove duplicate anchor "{a.name}" in /{g.name}')
                     g.removeAnchor(a)
                     changed = True
                 elif a.name not in requiredAnchorNames:  

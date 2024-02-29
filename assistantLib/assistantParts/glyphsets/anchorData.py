@@ -257,7 +257,7 @@ class AnchorData:
         'dottedCircle', 'ringhalfleft',
     }
 
-    MIDDLE_ANCHORS = {'A', 'A-cy', 'AE', 'AEacute', 'AEmacron', 'Aacute', 'Abreve', 'Abreve-cy', 'Abreveacute', 'Abrevedotbelow', 
+    MIDDLE_ANCHORS = {'A', 'Aring', 'Aringacute', 'A-cy', 'AE', 'AEacute', 'AEmacron', 'Aacute', 'Abreve', 'Abreve-cy', 'Abreveacute', 'Abrevedotbelow', 
         'Abrevegrave', 'Abrevehookabove', 'Abrevetilde', 'Acaron', 'Acircumflex', 'Acircumflexacute', 'Acircumflexdotbelow', 
         'Acircumflexgrave', 'Acircumflexhookabove', 'Acircumflextilde', 'Adblgrave', 'Adieresis', 'Adieresis-cy', 'Adieresismacron', 
         'Adotaccent', 'Adotbelow', 'Adotmacron', 'Agrave', 'Ahookabove', 'Aie-cy', 'Ainvertedbreve', 'Alpha', 'Alphadasia', 
@@ -348,7 +348,7 @@ class AnchorData:
         'iacute','icircumflex', 'idieresis', 
         }
 
-    BOTTOM_ANCHORS = {'A', 'A-cy', 'AE', 'AEacute', 'AEmacron', 'Aacute', 'Abreve', 'Abreve-cy', 'Abreveacute', 'Abrevedotbelow', 
+    BOTTOM_ANCHORS = {'A', 'Aring', 'Aringacute', 'A-cy', 'AE', 'AEacute', 'AEmacron', 'Aacute', 'Abreve', 'Abreve-cy', 'Abreveacute', 'Abrevedotbelow', 
         'Abrevegrave', 'Abrevehookabove', 'Abrevetilde', 'Acaron', 'Acircumflex', 'Acircumflexacute', 'Acircumflexdotbelow', 
         'Acircumflexgrave', 'Acircumflexhookabove', 'Acircumflextilde', 'Adblgrave', 'Adieresis', 'Adieresis-cy', 'Adieresismacron', 
         'Adotaccent', 'Adotbelow', 'Adotmacron', 'Agrave', 'Ahookabove', 'Aie-cy', 'Ainvertedbreve', 'Alpha', 'Alphadasia', 
@@ -452,7 +452,7 @@ class AnchorData:
          'arrowheadrightheaddownbelow', 'igrave', 'iacute', 'icircumflex', 'idieresis',  
     }
 
-    OGONEK_ANCHORS = {'A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u'}
+    OGONEK_ANCHORS = {'A', 'Aring', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u'}
 
     DOT_ANCHORS = {'C', 'L', 'SigmaLunateReversedSymbol', 'c', 'h', 'l', 'oopen'}
 
@@ -561,3 +561,4 @@ class AnchorData:
     }
 AD = AnchorData
 
+print(sorted(AD.BOTTOM_ANCHORS))
