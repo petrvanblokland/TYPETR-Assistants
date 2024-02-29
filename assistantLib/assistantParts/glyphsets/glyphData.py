@@ -52,12 +52,15 @@ class GlyphData:
     CAT_TAB_WIDTH = 'tabWidth'
     CAT_MATH_WIDTH = 'mathWidth'
     CAT_EM_WIDTH = 'emWidth'
-    CAT_EM2_WIDTH = 'em2Width' # Half emWidth
+    CAT_EM_WIDTH2 = 'emWidth/2' # Half emWidth
     CAT_WORD_SPACE = 'wordSpace'
     # Categories of height
     CAT_XHEIGHT = 'xHeight'
+    CAT_XHEIGHT2 = 'xHeight/2'
     CAT_CAP_HEIGHT = 'capHeight'
+    CAT_CAP_HEIGHT2 = 'capHeight/2'
     CAT_SC_HEIGHT = 'scHeight'
+    CAT_SC_HEIGHT2 = 'scHeight/2'
     CAT_SUPS_HEIGHT = 'supsHeight' # Height of .sups, .sinf, .numr, .dnom and mod
     # Categories of overshoot
     CAT_OVERSHOOT = 'overshoot'
@@ -76,7 +79,7 @@ class GlyphData:
     CAT_OVERSHOOTS = (None, CAT_OVERSHOOT, CAT_CAP_OVERSHOOT, CAT_SUPS_OVERSHOOT, CAT_SC_OVERSHOOT)
     CAT_BASELINES = (None, CAT_BASELINE, CAT_MOD_BASELINE, CAT_NUMR_BASELINE, CAT_SINF_BASELINE, CAT_SUPS_BASELINE, CAT_DNOM_BASELINE)
     CAT_HEIGHTS = (None, CAT_XHEIGHT, CAT_CAP_HEIGHT, CAT_SC_HEIGHT, CAT_SUPS_HEIGHT)
-    CAT_WIDTHS = (None, CAT_ACCENT_WIDTH, CAT_TAB_WIDTH, CAT_MATH_WIDTH, CAT_EM_WIDTH, CAT_EM2_WIDTH, CAT_WORD_SPACE)
+    CAT_WIDTHS = (None, CAT_ACCENT_WIDTH, CAT_TAB_WIDTH, CAT_MATH_WIDTH, CAT_EM_WIDTH, CAT_EM_WIDTH2, CAT_WORD_SPACE)
 
     def __init__(self, uni=None, c=None, gid=None, name=None, srcName=None, hex=None, composites=None,
             unicodes=None, 

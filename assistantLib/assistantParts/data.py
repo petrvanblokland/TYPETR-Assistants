@@ -347,10 +347,14 @@ class MasterData:
             return self.xHeight
         return self.capHeight
 
-    def getMiddleHeight(self, gName):
+    def getHeight2(self, gName):
         """Answer the rounded half of height."""
         return int(round(self.getHeight(gName)/2))
-        
+    
+    def getAnchorOvershoot(self, gName):
+        """Answer the standard overshoot of anchors (to make sure theu don't overlap with outline points)"""
+        return 16 # for now
+            
 MD = MasterData
 
 

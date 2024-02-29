@@ -83,7 +83,7 @@ class AssistantPartGuidelines(BaseAssistantPart):
         overshoot = md.getOvershoot(g.name) # Get the right kind of overshoot for this glyph cetegory
         baseline = md.getBaseline(g.name)
         height = md.getHeight(g.name)
-        middle = md.getMiddleHeight(g.name)
+        middle = md.getHeight2(g.name) # Height for this glyph / 2
         
         x = -550 # Label position on the left
         xo = -300 # Label position for overshoot values

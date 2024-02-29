@@ -111,7 +111,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         c.w.anchorXModes = RadioGroup((C0, y, 3*CW, L), ('X-Base', 'X-Box/2', 'X-Rom/Ita', 'X-Width/2', 'X-Manual'), isVertical=False, sizeStyle='small', callback=self.anchorXModesCallback)
         c.w.anchorXModes.set(0)
         y += L
-        c.w.anchorYModes = RadioGroup((C0, y, 3*CW, L), ('Y-Base', 'Y-Box/2', 'Y-Rom/Ita', 'Y-Width/2', 'Y-Manual'), isVertical=False, sizeStyle='small', callback=self.anchorYModesCallback)
+        c.w.anchorYModes = RadioGroup((C0, y, 3*CW, L), ('Y-Metrics', 'Y-Base', 'Y-Manual'), isVertical=False, sizeStyle='small', callback=self.anchorYModesCallback)
         c.w.anchorYModes.set(0)
         # Line color is crashing RoboFont
         #y += L # Closing line for the part UI
@@ -122,28 +122,45 @@ class AssistantPartAnchors(BaseAssistantPart):
         return y
 
     def anchorsCallback(self, sender):
+        changed = False
         g = self.getCurrentGlyph()
-        if self.checkFixAnchors(g): # Create missing anchors and check X and Y position of anchors
+        changed |= self.checkFixAnchors(g) # Create missing anchors and check X and Y position of anchors
+        if changed:
             g.changed() # Force update. UpdateAnchors will then check and update.
 
     def anchorXModesCallback(self, sender):
+        changed = False
         g = self.getCurrentGlyph()
-        self._fixGlyphAnchorsX(g)
+        self.getLib(g, 'Anchors', {})['Xmode'] = sender.get()
+        changed |= self._fixGlyphAnchorsX(g)
+        if changed:
+            g.changed()
 
     def anchorYModesCallback(self, sender):
+        changed = False
         g = self.getCurrentGlyph()
-        self._fixGlyphAnchorsY(g)
+        self.getLib(g, 'Anchors', {})['Ymode'] = sender.get()
+        changed |= self._fixGlyphAnchorsY(g)
+        if changed:
+            g.changed()
+
+    def checkFixAnchorsXPosition(self, g):
+        """Check/fix the x-position of the anchors named in AD.CENTERING_ANCHORS. It is assumed there that all anchors exist."""
+        return self._fixGlyphAnchorsX(g)
 
     def _fixGlyphAnchorsX(self, g):
-        changed = False
-        done = False
+        """In sequence (or as defined by the mode in radio-buttons) trying to find the x-position of anchors:
+        'X-Base', 'X-Box/2', 'X-Rom/Ita', 'X-Width/2', 'X-Manual'
+        """
+        changed = done = False
         gd = self.getGlyphData(g)
-        d = self.getLib(g, 'Anchors', {})['Xmode'] = sender.get()
+        xMode = self.getLib(g, 'Anchors', {})['Xmode']
         for a in g.anchors:
-            if not a.name in AD.CENTERING_ANCHORS:
+            if a.name not in AD.CENTERING_ANCHORS: # Only for these. Diacritics like /ogonekcomb and /tonoscomb need positions manually in x.
                 continue
-            if d == 0: # X-Base: If there is a base glyph, then set the x-position identical, shifted by the base offset.
-                print('X-Base')
+
+            if xMode == 0: # X-Base: If there is a base glyph, then set the x-position identical, shifted by the base offset.
+                #print(xMode, 'X-Base', a.name)
                 baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g)
                 if baseGlyph is not None:
                     ba = self.getAnchor(baseGlyph, a.name)
@@ -151,74 +168,87 @@ class AssistantPartAnchors(BaseAssistantPart):
                         changed = self._setAnchorX(g, a, ba.x + dx)
                         done = True
 
-            if not done and d == 1: # X-Box/2
-                print('X-Box/2')
+            if not done and xMode <= 1: # X-Box/2
+                #print(xMode, 'X-Box/2', a.name)
                 bounds = g.bounds
                 if bounds is not None:
                     x1, _, x2, _ = bounds
-                    changed = self._setAnchorsX(g, x1 + (x2 - x1)/2)
+                    changed = self._setAnchorX(g, a, x1 + (x2 - x1)/2)
                     done = True
 
-            if not done and d == 2: # X-Rom/Ita
-                print('X-Rom/Ita')
+            if not done and xMode <= 2: # X-Rom/Ita
+                #print(xMode, 'X-Rom/Ita', a.name)
                 changed = self.checkFixRomanItalicAnchors(g, doX=True)
                 done = True
 
-            if not done and d == 3: # X-Width/2
-                print('X-Width/2')
-                changed = self._setAnchorsX(g, g.width/2)
+            if not done and xMode <= 3: # X-Width/2
+                #print(xMode, 'X-Width/2', a.name)
+                changed = self._setAnchorX(g, a, g.width/2)
                 done = True
 
-            if not done: # d == 4: # X-Manual
-                print('X-Manual')
+            if not done and xMode <= 4: # X-Manual
+                #print(xMode, 'X-Manual', a.name)
                 changed = False
 
-            if changed:
-                g.changed()
+        return changed
+
+    def checkFixAnchorsYPosition(self, g):
+        """Check/fix the y-position of the anchors named in AD.CENTERING_ANCHORS. It is assumed there that all anchors exist."""
+        return self._fixGlyphAnchorsY(g)
 
     def _fixGlyphAnchorsY(self, g):
-        """Fix the anchors X-position if it is different from where it should be according to the current mode."""
-        return False
+        """Fix the anchors X-position if it is different from where it should be according to the current mode.
+        Strategies: 
+        - If there are vertical metrics rules defined for each type of anchor, for the base or this type of glyph, then apply them.
+        - If there is a base, then take the y position of the base anchors
+        - If the vertical positions are too much inside the vertical bounds of the diacritics, then move up/down
+        """
+        changed = done = False
+        md = self.getMasterData(g.font)
+        gd = self.getGlyphData(g)
+        yMode = self.getLib(g, 'Anchors', {})['Ymode']
+        for a in g.anchors:
+            y = None
+            # First guess, if there is a base, the use that as a start.
+            if a.name == AD.TOP_:
+                y = md.getHeight(g.name) - md.getAnchorOvershoot(g.name)    
+            elif a.name == AD.MIDDLE_:
+                y = md.getHeight2(g.name)
+            elif a.name == AD.BOTTOM_:
+                y = md.getBaseline(g.name) + md.getAnchorOvershoot(g.name)
+            if y is not None:
+                changed |= self._setAnchorY(g, a, y) 
 
-        d = self.getLib(g, 'Anchors', {})['Ymode'] = sender.get()
-        if d == 0: # Y-Base
-            print('Y-Base')
-        
-        elif d == 1: # Y-Box/2
-            print('Y-Box/2')
-            bounds = g.bounds
-            if bounds is not None:
-                _, y1, _, y2 = bounds
-                for a in g.anchors:
-                    if not a.name in AD.CENTERING_ANCHORS:
-                        continue
-                    changed |= self._setAnchorsY(g, y1 + (y2 - y1)/2)
-        
-        elif d == 2: # Y-Rom/Ita
-            print('Y-Rom/Ita')
-            changed = self.checkFixRomanItalicAnchors(g, doY=True)
-            done = True
+            if 0 and yMode == 0: # Y-Base: If there is a base glyph, then set the x-position identical, shifted by the base offset.
+                #print(yMode, 'Y-Base', a.name)
+                baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g)
+                if baseGlyph is not None:
+                    ba = self.getAnchor(baseGlyph, a.name)
+                    if ba is not None:
+                        changed = self._setAnchorX(g, a, ba.x + dx)
+                        done = True
 
-        elif d == 3: # Y-Width/2
-            print('Y-Width/2')
-        
-        else: # d == 4: # Y-Manual
-            print('Y-Manual')
-        
-        if changed:
-            g.changed()
+            if not done and yMode <= 1: # Y-Metrics
+                #print(yMode, 'Y-Metrics', a.name')
+                pass
+
+        return changed
 
     def _setAnchorX(self, g, a, x):
         changed = False
         ax = int(round(self.italicX(g, x, a.y)))
         if abs(ax - a.x) >= 1: # Too different, correct it
-            print(f'... Set anchor {a.name}.x from {a.x:0.2f} to {ax}')
+            print(f'... Set anchor {a.name}.x from {int(round(a.x))} to {ax}')
             a.x = ax
             changed = True
         return changed
 
-    def _setAnchorsY(self, g, y):
+    def _setAnchorY(self, g, a, y):
         changed = False
+        if abs(y - a.y) >= 1: # Too different, correct it
+            print(f'... Set anchor {a.name}.y from {int(round(a.y))} to {y}')
+            a.y = y
+            changed = True
         return changed
 
     #   E V E N T S
@@ -230,6 +260,8 @@ class AssistantPartAnchors(BaseAssistantPart):
         So, looking into G;lyphData is enough."""
         changed = False
         changed |= self.checkFixRequiredAnchors(g) # First make sure that they all exist.
+        changed |= self.checkFixAnchorsYPosition(g) # Fix Y before X for italics
+        changed |= self.checkFixAnchorsXPosition(g)
         changed |= self.checkFixZeroWidthAnchorPosition(g)
         changed |= self.checkFixRomanItalicAnchors(g)
         return changed
