@@ -29,7 +29,7 @@ class AssistantPartItalicize(BaseAssistantPart):
     def initMerzItalicize(self, container):
         pass
 
-    def XXXupdateItalicize(self, info):
+    def updateItalicize(self, info):
         """Subscribed update method should answer a “changed” boolean."""
         g = info['glyph']
         if g.components or g.contours: # Not empty, do nothing

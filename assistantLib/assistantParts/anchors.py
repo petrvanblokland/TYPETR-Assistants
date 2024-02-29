@@ -152,10 +152,24 @@ class AssistantPartAnchors(BaseAssistantPart):
         """In sequence (or as defined by the mode in radio-buttons) trying to find the x-position of anchors:
         'X-Base', 'X-Box/2', 'X-Rom/Ita', 'X-Width/2', 'X-Manual'
         """
-        changed = done = False
+        changed = False
         gd = self.getGlyphData(g)
         xMode = self.getLib(g, 'Anchors', {})['Xmode']
         for a in g.anchors:
+            done = False
+
+            """Check on the (horizontal) position of anchors for glyphs with zero with.
+            Make sure that the implementation of the anchors in assistants is done after checking the spacing.
+            Note that will be other checking/fixing done too, so the filter should be exclusive.
+            Answer the boolean flag if something changed to the glyph."""
+            if g.width == 0:
+                ix = self.italicX(g, 0, a.y)
+                if abs(ix - a.x) >= 1: # Not in position, move it
+                    print(f'... Move /{g.name} anchor {a.name} from {a.x} to {ix}')
+                    a.x = ix # Only change x position for this.
+                    changed = True
+                    done = True
+                    
             if a.name not in AD.CENTERING_ANCHORS: # Only for these. Diacritics like /ogonekcomb and /tonoscomb need positions manually in x.
                 continue
 
@@ -165,7 +179,7 @@ class AssistantPartAnchors(BaseAssistantPart):
                 if baseGlyph is not None:
                     ba = self.getAnchor(baseGlyph, a.name)
                     if ba is not None:
-                        changed = self._setAnchorX(g, a, ba.x + dx)
+                        changed = self._setAnchorX(g, a, ba.x + dx, italicize=False) # Anchors from base are already italicized.
                         done = True
 
             if not done and xMode <= 1: # X-Box/2
@@ -203,11 +217,12 @@ class AssistantPartAnchors(BaseAssistantPart):
         - If there is a base, then take the y position of the base anchors
         - If the vertical positions are too much inside the vertical bounds of the diacritics, then move up/down
         """
-        changed = done = False
+        changed = False
         md = self.getMasterData(g.font)
         gd = self.getGlyphData(g)
         yMode = self.getLib(g, 'Anchors', {})['Ymode']
         for a in g.anchors:
+            done = None
             y = None
             # First guess, if there is a base, the use that as a start.
             if a.name == AD.TOP_:
@@ -225,7 +240,7 @@ class AssistantPartAnchors(BaseAssistantPart):
                 if baseGlyph is not None:
                     ba = self.getAnchor(baseGlyph, a.name)
                     if ba is not None:
-                        changed = self._setAnchorX(g, a, ba.x + dx)
+                        changed = self._setAnchorX(g, a, ba.x + dx, italicize=False) # Anchors from base are already italicized.
                         done = True
 
             if not done and yMode <= 1: # Y-Metrics
@@ -234,9 +249,12 @@ class AssistantPartAnchors(BaseAssistantPart):
 
         return changed
 
-    def _setAnchorX(self, g, a, x):
+    def _setAnchorX(self, g, a, x, italicize=False):
         changed = False
-        ax = int(round(self.italicX(g, x, a.y)))
+        if italicize:
+            ax = int(round(self.italicX(g, x, a.y)))
+        else:
+            ax = x
         if abs(ax - a.x) >= 1: # Too different, correct it
             print(f'... Set anchor {a.name}.x from {int(round(a.x))} to {ax}')
             a.x = ax
@@ -262,7 +280,6 @@ class AssistantPartAnchors(BaseAssistantPart):
         changed |= self.checkFixRequiredAnchors(g) # First make sure that they all exist.
         changed |= self.checkFixAnchorsYPosition(g) # Fix Y before X for italics
         changed |= self.checkFixAnchorsXPosition(g)
-        changed |= self.checkFixZeroWidthAnchorPosition(g)
         changed |= self.checkFixRomanItalicAnchors(g)
         return changed
 
@@ -376,19 +393,4 @@ class AssistantPartAnchors(BaseAssistantPart):
                             changed = True
         return changed
 
-    def checkFixZeroWidthAnchorPosition(self, g):
-        """Check on the (horizontal) position of anchors for glyphs with zero with.
-        Make sure that the implementation of the anchors in assistants is done after checking the spacing.
-        Note that will be other checking/fixing done too, so the filter should be exclusive.
-        Answer the boolean flag if something changed to the glyph."""
-        changed = False
-        if g.width == 0:
-            for a in g.anchors:
-                ix = self.italicX(g, 0, a.y)
-                if abs(ix - a.x) >= 1: # Not in position, move it
-                    print(f'... Move /{g.name} anchor {a.name} from {a.x} to {ix}')
-                    a.x = ix # Only change x position for this.
-                    changed = True
-                    break
-        return changed
 
