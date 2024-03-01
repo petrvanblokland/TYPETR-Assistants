@@ -34,12 +34,12 @@ class AssistantPartComponents(BaseAssistantPart):
         g = info['glyph']
         if g is None:
             return False # Nothing changed
-        return self.checkFixContours(g)
+        return self.checkFixComponents(g)
 
     def checkFixComponents(self, g):
         changed = False
-        changed |= self.checkFixComponents(g)
-        changed |= self.checkFixComponentPositions(g)
+        changed |= self.checkFixComponentsExist(g)
+        changed |= self.checkFixComponentsPosition(g)
         return changed
 
     def buildComponents(self, y):
@@ -58,12 +58,12 @@ class AssistantPartComponents(BaseAssistantPart):
     def componentFixAll(self, g, c=None, event=None):
         for gg in g.font:
             changed = False
-            changed |= self.checkFixComponents(gg)
-            changed |= self.checkFixComponentPositions(gg)
+            changed |= self.checkFixComponentsExist(gg)
+            changed |= self.checkFixComponentsPosition(gg)
             if changed:
                 gg.changed()
 
-    def checkFixComponents(self, g):
+    def checkFixComponentsExist(self, g):
         """Check the existence of gd.base and gd.accent component. Create them when necessary.
         And delete components that are not defined in the GlyphData.
         These are the checks:
@@ -128,7 +128,7 @@ class AssistantPartComponents(BaseAssistantPart):
         # 6 All done
         return changed
 
-    def checkFixComponentPositions(self, g):
+    def checkFixComponentsPosition(self, g):
         """For all components check if they are on the right poaition. If the base component has an anchor
         and there are diacritic components that have the matching achor, then move the diacritics
         so the positions of the anchors match up."""
@@ -167,21 +167,23 @@ class AssistantPartComponents(BaseAssistantPart):
             baseG = g.font[gd.base]
             baseAnchors = self.getAnchorsDict(baseG) # Collect the anchors that are used in the base glyph
             found = False
+            tx = ty = 0 # Just to be sure, although there always should be a base glyph defined to get the base ofsset from.
             for component in g.components:
-                if component.baseGlyph == gd.base: # Skip the base component
+                if component.baseGlyph == gd.base: # Skip the base component, after getting its offset
+                    tx, ty = component.transformation[-2:]
                     continue
                 componentGlyph = g.font[component.baseGlyph]
                 for a in componentGlyph.anchors:
                     if a.name in AD.DIACRITICS_ANCHORS:
                         baseAnchor = self.getCorrespondingAnchor(baseG, a.name) # Find the corresponding anchor in the base glyph _TOP --> TOP_ 
                         if baseAnchor is not None: # Did we find a matching pair, then move the component accordingly
-                            dx = baseAnchor.x - a.x
-                            dy = baseAnchor.y - a.y
+                            dx = baseAnchor.x - a.x + tx # Add transformation of the base glyph
+                            dy = baseAnchor.y - a.y + ty
                             t = list(component.transformation)
                             if abs(t[-2] - dx) > 1 or abs(t[-1] - dy) > 1: # Is moving needed?
                                 print(f'... Move component /{component.baseGlyph} in /{g.name} to ({dx}, {dy})')
                                 t[-2] = dx
-                                t[-1] = dy
+                                t[-1] = dy 
                                 component.transformation = t
                                 found = changed = True
                                 break

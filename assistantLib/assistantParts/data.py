@@ -333,6 +333,8 @@ class MasterData:
             print(f'### getHeight: Unknown glyph /{gName} in glyphSet of {self.name}')
             return self.capHeight
         if gd.height is None: # Nothing defined in the glyph, use the default
+            if gd.isLower:
+                return self.xHeight
             return self.capHeight
         if isinstance(gd.height, (int, float)): 
             return gd.height
@@ -354,7 +356,7 @@ class MasterData:
     def getAnchorOvershoot(self, gName):
         """Answer the standard overshoot of anchors (to make sure theu don't overlap with outline points)"""
         return 16 # for now
-            
+
 MD = MasterData
 
 
