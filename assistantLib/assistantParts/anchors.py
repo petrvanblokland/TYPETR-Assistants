@@ -222,6 +222,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         - If the vertical positions are too much inside the vertical bounds of the diacritics, then move up/down
         """
         changed = False
+        f = g.font
         md = self.getMasterData(g.font)
         gd = self.getGlyphData(g)
         yMode = self.getLib(g, 'Anchors', {}).get('Ymode')
@@ -232,18 +233,34 @@ class AssistantPartAnchors(BaseAssistantPart):
         for a in g.anchors:
             done = None
             y = None
-            # First guess, if there is a base, the use that as a start.
+            # First guess, if there is a base, the use that as a start. Then scan through all the components, find their 
+            # anchors and adjust the min/max y position of the anchor accordingly.
             if a.name == AD.TOP_:
                 overshoot = md.getAnchorOvershoot(g.name)
-                y = md.getHeight(g.name) - overshoot
-
-                # Any top diacritics, the make sure to shift up, leaving space to stacking diacritics
-                if y < g.bounds[3] - 2 * overshoot: # If still out of bounds, move the anchor up, e.g. /Edieresis, so stacking diacritics fit on top.
+                y = md.getHeight(g.name) - overshoot # This is what the masterData guess is, from info in the glyphSet parameters.
+                # First check if the bounding box of this glyph exceeds a certain height above the standard y
+                if g.bounds[3] > y + 4 * overshoot:
                     y = g.bounds[3]
+                # Then check on the transformed vertical position of the anchors in the components
+                for component in g.components: # Now we're going to look at the glyph itself.
+                    if component.baseGlyph not in f: # Checking, just to be sure
+                        print(f'### _fixGlyphAnchorsY: Cannot find component glyph /{component.baseGlyph} in /{g.name}')
+                        continue
+                    if not component.baseGlyph in AD.ACCENT_DATA: # Not an accent component, ignore.
+                        continue
+                    tx, ty = component.transformation[-2:] # Get the transformation for this components, as offset for its anchor position
+                    cg = f[component.baseGlyph]
+                    ca = self.getAnchor(cg, a.name) # Get the equivalent anchor of the diacritics glyph
+                    if ca is None:
+                        print(f'### _fixGlyphAnchorsY: Cannot find anchor {a.name} in diacritics component {component.baseGlyph} in /{g.name}')
+                        continue
+                    y = max(y, ca.y + ty) # Move the anchor up if there is extra space needed for the diacritics.
 
                 if gd.isUpper:
-                    y -= 76 # Extra lower for capitals. @@@ TODO Make this into a more generic rule.   
-            
+                    y -= 76 # Extra lower for capitals. @@@ TODO Make this into a more generic rule, independent from unitsPerEm  
+                elif g.name in AD.ACCENT_DATA:
+                    y -= 120 # Closer together for stacking diacritics. @@@ TODO Make this into a more generic rule, independent from unitsPerEm
+
             elif a.name == AD.MIDDLE_:
                 y = md.getHeight2(g.name)
 
