@@ -709,7 +709,7 @@ class MS_GlyphSet(GlyphSet):
        'Scaron.component': GD(name='Scaron.component', w=0, anchors=['top', '_top'], gid=1608),
        'Scarondotaccent': GD(name='Scarondotaccent', uni=0x1E66, hex='1E66', c='Ṧ', l='S', w='S', base='S', accents=['Scaron.component'], srcName='uni1E66', anchors=['top', 'middle', 'bottom'], gid=1025),
        'Scedilla': GD(name='Scedilla', uni=0x015E, hex='015E', c='Ş', l='S', w='S', base='S', accents=['cedillacomb'], anchors=['top', 'middle', 'bottom'], gid=287, comment='Ş'),
-       'Schwa': GD(name='Schwa', uni=0x018F, hex='018F', c='Ə', l2r='e', r2l='e', srcName='uni018F', anchors=['top'], gid=336, comment='Ə SCHWA, LATIN CAPITAL LETTER'),
+       'Schwa': GD(name='Schwa', uni=0x018F, hex='018F', c='Ə', l='O', r='O', srcName='uni018F', anchors=['top'], gid=336, comment='Ə SCHWA, LATIN CAPITAL LETTER'),
        'Schwa-cy': GD(name='Schwa-cy', uni=0x04D8, hex='04D8', c='Ә', r='O', base='Schwa', anchors=['top'], gid=861),
        'Schwadieresis-cy': GD(name='Schwadieresis-cy', uni=0x04DA, hex='04DA', c='Ӛ', l='Schwa-cy', r='O', base='Schwa', accents=['dieresiscomb'], anchors=['top'], gid=863),
        'Scircumflex': GD(name='Scircumflex', uni=0x015C, hex='015C', c='Ŝ', l='S', w='S', base='S', accents=['circumflexcomb'], anchors=['top', 'middle', 'bottom'], gid=285, comment='Ŝ'),

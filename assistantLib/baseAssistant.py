@@ -27,7 +27,6 @@
 #
 import sys
 import os
-import math
 import codecs
 import merz
 import weakref
@@ -129,8 +128,6 @@ class BaseAssistant:
     # controlDown = event['controlDown']
     # optionDown = event['optionDown']
     # capLock = event['capLockDown']
-
-    MAX_DIACRITICS_CLOUDS = 40
 
     KEY_STROKE_METHODS = {}
     # Controller methods
@@ -435,7 +432,7 @@ class BaseAssistant:
     #   P O I N T S
 
     def distance(self, px1, py1, px2, py2):
-        return math.sqrt((px1 - px2)**2 + (py1 - py2)**2)
+        return sqrt((px1 - px2)**2 + (py1 - py2)**2)
 
     def hasSelectedPoints(self, g):
         """Answer the boolean flag if there is one or more points selected. E.g. italicize is using this
@@ -449,7 +446,7 @@ class BaseAssistant:
 
     def italicX(self, g, x, y):
         """Answer the italic x value on position e, depending on the italic angle of the font."""
-        return x + int(round(math.tan(math.radians(-g.font.info.italicAngle or 0)) * y))
+        return x + int(round(tan(radians(-g.font.info.italicAngle or 0)) * y))
 
     def isQuadratic(self, g):
         for contour in g.contours:

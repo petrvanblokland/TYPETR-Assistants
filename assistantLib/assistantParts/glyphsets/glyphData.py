@@ -151,7 +151,7 @@ class GlyphData:
         self._isMod = isMod # Glyph is a modifier.
 
         self.base = base # Base component if used
-        self.accents = accents or [] # List of other component names, besides the base
+        self.accents = accents or [] # List of other component names, besides the base. Tested on by property self.hasDiacritics
 
         self.comment = comment or ''
         self.spacing = spacing # Obsolete?
@@ -259,6 +259,14 @@ class GlyphData:
         return self.name in AD.ACCENT_DATA
     isDiacritic = property(_get_isDiacritic)
 
+    def _get_hasDiacritics(self):
+        """Answer the boolean flag is this glyph has diacritics components."""
+        for componentName in self.accents:
+            if componentName in AD.ACCENT_DATA:
+                return True
+        return False
+    hasDiacritics = property(_get_hasDiacritics)
+    
     def _get_components(self):
         """Answer the list of all component names. An empty list if there are no components in the glyph."""
         components = []

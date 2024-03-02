@@ -154,7 +154,11 @@ class AssistantPartAnchors(BaseAssistantPart):
         """
         changed = False
         gd = self.getGlyphData(g)
-        xMode = self.getLib(g, 'Anchors', {})['Xmode']
+        xMode = self.getLib(g, 'Anchors', {}).get('Xmode')
+        if xMode is None: # Lib was not complete, reinitialize. Maybe make this more generic later.
+            self.setLib(g, 'Anchors', copy.copy(self.ANCHORS_DEFAULT_LIB_KEY))
+            xMode = self.getLib(g, 'Anchors', {}).get('Xmode')
+
         for a in g.anchors:
 
             """Check on the (horizontal) position of anchors for glyphs with zero with.
@@ -169,7 +173,8 @@ class AssistantPartAnchors(BaseAssistantPart):
                     changed = True
                 continue
 
-            if a.name not in AD.CENTERING_ANCHORS: # Only for these. Diacritics like /ogonekcomb and /tonoscomb need positions manually in x.
+            if a.name not in AD.CENTERING_ANCHORS: 
+                # Only for these. Anchors do diacritics like /ogonekcomb and /tonoscomb need positions manually in x.
                 continue
 
             if xMode == 0: # X-Base: If there is a base glyph, then set the x-position identical, shifted by the base offset.
@@ -178,7 +183,7 @@ class AssistantPartAnchors(BaseAssistantPart):
                 if baseGlyph is not None:
                     ba = self.getAnchor(baseGlyph, a.name)
                     if ba is not None:
-                        changed = self._setAnchorX(g, a, ba.x + dx, italicize=False) # Anchors from base are already italicized.
+                        changed = self._setAnchorXY(g, a, ba.x + dx, ba.y + dy) # Anchors from base are already italicized.
                     continue
 
             if xMode <= 1: # X-Box/2
@@ -229,32 +234,43 @@ class AssistantPartAnchors(BaseAssistantPart):
             y = None
             # First guess, if there is a base, the use that as a start.
             if a.name == AD.TOP_:
-                y = md.getHeight(g.name) - md.getAnchorOvershoot(g.name) 
+                overshoot = md.getAnchorOvershoot(g.name)
+                y = md.getHeight(g.name) - overshoot
+
+                # Any top diacritics, the make sure to shift up, leaving space to stacking diacritics
+                if y < g.bounds[3] - 2 * overshoot: # If still out of bounds, move the anchor up, e.g. /Edieresis, so stacking diacritics fit on top.
+                    y = g.bounds[3]
+
                 if gd.isUpper:
-                    y -= 62 # Extra lower for capitals. Make this in a more generic rule.   
+                    y -= 76 # Extra lower for capitals. @@@ TODO Make this into a more generic rule.   
+            
             elif a.name == AD.MIDDLE_:
                 y = md.getHeight2(g.name)
+
             elif a.name == AD.BOTTOM_:
-                y = md.getBaseline(g.name) + md.getAnchorOvershoot(g.name)
-            if y is not None:
-                changed |= self._setAnchorY(g, a, y) 
+                overshoot = md.getAnchorOvershoot(g.name)
+                y = md.getBaseline(g.name) + overshoot
+                if y > g.bounds[1] + 4 * overshoot: # If still out of bounds, move the anchor down, e.g. /Ccedilla, so stacking diacritics fit on bottom.
+                    y = g.bounds[1]
 
-            if 0 and yMode == 0: # Y-Base: If there is a base glyph, then set the x-position identical, shifted by the base offset.
-                #print(yMode, 'Y-Base', a.name)
-                baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g)
-                if baseGlyph is not None:
-                    ba = self.getAnchor(baseGlyph, a.name)
-                    if ba is not None:
-                        changed = self._setAnchorX(g, a, ba.x + dx, italicize=False) # Anchors from base are already italicized.
-                        done = True
-
-            if not done and yMode <= 1: # Y-Metrics
-                #print(yMode, 'Y-Metrics', a.name')
+            if not done and yMode <= 1: # Y-Base
+                #print(yMode, 'Y-Base', a.name')
                 pass
+
+            if not done and yMode <= 2: # Y-Manual
+                #print(yMode, 'Y-Manual', a.name')
+                pass
+        
+            if y is not None:
+                changed |= self._setAnchorY(g, a, y) # Move the anchor to its new y position, also adjusting the x-position accordingly
 
         return changed
 
     def _setAnchorX(self, g, a, x, italicize=True):
+        """Set the x-value of the anchor. If the italicize flag is on, then correct the x value by the italic angle in height.
+        If the difference is smaller than 1 unit, the don't change anything. Otherwise print a message about the changed value.
+        Answer the boolean flag if something did change.
+        """
         changed = False
         if italicize:
             ax = int(round(self.italicX(g, x, a.y)))
@@ -266,15 +282,33 @@ class AssistantPartAnchors(BaseAssistantPart):
             changed = True
         return changed
 
-    def _setAnchorY(self, g, a, y):
+    def _setAnchorY(self, g, a, y, italicize=True):
+        """Set the y-value of the anchor. If the italicize flag is on, then correct the x value by the relative change in height.
+        If the difference is smaller than 1 unit, the don't change anything. Otherwise print a message about the changed value.
+        Answer the boolean flag if something did change.
+        """
         changed = False
-        if abs(y - a.y) >= 1: # Too different, correct it
+        dy = y - a.y # Get relative y-position, so we know how much to move x too.
+        if abs(dy) >= 1: # Too different, correct it
             print(f'... Set /{g.name} anchor {a.name}.y from {int(round(a.y))} to {y}')
+            if italicize:
+                a.x += int(round(self.italicX(g, 0, dy)))
             a.y = y
             changed = True
         return changed
 
-    #   E V E N T S
+    def _setAnchorXY(self, g, a, x, y):
+        changed = False
+        dx = x - a.x
+        dy = y - a.y
+        if abs(dx) >= 1 or abs(dy) >= 1:
+            print(f'... Set /{g.name} anchor {a.name} from {(int(round(a.x)), int(round(a.y)))} to {(int(round(x)), int(round(y)))}')
+            a.x = x
+            a.y = y
+            changed = True
+        return changed
+
+        #   E V E N T S
 
     def checkFixAnchors(self, g):
         """Check and fix the anchors of g. First try to determine if the right number of anchors exists. There are
@@ -283,8 +317,8 @@ class AssistantPartAnchors(BaseAssistantPart):
         So, looking into G;lyphData is enough."""
         changed = False
         changed |= self.checkFixRequiredAnchors(g) # First make sure that they all exist.
-        changed |= self.checkFixAnchorsYPosition(g) # Fix Y before X for italics
-        changed |= self.checkFixAnchorsXPosition(g)
+        changed |= self.checkFixAnchorsXPosition(g) # Fix anchor X before adjusting Y position.
+        changed |= self.checkFixAnchorsYPosition(g)
         changed |= self.checkFixRomanItalicAnchors(g)
         return changed
 
