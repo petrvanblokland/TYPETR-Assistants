@@ -104,7 +104,7 @@ class AssistantPartAnchors(BaseAssistantPart):
 
         c.w.autoAnchors = CheckBox((C0, y, CW, L), 'Auto anchors', value=True, sizeStyle='small')
         c.w.copyRomanAnchors = CheckBox((C1, y, CW, L), 'Copy roman-->italic', value=True, sizeStyle='small')
-        c.w.fixAnchorsButton = Button((C2, y, CW, L), 'Fix anchors [%s]' % personalKey_a, callback=self.anchorsCallback)
+        c.w.fixAnchorsButton = Button((C2, y, CW, L), f'Fix anchors [{personalKey_A}{personalKey_a}]', callback=self.anchorsCallback)
         y += L
         # Radios to select the type of anchor mode for the current glyph, in this order.
         # So if there are no components, then the horizontal position of boundingbox/2 is used.
@@ -183,8 +183,8 @@ class AssistantPartAnchors(BaseAssistantPart):
                 if baseGlyph is not None:
                     ba = self.getAnchor(baseGlyph, a.name)
                     if ba is not None:
-                        changed = self._setAnchorXY(g, a, ba.x + dx, ba.y + dy) # Anchors from base are already italicized.
-                    continue
+                        changed = self._setAnchorXY(g, a, ba.x + dx, ba.y + dy, italicize=False) # Anchors from base are already italicized.
+                continue
 
             if xMode <= 1: # X-Box/2
                 #print(xMode, 'X-Box/2', a.name)
@@ -195,7 +195,7 @@ class AssistantPartAnchors(BaseAssistantPart):
 
             if xMode <= 2: # X-Rom/Ita
                 #print(xMode, 'X-Rom/Ita', a.name)
-                changed = self.checkFixRomanItalicAnchors(g, doX=True)
+                changed = self.checkFixRomanItalicAnchors(g, doX=True) # Check positions, not if the anchors exist.
                 continue
 
             if xMode <= 3: # X-Width/2
@@ -216,6 +216,9 @@ class AssistantPartAnchors(BaseAssistantPart):
 
     def _fixGlyphAnchorsY(self, g):
         """Fix the anchors X-position if it is different from where it should be according to the current mode.
+        In sequence (or as defined by the mode in radio-buttons) trying to find the x-position of anchors:
+        'Y-Metrics', 'Y-Base', 'Y-Manual'
+        
         Strategies: 
         - If there are vertical metrics rules defined for each type of anchor, for the base or this type of glyph, then apply them.
         - If there is a base, then take the y position of the base anchors
@@ -236,39 +239,69 @@ class AssistantPartAnchors(BaseAssistantPart):
             # First guess, if there is a base, the use that as a start. Then scan through all the components, find their 
             # anchors and adjust the min/max y position of the anchor accordingly.
             if a.name == AD.TOP_:
+
+                if yMode == 2: # If manual, then skip
+                    continue
+
+                hasDiacritics = False
                 overshoot = md.getAnchorOvershoot(g.name)
                 y = md.getHeight(g.name) - overshoot # This is what the masterData guess is, from info in the glyphSet parameters.
                 # First check if the bounding box of this glyph exceeds a certain height above the standard y
-                if g.bounds[3] > y + 4 * overshoot:
+                if g.bounds is not None and g.bounds[3] > y + 4 * overshoot:
                     y = g.bounds[3]
+
                 # Then check on the transformed vertical position of the anchors in the components
                 for component in g.components: # Now we're going to look at the glyph itself.
                     if component.baseGlyph not in f: # Checking, just to be sure
                         print(f'### _fixGlyphAnchorsY: Cannot find component glyph /{component.baseGlyph} in /{g.name}')
                         continue
+                    
                     if not component.baseGlyph in AD.ACCENT_DATA: # Not an accent component, ignore.
                         continue
+                    
+                    hasDiacritics = True
                     tx, ty = component.transformation[-2:] # Get the transformation for this components, as offset for its anchor position
                     cg = f[component.baseGlyph]
                     ca = self.getAnchor(cg, a.name) # Get the equivalent anchor of the diacritics glyph
-                    if ca is None:
-                        print(f'### _fixGlyphAnchorsY: Cannot find anchor {a.name} in diacritics component {component.baseGlyph} in /{g.name}')
-                        continue
-                    y = max(y, ca.y + ty) # Move the anchor up if there is extra space needed for the diacritics.
+                    if ca is not None:
+                        #print(f'### _fixGlyphAnchorsY: Cannot find anchor {a.name} in diacritics component {component.baseGlyph} in /{g.name}')
+                        y = max(y, ca.y + ty) # Move the anchor up if there is extra space needed for the diacritics.
 
                 if gd.isUpper:
-                    y -= 76 # Extra lower for capitals. @@@ TODO Make this into a more generic rule, independent from unitsPerEm  
-                elif g.name in AD.ACCENT_DATA:
+                    y -= 62 # Extra lower for capitals. @@@ TODO Make this into a more generic rule, independent from unitsPerEm  
+                elif hasDiacritics or g.name in AD.ACCENT_DATA:
                     y -= 120 # Closer together for stacking diacritics. @@@ TODO Make this into a more generic rule, independent from unitsPerEm
 
             elif a.name == AD.MIDDLE_:
-                y = md.getHeight2(g.name)
+                y = md.getHeight2(g.name) # Just set to half-height.
 
             elif a.name == AD.BOTTOM_:
+                if yMode == 2: # If manual, then skip
+                    continue
+
                 overshoot = md.getAnchorOvershoot(g.name)
-                y = md.getBaseline(g.name) + overshoot
-                if y > g.bounds[1] + 4 * overshoot: # If still out of bounds, move the anchor down, e.g. /Ccedilla, so stacking diacritics fit on bottom.
+                y = md.getBaseline(g.name) + overshoot # This is what the masterData guess is, from info in the glyphSet parameters.
+                # First check if the bounding box of this glyph exceeds a certain height above the standard y
+                if g.bounds is not None and g.bounds[1] < y - 4 * overshoot:
                     y = g.bounds[1]
+
+                # Then check on the transformed vertical position of the anchors in the components
+                for component in g.components: # Now we're going to look at the glyph itself.
+                    if component.baseGlyph not in f: # Checking, just to be sure
+                        print(f'### _fixGlyphAnchorsY: Cannot find component glyph /{component.baseGlyph} in /{g.name}')
+                        continue
+                    
+                    if not component.baseGlyph in AD.ACCENT_DATA: # Not an accent component, ignore.
+                        continue
+                    
+                    tx, ty = component.transformation[-2:] # Get the transformation for this components, as offset for its anchor position
+                    cg = f[component.baseGlyph]
+                    ca = self.getAnchor(cg, a.name) # Get the equivalent anchor of the diacritics glyph
+                    if ca is not None:
+                        y = max(y, ca.y + ty) # Move the anchor down if there is extra space needed for the diacritics.
+
+                if g.name in AD.ACCENT_DATA:
+                    y += 100 # Closer together for stacking diacritics. @@@ TODO Make this into a more generic rule, independent from unitsPerEm
 
             if not done and yMode <= 1: # Y-Base
                 #print(yMode, 'Y-Base', a.name')
@@ -314,13 +347,15 @@ class AssistantPartAnchors(BaseAssistantPart):
             changed = True
         return changed
 
-    def _setAnchorXY(self, g, a, x, y):
+    def _setAnchorXY(self, g, a, x, y, italicize=True):
         changed = False
-        dx = x - a.x
-        dy = y - a.y
-        if abs(dx) >= 1 or abs(dy) >= 1:
-            print(f'... Set /{g.name} anchor {a.name} from {(int(round(a.x)), int(round(a.y)))} to {(int(round(x)), int(round(y)))}')
-            a.x = x
+        if italicize:
+            ax = int(round(self.italicX(g, x, y)))
+        else:
+            ax = x
+        if abs(ax - a.x) >= 1 or abs(y - a.y) >= 1:
+            print(f'... Set /{g.name} anchor {a.name} from {(int(round(a.x)), int(round(a.y)))} to {(int(round(ax)), int(round(y)))}')
+            a.x = ax
             a.y = y
             changed = True
         return changed
@@ -348,27 +383,31 @@ class AssistantPartAnchors(BaseAssistantPart):
         """Check/fix the required anchors if they don't all exist or if there are too many."""
         changed = False
         gd = self.getGlyphData(g)
-        done = [] # Remember which are already done, to detect duplicate anchors
         requiredAnchorNames = gd.anchors  
         anchorNames = self.getAnchorNames(g)
         if requiredAnchorNames != anchorNames:
+            # Remove obsolete anchors
             for a in g.anchors[:]: # Make a copy of the list, as it may be altered
-                if a.name in done: # Detact duplicate anchors
-                    print(f'... Remove duplicate anchor "{a.name}" in /{g.name}')
-                    g.removeAnchor(a)
-                    changed = True
-                elif a.name not in requiredAnchorNames:  
+                if a.name not in requiredAnchorNames:  
                     print(f'... Remove obsolete anchor "{a.name}" in /{g.name}')
                     g.removeAnchor(a)
                     changed = True
-                else:
-                    done.append(a.name)
 
+            # Add missing anchors
             for aName in requiredAnchorNames:
                 if aName not in anchorNames:
                     print(f'... Add missing anchor "{aName}" in /{g.name}')
                     g.appendAnchor(name=aName, position=(0, 0)) # Just put at origin, position will be set in later checks.
-                    changed = True        
+                    changed = True 
+
+            # Check on duplicate anchors
+            done = [] # Remember which are already done, to detect duplicate anchors
+            for a in g.anchors[:]: # Make a copy of the list, as it may be altered
+                if a.name in done:
+                    print(f'... Remove duplicate anchor "{a.name}" in /{g.name}')
+                    g.removeAnchor(a)
+                done.append(a.name)
+
         return changed
 
     def setGlyphAnchors(self, g):
@@ -417,8 +456,7 @@ class AssistantPartAnchors(BaseAssistantPart):
             g.changed()
 
     def checkFixRomanItalicAnchors(self, g, doX=False, doY=False):
-        """If there is a base glyph, then Check if the anchors in the counterpart roman or italic glyph is the same as for the current font.
-        If not, then add the missing anchor and position it on slanted position.
+        """If there is a base glyph, then check if the anchors in the counterpart roman or italic glyph has the same position for the current font.
         Note that will be other checking/fixing done too, so the filter should be exclusive."""
         changed = False
         f = g.font
@@ -432,11 +470,7 @@ class AssistantPartAnchors(BaseAssistantPart):
             for aName, srcA in srcAnchors.items():
                 x = int(round(srcA.x + srcA.y * tan(radians(-f.info.italicAngle or 0))))
                 y = int(round(srcA.y))
-                if not aName in anchors:
-                    g.appendAnchor(position=(x, srcA.y), anchor=srcA)
-                    print(f'... Add anchor "{aName}" to /{g.name} at ({x}, {y})')
-                    changed = True
-                else:
+                if aName in anchors: # Only check on the existing anchors, don't make new ones, since roman and italic may not be compatible.
                     a = anchors[aName]
                     if abs(a.x - x) >= 1 or abs(a.y - y) >= 1:
                         if doX:

@@ -1416,6 +1416,14 @@ class KerningManager:
             KERNING_RF_SAMPLES = KERNING_RF_SAMPLES_ITALIC = SPECIMEN_RF.getNames()
         """
 
+    SAMPLE_MODES = {
+        0: 'getSpacingSample_GlyphSet',
+        1: 'getSpacingSample_Similarity',
+        2: 'getSpacingSample_Group',
+        3: 'getSpacingSample_Spacing',
+        4: 'getSpacingSample_Kerning',
+    }
+
     def getSpacingSample(self, g, context=0, length=40, index=0):
         """Answer a single sample line of the defined length for the selected context.
         If the index in defined and the possible sample is larger than length, the slice the sample around the index.
@@ -1428,12 +1436,10 @@ class KerningManager:
         """
         return getattr(self, self.SAMPLE_MODES[context])(g, length, index)
 
-    def getSpacingSample_Glyphset(self, g, length, index):
-        """Sample mode 0. Answer the sample, containing the full glyphset in the current RoboFont sorting"""
-        sample = ['O', g.name, 'O', g.name, 'O', g.name, 'O', 'H', g.name, 'H', g.name, 'H', g.name, 'H']
-        while len(sample) < length:
-            sample.append(g.name)
-        return sample
+    def getSpacingSample_GlyphSet(self, g, length, index):
+        """Sample mode 0. Answer the sample, containing the full glyphset in the current RoboFont sorting, sorted by unicode """
+        glyphNames = g.font.glyphOrder
+        return glyphNames[index - int(length / 2) : max(len(glyphNames), index + int(length / 2))]
 
     def getSpacingSample_Similarity(self, g, length, index):
         """Sample mode 1. Answer the sample with glyphs matching the two similar sides of g"""
@@ -1454,25 +1460,19 @@ class KerningManager:
 
     def getSpacingSample_Spacing(self, g, length, index):
         """Sample mode 3. Answer the sample, containing glyphs in the same spacing types as defined in the GlyphData"""
+        print('Sample 3')
         sample = [g.name, g.name, g.name, 'H', 'a', 'm', 'b', 'u', 'r', 'g', 'e', 'f', 'o', 'n', 't', 's', 't', 'i', 'v', 'I', g.name, 'I', g.name, 'O', g.name, 'O', 'i', g.name, 'i', g.name, 'o', g.name, 'o']
         while len(sample) < length:
             sample.append(g.name)
         return sample
 
     def getSpacingSample_Kerning(self, g, length, index):
-        """Sample mode 3. Answer the sample for kerning matching the script of g"""
+        """Sample mode 4. Answer the sample for kerning matching the script of g"""
         sample = ['C', g.name, 'C', g.name, 'O', g.name, 'O', 'H', g.name, 'H', g.name, 'H', g.name, 'H']
         while len(sample) < length:
             sample.append(g.name)
         return sample
 
-    SAMPLE_MODES = {
-        0: 'getSpacingSample_GlyphSet',
-        1: 'getSpacingSample_Similarity',
-        2: 'getSpacingSample_Group',
-        3: 'getSpacingSample_Spacing',
-        4: 'getSpacingSample_Kerning',
-    }
     def expandFractions(self, s):
         for c1 in s:
             for c2 in s:

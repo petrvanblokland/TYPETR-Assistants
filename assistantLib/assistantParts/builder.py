@@ -97,8 +97,8 @@ class AssistantPartBuilder(BaseAssistantPart):
         vfPath = vfDirPath + self.DESIGN_SPACE_VF.replace('.designspace', '-%03d.ttf' % self.BUILD_VERSION)
 
         #os.system(f'rm {vfPath}/*.ttf')
-        #command = ["/usr/local/bin/fontmake", "-o", "variable", "-m", dsPath, "--output-path", vfPath, ">", errorPath, "2>", errorPath]
-        #print(' '.join(command))
+        command = ["/usr/local/bin/fontmake", "-o", "variable", "-m", dsPath, "--output-path", vfPath, ">", errorPath, "2>", errorPath]
+        print(' '.join(command))
         #try:
         #    subprocess.run(command, check=True)
         #    print("Fontmake completed successfully.")
