@@ -205,6 +205,7 @@ class AnchorData:
         'gravecomb.component3': _TOP,
         'acutecomb.component3': _TOP,
         'gravecomb.component': _TOP,
+        'acutegraveacutecomb': _TOP,
 
         'commabelowcomb': _BOTTOM,
         'gravebelowcomb': _BOTTOM,
@@ -479,7 +480,7 @@ class AnchorData:
         'ycircumflex', 'ydieresis', 'ydotaccent', 'ydotbelow', 'ygrave', 'yhookabove', 'ymacron', 'yot', 'yring', 'ystroke', 'ytilde', 'z', 'zacute', 'zcaron', 
         'zcircumflex', 'zdotaccent', 'zdotbelow', 'zlinebelow', 'zmiddletilde', 'zpalatalhook', 
         'tildeoverlaycomb', 'strokeshortcomb', 'strokelongcomb', 'slashshortcomb', 'slashlongcomb',  'idieresisacute', 'ihookabove', 'igrave',
-        'iacute','icircumflex', 'idieresis', 
+        'iacute','icircumflex', 'idieresis', 'Ohornacute', 'Ohorndotbelow', 'Ohorngrave', 'Ohornhookabove', 'Ohorntilde',
         }
 
     BOTTOM_ANCHORS = {'A', 'Aring', 'Aringacute', 'A-cy', 'AE', 'AEacute', 'AEmacron', 'Aacute', 'Abreve', 'Abreve-cy', 'Abreveacute', 'Abrevedotbelow', 
@@ -730,5 +731,3 @@ class AnchorData:
         VERT_: VERT_ANCHORS,
     }
 AD = AnchorData
-
-print(sorted(AD.BOTTOM_ANCHORS))

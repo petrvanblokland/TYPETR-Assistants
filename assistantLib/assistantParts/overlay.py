@@ -22,7 +22,7 @@ class AssistantPartOverlay(BaseAssistantPart):
 
     #    O V E R L A Y
 
-    MAX_POINT_MARKERS = 100
+    MAX_POINT_MARKERS = 150 # Should be enough to show most glyphs
     
     OVERLAY_FILL_LEFT_COLOR = 0, 0, 0, 0.6
     OVERLAY_FILL_COLOR = 0, 0, 0, 0.6
@@ -183,10 +183,11 @@ class AssistantPartOverlay(BaseAssistantPart):
                 # Move point markers to this glyph, as much of the list as we need. 
                 for contour in gOverlay.contours:
                     for p in contour.points:
-                        #print(pIndex, len(self.previewPointMarkers))
-                        self.previewPointMarkers[pIndex].setPosition((x+p.x, p.y))
-                        self.previewPointMarkers[pIndex].setVisible(True)
-                        pIndex += 1
+                        if pIndex < len(self.previewPointMarkers): # Test if there is no overflow.
+                            #print(pIndex, len(self.previewPointMarkers))
+                            self.previewPointMarkers[pIndex].setPosition((x+p.x, p.y))
+                            self.previewPointMarkers[pIndex].setVisible(True)
+                            pIndex += 1
         else:
             self.previewGlyphOverlay.setVisible(False)
 

@@ -97,8 +97,8 @@ class AssistantPartBuilder(BaseAssistantPart):
         vfPath = vfDirPath + self.DESIGN_SPACE_VF.replace('.designspace', '-%03d.ttf' % self.BUILD_VERSION)
 
         #os.system(f'rm {vfPath}/*.ttf')
-        command = ["/usr/local/bin/fontmake", "-o", "variable", "-m", dsPath, "--output-path", vfPath, ">", errorPath, "2>", errorPath]
-        print(' '.join(command))
+        #command = ["/usr/local/bin/fontmake", "-o", "variable", "-m", dsPath, "--output-path", vfPath, ">", errorPath, "2>", errorPath]
+        #print(' '.join(command))
         #try:
         #    subprocess.run(command, check=True)
         #    print("Fontmake completed successfully.")
@@ -108,29 +108,26 @@ class AssistantPartBuilder(BaseAssistantPart):
 
         print(f'... Generating VF from {dsPath}')
         fontProject = FontProject()
-        try:
-            fontProject.run_from_designspace(dsPath, 
-                output='variable',
-                output_dir=vfDirPath, 
-                interpolate=True, 
-                #remove_overlaps=True, 
-                #optimize_cff=True, 
-                autohint=True, 
-                #use_afdko=True, 
-                #subset=True, 
-                #keep_glyphnames=True, 
-                #keep_overlaps=True, 
-                #keep_direction=True, 
-                #notoSans=True, 
-                #optimize=True, 
-                #family_name=None, 
-                #style_name=None, 
-                #mtlk=False, 
-                #notdef_outline=False, 
-                verbose=True)
-            print("... Font build successful!")
-        except Exception as e:
-            print(f"... Font build failed: {e}")
+
+        fontProject.run_from_designspace(dsPath, 
+            output='variable',
+            output_dir=vfDirPath, 
+            interpolate=True, 
+            #remove_overlaps=True, 
+            #optimize_cff=True, 
+            autohint=True, 
+            #use_afdko=True, 
+            #subset=True, 
+            #keep_glyphnames=True, 
+            #keep_overlaps=True, 
+            #keep_direction=True, 
+            #notoSans=True, 
+            #optimize=True, 
+            #family_name=None, 
+            #style_name=None, 
+            #mtlk=False, 
+            #notdef_outline=False, 
+            verbose=True)
 
     def proofCallback(self, sender):
         f = CurrentFont() # Get it for checking glyph widths, unicodes, etc.

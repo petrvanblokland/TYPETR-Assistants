@@ -48,9 +48,10 @@ class AssistantPartItalicize(BaseAssistantPart):
         self.w.skipItalicizedComponents = CheckBox((C1, y, CW, L), 'Skip components', value=True, sizeStyle='small')
         self.w.addItalicizedExtremes = CheckBox((C0, y+LL, CW, L), 'Add extremes', value=True, sizeStyle='small')
         self.w.skewRotate = CheckBox((C1, y+LL, CW, L), 'Skew & rotate', value=False, sizeStyle='small')
+        self.w.decomposeItalicized = CheckBox((C1, y+LL+LL, CW, L), 'Decompose italic', value=False, sizeStyle='small')
 
         self.w.italicizeButton = Button((C2, y+LL/2, CW, L), 'Italicize [%s]' % personalKey, callback=self.italicizeCallback)
-        y += L + LL
+        y += L + 2*LL
 
         return y
 
@@ -191,6 +192,10 @@ class AssistantPartItalicize(BaseAssistantPart):
         dstG.angledRightMargin = srcG.angledRightMargin
         
         dstG.copyToLayer('background', dstG)
+
+        if c.w.decomposeItalicized.get():
+            dstG.decompose()
+
         #dstG.removeSelection()
         return True # Glyph changed
 

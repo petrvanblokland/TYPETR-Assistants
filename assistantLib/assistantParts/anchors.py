@@ -184,7 +184,7 @@ class AssistantPartAnchors(BaseAssistantPart):
                     ba = self.getAnchor(baseGlyph, a.name)
                     if ba is not None:
                         changed = self._setAnchorXY(g, a, ba.x + dx, ba.y + dy, italicize=False) # Anchors from base are already italicized.
-                continue
+                    continue
 
             if xMode <= 1: # X-Box/2
                 #print(xMode, 'X-Box/2', a.name)
