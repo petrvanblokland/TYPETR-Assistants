@@ -50,7 +50,11 @@ class MasterData:
     def __init__(self, name=None, ufoPath=None, 
             srcUFOPath=None, someUFOPath=None, orgUFOPath=None, kerningSrcUFOPath=None, romanItalicUFOPath=None, 
             italicAngle=0, italicSkew=None, italicRotation=None, isItalic=False,
-            m0=None, m1=None, m2=None, sm1=None, sm2=None, dsPosition=None,
+            dsPosition=None,
+            m0=None, # Origin of the design space
+            m1=None, m2=None, # Used for interpolating spacing, outlines, anchor positions, component positions
+            sm1=None, sm2=None, # Scalerpolate masters for condensed and extended making
+            osm1=None, osm2=None, # Previous and next master on the same optical size level
             tripletData1=None, tripletData2=None, featurePath=None, 
             # GlyphSet instance, describing the glyph set and GlyphData characteristics. This attribute must be defined
             glyphSet=None, 
@@ -110,14 +114,16 @@ class MasterData:
         self.orgUFOPath = orgUFOPath # "Original" master of this font for overlay reference
         self.romanItalicUFOPath = romanItalicUFOPath # Roman <---> Italic master reference
         self.kerningSrcUFOPath = kerningSrcUFOPath # Used as kerning reference.
-        
+
         # Interpolation & design space
         self.interpolationFactor = 0.5
         self.m0 = m0 # Regular origin
         self.m1 = m1 # Direct interpolation master in "min" side
         self.m2 = m2 # Direct interpolation master on "max" side
-        self.sm1 = sm1
-        self.sm2 = sm2, # Scalerpolate masters for condensed and extended making. 
+        self.sm1 = sm1 # Scalerpolate masters for condensed and extended making.
+        self.sm2 = sm2
+        self.osm1 = osm1 # If defined, lighter master on same optical size level
+        self.osm2 = osm2 # If defined, bolder master on same optical size level
         
         # Design space position (matching .designspace) to calculate triplet kerning.
         # This can be different from HStem (with m1, m2) interpolation.

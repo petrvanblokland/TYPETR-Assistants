@@ -88,6 +88,7 @@ class AssistantPartBuilder(BaseAssistantPart):
         which runs in the background, can have a multi-stage sequecen of design spaces, etc.
         """
         projectPath = self.filePath2ParentPath(self.PROJECT_PATH)
+
         vfDirPath = projectPath + 'vf/'
         if not os.path.exists(vfDirPath):
             os.mkdir(vfDirPath)
@@ -98,6 +99,10 @@ class AssistantPartBuilder(BaseAssistantPart):
 
         #os.system(f'rm {vfPath}/*.ttf')
         #command = ["/usr/local/bin/fontmake", "-o", "variable", "-m", dsPath, "--output-path", vfPath, ">", errorPath, "2>", errorPath]
+        cmd = f'fontmake -o variable -m {dsPath} --output-path {vfPath}' #, ">", errorPath, "2>", errorPath]
+        print(cmd)
+        return 
+        
         #print(' '.join(command))
         #try:
         #    subprocess.run(command, check=True)
@@ -111,7 +116,8 @@ class AssistantPartBuilder(BaseAssistantPart):
 
         fontProject.run_from_designspace(dsPath, 
             output='variable',
-            output_dir=vfDirPath, 
+            output_dir=vfDirPath,
+            master_path=projectPath, 
             interpolate=True, 
             #remove_overlaps=True, 
             #optimize_cff=True, 
