@@ -703,35 +703,57 @@ class AssistantController(BaseAssistant, WindowController):
         for buildUIMethodName in self.BUILD_UI_METHODS:
             y = getattr(self, buildUIMethodName)(y)
         # Some default buttons that every assistant window should have
-        y = -self.L-self.M
-        c.w.fixGlyphSet = CheckBox((self.C0, y, self.CW, self.L), 'Fix glyphset', value=False, sizeStyle='small')
-        c.w.checkFixGlyphsetButton = Button((self.C1, y, self.CW, self.L), 'Fix glyphset', callback=self.checkFixGlyphsetCallback)
+        y = -2*self.L-self.M
+        c.w.fixAllButton = Button((self.C0, y, self.CW, self.L), 'Fix all', callback=self.fixAllCallback)
+        c.w.checkFixGlyphsetButton = Button((self.C1, y, self.CW, self.L), 'Fix glyphset', callback=self.checkFixGlyphSetCallback)
         c.w.saveAllButton = Button((self.C2, y, self.CW, self.L), 'Save all', callback=self.saveAllCallback)
+        y += self.L
+        c.w.fixAllSafety = CheckBox((self.C0, y, self.CW, self.L), 'Fix all safety', value=False, sizeStyle='small')
+        c.w.fixGlyphSetSafety = CheckBox((self.C1, y, self.CW, self.L), 'Fix glyphset safety', value=False, sizeStyle='small')
+
+    def fixAllCallback(self, sender):
+        """This button will call automatic fixes on all open fonts that are available."""
+        c = self.getController()
+        if c.w.fixAllSafety.get(): # Safe checkbox should be set for safety
+            for f in AllFonts():
+                print(f'... Fixing all of {f.path}')
+                self.checkFixGlyphSet(f)
+                f.save()
+        else:
+            print(f'### Check [x] Fix all to enable this button.')
 
     def saveAllCallback(self, sender):
         for f in AllFonts():
             print(f'... Save {f.path}')
             f.save()
 
-    def checkFixGlyphsetCallback(self, sender):
+    def checkFixGlyphSetCallback(self, sender):
         """Check/fix the glyphset according to the defined MasterData.glyphSet records."""
-        cg = self.getCurrentGlyph()
-        md = self.getMasterData(cg.font)
+        c = self.getController()
+        if c.w.fixGlyphSetSafety.get(): # Safe checkbox should be set for safety
+            f = seld.getCurrentFont()
+            self.checkFixGlyphSet(f)
+        else:
+            print(f'### Check [x] Fix glyphset to enable this button.')
+
+    def checkFixGlyphSet(self, f):
+        """Check/fix the glyphset according to the defined MasterData.glyphSet records."""
+        md = self.getMasterData(f)
         # Find missing glyphs
         for gName in sorted(md.glyphSet.keys()):
-            if not gName in cg.font:
+            if not gName in f:
                 if self.w.fixGlyphSet.get():
                     print(f'... Create missing glyph /{gName}')
-                    cg.font.newGlyph(gName)
+                    f.newGlyph(gName)
                 else:
                     print(f'### Missing glyph /{gName}')
 
         # Find obsolete glyphs to delete
-        for gName in sorted(cg.font.keys()):
+        for gName in sorted(f.keys()):
             if not gName in md.glyphSet.keys():
                 if self.w.fixGlyphSet.get():
                     print(f'... Delete obsolete glyph /{gName}')
-                    del cg.font[gName]
+                    del f[gName]
                 else:
                     print(f'### Obsolete glyph /{gName}')
 

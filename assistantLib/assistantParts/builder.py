@@ -11,7 +11,7 @@
 import sys, os
 from math import *
 from vanilla import *
-import drawBot as db
+#import drawBot as db
 
 from fontmake.font_project import FontProject
 
@@ -99,9 +99,9 @@ class AssistantPartBuilder(BaseAssistantPart):
 
         #os.system(f'rm {vfPath}/*.ttf')
         #command = ["/usr/local/bin/fontmake", "-o", "variable", "-m", dsPath, "--output-path", vfPath, ">", errorPath, "2>", errorPath]
-        cmd = f'fontmake -o variable -m {dsPath} --output-path {vfPath}' #, ">", errorPath, "2>", errorPath]
-        print(cmd)
-        return 
+        #cmd = f'fontmake -o variable -m {dsPath} --output-path {vfPath}' #, ">", errorPath, "2>", errorPath]
+        #print(cmd)
+        #return 
         
         #print(' '.join(command))
         #try:

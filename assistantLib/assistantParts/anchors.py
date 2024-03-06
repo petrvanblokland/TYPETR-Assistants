@@ -168,7 +168,7 @@ class AssistantPartAnchors(BaseAssistantPart):
             if g.width == 0:
                 ix = self.italicX(g, 0, a.y)
                 if abs(ix - a.x) >= 1: # Not in position, move it
-                    print(f'... Move /{g.name} anchor {a.name} from {a.x} to {ix}')
+                    print(f'... Move /{g.name} anchor.x {a.name} from {a.x} to {ix}')
                     a.x = ix # Only change x position for this.
                     changed = True
                 continue
@@ -242,6 +242,12 @@ class AssistantPartAnchors(BaseAssistantPart):
                     if ba is not None:
                         changed = self._setAnchorXY(g, a, ba.x + dx, ba.y + dy, italicize=False) # Anchors from base are already italicized.
                 continue
+
+            # H A C K S
+
+            if a.name == AD._TOP and a.y < 100:
+                a.y = f.info.xHeight - 16
+                changed = True
 
             if yMode == 1: # Y-Metrics
                 #print(yMode, 'Y-Metrics', a.name')

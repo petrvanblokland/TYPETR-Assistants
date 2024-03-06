@@ -729,7 +729,7 @@ class AssistantPartNeon(BaseAssistantPart):
         md = self.getMasterData(g.font)
         d = md.distance # Minimal distance between tubes
         stemRadius = md.thickness - md.stemOvershoot # Radius of the stem overshoot point marker
-        currentFont = self.currentFont()
+        currentFont = self.getCurrentFont()
 
         pIndex = 0
         if g is not None and currentFont is not None and currentFont.path == f.path:

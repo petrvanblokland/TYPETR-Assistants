@@ -32,12 +32,17 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
     MAX_FAMILY_START_POINTS = 100 # Masters * max number of contours
     FAMILY_OVERVIEW_START_POINT_SIZE = 10/FAMILY_OVERVIEW_SCALE
     FAMILY_OVERVIEW_START_POINT_COLOR = 0.9, 0.2, 0.6, 0.8
+
+    MAX_FAMILY_ANCHORS = MAX_FAMILY_START_POINTS * 3 # Geussing the max amount of anchors to show
+    FAMILY_OVERVIEW_ANCHOR_SIZE = 16/FAMILY_OVERVIEW_SCALE
+    FAMILY_OVERVIEW_ANCHOR_COLOR = 0.1, 0.9, 0.2, 0.8
+
     FAMILY_DEFAULT_FILL_COLOR = 0, 0, 0, 1
     FAMILY_HOVER_FILL_COLOR = 1, 0, 0, 1
     FAMILY_INTERPOLATION_ERROR_FILL_COLOR = 0.3, 0.2, 1, 1 # Error color of interpolation is not compatible
     FAMILY_LABEL_FONT = 'Verdana'
     FAMILY_LABEL_SIZE = 12
-    FAMILY_LABEL_SPACING = 1.5 # Factor to unitsPerEm distance between the styles, leave space for the style names
+    FAMILY_LABEL_SPACING = 0.5 # Factor to unitsPerEm distance between the styles, leave space for the style names
 
     def initMerzFamilyOverview(self, container):    
         # Previewing current glyphs on left/right side, with the style name of each master        
@@ -77,6 +82,17 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
             subLayer.addScaleTransformation(self.FAMILY_OVERVIEW_SCALE)
             self.familyOverviewStartPoints.append(subLayer)            
         
+        self.familyOverviewAnchors = []
+        for spIndex in range(self.MAX_FAMILY_ANCHORS): # Max amount of start points to show
+            subLayer = container.appendOvalSublayer(name="familyOverviewAnchors%03d" % spIndex,
+                position=(0, 0),
+                size=(self.FAMILY_OVERVIEW_ANCHOR_SIZE, self.FAMILY_OVERVIEW_ANCHOR_SIZE),
+                fillColor=self.FAMILY_OVERVIEW_ANCHOR_COLOR,
+                visible=False,
+            )
+            subLayer.addScaleTransformation(self.FAMILY_OVERVIEW_SCALE)
+            self.familyOverviewAnchors.append(subLayer)            
+        
     def updateMerzFamilyOverview(self, info):
         """Position the overview Merz elements on x = 0 and y = g.font.info.unitsPerEm""" 
         c = self.getController()
@@ -90,6 +106,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
 
             parentPath = self.filePath2ParentPath(f.path)
             spIndex = 0 # Index of start point Merz 
+            aIndex = 0 # Index of anchor point Merz
 
             startPos, totalFamilyOverviewSingleWidth = self.getStartPointAndSingleWidthFamilyOverview(g)
                         
@@ -122,11 +139,19 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                             self.familyOverviewStartPoints[spIndex].setVisible(True)
                             spIndex += 1
 
+                        for a in ufoG.anchors:
+                            pos = x + a.x - self.FAMILY_OVERVIEW_ANCHOR_SIZE/2, y + a.y - self.FAMILY_OVERVIEW_ANCHOR_SIZE/2
+                            self.familyOverviewAnchors[aIndex].setPosition(pos)
+                            self.familyOverviewAnchors[aIndex].setVisible(True)
+                            aIndex += 1
+
         for n in range(nIndex, len(self.familyOverviewGlyphs)):
             self.familyOverviewGlyphs[n].setVisible(False)
             self.familyOverviewStyleName[n].setVisible(False)
         for n in range(spIndex, len(self.familyOverviewStartPoints)):
             self.familyOverviewStartPoints[n].setVisible(False)
+        for n in range(aIndex, len(self.familyOverviewAnchors)):
+            self.familyOverviewAnchors[n].setVisible(False)
             
     def getStartPointAndSingleWidthFamilyOverview(self, g):
         f = g.font
