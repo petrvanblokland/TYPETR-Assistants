@@ -21,6 +21,8 @@ import sys, copy
 from math import *
 from vanilla import *
 
+from mojo.roboFont import AllFonts
+
 # Add paths to libs in sibling repositories
 PATHS = ('../TYPETR-Assistants/',)
 for path in PATHS:
@@ -111,7 +113,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         c.w.anchorXModes = RadioGroup((C0, y, 3*CW, L), ('X-Base', 'X-Box/2', 'X-Rom/Ita', 'X-Width/2', 'X-Manual'), isVertical=False, sizeStyle='small', callback=self.anchorXModesCallback)
         c.w.anchorXModes.set(0)
         y += L
-        c.w.anchorYModes = RadioGroup((C0, y, 3*CW*3/5, L), ('Y-Base', 'Y-Metrics', 'Y-Manual'), isVertical=False, sizeStyle='small', callback=self.anchorYModesCallback)
+        c.w.anchorYModes = RadioGroup((C0, y, 3*CW*4/5, L), ('Y-Diacritics', 'Y-Base', 'Y-Metrics', 'Y-Manual'), isVertical=False, sizeStyle='small', callback=self.anchorYModesCallback)
         c.w.anchorYModes.set(0)
         # Line color is crashing RoboFont
         #y += L # Closing line for the part UI
@@ -129,20 +131,30 @@ class AssistantPartAnchors(BaseAssistantPart):
             g.changed() # Force update. UpdateAnchors will then check and update.
 
     def anchorXModesCallback(self, sender):
+        """Save the x-mode selection in the name glyph for all open fonts."""
         changed = False
         g = self.getCurrentGlyph()
-        self.getLib(g, 'Anchors', {})['Xmode'] = sender.get()
-        changed |= self._fixGlyphAnchorsX(g)
-        if changed:
-            g.changed()
+        for f in AllFonts(): # Keep them compatible for the same glyph in all fonts
+            if g.name not in f:
+                continue
+            gg = f[g.name]
+            self.getLib(gg, 'Anchors', {})['Xmode'] = sender.get()
+            changed |= self._fixGlyphAnchorsX(gg)
+            if changed:
+                gg.changed()
 
     def anchorYModesCallback(self, sender):
+        """Save the y-mode selection in the name glyph for all open fonts."""
         changed = False
         g = self.getCurrentGlyph()
-        self.getLib(g, 'Anchors', {})['Ymode'] = sender.get()
-        changed |= self._fixGlyphAnchorsY(g)
-        if changed:
-            g.changed()
+        for f in AllFonts(): # Keep them compatible for the same glyph in all fonts
+            if g.name not in f:
+                continue
+            gg= f[g.name]
+            self.getLib(gg, 'Anchors', {})['Ymode'] = sender.get()
+            changed |= self._fixGlyphAnchorsY(gg)
+            if changed:
+                gg.changed()
 
     def checkFixAnchorsXPosition(self, g):
         """Check/fix the x-position of the anchors named in AD.CENTERING_ANCHORS. It is assumed there that all anchors exist."""
@@ -249,8 +261,10 @@ class AssistantPartAnchors(BaseAssistantPart):
                 a.y = f.info.xHeight - 16
                 changed = True
 
-            if yMode == 1: # Y-Metrics
-                #print(yMode, 'Y-Metrics', a.name')
+            # Y - S C E N A R I O S
+
+            if yMode in (0, 1): # Y-Diacritics or Y-Metrics
+                #print(yMode, 'Y-Diacritics or Y-Metrics', a.name')
 
                 done = None
                 y = None
@@ -320,7 +334,7 @@ class AssistantPartAnchors(BaseAssistantPart):
                     changed |= self._setAnchorY(g, a, y) # Move the anchor to its new y position, also adjusting the x-position accordingly
                 continue
 
-            if yMode == 2: # Y-Manual
+            elif yMode == 2: # Y-Manual
                 #print(yMode, 'Y-Manual', a.name')
                 pass
         

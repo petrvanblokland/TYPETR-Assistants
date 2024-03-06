@@ -35,7 +35,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
 
     MAX_FAMILY_ANCHORS = MAX_FAMILY_START_POINTS * 3 # Geussing the max amount of anchors to show
     FAMILY_OVERVIEW_ANCHOR_SIZE = 16/FAMILY_OVERVIEW_SCALE
-    FAMILY_OVERVIEW_ANCHOR_COLOR = 0.1, 0.9, 0.2, 0.8
+    FAMILY_OVERVIEW_ANCHOR_COLOR = 0.1, 0.3, 0.8, 0.8
 
     FAMILY_DEFAULT_FILL_COLOR = 0, 0, 0, 1
     FAMILY_HOVER_FILL_COLOR = 1, 0, 0, 1
