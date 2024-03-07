@@ -2391,7 +2391,7 @@ class MS_GlyphSet(GlyphSet):
        'tonefive': GD(name='tonefive', uni=0x01BD, hex='01BD', c='ƽ', l='five', r='five', srcName='uni01BD', isLower=True, gid=382),
        'tonesix': GD(name='tonesix', uni=0x0185, hex='0185', c='ƅ', srcName='uni0185', isLower=True, gid=326),
        'tonetwo': GD(name='tonetwo', uni=0x01A8, hex='01A8', c='ƨ', l2r='s', r2l='s', srcName='uni01A8', isLower=True, gid=361),
-       'tonos': GD(name='tonos', uni=0x0384, hex='0384', c='΄', w=0, anchors=[], isLower=True, gid=524),
+       'tonos': GD(name='tonos', uni=0x0384, hex='0384', c='΄', w=0, base='tonoscomb', anchors=[], isLower=True, gid=524),
        'tonos-uc': GD(name='tonos-uc', w=0, isLower=True, anchors=['_tonos'], gid=1709),
        'tonoscomb': GD(name='tonoscomb', isLower=True),
        'tpalatalhook': GD(name='tpalatalhook', uni=0x01AB, hex='01AB', c='ƫ', l='t', r='jdotless', srcName='uni01AB', isLower=True, gid=364, comment='Tonos for caps, connected to _tonos anchor'),
