@@ -87,6 +87,9 @@ class AssistantPartAnchors(BaseAssistantPart):
         """If the checkbox is set, then try to check and fix automated margins and width."""
         changed = False
         c = self.getController()
+        if c is None: # In case the window is closed
+            return False
+
         g = info['glyph']
         if g is None:
             return False # Nothing changed to the glyph

@@ -701,6 +701,9 @@ class AssistantPartSpacer(BaseAssistantPart):
         If something changed, then answer True. 
         """
         c = self.getController()
+        if c is None: # The window may have been closed
+            return False # Nothing happened
+
         changed = False
         fillColor = 0, 0, 0, 0.2
         strokeColor = 0, 0, 0, 0
@@ -715,7 +718,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             label = ''
 
             # First check if there is a masterData spacing source defined, that overwrites all other spacing rules
-            if md.spacingSrcUFOPath is not None:
+            if md.spacingSrcUFOPath is not None and g.width:  # Only if defined and the glyph has width
                 src = self.getFont(md.spacingSrcUFOPath)
                 if g.name in src:
                     lm = src[g.name].angledLeftMargin + md.spacingOffset
@@ -723,6 +726,9 @@ class AssistantPartSpacer(BaseAssistantPart):
                     changed = km.fixLeftMargin(g, lm, label)
                 else:
                     print(f'### Glyph /{g.name} does not exist in spacing ref {md.spacingSrcUFOPath}')
+
+            elif g.leftMargin is None: # Empty glyph, can't set left/right margin
+                pass
 
             else: # Otherwise 
                 referenceLabel = gd.leftSpaceSourceLabel # Test the existence of a reference label to know if there is one.
@@ -784,7 +790,7 @@ class AssistantPartSpacer(BaseAssistantPart):
 
             label = ''
 
-            if md.spacingSrcUFOPath is not None:
+            if md.spacingSrcUFOPath is not None and g.width: # Only if defined and if the glyph has width
                 src = self.getFont(md.spacingSrcUFOPath)
                 if g.name in src:
                     rm = src[g.name].angledRightMargin + md.spacingOffset
@@ -792,6 +798,9 @@ class AssistantPartSpacer(BaseAssistantPart):
                     changed = km.fixRightMargin(g, rm, label)
                 else:
                     print(f'### Glyph /{g.name} does not exist in spacing ref {md.spacingSrcUFOPath}')
+
+            elif g.rightMargin is None: # Empty glyph, can't set left/right margin
+                pass
 
             else:
                 referenceLabel = gd.rightSpaceSourceLabel # Test the existence of a reference label to know if there is one.

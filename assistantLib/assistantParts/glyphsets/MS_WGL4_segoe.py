@@ -32,6 +32,11 @@ class MS_GlyphSet(GlyphSet):
     """
 
     MIN_MARGIN = 24
+    EM_WIDTH = 2048
+    EN_WIDTH = int(EM_WIDTH/2)
+    SPACE_WIDTH = int(EM_WIDTH/5)
+    FIGURE_WIDTH = 1265
+    HAIR_WIDTH = int(EM_WIDTH/8)
 
     # The "c" attribtes are redundant, if the @uni or @hex atre defined, but they are offer easy searching in the source by char.
     GLYPH_DATA = {
@@ -40,8 +45,14 @@ class MS_GlyphSet(GlyphSet):
 
        '.notdef': GD(name='.notdef'),
        '.null': GD(name='.null', uni=0x0000, hex='0000', unicodes=(0, 13), gid=1),
-       'nbspace': GD(name='nbspace', uni=0x00A0, hex='00A0', c=' ', srcName='nonbreakingspace', isLower=True, gid=97, comment='  Symbols, Latin-1 Punctuation and'),
+       'nbspace': GD(name='nbspace', uni=0x00A0, hex='00A0', w=SPACE_WIDTH, c=' ', srcName='nonbreakingspace', isLower=True, gid=97, comment='  Symbols, Latin-1 Punctuation and'),
+       'space': GD(name='space', uni=0x0020, hex='0020', w=SPACE_WIDTH, c=' ', isLower=True, gid=2, comment='  Symbols, ASCII Punctuation and'),
+       'emspace': GD(name='emspace', uni=0x2003, hex='2003', w=EM_WIDTH, c=' ', isLower=True),
+       'enspace': GD(name='enspace', uni=0x2002, hex='2002', w=EN_WIDTH, c=' ', isLower=True),
+       'figurespace': GD(name='figurespace', uni=0x2007, w=FIGURE_WIDTH, hex='2007', c=' ', isLower=True),
+       'hairspace': GD(name='hairspace', uni=0x200A, hex='200A', w=HAIR_WIDTH, c=' ', isLower=True),
        'spacemarker': GD(name='spacemarker', w=0),
+       'narrownbspace': GD(name='narrownbspace', uni=0x202F, w=HAIR_WIDTH, hex='202F', c=' ', isLower=True),
         
         #   A
 
@@ -178,8 +189,8 @@ class MS_GlyphSet(GlyphSet):
         #   D
 
        'D': GD(name='D', uni=0x0044, hex='0044', c='D', l='H', r='O', anchors=['top', 'middle', 'bottom'], gid=38, comment='D'),
-       'DZ': GD(name='DZ', uni=0x01F1, hex='01F1', c='Ǳ', l='D', r='Z', base='D', accents=['Z'], srcName='uni01F1', anchors=['top', 'middle', 'bottom'], gid=434),
-       'DZcaron': GD(name='DZcaron', autoFixComponentPositions=False, uni=0x01C4, hex='01C4', c='Ǆ', l='D', r='Z', base='D', accents=['Z', 'caroncomb'], srcName='uni01C4', fixAccents=False, anchors=['top', 'middle', 'bottom'], gid=389),
+       'DZ': GD(name='DZ', uni=0x01F1, hex='01F1', c='Ǳ', l='D', r='Z', base='D', accents=['Z'], srcName='uni01F1', anchors=['top'], gid=434),
+       'DZcaron': GD(name='DZcaron', autoFixComponentPositions=False, uni=0x01C4, hex='01C4', c='Ǆ', l='D', r='Z', base='D', accents=['Z', 'caroncomb'], srcName='uni01C4', fixAccents=False, anchors=[], gid=389),
        'Dafrican': GD(name='Dafrican', uni=0x0189, hex='0189', c='Ɖ', l='Eth', r='D', base='Eth', srcName='uni0189', gid=330, comment='Ɖ D, LATIN CAPITAL LETTER AFRICAN'),
        'Dcaron': GD(name='Dcaron', uni=0x010E, hex='010E', c='Ď', l='D', r='D', base='D', accents=['caroncomb'], anchors=['top', 'middle', 'bottom'], gid=207, comment='Ď'),
        'Dcedilla': GD(name='Dcedilla', uni=0x1E10, hex='1E10', c='Ḑ', l='D', r='D', base='D', accents=['cedillacomb.component1'], srcName='uni1E10', anchors=['top', 'middle', 'bottom'], gid=939),
@@ -198,8 +209,8 @@ class MS_GlyphSet(GlyphSet):
        'Dmod': GD(name='Dmod', uni=0x1D30, hex='1D30', c='ᴰ', isMod=True),
        'Dsmall': GD(name='Dsmall', uni=0x1D05, hex='1D05', c='ᴅ', l='D', r='D', isSc=True),
        'Dtopbar': GD(name='Dtopbar', uni=0x018B, hex='018B', c='Ƌ', srcName='uni018B', gid=332),
-       'Dz': GD(name='Dz', uni=0x01F2, hex='01F2', c='ǲ', l='D', r='z', base='D', accents=['z'], srcName='uni01F2', anchors=['top', 'middle', 'bottom'], gid=435),
-       'Dzcaron': GD(name='Dzcaron', autoFixComponentPositions=False, uni=0x01C5, hex='01C5', c='ǅ', l='D', r='z', base='D', accents=['z', 'caroncomb'], srcName='uni01C5', fixAccents=False, anchors=['top', 'middle', 'bottom'], gid=390),
+       'Dz': GD(name='Dz', uni=0x01F2, hex='01F2', c='ǲ', l='D', r='z', base='D', accents=['z'], srcName='uni01F2', anchors=['top'], gid=435),
+       'Dzcaron': GD(name='Dzcaron', autoFixComponentPositions=False, uni=0x01C5, hex='01C5', c='ǅ', l='D', r='z', base='D', accents=['z', 'caroncomb'], srcName='uni01C5', fixAccents=False, anchors=[], gid=390),
        'Dze-cy': GD(name='Dze-cy', uni=0x0405, hex='0405', c='Ѕ', l='S', r='S', base='S', anchors=['top', 'middle', 'bottom'], gid=650),
        'Dzeabkhasian-cy': GD(name='Dzeabkhasian-cy', uni=0x04E0, hex='04E0', c='Ӡ', l='three', r='B', gid=869),
        'Dzhe-cy': GD(name='Dzhe-cy', uni=0x040F, hex='040F', c='Џ', l='H', r='H', gid=660),
@@ -1271,9 +1282,9 @@ class MS_GlyphSet(GlyphSet):
        'dtail': GD(name='dtail', uni=0x0256, hex='0256', c='ɖ', w='d', isLower=True, gid=459, comment='Glyph unicode 0256 is the lowercase letter "ɖ" in the International Phonetic Alphabet (IPA). It is used to represent a voiced retroflex plosive sound in various languages, including African languages such as Igbo, Yoruba, and Ewe. It is also used in some Native American languages such as Navajo and Tlingit. In linguistics, the IPA is commonly used to transcribe the sounds of human speech, and the glyph unicode 0256 helps to accurately represent this specific sound.'),
        'dtopbar': GD(name='dtopbar', uni=0x018C, hex='018C', c='ƌ', srcName='uni018C', isLower=True, gid=333),
        'dum': GD(name='dum', uni=0xA771, hex='A771', c='ꝱ', r='hyphen', base='d', isLower=True, anchors=['top', 'middle', 'bottom']),
-       'dz': GD(name='dz', uni=0x01F3, hex='01F3', c='ǳ', l='d', r='z', base='d', accents=['z'], srcName='uni01F3', isLower=True, anchors=['top', 'middle', 'bottom'], gid=436),
+       'dz': GD(name='dz', uni=0x01F3, hex='01F3', c='ǳ', l='d', r='z', base='d', accents=['z'], srcName='uni01F3', isLower=True, anchors=['top'], gid=436),
        'dzaltone': GD(name='dzaltone', uni=0x02A3, hex='02A3', c='ʣ', l='d', r='z', isLower=True),
-       'dzcaron': GD(name='dzcaron', autoFixComponentPositions=False, uni=0x01C6, hex='01C6', c='ǆ', l='d', r='z', base='d', accents=['z', 'caroncomb'], srcName='uni01C6', isLower=True, anchors=['top', 'middle', 'bottom'], gid=391),
+       'dzcaron': GD(name='dzcaron', autoFixComponentPositions=False, uni=0x01C6, hex='01C6', c='ǆ', l='d', r='z', base='d', accents=['z', 'caroncomb'], srcName='uni01C6', isLower=True, anchors=[], gid=391),
        'dzcurl': GD(name='dzcurl', uni=0x02A5, hex='02A5', c='ʥ', l='d', r='zcurl', isLower=True),
        'dze-cy': GD(name='dze-cy', uni=0x0455, hex='0455', c='ѕ', l='s', r='s', base='s', isLower=True, anchors=['top', 'middle', 'bottom'], gid=730),
        'dzeabkhasian-cy': GD(name='dzeabkhasian-cy', uni=0x04E1, hex='04E1', c='ӡ', bl='ezh', w='ezh', base='ezh', isLower=True, anchors=['top'], gid=870),
@@ -1333,7 +1344,6 @@ class MS_GlyphSet(GlyphSet):
        'emdash': GD(name='emdash', uni=0x2014, hex='2014', c='—', isLower=True, gid=1408, comment='— EM DASH'),
        'emod': GD(name='emod', uni=0x1D49, hex='1D49', c='ᵉ', srcName='uni1D49', isLower=True, isMod=True, gid=909),
        'emquad': GD(name='emquad', uni=0x2001, hex='2001', c=' ', isLower=True),
-       'emspace': GD(name='emspace', uni=0x2003, hex='2003', c=' ', isLower=True),
        'emtail-cy': GD(name='emtail-cy', uni=0x04CE, hex='04CE', c='ӎ', l='en-cy', r='iishorttail-cy', base='em-cy', accents=['tail.component'], isLower=True, gid=851),
        'en-cy': GD(name='en-cy', uni=0x043D, hex='043D', c='н', l2r='en-cy', isLower=True, gid=706),
        'endash': GD(name='endash', uni=0x2013, hex='2013', c='–', isLower=True, gid=1407, comment='– EN DASH'),
@@ -1347,7 +1357,6 @@ class MS_GlyphSet(GlyphSet):
        'enhook-cy': GD(name='enhook-cy', uni=0x04C8, hex='04C8', c='ӈ', l='en-cy', r='j', isLower=True, gid=845),
        'enotch': GD(name='enotch', uni=0x2C78, hex='2C78', c='ⱸ', r=MIN_MARGIN, isLower=True),
        'enquad': GD(name='enquad', uni=0x2000, hex='2000', c=' ', isLower=True),
-       'enspace': GD(name='enspace', uni=0x2002, hex='2002', c=' ', isLower=True),
        'entail-cy': GD(name='entail-cy', uni=0x04CA, hex='04CA', c='ӊ', l='en-cy', r='iishorttail-cy', base='en-cy', accents=['tail.component'], isLower=True, gid=847),
        'eogonek': GD(name='eogonek', uni=0x0119, hex='0119', c='ę', base='e', accents=['ogonekcomb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=218, comment='ę E WITH OGONEK, LATIN SMALL LETTER'),
        'eopen': GD(name='eopen', uni=0x025B, hex='025B', c='ɛ', base='epsilon', isLower=True, anchors=['top'], gid=462),
@@ -1446,7 +1455,6 @@ class MS_GlyphSet(GlyphSet):
        'fermatacomb': GD(name='fermatacomb', uni=0x0352, hex='0352', c='͒', w=0, isLower=True, anchors=['top', '_top']),
        'fi': GD(name='fi', uni=0xFB01, hex='FB01', c='ﬁ', isLower=True, gid=1586, comment='ﬁ f_i'),
        'figuredash': GD(name='figuredash', uni=0x2012, hex='2012', c='‒', isLower=True),
-       'figurespace': GD(name='figurespace', uni=0x2007, hex='2007', c=' ', isLower=True),
        'filledRect': GD(name='filledRect', uni=0x25AC, hex='25AC', c='▬', srcName='filledrect', isLower=True, gid=1557),
        'finsular': GD(name='finsular', uni=0xA77C, hex='A77C', c='ꝼ', w='r', isLower=True),
        'firsttonechinese': GD(name='firsttonechinese', uni=0x02C9, hex='02C9', w=0, c='ˉ', isLower=True, anchors=['top'], gid=1643),
@@ -1558,7 +1566,6 @@ class MS_GlyphSet(GlyphSet):
        'haabkhasian-cy': GD(name='haabkhasian-cy', uni=0x04A9, hex='04A9', c='ҩ', l='o', r='c', isLower=True, gid=814),
        'hadescender-cy': GD(name='hadescender-cy', uni=0x04B3, hex='04B3', c='ҳ', l='x', r='kadescender-cy', isLower=True, gid=824),
        'hahook-cy': GD(name='hahook-cy', uni=0x04FD, hex='04FD', c='ӽ', l='x', r='x', isLower=True, gid=898),
-       'hairspace': GD(name='hairspace', uni=0x200A, hex='200A', c=' ', isLower=True),
        'halfh': GD(name='halfh', uni=0x2C76, hex='2C76', c='ⱶ', r='hyphen', isLower=True),
        'hardsign-cy': GD(name='hardsign-cy', uni=0x044A, hex='044A', c='ъ', l='te-cy', r='softsign-cy', isLower=True, gid=719),
        'hardsigncomb-cy': GD(name='hardsigncomb-cy', uni=0xA678, hex='A678', c='ꙸ', w=0, isLower=True, anchors=['_top'], gid=1579),
@@ -1862,7 +1869,6 @@ class MS_GlyphSet(GlyphSet):
        'nacute': GD(name='nacute', uni=0x0144, hex='0144', c='ń', base='n', accents=['acutecomb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=261, comment='ń N WITH ACUTE, LATIN SMALL LETTER'),
        'naira': GD(name='naira', uni=0x20A6, hex='20A6', c='₦', isLower=True, gid=1439),
        'napostrophe': GD(name='napostrophe', uni=0x0149, hex='0149', c='ŉ', base='n', accents=['quoteright'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=266, comment='ŉ'),
-       'narrownbspace': GD(name='narrownbspace', uni=0x202F, hex='202F', c=' ', isLower=True),
        'nbhyphen': GD(name='nbhyphen', isLower=True),
        'ncaron': GD(name='ncaron', uni=0x0148, hex='0148', c='ň', base='n', accents=['caroncomb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=265, comment='ň N WITH CARON, LATIN SMALL LETTER'),
        'ncircumflexbelow': GD(name='ncircumflexbelow', uni=0x1E4B, hex='1E4B', c='ṋ', base='n', accents=['circumflexbelow'], srcName='uni1E4B', isLower=True, anchors=['top', 'middle', 'bottom'], gid=998),
@@ -2309,7 +2315,6 @@ class MS_GlyphSet(GlyphSet):
        'softsigncomb-cy': GD(name='softsigncomb-cy', uni=0xA67A, hex='A67A', c='ꙺ', w=0, isLower=True, anchors=['top', '_top'], gid=1580),
        'northEastArrow': GD(name='northEastArrow', uni=0x2197, hex='2197', c='↗', isLower=True),
        'southWestArrow': GD(name='southWestArrow', uni=0x2199, hex='2199', c='↙', isLower=True),
-       'space': GD(name='space', uni=0x0020, hex='0020', c=' ', isLower=True, gid=2, comment='  Symbols, ASCII Punctuation and'),
        'spadeBlackSuit': GD(name='spadeBlackSuit', uni=0x2660, hex='2660', c='♠', l2r='spadeBlackSuit', srcName='spade', isLower=True, gid=1573),
        'spalatalhook': GD(name='spalatalhook', uni=0x1D8A, hex='1D8A', c='ᶊ', l='s', r='jdotless', base='s', accents=['dpalatalhook.component', 'gpalatalhook.component'], isLower=True, anchors=['top', 'middle', 'bottom']),
        'spesmilo': GD(name='spesmilo', uni=0x20B7, hex='20B7', c='₷', isLower=True, gid=1456),

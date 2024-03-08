@@ -289,28 +289,28 @@ class KerningManager:
         """Answer the boolean flag if the left margin is different from the current g value,"""
         alm = g.angledLeftMargin
         if None in (alm, lm):
-            return None
+            return True # Undefined margins, as in /space, are not difference, by defintion.
         return abs(alm - lm) <= 1
 
     def hasEqualLeftBaseMargin(self, g, lm):
         """Answer the boolean flag if the left margin is different from the current g value,"""
         blm = self.getLeftMarginByGlyphSetReference(g)
         if None in (blm, lm):
-            return None
+            return True # Undefined margins, as in /space, are not difference, by defintion.
         return abs(blm - lm) <= 1
 
     def hasEqualRightMargin(self, g, rm):
         """Answer the boolean flag if the right margin is different from the current g value,"""
         arm = g.angledRightMargin
         if None in (arm, rm):
-            return None
+            return True # Undefined margins, as in /space, are not difference, by defintion.
         return abs(arm - rm) <= 1
 
     def hasEqualRightBaseMargin(self, g, rm):
         """Answer the boolean flag if the right margin is different from the current g value,"""
         arm = g.angledRightMargin
         if None in (arm, rm):
-            return None
+            return True # Undefined margins, as in /space, are not difference, by defintion.
         return abs(arm - rm) <= 1
 
     def hasLeftMarginReference(self, g):

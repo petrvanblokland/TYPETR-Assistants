@@ -82,6 +82,9 @@ class AssistantPartComponents(BaseAssistantPart):
         6 The number and names of existing components are just right
         """
         c = self.getController()
+        if c is None: # Controller may have been closed
+            return False # Nothing changed
+
         changed = False
         md = self.getMasterData(g.font)
         gd = md.glyphSet.get(g.name)
