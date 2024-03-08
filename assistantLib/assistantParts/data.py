@@ -48,7 +48,12 @@ class MasterData:
     UFO_PATH = 'ufo/'
 
     def __init__(self, name=None, ufoPath=None, 
-            srcUFOPath=None, someUFOPath=None, orgUFOPath=None, kerningSrcUFOPath=None, romanItalicUFOPath=None, 
+            srcUFOPath=None, someUFOPath=None, orgUFOPath=None, 
+            groupSrcUFOPath=None, # Optioncal copy groups from here, otherwise use orgUFOPath
+            kerningSrcUFOPath=None, # Optional copy kerning from here, otherwise use orgUFOPath
+            romanItalicUFOPath=None, # Path of corresponding master for roman <--> italic
+            spacingSrcUFOPath=None, # If defined, used as spacing reference, overwriting all spacing rules. Goes with spacingOffset
+            spacingOffset=0, # Value to add to margins of self.spacingSrcUFOPath (if defined)
             italicAngle=0, italicSkew=None, italicRotation=None, isItalic=False,
             dsPosition=None,
             m0=None, # Origin of the design space
@@ -113,7 +118,10 @@ class MasterData:
         self.someUFOPath = someUFOPath # Show this outline on the background
         self.orgUFOPath = orgUFOPath # "Original" master of this font for overlay reference
         self.romanItalicUFOPath = romanItalicUFOPath # Roman <---> Italic master reference
-        self.kerningSrcUFOPath = kerningSrcUFOPath # Used as kerning reference.
+        self.groupSrcUFOPath = groupSrcUFOPath or orgUFOPath # Used as groups reference to copy from
+        self.kerningSrcUFOPath = kerningSrcUFOPath or orgUFOPath # Used as kerning reference.
+        self.spacingSrcUFOPath = spacingSrcUFOPath # If defined, used as spacing reference, overwriting all spacing rules. Goes with spacingOffset
+        self.spacingOffset = spacingOffset # Value to add to margins of self.spacingSrcUFOPath (if defined)
 
         # Interpolation & design space
         self.interpolationFactor = 0.5

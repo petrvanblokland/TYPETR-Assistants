@@ -199,7 +199,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             fillColor=(0, 0, 0, 1),
             visible=False,
         )
-        self.leftSpaceSourceLabel.setHorizontalAlignment('center')
+        self.leftSpaceSourceLabel.setHorizontalAlignment('right')
         
         self.fixedSpaceMarkerRight = container.appendOvalSublayer(name="spaceMarkerRight",
             position=(1000-self.SPACER_MARKER_R, -self.SPACER_MARKER_R),
@@ -217,7 +217,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             fillColor=(0, 0, 0, 1),
             visible=False,
         )
-        self.rightSpaceSourceLabel.setHorizontalAlignment('center')
+        self.rightSpaceSourceLabel.setHorizontalAlignment('left')
 
     def updateMerzSpacer(self, info):
         """Update the spacing/kerning sample line"""
@@ -452,9 +452,14 @@ class AssistantPartSpacer(BaseAssistantPart):
         """Report/fix margins for the current font that don't fit the epexted value as it would have been auto spaced.
         This method both allowed to get feedback on how accurate the autospacer works. And it gives a list of glyphs
         that need extra attention."""
+        f = self.getCurrentFont()
+        changed = self.reportSpacing(self, f)
+        if changed:
+            f.changed()
+
+    def reportSpacing(self, f, doFix=False):
         changed = False
         c = self.getController()
-        f = CurrentFont()
         md = self.getMasterData(f)
         km = self.getKerningManager(f)
 
@@ -469,7 +474,7 @@ class AssistantPartSpacer(BaseAssistantPart):
 
             gd = md.glyphSet.get(g.name)
 
-            if c.w.fixReportedSpacingDifferences.get():
+            if doFix or c.w.fixReportedSpacingDifferences.get():
                 changed |= km.fixLeftMarginByGlyphSetReference(g) # See if there is anything to fix, then do it and answer if something changed.     
                 changed |= km.fixRightMarginByGlyphSetReference(g) # See if there is anything to fix, then do it and answer if something changed.     
             
@@ -495,7 +500,7 @@ class AssistantPartSpacer(BaseAssistantPart):
 
             gd = md.glyphSet.get(g.name)
 
-            if c.w.fixReportedSpacingDifferences.get():
+            if doFix or c.w.fixReportedSpacingDifferences.get():
                 changed |= km.fixLeftMarginByGlyphSetReference(g) # See if there is anything to fix, then do it and answer if something changed.     
                 changed |= km.fixRightMarginByGlyphSetReference(g) # See if there is anything to fix, then do it and answer if something changed.     
             
@@ -510,10 +515,7 @@ class AssistantPartSpacer(BaseAssistantPart):
                 if arm is not None and rm is not None and not self._equalGlyphRightMargin(g, rm):
                     print(f'... Diff {int(round(arm - lm))} in right margin {arm} for /{g.name} and expected auto space {rm}')
 
-        if changed:
-            g.changed()
-        else:
-            print(f'Done reporting on spacing {md.name}, no differences')
+        return changed
 
     def spacerDecLeftMarginCallback(self, sender):
         self._adjustLeftMarginByUnits(g, -1)
@@ -712,29 +714,40 @@ class AssistantPartSpacer(BaseAssistantPart):
 
             label = ''
 
-            referenceLabel = gd.leftSpaceSourceLabel # Test the existence of a reference label to know if there is one.
-            if referenceLabel: # Strategy #1, check with the referenced left margin
-                changed |= km.fixLeftMarginByGlyphSetReference(g) # Fix the left margin if different to what the reference has.
-                label = f'Ref {referenceLabel} {int(round(g.angledLeftMargin))}' # Show the fixed value in the label
-                fillColor = 0, 1, 0, 0.5
-                strokeColor = None
-            else: # Strategy #2, see if there is a similar glyph to copy the left margin from.
-                similarName2 = km.getSimilarBaseName2(g)
-                if similarName2 is not None:
-                    srcG2 = g.font[similarName2]
-                    if similarName2 == g.name:
-                        label = f'Sim base /{srcG2.name} {int(round(srcG2.angledLeftMargin))}'
+            # First check if there is a masterData spacing source defined, that overwrites all other spacing rules
+            if md.spacingSrcUFOPath is not None:
+                src = self.getFont(md.spacingSrcUFOPath)
+                if g.name in src:
+                    lm = src[g.name].angledLeftMargin + md.spacingOffset
+                    label = f'Src {self.path2UfoName(md.spacingSrcUFOPath)} {int(round(src[g.name].angledLeftMargin))}+{md.spacingOffset}={int(round(lm))}'
+                    changed = km.fixLeftMargin(g, lm, label)
+                else:
+                    print(f'### Glyph /{g.name} does not exist in spacing ref {md.spacingSrcUFOPath}')
+
+            else: # Otherwise 
+                referenceLabel = gd.leftSpaceSourceLabel # Test the existence of a reference label to know if there is one.
+                if referenceLabel: # Strategy #1, check with the referenced left margin
+                    changed |= km.fixLeftMarginByGlyphSetReference(g) # Fix the left margin if different to what the reference has.
+                    label = f'Ref {referenceLabel} {int(round(g.angledLeftMargin))}' # Show the fixed value in the label
+                    fillColor = 0, 1, 0, 0.5
+                    strokeColor = None
+                else: # Strategy #2, see if there is a similar glyph to copy the left margin from.
+                    similarName2 = km.getSimilarBaseName2(g)
+                    if similarName2 is not None:
+                        srcG2 = g.font[similarName2]
+                        if similarName2 == g.name:
+                            label = f'Sim base /{srcG2.name} {int(round(srcG2.angledLeftMargin))}'
+                            fillColor = None
+                            strokeColor = 0, 0, 0, 0.5
+                        else:
+                            label = f'Sim /{srcG2.name} {int(round(srcG2.angledLeftMargin))}'
+                            fillColor = 1, 0, 0, 0.5
+                            strokeColor = None
+                        changed |= km.fixLeftMargin(g, srcG2.angledLeftMargin, label)
+                    else:
+                        label = f'{int(round(g.angledLeftMargin))}' # No reference or similarity. This margin can be changed. Just show the value
                         fillColor = None
                         strokeColor = 0, 0, 0, 0.5
-                    else:
-                        label = f'Sim /{srcG2.name} {int(round(srcG2.angledLeftMargin))}'
-                        fillColor = 1, 0, 0, 0.5
-                        strokeColor = None
-                    changed |= km.fixLeftMargin(g, srcG2.angledLeftMargin, label)
-                else:
-                    label = f'{int(round(g.angledLeftMargin))}' # No reference or similarity. This margin can be changed. Just show the value
-                    fillColor = None
-                    strokeColor = 0, 0, 0, 0.5
 
         else:
             label = str(int(round(g.angledLeftMargin)))
@@ -771,29 +784,39 @@ class AssistantPartSpacer(BaseAssistantPart):
 
             label = ''
 
-            referenceLabel = gd.rightSpaceSourceLabel # Test the existence of a reference label to know if there is one.
-            if referenceLabel: # Strategy #1, check with the referenced left margin
-                changed |= km.fixRightMarginByGlyphSetReference(g) # Fix the right margin if different to what the reference has.
-                label = f'Ref {referenceLabel} {int(round(g.angledRightMargin))}' # Show the fixed value in the label
-                fillColor = 0, 1, 0, 0.5
-                strokeColor = None
+            if md.spacingSrcUFOPath is not None:
+                src = self.getFont(md.spacingSrcUFOPath)
+                if g.name in src:
+                    rm = src[g.name].angledRightMargin + md.spacingOffset
+                    label = f'Src {self.path2UfoName(md.spacingSrcUFOPath)} {int(round(src[g.name].angledRightMargin))}+{md.spacingOffset}={int(round(rm))}'
+                    changed = km.fixRightMargin(g, rm, label)
+                else:
+                    print(f'### Glyph /{g.name} does not exist in spacing ref {md.spacingSrcUFOPath}')
+
             else:
-                similarName1 = km.getSimilarBaseName1(g)
-                if similarName1 is not None:
-                    srcG1 = g.font[similarName1]
-                    if similarName1 == g.name:
-                        label = f'Sim base /{srcG1.name} {int(round(srcG1.angledRightMargin))}'
+                referenceLabel = gd.rightSpaceSourceLabel # Test the existence of a reference label to know if there is one.
+                if referenceLabel: # Strategy #1, check with the referenced left margin
+                    changed |= km.fixRightMarginByGlyphSetReference(g) # Fix the right margin if different to what the reference has.
+                    label = f'Ref {referenceLabel} {int(round(g.angledRightMargin))}' # Show the fixed value in the label
+                    fillColor = 0, 1, 0, 0.5
+                    strokeColor = None
+                else:
+                    similarName1 = km.getSimilarBaseName1(g)
+                    if similarName1 is not None:
+                        srcG1 = g.font[similarName1]
+                        if similarName1 == g.name:
+                            label = f'Sim base /{srcG1.name} {int(round(srcG1.angledRightMargin))}'
+                            fillColor = None
+                            strokeColor = 0, 0, 0, 0.5
+                        else:
+                            label = f'Sim /{srcG1.name} {int(round(srcG1.angledRightMargin))}'
+                            fillColor = 1, 0, 0, 0.5
+                            strokeColor = None
+                        changed |= km.fixRightMargin(g, srcG1.angledRightMargin, label)
+                    else:
+                        label = f'{int(round(g.angledRightMargin))}' # No reference or similarity. This margin can be changed. Just show the value
                         fillColor = None
                         strokeColor = 0, 0, 0, 0.5
-                    else:
-                        label = f'Sim /{srcG1.name} {int(round(srcG1.angledRightMargin))}'
-                        fillColor = 1, 0, 0, 0.5
-                        strokeColor = None
-                    changed |= km.fixRightMargin(g, srcG1.angledRightMargin, label)
-                else:
-                    label = f'{int(round(g.angledRightMargin))}' # No reference or similarity. This margin can be changed. Just show the value
-                    fillColor = None
-                    strokeColor = 0, 0, 0, 0.5
 
         else:
             label = str(int(round(g.angledRightMargin)))
@@ -813,6 +836,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         return changed
     
     def spacerCenterGlyphCallback(self, sender):
+        """Callback from button. Center the current glyph on its width, if not done autmatically."""
         g = self.getCurrentGlyph()
         if g is not None:
             if self.spacerCenterGlyhph(g):

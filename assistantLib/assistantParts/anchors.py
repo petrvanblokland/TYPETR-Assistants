@@ -386,6 +386,40 @@ class AssistantPartAnchors(BaseAssistantPart):
 
         #   E V E N T S
 
+    def checkFixAllAnchors(self, f, glyphNames=None):
+        """Check/fix all anchors in all glyphs of the font. if glyphNames is defined (single glyph name of list of glyph names),
+        then only check on these glyphs instead of the whole font.
+        First check on all glyphs that have no components. Then check on the glyphs that do have component, to avoid shifts in based glyphs.
+        """
+        fontChanged = False
+        if glyphNames is None:
+            if not isinstance(glyphNames, (list, tuple)):
+                glyphNames = [glyphNames]
+        else:
+            glyphNames = sorted(f.keys())
+
+        # First check on all glyphs without components.
+        for gName in glyphNames:
+            g = f[gName]
+            if g.components:
+                continue
+            changed = self.checkFixAnchors(g)
+            if changed:
+                fontChanged = True
+                g.changed()
+
+        # Then check on glyphs with components.
+        for gName in glyphNames:
+            g = f[gName]
+            if not g.components:
+                continue
+            changed = self.checkFixAnchors(g)
+            if changed:
+                fontChanged = True
+                g.changed()
+
+        return fontChanged
+
     def checkFixAnchors(self, g):
         """Check and fix the anchors of g. First try to determine if the right number of anchors exists. There are
         2 ways (based on legacy data) to find the anchors that this glyph needs: as defined in the glyphData if named 

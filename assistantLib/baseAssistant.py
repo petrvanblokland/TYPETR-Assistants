@@ -65,10 +65,6 @@ for path in PATHS:
 
 FAR = 100000 # Put drawing stuff outside the window
 
-ARROW_KEYS = [NSUpArrowFunctionKey, NSDownArrowFunctionKey,
-        NSLeftArrowFunctionKey, NSRightArrowFunctionKey, NSPageUpFunctionKey,
-        NSPageDownFunctionKey, NSHomeFunctionKey, NSEndFunctionKey]
-
 class BaseAssistant:
     """Share functions and class variables for both Assistant and AssistantController.
     - Personalized marker colors for visited glyphs in the FontWindow
@@ -103,6 +99,11 @@ class BaseAssistant:
             break
     if VISITED_MARKER is None:
         VISITED_MARKER = (1, 1, 1, 1) # Clear to white
+
+    # If arrow keys are used, then always update the glyph.
+    ARROW_KEYS = [NSUpArrowFunctionKey, NSDownArrowFunctionKey,
+            NSLeftArrowFunctionKey, NSRightArrowFunctionKey, NSPageUpFunctionKey,
+            NSPageDownFunctionKey, NSHomeFunctionKey, NSEndFunctionKey]
 
     # Must be redefined by inheriting assistant classes where to find the main UFO master files
     UFO_PATH = 'ufo/' # Standard place for UFO files
@@ -156,6 +157,14 @@ class BaseAssistant:
         self.KEY_STROKE_METHODS[c].add(methodName)
         return c # Answer the personalize key that this method got registered to.
 
+    #   E V E N T S
+
+    def fixAllOfTheseGlyphsKey(self, g, c, event):
+        """Force check/fix on the glyphs with the same name in all open fonts."""
+        for f in self.getAllFonts():
+            if g.name in f:
+                f[g.name].changed() # Force check/fix on the glyphs with the same name in all open fonts.
+
     #   F I L E P A T H S
 
     def filePath2ParentPath(self, filePath):
@@ -200,7 +209,7 @@ class BaseAssistant:
 
         assert fullPath is not None and os.path.exists(fullPath), (f'### Cannot find {fullPath}')
 
-        for f in AllFonts(): # Otherwise search if it already open
+        for f in self.getAllFonts(): # Otherwise search if it already open
             if fullPath == f.path:
                 if fullPath in self.bgFonts: # It was opened before, but now RoboFont has it open.
                     del self.bgFonts[fullPath]
@@ -278,11 +287,16 @@ class BaseAssistant:
 
     #   F O N T
 
-    def currentFont(self):
-        """Answer the current font. By default this the result of CurrentFont, but it can be altered by
+    def getCurrentFont(self):
+        """Answer the current font. By default this the result of CurrentFont(), but it can be altered by
         inheriting assistant classes to force another current font selection."""
         return CurrentFont()
-        
+    
+    def getAllFonts(self):
+        """Answer a list with all current open fonts. By default this is the result of AllFonts(), but it can be altered by
+        inheriting assistant classes to fore another set of font selection."""
+        return AllFonts()
+
     #   G L Y P H
 
     def copyGlyph(self, srcFont, glyphName, dstFont=None, dstGlyphName=None, copyUnicode=True):
@@ -469,7 +483,7 @@ class BaseAssistant:
                 if p.type == self.POINTTYPE_OFFCURVE:
                     return True
         return False
-        
+
 class Assistant(BaseAssistant, Subscriber):
 
     # Editor window drawing parameters
@@ -582,6 +596,9 @@ class Assistant(BaseAssistant, Subscriber):
     
     def glyphEditorDidMouseDrag(self, info):
         self.mouseDragPoint = info['locationInGlyph']
+        g = self.getCurrentGlyph()
+        if g is not None:
+            g.changed() # Force update
 
     def glyphEditorDidKeyDown(self, info):
         # User specific key strokes to be added here
@@ -612,6 +629,13 @@ class Assistant(BaseAssistant, Subscriber):
             for keyStrokeMethodName in self.KEY_STROKE_METHODS[c]:
                 print(f'... {keyStrokeMethodName} [{c}] {g.name} {g.font.path.split("/")[-1]}')
                 getattr(self, keyStrokeMethodName)(g, c, event)
+                changed = True
+
+        elif c in self.ARROW_KEYS: # Always update the glyph if arrow keys are used.
+            changed = True
+
+        if changed:
+            g.changed()
 
     def started(self):
         pass
@@ -681,7 +705,7 @@ class AssistantController(BaseAssistant, WindowController):
         self.MASTER_DATA = self.assistantGlyphEditorSubscriberClass.MASTER_DATA
         self.PROJECT_PATH = self.assistantGlyphEditorSubscriberClass.PROJECT_PATH
 
-        f = CurrentFont()
+        f = self.getCurrentFont()
         assert f is not None, ('### Open a UFO before starting the assistant')
         f.lib[self.LIB_KEY] = {}
 
@@ -700,11 +724,15 @@ class AssistantController(BaseAssistant, WindowController):
         """Default user interface controllers. The selection of controls by an inheriting
         assistant class also defines the available functions."""
         c = self.getController()
+
+        personalKey_f = self.registerKeyStroke('f', 'fixAllOfTheseGlyphsKey') # Check/fix the current glyph in all open fonts.
+
         for buildUIMethodName in self.BUILD_UI_METHODS:
             y = getattr(self, buildUIMethodName)(y)
+
         # Some default buttons that every assistant window should have
         y = -2*self.L-self.M
-        c.w.fixAllButton = Button((self.C0, y, self.CW, self.L), 'Fix all', callback=self.fixAllCallback)
+        c.w.fixAllButton = Button((self.C0, y, self.CW, self.L), f'Fix all [{personalKey_f}]', callback=self.fixAllCallback)
         c.w.checkFixGlyphsetButton = Button((self.C1, y, self.CW, self.L), 'Fix glyphset', callback=self.checkFixGlyphSetCallback)
         c.w.saveAllButton = Button((self.C2, y, self.CW, self.L), 'Save all', callback=self.saveAllCallback)
         y += self.L
@@ -712,18 +740,37 @@ class AssistantController(BaseAssistant, WindowController):
         c.w.fixGlyphSetSafety = CheckBox((self.C1, y, self.CW, self.L), 'Fix glyphset safety', value=False, sizeStyle='small')
 
     def fixAllCallback(self, sender):
-        """This button will call automatic fixes on all open fonts that are available."""
+        """This button will call automatic fixes on all open fonts that are available. And it will try to auto-fix as much as possible.
+        Since not all parts may be loaded in the current assembly of the assistant, we need to check if certain functions are availalbe.
+
+        * Check fix glyphset, based on contents of md.glyphSet. Add missing glyphs and remove obsolete glyphs
+        """
         c = self.getController()
-        if c.w.fixAllSafety.get(): # Safe checkbox should be set for safety
-            for f in AllFonts():
-                print(f'... Fixing all of {f.path}')
-                self.checkFixGlyphSet(f)
-                f.save()
-        else:
+        if not c.w.fixAllSafety.get(): # Safe checkbox should be set for safety
             print(f'### Check [x] Fix all to enable this button.')
+            return 
+                   
+        for f in self.getAllFonts():
+            changed = False
+            print(f'... Fixing all of {f.path.split('/')[-1]}')
+            changed |= self.checkFixGlyphSet(f) # First check if all glyphs are there. Create missing, delete obsolete.
+            #changed |= self.fixInterpolations(f) # Fix contours where auto-interpolation is possible.
+            changed |= self.componentFixAll(f) # Fix components
+            #changed |= self.checkFixAllAnchors(f) # Fix anchors in all glyphs
+            #hanged |= self.reportSpacing(f, doFix=True)
+            # Fix groups
+            # Fix kerning
+            # Fix guidelines
+            # Fix name tables
+            # Fix vertical metrics
+            if changed:
+                f.changed()
+                f.save()
+        
+        print('Done')
 
     def saveAllCallback(self, sender):
-        for f in AllFonts():
+        for f in self.getAllFonts():
             print(f'... Save {f.path}')
             f.save()
 
@@ -731,31 +778,36 @@ class AssistantController(BaseAssistant, WindowController):
         """Check/fix the glyphset according to the defined MasterData.glyphSet records."""
         c = self.getController()
         if c.w.fixGlyphSetSafety.get(): # Safe checkbox should be set for safety
-            f = seld.getCurrentFont()
+            f = self.getCurrentFont()
             self.checkFixGlyphSet(f)
         else:
             print(f'### Check [x] Fix glyphset to enable this button.')
 
     def checkFixGlyphSet(self, f):
         """Check/fix the glyphset according to the defined MasterData.glyphSet records."""
+        changed = False
+        c = self.getController()
         md = self.getMasterData(f)
         # Find missing glyphs
         for gName in sorted(md.glyphSet.keys()):
             if not gName in f:
-                if self.w.fixGlyphSet.get():
-                    print(f'... Create missing glyph /{gName}')
+                if c.w.fixGlyphSetSafety.get():
+                    print(f'... checkFixGlyphSet: Create missing glyph /{gName}')
                     f.newGlyph(gName)
+                    changed = True
                 else:
-                    print(f'### Missing glyph /{gName}')
+                    print(f'### checkFixGlyphSet: Missing glyph /{gName}')
 
         # Find obsolete glyphs to delete
         for gName in sorted(f.keys()):
             if not gName in md.glyphSet.keys():
-                if self.w.fixGlyphSet.get():
-                    print(f'... Delete obsolete glyph /{gName}')
+                if c.w.fixGlyphSetSafety.get():
+                    print(f'... checkFixGlyphSet: Delete obsolete glyph /{gName}')
                     del f[gName]
+                    changed = True
                 else:
-                    print(f'### Obsolete glyph /{gName}')
+                    print(f'### checkFixGlyphSet: Obsolete glyph /{gName}')
+        return changed
 
     def updateEditor(self, sender):
         g = self.getCurrentGlyph()

@@ -43,7 +43,7 @@ class AssistantPartComponents(BaseAssistantPart):
         return changed
 
     def buildComponents(self, y):
-        personalKey_c = self.registerKeyStroke('C', 'componentFixAll')
+        personalKey_c = self.registerKeyStroke('C', 'componentFixAllKey')
 
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
 
@@ -55,13 +55,20 @@ class AssistantPartComponents(BaseAssistantPart):
 
     #   C O M P O N E N T S
     
-    def componentFixAll(self, g, c=None, event=None):
-        for gg in g.font:
-            changed = False
-            changed |= self.checkFixComponentsExist(gg)
-            changed |= self.checkFixComponentsPosition(gg)
+    def componentFixAllKey(self, g, c=None, event=None):
+        changed = self.componentFixAll(g.font)
+        if changed:
+            g.font.changed()
+
+    def componentFixAll(self, f):
+        fontChanged = False
+        for g in f:
+            changed = self.checkFixComponentsExist(g)
+            changed |= self.checkFixComponentsPosition(g)
             if changed:
-                gg.changed()
+                fontChanged = True
+                g.changed()
+        return fontChanged
 
     def checkFixComponentsExist(self, g):
         """Check the existence of gd.base and gd.accent component. Create them when necessary.
@@ -122,7 +129,7 @@ class AssistantPartComponents(BaseAssistantPart):
         if len(g.components) == len(gd.components): # May still not be eqaul, due to recursive update from lines above.
             for cIndex, component in enumerate(g.components):
                 if component.baseGlyph != gd.components[cIndex]:
-                    print(f'... Rename component {cIndex} {component.baseGlyph} to {gd.components[cIndex]} in /{g.name}')
+                    print(f'... Rename component {cIndex} /{component.baseGlyph} to /{gd.components[cIndex]} in /{g.name}')
                     component.baseGlyph = gd.components[cIndex]
                     changed = True
         # 6 All done

@@ -39,18 +39,19 @@ class AssistantPartItalicize(BaseAssistantPart):
 
     def buildItalicize(self, y):
         """Register key stroke cap-I. [i] is reserved for the spacing part"""
+        c = self.getController()
         personalKey = self.registerKeyStroke('r', 'italicizeGlyphKey')
 
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         LL = 18
  
-        self.w.addItalicizedComponents = CheckBox((C0, y, CW, L), 'Add components', value=True, sizeStyle='small')
-        self.w.skipItalicizedComponents = CheckBox((C1, y, CW, L), 'Skip components', value=True, sizeStyle='small')
-        self.w.addItalicizedExtremes = CheckBox((C0, y+LL, CW, L), 'Add extremes', value=True, sizeStyle='small')
-        self.w.skewRotate = CheckBox((C1, y+LL, CW, L), 'Skew & rotate', value=False, sizeStyle='small')
-        self.w.decomposeItalicized = CheckBox((C1, y+LL+LL, CW, L), 'Decompose italic', value=False, sizeStyle='small')
+        c.w.addItalicizedComponents = CheckBox((C0, y, CW, L), 'Add components', value=True, sizeStyle='small')
+        c.w.skipItalicizedComponents = CheckBox((C1, y, CW, L), 'Skip components', value=True, sizeStyle='small')
+        c.w.addItalicizedExtremes = CheckBox((C0, y+LL, CW, L), 'Add extremes', value=True, sizeStyle='small')
+        c.w.skewRotate = CheckBox((C1, y+LL, CW, L), 'Skew & rotate', value=False, sizeStyle='small')
+        c.w.decomposeItalicized = CheckBox((C0, y+LL+LL, CW, L), 'Decompose italic', value=False, sizeStyle='small')
 
-        self.w.italicizeButton = Button((C2, y+LL/2, CW, L), 'Italicize [%s]' % personalKey, callback=self.italicizeCallback)
+        c.w.italicizeButton = Button((C2, y+LL/2, CW, L), 'Italicize [%s]' % personalKey, callback=self.italicizeCallback)
         y += L + 2*LL
 
         return y

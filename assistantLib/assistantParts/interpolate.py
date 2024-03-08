@@ -46,6 +46,7 @@ class AssistantPartInterpolate(BaseAssistantPart):
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         LL = L/2
         c = self.getController()
+        c.w.decomposeCopiedInterpolatedGlyph = CheckBox((C0, y, CW, L), 'Decompose copy', value=False, sizeStyle='small')
         c.w.copyFromRomanButton = Button((C1, y, CW, L), 'Copy from Roman', callback=self.copyFromRomanCallback)
         c.w.interpolateButton = Button((C2, y, CW, L), 'Interpolate [%s]' % personalKey, callback=self.interpolateCallback)
         y += L + LL
@@ -56,6 +57,7 @@ class AssistantPartInterpolate(BaseAssistantPart):
 
     def copyFromRomanCallback(self, sender=None):
         """Copy the glyph from roman to alter it manually, instead of interpolating or italicizing."""
+        c = self.getController()
         g = self.getCurrentGlyph()
         if g is None:
             return
@@ -64,6 +66,8 @@ class AssistantPartInterpolate(BaseAssistantPart):
         if md.romanItalicUFOPath is not None:
             rf = self.getFont(md.romanItalicUFOPath)
             if g.name in rf:
+                if c.w.decomposeCopiedInterpolatedGlyph.get():
+                    rf[g.name].decompose() # Make sure not to save this one.
                 f[g.name] = rf[g.name]
                 f[g.name].changed()
 

@@ -63,6 +63,10 @@ class AssistantPartGuidelines(BaseAssistantPart):
         """Make the guidelines for the current glyph. Same as [±] keys."""
         self.checkFixGuidelines(forced=True)
 
+    def makeAllGuidelines(self, f):
+        for g in f:
+            self.makeGuidelines(self, g)
+            
     def makeGuidelines(self, g, c, event):
         self.checkFixGuidelines(forced=True)
 
