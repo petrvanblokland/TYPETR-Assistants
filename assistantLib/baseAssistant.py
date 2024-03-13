@@ -393,6 +393,53 @@ class BaseAssistant:
                      return g.font[gd.base], component.transformation[-2:]
         return None, (0, 0)
 
+    def scaleGlyph(self, g, sx, sy=None):
+        if sy is None:
+            sy = sx
+        for component in g.components:
+            t = list(component.transformation)
+            t[-2] = int(round(t[-2] * sx))
+            t[-1] = int(round(t[-1] * sy))
+            component.transformation = t
+        for contour in g.contours:
+            for p in contour.points:
+                p.x = int(round(p.x * sx))
+                p.y = int(round(p.y * sy))
+        for anchor in g.anchors:
+            anchor.x = int(round(anchor.x * sx))
+            anchor.y = int(round(anchor.y * sy))
+        g.width = int(round(g.width * sx))
+
+
+    def offsetGlyph(self, g, dx=0, dy=0):
+        for component in g.components:
+            t = list(component.transformation)
+            t[-2] = int(round(t[-2] + dx))
+            t[-1] = int(round(t[-1] + dy))
+            component.transformation = t
+        for contour in g.contours:
+            for p in contour.points:
+                p.x = int(round(p.x + dx))
+                p.y = int(round(p.y + dy))
+        for anchor in g.anchors:
+            anchor.x = int(round(anchor.x + dx))
+            anchor.y = int(round(anchor.y + dy))
+
+    def roundGlyph(self, g):
+        for contour in g.contours:
+            for point in contour.points:
+                point.x = int(round(point.x))
+                point.y = int(round(point.y))
+        for component in g.components:
+            t = list(component.transformation)
+            t[-2] = int(round(t[-2]))
+            t[-1] = int(round(t[-1]))
+            component.transformation = t
+        for anchor in g.anchors:
+            anchor.x = int(round(anchor.x))
+            anchor.y = int(round(anchor.y))
+        g.width = int(round(g.width))
+
     #   A N C H O R S
 
     def getAnchorsDict(self, g):

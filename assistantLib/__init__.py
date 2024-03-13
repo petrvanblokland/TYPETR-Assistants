@@ -99,7 +99,7 @@ def _interpolateValue(v1, v2, i, doRound=True):
         v = int(round(v))
     return v
 
-def interpolateGlyph(g, gMaster1, gMaster2, ix, iy=None, doWidth=True, doUnicode=True, doRound=True):
+def interpolateGlyphByFactor(g, gMaster1, gMaster2, ix, iy=None, doWidth=True, doUnicode=True, doRound=True):
     """Interpolate glyph @g from master glyphs @gMaster1 and @gMasters2 by the factor @ix
     between 0 and 1. A negative value and a value > 1 does extrapolate.
     If @iy is defined, then the interpolation is disproportional in x and y direction.

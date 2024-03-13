@@ -206,6 +206,7 @@ class AnchorData:
         'acutecomb.component3': _TOP,
         'gravecomb.component': _TOP,
         'acutegraveacutecomb': _TOP,
+        'varia': _TOP,
 
         'commabelowcomb': _BOTTOM,
         'gravebelowcomb': _BOTTOM,
@@ -654,7 +655,7 @@ class AnchorData:
         'ring', 'ringcomb', 'ringhalfright', 'sacute.component', 'scaron.component', 'softsigncomb-cy', 'suspensioncomb', 'tcomb', 
         'tildecomb', 'tildecomb.component', 'tildedoublecomb', 'tildeverticalcomb', 'titlocomb-cy', 'ucomb', 'udieresis.component', 
         'umacron.component', 'uni047E.component', 'vcomb', 'verticallineabovecomb', 'xabovecomb', 'xcomb', 'zigzagabovecomb',
-        'ringhalfleft', 
+        'ringhalfleft', 'varia', 
         
         #'six.pnum_enclosingkeycapcomb',
         #'three.pnum_enclosingkeycapcomb',

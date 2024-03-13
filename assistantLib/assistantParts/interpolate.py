@@ -48,12 +48,21 @@ class AssistantPartInterpolate(BaseAssistantPart):
         c = self.getController()
         c.w.decomposeCopiedInterpolatedGlyph = CheckBox((C0, y, CW, L), 'Decompose copy', value=False, sizeStyle='small')
         c.w.copyFromRomanButton = Button((C1, y, CW, L), 'Copy from Roman', callback=self.copyFromRomanCallback)
-        c.w.interpolateButton = Button((C2, y, CW, L), 'Interpolate [%s]' % personalKey, callback=self.interpolateCallback)
+        c.w.interpolateButton = Button((C2, y, CW, L), 'Interpolate [%s]' % personalKey, callback=self.interpolateGlyphCallback)
         y += L + LL
         return y
 
     def interpolateGlyphKey(self, g, c, event):
-        self.interpolateCallback(g)
+        changed = self.interpolateGlyph(g)
+        if changed:
+            g.changed()
+
+    def interpolateGlyphCallback(self, sender):
+        g = self.getCurrentGlyph()
+        if g is not None:
+            changed = self.interpolateGlyph(g)
+            if changed:
+                g.changed()
 
     def copyFromRomanCallback(self, sender=None):
         """Copy the glyph from roman to alter it manually, instead of interpolating or italicizing."""
@@ -71,21 +80,45 @@ class AssistantPartInterpolate(BaseAssistantPart):
                 f[g.name] = rf[g.name]
                 f[g.name].changed()
 
-    def interpolateCallback(self, sender=None):
-        g = self.getCurrentGlyph()
-        if g is None:
-            return
-        md = self.getMasterData(g.font)
+    def interpolateGlyph(self, g):
+        """Interpolate the g from the settings in MasterData. This could be a plain interpolation, or it can be scalerpolation if
+        glyph.isLower and if the xHeight of the interpolation sources is different from the xHeight of the current target glyph."""
+        f = g.font
+        md = self.getMasterData(f)
+        gd = self.getGlyphData(g)
+        iScale = iFactor = None
+        changed = False
+
         if md.m1 is not None and md.m2 is not None:
             f1 = self.getFont(md.m1)
             f2 = self.getFont(md.m2)
             md1 = self.getMasterData(f1)
             md2 = self.getMasterData(f2)
+
             if g.name in f1 and g.name in f2:
                 iFactor = (md.HStem - md1.HStem)/(md2.HStem - md1.HStem)
-                self.interpolateGlyph(g, f1[g.name], f2[g.name], iFactor)
             else:
                 print(f'### Glyph {g.name} does not exist in source fonts')
+                iFactor = None
+
+            # @@@ Change later to glyphData.height, so scalerpolation will also work for small caps.
+            if gd.isLower and f1.info.xHeight != f.info.xHeight: # Test if scalerpolation on the xHeight is needed?
+                iScale = f.info.xHeight / f1.info.xHeight # Now the stems get thicker. Compensate that in the interpolation factor
+                iFactor /= iScale 
+                print(iScale, iFactor)
+            
+            # Now we can just interpolate between the masters, where the factor is defined by their ratio of the three H-stems 
+            if iFactor is not None:
+                print('cdsadsads interpolate', g.name, iFactor)
+                changed = self.interpolateByFactor(g, f1[g.name], f2[g.name], iFactor)
+
+            # If we're doing scalerpolation for xHeight, they
+            if iScale not in (None, 1):
+                print('cdsadsads scale', g.name, iScale)
+                self.scaleGlyph(g, iScale)
+                changed = True
+
+        return changed
 
     def _interpolateValue(self, v1, v2, i, doRound=True):
         v = v1 + (v2 - v1)*i
@@ -93,7 +126,7 @@ class AssistantPartInterpolate(BaseAssistantPart):
             v = int(round(v))
         return v
         
-    def interpolateGlyph(self, g, gMaster1, gMaster2, ix, iy=None, doRound=True):
+    def interpolateByFactor(self, g, gMaster1, gMaster2, ix, iy=None, doRound=True):
         if iy is None: 
             iy = ix
         f = g.font

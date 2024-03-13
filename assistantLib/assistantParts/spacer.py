@@ -246,7 +246,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         h = f.info.unitsPerEm
         m = h/5 # Margin around white rectangle.
         x = 0 # Adjusted from the previous line calculation
-        y = f.info.descender - 1.5*m/self.KERN_SCALE
+        y = f.info.descender/self.KERN_SCALE - 1.5*m/self.KERN_SCALE
         k = 0 # TODO For now, later we'll add kerning here.
         dw = f.info.unitsPerEm/5 # Extra width to zero-width glyphs
 
