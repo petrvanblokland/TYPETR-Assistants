@@ -1526,7 +1526,7 @@ class MS_GlyphSet(GlyphSet):
        'glottalstopinverted': GD(name='glottalstopinverted', uni=0x0296, hex='0296', c='ʖ', l='question', r='question', isLower=False),
        'glottalstopmod': GD(name='glottalstopmod', uni=0x02C0, hex='02C0', c='ˀ', isLower=True, isMod=True),
        'glottalstopreversed': GD(name='glottalstopreversed', uni=0x0295, hex='0295', l2r='question', r2l='question', c='ʕ', isLower=False),
-       'glottalstopreversedmod': GD(name='glottalstopreversedmod', uni=0x02C1, hex='02C1', c='ˁ', srcName='uni02C1', isLower=False, isMod=True, gid=474),
+       'glottalstopreversedmod': GD(name='glottalstopreversedmod', uni=0x02C1, hex='02C1', c='ˁ', srcName='uni02C1', isLower=True, isMod=True, gid=474),
        'glottalstopreversedsuperior': GD(name='glottalstopreversedsuperior', uni=0x02E4, hex='02E4', c='ˤ', base='glottalstopreversedmod', isLower=False),
        'glottalstopsmall': GD(name='glottalstopsmall', uni=0x0242, hex='0242', c='ɂ', l='question', r='question', isLower=False, isSc=True),
        'glottalstopstroke': GD(name='glottalstopstroke', uni=0x02A1, hex='02A1', c='ʡ', l='question', r='question', isLower=False),

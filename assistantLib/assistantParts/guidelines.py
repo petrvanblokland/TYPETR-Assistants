@@ -113,6 +113,7 @@ class AssistantPartGuidelines(BaseAssistantPart):
 
         if gd is None:
             print(f'### Cannot find /{g.name} in GlyphData {md.glyphData.__class__.__name__}')
+
         elif gd.isLower:
             guidelines.append((xo + tg * (md.ascender + overshoot), md.ascender + overshoot, 0, '%d (%d)' % (md.ascender + overshoot, overshoot)))
             guidelines.append((x + tg * md.ascender, md.ascender, 0, 'Ascender %d' % md.ascender))

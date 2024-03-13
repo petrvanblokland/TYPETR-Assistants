@@ -43,11 +43,12 @@ class AssistantPartContours(BaseAssistantPart):
 
     def buildContours(self, y):
         personalKey_e = self.registerKeyStroke('e', 'contoursSetStartPoint')
+        personalKey_E = self.registerKeyStroke('E', 'contoursSetAllStartPoints')
 
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
 
         c = self.getController()
-        c.w.setStartPointButton = Button((C2, y, CW, L), 'Set start [%s]' % personalKey_e, callback=self.contoursSetStartPointCallback)
+        c.w.setStartPointButton = Button((C2, y, CW, L), f'Set start [{personalKey_E}{personalKey_e}]', callback=self.contoursSetStartPointCallback)
         y += L*1.5
 
         return y
@@ -58,6 +59,11 @@ class AssistantPartContours(BaseAssistantPart):
         g = self.getCurrentGlyph()
         if g is not None:
             self.contoursSetStartPoint(g)
+
+    def contoursSetAllStartPoints(self, g, c=None, event=None):
+        for f in self.getAllFonts():
+            if g.name in f:
+                self.contoursSetStartPoint(f[g.name])
 
     def contoursSetStartPoint(self, g, c=None, event=None):
         """Set the start point to the selected points on [e]. Auto select the point on [E] key."""

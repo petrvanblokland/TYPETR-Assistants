@@ -23,7 +23,7 @@ from assistantLib.assistantParts.glyphsets.anchorData import AD
 
 
 class AssistantPartComponents(BaseAssistantPart):
-    """Set startpoint and other contour functions
+    """Fix components, positions and baseGlyph. Add component and delete components as defined in the GlyphData.
     """
 
     def initMerzComponents(self, container):
