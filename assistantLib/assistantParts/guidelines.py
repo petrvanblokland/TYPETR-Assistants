@@ -78,17 +78,21 @@ class AssistantPartGuidelines(BaseAssistantPart):
         g = self.getCurrentGlyph()
         if g is None:
             return False # Nothing changed
+        f = g.font
         md = self.getMasterData(g.font)
         gd = self.getGlyphData(g)
 
         # Guideline label position angled for italics
-        tg = tan(radians(-g.font.info.italicAngle or 0))
+        tg = tan(radians(-f.info.italicAngle or 0))
 
         overshoot = md.getOvershoot(g.name) # Get the right kind of overshoot for this glyph cetegory
         baseline = md.getBaseline(g.name)
         height = md.getHeight(g.name)
         middle = md.getHeight2(g.name) # Height for this glyph / 2
         
+        xHeight = f.info.xHeight
+        capHeight = f.info.capHeight
+
         x = -550 # Label position on the left
         xo = -300 # Label position for overshoot values
 
@@ -99,8 +103,13 @@ class AssistantPartGuidelines(BaseAssistantPart):
         else: # Don't overwrite y == 0 position
             guidelines.append((xo + tg * (baseline - overshoot), baseline - overshoot, 0, '(%d)' % overshoot))            
         guidelines.append((xo + tg * (height + overshoot), height + overshoot, 0, '%d (%d)' % (height + overshoot, overshoot)))
-        guidelines.append((x + tg * height, height, 0, 'Height %d' % height))
+        if height not in (capHeight, xHeight):
+            guidelines.append((x + tg * height, height, 0, 'Height %d' % height))
         guidelines.append((x + tg * middle, middle, 0, 'Middle %d' % middle))
+
+        # Always a guideline on font xHeight and capHeight.
+        guidelines.append((x + tg * xHeight, xHeight, 0, 'xHeight %d' % xHeight))
+        guidelines.append((x + tg * capHeight, capHeight, 0, 'capHeight %d' % capHeight))
 
         if gd is None:
             print(f'### Cannot find /{g.name} in GlyphData {md.glyphData.__class__.__name__}')
