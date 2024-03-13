@@ -249,14 +249,6 @@ class AssistantPartAnchors(BaseAssistantPart):
             yMode = self.getLib(g, 'Anchors', {}).get('Ymode')
 
         for a in g.anchors:
-            if yMode == 0: # Y-Base
-                #print(yMode, 'Y-Base', a.name')
-                baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g)
-                if baseGlyph is not None:
-                    ba = self.getAnchor(baseGlyph, a.name)
-                    if ba is not None:
-                        changed = self._setAnchorXY(g, a, ba.x + dx, ba.y + dy, italicize=False) # Anchors from base are already italicized.
-                continue
 
             # H A C K S
 
@@ -265,6 +257,15 @@ class AssistantPartAnchors(BaseAssistantPart):
                 changed = True
 
             # Y - S C E N A R I O S
+
+            if yMode == 0: # Y-Base
+                #print(yMode, 'Y-Base', a.name')
+                baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g)
+                if baseGlyph is not None:
+                    ba = self.getAnchor(baseGlyph, a.name)
+                    if ba is not None:
+                        changed = self._setAnchorXY(g, a, ba.x + dx, ba.y + dy, italicize=False) # Anchors from base are already italicized.
+                continue
 
             if yMode in (0, 1): # Y-Diacritics or Y-Metrics
                 #print(yMode, 'Y-Diacritics or Y-Metrics', a.name')
@@ -302,7 +303,7 @@ class AssistantPartAnchors(BaseAssistantPart):
                     if gd.isUpper:
                         y -= 62 # Extra lower for capitals. @@@ TODO Make this into a more generic rule, independent from unitsPerEm  
                     elif hasDiacritics or g.name in AD.ACCENT_DATA:
-                        y -= 120 # Closer together for stacking diacritics. @@@ TODO Make this into a more generic rule, independent from unitsPerEm
+                        y -= 140 # Closer together for stacking diacritics. @@@ TODO Make this into a more generic rule, independent from unitsPerEm
 
                 elif a.name == AD.MIDDLE_:
                     y = md.getHeight2(g.name) # Just set to half-height.

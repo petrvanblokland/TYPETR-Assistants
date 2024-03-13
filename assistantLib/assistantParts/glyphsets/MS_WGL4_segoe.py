@@ -53,7 +53,10 @@ class MS_GlyphSet(GlyphSet):
        'hairspace': GD(name='hairspace', uni=0x200A, hex='200A', w=HAIR_WIDTH, c=' ', isLower=True),
        'spacemarker': GD(name='spacemarker', w=0),
        'narrownbspace': GD(name='narrownbspace', uni=0x202F, w=HAIR_WIDTH, hex='202F', c=' ', isLower=True),
-        
+ 
+
+       'uni044C.loclBGR': GD(name=' uni044C.loclBGR'),
+
         #   A
 
        'A': GD(name='A', uni=0x0041, hex='0041', c='A', l2r='A', anchors=['top', 'middle', 'bottom', 'ogonek', 'tonos'], gid=35, comment='A Uppercase Alphabet, Latin'),
@@ -476,7 +479,7 @@ class MS_GlyphSet(GlyphSet):
        'Kje-cy': GD(name='Kje-cy', uni=0x040C, hex='040C', c='Ќ', l='H', r='K', base='K', accents=['acutecomb'], anchors=['top', 'middle', 'bottom'], gid=657),
        'Klinebelow': GD(name='Klinebelow', uni=0x1E34, hex='1E34', c='Ḵ', l='H', r='K', base='K', accents=['macronbelow'], srcName='uni1E34', anchors=['top', 'middle', 'bottom'], gid=975),
        'Kmod': GD(name='Kmod', uni=0x1D37, hex='1D37', c='ᴷ', isMod=True),
-       'Kobliquestroke': GD(name='Kobliquestroke', uni=0xA7A2, hex='A7A2', c='Ꞣ', anchors=['top', 'middle', 'bottom']),
+       'Kobliquestroke': GD(name='Kobliquestroke', uni=0xA7A2, hex='A7A2', c='Ꞣ', base='K', anchors=['top', 'middle', 'bottom']),
        'Koppa': GD(name='Koppa', uni=0x03DE, hex='03DE', c='Ϟ', l='A', r='A', gid=611),
        'Koppa-cy': GD(name='Koppa-cy', uni=0x0480, hex='0480', c='Ҁ', l='O', r='C', gid=773),
        'KoppaArchaic': GD(name='KoppaArchaic', uni=0x03D8, hex='03D8', c='Ϙ', l='O', r='O', gid=605),
