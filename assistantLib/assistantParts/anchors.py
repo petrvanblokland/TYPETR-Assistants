@@ -107,6 +107,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         c = self.getController()
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
 
+        # @@@ THIS WILL GO TO A SEPARATE WINDOW WITH MORE SPACE FOR CHOICES
         c.w.autoAnchors = CheckBox((C0, y, CW, L), 'Auto anchors', value=True, sizeStyle='small')
         c.w.copyRomanAnchors = CheckBox((C1, y, CW, L), 'Copy roman-->italic', value=True, sizeStyle='small')
         c.w.fixAnchorsButton = Button((C2, y, CW, L), f'Fix anchors [{personalKey_A}{personalKey_a}]', callback=self.anchorsCallback)
@@ -125,6 +126,11 @@ class AssistantPartAnchors(BaseAssistantPart):
         y += L
 
         return y
+
+    def closingAnchors(self):
+        """Called when the main assistant window is about to close. We can close our anchors window here."""
+        c = self.getController()
+        #c.anchorsWindow.close()
 
     def anchorsCallback(self, sender):
         changed = False

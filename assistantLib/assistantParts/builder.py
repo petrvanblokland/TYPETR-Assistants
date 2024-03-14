@@ -11,7 +11,7 @@
 import sys, os
 from math import *
 from vanilla import *
-#import drawBot as db
+import drawBot as db
 
 from fontmake.font_project import FontProject
 
@@ -73,12 +73,14 @@ class AssistantPartBuilder(BaseAssistantPart):
         return y
 
     def buildOTFCallback(self, sender):
+        """For all open fonts, save the UFO and generate an OTF."""
         projectPath = self.filePath2ParentPath(self.PROJECT_PATH)
         vfDirPath = projectPath + '_otf/'
         if not os.path.exists(vfDirPath):
             os.mkdir(vfDirPath)
 
         for f in AllFonts():
+            f.save() # Just to be sure we're generating from the latest version, in case we start using fontmake for this.
             otfName = f.path.split('/')[-1].replace('.ufo', '.otf')
             print(f'... Generating {otfName}')
             f.generate("otfcff", path=vfDirPath + otfName, autohint=True)
@@ -148,31 +150,42 @@ class AssistantPartBuilder(BaseAssistantPart):
 
         #fontVariations
         #for weight in (100, 200, 300, 350, 400, 600, 700):
+        # @@@ For now. These need to go into the actual project assistant code.
         for fontPath in (
             projectPath + '_otf/Segoe_UI_Display-Hairline_Italic_MA32.otf',
             projectPath + '_otf/Segoe_UI_Display-Light_Italic_MA98.otf',
             projectPath + '_otf/Segoe_UI_Display-Regular_Italic_MA168.otf',
-            projectPath + '_otf/Segoe_UI_Display-Bold_Italic_MA323.otf',):
+            projectPath + '_otf/Segoe_UI_Display-Bold_Italic_MA323.otf',
 
+            projectPath + '_otf/Segoe_UI_Small-Hairline_Italic_MA97.otf',
+            projectPath + '_otf/Segoe_UI_Small-Light_Italic_MA160.otf',
+            projectPath + '_otf/Segoe_UI_Small-Regular_Italic_MA200.otf',
+            projectPath + '_otf/Segoe_UI_Small-Bold_Italic_MA300.otf',
+
+            projectPath + '_otf/Segoe_UI_Text-Hairline_Italic_MA62.otf',
+            projectPath + '_otf/Segoe_UI_Text-Light_Italic_MA98.otf',
+            projectPath + '_otf/Segoe_UI_Text-Regular_Italic_MA168.otf',
+            projectPath + '_otf/Segoe_UI_Text-Bold_Italic_MA323.otf',
+            ):
             pdfName = fontPath.split('/')[-1].replace('.otf', '-%03d.pdf' % self.BUILD_VERSION)
             print(f'... Generating PDF {pdfName}')
             
             db.newDrawing()
         
             #self.proofGlyphSet(fontPath, unicode2Glyph)
-            self.proofGlyphSet(fontPath, unicode2Glyph, addSpaceMarker=True)
+            pn = self.proofGlyphSet(fontPath, unicode2Glyph, showSpaceMarker=True, showNames=True)
 
-            self.proofWaterfall(fontPath, unicode2Glyph)
+            pn = self.proofWaterfall(fontPath, unicode2Glyph, pageNumber=pn)
 
-            self.proofText(fontPath, unicode2Glyph, DIACRITICS)
-            self.proofText(fontPath, unicode2Glyph, ALICE_TEXT)
-            self.proofText(fontPath, unicode2Glyph, CYRILLIC_NONSLAVIC_TEXT)
-            self.proofText(fontPath, unicode2Glyph, GREEK_KERNING)
+            pn = self.proofText(fontPath, unicode2Glyph, DIACRITICS, pageNumber=pn)
+            pn = self.proofText(fontPath, unicode2Glyph, ALICE_TEXT, pageNumber=pn)
+            pn = self.proofText(fontPath, unicode2Glyph, CYRILLIC_NONSLAVIC_TEXT, pageNumber=pn)
+            pn = self.proofText(fontPath, unicode2Glyph, GREEK_KERNING, pageNumber=pn)
 
             exportPath = projectPath + '_export/' + pdfName
             db.saveImage(exportPath)
 
-    def proofGlyphSet(self, fontPath, unicode2Glyph, addSpaceMarker=False):
+    def XXXproofGlyphSet(self, fontPath, unicode2Glyph, showSpaceMarker=False):
 
         W, H = 595, 842
         M = 72
@@ -186,26 +199,30 @@ class AssistantPartBuilder(BaseAssistantPart):
 
         lines = []
         # Make full glyph set, sorted by unicode
-        if addSpaceMarker:
+        if showSpaceMarker:
             fs = db.FormattedString(font=fontPath, fontSize=SIZE, lineHeight=SIZE * lineHeight, fill=spaceMarkerColor) #, fontVariations=fontVariations)
             fs.appendGlyph('spacemarker')
         else:
             fs = db.FormattedString(font=fontPath, fontSize=SIZE, lineHeight=SIZE * lineHeight, fill=0) #, fontVariations=fontVariations)
 
         lines.append(fs)
+        y = H - M - SIZE - lineHeight/2
         # TODO: Better to draw text for each glyph, so we can add name and margins
         for uni, g in sorted(unicode2Glyph.items()):
             fs += db.FormattedString(chr(uni), font=fontPath, fontSize=SIZE, lineHeight=SIZE * lineHeight, fill=0) #, fontVariations=fontVariations)
-            if addSpaceMarker:
+            if showSpaceMarker:
                 fs += db.FormattedString(font=fontPath, fontSize=SIZE, lineHeight=SIZE * lineHeight, fill=spaceMarkerColor) #, fontVariations=fontVariations)
                 fs.appendGlyph('spacemarker')
             if not g.width:
                 fs += ' '
 
             tw, th = db.textSize(fs)
+            caption = db.FormattedString(g.name, font=fontPath, fontSize=2, fill=0.9)
+            db.text(caption, (M + tw, y))
             if tw > CW:
+                y = y - SIZE * lineHeight
                 lines.append(fs)
-                if addSpaceMarker:
+                if showSpaceMarker:
                     fs = db.FormattedString(font=fontPath, fontSize=SIZE, lineHeight=SIZE * lineHeight, fill=spaceMarkerColor) #, fontVariations=fontVariations)
                     fs.appendGlyph('spacemarker')
                 else:
@@ -223,7 +240,77 @@ class AssistantPartBuilder(BaseAssistantPart):
             y -= SIZE * lineHeight
 
 
-    def proofWaterfall(self, fontPath, unicode2Glyph):
+    def _addPageNumber(self, pn, fontPath, xy):
+        PAGENUMBER_SIZE = 10
+        fs = db.FormattedString(f'– {pn} –', align='center', font=fontPath, fontSize=PAGENUMBER_SIZE)
+        db.text(fs, xy)
+
+    def proofGlyphSet(self, fontPath, unicode2Glyph, showSpaceMarker=False, showNames=False, pageNumber=0):
+        """Draw glyphset pages, sorted by unicode. With showSpaceMarker the zero-width /spacemarker is added to between all glyphs,
+        ignoring any accidental kerning showing. The lines are space in plain spacing.
+        Answer the last used page number.
+        """
+
+        W, H = 595, 842
+        M = 72
+        SIZE = 36
+        NAME_SIZE = 1 # Really small name size
+        CW = W - 2 * M
+        lineHeight = 1.2
+        spaceMarkerColor = 0.7, 0.7, 0.7, 1 # Light gray for vertical space markers
+
+        #fontVariations = dict(wght=weight, opsz=36)
+        fontVariations = {}
+
+        x = M
+        y = 0
+        hadZeroWidth = False
+
+        # Make full glyph set, sorted by unicode
+        if showSpaceMarker:
+            spm = db.FormattedString(font=fontPath, fontSize=SIZE, lineHeight=SIZE * lineHeight, fill=spaceMarkerColor) #, fontVariations=fontVariations)
+            spm.appendGlyph('spacemarker')
+        else:
+            spm = db.FormattedString(font=fontPath, fontSize=SIZE, lineHeight=SIZE * lineHeight, fill=0) #, fontVariations=fontVariations)
+
+        for uni, g in sorted(unicode2Glyph.items()):
+            if y < M:
+                db.newPage(W, H)
+                pageNumber += 1
+                self._addPageNumber(pageNumber, fontPath, (M + CW/2, M/2))
+                db.text(db.FormattedString(fontPath.split('/')[-1], fontSize=10, font=fontPath), (M, H-M/2))
+                y = H - M - SIZE - lineHeight/2
+            
+            if x == M or hadZeroWidth: # Line starts with a space marker
+                fs = spm
+            else:
+                fs = db.FormattedString()
+            
+            fs += db.FormattedString(chr(uni), font=fontPath, fontSize=SIZE, lineHeight=SIZE * lineHeight, fill=0) #, fontVariations=fontVariations)
+            fs += spm
+
+            db.text(fs, (x, y))
+
+            # If showing names and unicodes
+            if showNames:
+                nameString = db.FormattedString('%04X\n/%s' % (uni, g.name), font=fontPath, fontSize=NAME_SIZE, lineHeight=NAME_SIZE * lineHeight, fill=(0.7, 0.7, 0.7, 1)) # Very small name in gray
+                db.text(nameString, (x, y - SIZE * 0.2))
+
+            tw, th = db.textSize(fs)
+            if tw == 0:
+                tw += SIZE / 3
+                hadZeroWidth = True
+            else:
+                hadZeroWidth = False
+            x += tw
+
+            if x > W - M - tw:
+                x = M
+                y -= SIZE * lineHeight
+
+        return pageNumber
+
+    def proofWaterfall(self, fontPath, unicode2Glyph, pageNumber=0):
         # Make waterfall
 
         W, H = 595, 842
@@ -233,6 +320,8 @@ class AssistantPartBuilder(BaseAssistantPart):
         lineHeight = 1.2
 
         db.newPage(W, H)
+        pageNumber += 1
+        self._addPageNumber(pageNumber, fontPath, (M + CW/2, M/2))
         y = H - M - SIZE
         db.text(db.FormattedString(fontPath.split('/')[-1], fontSize=10, font=fontPath), (M, H-M/2))
         fs = db.FormattedString()
@@ -241,8 +330,9 @@ class AssistantPartBuilder(BaseAssistantPart):
             fs += db.FormattedString('Hamburgefonstiv\n', font=fontPath, fontSize=size, lineHeight=size * lineHeight) #, fontVariations=fontVariations)
         db.textBox(fs, (M, M, CW, H - 2*M))
 
+        return pageNumber
 
-    def proofText(self, fontPath, unicode2Glyph, text):
+    def proofText(self, fontPath, unicode2Glyph, text, pageNumber=0):
         # Make waterfall
 
         W, H = 595, 842
@@ -255,7 +345,10 @@ class AssistantPartBuilder(BaseAssistantPart):
 
         while fs:
             db.newPage(W, H)
+            pageNumber += 1
+            self._addPageNumber(pageNumber, fontPath, (M + CW/2, M/2))
             fs = db.textBox(fs, (M, M, CW, H - 2*M))
 
+        return pageNumber
 
 

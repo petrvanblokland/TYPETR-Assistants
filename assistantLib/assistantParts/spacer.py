@@ -781,6 +781,9 @@ class AssistantPartSpacer(BaseAssistantPart):
         fillColor = 0, 0, 0, 0.2
         strokeColor = 0, 0, 0, 0
 
+        if c is None: # Window may have been closed already
+            return changed
+
         if c.w.autoSpace.get():
 
             md = self.getMasterData(g.font)

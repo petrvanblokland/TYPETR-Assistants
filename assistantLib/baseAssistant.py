@@ -121,6 +121,7 @@ class BaseAssistant:
     MOUSE_MOVE_METHODS = []
     MOUSE_UP_METHODS = []
     MOUSE_DOWN_METHODS = []
+    CLOSING_WINDOW_METHODS = [] # Methods for parts to subscribe on the event that the main assistant window is about to close.
     # Dictionary with key-method combinations where each part wants to subscribe on.
     # Each parts adds their key-method by self.registerKeyStroke(key, methodName).
     # The receiving method must be able to handle self.mePartMethodKey(g, c, event), where:
@@ -870,6 +871,9 @@ class AssistantController(BaseAssistant, WindowController):
 
     def destroy(self):
         #print("windowClose")
+        # Allow parts to close their own stuff (e.g. closing subwindows) before the main assistant window closes
+        for methodName in self.CLOSING_WINDOW_METHODS:
+            getattr(self, methodName)()
         unregisterGlyphEditorSubscriber(self.assistantGlyphEditorSubscriberClass)
         self.assistantGlyphEditorSubscriberClass.controller = None
 

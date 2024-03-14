@@ -26,6 +26,17 @@ class AssistantPartInterpolate(BaseAssistantPart):
     def initMerzInterpolate(self, container):
         """Update any Merz objects that exist in the EditWindow"""
 
+    def setGlyphInterpolation(self, g):
+        """Setup the glyph.lib-->isLower flag if it not already exists, copied from the GlyphData.isLower.
+        If the flag already exists, this will overwrite the value in the GlyphData table.
+        This is a bit of hack (allowing the flag to be changed in the assistant interface). Eventually this
+        value should go back into GlyphData table for each glyph.
+        """
+        c = self.getController()
+        gd = self.getGlyphData(g)
+        isLower = self.getLib(g, 'glyphIsLower', gd.isLower) # Just make sure it exists, using the flag in GlyphData.isLower as default
+        c.w.glyphIsLower.set(isLower)
+
     def updateInterpolate(self, info):
         changed = False
         c = self.getController()
@@ -46,11 +57,22 @@ class AssistantPartInterpolate(BaseAssistantPart):
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         LL = L/2
         c = self.getController()
-        c.w.decomposeCopiedInterpolatedGlyph = CheckBox((C0, y, CW, L), 'Decompose copy', value=False, sizeStyle='small')
-        c.w.copyFromRomanButton = Button((C1, y, CW, L), 'Copy from Roman', callback=self.copyFromRomanCallback)
+        c.w.glyphIsLower = CheckBox((C0, y, CW, L), 'Glyph is lowercase', value=False, sizeStyle='small', callback=self.glyphIsLowerCallback) # Stored in glyph.lib, overwrites the GlyphData.isLower flag.
+        c.w.interpolateAllSelectedGlyphs = CheckBox((C1, y, CW, L), 'Interpolate selected', value=False, sizeStyle='small')
         c.w.interpolateButton = Button((C2, y, CW, L), 'Interpolate [%s]' % personalKey, callback=self.interpolateGlyphCallback)
         y += L + LL
+        c.w.decomposeCopiedInterpolatedGlyph = CheckBox((C1, y, CW, L), 'Decompose copy', value=False, sizeStyle='small')
+        c.w.copyFromRomanButton = Button((C2, y, CW, L), 'Copy from Roman', callback=self.copyFromRomanCallback)
+        y += L + LL
         return y
+
+    def glyphIsLowerCallback(self, sender):
+        """Set the isLower flag for this glyph in all masters."""
+        g = self.getCurrentGlyph()
+        for f in self.getAllFonts():
+            if g.name in f:
+                gg = f[g.name]
+                self.setLib(gg, 'glyphIsLower', sender.get()) # Just make sure it exists, using the flag in GlyphData.isLower as default
 
     def interpolateGlyphKey(self, g, c, event):
         changed = self.interpolateGlyph(g)
@@ -58,11 +80,20 @@ class AssistantPartInterpolate(BaseAssistantPart):
             g.changed()
 
     def interpolateGlyphCallback(self, sender):
+        c = self.getController()
         g = self.getCurrentGlyph()
         if g is not None:
-            changed = self.interpolateGlyph(g)
-            if changed:
-                g.changed()
+            if c.w.interpolateAllSelectedGlyphs.get():
+                for gg in g.font:
+                    if gg.selected:
+                        print(f'... Interpolate selected /{gg.name}')
+                        changed = self.interpolateGlyph(gg)
+                        if changed:
+                            gg.changed()
+            else: # Just do the current glyphs
+                changed = self.interpolateGlyph(g)
+                if changed:
+                    g.changed()
 
     def copyFromRomanCallback(self, sender=None):
         """Copy the glyph from roman to alter it manually, instead of interpolating or italicizing."""
@@ -82,7 +113,7 @@ class AssistantPartInterpolate(BaseAssistantPart):
 
     def interpolateGlyph(self, g):
         """Interpolate the g from the settings in MasterData. This could be a plain interpolation, or it can be scalerpolation if
-        glyph.isLower and if the xHeight of the interpolation sources is different from the xHeight of the current target glyph."""
+        glyph.lib-->isLower and if the xHeight of the interpolation sources is different from the xHeight of the current target glyph."""
         f = g.font
         md = self.getMasterData(f)
         gd = self.getGlyphData(g)
@@ -101,8 +132,10 @@ class AssistantPartInterpolate(BaseAssistantPart):
                 print(f'### Glyph {g.name} does not exist in source fonts')
                 iFactor = None
 
+            isLower = self.getLib(g, 'glyphIsLower', gd.isLower) # In case it does not exists, using the flag in GlyphData.isLower as default
+
             # @@@ Change later to glyphData.height, so scalerpolation will also work for small caps.
-            if gd.isLower and f1.info.xHeight != f.info.xHeight: # Test if scalerpolation on the xHeight is needed?
+            if isLower and f1.info.xHeight != f.info.xHeight: # Test if scalerpolation on the xHeight is needed?
                 iScale = f.info.xHeight / f1.info.xHeight # Now the stems get thicker. Compensate that in the interpolation factor
                 iFactor /= iScale 
                 print(iScale, iFactor)
