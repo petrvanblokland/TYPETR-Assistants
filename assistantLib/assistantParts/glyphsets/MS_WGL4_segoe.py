@@ -44,7 +44,8 @@ class MS_GlyphSet(GlyphSet):
         #   .
 
        '.notdef': GD(name='.notdef'),
-       '.null': GD(name='.null', uni=0x0000, hex='0000', unicodes=(0, 13), gid=1),
+       '.null': GD(name='.null', uni=0x0000, hex='0000', gid=1),
+       'uni000D': GD(name='uni000D', uni=0x000D, hex='000D'),
        'nbspace': GD(name='nbspace', uni=0x00A0, hex='00A0', w=SPACE_WIDTH, c=' ', srcName='nonbreakingspace', isLower=True, gid=97, comment='  Symbols, Latin-1 Punctuation and'),
        'space': GD(name='space', uni=0x0020, hex='0020', w=SPACE_WIDTH, c=' ', isLower=True, gid=2, comment='  Symbols, ASCII Punctuation and'),
        'emspace': GD(name='emspace', uni=0x2003, hex='2003', w=EM_WIDTH, c=' ', isLower=True),
