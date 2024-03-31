@@ -15,6 +15,7 @@ from assistantLib.assistantParts.glyphsets.anchorData import AD
 
 class GlyphSet:
     """GlyphSet behaves like a dictionary of GlyphData instances.
+    GlyphData instances are records that keep information about each individual glyph.
 
     >>> from glyphData import *
     >>> from anchorData import AD
@@ -152,13 +153,36 @@ class GlyphSet:
     def keys(self):
         return self.glyphs.keys()
 
-    def saveGlyphSetSource(self):
+    def fromFont(self, f):
+        """If a new project starts, and there is no standard glyph set available, this method
+        creates the glyphData records based on the contents of @f"""
+        for gName in sorted(f.keys()):
+            g = f[gName]
+            base = None
+            accents = []
+            if g.components:
+                base = g.components[0].baseGlyph
+                if len(g.components) > 1:
+                    for component in g.components[1:]:
+                        accents.append(component.baseGlyph)
+            anchors = []
+            for a in g.anchors:
+                anchors.append(a.name)
+            self.glyphs[gName] = GlyphData(name=gName, uni=g.unicode, base=base, accents=accents,
+                anchors=anchors,
+            )
+        
+    def saveGlyphSetSource(self, filePath=None):
         """Write Python code source for the current self.GLYPH_DATA table."""
-        fileName = 'Exported_' + self.__class__.__name__ + '.py'
-        filePath = '/'.join(__file__.split('/')[:-1]) + '/_export/' # Get the directory path that this script is in.
-        if not os.path.exists(filePath):
-            os.mkdir(filePath)
-        out = codecs.open(filePath + fileName, 'w', encoding='utf8')
+        if filePath is None:
+            fileName = f'Exported_{self.__class__.__name__}.py'
+            dirPath = '/'.join(__file__.split('/')[:-1]) + '/_export/' # Get the directory path that this script is in.
+            if not os.path.exists(dirPath):
+                os.mkdir(dirPath)
+            filePath = dirPath + fileName
+
+        print(f'... Exported glyphs {filePath}')
+        out = codecs.open(filePath, 'w', encoding='utf8')
         out.write("""# -*- coding: UTF-8 -*-
 # ------------------------------------------------------------------------------
 #     Copyright (c) 2023+ TYPETR
@@ -174,12 +198,12 @@ except ModuleNotFoundError:
     from glyphData import *
 
 GLYPH_DATA = {
-""" % (self.__class__.__name__, fileName))
+""" % (self.__class__.__name__, filePath))
         initial = None
         for gName, gd in sorted(self.glyphs.items()):
             if initial != gName[0]:
                 initial = gName[0]
-                out.write(f'\n        #   {initial}\n\n')
+                out.write(f'\n        #   {initial}\n')
             out.write(gd.asSourceLine())
         out.write('}\n')
         out.close()

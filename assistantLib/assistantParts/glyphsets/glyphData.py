@@ -342,16 +342,6 @@ class GlyphData:
         if self.width is not None: # Allows overwriting per glyph
             out += ', width=%d' % self.width
         
-        # Categories of values
-        if self.catOvershoot is not None: 
-            out += ", catOvershoot='%s'" % self.catOvershoot
-        if self.catHeight is not None: 
-            out += ", catHeight='%s'" % self.catHeight
-        if self.catBaseline is not None: 
-            out += ", catBaseline='%s'" % self.catBaseline
-        if self.catWidth is not None: 
-            out += ", catWidth='%s'" % self.catWidth
-
         if self.gid: # Glyph ID
             out += ", gid=%d" % self.gid
         if self.comment: 

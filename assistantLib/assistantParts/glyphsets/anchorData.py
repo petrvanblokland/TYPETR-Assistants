@@ -51,6 +51,31 @@ class AnchorData:
         CONNECTED_ANCHORS[value] = key
         DIACRITICS_ANCHORS.append(key)
 
+    AUTO_PLACED_ANCHORS_Y = { # List of anchors that are responsive to auto-placement, with method names for their suggested positions.
+        TOP_: ('guessAnchorBaseY', 'guessAnchorHeight', 'guessAnchorBoxTop'),
+        _TOP: ('guessAnchorBaseY', 'guessAnchorHeight'),
+        MIDDLE_: ('guessAnchorBaseY', 'guessAnchorMiddleY'),
+        _MIDDLE: ('guessAnchorBaseY', 'guessAnchorMiddleY'),
+        BOTTOM_: ('guessAnchorBaseY', 'guessAnchorBaseline', 'guessAnchorBoxBottom'), 
+        _BOTTOM: ('guessAnchorBaseY', 'guessAnchorBaseline'),
+        DOT_: ('guessAnchorBaseY', 'guessAnchorMiddleY'),
+        _DOT: ('guessAnchorBaseY', 'guessAnchorMiddleY'),
+        VERT_: ('guessAnchorCapheight',),
+        _VERT: ('guessAnchorCapheight',),
+        TONOS_: ('guessAnchorCapheight',),
+        _TONOS: ('guessAnchorCapheight',),
+        OGONEK_: ('guessAnchorBaseY', 'guessAnchorBaseline', 'guessAnchorBoxBottom'), 
+        _OGONEK: ('guessAnchorBaseY', 'guessAnchorBaseline'),
+    }
+    AUTO_PLACED_ANCHORS_X = { # List of anchors that are responsive to auto-placement, with method names for their suggested positions.
+        TOP_: ('guessAnchorBaseX', 'guessAnchorCenterWidth', 'guessAnchorCenterBox'),
+        _TOP: ('guessAnchorBaseX', 'guessAnchorCenterWidth', 'guessAnchorCenterBox'),
+        MIDDLE_: ('guessAnchorBaseX', 'guessAnchorMiddleX'),
+        _MIDDLE: ('guessAnchorBaseX', 'guessAnchorMiddleX'),
+        BOTTOM_: ('guessAnchorBaseX', 'guessAnchorCenterWidth', 'guessAnchorCenterBox'),
+        _BOTTOM: ('guessAnchorBaseX', 'guessAnchorCenterWidth', 'guessAnchorCenterBox'),
+    }
+
     CENTERING_ANCHORS = [ # List of anchors that do center on width. Ignore TONOS, HORN, OGONEK, VERT
         TOP_, BOTTOM_, RING_, DOT_, TILDE_, MIDDLE_,
     ]

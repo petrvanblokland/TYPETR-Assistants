@@ -253,6 +253,7 @@ class BaseAssistant:
         md = self.getMasterData(g.font)
         if md is not None:
             return md.glyphSet[g.name]
+        print(f'### Cannot find GlyphData for {g.name}')
         return None
 
     #   S P A C I N G  &  K E R N I N G
@@ -326,9 +327,9 @@ class BaseAssistant:
 
     def isCurrentGlyph(self, g):
         """Answers te boolean flag if the g is the current glyph."""
-        if g is None:
-            return False
         cg = self.getCurrentGlyph()
+        if g is None or cg is None:
+            return False
         return g.name == cg.name and g.font.path == cg.font.path
 
     def doesInterpolate(self, g, fix=True, verbose=False):

@@ -11,7 +11,7 @@
 #   - Or by the anchors of base glyphs
 #   - Or by the anchors in the roman/italic companion masters
 #   - Anchors that refer to a base, get their (relative) horizontal (slanted) positions from it.
-#   - Vertical position too, unless there are already diacritics lower and/or higher, then the vertical position is adjusted to fit the glyph bounding box.
+#   - Vertical position too, unless there are already component diacritics lower and/or higher, then the vertical position is adjusted to fit the glyph bounding box.
 #   - Otherwise check if there is a set of predefined vertical position for each anchor type
 #   - The assistant decides on an initial strategy, but then the user can alter that.
 #   - If an anchor was dragged, this is stored in the glyph.lib, so it will not change by the assistant anymore.
@@ -104,7 +104,7 @@ class AssistantPartAnchors(BaseAssistantPart):
     def buildAnchors(self, y):
         """Register key stroke [a] to sync anchor positions"""
         personalKey_A = self.registerKeyStroke('A', 'anchorsGlyphKey') # Check/fix all glyphs in the current font
-        personalKey_a = self.registerKeyStroke('a', 'anchorsGlyphKey')
+        personalKey_a = self.registerKeyStroke('a', 'anchorsGlyphKey') # Check/fix this glyph in the current font
         personalKey_exclam = self.registerKeyStroke('!', 'anchorsCenterOnWidth')
 
         """Build the assistant UI for anchor controls."""

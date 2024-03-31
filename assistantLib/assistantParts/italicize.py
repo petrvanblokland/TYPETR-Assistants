@@ -100,7 +100,9 @@ class AssistantPartItalicize(BaseAssistantPart):
             print(f'### Italic source glyph {gName} does not exist.')
             return False # Nothing changed
 
-        srcG = srcF[gName]
+        # Get the glyph in the editing layer. Normally this is the foreground layer, but this method can be redefined
+        # e.g. for masters that mainly draw in the background, such as TYPETR Responder and TYPETR Upgrade Neon.
+        srcG = srcF[gName].getLayer(self.EDIT_LAYER)
 
         # Glyphs like /O better use skew+rotate to italicize, just look at the checkbox, not at the GLYPH_DATA flags.
         # self.isCurved is inherited from the italicize Assistant part

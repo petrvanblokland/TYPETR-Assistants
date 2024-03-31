@@ -43,11 +43,19 @@ class AssistantPartAnchors(BaseAssistantPart):
     """
 
     MAX_DIACRITICS_CLOUD = 40
+    MAX_GUESSED_ANCHORS = len(AD.AUTO_PLACED_ANCHORS_X) + len(AD.AUTO_PLACED_ANCHORS_Y)
+    ANCHOR_LABEL_FONT = 'Verdana'
+    ANCHOR_LABEL_SIZE = 16
+    GUESSED_ANCHOR_MARKER_R = 12
+    GUESSED_ANCHOR_POSITION_COLOR = 0, 0.5, 0, 1 # Color of marker outlines
+    GUESSED_ANCHOR_POSITION_COLOR2 = 0, 0.25, 0, 1 # Color of labels
 
     def initMerzAnchors(self, container):
         """Initialize the Merz object for this assistant part.
         Note that the diacritics-cloud object are supported by the contours part.
         """
+        self.guessedAnchorPositions = {} # Calculated if editor windows set glyph
+
         self.anchorsDiacriticsCloud = [] # Storage of diacritics images
         for dIndex in range(self.MAX_DIACRITICS_CLOUD): # Max number of diacritics in a glyph. @@@ If too low, some diacritics don't show
             self.anchorsDiacriticsCloud.append(self.backgroundContainer.appendPathSublayer(
@@ -56,7 +64,35 @@ class AssistantPartAnchors(BaseAssistantPart):
                 fillColor=(0, 0, 0.5, 0.2),
                 visible=False,
             ))
-
+        self.guessedAnchorPositions1 = [] # Storage of guessed anchor positions and their labels, showing as two concentric circles
+        self.guessedAnchorPositions2 = [] 
+        self.guessedAnchorLabels = []
+        for aIndex in range(self.MAX_GUESSED_ANCHORS): # Max number of guessed anchor positions to show
+            self.guessedAnchorPositions1.append(container.appendOvalSublayer(name='guessedAnchorPosition1%d' % aIndex,
+                position=(0, 0),
+                size=(self.GUESSED_ANCHOR_MARKER_R*2, self.GUESSED_ANCHOR_MARKER_R*2),
+                fillColor=(0.1, 0.8, 0.7, 0.25),
+                strokeColor=self.GUESSED_ANCHOR_POSITION_COLOR,
+                strokeWidth=1,
+                visible=False,
+            ))
+            self.guessedAnchorPositions2.append(container.appendOvalSublayer(name='guessedAnchorPosition2%d' % aIndex,
+                position=(0, 0),
+                size=(self.GUESSED_ANCHOR_MARKER_R*4, self.GUESSED_ANCHOR_MARKER_R*4),
+                fillColor=(0.1, 0.4, 0.35, 0.25),
+                strokeColor=self.GUESSED_ANCHOR_POSITION_COLOR,
+                strokeWidth=1,
+                visible=False,
+            ))
+            self.guessedAnchorLabels.append(container.appendTextBoxSublayer(name='guessedAnchorLabel%d' % aIndex,
+                position=(0, 0),
+                size=(400, 100),
+                font=self.ANCHOR_LABEL_FONT,
+                pointSize=self.ANCHOR_LABEL_SIZE,
+                fillColor=self.GUESSED_ANCHOR_POSITION_COLOR2,
+                visible=False,
+            ))
+        
     def updateMerzAnchors(self, info):
         """Update the diacritics cloud, depending on the existing anchors"""
         changed = False
@@ -95,6 +131,10 @@ class AssistantPartAnchors(BaseAssistantPart):
             return False # Nothing changed to the glyph
         if c.w.autoAnchors.get():
             changed |= self.checkFixAnchors(g)
+
+        # Update the guessed positions, in case one of the X/Y positions depends on the current positions of an axis
+        self.updateGuessedAnchorPositions(g)
+
         return changed
 
     def buildAnchors(self, y):
@@ -430,6 +470,10 @@ class AssistantPartAnchors(BaseAssistantPart):
 
         return fontChanged
 
+    def mouseMoveAnchors(self, g, x, y):
+        """Update the guessed anchor positions, as they may be partially dependent on the anchors, if they are dragged."""
+        self.updateGuessedAnchorPositions(g)
+
     def checkFixAnchors(self, g):
         """Check and fix the anchors of g. First try to determine if the right number of anchors exists. There are
         2 ways (based on legacy data) to find the anchors that this glyph needs: as defined in the glyphData if named 
@@ -482,11 +526,155 @@ class AssistantPartAnchors(BaseAssistantPart):
         """Called when the EditWindow selected a new glyph. Try to  find previous anchor info in g.lib,
         about mode by which the current anchors are set and if they were manually moved."""
         c = self.getController()
-        d = self.getLib(g, 'Anchors', copy.deepcopy(self.ANCHORS_DEFAULT_LIB_KEY))
-        c.w.anchorXModes.set(d.get('Xmode', 0))
-        c.w.anchorYModes.set(d.get('Ymode', 0))
-        #print('... setGlyphAnchors', g.name, d)
 
+        self.updateGuessedAnchorPositions(g)
+
+    def updateGuessedAnchorPositions(self, g):
+        guessedAnchors = {}
+        for aIndex, anchor in enumerate(g.anchors):
+            x, y = anchor.x, anchor.y
+
+            for methodNameY in AD.AUTO_PLACED_ANCHORS_Y.get(anchor.name, []):
+                if hasattr(self, methodNameY):
+                    guessedY = getattr(self, methodNameY)(g, anchor)
+                    if guessedY is None:
+                        continue
+                    y = guessedY
+
+                for methodNameX in AD.AUTO_PLACED_ANCHORS_X.get(anchor.name, []):
+                    if hasattr(self, methodNameX):
+                        guessedX = getattr(self, methodNameX)(g, anchor)
+                        if guessedX is None:
+                            continue
+                        x = self.italicX(g, guessedX, y)
+        
+                    self.guessedAnchorPositions1[aIndex].setPosition((x - self.GUESSED_ANCHOR_MARKER_R, y - self.GUESSED_ANCHOR_MARKER_R))
+                    self.guessedAnchorPositions1[aIndex].setVisible(True)
+                    self.guessedAnchorPositions2[aIndex].setPosition((x - 2*self.GUESSED_ANCHOR_MARKER_R, y - 2*self.GUESSED_ANCHOR_MARKER_R))
+                    self.guessedAnchorPositions2[aIndex].setVisible(True)
+                    self.guessedAnchorLabels[aIndex].setVisible(True)
+                    self.guessedAnchorLabels[aIndex].setText(f'@{anchor.name}\n{methodNameX.replace('guessAnchor', '')}\n{methodNameY.replace('guessAnchor', '')}')
+                    tw, th = self.guessedAnchorLabels[aIndex].getSize()
+                    self.guessedAnchorLabels[aIndex].setPosition((x + self.GUESSED_ANCHOR_MARKER_R, y - th/2))
+
+        for n in range(len(g.anchors), len(self.guessedAnchorPositions1)):
+            self.guessedAnchorPositions1[n].setVisible(False)
+            self.guessedAnchorPositions2[n].setVisible(False)
+            self.guessedAnchorLabels[n].setVisible(False)
+
+    #   G U E S S I N G  A N C H O R  P O S I T I O N S
+
+    # AUTO_PLACED_ANCHORS_Y List of anchors that are responsive to auto-placement, with method names for their suggested positions.
+    #     TOP_: ('guessAnchorBaseY', 'guessAnchorHeight', 'guessAnchorBoxTop'),
+    #     _TOP: ('guessAnchorBaseY', 'guessAnchorHeight'),
+    #     MIDDLE_: ('guessAnchorMiddleY', 'guessAnchorBaseY'),
+    #     _MIDDLE: ('guessAnchorMiddleY', 'guessAnchorBaseY'),
+    #     BOTTOM_: ('guessAnchorBaseline', 'guessAnchorBaseY', 'guessAnchorBoxBottom'), 
+    #     _BOTTOM: ('guessAnchorBaseline', 'guessAnchorBaseY'),
+    #     DOT_: ('guessAnchorMiddleY', 'guessAnchorBaseY'),
+    #     _DOT: ('guessAnchorMiddleY', 'guessAnchorBaseY'),
+    #     VERT_: ('guessAnchorCapheight',),
+    #     _VERT: ('guessAnchorCapheight',),
+    #     TONOS_: ('guessAnchorCapheight',),
+    #     _TONOS: ('guessAnchorCapheight',),
+    #     OGONEK_: ('guessAnchorBaseline', 'guessAnchorBaseY', 'guessAnchorBoxBottom'), 
+    #     _OGONEK: ('guessAnchorBaseline', 'guessAnchorBaseY'),
+    
+    # AUTO_PLACED_ANCHORS_X List of anchors that are responsive to auto-placement, with method names for their suggested positions.
+    #     TOP_: ('guessAnchorBaseX', 'guessAnchorCenterWidth', 'guessAnchorCenterBox'),
+    #     _TOP: ('guessAnchorBaseX', 'guessAnchorCenterWidth', 'guessAnchorCenterBox'),
+    #     MIDDLE_: ('guessAnchorMiddleX', 'guessAnchorBaseX'),
+    #     _MIDDLE: ('guessAnchorMiddleX', 'guessAnchorBaseX'),
+    #     BOTTOM_: ('guessAnchorBaseX', 'guessAnchorCenterWidth', 'guessAnchorCenterBox'),
+    #     _BOTTOM: ('guessAnchorBaseX', 'guessAnchorCenterWidth', 'guessAnchorCenterBox'),
+
+    #   X
+
+    def guessAnchorMiddleX(self, g, a):
+        return g.width/2
+        
+    def guessAnchorBaseX(self, g, a):
+        base = self.getBaseGlyph(g)
+        if base is not None:
+            baseAnchor = self.getAnchor(g, a.name)
+            if baseAnchor is not None:
+                return baseAnchor.x
+        return None
+        
+    def guessAnchorCenterWidth(self, g, a):
+        return g.width/2
+
+    def guessAnchorCenterBox(self, g, a):
+        """Answer the non-italized guess position of the anchor"""
+        lm = g.angledLeftMargin
+        rm = g.angledRightMargin
+        if lm is not None:
+            return lm + (g.width - rm - lm)/2
+        return g.width/2
+        
+    #   Y
+
+    def guessAnchorHeight(self, g, a):
+        """Get the height of the anchor, from xHeight or capHeight."""
+        md = self.getMasterData(g.font)
+        return md.getHeight(g.name)
+
+    def guessAnchorBaseY(self, g, a):
+        """Get the height of the anchor in the base glyph, if there is any."""
+        base = self.getBaseGlyph(g)
+        if base is not None:
+            baseAnchor = self.getAnchor(g, a.name)
+            if baseAnchor is not None:
+                return baseAnchor.y
+        return None
+
+    def guessAnchorCapheight(self, g, a):
+        """Get the height of the anchor, from capHeight."""
+        md = self.getMasterData(g.font)
+        return g.font.info.capHeight/2
+
+    def guessAnchorBaseline(self, g, a):
+        """Get the height of the anchor at baseline."""
+        return 0
+
+    def guessAnchorBoxTop(self, g, a):
+        """Get the height of the anchor, from xHeight or capHeight."""
+        return g.bounds[3]
+
+    def guessAnchorMiddleY(self, g, a):
+        md = self.getMasterData(g.font)
+        h = md.getHeight(g.name)
+        if h is None:
+            return g.font.info.capHeight/2
+        return h/2
+        
+        
+    """
+    AUTO_PLACED_ANCHORS_Y = { # List of anchors that are responsive to auto-placement, with method names for their suggested positions.
+        TOP_: ('guessAnchorHeight', 'guessAnchorBaseY', 'guessAnchorBoxTop'),
+        _TOP: ('guessAnchorHeight', 'guessAnchorBaseY'),
+        MIDDLE_: ('guessAnchorMiddleY', 'guessAnchorBaseY'),
+        _MIDDLE: ('guessAnchorMiddleY', 'guessAnchorBaseY'),
+        BOTTOM_: ('guessAnchorBaseline', 'guessAnchorBaseY', 'guessAnchorBoxBottom'), 
+        _BOTTOM: ('guessAnchorBaseline', 'guessAnchorBaseY'),
+        DOT_: ('guessAnchorMiddleY', 'guessAnchorBaseY'),
+        _DOT: ('guessAnchorMiddleY', 'guessAnchorBaseY'),
+        VERT_: ('guessAnchorCapheight',),
+        _VERT: ('guessAnchorCapheight',),
+        TONOS_: ('guessAnchorCapheight',),
+        _TONOS: ('guessAnchorCapheight',),
+        OGONEK_: ('guessAnchorBaseline', 'guessAnchorBaseY', 'guessAnchorBoxBottom'), 
+        _OGONEK: ('guessAnchorBaseline', 'guessAnchorBaseY'),
+    }
+    AUTO_PLACED_ANCHORS_X = { # List of anchors that are responsive to auto-placement, with method names for their suggested positions.
+        TOP_: ('guessAnchorBaseX', 'guessAnchorCenterWidth', 'guessAnchorCenterBox'),
+        _TOP: ('guessAnchorBaseX', 'guessAnchorCenterWidth', 'guessAnchorCenterBox'),
+        MIDDLE_: ('guessAnchorMiddleX', 'guessAnchorBaseX'),
+        _MIDDLE: ('guessAnchorMiddleX', 'guessAnchorBaseX'),
+        BOTTOM_: ('guessAnchorBaseX', 'guessAnchorCenterWidth', 'guessAnchorCenterBox'),
+        _BOTTOM: ('guessAnchorBaseX', 'guessAnchorCenterWidth', 'guessAnchorCenterBox'),
+    }
+    """
     #   K E Y S
 
     def anchorsGlyphKey(self, g, c, event):

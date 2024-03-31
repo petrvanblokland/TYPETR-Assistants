@@ -385,6 +385,8 @@ class OutlinePen(BasePen):
         a1 = self.prevPoint.angle(p1)
         a2 = p2.angle(p3)
 
+        assert a1 is not None and a2 is not None
+        
         self.currentAngle = a1
         thickness1 = self.getThickness(a1, self.thickFactor)
         thickness2 = self.getThickness(a2, self.thickFactor)

@@ -34,7 +34,10 @@ class AssistantPartInterpolate(BaseAssistantPart):
         """
         c = self.getController()
         gd = self.getGlyphData(g)
-        isLower = self.getLib(g, 'glyphIsLower', gd.isLower) # Just make sure it exists, using the flag in GlyphData.isLower as default
+        if gd is not None: # Only if there is glyphData for this glyph:
+            isLower = self.getLib(g, 'glyphIsLower', gd.isLower) # Just make sure it exists, using the flag in GlyphData.isLower as default
+        else:
+            isLower = False
         c.w.glyphIsLower.set(isLower)
 
     def updateInterpolate(self, info):
