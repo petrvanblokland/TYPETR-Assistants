@@ -59,7 +59,7 @@ class AssistantPartOverlay(BaseAssistantPart):
         )
         self.previewPointMarkers = []
         for pIndex in range(self.MAX_POINT_MARKERS): # Max number of points to display in a glyph
-            self.previewPointMarkers.append(container.appendSymbolSublayer(name="point%03d" % pIndex,
+            self.previewPointMarkers.append(container.appendSymbolSublayer(name=f"point{pIndex:03d}",
                 position=(0, 0),
                 imageSettings=dict(
                     name="rectangle",
@@ -72,7 +72,7 @@ class AssistantPartOverlay(BaseAssistantPart):
             ))
         self.backgroundPointMarkers = []
         for pIndex in range(self.MAX_POINT_MARKERS): # Max number of points to display in a glyph from the background glyph layer
-            self.backgroundPointMarkers.append(container.appendRectangleSublayer(name="bgPoint%03d" % pIndex,
+            self.backgroundPointMarkers.append(container.appendRectangleSublayer(name=f"bgPoint{pIndex:03d}",
                 position=(0, 0),
                 size=(self.POINT_MARKER_R*2, self.POINT_MARKER_R*2),
                 fillColor=None,
@@ -394,8 +394,10 @@ class AssistantPartOverlay(BaseAssistantPart):
         c.w.kerningSrcUFOPathOverlay = CheckBox((C0, y, CW, L), 'Kerning overlay', value=False, sizeStyle='small', callback=self.updateEditor)
         c.w.romanItalicUFOPathOverlay = CheckBox((C1, y, CW, L), 'Roman/italic', value=True, sizeStyle='small', callback=self.updateEditor)
         y += L
-        c.w.snapOnBackgroundButton = Button((C2, y, CW, L), 'Snap on BG [%s]' % personalKey, callback=self.overlaySnap2OverlayCallback)
-        y += L * 1.5
+        c.w.snapOnBackgroundButton = Button((C2, y, CW, L), f'Snap on BG [{personalKey}]', callback=self.overlaySnap2OverlayCallback)
+        y += L + L/5
+        c.w.overlayEndLine = HorizontalLine((C0, y, -C0, 1))
+        y += L/5
         return y
 
     def updateOverlayPositionCallback(self, sender):

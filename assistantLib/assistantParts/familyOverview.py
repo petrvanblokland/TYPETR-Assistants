@@ -45,12 +45,12 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
     FAMILY_LABEL_SPACING = 0.5 # Factor to unitsPerEm distance between the styles, leave space for the style names
 
     def initMerzFamilyOverview(self, container):    
-        # Previewing current glyphs on left/right side, with the style name of each master        
+        """Previewing current glyph for all master styles, with the style name of each master"""       
 
         self.familyOverviewGlyphs = []
         self.familyOverviewStyleName = []
         for ufoIndex in range(self.MAX_FAMILY_OVERVIEW): # Max number glyphs in family overview
-            subLayer = container.appendPathSublayer(name="familyOverview%03d" % ufoIndex,
+            subLayer = container.appendPathSublayer(name=f"familyOverview{ufoIndex:03d}",
                 position=(0, 0),
                 fillColor=(0, 0, 0, 1),
                 strokeColor=None,
@@ -59,7 +59,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
             subLayer.addScaleTransformation(self.FAMILY_OVERVIEW_SCALE)
             self.familyOverviewGlyphs.append(subLayer)            
 
-            subLayer = container.appendTextLineSublayer(name="familyOverviewStyleName%03d" % ufoIndex,
+            subLayer = container.appendTextLineSublayer(name=f"familyOverviewStyleName{ufoIndex:03d}",
                 position=(0, 0),
                 text='',
                 font=self.FAMILY_LABEL_FONT,
@@ -73,7 +73,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         
         self.familyOverviewStartPoints = []
         for spIndex in range(self.MAX_FAMILY_START_POINTS): # Max amount of start points to show
-            subLayer = container.appendOvalSublayer(name="familyOverviewStartPoint%03d" % spIndex,
+            subLayer = container.appendOvalSublayer(name=f"familyOverviewStartPoint{spIndex:03d}",
                 position=(0, 0),
                 size=(self.FAMILY_OVERVIEW_START_POINT_SIZE, self.FAMILY_OVERVIEW_START_POINT_SIZE),
                 fillColor=self.FAMILY_OVERVIEW_START_POINT_COLOR,
@@ -84,7 +84,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         
         self.familyOverviewAnchors = []
         for spIndex in range(self.MAX_FAMILY_ANCHORS): # Max amount of start points to show
-            subLayer = container.appendOvalSublayer(name="familyOverviewAnchors%03d" % spIndex,
+            subLayer = container.appendOvalSublayer(name=f"familyOverviewAnchors{spIndex:03d}",
                 position=(0, 0),
                 size=(self.FAMILY_OVERVIEW_ANCHOR_SIZE, self.FAMILY_OVERVIEW_ANCHOR_SIZE),
                 fillColor=self.FAMILY_OVERVIEW_ANCHOR_COLOR,
@@ -152,23 +152,6 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
             self.familyOverviewStartPoints[n].setVisible(False)
         for n in range(aIndex, len(self.familyOverviewAnchors)):
             self.familyOverviewAnchors[n].setVisible(False)
-            
-    def getStartPointAndSingleWidthFamilyOverview(self, g):
-        f = g.font
-        y = f.info.unitsPerEm / self.FAMILY_OVERVIEW_SCALE
-        parentPath = self.filePath2ParentPath(f.path)
-        totalFamilyOverviewWidth = 0
-        for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
-            if fIndex < len(self.familyOverviewGlyphs):
-                ufo = self.getFont(pth)
-                if ufo is not None and g.name in ufo:
-                    ufoG = ufo[g.name]
-                    totalFamilyOverviewWidth += max(f.info.unitsPerEm/2, ufoG.width + f.info.unitsPerEm * self.FAMILY_LABEL_SPACING)
-
-        totalFamilyOverviewSingleWidth = totalFamilyOverviewWidth/len(self.getUfoPaths(parentPath))
-        italicOffset = y * tan(radians(-g.font.info.italicAngle or 0))
-        startPos = (g.width/self.FAMILY_OVERVIEW_SCALE - totalFamilyOverviewWidth)/2 + italicOffset
-        return startPos, totalFamilyOverviewSingleWidth
 
     def mouseMoveFamilyOverview(self, g, x, y):
         """Set the hoover color for the current selected glyph"""
@@ -225,6 +208,24 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                                 self.setGlyphWindowPosSize(ufoG, p, s, settings=settings, viewFrame=viewFrame, viewScale=viewScale, layerName=currentLayerName)
                         return 
                     x1 = x2
+            
+    def getStartPointAndSingleWidthFamilyOverview(self, g):
+        """Find the starting point and width per glyph for the family overview"""
+        f = g.font
+        y = f.info.unitsPerEm / self.FAMILY_OVERVIEW_SCALE
+        parentPath = self.filePath2ParentPath(f.path)
+        totalFamilyOverviewWidth = 0
+        for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
+            if fIndex < len(self.familyOverviewGlyphs):
+                ufo = self.getFont(pth)
+                if ufo is not None and g.name in ufo:
+                    ufoG = ufo[g.name]
+                    totalFamilyOverviewWidth += max(f.info.unitsPerEm/2, ufoG.width + f.info.unitsPerEm * self.FAMILY_LABEL_SPACING)
+
+        totalFamilyOverviewSingleWidth = totalFamilyOverviewWidth/len(self.getUfoPaths(parentPath))
+        italicOffset = y * tan(radians(-g.font.info.italicAngle or 0))
+        startPos = (g.width/self.FAMILY_OVERVIEW_SCALE - totalFamilyOverviewWidth)/2 + italicOffset
+        return startPos, totalFamilyOverviewSingleWidth
 
     def getGlyphWindowPosSize(self):
         w = CurrentGlyphWindow()
@@ -263,6 +264,8 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         self.w.showFamilyOverview = CheckBox((C0, y, CW, L), 'Show family overview', value=True, sizeStyle='small', callback=self.updateEditor)
         self.w.showFamilyInterpolation = CheckBox((C1, y, CW, L), 'Show interpolation test', value=True, sizeStyle='small', callback=self.updateEditor)
         y += L
+        self.w.familyOverviewEndLine = HorizontalLine((C0, y, -C0, 1))
+        y += L/5
         return y
 
     #   G L Y P H  S E L E C T I O N

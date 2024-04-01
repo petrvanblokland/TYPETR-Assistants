@@ -23,8 +23,7 @@ from mojo.roboFont import OpenWindow, OpenFont, AllFonts, RGlyph, RPoint
 from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart
 
 class AssistantPartItalicize(BaseAssistantPart):
-    """The Italicize assistant part italicizes the current glyph in RoboFont.
-    """
+    """The Italicize assistant part italicizes the current glyph in RoboFont."""
 
     def initMerzItalicize(self, container):
         pass
@@ -50,9 +49,10 @@ class AssistantPartItalicize(BaseAssistantPart):
         c.w.addItalicizedExtremes = CheckBox((C0, y+LL, CW, L), 'Add extremes', value=True, sizeStyle='small')
         c.w.skewRotate = CheckBox((C1, y+LL, CW, L), 'Skew & rotate', value=False, sizeStyle='small')
         c.w.decomposeItalicized = CheckBox((C0, y+LL+LL, CW, L), 'Decompose italic', value=False, sizeStyle='small')
-
-        c.w.italicizeButton = Button((C2, y+LL/2, CW, L), 'Italicize [%s]' % personalKey, callback=self.italicizeCallback)
+        c.w.italicizeButton = Button((C2, y+LL/2, CW, L), f'Italicize [{personalKey}]', callback=self.italicizeCallback)
         y += L + 2*LL
+        c.w.italicizeEndLine = HorizontalLine((C0, y, -C0, 1))
+        y += L/5
 
         return y
 
