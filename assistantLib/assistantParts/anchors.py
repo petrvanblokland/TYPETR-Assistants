@@ -62,7 +62,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         self.anchorsDiacriticsCloud = [] # Storage of diacritics images
         for dIndex in range(self.MAX_DIACRITICS_CLOUD): # Max number of diacritics in a glyph. @@@ If too low, some diacritics don't show
             self.anchorsDiacriticsCloud.append(self.backgroundContainer.appendPathSublayer(
-                name='diacritics-%d' % dIndex,
+                name=f'diacritics-{dIndex}',
                 position=(0, 0),
                 fillColor=(0, 0, 0.5, 0.2),
                 visible=False,
@@ -71,7 +71,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         self.guessedAnchorPositions2 = [] 
         self.guessedAnchorLabels = []
         for aIndex in range(self.MAX_GUESSED_ANCHORS): # Max number of guessed anchor positions to show
-            self.guessedAnchorPositions1.append(container.appendOvalSublayer(name='guessedAnchorPosition1%d' % aIndex,
+            self.guessedAnchorPositions1.append(container.appendOvalSublayer(name=f'guessedAnchorPosition1{aIndex}',
                 position=(0, 0),
                 size=(self.GUESSED_ANCHOR_MARKER_R*2, self.GUESSED_ANCHOR_MARKER_R*2),
                 fillColor=self.GUESSED_ANCHOR_POSITION_COLOR_FILL,
@@ -79,7 +79,7 @@ class AssistantPartAnchors(BaseAssistantPart):
                 strokeWidth=1,
                 visible=False,
             ))
-            self.guessedAnchorPositions2.append(container.appendOvalSublayer(name='guessedAnchorPosition2%d' % aIndex,
+            self.guessedAnchorPositions2.append(container.appendOvalSublayer(name=f'guessedAnchorPosition2{aIndex}',
                 position=(0, 0),
                 size=(self.GUESSED_ANCHOR_MARKER_R*4, self.GUESSED_ANCHOR_MARKER_R*4),
                 fillColor=self.GUESSED_ANCHOR_POSITION_COLOR2_FILL,
@@ -87,7 +87,7 @@ class AssistantPartAnchors(BaseAssistantPart):
                 strokeWidth=1,
                 visible=False,
             ))
-            self.guessedAnchorLabels.append(container.appendTextBoxSublayer(name='guessedAnchorLabel%d' % aIndex,
+            self.guessedAnchorLabels.append(container.appendTextBoxSublayer(name=f'guessedAnchorLabel{aIndex}',
                 position=(0, 0),
                 size=(400, 100),
                 font=self.ANCHOR_LABEL_FONT,
@@ -154,12 +154,15 @@ class AssistantPartAnchors(BaseAssistantPart):
         c.w.autoAnchors = CheckBox((C0, y, CW, L), 'Auto anchors', value=True, sizeStyle='small')
         c.w.copyRomanAnchors = CheckBox((C1, y, CW, L), 'Copy roman-->italic', value=True, sizeStyle='small')
         c.w.fixAnchorsButton = Button((C2, y, CW, L), f'Fix anchors [{personalKey_A}{personalKey_a}]', callback=self.anchorsCallback)
-        y += L
+        y += L + L/5
         # Line color is crashing RoboFont
         #y += L # Closing line for the part UI
         #c.w.anchorsLine = HorizontalLine((self.M, y+4, -self.M, 0))
         #y += 8
-        y += L
+        c.w.anchorEndLine = HorizontalLine((self.M, y, -self.M, 1))
+        c.w.anchorEndLine2 = HorizontalLine((self.M, y, -self.M, 1)) # Double for slightly darker line
+        #c.w.anchorEndLine.setBorderWidth(.5)
+        y += L/5
 
         return y
 

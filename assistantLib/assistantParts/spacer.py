@@ -93,7 +93,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         for gIndex in range(self.KERN_LINE_SIZE):
             # Previewing current glyphs on left/right side.        
             im = container.appendPathSublayer(
-                name='kernedGlyph-%d' % gIndex,
+                name=f'kernedGlyph-{gIndex}',
                 position=(0, 0),
                 fillColor=self.SPACER_FILL_COLOR,
                 visible=False,
@@ -102,7 +102,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             self.kerningLine.append(im)
             
             kerningLineValue = container.appendTextLineSublayer(
-                name='kernedValue-%d' % gIndex,
+                name=f'kernedValue-{gIndex}',
                 position=(0, 0),
                 text='xxx\nxxx',
                 font=self.SPACER_LABEL_FONT,
@@ -115,7 +115,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             self.kerningLineValues.append(kerningLineValue)
 
             kerningLineBox = container.appendRectangleSublayer(
-                name='kernedBox-%d' % gIndex,
+                name=f'kernedBox-{gIndex}',
                 position=(0, 0),
                 size=(1, 1),
                 fillColor=None,
@@ -127,7 +127,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             self.kerningLineBoxes.append(kerningLineBox)
 
             kerningLineName = container.appendTextLineSublayer(
-                name='kernedName-%d' % gIndex,
+                name=f'kernedName-{gIndex}',
                 position=(0, 0),
                 text='xxx\nxxx',
                 font=self.SPACER_LABEL_FONT,
@@ -425,15 +425,15 @@ class AssistantPartSpacer(BaseAssistantPart):
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         LL = 18
         c.w.autoSpace = CheckBox((C1, y, CW, L), 'Auto space', value=True, sizeStyle='small', callback=self.updateEditor)
-        c.w.centerGlyphButton = Button((C2, y, CW, L), 'Center width [%s]' % personalKey_eq, callback=self.spacerCenterGlyphCallback)
+        c.w.centerGlyphButton = Button((C2, y, CW, L), f'Center width [{personalKey_eq}]', callback=self.spacerCenterGlyphCallback)
         y += L
         c.w.splitSimScripts = CheckBox((C0, y, CW, L), 'Split Sim scripts', value=True, sizeStyle='small', callback=self.updateEditor)
         c.w.showSpacingSampleLine = CheckBox((C1, y, CW, L), 'Show sample line', value=True, sizeStyle='small', callback=self.updateEditor)
         
-        c.w.decLeftMarginButton = Button((C2, y, CW/4, L), '<[%s]' % personalKey_u, callback=self.spacerDecLeftMarginCallback)
-        c.w.incLeftMarginButton = Button((C2+CW/4, y, CW/4, L), '[%s]>' % personalKey_i, callback=self.spacerIncLeftMarginCallback)
-        c.w.decRightMarginButton = Button((C2+2*CW/4, y, CW/4, L), '<[%s]' % personalKey_o, callback=self.spacerDecRightMarginCallback)
-        c.w.incRightMarginButton = Button((C2+3*CW/4, y, CW/4, L), '[%s]>' % personalKey_p, callback=self.spacerIncRightMarginCallback)
+        c.w.decLeftMarginButton = Button((C2, y, CW/4, L), f'<[{personalKey_u}]', callback=self.spacerDecLeftMarginCallback)
+        c.w.incLeftMarginButton = Button((C2+CW/4, y, CW/4, L), f'[{personalKey_i}]>', callback=self.spacerIncLeftMarginCallback)
+        c.w.decRightMarginButton = Button((C2+2*CW/4, y, CW/4, L), f'<[{personalKey_o}]', callback=self.spacerDecRightMarginCallback)
+        c.w.incRightMarginButton = Button((C2+3*CW/4, y, CW/4, L), f'[{personalKey_p}]>', callback=self.spacerIncRightMarginCallback)
         y += L
         c.w.spacerMode = RadioGroup((C0, y, 2*CW, L), ('Glyphs', 'Similar', 'Group', 'Space', 'Kern'), isVertical=False, sizeStyle='small', callback=self.updateEditor)
         c.w.spacerMode.set(1)
@@ -445,6 +445,9 @@ class AssistantPartSpacer(BaseAssistantPart):
         c.w.fixReportedSpacingDifferences = CheckBox((C1, y, CW, L), 'Fix reported', value=False, sizeStyle='small')
         c.w.reportSpacingButton = Button((C2, y, CW, L), 'Report spacing', callback=self.reportSpacingCallback)
         y += L + LL
+        c.w.spacerEndLine = HorizontalLine((self.M, y, -self.M, 1))
+        c.w.spacerEndLine2 = HorizontalLine((self.M, y, -self.M, 1))
+        y += L/5
 
         return y
 
@@ -682,7 +685,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         width = km.getWidth(g)
         if width is not None:
             changed = self._fixGlyphWidth(g, width)
-            label = 'Width=%d' % g.width
+            label = f'Width={g.width}' 
             color = self.SPACER_FIXED_WIDTH_MARKER_COLOR
 
         self.fixedSpaceMarkerRight.setPosition((g.width - self.SPACER_MARKER_R, -self.SPACER_MARKER_R))

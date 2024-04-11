@@ -55,8 +55,9 @@ class AssistantPartGuidelines(BaseAssistantPart):
         #c.w.guidelinesFooterLine = HorizontalLine((self.M, y+4, -self.M, 2))
         #c.w.guidelinesFooterLine.setBorderColor((0, 0, 0, 1))
         #y += 8
-        y += L + LL
-        c.w.guidelinesEndLine = HorizontalLine((C0, y, -C0, 1))
+        y += L + L/5
+        c.w.guidelinesEndLine = HorizontalLine((self.M, y, -self.M, 1))
+        c.w.guidelinesEndLine2 = HorizontalLine((self.M, y, -self.M, 1))
         y += L/5
 
         return y

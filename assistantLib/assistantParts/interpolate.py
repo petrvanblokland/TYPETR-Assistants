@@ -67,7 +67,8 @@ class AssistantPartInterpolate(BaseAssistantPart):
         c.w.decomposeCopiedInterpolatedGlyph = CheckBox((C1, y, CW, L), 'Decompose copy', value=False, sizeStyle='small')
         c.w.copyFromRomanButton = Button((C2, y, CW, L), 'Copy from Roman', callback=self.copyFromRomanCallback)
         y += L + L/5
-        c.w.interpolateEndLine = HorizontalLine((C0, y, -C0, 1))
+        c.w.interpolateEndLine = HorizontalLine((self.M, y, -self.M, 1))
+        c.w.interpolateEndLine2 = HorizontalLine((self.M, y, -self.M, 1))
         y += L/5
         return y
 

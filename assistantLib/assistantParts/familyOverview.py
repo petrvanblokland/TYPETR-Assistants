@@ -263,8 +263,9 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         self.w.showFamilyOverview = CheckBox((C0, y, CW, L), 'Show family overview', value=True, sizeStyle='small', callback=self.updateEditor)
         self.w.showFamilyInterpolation = CheckBox((C1, y, CW, L), 'Show interpolation test', value=True, sizeStyle='small', callback=self.updateEditor)
-        y += L
-        self.w.familyOverviewEndLine = HorizontalLine((C0, y, -C0, 1))
+        y += L + L/5
+        self.w.familyOverviewEndLine = HorizontalLine((self.M, y, -self.M, 1))
+        self.w.familyOverviewEndLine2 = HorizontalLine((self.M, y, -self.M, 1))
         y += L/5
         return y
 

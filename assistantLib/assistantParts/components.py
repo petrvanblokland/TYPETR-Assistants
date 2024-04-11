@@ -49,7 +49,10 @@ class AssistantPartComponents(BaseAssistantPart):
 
         c = self.getController()
         c.w.autoFixComponentPositions = CheckBox((C2, y, CW, L), 'Auto fix components', value=True, sizeStyle='small')
-        y += L*1.5
+        y += L + L/5
+        c.w.componentsEndLine = HorizontalLine((self.M, y, -self.M, 1))
+        c.w.componentsEndLine2 = HorizontalLine((self.M, y, -self.M, 1)) # Double for slightly darker line
+        y += L/5
 
         return y
 

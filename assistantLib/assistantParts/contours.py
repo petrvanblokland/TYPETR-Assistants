@@ -50,7 +50,8 @@ class AssistantPartContours(BaseAssistantPart):
         c = self.getController()
         c.w.setStartPointButton = Button((C2, y, CW, L), f'Set start [{personalKey_E}{personalKey_e}]', callback=self.contoursSetStartPointCallback)
         y += L + L/5
-        c.w.contoursEndLine = HorizontalLine((C0, y, -C0, 1))
+        c.w.contoursEndLine = HorizontalLine((self.M, y, -self.M, 1))
+        c.w.contoursEndLine2 = HorizontalLine((self.M, y, -self.M, 1)) # Double for slightly darker line
         y += L/5
 
         return y

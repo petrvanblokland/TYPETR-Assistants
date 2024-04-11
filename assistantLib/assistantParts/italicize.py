@@ -51,7 +51,8 @@ class AssistantPartItalicize(BaseAssistantPart):
         c.w.decomposeItalicized = CheckBox((C0, y+LL+LL, CW, L), 'Decompose italic', value=False, sizeStyle='small')
         c.w.italicizeButton = Button((C2, y+LL/2, CW, L), f'Italicize [{personalKey}]', callback=self.italicizeCallback)
         y += L + 2*LL
-        c.w.italicizeEndLine = HorizontalLine((C0, y, -C0, 1))
+        c.w.italicizeEndLine = HorizontalLine((self.M, y, -self.M, 1))
+        c.w.italicizeEndLine2 = HorizontalLine((self.M, y, -self.M, 1))
         y += L/5
 
         return y

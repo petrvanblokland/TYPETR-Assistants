@@ -396,7 +396,8 @@ class AssistantPartOverlay(BaseAssistantPart):
         y += L
         c.w.snapOnBackgroundButton = Button((C2, y, CW, L), f'Snap on BG [{personalKey}]', callback=self.overlaySnap2OverlayCallback)
         y += L + L/5
-        c.w.overlayEndLine = HorizontalLine((C0, y, -C0, 1))
+        c.w.overlayEndLine = HorizontalLine((self.M, y, -self.M, 1))
+        c.w.overlayEndLine2 = HorizontalLine((self.M, y, -self.M, 1))
         y += L/5
         return y
 
