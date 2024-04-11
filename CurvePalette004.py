@@ -643,8 +643,10 @@ class CurvePaletteController(WindowController):
         for contour in g:
             points = list(contour.points)
             if points: # Any points here?
+                if len(points) < 4:
+                    continue
                 points2 = points + points # Double, so we can run over he edge.
-                
+            
                 for index in range(len(points)):
                     p0, p1, p2, p3 = points2[index:index+4]
                     #nextnextp = self.nextp(bPoints, index + 1)
@@ -753,6 +755,8 @@ class CurvePaletteController(WindowController):
         allCurvePoints = {} # Combination of selected and unselected
         for contour in g:
             points = contour.points
+            if len(points) < 4:
+                continue
             for pIndex in range(len(contour.points)):
                 p_2 = points[pIndex - 3]
                 p_1 = points[pIndex - 2]

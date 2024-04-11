@@ -51,30 +51,87 @@ class AnchorData:
         CONNECTED_ANCHORS[value] = key
         DIACRITICS_ANCHORS.append(key)
 
-    AUTO_PLACED_ANCHORS_Y = { # List of anchors that are responsive to auto-placement, with method names for their suggested positions.
-        TOP_: ('guessAnchorBaseY', 'guessAnchorHeight', 'guessAnchorBoxTop'),
-        _TOP: ('guessAnchorBaseY', 'guessAnchorHeight'),
-        MIDDLE_: ('guessAnchorBaseY', 'guessAnchorMiddleY'),
-        _MIDDLE: ('guessAnchorBaseY', 'guessAnchorMiddleY'),
-        BOTTOM_: ('guessAnchorBaseY', 'guessAnchorBaseline', 'guessAnchorBoxBottom'), 
-        _BOTTOM: ('guessAnchorBaseY', 'guessAnchorBaseline'),
-        DOT_: ('guessAnchorBaseY', 'guessAnchorMiddleY'),
-        _DOT: ('guessAnchorBaseY', 'guessAnchorMiddleY'),
-        VERT_: ('guessAnchorCapheight',),
-        _VERT: ('guessAnchorCapheight',),
-        TONOS_: ('guessAnchorCapheight',),
-        _TONOS: ('guessAnchorCapheight',),
-        OGONEK_: ('guessAnchorBaseY', 'guessAnchorBaseline', 'guessAnchorBoxBottom'), 
-        _OGONEK: ('guessAnchorBaseY', 'guessAnchorBaseline'),
+    # Method names that are implenented to guess the position of anchors.
+    GUESS_ANCHOR_BASE_X = 'guessAnchorBaseX'
+    GUESS_ANCHOR_CENTER_WIDTH = 'guessAnchorCenterWidth'
+    GUESS_ANCHOR_BOX_CENTER_X = 'guessAnchorBoxCenterX'
+    GUESS_ANCHOR_OGONEK_X = 'guessAnchorOgonekX'
+    GUESS_ANCHOR_VERT_X = 'guessAnchorVertX'
+    GUESS_ANCHOR_TONOS_X = 'guessAnchorTonosX'
+
+    GUESS_ANCHOR_BASE_Y = 'guessAnchorBaseY'
+    GUESS_ANCHOR_BASELINE = 'guessAnchorBaseline'
+    GUESS_ANCHOR_VERT_Y = 'guessAnchorVertY'
+    GUESS_ANCHOR_VERT_ASCENDER_Y = 'guessAnchorVertAscenderY'
+    GUESS_ANCHOR_HEIGHT = 'guessAnchorHeight'
+    GUESS_ANCHOR_BOX_TOP = 'guessAnchorBoxTop' # Depending on the glyph on capHeight or xHeigt
+    GUESS_ANCHOR_ASCENDER = 'guessAnchorAscender'
+    GUESS_ANCHOR_MIDDLE_Y = 'guessAnchorMiddleY'
+    GUESS_ANCHOR_DESCENDER = 'guessAnchorDescender'
+    GUESS_ANCHOR_BOX_BOTTOM = 'guessAnchorBoxBottom'
+
+    GUESS_PAIRS_TOP = (
+        (GUESS_ANCHOR_BASE_X, GUESS_ANCHOR_BASE_Y), 
+        (GUESS_ANCHOR_CENTER_WIDTH, GUESS_ANCHOR_HEIGHT), 
+        (GUESS_ANCHOR_CENTER_WIDTH, GUESS_ANCHOR_ASCENDER), 
+        (GUESS_ANCHOR_CENTER_WIDTH, GUESS_ANCHOR_BOX_TOP), 
+        (GUESS_ANCHOR_BOX_CENTER_X, GUESS_ANCHOR_HEIGHT), 
+        (GUESS_ANCHOR_BOX_CENTER_X, GUESS_ANCHOR_ASCENDER), 
+        (GUESS_ANCHOR_BOX_CENTER_X, GUESS_ANCHOR_BOX_TOP), 
+    )
+    GUESS_PAIRS_MIDDLE = (
+        (GUESS_ANCHOR_BASE_X, GUESS_ANCHOR_BASE_Y), 
+        (GUESS_ANCHOR_CENTER_WIDTH, GUESS_ANCHOR_MIDDLE_Y), 
+        (GUESS_ANCHOR_BOX_CENTER_X, GUESS_ANCHOR_MIDDLE_Y), 
+    )
+    GUESS_PAIRS_BOTTOM = (
+        (GUESS_ANCHOR_BASE_X, GUESS_ANCHOR_BASE_Y), 
+        (GUESS_ANCHOR_CENTER_WIDTH, GUESS_ANCHOR_DESCENDER), 
+        (GUESS_ANCHOR_CENTER_WIDTH, GUESS_ANCHOR_BOX_BOTTOM), 
+        (GUESS_ANCHOR_BOX_CENTER_X, GUESS_ANCHOR_DESCENDER), 
+        (GUESS_ANCHOR_BOX_CENTER_X, GUESS_ANCHOR_BOX_BOTTOM), 
+    )
+    GUESS_PAIRS_VERT = (
+        (GUESS_ANCHOR_VERT_X, GUESS_ANCHOR_VERT_Y),
+        (GUESS_ANCHOR_VERT_X, GUESS_ANCHOR_VERT_ASCENDER_Y),
+        (GUESS_ANCHOR_VERT_X, GUESS_ANCHOR_ASCENDER),
+        (GUESS_ANCHOR_VERT_X, GUESS_ANCHOR_BOX_TOP),
+        (GUESS_ANCHOR_VERT_X, GUESS_ANCHOR_HEIGHT),
+    )
+    GUESS_PAIRS_TONOS = (
+        (GUESS_ANCHOR_TONOS_X, GUESS_ANCHOR_ASCENDER),
+        (GUESS_ANCHOR_TONOS_X, GUESS_ANCHOR_BOX_TOP),
+        (GUESS_ANCHOR_TONOS_X, GUESS_ANCHOR_HEIGHT),
+    )
+    GUESS_PAIRS_OGONEK = (
+        (GUESS_ANCHOR_OGONEK_X, GUESS_ANCHOR_BOX_BOTTOM),
+        (GUESS_ANCHOR_OGONEK_X, GUESS_ANCHOR_BASELINE),
+    )
+    AUTO_PLACED_ANCHORS = { # List of pairs of method names to find guessed anchors positions that are responsive to auto-placement.
+        TOP_: GUESS_PAIRS_TOP,
+        _TOP: GUESS_PAIRS_TOP,
+        MIDDLE_: GUESS_PAIRS_MIDDLE,
+        _MIDDLE: GUESS_PAIRS_MIDDLE,
+        BOTTOM_: GUESS_PAIRS_BOTTOM,
+        _BOTTOM: GUESS_PAIRS_BOTTOM,
+        DOT_: GUESS_PAIRS_MIDDLE,
+        _DOT: GUESS_PAIRS_MIDDLE,
+        VERT_: GUESS_PAIRS_VERT,
+        _VERT: GUESS_PAIRS_VERT,
+        TONOS_: GUESS_PAIRS_TONOS,
+        _TONOS: GUESS_PAIRS_TONOS,
+        OGONEK_: GUESS_PAIRS_OGONEK, 
+        _OGONEK: GUESS_PAIRS_OGONEK,
     }
-    AUTO_PLACED_ANCHORS_X = { # List of anchors that are responsive to auto-placement, with method names for their suggested positions.
-        TOP_: ('guessAnchorBaseX', 'guessAnchorCenterWidth', 'guessAnchorCenterBox'),
-        _TOP: ('guessAnchorBaseX', 'guessAnchorCenterWidth', 'guessAnchorCenterBox'),
-        MIDDLE_: ('guessAnchorBaseX', 'guessAnchorMiddleX'),
-        _MIDDLE: ('guessAnchorBaseX', 'guessAnchorMiddleX'),
-        BOTTOM_: ('guessAnchorBaseX', 'guessAnchorCenterWidth', 'guessAnchorCenterBox'),
-        _BOTTOM: ('guessAnchorBaseX', 'guessAnchorCenterWidth', 'guessAnchorCenterBox'),
-    }
+
+    # Default offset positions for guessed anchor positions. Can be redefined in the MasterData for each master UFO.
+    ANCHOR_ASCENDER_OFFSET = 120 # Offset down, will be made negative.
+    ANCHOR_BOXTOP_OFFSET = 120 # Offset down, will be made negative.
+    ANCHOR_CAP_OFFSET = 78 # Offset down, will be made negative.
+    ANCHOR_OFFSET = 16 # Default amount for vertical anchor offset, avoiding them to collide with baseline, xHeight, etc.
+    ANCHOR_OGONEK_OFFSET = ANCHOR_OFFSET
+    ANCHOR_BOXBOTTOM_OFFSET = 64
+    ANCHOR_DESCENDER_OFFSET = 64
 
     CENTERING_ANCHORS = [ # List of anchors that do center on width. Ignore TONOS, HORN, OGONEK, VERT
         TOP_, BOTTOM_, RING_, DOT_, TILDE_, MIDDLE_,
@@ -346,7 +403,7 @@ class AnchorData:
         'Yerudieresis-cy', 'Ygrave', 'Yhook', 'Yhookabove', 'Yi-cy', 'Ymacron', 'Yot', 'Ystroke', 'Ytilde', 'Z', 'Zacute', 'Zcaron', 'Zcircumflex', 'Zdotaccent', 
         'Zdotbelow', 'Ze-cy', 'Zedieresis-cy', 'Zeta', 'Zhe-cy', 'Zhebreve-cy', 'Zhedieresis-cy', 'Zlinebelow', 'Zsmall', 'a', 'a-cy', 'aacute', 'abreve', 'abreve-cy', 
         'abreve.component', 'abreve.component1', 'abreve.component2', 'abreve.component3', 'abreveacute', 'abrevedotbelow', 'abrevegrave', 'abrevehookabove', 'abrevetilde', 
-        'acaron', 'acircumflex', 'acircumflexacute', 'acircumflexdotbelow', 'acircumflexgrave', 'acircumflexhookabove', 'acircumflextilde', 'acomb', 'acute', 'acutecomb', 
+        'acaron', 'acircumflex', 'acircumflexacute', 'acircumflexdotbelow', 'acircumflexgrave', 'acircumflexhookabove', 'acircumflextilde', 'acomb', 'acutecomb', 
         'acutecomb.component', 'acutecomb.component1', 'acutecomb.component3', 'acutecomb.component5', 'acutedottedcomb', 'acutegraveacutecomb', 
         'acutemacroncomb', 'acutetonecomb', 'adblgrave', 'adieresis', 'adieresis-cy', 'adieresismacron', 'adotaccent', 'adotbelow', 'adotmacron', 'ae', 'aeacute', 'aemacron', 
         'agrave', 'ahookabove', 'aie-cy', 'ainvertedbreve', 'almostequaltoabovecomb', 'alpha', 'alphadasia', 'alphadasiaoxia', 'alphadasiaoxiaypogegrammeni', 
@@ -355,13 +412,13 @@ class AnchorData:
         'alphapsiliperispomeni', 'alphapsiliperispomeniypogegrammeni', 'alphapsilivaria', 'alphapsilivariaypogegrammeni', 'alphapsiliypogegrammeni', 'alphatonos', 
         'alphavaria', 'alphavariaypogegrammeni', 'alphavrachy', 'alphaypogegrammeni', 'amacron', 'aogonek', 'aretroflexhook',  
         'arighthalfring', 'aring', 'aringacute', 'aringbelow', 'arrowheadleftabovecomb', 'arrowheadrightabovecomb', 'asteriskabovecomb', 'astroke', 'atilde', 'b', 
-        'bdotaccent', 'bdotbelow', 'blinebelow', 'bmiddletilde', 'bpalatalhook', 'breve', 'brevecomb', 'brevecomb.component', 
-        'breveinvertedcomb', 'breveinverteddoublecomb', 'c', 'cPalatalhook', 'cacute', 'candrabinducomb', 'caron', 'caroncomb', 'cbar', 'ccaron', 'ccedilla', 
-        'ccedillaacute', 'ccircumflex', 'ccomb', 'cdotaccent', 'che-cy', 'chedieresis-cy', 'cheverticalstroke-cy', 'circumflex', 'circumflexcomb', 'commaabovecomb', 
+        'bdotaccent', 'bdotbelow', 'blinebelow', 'bmiddletilde', 'bpalatalhook', 'brevecomb', 'brevecomb.component', 
+        'breveinvertedcomb', 'breveinverteddoublecomb', 'c', 'cPalatalhook', 'cacute', 'candrabinducomb', 'caroncomb', 'cbar', 'ccaron', 'ccedilla', 
+        'ccedillaacute', 'ccircumflex', 'ccomb', 'cdotaccent', 'che-cy', 'chedieresis-cy', 'cheverticalstroke-cy', 'circumflexcomb', 'commaabovecomb', 
         'commaaboverightcomb', 'commareversedabovecomb', 'commaturnedabovecomb', 'cstroke', 'd', 'dasia', 'dasiaoxia', 'dasiaperispomeni', 'dasiapneumatacomb-cy', 'dasiavaria', 
         'dblgravecomb', 'dbloverlinecomb', 'dblverticallineabovecomb', 'dcaron', 'dcedilla', 'dcircumflexbelow', 'dcomb', 'ddotaccent', 'ddotbelow', 'dialytikaoxia', 
-        'dialytikaperispomeni', 'dialytikatonoscomb', 'dialytikavaria', 'dieresis', 'dieresiscomb', 'dieresistonos', 'dlinebelow', 'dmiddletilde', 'dotaboverightcomb', 
-        'dotaccent', 'dotaccentcomb', 'doublebrevecomb', 'doublemacroncomb', 'dpalatalhook', 'dum', 'dz', 'dzcaron', 'dze-cy', 'dzeabkhasian-cy', 'e', 'eacute', 'ebreve', 
+        'dialytikaperispomeni', 'dialytikatonoscomb', 'dialytikavaria', 'dieresiscomb', 'dieresistonos', 'dlinebelow', 'dmiddletilde', 'dotaboverightcomb', 
+        'dotaccentcomb', 'doublebrevecomb', 'doublemacroncomb', 'dpalatalhook', 'dum', 'dz', 'dzcaron', 'dze-cy', 'dzeabkhasian-cy', 'e', 'eacute', 'ebreve', 
         'ecaron', 'ecedilla', 'ecedillabreve', 'ecircumflex', 'ecircumflexacute', 'ecircumflexbelow', 'ecircumflexdotbelow', 'ecircumflexgrave', 'ecircumflexhookabove', 
         'ecircumflextilde', 'ecomb', 'edblgrave', 'edieresis', 'edieresis-cy', 'edotaccent', 'edotbelow', 'egrave', 'ehookabove', 'einvertedbreve', 'emacron', 'emacronacute', 
         'emacrongrave', 'eogonek', 'eopen', 'eopenretroflexhook', 'eopenreversedretroflexhook', 'epsilon', 'epsilondasia', 'epsilondasiaoxia', 'epsilondasiavaria', 
@@ -371,10 +428,10 @@ class AnchorData:
         'etapsilioxiaypogegrammeni', 'etapsiliperispomeni', 'etapsiliperispomeniypogegrammeni', 'etapsilivaria', 'etapsilivariaypogegrammeni', 'etapsiliypogegrammeni', 
         'etatonos', 'etavaria', 'etavariaypogegrammeni', 'etaypogegrammeni', 'etilde', 'etildebelow', 'eturned', 'ezh', 'ezhcaron', 'f', 'fStroke', 'fdotaccent', 'fermatacomb', 
         'firsttonechinese', 'flenis', 'fmiddletilde', 'fourthtonechinese', 'fpalatalhook', 'g', 'gacute', 'gbreve', 'gbridgeabovecomb', 'gcaron', 'gcircumflex', 'gcommaaccent', 
-        'gdotaccent', 'ge-cy', 'gje-cy', 'gmacron', 'gobliquestroke', 'gpalatalhook', 'graphemejoinercomb', 'grave', 'graveacutegravecomb', 'gravecomb', 'gravecomb.component', 
+        'gdotaccent', 'ge-cy', 'gje-cy', 'gmacron', 'gobliquestroke', 'gpalatalhook', 'graphemejoinercomb', 'graveacutegravecomb', 'gravecomb', 'gravecomb.component', 
         'gravecomb.component1', 'gravecomb.component3', 'gravedottedcomb', 'gravemacroncomb', 'gravetonecomb', 'gsingle', 'h', 'hPalatalhook', 'ha-cy', 
         'hbrevebelow', 'hcaron', 'hcedilla', 'hcircumflex', 'hcomb', 'hdieresis', 'hdotaccent', 'hdotbelow', 'hlinebelow', 'homotheticabovecomb', 'hookabovecomb', 
-        'hookabovecomb.component', 'horncomb', 'hungarumlaut', 'hungarumlautcomb', 'i', 'i-cy', 'iacute', 'ibreve', 'icaron', 'icircumflex', 'icomb', 'idblgrave', 'idieresis', 
+        'hookabovecomb.component', 'horncomb', 'hungarumlautcomb', 'i', 'i-cy', 'iacute', 'ibreve', 'icaron', 'icircumflex', 'icomb', 'idblgrave', 'idieresis', 
         'idieresis-cy', 'idieresis.component', 'idieresisacute', 'idotbelow', 'idotless', 'ie-cy', 'iebreve-cy', 'iegrave-cy', 'igrave', 'ihookabove', 'ii-cy', 
         'iigrave-cy', 'iinvertedbreve', 'iishort-cy', 'iishorttail-cy', 'ij', 'imacron', 'imacron-cy', 'io-cy', 'iogonek', 'iota', 'iotadasia', 'iotadasiaoxia', 
         'iotadasiaperispomeni', 'iotadasiavaria', 'iotadialytikaoxia', 'iotadialytikaperispomeni', 'iotadialytikavaria', 'iotadieresis', 'iotadieresistonos', 'iotamacron', 
@@ -382,7 +439,7 @@ class AnchorData:
         'iretroflexhook', 'itilde', 'itildebelow', 'izhitsa-cy', 'izhitsadblgrave-cy', 'jcaron', 'jcircumflex', 'jdotless', 'k', 'ka-cy', 'kacute', 'kcaron', 'kcommaaccent', 
         'kdiagonalstroke', 'kdotbelow', 'kgreenlandic', 'kje-cy', 'klinebelow', 'kobliquestroke', 'koronis', 'koroniscomb', 'kpalatalhook', 'kstroke', 'kstrokediagonalstroke', 
         'l', 'lacute', 'lcaron', 'lcircumflexbelow', 'lcommaaccent', 'ldot', 'ldotbelow', 'ldotbelowmacron', 'ldoublemiddletilde', 'leftangleabovecomb', 'lefthalfringabovecomb', 
-        'lj', 'llinebelow', 'longs', 'longsdotaccent', 'lowcircumflexmod', 'lowtildemod', 'lpalatalhook', 'm', 'macron', 'macronacutecomb', 'macroncomb', 
+        'lj', 'llinebelow', 'longs', 'longsdotaccent', 'lowcircumflexmod', 'lowtildemod', 'lpalatalhook', 'm', 'macronacutecomb', 'macroncomb', 
         'macroncomb.component', 'macroncomb.component1', 'macrongravecomb', 'macute', 'mcomb', 'mdotaccent', 'mdotbelow', 'mill', 'mmiddletilde', 
         'mpalatalhook', 'mum', 'n', 'nacute', 'napostrophe', 'ncaron', 'ncircumflexbelow', 'ncommaaccent', 'ndescender', 'ndotaccent', 'ndotbelow', 'ngrave', 'nj', 'nlinebelow', 
         'nmiddletilde', 'nobliquestroke', 'nottildeabovecomb', 'npalatalhook', 'ntilde', 'num', 'o', 'o-cy', 'oacute', 'obarred', 'obarred-cy', 
@@ -398,12 +455,12 @@ class AnchorData:
         'overlinecomb', 'oxia', 'p', 'pacute', 'palatalizationcomb-cy', 'palochka-cy', 'pamphyliandigamma', 'pdotaccent', 'perispomeni', 'perispomenicomb', 'pmiddletilde', 
         'pokrytiecomb-cy', 'ppalatalhook', 'psili', 'psilioxia', 'psiliperispomeni', 'psilipneumatacomb-cy', 'psilivaria', 'pstroke', 'pstrokethroughdescender', 'q', 
         'qdiagonalstroke', 'qstrokethroughdescender', 'r', 'r.salt', 'racute', 'rcaron', 'rcomb', 'rcommaaccent', 'rdblgrave', 'rdotaccent', 'rdotbelow', 'rdotbelowmacron', 'rho', 
-        'rhoStrokeSymbol', 'rhodasia', 'rhopsili', 'righthalfringabovecomb', 'ring', 'ringcomb', 'ringhalfright', 'rinvertedbreve', 'rlinebelow', 
+        'rhoStrokeSymbol', 'rhodasia', 'rhopsili', 'righthalfringabovecomb', 'ringcomb', 'ringhalfright', 'rinvertedbreve', 'rlinebelow', 
         'rmiddletilde', 'robliquestroke', 'rpalatalhook', 'rstroke', 'rum', 's', 'sacute', 'sacute.component', 'sacutedotaccent', 'scaron', 'scaron.component', 
         'scarondotaccent', 'scedilla', 'schwa', 'schwa-cy', 'schwadieresis-cy', 'schwaretroflexhook', 'scircumflex', 'scommaaccent', 'sdotaccent', 'sdotbelow', 
         'sdotbelowdotaccent', 'secondtonechinese', 'shha-cy', 'sigmaLunateDottedSymbol', 'sigmaLunateSymbol', 'smiddletilde', 'sobliquestroke', 'spalatalhook', 
          'suspensioncomb', 't', 'tcaron', 'tcedilla', 'tcircumflexbelow', 'tcomb', 'tcommaaccent', 'tdiagonalstroke', 
-        'tdieresis', 'tdotaccent', 'tdotbelow', 'thstrikethrough', 'tilde', 'tildecomb', 'tildecomb.component', 'tildedoublecomb', 'tildeverticalcomb', 
+        'tdieresis', 'tdotaccent', 'tdotbelow', 'thstrikethrough', 'tildecomb', 'tildecomb.component', 'tildedoublecomb', 'tildeverticalcomb', 
         'titlocomb-cy', 'tlinebelow', 'tmiddletilde', 'u', 'u-cy', 'uacute', 'ubar', 'ubreve', 'ucaron', 'ucircumflex', 'ucircumflexbelow', 'ucomb', 'udblgrave', 
         'udieresis', 'udieresis-cy', 'udieresis.component', 'udieresisacute', 'udieresisbelow', 'udieresiscaron', 'udieresisgrave', 'udieresismacron', 'udotbelow', 'ugrave', 
         'uhookabove', 'uhorn', 'uhornacute', 'uhorndotbelow', 'uhorngrave', 'uhornhookabove', 'uhorntilde', 'uhungarumlaut', 'uhungarumlaut-cy', 'uinvertedbreve', 'umacron', 
@@ -565,7 +622,7 @@ class AnchorData:
         'amacron', 'aogonek', 'aretroflexhook', 'arighthalfring', 'aring', 'aringacute', 'aringbelow', 'arrowdoublerightbelowcomb', 'arrowheadleftbelowcomb', 
         'arrowheadrightbelowcomb', 'arrowheadrightheadupbelowcomb', 'arrowleftrightbelowcomb', 'arrowupbelowcomb', 'asteriskbelowcomb', 'astroke', 'atilde', 'b', 
         'bdotaccent', 'bdotbelow', 'blinebelow', 'bmiddletilde', 'bpalatalhook', 'brevebelow', 'breveinvertedbelowcomb', 'bridgebelowcomb', 'bridgeinvertedbelowcomb', 'c', 
-        'cPalatalhook', 'cacute', 'caronbelowcomb', 'cbar', 'ccaron', 'ccedilla', 'ccedillaacute', 'ccircumflex', 'cdotaccent', 'cedilla', 'cedillacomb', 'cedillacomb.component', 
+        'cPalatalhook', 'cacute', 'caronbelowcomb', 'cbar', 'ccaron', 'ccedilla', 'ccedillaacute', 'ccircumflex', 'cdotaccent', 'cedillacomb', 'cedillacomb.component', 
         'circumflexbelow', 'circumflexbelowcomb', 'commaaccentcomb', 'cstroke', 'd', 'dblarchinvertedbelowcomb', 'dbllowlinecomb', 'dblmacronbelowcomb', 
         'dcaron', 'dcedilla', 'dcircumflexbelow', 'ddotaccent', 'ddotbelow', 'dieresisbelow', 'dlinebelow', 'dmiddletilde', 'dotbelowcomb', 'doublebrevebelowcomb', 
         'doubleringbelowcomb', 'doubleverticallinebelowcomb', 'downtackbelowcomb', 'dpalatalhook', 'dum', 'dz', 'dzcaron', 'dze-cy', 'e', 
@@ -673,11 +730,11 @@ class AnchorData:
         'dieresiscomb', 'dotaboverightcomb', 'dotaccentcomb', 'doublebrevecomb', 'doublemacroncomb', 'ecomb', 'fermatacomb', 
         'gbridgeabovecomb', 'graphemejoinercomb', 'graveacutegravecomb', 'gravecomb', 'gravecomb.component', 'gravecomb.component1', 
         'gravecomb.component3', 'gravedottedcomb', 'gravemacroncomb', 'gravetonecomb', 'hardsigncomb-cy', 'hcomb', 'homotheticabovecomb', 'hookabovecomb', 
-        'hookabovecomb.component', 'horncomb', 'hungarumlaut', 'hungarumlautcomb', 'icomb', 'idieresis.component', 'koroniscomb', 'leftangleabovecomb', 
-        'lefthalfringabovecomb', 'macron', 'macronacutecomb', 'macroncomb', 'macroncomb.component', 'macroncomb.component1', 'macrongravecomb', 'mcomb', 
+        'hookabovecomb.component', 'horncomb', 'hungarumlautcomb', 'icomb', 'idieresis.component', 'koroniscomb', 'leftangleabovecomb', 
+        'lefthalfringabovecomb', 'macronacutecomb', 'macroncomb', 'macroncomb.component', 'macroncomb.component1', 'macrongravecomb', 'mcomb', 
         'nottildeabovecomb', 'ocomb', 'otilde.component', 'otilde.component1', 'overlinecomb', 'palatalizationcomb-cy', 
         'perispomenicomb', 'pokrytiecomb-cy', 'psilipneumatacomb-cy', 'rcomb', 'righthalfringabovecomb', 
-        'ring', 'ringcomb', 'ringhalfright', 'sacute.component', 'scaron.component', 'softsigncomb-cy', 'suspensioncomb', 'tcomb', 
+        'ringcomb', 'ringhalfright', 'sacute.component', 'scaron.component', 'softsigncomb-cy', 'suspensioncomb', 'tcomb', 
         'tildecomb', 'tildecomb.component', 'tildedoublecomb', 'tildeverticalcomb', 'titlocomb-cy', 'ucomb', 'udieresis.component', 
         'umacron.component', 'uni047E.component', 'vcomb', 'verticallineabovecomb', 'xabovecomb', 'xcomb', 'zigzagabovecomb',
         'ringhalfleft', 'varia', 
@@ -722,7 +779,7 @@ class AnchorData:
         #'two.pnum_enclosingkeycapcomb]',
     }
 
-    _OGONEK_ANCHORS = {'ogonek', 'ogonekcomb'}
+    _OGONEK_ANCHORS = {'ogonekcomb'}
 
     _DOT_ANCHORS = {'dotmiddle.component'}
 

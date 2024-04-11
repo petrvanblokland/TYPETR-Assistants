@@ -14,9 +14,12 @@
 #   on glyph to get their position on top or below.
 #   Stacking diacritics can have both, to allow other diacritics floating on top.
 #
+import importlib
 
 from assistantLib.assistantParts.glyphsets.glyphData import * 
 from assistantLib.assistantParts.glyphsets.glyphSet import GlyphSet
+import assistantLib.assistantParts.glyphsets.anchorData
+importlib.reload(assistantLib.assistantParts.glyphsets.anchorData)
 from assistantLib.assistantParts.glyphsets.anchorData import AD
 
 class MasterData:
@@ -71,6 +74,15 @@ class MasterData:
             baseDiacriticsBottom=None, # Top of bottom diacritis
             numrBaseline=None, supsBaseline=None, sinfBaseline=None, dnomBaseline=None, modBaseline=None,
             middlexHeight=None, middleCapHeight=None,
+            # Vertical anchor offsets to avoid collission with baseline, guidlines, etc. in mouse selection
+            ascenderAnchorOffsetY= -AD.ANCHOR_ASCENDER_OFFSET,
+            boxTopAnchorOffsetY= -AD.ANCHOR_BOXTOP_OFFSET,
+            capHeightAnchorOffsetY= -AD.ANCHOR_CAP_OFFSET, # Optional vertical offset of cap-anhors or lower capital diacritics.
+            xHeightAnchorOffsetY= -AD.ANCHOR_OFFSET,
+            baselineAnchorOffsetY=AD.ANCHOR_OFFSET,
+            ogonekAnchorOffsetY=AD.ANCHOR_OGONEK_OFFSET,
+            boxBottomAnchorOffsetY= AD.ANCHOR_BOXBOTTOM_OFFSET,
+            descenderAnchorOffsetY=AD.ANCHOR_DESCENDER_OFFSET,
             # Horizontal metrics
             HStem=None, HThin=None, OStem=None, OThin=None,
             HscStem=None, HscThin=None, OscStem=None, OscThin=None,
@@ -173,6 +185,16 @@ class MasterData:
             GD.CAT_SUPS_OVERSHOOT: supsOvershoot,
             GD.CAT_SC_OVERSHOOT: scOvershoot,
         }
+
+        # Vertical anchor offsets
+        self.ascenderAnchorOffsetY = ascenderAnchorOffsetY
+        self.boxTopAnchorOffsetY = boxTopAnchorOffsetY
+        self.capHeightAnchorOffsetY = capHeightAnchorOffsetY # Optional vertical offset of cap-anhors or lower capital diacritics.
+        self.xHeightAnchorOffsetY = xHeightAnchorOffsetY
+        self.baselineAnchorOffsetY = baselineAnchorOffsetY
+        self.ogonekAnchorOffsetY = ogonekAnchorOffsetY
+        self.boxBottomAnchorOffsetY = boxBottomAnchorOffsetY
+        self.descenderAnchorOffsetY = descenderAnchorOffsetY
         
         if unitsPerEm is None:
             unitsPerEm = self.UNITS_PER_EM

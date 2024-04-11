@@ -346,6 +346,16 @@ class KerningManager:
             return True
         return False
 
+    def fixCenteredMargins(self, g, lable=''):
+        """If the glyph is not centered on its current width then move it horizontally."""
+        w = g.width
+        lm = (g.angledLeftMargin + g.angledRightMargin)/2
+        if not self.hasEqualLeftMargin(g, lm):
+            g.angledLeftMargin = lm
+            g.width = w # Restore the width to original.
+            return True
+        return False
+
     def fixLeftMarginByGlyphSetReference(self, g, useBase=True, doneLeft=None, doneRight=None):
         """If the angled left margin needs fixing, then set the value in the glyph. 
         Answer the boolean flag if something was changed."""
@@ -365,6 +375,11 @@ class KerningManager:
         if gd.l is not None: # Plain angled left margin
             if gd.l == 'off': # No automatic spacing, do manually
                 return False
+            elif gd.l == 'center': # Center the glyph on it's current defined width
+                assert gd.w is not None, (f'gd.l=center also needs gd.w defined')
+                changed |= self.fixGlyphWidth(g, gd.w, f"w={gd.w}")
+                changed |= self.fixCenteredMargins(g, f"l='center'")
+                return changed
             elif isinstance(gd.l, (int, float)): # It can be a value intead of a reference name
                 lm = gd.l
             else:
