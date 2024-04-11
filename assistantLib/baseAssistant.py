@@ -801,7 +801,7 @@ class AssistantController(BaseAssistant, WindowController):
                    
         for f in self.getAllFonts():
             changed = False
-            print(f'... Fixing all of {f.path.split('/')[-1]}')
+            print(f'... Fixing all of {f.path.split("/")[-1]}')
             changed |= self.checkFixGlyphSet(f) # First check if all glyphs are there. Create missing, delete obsolete.
             #changed |= self.fixInterpolations(f) # Fix contours where auto-interpolation is possible.
             changed |= self.componentFixAll(f) # Fix components

@@ -526,7 +526,7 @@ class AssistantPartAnchors(BaseAssistantPart):
                         # Calculating them for all glyphs separate for all open fonts is a bit expensive, but it's only done on mouse click. Let's see.
                         a = self.getAnchor(gg, anchorName)
                         if a is None:
-                            print(f'### Missing anchor "{anchorName} in /{g.name} in {f.path.split('/')[-1]}')
+                            print(f'### Missing anchor "{anchorName} in /{g.name} in {f.path.split("/")[-1]}')
                         guessedY = getattr(self, my)(gg, a)
                         guessedX = self.italicX(gg, getattr(self, mx)(gg, a), guessedY or a.y)
                         changed = self._setAnchorXY(gg, a, guessedX, guessedY, italicize=False) 
