@@ -54,9 +54,11 @@ class AssistantPartCurves(BaseAssistantPart):
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
 
         c = self.getController()
-        c.w.Q2BButton = Button((C1, y, CW, L), 'Q --> B [%s]' % personalKey_b, callback=self.Q2BCallback)
-        c.w.B2QButton = Button((C2, y, CW, L), 'B --> Q [%s]' % personalKey_q, callback=self.B2QCallback)
-        y += L*1.5
+        c.w.Q2BButton = Button((C1, y, CW, L), f'Q --> B [{personalKey_b}]', callback=self.Q2BCallback)
+        c.w.B2QButton = Button((C2, y, CW, L), f'B --> Q [{personalKey_q}]', callback=self.B2QCallback)
+        y += L + L/5
+        c.w.curvesEndLine = HorizontalLine((C0, y, -C0, 1))
+        y += L/5
 
         return y
 

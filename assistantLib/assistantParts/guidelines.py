@@ -49,13 +49,15 @@ class AssistantPartGuidelines(BaseAssistantPart):
         LL = 18
  
         c.w.automakeGuidelines = CheckBox((C1, y, CW, L), 'Auto make', value=True, sizeStyle='small', callback=self.updateEditor)
-        c.w.makeGuidelines = Button((C2, y, CW, L), 'Make guides [%s]' % personalKey, callback=self.makeGuidesCallback)
+        c.w.makeGuidelines = Button((C2, y, CW, L), f'Make guides [{personalKey}]', callback=self.makeGuidesCallback)
         # Line color is crashing RF
         #y += L # Closing line for the part UI
         #c.w.guidelinesFooterLine = HorizontalLine((self.M, y+4, -self.M, 2))
         #c.w.guidelinesFooterLine.setBorderColor((0, 0, 0, 1))
         #y += 8
         y += L + LL
+        c.w.guidelinesEndLine = HorizontalLine((C0, y, -C0, 1))
+        y += L/5
 
         return y
 
@@ -98,31 +100,31 @@ class AssistantPartGuidelines(BaseAssistantPart):
 
         guidelines = []
         if baseline: 
-            guidelines.append((x + tg * baseline, baseline, 0, 'Baseline %d' % baseline))
-            guidelines.append((xo + tg * (baseline - overshoot), baseline - overshoot, 0, '%d (%d)' % (baseline - overshoot, overshoot)))
+            guidelines.append((x + tg * baseline, baseline, 0, f'Baseline {baseline}'))
+            guidelines.append((xo + tg * (baseline - overshoot), baseline - overshoot, 0, f"{baseline - overshoot} ({overshoot})"))
         else: # Don't overwrite y == 0 position
-            guidelines.append((xo + tg * (baseline - overshoot), baseline - overshoot, 0, '(%d)' % overshoot))            
-        guidelines.append((xo + tg * (height + overshoot), height + overshoot, 0, '%d (%d)' % (height + overshoot, overshoot)))
+            guidelines.append((xo + tg * (baseline - overshoot), baseline - overshoot, 0, f"({overshoot})"))            
+        guidelines.append((xo + tg * (height + overshoot), height + overshoot, 0, f"{height + overshoot} ({overshoot})"))
         if height not in (capHeight, xHeight):
-            guidelines.append((x + tg * height, height, 0, 'Height %d' % height))
-        guidelines.append((x + tg * middle, middle, 0, 'Middle %d' % middle))
+            guidelines.append((x + tg * height, height, 0, f'Height {height}'))
+        guidelines.append((x + tg * middle, middle, 0, f'Middle {middle}'))
 
         # Always a guideline on font xHeight and capHeight.
-        guidelines.append((x + tg * xHeight, xHeight, 0, 'xHeight %d' % xHeight))
-        guidelines.append((x + tg * capHeight, capHeight, 0, 'capHeight %d' % capHeight))
+        guidelines.append((x + tg * xHeight, xHeight, 0, f'xHeight {xHeight}'))
+        guidelines.append((x + tg * capHeight, capHeight, 0, f'capHeight {capHeight}'))
 
         if gd is None:
             print(f'### Cannot find /{g.name} in GlyphData {md.glyphSet.__class__.__name__}')
 
         elif gd.isLower:
-            guidelines.append((xo + tg * (md.ascender + overshoot), md.ascender + overshoot, 0, '%d (%d)' % (md.ascender + overshoot, overshoot)))
-            guidelines.append((x + tg * md.ascender, md.ascender, 0, 'Ascender %d' % md.ascender))
-            guidelines.append((xo + tg * (md.descender - overshoot), md.descender - overshoot, 0, '%d (%d)' % (md.descender - overshoot, overshoot)))
-            guidelines.append((x + tg * md.descender, md.descender, 0, 'Descender %d' % md.descender))
+            guidelines.append((xo + tg * (md.ascender + overshoot), md.ascender + overshoot, 0, f"{md.ascender + overshoot} ({overshoot})"))
+            guidelines.append((x + tg * md.ascender, md.ascender, 0, f'Ascender {md.ascender}'))
+            guidelines.append((xo + tg * (md.descender - overshoot), md.descender - overshoot, 0, f'{md.descender - overshoot} ({overshoot})'))
+            guidelines.append((x + tg * md.descender, md.descender, 0, f'Descender {md.descender}'))
 
         if md.stemOvershoot is not None: # Font is using single stem overshoots, e.g. with rounded stems as in Upgrade Neon
-            guidelines.append((xo + tg * (height + md.stemOvershoot), height + md.stemOvershoot, 0, '%d (%d)' % (height + md.stemOvershoot, md.stemOvershoot)))
-            guidelines.append((xo + tg * (baseline - md.stemOvershoot), baseline - md.stemOvershoot, 0, '%d (%d)' % (baseline - md.stemOvershoot, md.stemOvershoot)))
+            guidelines.append((xo + tg * (height + md.stemOvershoot), height + md.stemOvershoot, 0, f"{height + md.stemOvershoot} ({md.stemOvershoot})"))
+            guidelines.append((xo + tg * (baseline - md.stemOvershoot), baseline - md.stemOvershoot, 0, f"{baseline - md.stemOvershoot} ({md.stemOvershoot})"))
 
         if forced or len(g.guidelines) != len(guidelines):
             # Amounts are different, too complex to compare. Just rebuild all guidelines.

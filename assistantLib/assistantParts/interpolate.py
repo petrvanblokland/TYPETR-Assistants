@@ -62,11 +62,13 @@ class AssistantPartInterpolate(BaseAssistantPart):
         c = self.getController()
         c.w.glyphIsLower = CheckBox((C0, y, CW, L), 'Glyph is lowercase', value=False, sizeStyle='small', callback=self.glyphIsLowerCallback) # Stored in glyph.lib, overwrites the GlyphData.isLower flag.
         c.w.interpolateAllSelectedGlyphs = CheckBox((C1, y, CW, L), 'Interpolate selected', value=False, sizeStyle='small')
-        c.w.interpolateButton = Button((C2, y, CW, L), 'Interpolate [%s]' % personalKey, callback=self.interpolateGlyphCallback)
+        c.w.interpolateButton = Button((C2, y, CW, L), f'Interpolate [{personalKey}]', callback=self.interpolateGlyphCallback)
         y += L + LL
         c.w.decomposeCopiedInterpolatedGlyph = CheckBox((C1, y, CW, L), 'Decompose copy', value=False, sizeStyle='small')
         c.w.copyFromRomanButton = Button((C2, y, CW, L), 'Copy from Roman', callback=self.copyFromRomanCallback)
-        y += L + LL
+        y += L + L/5
+        c.w.interpolateEndLine = HorizontalLine((C0, y, -C0, 1))
+        y += L/5
         return y
 
     def glyphIsLowerCallback(self, sender):
