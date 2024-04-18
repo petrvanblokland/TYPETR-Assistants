@@ -43,7 +43,7 @@ class AssistantPartAnchors(BaseAssistantPart):
     """
 
     MAX_DIACRITICS_CLOUD = 40
-    MAX_GUESSED_ANCHORS = 50
+    MAX_GUESSED_ANCHORS = 30
     ANCHOR_LABEL_FONT = 'Verdana'
     ANCHOR_LABEL_SIZE = 12
     GUESSED_ANCHOR_MARKER_R = 8
@@ -154,6 +154,8 @@ class AssistantPartAnchors(BaseAssistantPart):
         c.w.autoAnchors = CheckBox((C0, y, CW, L), 'Auto anchors', value=True, sizeStyle='small')
         c.w.copyRomanAnchors = CheckBox((C1, y, CW, L), 'Copy roman-->italic', value=True, sizeStyle='small')
         c.w.fixAnchorsButton = Button((C2, y, CW, L), f'Fix anchors [{personalKey_A}{personalKey_a}]', callback=self.anchorsCallback)
+        y += L
+        c.w.showGuessedNames = CheckBox((C0, y, CW, L), 'Show guessed names', value=False, sizeStyle='small') # Show names+info of guessed positions.
         y += L + L/5
         # Line color is crashing RoboFont
         #y += L # Closing line for the part UI
@@ -586,8 +588,10 @@ class AssistantPartAnchors(BaseAssistantPart):
     def updateGuessedAnchorPositions(self, g):
         """Reset the guessed anchor positions for this glyph, e.g. after the glyphEditor set another glyph, or if spacing or bounding box changed.
         This method is not changing any position of the anchors it self."""
+        c = self.getController()
         self.guessedAnchorPositions = {}
         aIndex = 0
+        showNames = c.w.showGuessedNames.get()
         for anchor in g.anchors: # Using the anchors here just a template to know which anchors belong in this glyph.
             if anchor.name not in AD.AUTO_PLACED_ANCHORS:
                 continue # This type of anchor does not have guessing methods implemented
@@ -624,11 +628,12 @@ class AssistantPartAnchors(BaseAssistantPart):
                     self.guessedAnchorPositions1[aIndex].setFillColor(self.GUESSED_ANCHOR_POSITION_COLOR_FILL)
                 self.guessedAnchorPositions2[aIndex].setPosition((x - 2*self.GUESSED_ANCHOR_MARKER_R, y - 2*self.GUESSED_ANCHOR_MARKER_R))
                 self.guessedAnchorPositions2[aIndex].setVisible(True)
+
                 self.guessedAnchorLabels[aIndex].setText(f'@{anchor.name}\n{methodNameX.replace("guessAnchor", "")}: {x}\n{methodNameY.replace("guessAnchor", "")}: {y}')
                 tw, th = self.guessedAnchorLabels[aIndex].getSize()
                 #self.guessedAnchorLabels[aIndex].setPosition((x + self.GUESSED_ANCHOR_MARKER_R, y - 2*self.GUESSED_ANCHOR_MARKER_R - th/2))
                 self.guessedAnchorLabels[aIndex].setPosition((x, y - 2*self.GUESSED_ANCHOR_MARKER_R - th))
-                self.guessedAnchorLabels[aIndex].setVisible(True)
+                self.guessedAnchorLabels[aIndex].setVisible(showNames) # SHowing depends on [x] Show guessed names
                 aIndex += 1
                 self.guessedAnchorPositions[(x, y)] = anchor.name, methodNameX, methodNameY
 
