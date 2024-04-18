@@ -54,6 +54,10 @@ import assistantLib.assistantParts.spacingKerning.kerningManager
 importlib.reload(assistantLib.assistantParts.spacingKerning.kerningManager)
 from assistantLib.assistantParts.spacingKerning.kerningManager import KerningManager
 
+import assistantLib.toolbox.glyphAnalyzer
+importlib.reload(assistantLib.toolbox.glyphAnalyzer)
+from assistantLib.toolbox.glyphAnalyzer import GlyphAnalyzer
+
 from assistantLib.assistantParts.glyphsets.anchorData import AD
 
 # Add paths to libs in sibling repositories
@@ -64,6 +68,13 @@ for path in PATHS:
         sys.path.append(path)
 
 FAR = 100000 # Put drawing stuff outside the window
+
+# Some global storage, that can be reached from Controllers as well as Subscribers
+
+GLOBAL_BG_FONTS = {} # Global storage. Key is fullPath, value is RFont without showing interface
+GLOBAL_GLYPH_ANALYZERS = {} # Key is font path, value is dictionary of GlyphAnalyzer instances 
+GLOBAL_KERNING_MANAGERS = {} # Key is font path, value is the related KerningManager instance.
+
 
 class BaseAssistant:
     """Share functions and class variables for both Assistant and AssistantController.
@@ -186,7 +197,7 @@ class BaseAssistant:
 
     # Caching of open fonts without interface. Once a font get opened with a FontWindow,
     # it will be removed from this dictionary.          
-    bgFonts = {} # Key is fullPath, value is RFont without showing interface
+    bgFonts = GLOBAL_BG_FONTS # Key is fullPath, value is RFont without showing interface
 
     def path2FullPath(self, path):
         """Using the class value PROJECT_PATH to construct the full path. If path is None,
@@ -256,10 +267,23 @@ class BaseAssistant:
         print(f'### Cannot find GlyphData for {g.name}')
         return None
 
+    #   A N A L Y Z E R S
+
+    glyphAnalyzers = GLOBAL_GLYPH_ANALYZERS # Key is font path, value is dictionary of GlyphAnalyzer instances 
+
+    def getGlyphAnalyzer(self, g):
+        """Answer the cached glyph analzyer for /g if is exists. Otherwise create is and store in canche."""
+        if not g.font.path in self.glyphAnalyzers:
+            self.glyphAnalyzers[g.font.path] = {}
+        glyphAnalyzers = self.glyphAnalyzers[g.font.path] # Get the cached analyzers for this font
+        if not g.name in glyphAnalyzers: # Check if it already exists, otherwise create
+            glyphAnalyzers[g.name] = GlyphAnalyzer(g) # Stored as weakref
+        return glyphAnalyzers[g.name] # Now it much exist, return the GlyphAnalyzer for /g
+
     #   S P A C I N G  &  K E R N I N G
 
     SIM_CLIP = 300 # Default range to look "into" glyph sides for 1000 em. Will be corrected for actual f.info.unitsPerEm
-    kerningManagers = {} # Key is font path, value is the related KerningManager instance.
+    kerningManagers = GLOBAL_KERNING_MANAGERS # Key is font path, value is the related KerningManager instance.
 
     def getKerningManager(self, f):
         if not f.path in self.kerningManagers:

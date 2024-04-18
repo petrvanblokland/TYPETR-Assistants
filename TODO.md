@@ -1,5 +1,6 @@
 # TYPETR-Assistants TODO
 
+Implement functions from old separate sources:
 * Dimensioneer002.py
 * CurvePalette003.py
 * Interpolator002.py
