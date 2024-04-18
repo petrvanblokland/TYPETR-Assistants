@@ -509,8 +509,13 @@ class KerningManager:
         if gd.l is not None: # Plain angled left margin
             if gd.l == 'off':
                 return g.angledLeftMargin # Nothing changed, adjust manually
+            
+            elif gd.l == 'center': # The margin is supposed to be centered.
+                return (g.width - g.angledLeftMargin - g.angledRightMargin)/2
+
             elif isinstance(gd.l, (int, float)): # It can be a value intead of a reference name
                 return gd.l
+            
             assert gd.l in g.font, (f'### "gd.l={gd.l}" reference glyph for /{g.name} does not exist.') # Using "md.l" it should exist
             return self.getLeftMarginByGlyphSetReference(g.font[gd.l], useBase, doneLeft, doneRight) # Get the left margin of the referenced glyph
         

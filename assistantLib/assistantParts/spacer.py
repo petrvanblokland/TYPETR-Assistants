@@ -367,15 +367,16 @@ class AssistantPartSpacer(BaseAssistantPart):
     def updateSpacer(self, info):
         """If the checkbox is set, then try to check and fix automated margins and width.
         Answer the boolean flag if something was changed to the glyph."""
-        changed = False
         g = info['glyph']
         if g is None:
             return changed # Nothing changed.
-        
-        changed |= self.checkFixGlyphLeftMargin(g)
-        changed |= self.checkFixGlyphRightMargin(g)
-        #changed |= self.checkFixGlyphWidth(g)
-        
+        changed = self.checkFixGlyphSpacing(g)
+        return changed
+
+    def checkFixGlyphSpacing(self, g, updateMerz=True):
+        changed = self.checkFixGlyphLeftMargin(g, updateMerz=updateMerz)
+        changed |= self.checkFixGlyphRightMargin(g, updateMerz=updateMerz)
+        #changed |= self.checkFixGlyphWidth(g)        
         return changed
 
     KEY_CENTER_GLYPH = '='
@@ -441,15 +442,48 @@ class AssistantPartSpacer(BaseAssistantPart):
         #c.w.incKern2Button = Button((C2+CW/4, y, CW/4, L), '[%s]>' % personalKey_n, callback=self.spacerIncKern2Callback)
         #c.w.decKern1Button = Button((C2+2*CW/4, y, CW/4, L), '<[%s]' % personalKey_period, callback=self.spacerDecKern1Callback)
         #c.w.incKern1Button = Button((C2+3*CW/4, y, CW/4, L), '[%s]>' % personalKey_comma, callback=self.spacerIncKern1Callback)
-        y += L + L
+        y += L
         c.w.fixReportedSpacingDifferences = CheckBox((C1, y, CW, L), 'Fix reported', value=False, sizeStyle='small')
         c.w.reportSpacingButton = Button((C2, y, CW, L), 'Report spacing', callback=self.reportSpacingCallback)
-        y += L + LL
+        y += L + 10
+        c.w.autoSpaceAllButton = Button((C1, y, CW, L), 'Auto space all', callback=self.autoSpaceAllCallback)
+        c.w.autoKernAllButton = Button((C2, y, CW, L), 'Auto kern all', callback=self.autoKernAllCallback)
+        y += L + 10
         c.w.spacerEndLine = HorizontalLine((self.M, y, -self.M, 1))
         c.w.spacerEndLine2 = HorizontalLine((self.M, y, -self.M, 1))
         y += L/5
 
         return y
+
+    def autoSpaceAllCallback(self, sender):
+        """Auto space all UFO's in the family, recursively applying all rules until that base glyph. Keep track of the glyphs 
+        that were modified to avoid double work. Report on the glypns that got changed."""
+        print('--- Auto spacing all masters')
+        f = self.getCurrentFont()
+        parentPath = self.filePath2ParentPath(f.path)
+
+        for pth in self.getUfoPaths(parentPath):
+            f = self.getFont(pth)
+            print(f'... Auto spacing {f.path.split('/')[-1]}')
+            for g in f: # First check all glyphs without components
+                if g.components:
+                    continue
+                changed = self.checkFixGlyphSpacing(g, updateMerz=False)
+                if changed:
+                    g.changed()
+            for g in f: # Then check all glyphs with components
+                if not g.components:
+                    continue
+                changed = self.checkFixGlyphSpacing(g, updateMerz=False)
+                if changed:
+                    g.changed()
+            # Watch out: this will auto-save the adjusted font
+            f.save()
+
+    def autoKernAllCallback(self, sender):
+        """Auto kern all groups and kerning pairs for the given template for all UFO's in the family.
+        Report on the groups and pairs that got changed. Only perform real changes if the safety switch is enabled."""
+        print('--- Auto kern all masters')
 
     def reportSpacingCallback(self, sender):
         """Report/fix margins for the current font that don't fit the epexted value as it would have been auto spaced.
@@ -698,10 +732,12 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         return changed
 
-    def checkFixGlyphLeftMargin(self, g, km=None):
+    def checkFixGlyphLeftMargin(self, g, km=None, updateMerz=True):
         """Use the KerningManager for the current font to determine the best left margin for this glyph.
         Check if this glyph should have its left margin altered. If it has components, then fix those first.
         If something changed, then answer True. 
+
+        @@@ updateMerz is a bit of a hack, to make this method callable for controllers. The fixing and Merz should be split in the future.
         """
         c = self.getController()
         if c is None: # The window may have been closed
@@ -720,8 +756,11 @@ class AssistantPartSpacer(BaseAssistantPart):
 
             label = ''
 
+            if gd is None: # Cannot find this glyph
+                print(f'### checkFixGlyphLeftMargin: Cannot find GlyphData for /{g.name}')
+            
             # First check if there is a masterData spacing source defined, that overwrites all other spacing rules
-            if md.spacingSrcUFOPath is not None and g.width:  # Only if defined and the glyph has width
+            elif md.spacingSrcUFOPath is not None and g.width:  # Only if defined and the glyph has width
                 src = self.getFont(md.spacingSrcUFOPath)
                 if g.name in src:
                     lm = src[g.name].angledLeftMargin + md.spacingOffset
@@ -763,21 +802,24 @@ class AssistantPartSpacer(BaseAssistantPart):
             fillColor = None
             strokeColor = 0, 0, 0, 0.5
 
-        self.fixedSpaceMarkerLeft.setPosition((-self.SPACER_MARKER_R, -self.SPACER_MARKER_R))
-        self.fixedSpaceMarkerLeft.setFillColor(fillColor)
-        self.fixedSpaceMarkerLeft.setStrokeColor(strokeColor)
-        self.fixedSpaceMarkerLeft.setVisible(True)
+        if updateMerz:
+            self.fixedSpaceMarkerLeft.setPosition((-self.SPACER_MARKER_R, -self.SPACER_MARKER_R))
+            self.fixedSpaceMarkerLeft.setFillColor(fillColor)
+            self.fixedSpaceMarkerLeft.setStrokeColor(strokeColor)
+            self.fixedSpaceMarkerLeft.setVisible(True)
 
-        self.leftSpaceSourceLabel.setPosition((0, -self.SPACER_MARKER_R*2))
-        self.leftSpaceSourceLabel.setText(label)
-        self.leftSpaceSourceLabel.setVisible(True)
+            self.leftSpaceSourceLabel.setPosition((0, -self.SPACER_MARKER_R*2))
+            self.leftSpaceSourceLabel.setText(label)
+            self.leftSpaceSourceLabel.setVisible(True)
 
         return changed
 
-    def checkFixGlyphRightMargin(self, g, km=None):
+    def checkFixGlyphRightMargin(self, g, km=None, updateMerz=True):
         """Use the KerningManager for the current font to determine the best right margin for this glyph. 
         Check if this glyph should have its right margin altered. If it has components, then fix those first.
         If something changed, then answer True. 
+
+        @@@ updateMerz is a bit of a hack, to make this method callable for controllers. The fixing and Merz should be split in the future.
         """
         c = self.getController()
         changed = False
@@ -796,7 +838,10 @@ class AssistantPartSpacer(BaseAssistantPart):
 
             label = ''
 
-            if md.spacingSrcUFOPath is not None and g.width: # Only if defined and if the glyph has width
+            if gd is None: # Cannot find this glyph
+                print(f'### checkFixGlyphRightMargin: Cannot find GlyphData for /{g.name}')
+
+            elif md.spacingSrcUFOPath is not None and g.width: # Only if defined and if the glyph has width
                 src = self.getFont(md.spacingSrcUFOPath)
                 if g.name in src:
                     rm = src[g.name].angledRightMargin + md.spacingOffset
@@ -839,14 +884,15 @@ class AssistantPartSpacer(BaseAssistantPart):
             strokeColor = 0, 0, 0, 0.5
         label += f'\n(w={g.width})'
 
-        self.fixedSpaceMarkerRight.setPosition((g.width - self.SPACER_MARKER_R, -self.SPACER_MARKER_R))
-        self.fixedSpaceMarkerRight.setFillColor(fillColor)
-        self.fixedSpaceMarkerRight.setStrokeColor(strokeColor)
-        self.fixedSpaceMarkerRight.setVisible(True)
-        
-        self.rightSpaceSourceLabel.setPosition((g.width, -self.SPACER_MARKER_R*2))
-        self.rightSpaceSourceLabel.setText(label)
-        self.rightSpaceSourceLabel.setVisible(True)
+        if updateMerz:
+            self.fixedSpaceMarkerRight.setPosition((g.width - self.SPACER_MARKER_R, -self.SPACER_MARKER_R))
+            self.fixedSpaceMarkerRight.setFillColor(fillColor)
+            self.fixedSpaceMarkerRight.setStrokeColor(strokeColor)
+            self.fixedSpaceMarkerRight.setVisible(True)
+            
+            self.rightSpaceSourceLabel.setPosition((g.width, -self.SPACER_MARKER_R*2))
+            self.rightSpaceSourceLabel.setText(label)
+            self.rightSpaceSourceLabel.setVisible(True)
 
         return changed
     
