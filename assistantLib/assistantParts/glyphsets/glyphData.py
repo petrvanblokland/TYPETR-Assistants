@@ -90,7 +90,8 @@ class GlyphData:
             # Anchors
             # Force list of anchor names. Otherwise try to compose the list from the anchors that this glyph is associated with in AD.ANCHORS. 
             anchors=None, 
-            anchorSrc=None, # Glyph name to copy anchors from
+            anchorSrc=None, # Master name to copy anchors from
+            anchorTypeGlyphSrc=None, # Glyph name to copy guessed anchor positions from
             # Force spacing dependencies
             l=None, r=None, w=None, 
             bl=None, br=None, # Based glyph references
@@ -142,6 +143,7 @@ class GlyphData:
                     anchors.append(anchorName)
         self.anchors = sorted(anchors) # (Sorted) list of anchor names for this glyph
         self.anchorSrc = anchorSrc # Master name to copy anchors from
+        self.anchorTypeGlyphSrc = anchorTypeGlyphSrc # Glyph name to copy guessed anchor positions from
 
         # Flag to prevent assistant moving components, even in auto mode. They will be name fixed and created still
         self.autoFixComponentPositions = autoFixComponentPositions 

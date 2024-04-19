@@ -43,7 +43,7 @@ class AssistantPartAnchors(BaseAssistantPart):
     """
 
     MAX_DIACRITICS_CLOUD = 40
-    MAX_GUESSED_ANCHORS = 30
+    MAX_GUESSED_ANCHORS = 30 # Probably not needing more than this amount of choices inside one glyph.
     ANCHOR_LABEL_FONT = 'Verdana'
     ANCHOR_LABEL_SIZE = 12
     GUESSED_ANCHOR_MARKER_R = 8
@@ -527,13 +527,16 @@ class AssistantPartAnchors(BaseAssistantPart):
                     f = self.getFont(fullPath, showInterface=g.font.path == fullPath) # Make sure RoboFont opens the current font.
                     if g.name in f:
                         gg = f[g.name]
+                        gSrc = self._getAnchorTypeGlyph(gg) # Get the glyph that is model for the anchor types, if defined in glyphData.anchorTypeGlyphSrc, otherwise use /g itself.
                         # We can't use (ax, ay) here, because it's specific for the current glyph. 
                         # Calculating them for all glyphs separate for all open fonts is a bit expensive, but it's only done on mouse click. Let's see.
                         a = self.getAnchor(gg, anchorName)
                         if a is None:
                             print(f'### Missing anchor "{anchorName} in /{g.name} in {f.path.split("/")[-1]}')
-                        guessedY = getattr(self, my)(gg, a)
-                        guessedX = self.italicX(gg, getattr(self, mx)(gg, a), guessedY or a.y)
+                        # Get the gussed position of this anchor type. Possibly from the glyphData.anchorTypeGlyphSrc if defined. Otherwise from the gg glyph itself.
+                        guessedY = getattr(self, my)(gSrc, a.name)
+                        guessedX = self.italicX(gSrc, getattr(self, mx)(gSrc, a.name), guessedY or a.y)
+                        # Apply this guessed values from the selected anchor type onto the anchor positions of /gg
                         changed = self._setAnchorXY(gg, a, guessedX, guessedY, italicize=False) 
                         if changed:
                             gg.changed()
@@ -585,14 +588,26 @@ class AssistantPartAnchors(BaseAssistantPart):
         about mode by which the current anchors are set and if they were manually moved."""
         self.updateGuessedAnchorPositions(g)
 
+    def _getAnchorTypeGlyph(self, g):
+        """Answer the glyph that is model for the anchorTypes of g. If glyphData.anchorTypeGlyphSrc is defined then use that glyph,
+        e.g. as defined for /Uhorn using the anchor type positions of /U. Otherwise answer g as model."""
+        gd = self.getGlyphData(g)
+        if gd.anchorTypeGlyphSrc is not None: # There is a src glyph other than /g to copy guessed anchor positions from
+            if gd.anchorTypeGlyphSrc in g.font: # Does the reference exist?
+                return g.font[gd.anchorTypeGlyphSrc]
+            # Print the error if the referenced glyph cannot be found
+            print(f'### Cannot find anchorTypeGlyphSrc /{gd.anchorTypeGlyphSrc} for /{g.name}') 
+        return g # By default use this glyph as its own source to guess possible anchor positions from
+
     def updateGuessedAnchorPositions(self, g):
         """Reset the guessed anchor positions for this glyph, e.g. after the glyphEditor set another glyph, or if spacing or bounding box changed.
         This method is not changing any position of the anchors it self."""
         c = self.getController()
         self.guessedAnchorPositions = {}
+        gSrc = self._getAnchorTypeGlyph(g) # Get the glyph that is model for the anchor types, if defined in glyphData.anchorTypeGlyphSrc, otherwise use /g itself.
         aIndex = 0
         showNames = c.w.showGuessedNames.get()
-        for anchor in g.anchors: # Using the anchors here just a template to know which anchors belong in this glyph.
+        for anchor in gSrc.anchors: # Using the anchors here just as template to know which anchors belong in this glyph.
             if anchor.name not in AD.AUTO_PLACED_ANCHORS:
                 continue # This type of anchor does not have guessing methods implemented
 
@@ -603,8 +618,8 @@ class AssistantPartAnchors(BaseAssistantPart):
                 if not hasattr(self, methodNameY):
                     print(f'### Missing anchor guessing method {methodNameY}')
                     continue
-                guessedX = getattr(self, methodNameX)(g, anchor)
-                guessedY = getattr(self, methodNameY)(g, anchor)
+                guessedX = getattr(self, methodNameX)(gSrc, anchor.name)
+                guessedY = getattr(self, methodNameY)(gSrc, anchor.name)
 
                 x, y = anchor.x, anchor.y
         
@@ -613,7 +628,7 @@ class AssistantPartAnchors(BaseAssistantPart):
                 if guessedY is not None:
                     y = int(round(guessedY))
                 if guessedX is not None:
-                    x = self.italicX(g, guessedX, y)
+                    x = self.italicX(gSrc, guessedX, y)
                 if (x, y) in self.guessedAnchorPositions:
                     continue # Avoid double permutated labels)
 
@@ -646,21 +661,21 @@ class AssistantPartAnchors(BaseAssistantPart):
 
     #   X
 
-    def guessAnchorMiddleX(self, g, a):
+    def guessAnchorMiddleX(self, g, anchorName):
         return g.width/2
         
-    def guessAnchorBaseX(self, g, a):
+    def guessAnchorBaseX(self, g, anchorName):
         base = self.getBaseGlyph(g)
         if base is not None:
-            baseAnchor = self.getAnchor(g, a.name)
+            baseAnchor = self.getAnchor(g, anchorName)
             if baseAnchor is not None:
                 return baseAnchor.x
         return None
         
-    def guessAnchorCenterWidth(self, g, a):
+    def guessAnchorCenterWidth(self, g, anchorName):
         return g.width/2
 
-    def guessAnchorBoxCenterX(self, g, a):
+    def guessAnchorBoxCenterX(self, g, anchorName):
         """Answer the non-italized guess position of the anchor"""
         lm = g.angledLeftMargin
         rm = g.angledRightMargin
@@ -668,18 +683,27 @@ class AssistantPartAnchors(BaseAssistantPart):
             return lm + (g.width - rm - lm)/2
         return g.width/2
 
-    def guessAnchorOgonekX(self, g, a):
+    def guessAnchorOgonekX(self, g, anchorName):
         """Dummy method, as the horizontal position of the ogonek is hard to guess. 
         Answering None makes the current (manual) position of a.x be used as best guess.
-        This method can be redefined by inheriting assistant classes if project have a better guessing method."""
+        This method can be redefined by inheriting assistant classes if projects have a better guessing method."""
         return None
 
-    def guessAnchorVertX(self, g, a):
+    def guessAnchorDotX(self, g, anchorName):
+        """Dummy method, as the horizontal position of the dot is hard to guess. 
+        Answering None makes the current (manual) position of a.x be used as best guess.
+        This method can be redefined by inheriting assistant classes if projects have a better guessing method."""
+        return None
+
+    def guessAnchorVertX(self, g, anchorName):
+        """Dummy method, as the horizontal position of the vert anchor is hard to guess. 
+        Answering None makes the current (manual) position of a.x be used as best guess.
+        This method can be redefined by inheriting assistant classes if projects have a better guessing method."""
         return None
 
     #   Y
 
-    def guessAnchorHeight(self, g, a):
+    def guessAnchorHeight(self, g, anchorName):
         """Get the height of the anchor, from xHeight or capHeight."""
         md = self.getMasterData(g.font)
         gd = md.glyphSet.get(g.name)
@@ -687,12 +711,12 @@ class AssistantPartAnchors(BaseAssistantPart):
             return md.getHeight(g.name) + md.xHeightAnchorOffsetY # Probably negative offset, so we can add.
         return md.getHeight(g.name) + md.capHeightAnchorOffsetY # Probably negative offset, so we can add.
 
-    def guessAnchorBaseY(self, g, a):
+    def guessAnchorBaseY(self, g, anchorName):
         """Get the height of the anchor in the base glyph, if there is any. 
         This used to copy the vertical anchor position of the base."""
         base = self.getBaseGlyph(g)
         if base is not None:
-            baseAnchor = self.getAnchor(g, a.name)
+            baseAnchor = self.getAnchor(g, anchorName)
             if baseAnchor is not None:
                 return baseAnchor.y
         return None
@@ -703,54 +727,54 @@ class AssistantPartAnchors(BaseAssistantPart):
         #self.capHeightAnchorOffsetY = capHeightAnchorOffsetY # Optional vertical offset of cap-anhors or lower capital diacritics.
         #self.ascenderAnchorOffsetY = ascenderAnchorOffsetY
 
-    def guessAnchorAscender(self, g, a):
+    def guessAnchorAscender(self, g, anchorName):
         """Get the height of the anchor from ascender."""
         md = self.getMasterData(g.font)
         return g.font.info.ascender + md.ascenderAnchorOffsetY # Probably negative value, so just add.
 
-    def guessAnchorCapheight(self, g, a):
+    def guessAnchorCapheight(self, g, anchorName):
         """Get the height of the anchor, from capHeight."""
         md = self.getMasterData(g.font)
         return g.font.info.capHeight + md.capHeightAnchorOffsetY # Correct vertical position for lower diacritics.
 
-    def guessAnchorBaseline(self, g, a):
+    def guessAnchorBaseline(self, g, anchorName):
         """Get the height of the anchor at baseline."""
         md = self.getMasterData(g.font)
         return md.baselineAnchorOffsetY # Probabyl positive value, moving the anchor up by the offset.
 
-    def guessAnchorBoxTop(self, g, a):
+    def guessAnchorBoxTop(self, g, anchorName):
         """Get the height of the anchor, from xHeight or capHeight."""
         md = self.getMasterData(g.font)
         return g.bounds[3] + md.boxTopAnchorOffsetY # Probably negative offset, so we can add.
 
-    def guessAnchorMiddleY(self, g, a):
+    def guessAnchorMiddleY(self, g, anchorName):
         md = self.getMasterData(g.font)
         h = md.getHeight(g.name)
         if h is None:
             return g.font.info.capHeight/2
         return h/2
 
-    def guessAnchorBoxBottom(self, g, a):
+    def guessAnchorBoxBottom(self, g, anchorName):
         """Get the height of the anchor from xHeight or capHeight."""
         md = self.getMasterData(g.font)
         return g.bounds[1] + md.boxBottomAnchorOffsetY 
 
-    def guessAnchorDescender(self, g, a):
+    def guessAnchorDescender(self, g, anchorName):
         """Get the height of the anchor from descender position."""
         md = self.getMasterData(g.font)
         return g.font.info.descender + md.descenderAnchorOffsetY
 
-    def guessAnchorOgonekY(self, g, a):
+    def guessAnchorOgonekY(self, g, anchorName):
         """Answer the vertical guessed ogonek position for this anchor"""
         md = self.getMasterData(g.font)
         return md.ogonekAnchorOffsetY # Probably positive value, moving the anchor up by the offset.
 
-    def guessAnchorVertY(self, g, a):
+    def guessAnchorVertY(self, g, anchorName):
         """Get the height of the anchor, from capHeight."""
         md = self.getMasterData(g.font)
         return g.font.info.capHeight + md.baselineAnchorOffsetY # Re=use this value, same construction above capHeight. Correct vertical position for lower diacritics.
 
-    def guessAnchorVertAscenderY(self, g, a):
+    def guessAnchorVertAscenderY(self, g, anchorName):
         """Get the height of the anchor, from capHeight."""
         md = self.getMasterData(g.font)
         return g.font.info.ascender + md.baselineAnchorOffsetY # Re=use this value, same construction above capHeight. Correct vertical position for lower diacritics.

@@ -131,7 +131,7 @@ class AssistantPartDimensions(BaseAssistantPart):
         g = info['glyph']
         if g is None:
             return False # Nothing changed to the glyph
-        print('@@@ updateMerzDimensions', g.name)
+        #print('@@@ updateMerzDimensions', g.name)
 
     def updateDimensions(self, info):
         """If the checkbox is set, then show relevant measures of stem and bars."""
@@ -140,7 +140,7 @@ class AssistantPartDimensions(BaseAssistantPart):
         g = info['glyph']
         if g is None:
             return False # Nothing changed to the glyph
-        print('@@@ updateDimensions', g.name)
+        #print('@@@ updateDimensions', g.name)
         return changed
 
     def setGlyphDimensions(self, g):
