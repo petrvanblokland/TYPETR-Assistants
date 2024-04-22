@@ -448,7 +448,7 @@ class MS_GlyphSet(GlyphSet):
        'Itilde': GD(name='Itilde', uni=0x0128, hex='0128', c='Ĩ', w='I', bl='I', base='I', accents=['tildecomb'], anchors=['top', 'middle', 'bottom'], gid=233, comment='Ĩ'),
        'Itildebelow': GD(name='Itildebelow', uni=0x1E2C, hex='1E2C', c='Ḭ', w='I', bl='I', base='I', accents=['tildebelow'], srcName='uni1E2C', anchors=['top', 'middle', 'bottom'], gid=967),
        'Iu-cy': GD(name='Iu-cy', uni=0x042E, hex='042E', c='Ю', l='H', r='O', gid=691),
-       'Izhitsa-cy': GD(name='Izhitsa-cy', uni=0x0474, hex='0474', c='Ѵ', l='V', r='V', anchors=['top'], gid=761),
+       'Izhitsa-cy': GD(name='Izhitsa-cy', uni=0x0474, hex='0474', c='Ѵ', l='V', r='V', anchorTypeGlyphSrc='V', anchors=['top'], gid=761),
        'Izhitsadblgrave-cy': GD(name='Izhitsadblgrave-cy', uni=0x0476, hex='0476', c='Ѷ', l='V', r='Izhitsa-cy', base='Izhitsa-cy', accents=['dblgravecomb'], anchors=['top'], gid=763),
 
         #   J
