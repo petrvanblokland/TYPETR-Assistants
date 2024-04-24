@@ -262,7 +262,7 @@ class MS_GlyphSet(GlyphSet):
        'Eng': GD(name='Eng', uni=0x014A, hex='014A', c='Ŋ', gid=267, comment='Ŋ'),
        'Enghe-cy': GD(name='Enghe-cy', uni=0x04A4, hex='04A4', c='Ҥ', l='H', r='Ge-cy', gid=809),
        'Enhook-cy': GD(name='Enhook-cy', uni=0x04C7, hex='04C7', c='Ӈ', l='H', r='J', gid=844),
-       'Entail-cy': GD(name='Entail-cy', uni=0x04C9, hex='04C9', c='Ӊ', l='H', r='Iishorttail-cy', base='H', accents=['tail.component'], anchors=['top', 'middle', 'bottom'], gid=846),
+       'Entail-cy': GD(name='Entail-cy', uni=0x04C9, hex='04C9', c='Ӊ', l='H', r='Iishorttail-cy', base='H', anchorTypeGlyphSrc='H', accents=['tail.component'], anchors=['top', 'middle', 'bottom'], gid=846),
        'Eogonek': GD(name='Eogonek', uni=0x0118, hex='0118', c='Ę', base='E', accents=['ogonekcomb'], anchors=['top', 'middle', 'bottom'], gid=217, comment='Ę'),
        'Eopen': GD(name='Eopen', uni=0x0190, hex='0190', c='Ɛ', r2l='B', r='C', srcName='uni0190', gid=337, comment='Ɛ OPEN E, LATIN CAPITAL LETTER'),
        'Epsilon': GD(name='Epsilon', uni=0x0395, hex='0395', c='Ε', l='E', r='E', base='E', anchors=['top', 'middle', 'bottom'], gid=539),
