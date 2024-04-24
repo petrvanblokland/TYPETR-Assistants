@@ -285,7 +285,7 @@ class MS_GlyphSet(GlyphSet):
        'Esh': GD(name='Esh', uni=0x01A9, hex='01A9', c='Ʃ', base='Sigma', srcName='uni01A9', gid=362),
        'Esmall': GD(name='Esmall', uni=0x1D07, hex='1D07', c='ᴇ', isSc=True),
        'Esmallturned': GD(name='Esmallturned', uni=0x2C7B, hex='2C7B', r2l='Esmall', l2r='Esmall', c='ⱻ'),
-       'Estroke': GD(name='Estroke', uni=0x0246, hex='0246', c='Ɇ', base='E', accents=['slashlongcomb'], anchors=['top', 'middle', 'bottom']),
+       'Estroke': GD(name='Estroke', uni=0x0246, hex='0246', c='Ɇ', base='E', accents=['Astroke.component'], anchors=['top', 'middle', 'bottom']),
        'Et': GD(name='Et', uni=0xA76A, hex='A76A', l='three', c='Ꝫ'),
        'Eta': GD(name='Eta', uni=0x0397, hex='0397', c='Η', l='H', r='H', base='H', anchors=['top', 'middle', 'bottom'], gid=541),
        'Etadasia': GD(name='Etadasia', uni=0x1F29, hex='1F29', c='Ἡ', l='comma', r='H', base='H', accents=['dasia-uc'], anchors=['top', 'middle', 'bottom'], gid=1210),
