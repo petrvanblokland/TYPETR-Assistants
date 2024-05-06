@@ -8,6 +8,9 @@
 #
 import os, sys
 import weakref
+import urllib
+
+import drawBot as db # Used to generate KernNet sample kerning image test.png
 
 # We use Letterrors' Similarity to find matching groups
 # Install cosineSimilarity extensions via Mechanic 2
@@ -29,8 +32,169 @@ MAIN_SAMPLES = SAMPLES
 
 TAB_WIDTH = 650 # Default tab width.
 
+# Glyphs that are used as base for groups. Scripts only kern within the script (and "all") to the other side.
+# The "all" also kern to each other, on the other side. There is no kerning allowed between the scripts.
+
+PUBLIC_KERN2 = 'public.kern2.'
+PUBLIC_KERN1 = 'public.kern1.'
+
+LT1 = 'lt1'
+LT2 = 'lt2'
+CY1 = 'cy1'
+CY2 = 'cy2'
+GR1 = 'gr1'
+GR2 = 'gr2'
+ALL1 = 'all1'
+ALL2 = 'all2'
+
+GROUP_NAME_PARTS = {
+    LT1: (PUBLIC_KERN1, '_lt'), 
+    LT2: (PUBLIC_KERN2, '_lt'),
+    CY1: (PUBLIC_KERN1, '_cy'), 
+    CY2: (PUBLIC_KERN2, '_cy'),
+    GR1: (PUBLIC_KERN1, '_gr'), 
+    GR2: (PUBLIC_KERN2, '_gr'),
+    ALL1: (PUBLIC_KERN1, ''), 
+    ALL2: (PUBLIC_KERN2, ''),
+}
+BASE_SCRIPTS1 = (LT1, CY1, GR1, ALL1)
+BASE_SCRIPTS2 = (LT2, CY2, GR2, ALL2)
+
+# For now, this is an italic table.
+GROUP_BASE_GLYPHS = {
+    LT1: set(('A', 'B', 'C', 'E', 'F', 'G', 'H', 
+        #'Hbar', 
+        'I', 'J', 'K', 'L', 'Lcommaaccent', 'Ldot', 'Lslash', 'O', 'P', 'R', 'S', 'T', 'Thorn', 'U', 'V', 'W', 'Y', 'Z', 
+        'a', 'c', 'd', 'dcroat', 'e', 'eth', 'f', 'g', 'germandbls', 'i', 'idotless', 'iacute', 'ibreve', 'icircumflex', 'idieresis', 'igrave', 'imacron', 
+        'iogonek', 'itilde', 'j', 'jcircumflex', 'jdotless', 'k', 'l', 
+        #'lacute', 'lcaron', 
+        #'ldot', 'lslash', 
+        'n', 'o', 'q', 'r', 's', 't', 'u', 'v', 'w', 'y', 'z')),
+    
+    LT2: set(('A', 'AE', 'Dcroat', 'H', 
+        #'Hbar', 
+        'J', 'O', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 
+        'a', 'abreve', # Getting a-diacritics and dcroat in a group
+        'f', 'g', 'germandbls', 'h', 'i', 'iacute', 'ibreve', 'icircumflex', 'idieresis', 'igrave', 'imacron', 'iogonek', 'itilde', 'idotless',
+        'j', 'jdotless', 
+        #'lslash', 
+        'n', 'o', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')),
+    
+    CY1: set(('Iegrave-cy', 'Io-cy', 'Dje-cy', 'Gje-cy', 'E-cy', 'Dze-cy', 'I-cy', 'Yi-cy', 'Je-cy', 'Lje-cy', 'Nje-cy', 'Tshe-cy', 'Kje-cy', 'Iigrave-cy', 'Ushort-cy', 'Dzhe-cy', 
+        'A-cy', 'Be-cy', 'Ve-cy', 'Ge-cy', 'De-cy', 'Ie-cy', 'Zhe-cy', 'Ze-cy', 'Ii-cy', 'Iishort-cy', 'Ka-cy', 'El-cy', 'Em-cy', 'En-cy', 'O-cy', 'Pe-cy', 'Er-cy', 'Es-cy', 
+        'Te-cy', 'U-cy', 'Ef-cy', 'Ha-cy', 'Tse-cy', 'Che-cy', 'Sha-cy', 'Shcha-cy', 'Hardsign-cy', 'Yeru-cy', 'Softsign-cy', 'Ereversed-cy', 'Iu-cy', 'Ia-cy', 
+        'Uk-cy', 
+        'a-cy', 'be-cy', 've-cy', 'ge-cy', 'de-cy', 'ie-cy', 'zhe-cy', 'ze-cy', 'ii-cy', 'iishort-cy', 'ka-cy', 'el-cy', 'em-cy', 'en-cy', 'o-cy', 'pe-cy', 'er-cy', 
+        'es-cy', 'te-cy', 'u-cy', 'ef-cy', 'ha-cy', 'tse-cy', 'che-cy', 'sha-cy', 'shcha-cy', 'hardsign-cy', 'yeru-cy', 'softsign-cy', 'ereversed-cy', 'iu-cy', 
+        'ia-cy', 'iegrave-cy', 'io-cy', 'dje-cy', 'gje-cy', 'e-cy', 'dze-cy', 'i-cy', 'yi-cy', 'je-cy', 'lje-cy', 'nje-cy', 'tshe-cy', 'kje-cy', 'iigrave-cy', 
+        'ushort-cy', 'dzhe-cy', 'Omega-cy', 'omega-cy', 'Yat-cy', 'yat-cy', 'Eiotified-cy', 'eiotified-cy', 'Yuslittle-cy', 'yuslittle-cy', 'Yuslittleiotified-cy', 
+        'yuslittleiotified-cy', 'Yusbig-cy', 'yusbig-cy', 'Yusbigiotified-cy', 'yusbigiotified-cy', 'Ksi-cy', 'ksi-cy')),
+    
+    CY2: set(('Iegrave-cy', 'Io-cy', 'Dje-cy', 'Gje-cy', 'E-cy', 'Dze-cy', 'I-cy', 'Yi-cy', 'Je-cy', 'Lje-cy', 'Nje-cy', 'Tshe-cy', 'Kje-cy', 'Iigrave-cy', 'Ushort-cy', 'Dzhe-cy', 
+        'A-cy', 'Be-cy', 'Ve-cy', 'Ge-cy', 'De-cy', 'Ie-cy', 'Zhe-cy', 'Ze-cy', 'Ii-cy', 'Iishort-cy', 'Ka-cy', 'El-cy', 'Em-cy', 'En-cy', 'O-cy', 'Pe-cy', 'Er-cy', 'Es-cy', 
+        'Te-cy', 'U-cy', 'Ef-cy', 'Ha-cy', 'Tse-cy', 'Che-cy', 'Sha-cy', 'Shcha-cy', 'Hardsign-cy', 'Yeru-cy', 'Softsign-cy', 'Ereversed-cy', 'Iu-cy', 'Ia-cy', 
+        'Uk-cy',
+        'a-cy', 'be-cy', 've-cy', 'ge-cy', 'de-cy', 'ie-cy', 'zhe-cy', 'ze-cy', 'ii-cy', 'iishort-cy', 'ka-cy', 'el-cy', 'em-cy', 'en-cy', 'o-cy', 'pe-cy', 'er-cy', 
+        'es-cy', 'te-cy', 'u-cy', 'ef-cy', 'ha-cy', 'tse-cy', 'che-cy', 'sha-cy', 'shcha-cy', 'hardsign-cy', 'yeru-cy', 'softsign-cy', 'ereversed-cy', 'iu-cy', 
+        'ia-cy', 'iegrave-cy', 'io-cy', 'dje-cy', 'gje-cy', 'e-cy', 'dze-cy', 'i-cy', 'yi-cy', 'je-cy', 'lje-cy', 'nje-cy', 'tshe-cy', 'kje-cy', 'iigrave-cy', 
+        'ushort-cy', 'dzhe-cy', 'Omega-cy', 'omega-cy', 'Yat-cy', 'yat-cy', 'Eiotified-cy', 'eiotified-cy', 'Yuslittle-cy', 'yuslittle-cy', 'Yuslittleiotified-cy', 
+        'yuslittleiotified-cy', 'Yusbig-cy', 'yusbig-cy', 'Yusbigiotified-cy', 'yusbigiotified-cy', 'Ksi-cy', 'ksi-cy')),
+    
+    GR1: set(('Alpha', 'Beta', 'Chi', 'Epsilon', 'Eta', 'Gamma', 'Kappa', 'Mu', 'Omega', 'Omicron', 'Psi', 'Rho', 'Sigma', 'Upsilon', 'Zeta', 
+        'alpha', 'beta', 'chi', 'delta', 'epsilon', 'eta', 'gamma', 'iota', 'iotadieresis', 'iotadieresistonos', 'iotatonos', 'kappa', 
+        'koppa', 'lambda', 'nu', 'omega', 'omicron', 'pi', 'psi', 'sigma', 'sigmafinal', 'tau', 'theta', 'upsilon', 'xi', 'zeta')),
+    
+    GR2: set(('Alpha', 'Alphatonos', 'Chi', 'Epsilontonos', 'Eta', 'Mu', 'Omega', 'Omegatonos', 'Omicron', 'Omicrontonos', 'Psi', 'Sigma', 'Tau', 
+        'Upsilon', 'Upsilontonos', 'Xi', 'Zeta', 
+        'beta', 'chi', 'delta', 'epsilon', 'eta', 'gamma', 'iota', 'iotadieresis', 'iotadieresistonos', 'iotatonos', 'kappa', 'lambda', 
+        'koppa', 'nu', 'omega', 'omicron', 'pi', 'psi', 'rho', 'tau', 'theta', 'upsilon', 'xi', 'zeta')),
+
+    ALL1: set((
+        #'euro', 
+        'ampersand', 'asterisk', 'at', 'backslash', 
+        #'bar', 
+        'braceleft', 'braceright', 'bracketleft', 'bracketright', 'bullet', 
+        #'cent', 
+        'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'zero',
+        'one.numr', 'two.numr', 'three.numr', 'four.numr', 'five.numr', 'six.numr', 'seven.numr', 'eight.numr', 'nine.numr', 'zero.numr',
+        'one.dnom', 'two.dnom', 'three.dnom', 'four.dnom', 'five.dnom', 'six.dnom', 'seven.dnom', 'eight.dnom', 'nine.dnom', 'zero.dnom',
+        'semicolon', 'colon', 'comma', 'period',
+        #'dagger', 'daggerdbl', 
+        'degree', 'dollar', 'exclam', 'exclamdown', 'fraction', 
+        'guilsinglleft', 'guilsinglright', 'horizontalbar', 'hyphen', 'parenleft', 'parenright', 'percent',  
+        #'periodcentered', 
+        'question', 'questiondown', 
+        'quoteleft', 'quoteright', 'quotesingle', 'slash', 
+        #'space'
+        )),
+    
+    ALL2: set((
+        #'euro', 
+        'ampersand', 'asterisk', 'at', 'backslash', 
+        #'bar', 
+        'braceleft', 'braceright', 'bracketleft', 'bracketright', 'bullet', 
+        #'cent', 
+        'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'zero',
+        'one.numr', 'two.numr', 'three.numr', 'four.numr', 'five.numr', 'six.numr', 'seven.numr', 'eight.numr', 'nine.numr', 'zero.numr',
+        'one.dnom', 'two.dnom', 'three.dnom', 'four.dnom', 'five.dnom', 'six.dnom', 'seven.dnom', 'eight.dnom', 'nine.dnom', 'zero.dnom',
+        'semicolon', 'colon', 'comma', 'period',
+        #'dagger', 'daggerdbl', 
+        'degree', 'dollar', 'exclam', 'exclamdown', 'fraction', 
+        'guilsinglleft', 'guilsinglright', 'horizontalbar', 'hyphen', 'parenleft', 'parenright', 'percent',  
+        #'periodcentered', 
+        'question', 'questiondown', 
+        'quoteleft', 'quoteright', 'quotesingle', 'slash', 
+        #'space'
+        )),
+}
+KERN_GROUPS = (
+    (LT1, LT2),
+    (ALL1, LT2),
+    (LT1, ALL2),
+
+    (CY1, CY2),
+    (ALL1, CY2),
+    (CY1, ALL2),
+
+    (GR1, GR2),
+    (ALL1, GR2),
+    (GR1, ALL2),
+
+    (ALL1, ALL2),
+)
+# These groups are not recognized as identical by similarity. Force them to be part of the key base glyph name.
+FORCE_GROUP1 = {
+    'ellipsis': 'period',
+    'abreve': 'a',
+    'eflourish' : 'e',
+    'Nj': 'j',
+    'gcommaaccent': 'g',
+    'ngrave': 'n',
+    'ngrave': 'o',
+    'ucircumflex': 'u',
+    'Oslash': 'O',
+    'Qdiagonalstroke': 'O',
+    'Zstroke': 'Z',
+}
+
+FORCE_GROUP2 = {
+    'ellipsis': 'period',
+    'abreve': 'a',
+    'eflourish' : 'e',
+    'Nj': 'N',
+    'gcommaaccent': 'g',
+    'ngrave': 'n',
+    'ngrave': 'o',
+    'ucircumflex': 'u',
+    'Oslash': 'O',
+    'Qdiagonalstroke': 'O',
+    'Zstroke': 'Z',
+}
+
+GROUP_IGNORE = ('tnum', 'cmb', 'comb', 'mod', 'superior', 'inferior', 'component',) # Always ignore glyphs that include these patterns
+
 class KerningManager:
-    """Generic kerning manager, the spacing WizzKid. It knows all about spacing and kerning and it offers several strategies for it:
+    """Generic kerning manager, the spacing WizzKid. It knows all about groups, spacing and kerning and it offers several strategies for it:
     by groups, by specification in the GlyphData, by Similarity and by KernNet-AI. It is up to the calling assistant to decide
     which strategy fits best to a certain design and to a certain phase in the design process.
 
@@ -40,10 +204,12 @@ class KerningManager:
     """
 
     def __init__(self, f, md, features=None, 
-            sample=None, sampleCAPS=None, sampleC2SC=None,
+            sample=None, sampleCAPS=None, sampleC2SC=None, # List of (kerning) glyph names
             simT=0.90, simSameCategory=True, simSameScript=True, simClip=300, simZones=None,
             automaticGroups=True, verbose=True,
-            tabWidth=TAB_WIDTH, fixedLeftMarginPatterns=None, fixedRightMarginPatterns=None, fixedWidthPatterns=None):
+            tabWidth=TAB_WIDTH, fixedLeftMarginPatterns=None, fixedRightMarginPatterns=None, fixedWidthPatterns=None,
+            groupBaseGlyphs=None,
+            ):
         """Calculate all values, patterns and similarity caching to guess margins for individual glyphs.
         For reasons of validity, the font itself is not stored in the spacer instance.
         The spacer can be initialize with a font later."""
@@ -66,12 +232,19 @@ class KerningManager:
         # zones are pairs of y values of the areas we specifically want to compare.
         # useful if you want to exclude certain bands.
         # this is an example, your values might be different:
-        #zones = []
-        #zones.append((f.info.xHeight, f.info.unitsPerEm+f.info.descender))
-        #zones.append((0, f.info.xHeight))
-        #zones.append((f.info.descender, 0))
-        #zones = tuple(zones)    # make sure the zones are a tuple
-        #zones = None            # or make zones None to scane the full height
+        #
+        #if simZones is None:
+        #    simZones = []
+        #    simZones.append((f.info.xHeight, f.info.unitsPerEm+f.info.descender))
+        #    simZones.append((0, f.info.xHeight))
+        #    simZones.append((f.info.descender, 0))
+        #    simZones = tuple(simZones)    # make sure the zones are a tuple
+        # or 
+        #    simZones = None            # or make zones None to scane the full height
+        if simZones is None:
+            simZones = []
+            simZones.append((0, f.info.capHeight))
+            simZones = tuple(simZones)
         self.simZones = simZones
         self.similar2Base1 = {}
         self.similar2Base2 = {}
@@ -83,18 +256,41 @@ class KerningManager:
         self.automaticGroups = automaticGroups # Generated new groups for glyphs that don't belong.
 
         # Do some caching on groups. Initialize attributes upon usage
-        self._glyphName2GroupName1 = {}
-        self._glyphName2Group1 = {}
-        self._glyphName2GroupName2 = {}
-        self._glyphName2Group2 = {}
+        self._glyphName2GroupName1 = None
+        self._glyphName2Group1 = None
+        self._glyphName2GroupName2 = None
+        self._glyphName2Group2 = None
 
+        # Dictionary with base glyphs for group1 and group2 per script
+        # Required format: dict(
+        #   lt1=(glyphName, ...), 
+        #   lt2=(glyphName, ...), 
+        #   cy1=(glyphName, ...), 
+        #   cy2=(glyphName, ...), 
+        #   gr1=(glyphName, ...), 
+        #   gr2=(glyphName, ...)
+        #   all1=(glyphName, ...), # Glyphs that kern with all scripts and with each other.
+        #   all2=(glyphName, ...)
+        # )
+        if groupBaseGlyphs is None:
+            groupBaseGlyphs = GROUP_BASE_GLYPHS # Use default
+        self.groupBaseGlyphs = groupBaseGlyphs
+
+        if not sample: # Not defined, then construct default
+            sample = []
+            for ch in SAMPLES:
+                uni = ord(ch)
+                gName = md.glyphSet.unicode2GlyphName.get(uni)
+                if gName is not None:
+                    sample.append(gName)
+        
         self._sample = sample
         self._sampleC2SC = sampleC2SC
         self._sampleCAPS = sampleCAPS
 
         self.tabWidth = tabWidth
 
-        # @@@ Generic fixed spacing patterns. These are gluphset dependent, so their should go into the GlyphSet class. 
+        # @@@ Generic fixed spacing patterns. These are glyphset dependent, so their should go into the GlyphSet class. 
 
         if fixedLeftMarginPatterns is None:
             fixedLeftMarginPatterns = { # Key is right margin, value is list of glyph names
@@ -142,48 +338,12 @@ class KerningManager:
             self._initialize2glyphName() 
             return self.uni2glyphName 
     uni2glyphName = property(_get_uni2glyphName)      
+    
     def _get_chr2glyphName(self):
         if self._chr2glyphName is None:
             self._initialize2glyphName() 
             return self._chr2glyphName 
     chr2glyphName = property(_get_chr2glyphName)      
-
-
-    def _initializeGlyph2Group(self):
-        self._glyphName2GroupName1 = {}
-        self._glyphName2Group1 = {}
-        self._glyphName2GroupName2 = {}
-        self._glyphName2Group2 = {}
-
-        for groupName, group in self.f.groups.items():
-            if 'kern1' in groupName:
-                for glyphName in group:
-                    self._glyphName2GroupName1[glyphName] = groupName
-                    self._glyphName2Group1[glyphName] = group
-            elif 'kern2' in groupName:
-                for glyphName in group:
-                    self._glyphName2GroupName2[glyphName] = groupName
-                    self._glyphName2Group2[glyphName] = group
-    def _get_glyphName2GroupName1(self):
-        if self._glyphName2GroupName1 is None:
-            self._initializeGlyph2Group()
-            return self._glyphName2GroupName1
-    glyphName2GroupName1 = property(_get_glyphName2GroupName1)
-    def _get_glyphName2Group1(self):
-        if self._glyphName2GroupName1 is None:
-            self._initializeGlyph2Group()
-            return self._glyphName2GroupName1
-    glyphName2Group1 = property(_get_glyphName2Group1)
-    def _get_glyphName2GroupName2(self):
-        if self._glyphName2GroupName2 is None:
-            self._initializeGlyph2Group()
-            return self._glyphName2GroupName2
-    glyphName2GroupName2 = property(_get_glyphName2GroupName2)
-    def _get_glyphName2Group2(self):
-        if self._glyphName2GroupName1 is None:
-            self._initializeGlyph2Group()
-            return self._glyphName2GroupName2
-    glyphName2Group2 = property(_get_glyphName2Group2)
 
     def _initializeSamples(self):
         if sample is None: # Allows to define the sample, avoiding multiple generators if a whole family is open.
@@ -194,9 +354,184 @@ class KerningManager:
 
     #   G R O U P S
 
+    def _initializeGlyph2Group(self):
+        """Initialize the glyph-->group dictionaries for the current font. As references only, no group storage."""
+        self._glyphName2GroupName1 = {}
+        self._glyphName2Group1 = {}
+        self._glyphName2GroupName2 = {}
+        self._glyphName2Group2 = {}
+
+        print('... _initializeGlyph2Group')
+
+        for groupName, group in self.f.groups.items():
+            if 'kern1' in groupName:
+                for glyphName in group:
+                    self._glyphName2GroupName1[glyphName] = groupName
+                    self._glyphName2Group1[glyphName] = group
+            elif 'kern2' in groupName:
+                for glyphName in group:
+                    self._glyphName2GroupName2[glyphName] = groupName
+                    self._glyphName2Group2[glyphName] = group
+
+    def _get_glyphName2GroupName1(self):
+        if self._glyphName2GroupName1 is None:
+            self._initializeGlyph2Group()
+        return self._glyphName2GroupName1
+    glyphName2GroupName1 = property(_get_glyphName2GroupName1)
+    
+    def _get_glyphName2Group1(self):
+        if self._glyphName2Group1 is None:
+            self._initializeGlyph2Group()
+        return self._glyphName2Group1
+    glyphName2Group1 = property(_get_glyphName2Group1)
+    
+    def _get_glyphName2GroupName2(self):
+        if self._glyphName2GroupName2 is None:
+            self._initializeGlyph2Group()
+        return self._glyphName2GroupName2
+    glyphName2GroupName2 = property(_get_glyphName2GroupName2)
+    
+    def _get_glyphName2Group2(self):
+        if self._glyphName2Group2 is None:
+            self._initializeGlyph2Group()
+        return self._glyphName2Group2
+    glyphName2Group2 = property(_get_glyphName2Group2)
+
+    def getBaseGroupGlyphName1(self, g):
+        """Answer the name of the base group glyph that g shares group 1 with.
+        Getting the base group glyph name is sort of a hack: stripping the group name."""
+        groupName1 = self.glyphName2GroupName1.get(g.name)
+        if groupName1 is not None:
+            gName = groupName1.replace(PUBLIC_KERN1, '') # Strip the PUBLIC_KERN1
+            parts = gName.split('_')
+            if parts[-1] in ('lt', 'cy', 'gr'): # Script extension, remove it
+                gName = '_'.join(parts[:-1])
+            return gName
+        return None
+
+    def getBaseGroupGlyphName2(self, g):
+        """Answer the name of the base group glyph that g shares group 2 with.
+        Getting the base group glyph name is sort of a hack: stripping the group name."""
+        groupName2 = self.glyphName2GroupName2.get(g.name)
+        if groupName2 is not None:
+            gName = groupName1.replace(PUBLIC_KERN2, '') # Strip the PUBLIC_KERN2
+            parts = gName.split('_')
+            if parts[-1] in ('lt', 'cy', 'gr'): # Script extension, remove it
+                gName = '_'.join(parts[:-1])
+            return gName
+        return None
+
+    # Some methods to handle groups. Best not to do this directly on f.groups, so we can check consistency
+    # e.g. removing the glyphs in the new group from other groups. And updating the glyphName2GroupName tables, etc.
+
+    def _groupIgnore1(self, gName):
+        for namePart in GROUP_IGNORE:
+            if namePart in gName:
+                return True
+        return False
+
+    def _groupIgnore2(self, gName):
+        for namePart in GROUP_IGNORE:
+            if namePart in gName:
+                return True
+        return False
+
+    def initializeGroups(self, fixKerning=False):
+        """This (dangerous) method does clear the self.f.groups and builds them according to what is in self.groupBaseGlyphs.
+        If the fixKerning flag is set, then clean the kerning, removing all pairs with group names that no longer exist.
+        Note that there may be base group glyphs that are so similar that they should not have separate groups.
+        """
+        self.f.groups.clear() # Clear the current set of groups in this font
+        # Then make groups for each of the glyphs in self.groupBaseGlyphs
+        assert self.groupBaseGlyphs is not None # Make sure it is defined, if using this group inization process
+        used1 = set() # Check that glyphs don't get in groups on their side more than once.
+        used2 = set()
+        noGroup1 = set()
+        noGroup2 = set()
+        baseGlyph2GroupName1 = {} # Key is base group glyph name, value is the groupName
+        baseGlyph2GroupName2 = {} # Key is base group glyph name, value is the groupName
+        # First make small groups for every base group glyph
+        for scriptName, baseGlyphNames in self.groupBaseGlyphs.items(): # Script by script
+            s1, s2 = GROUP_NAME_PARTS[scriptName] # Construct the group name for this script and this base group glyph name.
+            for baseGlyphName in baseGlyphNames: # For each of the base group glyph names of this script.
+                groupName = s1 + baseGlyphName + s2
+                baseGroup = [baseGlyphName]
+
+                if scriptName in BASE_SCRIPTS1:
+                    used1.add(baseGlyphName)
+                    baseGlyph2GroupName1[baseGlyphName] = groupName
+
+                elif scriptName in BASE_SCRIPTS2:
+                    used2.add(baseGlyphName)
+                    baseGlyph2GroupName2[baseGlyphName] = groupName
+
+                self.f.groups[groupName] = baseGroup # Initialize with just the base glyph in the group.                    
+                print(f'... Initialize group "{s1 + baseGlyphName + s2}" to {str(baseGroup)}')
+
+        # Then go through all glyphs, to see if they fit one of the created base glyph groups
+
+        for g in self.f:
+            if g.name not in used1 and not self._groupIgnore1(g.name):
+                if g.name in FORCE_GROUP1:
+                    simGroup1 = [FORCE_GROUP1[g.name]]
+                else:
+                    simGroup1 = sorted(self.getSimilarNames1(g))
+                #print('==== 1 ==', 'O' in simGroup1, g.name, simGroup1)
+                for simGlyphName1 in simGroup1:
+                    # If a similar glyph to g exists in baseGlyph2GroupName1 then add it to that group
+                    if simGlyphName1 in baseGlyph2GroupName1:
+                        groupName1 = baseGlyph2GroupName1[simGlyphName1]
+                        group1 = list(self.f.groups[groupName1])
+                        group1.append(g.name)
+                        self.f.groups[groupName1] = sorted(group1)
+                        #print(f'... Add /{g.name} to group {str(groupName1)}')
+                        used1.add(g.name)
+                        break
+
+                if not g.name in used1:
+                    noGroup1.add(g.name)
+
+            if g.name not in used2 and not self._groupIgnore2(g.name):            
+                if g.name in FORCE_GROUP2:
+                    simGroup2 = [FORCE_GROUP2[g.name]]
+                else:
+                    simGroup2 = sorted(self.getSimilarNames2(g))
+                #print('==== 2 ==', 'O' in simGroup2, g.name, simGroup2)
+                for simGlyphName2 in simGroup2:
+                    # If a similar glyph to g exists in baseGlyph2GroupName2 then add it to that group
+                    if simGlyphName2 in baseGlyph2GroupName2 or g.name in FORCE_GROUP2.get(simGlyphName2, []):
+                        groupName2 = baseGlyph2GroupName2[simGlyphName2]
+                        group2 = list(self.f.groups[groupName2])
+                        group2.append(g.name)
+                        self.f.groups[groupName2] = sorted(group2)
+                        #print(f'... Add /{g.name} to group {str(groupName2)}')
+                        used2.add(g.name)
+                        break
+                    
+                if not g.name in used2:
+                    noGroup2.add(g.name)
+
+        if noGroup1:
+            # If we get here, no base group was found for g
+            print(f'... No groups1 ', noGroup1)
+
+        if noGroup2:
+            # If we get here, no base group was found for g
+            print(f'... No groups2 ', noGroup2)
+
+        self._initializeGlyph2Group()
+
+        #for groupName, group in sorted(self.f.groups.items()):
+        #    print(groupName, group)
+
+        #print(f'{self.md.name} Groups: {len(self.f.groups)}')
+
+        self.f.changed()
+
     def addGlyph2Group1(self, g, groupName):
         """Add glyph g to groupName. if g already exists in another "kern1" group,
         then remove it there. If that group gets empty, then remove it from g.font.groups"""
+        assert groupName.startswith(PUBLIC_KERN1) # Check on right group naming
         currentGroup = self.glyphName2GroupName1.get(g.name)
         if currentGroup != groupName: # Only if there is something to change
             if currentGroup is not None: # Glyph is part of another "kern1" group, remove it there.
@@ -222,6 +557,7 @@ class KerningManager:
     def addGlyph2Group2(self, g, groupName):
         """Add glyph g to groupName. if g already exists in another "kern2" group,
         then remove it there. If that group gets empty, then remove it from g.font.groups"""
+        assert groupName.startswith(PUBLIC_KERN2) # Check on right group naming
         currentGroup = self.glyphName2GroupName2.get(g.name)
         if currentGroup != groupName: # Only if there is something to change
             if currentGroup is not None: # Glyph is part of another "kern1" group, remove it there.
@@ -243,6 +579,30 @@ class KerningManager:
             dstGroup.append(g.name)
             g.font.groups[groupName] = sorted(dstGroup)
             #print('==== Current group', currentGroup, group)
+
+    def setGroup1(self, f, groupName, group):
+        """Set f.groups[groupName] to group. We best can do this by this method instead of setting directly,
+        so it can be checked if the glyphs in the group should first be removed from other "1" groups."""
+        changed = False
+        for gName in group:
+            if gName in f:
+                self.addGlyph2Group1(f[gName], groupName)
+                changed = True
+        # For now, force initialization
+        self._initializeGlyph2Group()
+        return changed
+
+    def setGroup2(self, f, groupName, group):
+        """Set f.groups[groupName] to group. We best can do this by this method instead of setting directly,
+        so it can be checked if the glyphs in the group should first be removed from other "2" groups."""
+        changed = False
+        for gName in group:
+            if gName in f:
+                self.addGlyph2Group2(f[gName], groupName)
+                changed = True
+        # For now, force initialization
+        self._initializeGlyph2Group()
+        return changed
     
     #   S P A C I N G  B Y  G R O U P S
 
@@ -252,7 +612,7 @@ class KerningManager:
         groupName = self.glyphName2GroupName2.get(g.name)
         if groupName is None:
             return None
-        baseGlyphName = groupName.replace('public.kern2.', '')
+        baseGlyphName = groupName.replace(PUBLIC_KERN2, '')
         if baseGlyphName.endswith('_lt'):
             baseGlyphName = baseGlyphName.replace('_lt', '')
         elif baseGlyphName.endswith('_lt'):
@@ -269,7 +629,7 @@ class KerningManager:
         groupName = self.glyphName2GroupName1.get(g.name)
         if groupName is None:
             return None
-        baseGlyphName = groupName.replace('public.kern1.', '')
+        baseGlyphName = groupName.replace(PUBLIC_KERN1, '')
         if baseGlyphName.endswith('_lt'):
             baseGlyphName = baseGlyphName.replace('_lt', '')
         elif baseGlyphName.endswith('_lt'):
@@ -739,6 +1099,8 @@ class KerningManager:
         d = self.getSpacingDependencyLib(g)
         return d.get('typeRight'), d.get('right')
 
+    #   M A R G I N S
+
     def getLeftMargin(self, g, visited=None):
         """Answer the recursive value for angled left margin dependency of this glyph.
         Note that this is the value that the glyph is supposed to have based, on its defined dependency.
@@ -828,6 +1190,116 @@ class KerningManager:
         # Could not find a valid width guess for this glyph.
         return None
 
+    #   K E R N I N G
+
+    def kernGroups(self, factor=1, calibrate=0):
+        """This kerns all group pairs in KERN_GROUPS after clearing f.kerning first."""
+        self.f.kerning.clear()
+        for scriptName1, scriptName2 in KERN_GROUPS:
+            print(f'... Kerning {scriptName1} - {scriptName2}')
+            sLeft1, sRight1 = GROUP_NAME_PARTS[scriptName1] # Construct the group name for this script and this base group glyph name.
+            sLeft2, sRight2 = GROUP_NAME_PARTS[scriptName2] # Construct the group name for this script and this base group glyph name.
+
+            baseGlyphNames1 = self.groupBaseGlyphs[scriptName1]
+            baseGlyphNames2 = self.groupBaseGlyphs[scriptName2]
+                
+
+            for baseGlyphName1 in baseGlyphNames1: # For each of the base group glyph names of this script.
+                #if not baseGlyphName1 in ('V', 'A', 'T', 'period', 'n', 'o'):
+                #    continue
+                groupName1 = sLeft1 + baseGlyphName1 + sRight1
+                for baseGlyphName2 in baseGlyphNames2: # For each of the base group glyph names of this script.
+                    #if not baseGlyphName2 in ('V', 'A', 'T', 'period', 'n', 'o'):
+                    #    continue
+                    groupName2 = sLeft2 + baseGlyphName2 + sRight2
+                    if baseGlyphName1 in self.f and baseGlyphName2 in self.f:
+                        g1 = self.f[baseGlyphName1]
+                        g2 = self.f[baseGlyphName2]
+                        k = self.getKernNetKerning(g1, g2, step=None, factor=factor, calibrate=calibrate)
+                        if abs(k) > 8:
+                            self.f.kerning[(groupName1, groupName2)] = k
+                    else:
+                        print(f'### Missing base glyphs for kerning ({baseGlyphName1}, {baseGlyphName2})')
+
+        print(f'... Groups: {len(self.f.groups)} Kerning pairs {len(self.f.kerning)}')
+
+                    
+    #   K E R N N E T  A I 
+
+    KERNNET_UNIT = 4
+
+    def getKernNetKerning(self, g1, g2, step=None, factor=1, calibrate=0):
+        """Gernerate the kerning test image.
+        Answer the KernNet predicted kerning for @g1 amd @g2. This assumes the KernNet server to be running on localhost:8080"""
+        if step is None:
+            step = self.KERNNET_UNIT
+        f = g1.font
+        imageName = 'test.png'
+        tmpPath = '/tmp/com.typetr_imagePredict/'
+        if not os.path.exists(tmpPath):
+            os.makedirs(tmpPath, mode=0o777, exist_ok=False)
+        kernImagePath = tmpPath + imageName
+        iw = ih = 32
+        scale = ih/f.info.unitsPerEm
+        y = -f.info.descender 
+
+        if 'Italic' in f.path:
+            italicOffset = -50 # Calibrate HH shows in the middle
+        else:
+            italicOffset = 0
+            
+        im1 = g1.getRepresentation("defconAppKit.NSBezierPath")
+        im2 = g2.getRepresentation("defconAppKit.NSBezierPath")
+        s = iw / g1.font.info.unitsPerEm
+        y = -g1.font.info.descender
+
+        #if abs(k) >= 4 and not os.path.exists(imagePath): # Ignore k == 0
+        db.newDrawing() # Calling the DrawBot libary
+        db.newPage(iw, ih)
+        
+        #drawBot.fill(1, 0, 0, 1)
+        #drawBot.rect(0, 0, iw, ih)
+        db.fill(0)
+        db.scale(s, s)
+        db.save()
+        db.translate(iw/s/2 - g1.width + italicOffset, y)
+        db.drawPath(im1)
+        db.restore()
+        db.save()
+        db.translate(iw/s/2 + italicOffset, y)
+        db.drawPath(im2)
+        db.restore()
+        
+        # If flag is set, clip space above capHeight and below baseline
+        if 0 and self.controller.w.cropKernImage.get():
+            db.fill(1, 0, 0, 1)
+            db.rect(0, f.info.capHeight+600, iw/s, ih/s)
+            db.fill(0, 0, 1, 1)
+            db.rect(0, -ih/s, iw/s, ih/s-300)
+            
+        db.saveImage(kernImagePath)
+
+        page = urllib.request.urlopen(f'http://localhost:8080/{g1.name}/{g2.name}/{imageName}')
+        
+        # Returned value is glyphName1/glyphName2/predictedKerningValue
+        # The glyph names are returned to check validity of the kerning value.
+        # Since the call is ansynchronic to the server, we still may get the answer here from a previous query.
+        parts = str(page.read())[2:-1].split('/')
+        if not len(parts) == 3 or parts[0] != g1.name or parts[1] != g2.name:
+            print('### Predicted kerning query not value', parts)
+            return None
+            
+        k = float(parts[-1]) # Extract the kerning from KernNet AI calculator
+        k = (k + calibrate) * factor # Allows external calibrations for this pair
+        
+        # Calculate the rouned-truncated value of the floating         
+        if abs(k) <= step:
+            k = 0 # Apply threshold for very small kerning values
+        ki = int(round(k * f.info.unitsPerEm/1000/step))*step # Scale the kerning value to our Em-size.  
+        print(f'... Predicted kerning {g1.name} -- {g2.name} k={k} kk={ki}')
+            
+        return ki
+
 
     #   S I M I L A R I T Y
 
@@ -836,6 +1308,8 @@ class KerningManager:
     # These are the only ones that need to be spaced.
     # These lists are scanned in sequential order. If one of the glyphs existin in the similarity groups of the current glyphs,
     # the it is used a source for the sidebearing. 
+
+    # @@@@@@ THIS OVERLAPS with the script-base groups on top of this file
 
     BASE1 = [ # Base glyphs on left side, similar to right margin 
         'A', 'H', 'O', 'X', 'n', 'o',  # Overall base glyphs
@@ -965,6 +1439,16 @@ class KerningManager:
             if gName in similar:
                 return gName
         return None # Not found. The right side of g is too unique or there is not a base defined for it.
+
+    def getSimilarBaseGroupName1(self, g, baseName=None):
+        """Answer the group name for left (1) that g is part of. If there no similar base name found,
+        then use baseName. If that is not defined, then answer the group name constructed from g.name."""
+        baseName1 = self.getSimilarBaseName2(g)
+        if baseName1 is None:
+            baseName1 = baseName
+        if baseName1 is None:
+            baseName1 = g.name
+        return PUBLIC_KERN1 + baseName1
         
     def getSimilarBaseName2(self, g):
         """Scan BASE2 in sequential order. If the glyph exits in self.similar2(g), then use it as source for the right margin.
@@ -975,13 +1459,25 @@ class KerningManager:
             if gName in similar:
                 return gName
         return None # Not found. The right side of g is too unique or there is not a base defined for it.
-        
+
+    def getSimilarBaseGroupName2(self, g, baseName=None):
+        """Answer the group name for right (2) that g is part of. If there no similar base name found,
+        then use baseName. If that is not defined, then answer the group name constructed from g.name."""
+        baseName2 = self.getSimilarBaseName2(g)
+        if baseName2 is None:
+            baseName2 = baseName
+        if baseName2 is None:
+            baseName2 = g.name
+        return PUBLIC_KERN2 + baseName2
+               
     def getSimilar1(self, g):
-        """Answer the similar representation from the glyph with SimilarGlyphsKey"""
+        """Asnwer the dictionary of glyph names with similar shapes om the left side.
+        Key is fraction of similarity, value is list of glyph names."""
         return self._getSimilar(g, 'right')
 
     def getSimilar2(self, g):
-        """Answer the similar representation from the glyph with SimilarGlyphsKey"""
+        """Asnwer the dictionary of glyph names with similar shapes om the left side.
+        Key is fraction of similarity, value is list of glyph names."""
         return self._getSimilar(g, 'left')
 
     def _getSimilar(self, g, side):
@@ -1029,7 +1525,7 @@ class KerningManager:
                 groupName = self.glyphName2GroupName1.get(gName) # If a group exists for this glyph
                 if groupName is None:
                     if self.automaticGroups: # Create missing group?
-                        groupName = f'public.kern1.{gName}'
+                        groupName = PUBLIC_KERN1 + gName
                         self.f.groups[groupName] = [gName]
                         self.glyphName2GroupName1[gName] = groupName
                         if self.verbose:
@@ -1078,7 +1574,7 @@ class KerningManager:
                 groupName = self.glyphName2GroupName2.get(gName) # If a group exists for this glyph
                 if groupName is None:
                     if self.automaticGroups: # Create missing group?
-                        groupName = f'public.kern2.{gName}'
+                        groupName = PUBLIC_KERN2 + gName
                         self.f.groups[groupName] = [gName]
                         self.glyphName2GroupName2[gName] = groupName
                         if self.verbose:
@@ -1454,6 +1950,7 @@ class KerningManager:
         4    By kerning mode context
 
         """
+        #print('fsdfsfds', getattr(self, self.SAMPLE_MODES[context])(g, length, index), index)
         return getattr(self, self.SAMPLE_MODES[context])(g, length, index)
 
     def getSpacingSample_GlyphSet(self, g, length, index):
@@ -1488,10 +1985,7 @@ class KerningManager:
 
     def getSpacingSample_Kerning(self, g, length, index):
         """Sample mode 4. Answer the sample for kerning matching the script of g"""
-        sample = ['C', g.name, 'C', g.name, 'O', g.name, 'O', 'H', g.name, 'H', g.name, 'H', g.name, 'H']
-        while len(sample) < length:
-            sample.append(g.name)
-        return sample
+        return self._sample[index: index+length]
 
     def expandFractions(self, s):
         for c1 in s:

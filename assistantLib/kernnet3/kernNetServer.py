@@ -43,6 +43,7 @@ class MyServer(BaseHTTPRequestHandler):
         # The path is supposed to have this format: glyphName1/glyphName2/imageFileName
         parts = self.path.split('/')
         gName1, gName2, imageFileName = parts[-3:]
+        
         imagePath = f'_imagePredict/{imageFileName}'
         #print(gName1, gName2, imageFileName)
 

@@ -678,7 +678,7 @@ class MS_GlyphSet(GlyphSet):
        'Pmod': GD(name='Pmod', uni=0x1D3E, hex='1D3E', c='ᴾ', isMod=True),
        'Psi': GD(name='Psi', uni=0x03A8, hex='03A8', c='Ψ', gid=557),
        'Psi-cy': GD(name='Psi-cy', uni=0x0470, hex='0470', c='Ѱ', l='V', r='U', gid=757),
-       'Psmall': GD(name='Psmall', uni=0x1D18, hex='1D18', c='ᴘ', l='P', w='P', srcName='uni1D18', isSc=True, gid=907),
+       'Psmall': GD(name='Psmall', uni=0x1D18, hex='1D18', c='ᴘ', l='P', r='P', srcName='uni1D18', isSc=True, gid=907),
        'Psquirreltail': GD(name='Psquirreltail', uni=0xA754, hex='A754', r='P', c='Ꝕ'),
        'Pstroke': GD(name='Pstroke', uni=0x2C63, hex='2C63', c='Ᵽ', l='Eth', r='P', base='P', anchors=['top', 'middle', 'bottom']),
        'Pstrokethroughdescender': GD(name='Pstrokethroughdescender', uni=0xA750, hex='A750', c='Ꝑ', l='Eth', r='P', base='P', anchors=['top', 'middle', 'bottom']),
@@ -1092,7 +1092,7 @@ class MS_GlyphSet(GlyphSet):
        'bdotaccent': GD(name='bdotaccent', uni=0x1E03, hex='1E03', c='ḃ', base='b', accents=['dotaccentcomb'], srcName='uni1E03', isLower=True, anchors=['top', 'middle', 'bottom'], gid=926),
        'bdotbelow': GD(name='bdotbelow', uni=0x1E05, hex='1E05', c='ḅ', base='b', accents=['dotbelowcomb'], srcName='uni1E05', isLower=True, anchors=['top', 'middle', 'bottom'], gid=928),
        'be-cy': GD(name='be-cy', uni=0x0431, hex='0431', c='б', l='O', r='o', isLower=False, gid=694), # Behaves as capital
-       'be-cy.loclSRB': GD(name='be-cy.loclSRB', l='o', r='o', isLower=True),
+       'be-cy.loclSRB': GD(name='be-cy.loclSRB', l='be-cy', r='be-cy', isLower=True),
        'beginhightonemod': GD(name='beginhightonemod', uni=0x02F9, hex='02F9', c='˹', isLower=True, isMod=True),
        'beginlowtonemod': GD(name='beginlowtonemod', uni=0x02FB, hex='02FB', c='˻', isLower=True, isMod=True),
        'beta': GD(name='beta', uni=0x03B2, hex='03B2', c='β', isLower=True, gid=567),
@@ -2101,6 +2101,7 @@ class MS_GlyphSet(GlyphSet):
        'peso': GD(name='peso', uni=0x20B1, hex='20B1', c='₱', isLower=True, gid=1450),
        'pflourish': GD(name='pflourish', uni=0xA753, hex='A753', c='ꝓ', l='omod', isLower=True),
        'phi': GD(name='phi', uni=0x03C6, hex='03C6', c='φ', r='o', isLower=True, gid=587),
+       'taillessphi': GD(name='taillessphi', l='phi', r='phi', uni=0x2C77, hex='2C77', c='ⱷ', isLower=True),
        'phi-latin': GD(name='phi-latin', uni=0x0278, hex='0278', c='ɸ', l='phi', r='phi', isLower=True),
        'phiModifier-latin': GD(name='phiModifier-latin', uni=0x1DB2, hex='1DB2', c='ᶲ', isLower=True),
        'phiSymbol': GD(name='phiSymbol', uni=0x03D5, hex='03D5', c='ϕ', l='o', r='o', isLower=True, gid=602),
@@ -2339,7 +2340,6 @@ class MS_GlyphSet(GlyphSet):
 
        't': GD(name='t', uni=0x0074, hex='0074', c='t', isLower=True, anchors=['top', 'middle', 'bottom', 'vert'], gid=86, comment='t'),
        'tail.component': GD(name='tail.component', isLower=True, gid=1700, comment='Used in Emtail, etc.'),
-       'taillessphi': GD(name='taillessphi', uni=0x2C77, hex='2C77', c='ⱷ', isLower=True),
        'tau': GD(name='tau', uni=0x03C4, hex='03C4', c='τ', isLower=True, gid=585),
        'tav-hb': GD(name='tav-hb', uni=0x05EA, hex='05EA', c='ת', isLower=True, gid=905),
        'tbar': GD(name='tbar', uni=0x0167, hex='0167', c='ŧ', l='t', r='t', isLower=True, gid=296, comment='ŧ T WITH STROKE, LATIN SMALL LETTER'),

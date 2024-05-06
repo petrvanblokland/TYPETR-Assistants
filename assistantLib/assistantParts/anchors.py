@@ -44,20 +44,21 @@ class AssistantPartAnchors(BaseAssistantPart):
 
     MAX_DIACRITICS_CLOUD = 40
     MAX_GUESSED_ANCHORS = 30 # Probably not needing more than this amount of choices inside one glyph.
+    
     ANCHOR_LABEL_FONT = 'Verdana'
     ANCHOR_LABEL_SIZE = 12
-    GUESSED_ANCHOR_MARKER_R = 8
+    GUESSED_ANCHOR_MARKER_R = 12
     SELECTED_ANCHOR_POSITION_COLOR = 1, 0.2, 0, 1 # Color of marker outlines if anchor is at selected guessed position
-    GUESSED_ANCHOR_POSITION_COLOR = 0, 0.5, 0, 1 # Color of marker outlines
-    GUESSED_ANCHOR_POSITION_COLOR_FILL = 0.1, 0.8, 0.7, 0.25
-    GUESSED_ANCHOR_POSITION_COLOR2 = 0, 0.25, 0, 1 # Color of labels
-    GUESSED_ANCHOR_POSITION_COLOR2_FILL = 0.1, 0.4, 0.35, 0.25
+    #GUESSED_ANCHOR_POSITION_COLOR = 0, 0.5, 0, 1 # Color of marker outlines
+    #GUESSED_ANCHOR_POSITION_COLOR_FILL = 0.1, 0.8, 0.7, 0.25
+    #GUESSED_ANCHOR_POSITION_COLOR2 = 0, 0.25, 0, 1 # Color of labels
+    #GUESSED_ANCHOR_POSITION_COLOR2_FILL = 0.1, 0.4, 0.35, 0.25
 
     def initMerzAnchors(self, container):
         """Initialize the Merz object for this assistant part.
         Note that the diacritics-cloud object are supported by the contours part.
         """
-        self.guessedAnchorPositions = {} # Calculated if editor windows set glyph. Key is (x, y), value is (anchorName, methodNameX, methodNamey)
+        self.guessedAnchorPosition = {} # Calculated if editor windows set glyph. Key is (x, y), value is (anchorName, methodNameX, methodNamey)
 
         self.anchorsDiacriticsCloud = [] # Storage of diacritics images
         for dIndex in range(self.MAX_DIACRITICS_CLOUD): # Max number of diacritics in a glyph. @@@ If too low, some diacritics don't show
@@ -67,24 +68,15 @@ class AssistantPartAnchors(BaseAssistantPart):
                 fillColor=(0, 0, 0.5, 0.2),
                 visible=False,
             ))
-        self.guessedAnchorPositions1 = [] # Storage of guessed anchor positions and their labels, showing as two concentric circles
-        self.guessedAnchorPositions2 = [] 
+        self.guessedAnchorPositionsMarkers = [] # Storage of guessed anchor positions and their labels, showing as two concentric circles
         self.guessedAnchorLabels = []
         for aIndex in range(self.MAX_GUESSED_ANCHORS): # Max number of guessed anchor positions to show
-            self.guessedAnchorPositions1.append(container.appendOvalSublayer(name=f'guessedAnchorPosition1{aIndex}',
+            self.guessedAnchorPositionsMarkers.append(container.appendOvalSublayer(name=f'guessedAnchorPosition1{aIndex}',
                 position=(0, 0),
                 size=(self.GUESSED_ANCHOR_MARKER_R*2, self.GUESSED_ANCHOR_MARKER_R*2),
-                fillColor=self.GUESSED_ANCHOR_POSITION_COLOR_FILL,
-                strokeColor=self.GUESSED_ANCHOR_POSITION_COLOR,
-                strokeWidth=1,
-                visible=False,
-            ))
-            self.guessedAnchorPositions2.append(container.appendOvalSublayer(name=f'guessedAnchorPosition2{aIndex}',
-                position=(0, 0),
-                size=(self.GUESSED_ANCHOR_MARKER_R*4, self.GUESSED_ANCHOR_MARKER_R*4),
-                fillColor=self.GUESSED_ANCHOR_POSITION_COLOR2_FILL,
-                strokeColor=self.GUESSED_ANCHOR_POSITION_COLOR,
-                strokeWidth=1,
+                fillColor=None,
+                strokeColor=None, # Will be set to the color of the anchor type
+                strokeWidth=2,
                 visible=False,
             ))
             self.guessedAnchorLabels.append(container.appendTextBoxSublayer(name=f'guessedAnchorLabel{aIndex}',
@@ -92,7 +84,7 @@ class AssistantPartAnchors(BaseAssistantPart):
                 size=(400, 100),
                 font=self.ANCHOR_LABEL_FONT,
                 pointSize=self.ANCHOR_LABEL_SIZE,
-                fillColor=self.GUESSED_ANCHOR_POSITION_COLOR2,
+                fillColor=None, # Will be set to the color of the anchor type
                 alignment='center',
                 visible=False,
             ))
@@ -533,9 +525,9 @@ class AssistantPartAnchors(BaseAssistantPart):
                         a = self.getAnchor(gg, anchorName)
                         if a is None:
                             print(f'### Missing anchor "{anchorName} in /{g.name} in {f.path.split("/")[-1]}')
-                        # Get the gussed position of this anchor type. Possibly from the glyphData.anchorTypeGlyphSrc if defined. Otherwise from the gg glyph itself.
+                        # Get the guessed position of this anchor type. Possibly from the glyphData.anchorTypeGlyphSrc if defined. Otherwise from the gg glyph itself.
                         guessedY = getattr(self, my)(gSrc, a.name)
-                        guessedX = self.italicX(gSrc, getattr(self, mx)(gSrc, a.name), guessedY or a.y)
+                        guessedX = self.italicX(gSrc, getattr(self, mx)(gSrc, a.name) or a.x, guessedY or a.y)
                         # Apply this guessed values from the selected anchor type onto the anchor positions of /gg
                         changed = self._setAnchorXY(gg, a, guessedX, guessedY, italicize=False) 
                         if changed:
@@ -611,6 +603,9 @@ class AssistantPartAnchors(BaseAssistantPart):
             if anchor.name not in AD.AUTO_PLACED_ANCHORS:
                 continue # This type of anchor does not have guessing methods implemented
 
+            #if anchor.name != 'top':
+            #    continue
+
             for methodNameX, methodNameY in AD.AUTO_PLACED_ANCHORS[anchor.name]:
                 if not hasattr(self, methodNameX):
                     print(f'### Missing anchor guessing method {methodNameX}')
@@ -618,43 +613,38 @@ class AssistantPartAnchors(BaseAssistantPart):
                 if not hasattr(self, methodNameY):
                     print(f'### Missing anchor guessing method {methodNameY}')
                     continue
-                guessedX = getattr(self, methodNameX)(gSrc, anchor.name)
-                guessedY = getattr(self, methodNameY)(gSrc, anchor.name)
-
-                x, y = anchor.x, anchor.y
+                x = getattr(self, methodNameX)(gSrc, anchor.name)
+                y = getattr(self, methodNameY)(gSrc, anchor.name)
         
-                if not (guessedX or guessedY): # Nothing guessed, then don't show a marker
-                    continue
-                if guessedY is not None:
-                    y = int(round(guessedY))
-                if guessedX is not None:
-                    x = self.italicX(gSrc, guessedX, y)
+                if y is None: # If the guessing function answers None, then take the current position of the anchor
+                    y = anchor.y
+                if x is None: 
+                    x = self.italicX(gSrc, anchor.x, y - anchor.y)
+                else:
+                    x = self.italicX(gSrc, x, y)
+
+
                 if (x, y) in self.guessedAnchorPositions:
                     continue # Avoid double permutated labels)
 
-                if aIndex >= len(self.guessedAnchorPositions1): # Maybe there are too many guessed anchor positions to show. Skip the rest:
+                if aIndex >= len(self.guessedAnchorPositionsMarkers): # Maybe there are too many guessed anchor positions to show. Skip the rest:
                     continue 
 
-                self.guessedAnchorPositions1[aIndex].setPosition((x - self.GUESSED_ANCHOR_MARKER_R, y - self.GUESSED_ANCHOR_MARKER_R))
-                self.guessedAnchorPositions1[aIndex].setVisible(True)
-                if guessedX == x and guessedY == y:
-                    self.guessedAnchorPositions1[aIndex].setFillColor(self.SELECTED_ANCHOR_POSITION_COLOR)
-                else:
-                    self.guessedAnchorPositions1[aIndex].setFillColor(self.GUESSED_ANCHOR_POSITION_COLOR_FILL)
-                self.guessedAnchorPositions2[aIndex].setPosition((x - 2*self.GUESSED_ANCHOR_MARKER_R, y - 2*self.GUESSED_ANCHOR_MARKER_R))
-                self.guessedAnchorPositions2[aIndex].setVisible(True)
+                self.guessedAnchorPositionsMarkers[aIndex].setPosition((x - self.GUESSED_ANCHOR_MARKER_R, y - self.GUESSED_ANCHOR_MARKER_R))
+                self.guessedAnchorPositionsMarkers[aIndex].setStrokeColor(AD.GUESS_ANCHOR_COLORS[anchor.name])
+                self.guessedAnchorPositionsMarkers[aIndex].setVisible(True)
 
                 self.guessedAnchorLabels[aIndex].setText(f'@{anchor.name}\n{methodNameX.replace("guessAnchor", "")}: {x}\n{methodNameY.replace("guessAnchor", "")}: {y}')
                 tw, th = self.guessedAnchorLabels[aIndex].getSize()
                 #self.guessedAnchorLabels[aIndex].setPosition((x + self.GUESSED_ANCHOR_MARKER_R, y - 2*self.GUESSED_ANCHOR_MARKER_R - th/2))
                 self.guessedAnchorLabels[aIndex].setPosition((x, y - 2*self.GUESSED_ANCHOR_MARKER_R - th))
+                self.guessedAnchorLabels[aIndex].setFillColor(AD.GUESS_ANCHOR_COLORS[anchor.name])
                 self.guessedAnchorLabels[aIndex].setVisible(showNames) # SHowing depends on [x] Show guessed names
                 aIndex += 1
                 self.guessedAnchorPositions[(x, y)] = anchor.name, methodNameX, methodNameY
 
-        for n in range(aIndex, len(self.guessedAnchorPositions1)):
-            self.guessedAnchorPositions1[n].setVisible(False)
-            self.guessedAnchorPositions2[n].setVisible(False)
+        for n in range(aIndex, len(self.guessedAnchorPositionsMarkers)):
+            self.guessedAnchorPositionsMarkers[n].setVisible(False)
             self.guessedAnchorLabels[n].setVisible(False)
 
     #   G U E S S I N G  A N C H O R  P O S I T I O N S
@@ -701,6 +691,11 @@ class AssistantPartAnchors(BaseAssistantPart):
         This method can be redefined by inheriting assistant classes if projects have a better guessing method."""
         return None
 
+    def guessAnchorX(self, g, anchorName):
+        """Answering None makes the current (manual) position of a.x be used as best guess.
+        This method can be redefined by inheriting assistant classes if projects have a better guessing method."""
+        return None
+
     #   Y
 
     def guessAnchorHeight(self, g, anchorName):
@@ -709,7 +704,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         gd = md.glyphSet.get(g.name)
         if gd.isLower:
             return md.getHeight(g.name) + md.xHeightAnchorOffsetY # Probably negative offset, so we can add.
-        return md.getHeight(g.name) + md.capHeightAnchorOffsetY # Probably negative offset, so we can add.
+        return int(round(md.getHeight(g.name) + md.capHeightAnchorOffsetY)) # Probably negative offset, so we can add.
 
     def guessAnchorBaseY(self, g, anchorName):
         """Get the height of the anchor in the base glyph, if there is any. 
@@ -718,14 +713,8 @@ class AssistantPartAnchors(BaseAssistantPart):
         if base is not None:
             baseAnchor = self.getAnchor(g, anchorName)
             if baseAnchor is not None:
-                return baseAnchor.y
+                return int(round(baseAnchor.y))
         return None
-
-        #self.descenderAnchorOffsetY = descenderAnchorOffsetY
-        #self.baselineAnchorOffsetY = baselineAnchorOffsetY
-        #self.xHeightAnchorOffsetY = xHeightAnchorOffsetY
-        #self.capHeightAnchorOffsetY = capHeightAnchorOffsetY # Optional vertical offset of cap-anhors or lower capital diacritics.
-        #self.ascenderAnchorOffsetY = ascenderAnchorOffsetY
 
     def guessAnchorAscender(self, g, anchorName):
         """Get the height of the anchor from ascender."""
@@ -745,19 +734,19 @@ class AssistantPartAnchors(BaseAssistantPart):
     def guessAnchorBoxTop(self, g, anchorName):
         """Get the height of the anchor, from xHeight or capHeight."""
         md = self.getMasterData(g.font)
-        return g.bounds[3] + md.boxTopAnchorOffsetY # Probably negative offset, so we can add.
+        return int(round(g.bounds[3])) + md.boxTopAnchorOffsetY # Probably negative offset, so we can add.
 
     def guessAnchorMiddleY(self, g, anchorName):
         md = self.getMasterData(g.font)
         h = md.getHeight(g.name)
         if h is None:
             return g.font.info.capHeight/2
-        return h/2
+        return int(round(h/2))
 
     def guessAnchorBoxBottom(self, g, anchorName):
         """Get the height of the anchor from xHeight or capHeight."""
         md = self.getMasterData(g.font)
-        return g.bounds[1] + md.boxBottomAnchorOffsetY 
+        return int(round(g.bounds[1] + md.boxBottomAnchorOffsetY)) 
 
     def guessAnchorDescender(self, g, anchorName):
         """Get the height of the anchor from descender position."""

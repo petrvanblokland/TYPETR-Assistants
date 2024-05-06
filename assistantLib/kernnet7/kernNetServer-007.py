@@ -8,6 +8,8 @@
 #
 # Python 3 server example
 #
+# http://localhost:8080/gName1/gName2/test.png
+#
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import time
 import os
@@ -42,7 +44,8 @@ class MyServer(BaseHTTPRequestHandler):
             print('###', parts)
             return
         gName1, gName2, imageFileName = parts[-3:]
-        imagePath = f'_imagePredict/{imageFileName}'
+        kernImagePath = f'/tmp/com.typetr_imagePredict/{imageFileName}'
+
         #print(gName1, gName2, imageFileName)
         # Roman + Italic + black side rectangles
         #checkPointFilePath = 'lightning_logs/version_16/checkpoints/epoch=49-step=589100.ckpt'
@@ -54,13 +57,13 @@ class MyServer(BaseHTTPRequestHandler):
         #checkPointFilePath = 'lightning_logs/version_21/checkpoints/epoch=0-step=102979.ckpt'
         #checkPointFilePath = 'models/Upgrade-V1-testing/Upgrade-V1-testing.tar'
         checkPointFilePath = 'models'
-        predicted = self.predict_single_kern_value(MODEL_NAME, imagePath, checkPointFilePath)
+        predicted = self.predict_single_kern_value(MODEL_NAME, kernImagePath, checkPointFilePath)
         #k = int(round(predicted*EM/1000/self.INCREMENT))*self.INCREMENT
         #k = int(round(predicted/self.INCREMENT))*self.INCREMENT
         k = predicted # Answer the whole predicted value as float, by default scaled for unitsPerEm=1000
         # Answer the glyph names with the predicted kerning value, for the caller to check.
         # Since this is a ansynchronic system, calls and answer my be mixed up.
-        print(f'... Model {MODEL_NAME} /{gName1} /{gName2} {k} {imagePath}')
+        print(f'... Model {MODEL_NAME} /{gName1} /{gName2} {k} {kernImagePath}')
         self.wfile.write(bytes(f'{gName1}/{gName2}/{str(k)}', "utf-8"))
 
     def predict_single_kern_value(self, model_identifier,

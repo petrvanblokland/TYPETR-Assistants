@@ -111,10 +111,20 @@ class BaseAssistant:
     if VISITED_MARKER is None:
         VISITED_MARKER = (1, 1, 1, 1) # Clear to white
 
+    # Make these keys available for parts by class constant.
+    UP_ARROW_FUNCTION_KEY = NSUpArrowFunctionKey
+    DOWN_ARROW_FUNCTION_KEY = NSDownArrowFunctionKey
+    LEFT_ARROW_FUNCTION_KEY = NSLeftArrowFunctionKey
+    RIGHT_ARROW_FUNCTION_KEY = NSRightArrowFunctionKey
+    PAGE_UP_FUNCTION_KEY = NSPageUpFunctionKey
+    PAGE_DOWN_FUNCTION_KEY = NSPageDownFunctionKey
+    PAGE_HOME_FUNCTION_KEY = NSHomeFunctionKey
+    PAGE_END_FUNCTION_KEY = NSEndFunctionKey
+
     # If arrow keys are used, then always update the glyph.
-    ARROW_KEYS = [NSUpArrowFunctionKey, NSDownArrowFunctionKey,
-            NSLeftArrowFunctionKey, NSRightArrowFunctionKey, NSPageUpFunctionKey,
-            NSPageDownFunctionKey, NSHomeFunctionKey, NSEndFunctionKey]
+    ARROW_KEYS = [UP_ARROW_FUNCTION_KEY, DOWN_ARROW_FUNCTION_KEY,
+            LEFT_ARROW_FUNCTION_KEY, RIGHT_ARROW_FUNCTION_KEY, PAGE_UP_FUNCTION_KEY,
+            PAGE_DOWN_FUNCTION_KEY, PAGE_HOME_FUNCTION_KEY, PAGE_END_FUNCTION_KEY]
 
     # Must be redefined by inheriting assistant classes where to find the main UFO master files
     UFO_PATH = 'ufo/' # Standard place for UFO files
@@ -322,6 +332,18 @@ class BaseAssistant:
         """Answer a list with all current open fonts. By default this is the result of AllFonts(), but it can be altered by
         inheriting assistant classes to fore another set of font selection."""
         return AllFonts()
+
+    def getAllUfoFonts(self):
+        """Answer a list with all fonts in the current ufo/ if they are defined in the master data. If the font
+        is not open, then open it on the background."""
+        ufos = []
+        f = self.getCurrentFont()  
+        parentPath = self.filePath2ParentPath(f.path)                        
+        for ufoPath in enumerate(self.getUfoPaths(parentPath)):
+            ufo = self.getFont(ufoPath)
+            if ufo is not None:
+                ufos.append(ufo)
+        return ufos
 
     #   G L Y P H
 
@@ -762,7 +784,9 @@ class AssistantController(BaseAssistant, WindowController):
     # Editor window drawin parameters for kerning
     KERN_LINE_SIZE = 32 # Number of glyphs on kerning line
     KERN_SCALE = 0.15 # Calibration factor for AI kerning
-        
+    
+    SHOW_PART_TITLES = True # Can be set to inheriting class to not show part titles below the separation lines.
+
     assistantGlyphEditorSubscriberClass = BaseAssistant
 
     # Inheriting class can overwrite this default class variable to alter type of window 
@@ -801,6 +825,12 @@ class AssistantController(BaseAssistant, WindowController):
         personalKey_f = self.registerKeyStroke('f', 'fixAllOfTheseGlyphsKey') # Check/fix the current glyph in all open fonts.
 
         for buildUIMethodName in self.BUILD_UI_METHODS:
+            if self.SHOW_PART_TITLES:
+                # Show title of the part over the line above
+                y += 3
+                setattr(self.w, 'partTitle-' + buildUIMethodName, TextBox((self.M, y-8, self.CW, 12), buildUIMethodName.replace('build', ''), sizeStyle='mini'))
+                y += 1
+            # Let the part build its UI and it returns the amount of vertical space it needed as new y
             y = getattr(self, buildUIMethodName)(y)
 
         # Some default buttons that every assistant window should have

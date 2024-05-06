@@ -16,6 +16,7 @@
 import sys
 from math import *
 from vanilla import *
+from AppKit import *
 
 from mojo.UI import OpenGlyphWindow
 from mojo.roboFont import CurrentFont
@@ -50,7 +51,7 @@ class AssistantPartSpacer(BaseAssistantPart):
     The assistant part gives feedback about where the automated values came from, so it's easier to debug.
     """
 
-    KERN_LINE_SIZE = 100 # Number of glyphs on kerning line
+    KERN_LINE_SIZE = 48 # Number of glyphs on kerning line
     KERN_SCALE = 0.12 #0.2 Scaler for glyphs on kerning line
 
     SPACER_FIXED_WIDTH_MARKER_COLOR = 0.5, 0.5, 0.5, 0.5
@@ -253,6 +254,13 @@ class AssistantPartSpacer(BaseAssistantPart):
         visible = c.w.showSpacingSampleLine.get()
 
         km = self.getKerningManager(g.font)
+
+        # Testing the KernNet in kerningManager
+        #g1Name = c.w.previewGlyphLeftName.get() or 'H'
+        #if g1Name in f:
+        #    k = km.getKernNetKerning(f[g1Name], g, step=None)
+        #    print(f'...KernNet {g1Name} {g.name} {k}')
+
         sampleContext = c.w.spacerMode.get()
         # 0    Glyphset
         # 1    According to similarity
@@ -422,6 +430,11 @@ class AssistantPartSpacer(BaseAssistantPart):
         personalKey_N = self.registerKeyStroke(self.KEY_DEC_KERN1_CAP, 'spacerIncKern1Cap')
         personalKey_n = self.registerKeyStroke(self.KEY_DEC_KERN1, 'spacerIncKern1')
 
+        personalKey_pageUp = self.registerKeyStroke(self.PAGE_UP_FUNCTION_KEY, 'spacerPageUp')
+        personalKey_pageDown = self.registerKeyStroke(self.PAGE_DOWN_FUNCTION_KEY, 'spacerPageDown')
+        personalKey_pageHome = self.registerKeyStroke(self.PAGE_HOME_FUNCTION_KEY, 'spacerPageHome')
+        personalKey_pageEnd = self.registerKeyStroke(self.PAGE_END_FUNCTION_KEY, 'spacerPageEnd')
+
         c = self.getController()
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         LL = 18
@@ -443,11 +456,15 @@ class AssistantPartSpacer(BaseAssistantPart):
         #c.w.decKern1Button = Button((C2+2*CW/4, y, CW/4, L), '<[%s]' % personalKey_period, callback=self.spacerDecKern1Callback)
         #c.w.incKern1Button = Button((C2+3*CW/4, y, CW/4, L), '[%s]>' % personalKey_comma, callback=self.spacerIncKern1Callback)
         y += L
+        c.w.autoSpaceAllButton = Button((C0, y, CW, L), 'Auto space all', callback=self.autoSpaceAllCallback)
         c.w.fixReportedSpacingDifferences = CheckBox((C1, y, CW, L), 'Fix reported', value=False, sizeStyle='small')
         c.w.reportSpacingButton = Button((C2, y, CW, L), 'Report spacing', callback=self.reportSpacingCallback)
         y += L + 10
-        c.w.autoSpaceAllButton = Button((C1, y, CW, L), 'Auto space all', callback=self.autoSpaceAllCallback)
-        c.w.autoKernAllButton = Button((C2, y, CW, L), 'Auto kern all', callback=self.autoKernAllCallback)
+        c.w.factorKernNetTextBox = EditText((C0, y, 48, L))
+        c.w.factorKernNetTextBox.set('1.2')
+        c.w.calibrateKernNetTextBox = EditText((C1, y, 48, L))
+        c.w.calibrateKernNetTextBox.set('0')
+        c.w.autoKernAllGroupsButton = Button((C2, y, CW, L), 'Auto kern groups', callback=self.autoKernGroupsCallback)
         y += L + 10
         c.w.spacerEndLine = HorizontalLine((self.M, y, -self.M, 1))
         c.w.spacerEndLine2 = HorizontalLine((self.M, y, -self.M, 1))
@@ -480,10 +497,21 @@ class AssistantPartSpacer(BaseAssistantPart):
             # Watch out: this will auto-save the adjusted font
             f.save()
 
-    def autoKernAllCallback(self, sender):
+    def autoKernGroupsCallback(self, sender):
         """Auto kern all groups and kerning pairs for the given template for all UFO's in the family.
         Report on the groups and pairs that got changed. Only perform real changes if the safety switch is enabled."""
         print('--- Auto kern all masters')
+        f = self.getCurrentFont()
+        km = self.getKerningManager(f)
+        try:
+            factor = float(self.w.factorKernNetTextBox.get())
+        except ValueError:
+            factor = 1
+        try:
+            calibrate = int(self.w.calibrateKernNetTextBox.get())
+        except ValueError:
+            calibrate = 0
+        km.kernGroups(factor=factor, calibrate=calibrate)
 
     def reportSpacingCallback(self, sender):
         """Report/fix margins for the current font that don't fit the epexted value as it would have been auto spaced.
@@ -653,7 +681,39 @@ class AssistantPartSpacer(BaseAssistantPart):
     def spacerIncKern1(self, g, c, event):
         self._adjustRightMarginByUnits(g, 1)
         g.changed()
-        
+    
+    #   S A M P L E  K E Y S
+
+    def spacerPageUp(self, g, c, event):
+        if event['shiftDown']:
+            dec = len(self.kerningLine)
+        else:
+            dec = 1
+        self.spacerSampleIndex = max(0, self.spacerSampleIndex - dec)
+        print(self.spacerSampleIndex)
+        g.changed()
+        #print('Page Up', event['shiftDown'], event['optionDown'], event['controlDown'], event['commandDown'])
+
+    def spacerPageDown(self, g, c, event):
+        if event['shiftDown']:
+            inc = len(self.kerningLine)
+        else:
+            inc = 1
+        self.spacerSampleIndex += inc
+        print(self.spacerSampleIndex)
+        g.changed()
+        #print('Page Down', event['shiftDown'], event['optionDown'], event['controlDown'], event['commandDown'])
+
+    def spacerPageHome(self, g, c, event):
+        self.spacerSampleIndex = 0
+        g.changed()
+        #print('Page Home', event['shiftDown'], event['optionDown'], event['controlDown'], event['commandDown'])
+
+    def spacerPageEnd(self, g, c, event):
+        self.spacerSampleIndex = 1000
+        g.changed()
+        #print('Page End', event['shiftDown'], event['optionDown'], event['controlDown'], event['commandDown'])
+
     #   A D J U S T  S P A C I N G
 
     SPACING_UNIT = 4
@@ -900,7 +960,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         """Callback from button. Center the current glyph on its width, if not done autmatically."""
         g = self.getCurrentGlyph()
         if g is not None:
-            if self.spacerCenterGlyhph(g):
+            if self.spacerCenterGlyph(g):
                 g.changed()
 
     def spacerCenterGlyph(self, g, c, event):     

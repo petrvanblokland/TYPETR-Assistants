@@ -938,7 +938,7 @@ class KernNetSpacingAssistantController(WindowController):
         
         y += 2*L
         self.w.cropKernImage = CheckBox((C2, y, CW, L), 'Crop kern image', value=True, callback=self.updateKerningCallback)
-        self.w.factor = EditText((C0, y, CW, L), callback=self.updateKerningCallback) # Use  kerning find button to go there.
+        self.] = EditText((C0, y, CW, L), callback=self.updateKerningCallback) # Use  kerning find button to go there.
         self.w.factor.set('1') # No calibration factor by default
 
         y += L

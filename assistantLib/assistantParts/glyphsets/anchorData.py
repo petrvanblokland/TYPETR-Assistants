@@ -51,6 +51,25 @@ class AnchorData:
         CONNECTED_ANCHORS[value] = key
         DIACRITICS_ANCHORS.append(key)
 
+    # Colors for anchor positions, separate for each type of anchor
+    GUESS_ANCHOR_COLORS = {
+        TOP_:       (1, 0, 0, 1),
+        _TOP:       (0.5, 0, 0, 1),
+        BOTTOM_:    (0, 0.5, 0, 17),
+        _BOTTOM:    (0, 0.25, 0, 1),
+        MIDDLE_:    (0, 0, 1, 1),
+        _MIDDLE:    (0, 0, 0.5, 1),
+        DOT_:       (0, 0, 1, 1),
+        _DOT:       (0, 0, 0.5, 1),
+        VERT_:      (1, 0, 1, 1),
+        _VERT:      (0.5, 0, 0.5, 1),
+        OGONEK_:    (1, 0.5, 0, 1),
+        _OGONEK:    (0.5, 0.25, 0, 1),
+        TONOS_:     (0, 0.5, 1, 1),
+        _TONOS:     (0, 0.25, 0.5, 1),
+        HORN_:      (0, 0.5, 1, 1),
+        _HORN:      (0, 0.25, 0.5, 1),
+    }
     # Method names that are implenented to guess the position of anchors.
     GUESS_ANCHOR_BASE_X = 'guessAnchorBaseX'
     GUESS_ANCHOR_CENTER_WIDTH = 'guessAnchorCenterWidth'
@@ -59,6 +78,7 @@ class AnchorData:
     GUESS_ANCHOR_DOT_X = 'guessAnchorDotX'
     GUESS_ANCHOR_VERT_X = 'guessAnchorVertX'
     GUESS_ANCHOR_TONOS_X = 'guessAnchorTonosX'
+    GUESS_ANCHOR_X = 'guessAnchorX' # Default behavior is to answer the x position of the current anchor
 
     GUESS_ANCHOR_BASE_Y = 'guessAnchorBaseY'
     GUESS_ANCHOR_BASELINE = 'guessAnchorBaseline'
@@ -79,11 +99,15 @@ class AnchorData:
         (GUESS_ANCHOR_BOX_CENTER_X, GUESS_ANCHOR_HEIGHT), 
         (GUESS_ANCHOR_BOX_CENTER_X, GUESS_ANCHOR_ASCENDER), 
         (GUESS_ANCHOR_BOX_CENTER_X, GUESS_ANCHOR_BOX_TOP), 
+        (GUESS_ANCHOR_X, GUESS_ANCHOR_HEIGHT), # Take current x of the anchor, italicized to another y
+        (GUESS_ANCHOR_X, GUESS_ANCHOR_ASCENDER), 
+        (GUESS_ANCHOR_X, GUESS_ANCHOR_BOX_TOP), 
     )
     GUESS_PAIRS_MIDDLE = (
         (GUESS_ANCHOR_BASE_X, GUESS_ANCHOR_BASE_Y), 
         (GUESS_ANCHOR_CENTER_WIDTH, GUESS_ANCHOR_MIDDLE_Y), 
         (GUESS_ANCHOR_BOX_CENTER_X, GUESS_ANCHOR_MIDDLE_Y), 
+        (GUESS_ANCHOR_X, GUESS_ANCHOR_MIDDLE_Y), 
     )
     GUESS_PAIRS_DOT = (
         (GUESS_ANCHOR_BASE_X, GUESS_ANCHOR_BASE_Y), 
@@ -92,6 +116,9 @@ class AnchorData:
         (GUESS_ANCHOR_DOT_X, GUESS_ANCHOR_BOX_TOP), 
         (GUESS_ANCHOR_DOT_X, GUESS_ANCHOR_ASCENDER), 
         (GUESS_ANCHOR_DOT_X, GUESS_ANCHOR_HEIGHT), 
+        (GUESS_ANCHOR_X, GUESS_ANCHOR_BOX_TOP), 
+        (GUESS_ANCHOR_X, GUESS_ANCHOR_ASCENDER), 
+        (GUESS_ANCHOR_X, GUESS_ANCHOR_HEIGHT), 
     )
     GUESS_PAIRS_BOTTOM = (
         (GUESS_ANCHOR_BASE_X, GUESS_ANCHOR_BASE_Y), 
@@ -101,6 +128,9 @@ class AnchorData:
         (GUESS_ANCHOR_BOX_CENTER_X, GUESS_ANCHOR_BASELINE), 
         (GUESS_ANCHOR_BOX_CENTER_X, GUESS_ANCHOR_DESCENDER), 
         (GUESS_ANCHOR_BOX_CENTER_X, GUESS_ANCHOR_BOX_BOTTOM), 
+        (GUESS_ANCHOR_X, GUESS_ANCHOR_BASELINE), 
+        (GUESS_ANCHOR_X, GUESS_ANCHOR_DESCENDER), 
+        (GUESS_ANCHOR_X, GUESS_ANCHOR_BOX_BOTTOM), 
     )
     GUESS_PAIRS_VERT = (
         (GUESS_ANCHOR_VERT_X, GUESS_ANCHOR_VERT_Y),
