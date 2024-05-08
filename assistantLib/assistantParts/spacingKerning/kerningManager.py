@@ -1192,7 +1192,7 @@ class KerningManager:
 
     #   K E R N I N G
 
-    def kernGroups(self, factor=1, calibrate=0):
+    def kernGroups(self, factor=1, calibrate=0, verbose=False):
         """This kerns all group pairs in KERN_GROUPS after clearing f.kerning first."""
         self.f.kerning.clear()
         for scriptName1, scriptName2 in KERN_GROUPS:
@@ -1202,7 +1202,6 @@ class KerningManager:
 
             baseGlyphNames1 = self.groupBaseGlyphs[scriptName1]
             baseGlyphNames2 = self.groupBaseGlyphs[scriptName2]
-                
 
             for baseGlyphName1 in baseGlyphNames1: # For each of the base group glyph names of this script.
                 #if not baseGlyphName1 in ('V', 'A', 'T', 'period', 'n', 'o'):
@@ -1217,6 +1216,8 @@ class KerningManager:
                         g2 = self.f[baseGlyphName2]
                         k = self.getKernNetKerning(g1, g2, step=None, factor=factor, calibrate=calibrate)
                         if abs(k) > 8:
+                            if verbose:
+                                print(f'... Set kerning ({groupName1}, {groupName2}) to {k}')
                             self.f.kerning[(groupName1, groupName2)] = k
                     else:
                         print(f'### Missing base glyphs for kerning ({baseGlyphName1}, {baseGlyphName2})')
@@ -1296,7 +1297,7 @@ class KerningManager:
         if abs(k) <= step:
             k = 0 # Apply threshold for very small kerning values
         ki = int(round(k * f.info.unitsPerEm/1000/step))*step # Scale the kerning value to our Em-size.  
-        print(f'... Predicted kerning {g1.name} -- {g2.name} k={k} kk={ki}')
+        # print(f'... Predicted kerning {g1.name} -- {g2.name} k={k} kk={ki}')
             
         return ki
 

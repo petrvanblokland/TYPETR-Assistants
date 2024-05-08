@@ -511,7 +511,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             calibrate = int(self.w.calibrateKernNetTextBox.get())
         except ValueError:
             calibrate = 0
-        km.kernGroups(factor=factor, calibrate=calibrate)
+        km.kernGroups(factor=factor, calibrate=calibrate, verbose=True)
 
     def reportSpacingCallback(self, sender):
         """Report/fix margins for the current font that don't fit the epexted value as it would have been auto spaced.

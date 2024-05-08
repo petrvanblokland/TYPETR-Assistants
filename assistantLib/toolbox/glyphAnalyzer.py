@@ -7,7 +7,7 @@
 #    TYPETR glyphAnalyzer.py
 #
 import weakref
-import math
+from math import *
 import operator
 import functools
 
@@ -18,13 +18,13 @@ def pointDistance(p1, p2):
     return distance(p1.x, p1.y, p1.y, p2.y)
 
 def squareDistance(x1, y1, x2, y2):
-    """Answers the square of the distance for relative comparison and to save the time of the math.sqrt."""
+    """Answers the square of the distance for relative comparison and to save the time of the sqrt."""
     tx, ty = x2 - x1, y2 - y1
     return tx * tx + ty * ty
 
 def distance(x1, y1, x2, y2):
     """Answers the distance between the points."""
-    return math.sqrt(squareDistance(x1, y1, x2, y2))
+    return sqrt(squareDistance(x1, y1, x2, y2))
 
 def dotProduct(v1, v2):
     return functools.reduce(operator.add, map(operator.mul, v1, v2))
@@ -55,7 +55,7 @@ def point2Line(x1, y1, x2, y2, px, py):
     return distance(x, y, px, py) # Length of p1->p2        
 
 class Point:
-    """Constructed point, compatible with self.glyph.contours.points[0] point."""
+    """Constructed point, compatible with g.contours.points[0] point."""
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -77,7 +77,7 @@ class PointContext:
         """Answer the angle of pointContext (p_1, p)"""
         xDiff = self.p_1.x - self.p.x
         yDiff = self.p_1.y - self.p.y
-        return int(round(math.atan2(yDiff, xDiff) * 180 / math.pi, 3))
+        return int(round(atan2(yDiff, xDiff) * 180 / pi, 3))
     angle = property(_get_angle)
 
     def _get_x(self):
@@ -325,36 +325,30 @@ class GlyphAnalyzer:
     """The GlyphAnalyzer gets diagonals, verticals, horizontal, stems and bars from a glyph contour."""
 
     def __init__(self, g):
-        self.glyph = g # Save as weakref and store the path in self.glyphPath
-        self.reset()
+        """Analyze elements in the /g and store them as static sets of data. If the glyph changes,
+        a new GlyphAnalzyer should be constructed. This is more efficient than keeping track of the
+        changes and the update the partically.
+        Do not store the /g, since the RGlyph wrapper may change by RoboFont, keeping the content alike.
+        """
+        self.glyphPath = g.getRepresentation("defconAppKit.NSBezierPath") # Used for white/black positions
+        
+        self._pointContexts = []
 
-    def _get_glyph(self):
-        return self._glyph()
-    def _set_glyph(self, glyph):
-        self._glyph = weakref.ref(glyph)
-        self.glyphPath = glyph.getRepresentation("defconAppKit.NSBezierPath")
-    glyph = property(_get_glyph, _set_glyph)
+        self._stems = {} # Holds dictionary for horizonal relation between verticals
+        self._verticals = {} # Dictioanry with all verticals (round and straight)
+        self._roundVerticals = {} # Dictionary with only round verticals
+        self._straightVerticals = {}
 
-    def reset(self):
-        """There's changes in the glyph or attributes were not yet analyzed: examine the glyph."""
-        assert self.glyph is not None
+        self._bars = {} # Holds dictionary for vertical relation between horizontals
+        self._horizontals = {} # Dictionary with all horizontals (round and straight)
+        self._roundHorizontals = {} # Dictionary with only round horizontals
+        self._straightHorizontals = {} # Dictionary with only straight horizontals
 
-        self.pointContexts = []
+        self._diagonalStems = {}
+        self._diagonals = {} # Angle (different from 0, 90) is the key for point context (p-1, p)
+        self._dValues = []
 
-        self.diagonalStems = {}
-        self.diagonals = {} # Angle (different from 0, 90) is the key for point context (p-1, p)
-
-        self.stems = {} # Holds dictionary for horizonal relation between verticals
-        self.verticals = {} # Dictioanry with all verticals (round and straight)
-        self.roundVerticals = {} # Dictionary with only round verticals
-        self.straightVerticals = {}
-
-        self.bars = {} # Holds dictionary for vertical relation between horizontals
-        self.horizontals = {} # Dictionary with all horizontals (round and straight)
-        self.roundHorizontals = {} # Dictionary with only round horizontals
-        self.straightHorizontals = {} # Dictionary with only straight horizontals
-
-        for cIndex, contour in enumerate(self.glyph.contours):
+        for cIndex, contour in enumerate(g.contours):
             points = contour.points
             for pIndex in range(len(points)):
                 p_2, p_1, p, p1, p2 = pp = points[pIndex-4], points[pIndex-3], points[pIndex-2], points[pIndex-1], points[pIndex] # Trick to run over edge of point list
@@ -362,59 +356,93 @@ class GlyphAnalyzer:
                     continue
 
                 pointContext = PointContext(cIndex, pIndex-2, pp) # Context reference of a point: contourIndex, pointIndex, (p-2, p-1, p, p+1, p+2)
-                self.pointContexts.append(pointContext)
+                self._pointContexts.append(pointContext)
 
                 # Horizontals
                 if p_1.y == p.y == p1.y and p.type in ('curve', 'qcurve'):
-                    if p.y not in self.horizontals:
-                        self.horizontals[p.y] = []
-                    self.horizontals[p.y].append(pointContext)
-                    if p.y not in self.roundHorizontals:
-                        self.roundHorizontals[p.y] = []
-                    self.roundHorizontals[p.y].append(pointContext)
+                    if p.y not in self._horizontals:
+                        self._horizontals[p.y] = []
+                    self._horizontals[p.y].append(pointContext)
+                    if p.y not in self._roundHorizontals:
+                        self._roundHorizontals[p.y] = []
+                    self._roundHorizontals[p.y].append(pointContext)
 
                 elif p_1.y == p.y:
-                    if p.y not in self.horizontals:
-                        self.horizontals[p.y] = []
-                    self.horizontals[p.y].append(pointContext)
-                    if p.y not in self.straightHorizontals:
-                        self.straightHorizontals[p.y] = []
-                    self.straightHorizontals[p.y].append(pointContext)
+                    if p.y not in self._horizontals:
+                        self._horizontals[p.y] = []
+                    self._horizontals[p.y].append(pointContext)
+                    if p.y not in self._straightHorizontals:
+                        self._straightHorizontals[p.y] = []
+                    self._straightHorizontals[p.y].append(pointContext)
 
                 # Verticals
                 if p_1.x == p.x == p1.x and p.type in ('curve', 'qcurve'):
-                    if p.x not in self.verticals:
-                        self.verticals[p.x] = []
-                    self.verticals[p.x].append(pointContext)
-                    if p.x not in self.roundVerticals:
-                        self.roundVerticals[p.x] = []
-                    self.roundVerticals[p.x].append(pointContext)
+                    if p.x not in self._verticals:
+                        self._verticals[p.x] = []
+                    self._verticals[p.x].append(pointContext)
+                    if p.x not in self._roundVerticals:
+                        self._roundVerticals[p.x] = []
+                    self._roundVerticals[p.x].append(pointContext)
 
                 elif p_1.x == p.x:
-                    if p.x not in self.verticals:
-                        self.verticals[p.x] = []
-                    self.verticals[p.x].append(pointContext)
-                    if p.x not in self.straightVerticals:
-                        self.straightVerticals[p.x] = []
-                    self.straightVerticals[p.x].append(pointContext)
+                    if p.x not in self._verticals:
+                        self._verticals[p.x] = []
+                    self._verticals[p.x].append(pointContext)
+                    if p.x not in self._straightVerticals:
+                        self._straightVerticals[p.x] = []
+                    self._straightVerticals[p.x].append(pointContext)
 
         # Now we have all point contexts stores, try to find diagonals and store them by angle
         # Find the dictionary of all point contexts, where the key is the
         # normalized integer rounded angle. Definition of a diagonal is that it
         # cannot be a vertical or horizontal."""
 
-        for pc in self.pointContexts: 
+        for pc in self._pointContexts: 
             if pc.isDiagonal: # Optimized check on not horizontal or vertical
                 angle = pc.normalizedAngle
-                if not angle in self.diagonals: # In case there is no angle entry yet, create one.
-                    self.diagonals[angle] = []
-                self.diagonals[angle].append(pc)
+                if not angle in self._diagonals: # In case there is no angle entry yet, create one.
+                    self._diagonals[angle] = []
+                self._diagonals[angle].append(pc)
 
-        # Try to find iagonal Stems
+        # Try to find stems
+        xx = None # Previous x
+        vv = None # Previous vertical
+
+        for x, vertical in sorted(self._verticals.items()):
+            v = vertical[0]
+            if xx is not None:
+                if xx not in self._stems:
+                    self._stems[xx] = []
+                if self.isBlackStem(vv, v): # Middle between the verticals is black?
+                    stem = Stem(vv, v)
+                else:
+                    stem = HCounter(vv, v)
+                self._stems[xx].append(stem)
+            xx = x
+            vv = v
+
+        # Try to find bars
+        yy = None # Previous y
+        hh = None # Previous horizontal
+
+        for y, horizontal in sorted(self._horizontals.items()):
+            h = horizontal[0]
+            if yy is not None:
+                if yy not in self._bars:
+                    self._bars[yy] = []
+                if self.isBlackBar(hh, h): # Middle between the horizontals is black?
+                    bar = Bar(hh, h)
+                else:
+                    bar = VCounter(hh, h)
+                self._bars[yy].append(bar)
+            yy = y
+            hh = h
+
+        # Try to find diagonal Stems
         found = set()
-        for diagonals0 in self.diagonals.values(): # Loop through all pointContexts that are diagonal
+        for diagonals0 in self._diagonals.values(): # Loop through all pointContexts that are diagonal
             for pc0 in diagonals0:
-                for diagonals1 in self.diagonals.values(): # angle1, diagonals2
+                for diagonals1 in self._diagonals.values(): # angle1, diagonals2
                     for pc1 in diagonals1:
 
                         # Test if the y values are in range so this can be seen as stem pair
@@ -426,43 +454,89 @@ class GlyphAnalyzer:
 
                         diagonalStem = DiagonalStem(pc0, pc1)
                         distance = diagonalStem.size # Average length of the diagonal projected lines
-                        if not distance in self.diagonalStems:
-                            self.diagonalStems[distance] = []
-                        self.diagonalStems[distance].append(diagonalStem)
+                        if not distance in self._diagonalStems:
+                            self._diagonalStems[distance] = []
+                        self._diagonalStems[distance].append(diagonalStem)
                             
-        # Try to find stems
-        xx = None # Previous x
-        vv = None # Previous vertical
+                        for pp0, pp1 in diagonalStem.perpendicularLines:
+                            if not None in (pp0, pp1):
+                                distance = sqrt((pp1.x - pp0.x)**2 + (pp1.y - pp0.y)**2)
+                                self._dValues.append((distance, pp0, pp1))
 
-        for x, vertical in sorted(self.verticals.items()):
-            v = vertical[0]
-            if xx is not None:
-                if xx not in self.stems:
-                    self.stems[xx] = []
-                if self.isBlackStem(vv, v): # Middle between the verticals is black?
-                    stem = Stem(vv, v)
-                else:
-                    stem = HCounter(vv, v)
-                self.stems[xx].append(stem)
-            xx = x
-            vv = v
+    #   P R O P E R T I E S
 
-        # Try to find bars
-        yy = None # Previous y
-        hh = None # Previous horizontal
-
-        for y, horizontal in sorted(self.horizontals.items()):
-            h = horizontal[0]
-            if yy is not None:
-                if yy not in self.bars:
-                    self.bars[yy] = []
-                if self.isBlackBar(hh, h): # Middle between the horizontals is black?
-                    bar = Bar(hh, h)
-                else:
-                    bar = VCounter(hh, h)
-                self.bars[yy].append(bar)
-            yy = y
-            hh = h
+    def _get_pointContexts(self):
+        if self._pointContexts is None: # Need initialiation still
+            self._initialize()
+        return self._pointContexts
+    pointContexts = property(_get_pointContexts)
+    
+    def _get_stems(self):
+        if self._stems is None: # Need initialiation still
+            self._initialize()
+        return self._stems
+    stems = property(_get_stems)
+    
+    def _get_verticals(self):
+        if self._verticals is None: # Need initialiation still
+            self._initialize()
+        return self._verticals
+    verticals = property(_get_verticals)
+    
+    def _get_roundVerticals(self):
+        if self._roundVerticals is None: # Need initialiation still
+            self._initialize()
+        return self._roundVerticals
+    roundVerticals = property(_get_roundVerticals)
+    
+    def _get_straightVerticals(self):
+        if self._straightVerticals is None: # Need initialiation still
+            self._initialize()
+        return self._straightVerticals
+    straightVerticals = property(_get_straightVerticals)
+    
+    def _get_bars(self):
+        if self._bars is None: # Need initialiation still
+            self._initialize()
+        return self._bars
+    bars = property(_get_bars)
+    
+    def _get_horizontals(self):
+        if self._horizontals is None: # Need initialiation still
+            self._initialize()
+        return self._horizontals
+    horizontals = property(_get_horizontals)
+    
+    def _get_roundHorizontals(self):
+        if self._roundHorizontals is None: # Need initialiation still
+            self._initialize()
+        return self._roundHorizontals
+    roundHorizontals = property(_get_roundHorizontals)
+    
+    def _get_straightHorizontals(self):
+        if self._straightHorizontals is None: # Need initialiation still
+            self._initialize()
+        return self._straightHorizontals
+    straightHorizontals = property(_get_straightHorizontals)
+    
+    def _get_diagonalStems(self):
+        if self._diagonalStems is None: # Need initialiation still
+            self._initialize()
+        return self._diagonalStems
+    diagonalStems = property(_get_diagonalStems)
+    
+    def _get_diagonals(self):
+        if self._diagonals is None: # Need initialiation still
+            self._initialize()
+        return self._diagonals
+    diagonals = property(_get_diagonals)
+    
+    def _get_dValues(self):
+        if self._dValues is None: # Need initialiation still
+            self._initialize()
+        return self._dValues
+    dValues = property(_get_dValues)
+    
 
 
     def isBlackStem(self, v1, v2):

@@ -41,7 +41,6 @@ class AssistantPartDimensions(BaseAssistantPart):
         self.dimensionsVerticalStemLines = []
         self.dimensionsStemMeasures = []
         self.dimensionsStemMeasureValues = []
-        self.dimensionsDiagonalLines = []
         self.dimensionsDiagonalMeasures = []
         self.dimensionsDiagonalMeasureValues = []
 
@@ -97,14 +96,6 @@ class AssistantPartDimensions(BaseAssistantPart):
                 visible=False,
             ))
 
-        for n in range(MAX_LINES):
-            self.dimensionsDiagonalLines.append(container.appendLineSublayer(
-                startPoint=(0, 0),
-                endPoint=(0, 0),
-                strokeWidth=self.DIMENSIONS_LINES_STROKE_WIDTH,
-                strokeColor=self.DIMENSIONS_LINES_COLOR,
-                visible=False,
-            ))
         for n in range(MAX_MEASURES):
             self.dimensionsDiagonalMeasures.append(container.appendLineSublayer(
                 startPoint=(0, 0),
@@ -131,7 +122,7 @@ class AssistantPartDimensions(BaseAssistantPart):
         g = info['glyph']
         if g is None:
             return False # Nothing changed to the glyph
-        #print('@@@ updateMerzDimensions', g.name)
+        return changed
 
     def updateDimensions(self, info):
         """If the checkbox is set, then show relevant measures of stem and bars."""
@@ -140,27 +131,60 @@ class AssistantPartDimensions(BaseAssistantPart):
         g = info['glyph']
         if g is None:
             return False # Nothing changed to the glyph
-        #print('@@@ updateDimensions', g.name)
+        self.updateGlyphDimensions(g)
         return changed
+
+    def mouseMoveDimensions(self, g, x, y):
+        pass 
+
+    def mouseDownDimensions(self, g, x, y):
+        pass 
+        
+    def mouseUpDimensions(self, g, x, y):
+        pass 
 
     def setGlyphDimensions(self, g):
         """The editor selected another glyph."""
+        self.updateGlyphDimensions(g)
+
+    def updateGlyphDimensions(self, g):
         c = self.getController()
+        dIndex = 0
         if c.w.showDimensions.get():
             print('@@@ setGlyphDimensions', g)
             ga = self.getGlyphAnalyzer(g)
             for dy, bars in sorted(ga.bars.items()):
                 for bar in bars:
-                    print('Bar', dy, bar)
+                    pass
+                    #print('Bar', dy, bar)
             for dx, stems in sorted(ga.stems.items()):
                 for stem in stems:
-                    print('Stem', dx, stem)
+                    pass
+                    #print('Stem', dx, stem)
             print(ga.diagonalStems)
             for dxy, diagonals in sorted(ga.diagonals.items()):
                 for diagonal in diagonals:
-                    print('Diagonal', dxy, diagonal)
+                    pass
+                    #print('Diagonal', dxy, diagonal)
+            for dxy, p0, p1 in ga.dValues:
+                self.dimensionsDiagonalMeasures[dIndex].setVisible(True)
+                self.dimensionsDiagonalMeasures[dIndex].setStartPoint((p0.x, p0.y))
+                self.dimensionsDiagonalMeasures[dIndex].setEndPoint((p1.x, p1.y))
+
+                self.dimensionsDiagonalMeasureValues[dIndex].setVisible(True)
+                self.dimensionsDiagonalMeasureValues[dIndex].setText(str(int(round(dxy))))
+                self.dimensionsDiagonalMeasureValues[dIndex].setPosition((p0.x + (p1.x - p0.x)/2, p0.y + (p1.y - p0.y)/2 + self.DIMENSIONS_LABEL_SIZE))
+
+                dIndex += 1
+                if dIndex >= MAX_MEASURES:
+                    break
+
         else: # Not showing dimension merz objects
             pass
+
+        for n in range(dIndex, MAX_MEASURES):
+            self.dimensionsDiagonalMeasures[n].setVisible(False)
+            self.dimensionsDiagonalMeasureValues[n].setVisible(False)
 
     def buildDimensions(self, y):
         """Build the assistant UI for guidelines controls."""

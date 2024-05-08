@@ -179,8 +179,6 @@ class BaseAssistant:
         self.KEY_STROKE_METHODS[c].add(methodName)
         return c # Answer the personalize key that this method got registered to.
 
-    #   E V E N T S
-
     def fixAllOfTheseGlyphsKey(self, g, c, event):
         """Force check/fix on the glyphs with the same name in all open fonts."""
         for f in self.getAllFonts():
@@ -279,16 +277,12 @@ class BaseAssistant:
 
     #   A N A L Y Z E R S
 
-    glyphAnalyzers = GLOBAL_GLYPH_ANALYZERS # Key is font path, value is dictionary of GlyphAnalyzer instances 
+    # The overhead difference between resetting a GlyphAnalyzer is so small that we as well just create
+    # a new one, instead of caching it. If something changes in the glyph, then just create a new instance.
 
     def getGlyphAnalyzer(self, g):
-        """Answer the cached glyph analzyer for /g if is exists. Otherwise create is and store in canche."""
-        if not g.font.path in self.glyphAnalyzers:
-            self.glyphAnalyzers[g.font.path] = {}
-        glyphAnalyzers = self.glyphAnalyzers[g.font.path] # Get the cached analyzers for this font
-        if not g.name in glyphAnalyzers: # Check if it already exists, otherwise create
-            glyphAnalyzers[g.name] = GlyphAnalyzer(g) # Stored as weakref
-        return glyphAnalyzers[g.name] # Now it much exist, return the GlyphAnalyzer for /g
+        """Answer the glyph analzyer for /g."""
+        return GlyphAnalyzer(g) # /g is not stored in the analyzer instance.
 
     #   S P A C I N G  &  K E R N I N G
 
@@ -684,6 +678,7 @@ class Assistant(BaseAssistant, Subscriber):
 
     def glyphEditorDidMouseMove(self, info):
         g = info['glyph']
+        print('2-2-2-2-2-', g)
         # Save for assistant parts to use on an update, so they don't need their own even call.
         self.mouseMovePoint = p = info['locationInGlyph'] # Constantly keep track where the mouse is
         for mouseMoveMethodName in self.MOUSE_MOVE_METHODS: # In case the update is more urgent than a normal update call,

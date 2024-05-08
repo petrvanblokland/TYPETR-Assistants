@@ -111,7 +111,6 @@ class GlyphData:
             # In case hard value needs to overwrite category value, use numbers
             # Otherwise categories of vertical metrics or None. They overwrite the master-wide guessed value by parent MasterData
             overshoot=None, height=None, baseline=None, width=None,
-            #
             ): 
         self.parent = None # 
         self.uni = uni
@@ -132,7 +131,7 @@ class GlyphData:
         if srcName == name:
             srcName = None
         self.srcName = srcName
-        
+
         self.composites = set() # Glyph names that refer to self as component. Collected by GlyphSet
 
         # If anchors is not defined (overwriting legacy data), then compose the anchor list from AD.ANCHORS
