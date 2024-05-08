@@ -481,7 +481,7 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         for pth in self.getUfoPaths(parentPath):
             f = self.getFont(pth)
-            print(f'... Auto spacing {f.path.split('/')[-1]}')
+            print(f'... Auto spacing {f.path.split("/")[-1]}')
             for g in f: # First check all glyphs without components
                 if g.components:
                     continue
