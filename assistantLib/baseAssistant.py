@@ -140,6 +140,7 @@ class BaseAssistant:
     UPDATE_MERZ_METHODS = []
     SET_GLYPH_METHODS = [] # Methods to be called when the EditorWindow selected a new current glyph 
     MOUSE_MOVE_METHODS = []
+    MOUSE_DRAG_METHODS = []
     MOUSE_UP_METHODS = []
     MOUSE_DOWN_METHODS = []
     CLOSING_WINDOW_METHODS = [] # Methods for parts to subscribe on the event that the main assistant window is about to close.
@@ -629,7 +630,9 @@ class Assistant(BaseAssistant, Subscriber):
     
     #def glyphEditorGlyphDidChange(self, info) # Better not use this one, as it also is triggered on lib changes.
     #   The editor selected another glyph. Update the visible Merz elements for the new glyph."""
-        
+    
+    #   G L Y P H  E V E N T S
+
     def glyphEditorGlyphDidChangeMetrics(self, info):
         """The editor did change width"""
         #print("""The editor did change width""", info['glyph'])
@@ -658,7 +661,9 @@ class Assistant(BaseAssistant, Subscriber):
                 getattr(self, setGlyphMethodName)(g)
         self.update(info) # Check if something else needs to be updated
         self.updateMerz(info)
-        
+    
+    #   M O U S E  E V E N T S
+
     def glyphEditorDidMouseDown(self, info):
         g = info['glyph']
         g.prepareUndo()
@@ -667,28 +672,30 @@ class Assistant(BaseAssistant, Subscriber):
             getattr(self, mouseDownMethodName)(g, p.x, p.y)
         self.updateMerz(info)
     
-    def glyphEditorDidMouseUp(self, info):
-        # Reset terminal stuff
-        self.mouseClickPoint = None
-        self.mouseDragPoint = None
-        for mouseDownMethodName in self.MOUSE_UP_METHODS:
-            getattr(self, mouseDownMethodName)(g, p.x, p.y)
-        self.update(info) # Check if something else needs to be updated
-        self.updateMerz(info)
-
     def glyphEditorDidMouseMove(self, info):
         g = info['glyph']
-        print('2-2-2-2-2-', g)
         # Save for assistant parts to use on an update, so they don't need their own even call.
         self.mouseMovePoint = p = info['locationInGlyph'] # Constantly keep track where the mouse is
         for mouseMoveMethodName in self.MOUSE_MOVE_METHODS: # In case the update is more urgent than a normal update call,
             getattr(self, mouseMoveMethodName)(g, p.x, p.y) # The assistant parts should implement and subscribe this method.
     
     def glyphEditorDidMouseDrag(self, info):
-        self.mouseDragPoint = info['locationInGlyph']
-        g = self.getCurrentGlyph()
-        if g is not None:
-            g.changed() # Force update
+        g = info['glyph']
+        self.mouseDragPoint = p = info['locationInGlyph']
+        for mouseDragMethodName in self.MOUSE_DRAG_METHODS: # In case the update is more urgent than a normal update call,
+            getattr(self, mouseDragMethodName)(g, p.x, p.y) # The assistant parts should implement and subscribe this method.
+
+    def glyphEditorDidMouseUp(self, info):
+        # Reset mouse moving stuff
+        self.mouseClickPoint = None
+        self.mouseDragPoint = None
+        g = info['glyph']
+        for mouseUpMethodName in self.MOUSE_UP_METHODS:
+            getattr(self, mouseUpMethodName)(g, p.x, p.y)
+        self.update(info) # Check if something else needs to be updated
+        self.updateMerz(info)
+
+    #   K E Y  E V E N T S
 
     def glyphEditorDidKeyDown(self, info):
         # User specific key strokes to be added here

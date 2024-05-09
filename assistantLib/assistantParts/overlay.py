@@ -124,8 +124,7 @@ class AssistantPartOverlay(BaseAssistantPart):
             return
         f = g.font
         md = self.getMasterData(f)
-
-        km = self.getKerningManager(g.font)
+        km = self.getKerningManager(f)
 
         gLeft = gRight = fg = g.getLayer('foreground')
         # Show filled preview of the glyph on left/right side
@@ -135,7 +134,6 @@ class AssistantPartOverlay(BaseAssistantPart):
             gLeft = f[leftName].getLayer('foreground')
             k, groupK, kerningType = km.getKerning(gLeft, g)
             x = min(-gLeft.width, gLeft.angledLeftMargin-500) - k # Subtract: needs to move right
-            print('......', gLeft.name, g.name, k)
             glyphPathLeft = gLeft.getRepresentation("merz.CGPath") 
             self.previewGlyphLeft.setPath(glyphPathLeft)
             self.previewGlyphLeft.setPosition((x, 0)) # Make sure not to overlap on zero-width
@@ -144,7 +142,6 @@ class AssistantPartOverlay(BaseAssistantPart):
         elif c.w.previewGlyphLeft.get():
             k, groupK, kerningType = km.getKerning(g, g)
             x = min(-g.width, g.angledLeftMargin-500) - k # Subtract: needs to move right
-            print('......', g.name, g.name, k)
             self.previewGlyphLeft.setPath(glyphPath)
             self.previewGlyphLeft.setPosition((x, 0)) # Make sure not to overlap on zero-width
             self.previewGlyphLeft.setVisible(True)

@@ -64,7 +64,7 @@ BASE_SCRIPTS2 = (LT2, CY2, GR2, ALL2)
 GROUP_BASE_GLYPHS = {
     LT1: set(('A', 'B', 'C', 'E', 'F', 'G', 'H', 
         #'Hbar', 
-        'I', 'J', 'K', 'L', 'Lcommaaccent', 'Ldot', 'Lslash', 'O', 'P', 'R', 'S', 'T', 'Thorn', 'U', 'V', 'W', 'Y', 'Z', 
+        'J', 'K', 'L', 'Lcommaaccent', 'Ldot', 'Lslash', 'O', 'P', 'R', 'S', 'T', 'Thorn', 'U', 'V', 'W', 'Y', 'Z', 
         'a', 'c', 'd', 'dcroat', 'e', 'eth', 'f', 'g', 'germandbls', 'i', 'idotless', 'iacute', 'ibreve', 'icircumflex', 'idieresis', 'igrave', 'imacron', 
         'iogonek', 'itilde', 'j', 'jcircumflex', 'jdotless', 'k', 'l', 
         #'lacute', 'lcaron', 
@@ -360,8 +360,6 @@ class KerningManager:
         self._glyphName2Group1 = {}
         self._glyphName2GroupName2 = {}
         self._glyphName2Group2 = {}
-
-        print('... _initializeGlyph2Group')
 
         for groupName, group in self.f.groups.items():
             if 'kern1' in groupName:

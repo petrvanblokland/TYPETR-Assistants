@@ -269,7 +269,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         It is assumed there that required anchors exist."""
         changed = False#
         #return self._fixGlyphAnchorsY(g)
-        print(f'... Check-fix anchor positions of {g.name}')
+        #print(f'... Check-fix anchor positions of {g.name}')
         return changed
 
     def XXXcheckFixAnchorsYPosition(self, g):
