@@ -84,6 +84,7 @@ class MasterData:
             boxBottomAnchorOffsetY= AD.ANCHOR_BOXBOTTOM_OFFSET,
             descenderAnchorOffsetY=AD.ANCHOR_DESCENDER_OFFSET,
             # Horizontal metrics
+            diagonalTolerance=0, # ± Tolerance for italic diagonals to be marked as off-limit
             HStem=None, HThin=None, OStem=None, OThin=None,
             HscStem=None, HscThin=None, OscStem=None, OscThin=None,
             nStem=None, oStem=None, oThin=None, UThin=None, VThin=None, eThin=None,
@@ -273,6 +274,7 @@ class MasterData:
         }
 
         # Horizontal metrics
+        self.diagonalTolerance = diagonalTolerance # ± Tolerance for italic diagonals to be marked as off-limit
         self.HStem = HStem # Used for m1->m2 interpolation
         self.HThin = HThin
         self.OStem = OStem

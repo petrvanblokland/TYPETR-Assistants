@@ -176,6 +176,7 @@ class AssistantPartDimensions(BaseAssistantPart):
         dIndex = 0
         if c.w.showDimensions.get():
             ga = self.getGlyphAnalyzer(g)
+            gd = self.getGlyphData(g)
             md = self.getMasterData(g.font)
             for dy, bars in sorted(ga.bars.items()):
                 for bar in bars:
@@ -217,7 +218,12 @@ class AssistantPartDimensions(BaseAssistantPart):
                 self.dimensionsDiagonalMeasureLine2[dIndex].setStartPoint((x + dx, y + dy))
                 self.dimensionsDiagonalMeasureLine2[dIndex].setEndPoint((p1.x, p1.y))
 
-                if abs(dxy - md.HStem) > self.STEM_TOLERANCE: # In case out of bounds, then use other marker color
+                if gd.isLower:
+                    targetStem = md.nStem
+                else:
+                    targetStem = md.HStem
+
+                if abs(dxy - targetStem) >= md.diagonalTolerance: # In case out of bounds, then use other marker color
                     markerColor = self.DIMENSIONS_DIAGONAL_MARKER_ERROR_COLOR
                 else:
                     markerColor = self.DIMENSIONS_DIAGONAL_MARKER_COLOR
