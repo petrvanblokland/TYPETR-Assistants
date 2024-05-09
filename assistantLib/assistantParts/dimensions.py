@@ -174,10 +174,17 @@ class AssistantPartDimensions(BaseAssistantPart):
     def updateGlyphDimensions(self, g):
         c = self.getController()
         dIndex = 0
+        sIndex = 0 # Index of used Stem Merz layers
+
         if c.w.showDimensions.get():
             ga = self.getGlyphAnalyzer(g)
             gd = self.getGlyphData(g)
             md = self.getMasterData(g.font)
+
+            containerScale = self.dimensionsDiagonalMeasureBackground[dIndex].getContainer().getContainerScale()
+            # TODO: Solve the scale of the marker circle
+            r = self.DIMENSIONS_MARKER_R #* containerScale
+
             for dy, bars in sorted(ga.bars.items()):
                 for bar in bars:
                     pass
@@ -185,18 +192,10 @@ class AssistantPartDimensions(BaseAssistantPart):
             #print('@@@ updateGlyphDimensions Bars:', ga.diagonalBars)
             for dx, stems in sorted(ga.stems.items()):
                 for stem in stems:
-                    pass
-                    #print('Stem', dx, stem)
-            #print('@@@ updateGlyphDimensions Stems:', ga.diagonalStems)
-            for dxy, diagonals in sorted(ga.diagonals.items()):
-                for diagonal in diagonals:
-                    pass
-                    #print('Diagonal', dxy, diagonal)
+                    print('Stem', dx, stem, stem.x, stem.width, stem.point.x, stem.point.y, stem.parent.x, stem.parent.y)
 
-            containerScale = self.dimensionsDiagonalMeasureBackground[dIndex].getContainer().getContainerScale()
-            # TODO: Solve the scale of the marker circle
-            r = self.DIMENSIONS_MARKER_R #* containerScale
-
+            # Show diagonal measures that are within the range of stems. If they are outside the ma.diagonalTolerance range,
+            # then show them as a different color.
             for dxy, p0, p1 in ga.dValues:
                 dxy = int(round(dxy))
                 if dxy == 0 or dxy > md.HStem * 1.5: # Probably not a diagonal stem, ignore.
