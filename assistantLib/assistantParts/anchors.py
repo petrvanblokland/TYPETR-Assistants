@@ -583,6 +583,7 @@ class AssistantPartAnchors(BaseAssistantPart):
     def _getAnchorTypeGlyph(self, g):
         """Answer the glyph that is model for the anchorTypes of g. If glyphData.anchorTypeGlyphSrc is defined then use that glyph,
         e.g. as defined for /Uhorn using the anchor type positions of /U. Otherwise answer g as model."""
+        assert g is not None
         gd = self.getGlyphData(g)
         if gd.anchorTypeGlyphSrc is not None: # There is a src glyph other than /g to copy guessed anchor positions from
             if gd.anchorTypeGlyphSrc in g.font: # Does the reference exist?
