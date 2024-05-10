@@ -207,12 +207,12 @@ class Stem:
         return abs(self.v1.x - self.v2.x)
     width = property(_get_width)
 
-    def _get_point(self): # Legacy compatibility with older analyzers
-        return self.v2
+    def _get_point(self):
+        return self.v1
     point = property(_get_point)
 
-    def _get_parent(self): # Legacy compatibility with older analyzers
-        return self.v1
+    def _get_parent(self):
+        return self.v2
     parent = property(_get_parent)
 
 class DiagonalStem(Stem):
@@ -317,6 +317,14 @@ class Bar:
     def _get_height(self):
         return abs(self.h1.y - self.h2.y)
     height = property(_get_height)
+
+    def _get_point(self):
+        return self.h1
+    point = property(_get_point)
+
+    def _get_parent(self):
+        return self.h2
+    parent = property(_get_parent)
 
 class VCounter(Bar):
     isBlack = False

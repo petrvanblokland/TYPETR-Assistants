@@ -18,6 +18,8 @@ for path in PATHS:
 
 from mojo.roboFont import OpenFont, AllFonts, RGlyph, RPoint
 from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart
+#@@@ Make interpolation method independent, so it can be used in scripts
+#from assistantLib.toolbox.interpolate import interpolateGlyph
 
 class AssistantPartInterpolate(BaseAssistantPart):
     """The Interpolate assistant part, checks on interpolation errors and

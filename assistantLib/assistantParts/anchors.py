@@ -597,7 +597,8 @@ class AssistantPartAnchors(BaseAssistantPart):
         This method is not changing any position of the anchors it self."""
         c = self.getController()
         self.guessedAnchorPositions = {}
-        gSrc = self._getAnchorTypeGlyph(g) # Get the glyph that is model for the anchor types, if defined in glyphData.anchorTypeGlyphSrc, otherwise use /g itself.
+        # Get the glyph that is model for the anchor types, if defined in glyphData.anchorTypeGlyphSrc, otherwise use /g itself.
+        gSrc = self._getAnchorTypeGlyph(g) 
         aIndex = 0
         showNames = c.w.showGuessedNames.get()
         for anchor in gSrc.anchors: # Using the anchors here just as template to know which anchors belong in this glyph.
@@ -654,6 +655,11 @@ class AssistantPartAnchors(BaseAssistantPart):
 
     def guessAnchorMiddleX(self, g, anchorName):
         return g.width/2
+        
+    def guessAnchorZeroWidthX(self, g, anchorName):
+        if g.width == 0:
+            return 0
+        return None
         
     def guessAnchorBaseX(self, g, anchorName):
         base = self.getBaseGlyph(g)
