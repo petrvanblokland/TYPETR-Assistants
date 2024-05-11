@@ -2208,7 +2208,7 @@ class MS_GlyphSet(GlyphSet):
        'ringbelow': GD(name='ringbelow', base='ringbelowcomb', anchors=[], isLower=True),
        'ringbelowcomb': GD(name='ringbelowcomb', uni=0x0325, hex='0325', c='̥', w=0, base='ringcomb', isLower=True, anchors=['bottom', '_bottom'], comment='COMBINING RING BELOW'),
        'ringcomb': GD(name='ringcomb', uni=0x030A, hex='030A', c='̊', w=0, isLower=True, anchors=['top', '_top'], gid=496),
-       'ringacutecomb': GD(name='ringacutecomb', w=0, isLower=True, base='ringcomb', accents=['acutecomb'], anchors=['top', '_top'],),
+       'ringacutecomb': GD(name='ringacutecomb', w=0, isLower=True, base='ringcomb', accents=['acutecomb'], anchors=['top', '_top']),
        'ringhalfleft': GD(name='ringhalfleft', uni=0x02BF, hex='02BF', c='ʿ', srcName='uni02BF', isLower=True, anchors=['top', '_top'], gid=473),
        'ringhalfleftbelowcomb': GD(name='ringhalfleftbelowcomb', uni=0x031C, hex='031C', c='̜', w=0, base='ringhalfleft', isLower=True, anchors=['bottom', '_bottom']),
        'ringhalfleftcentered': GD(name='ringhalfleftcentered', uni=0x02D3, hex='02D3', c='˓', base='ringhalfleft', isLower=True),
