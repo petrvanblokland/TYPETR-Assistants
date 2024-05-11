@@ -125,6 +125,8 @@ class AssistantPartAnchors(BaseAssistantPart):
         g = info['glyph']
         if g is None:
             return False # Nothing changed to the glyph
+
+        # Make sure to check/fix the current glyph
         if c.w.autoAnchors.get():
             changed |= self.checkFixAnchors(g)
 
@@ -135,7 +137,7 @@ class AssistantPartAnchors(BaseAssistantPart):
 
     def buildAnchors(self, y):
         """Register key stroke [a] to sync anchor positions"""
-        personalKey_A = self.registerKeyStroke('A', 'anchorsGlyphKey') # Check/fix all glyphs in the current font
+        personalKey_A = self.registerKeyStroke('A', 'anchorsGlyphKey') # Check/fix all glyphs in the current font and/or all masters
         personalKey_a = self.registerKeyStroke('a', 'anchorsGlyphKey')
         personalKey_exclam = self.registerKeyStroke('!', 'anchorsCenterOnWidth')
 
@@ -148,6 +150,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         c.w.fixAnchorsButton = Button((C2, y, CW, L), f'Fix anchors [{personalKey_A}{personalKey_a}]', callback=self.anchorsCallback)
         y += L
         c.w.showGuessedNames = CheckBox((C0, y, CW, L), 'Show guessed names', value=False, sizeStyle='small') # Show names+info of guessed positions.
+        c.w.checkFixAllMasterAnchors = CheckBox((C1, y, CW, L), 'Fix all masters', value=True, sizeStyle='small')
         y += L + L/5
         # Line color is crashing RoboFont
         #y += L # Closing line for the part UI
@@ -663,11 +666,11 @@ class AssistantPartAnchors(BaseAssistantPart):
         return None
         
     def guessAnchorBaseX(self, g, anchorName):
-        base = self.getBaseGlyph(g)
+        base, (dx, dy) = self.getBaseGlyphOffset(g)
         if base is not None:
             baseAnchor = self.getAnchor(g, anchorName)
             if baseAnchor is not None:
-                return baseAnchor.x
+                return baseAnchor.x + dx
         return None
         
     def guessAnchorCenterWidth(self, g, anchorName):
@@ -717,11 +720,11 @@ class AssistantPartAnchors(BaseAssistantPart):
     def guessAnchorBaseY(self, g, anchorName):
         """Get the height of the anchor in the base glyph, if there is any. 
         This used to copy the vertical anchor position of the base."""
-        base = self.getBaseGlyph(g)
+        base, (dx, dy) = self.getBaseGlyphOffset(g)
         if base is not None:
             baseAnchor = self.getAnchor(g, anchorName)
             if baseAnchor is not None:
-                return int(round(baseAnchor.y))
+                return int(round(baseAnchor.y + dy))
         return None
 
     def guessAnchorAscender(self, g, anchorName):
@@ -787,13 +790,27 @@ class AssistantPartAnchors(BaseAssistantPart):
         # controlDown = event['controlDown']
         # optionDown = event['optionDown']
         # capLock = event['capLockDown']
-        if c.lower() == c: # Just the current glyph
-            glyphs = [g]
+
+        # If checkbox is set, then check/fix the anchors in all masters.
+        if self.getController().w.checkFixAllMasterAnchors.get():
+            fonts = []
+            parentPath = self.filePath2ParentPath(g.font.path)
+            for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
+                fullPath = self.path2FullPath(pth)
+                f = self.getFont(fullPath, showInterface=g.font.path == fullPath) # Make sure RoboFont opens the current font.
+                fonts.append(f)
         else:
-            glyphs = g.font
-        for gg in glyphs:
-            if self.checkFixAnchors(gg):
-                gg.changed()
+            fonts = [g.font]
+
+        for f in fonts:
+            if g.name in f:
+                if c.lower() == c: # Just the current glyph
+                    glyphs = [f[g.name]]
+                else:
+                    glyphs = f
+                for gg in glyphs:
+                    if self.checkFixAnchors(gg):
+                        gg.changed()
 
     def anchorsCenterOnWidth(self, g, c, event):
         """If there are anchors selected, then center them on the width. If no anchors are selected,
