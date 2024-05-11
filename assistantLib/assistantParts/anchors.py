@@ -519,6 +519,7 @@ class AssistantPartAnchors(BaseAssistantPart):
                     f = self.getFont(fullPath, showInterface=g.font.path == fullPath) # Make sure RoboFont opens the current font.
                     if g.name in f:
                         gg = f[g.name]
+                        self.checkFixAnchors(gg) # Make sure the right amount of anchors exists.
                         gSrc = self._getAnchorTypeGlyph(gg) # Get the glyph that is model for the anchor types, if defined in glyphData.anchorTypeGlyphSrc, otherwise use /g itself.
                         # We can't use (ax, ay) here, because it's specific for the current glyph. 
                         # Calculating them for all glyphs separate for all open fonts is a bit expensive, but it's only done on mouse click. Let's see.
