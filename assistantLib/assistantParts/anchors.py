@@ -273,31 +273,45 @@ class AssistantPartAnchors(BaseAssistantPart):
     def mouseDownAnchors(self, g, x, y, event):
         """There was a mouse down. Check if it was near a guessed anchor position. If so, then store the guessed method name in the glyph.lib if not already there.
         Then store the method names in all family masters and checkSet the anchor position to that guessed value"""
-        #commandDown = event['commandDown'] # Cannot use command-key, as it pops up a RoboFont menu
+        #controlDown = event['controlDown'] # Cannot use control-key, as it pops up a RoboFont menu
         shiftDown = event['shiftDown']
-        controlDown = event['controlDown']
+        commandDown = event['commandDown']
         optionDown = event['optionDown']
         capLock = event['capLockDown']
 
-        if event['shiftDown'] and event['optionDown']:
-            if event['commandDown']: # Do all anchors in this glyph in all masters
-                for a in g.anchors: # All anchrs that are within reach
-                    #if capLock or self.distance(a.x, a.y, x, y) < self.ANCHOR_SELECT_DISTANCE:
+        if shiftDown and optionDown and commandDown: # All anchors of all masters
+            for a in g.anchors: # All anchrs that are within reach
+                parentPath = self.filePath2ParentPath(g.font.path) 
+                for pth in sorted(self.getUfoPaths(parentPath)): # Do all masters in the same way for this anchor
+                    fullPath = self.path2FullPath(pth)
+                    ff = self.getFont(fullPath, showInterface=g.font.path == fullPath) # Make sure RoboFont opens the current font.
+                    if g.name in ff:
+                        gg = ff[g.name]
+                        gg.prepareUndo()
+                        for aa in gg.anchors:
+                            if aa.name == a.name:
+                                print(f'... autoCheckFixAnchorPosition: {pth} Anchor {a.name}')
+                                self.autoCheckFixAnchorPosition(gg, aa)
+                    
+        elif shiftDown and commandDown: # All anchors of all masters
+            for a in g.anchors: # All anchrs that are within reach
+                if self.distance(a.x, a.y, x, y) < self.ANCHOR_SELECT_DISTANCE:
                     parentPath = self.filePath2ParentPath(g.font.path) 
                     for pth in sorted(self.getUfoPaths(parentPath)): # Do all masters in the same way for this anchor
                         fullPath = self.path2FullPath(pth)
                         ff = self.getFont(fullPath, showInterface=g.font.path == fullPath) # Make sure RoboFont opens the current font.
                         if g.name in ff:
                             gg = ff[g.name]
+                            gg.prepareUndo()
                             for aa in gg.anchors:
                                 if aa.name == a.name:
                                     print(f'... autoCheckFixAnchorPosition: {pth} Anchor {a.name}')
                                     self.autoCheckFixAnchorPosition(gg, aa)
                     
-            else: # Only do a single anchor that is within click range.
-                for a in g.anchors:
-                    if self.distance(a.x, a.y, x, y) < self.ANCHOR_SELECT_DISTANCE:
-                        self.autoCheckFixAnchorPosition(g, a)
+        elif shiftDown and optionDown: # Only do a single anchor in the current glyph if click is within range.
+            for a in g.anchors:
+                if self.distance(a.x, a.y, x, y) < self.ANCHOR_SELECT_DISTANCE:
+                    self.autoCheckFixAnchorPosition(g, a)
         return
 
     def ZZZZZ(self):
@@ -406,12 +420,15 @@ class AssistantPartAnchors(BaseAssistantPart):
                     ay = g.font.info.capHeight + md.capHeightAnchorOffsetY # Likely to ba a negative number
             # In case the a.y now is below the bounding box, then lift the anchor to fit the top of the bounding box
             #print(g.bounds, a.x, a.y, ax, ay, h, g.bounds[3], md.baseOvershoot, g.bounds[3] + 2*md.baseOvershoot, h < g.bounds[3] + 2*md.baseOvershoot)
-            if md.capDiacriticsTop < g.bounds[3]: # Probably bounding box extended from diacritics
-                ay = g.bounds[3] + md.boxTopAnchorOffsetY
+            if gd.isLower: # Default position below xHeight or capHeight
+                if md.baseDiacriticsTop < g.bounds[3]: # Probably bounding box extended from diacritics
+                    ay = g.bounds[3] + md.boxTopAnchorOffsetY
+            else:
+                if md.capDiacriticsTop < g.bounds[3]: # Probably bounding box extended from diacritics
+                    ay = g.bounds[3] + md.boxTopAnchorOffsetY
 
             # Try to guess horizontal
             if baseGlyph is not None: # In case there is a base
-                print(baseGlyph.name, dx, dy)
                 baseAnchor = self.getAnchor(baseGlyph, a.name)
                 if baseAnchor is not None:
                     ax = baseAnchor.x + self.italicX(g, dx, ay - baseAnchor.y)
@@ -419,7 +436,8 @@ class AssistantPartAnchors(BaseAssistantPart):
                 ax = self.italicX(g, g.width/2, ay)
 
         elif a.name == AD._TOP:
-            print(2, a.name, a.x, a.y)
+            ay = g.font.info.xHeight + md.xHeightAnchorOffsetY # Likely to ba a negative number
+            ax = self.italicX(g, 0, ay) # All glyph that contain _top are supposed to have width = 0
 
         elif a.name == AD.MIDDLE_:
             # Trying to guess vertical
@@ -438,7 +456,8 @@ class AssistantPartAnchors(BaseAssistantPart):
                 ax = self.italicX(g, g.width/2, ay)
 
         elif a.name == AD._MIDDLE:
-            print(4, a.name, a.x, a.y)
+            ay = g.font.info.xHeight/2
+            ax = self.italicX(g, 0, ay) # All glyph that contain _top are supposed to have width = 0
         
         elif a.name == AD.BOTTOM_: # Try to guess bottom position
             # Trying to guess vertical
@@ -458,11 +477,11 @@ class AssistantPartAnchors(BaseAssistantPart):
                 ax = self.italicX(g, g.width/2, ay)
         
         elif a.name == AD._BOTTOM:
-            print(6, a.name, a.x, a.y)
+            ay = md.baseOvershoot
+            ax = self.italicX(g, 0, ay) # All glyph that contain _bottom are supposed to have width = 0
 
         elif a.name == AD.OGONEK_: # Try to guess bottom position
             # Trying to guess vertical
-            # Default position below xHeight or capHeight
             ay = md.ogonekAnchorOffsetY
 
         elif a.name == AD.TONOS_: # Try to guess tonos position only for capitals
