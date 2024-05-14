@@ -462,7 +462,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         elif a.name == AD.BOTTOM_: # Try to guess bottom position
             # Trying to guess vertical
             # Default position below xHeight or capHeight
-            ay = md.baseOvershoot
+            ay = md.baselineAnchorOffsetY
             # In case the a.y now is above the bounding box, then lift the anchor to fit the top of the bounding box
             if md.baseDiacriticsBottom > g.bounds[1]:
                 ay = g.bounds[1] + md.boxBottomAnchorOffsetY
@@ -477,7 +477,7 @@ class AssistantPartAnchors(BaseAssistantPart):
                 ax = self.italicX(g, g.width/2, ay)
         
         elif a.name == AD._BOTTOM:
-            ay = md.baseOvershoot
+            ay = md.baselineAnchorOffsetY
             ax = self.italicX(g, 0, ay) # All glyph that contain _bottom are supposed to have width = 0
 
         elif a.name == AD.OGONEK_: # Try to guess bottom position
