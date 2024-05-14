@@ -75,7 +75,6 @@ GLOBAL_BG_FONTS = {} # Global storage. Key is fullPath, value is RFont without s
 GLOBAL_GLYPH_ANALYZERS = {} # Key is font path, value is dictionary of GlyphAnalyzer instances 
 GLOBAL_KERNING_MANAGERS = {} # Key is font path, value is the related KerningManager instance.
 
-
 class BaseAssistant:
     """Share functions and class variables for both Assistant and AssistantController.
     - Personalized marker colors for visited glyphs in the FontWindow
@@ -533,7 +532,7 @@ class BaseAssistant:
             if anchor.name == anchorName:
                 return anchor
         return None
-        
+
     #   P O I N T S
 
     def distance(self, px1, py1, px2, py2):
@@ -668,31 +667,63 @@ class Assistant(BaseAssistant, Subscriber):
     def glyphEditorDidMouseDown(self, info):
         g = info['glyph']
         g.prepareUndo()
+
+        event = extractNSEvent(info['NSEvent'])
+        #commandDown = event['commandDown']
+        #shiftDown = event['shiftDown']
+        #controlDown = event['controlDown']
+        #optionDown = event['optionDown']
+        #capLock = event['capLockDown']
+
         self.mouseClickPoint = p = info['locationInGlyph']
         for mouseDownMethodName in self.MOUSE_DOWN_METHODS:
-            getattr(self, mouseDownMethodName)(g, p.x, p.y)
+            getattr(self, mouseDownMethodName)(g, p.x, p.y, event)
         self.updateMerz(info)
     
     def glyphEditorDidMouseMove(self, info):
         g = info['glyph']
+        
+        event = extractNSEvent(info['NSEvent'])
+        #commandDown = event['commandDown']
+        #shiftDown = event['shiftDown']
+        #controlDown = event['controlDown']
+        #optionDown = event['optionDown']
+        #capLock = event['capLockDown']
+
         # Save for assistant parts to use on an update, so they don't need their own even call.
         self.mouseMovePoint = p = info['locationInGlyph'] # Constantly keep track where the mouse is
         for mouseMoveMethodName in self.MOUSE_MOVE_METHODS: # In case the update is more urgent than a normal update call,
-            getattr(self, mouseMoveMethodName)(g, p.x, p.y) # The assistant parts should implement and subscribe this method.
+            getattr(self, mouseMoveMethodName)(g, p.x, p.y, event) # The assistant parts should implement and subscribe this method.
     
     def glyphEditorDidMouseDrag(self, info):
         g = info['glyph']
+       
+        event = extractNSEvent(info['NSEvent'])
+        #commandDown = event['commandDown']
+        #shiftDown = event['shiftDown']
+        #controlDown = event['controlDown']
+        #optionDown = event['optionDown']
+        #capLock = event['capLockDown']
+
         self.mouseDragPoint = p = info['locationInGlyph']
         for mouseDragMethodName in self.MOUSE_DRAG_METHODS: # In case the update is more urgent than a normal update call,
-            getattr(self, mouseDragMethodName)(g, p.x, p.y) # The assistant parts should implement and subscribe this method.
+            getattr(self, mouseDragMethodName)(g, p.x, p.y, event) # The assistant parts should implement and subscribe this method.
 
     def glyphEditorDidMouseUp(self, info):
         # Reset mouse moving stuff
         self.mouseClickPoint = None
         self.mouseDragPoint = None
         g = info['glyph']
+       
+        event = extractNSEvent(info['NSEvent'])
+        #commandDown = event['commandDown']
+        #shiftDown = event['shiftDown']
+        #controlDown = event['controlDown']
+        #optionDown = event['optionDown']
+        #capLock = event['capLockDown']
+
         for mouseUpMethodName in self.MOUSE_UP_METHODS:
-            getattr(self, mouseUpMethodName)(g, p.x, p.y)
+            getattr(self, mouseUpMethodName)(g, p.x, p.y, event)
         self.update(info) # Check if something else needs to be updated
         self.updateMerz(info)
 

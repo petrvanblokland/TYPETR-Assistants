@@ -70,11 +70,11 @@ class MasterData:
             baseline=0, stemOvershoot=STEM_OVERSHOOT, baseOvershoot=None, capOvershoot=None, scOvershoot=None, supsOvershoot=None,
             ascender=None, descender=None,
             xHeight=None, capHeight=None, scHeight=None, supsHeight=None,
-            baseDiacriticsTop=None, capDiacriticsTop=None, scDiacriticsTop=None, # Baseline of top diacritics
-            baseDiacriticsBottom=None, # Top of bottom diacritis
             numrBaseline=None, supsBaseline=None, sinfBaseline=None, dnomBaseline=None, modBaseline=None,
             middlexHeight=None, middleCapHeight=None,
             # Vertical anchor offsets to avoid collission with baseline, guidlines, etc. in mouse selection
+            baseDiacriticsTop=None, capDiacriticsTop=None, scDiacriticsTop=None, # Baseline of top diacritics
+            baseDiacriticsBottom=None, # Top of bottom diacritis
             ascenderAnchorOffsetY= -AD.ANCHOR_ASCENDER_OFFSET,
             boxTopAnchorOffsetY= -AD.ANCHOR_BOXTOP_OFFSET,
             capHeightAnchorOffsetY= -AD.ANCHOR_CAP_OFFSET, # Optional vertical offset of cap-anhors or lower capital diacritics.

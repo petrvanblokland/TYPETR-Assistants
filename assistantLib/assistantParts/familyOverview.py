@@ -153,7 +153,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         for n in range(aIndex, len(self.familyOverviewAnchors)):
             self.familyOverviewAnchors[n].setVisible(False)
 
-    def mouseMoveFamilyOverview(self, g, x, y):
+    def mouseMoveFamilyOverview(self, g, x, y, event):
         """Set the hoover color for the current selected glyph"""
         if g is None:
             return
@@ -182,7 +182,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                     self.familyOverviewGlyphs[fIndex].setFillColor(fillColor)
                     x1 = x2
                     
-    def mouseDownFamilyOverview(self, g, x, y):
+    def mouseDownFamilyOverview(self, g, x, y, event):
         """Open Editor window on clicked glyph"""
         if g is None:
             return

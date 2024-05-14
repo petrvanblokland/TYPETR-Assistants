@@ -10,7 +10,7 @@
 #   - Type and amount of anchors are defined by the anchors list in the GlyphSet/GlyphData
 #   - Or by the anchors of base glyphs
 #   - Or by the anchors in the roman/italic companion masters
-#   - Anchors that refer to a base, get their (relative) horizontal (slanted) positions from it, with the base component offset.
+#   - Anchors that refer to a base, get their (relative) horizontal (slanted) positions from it.
 #   - Vertical position too, unless there are already diacritics lower and/or higher, then the vertical position is adjusted to fit the glyph bounding box.
 #   - Otherwise check if there is a set of predefined vertical position for each anchor type
 #   - The assistant decides on an initial strategy, but then the user can alter that.
@@ -53,8 +53,6 @@ class AssistantPartAnchors(BaseAssistantPart):
     #GUESSED_ANCHOR_POSITION_COLOR_FILL = 0.1, 0.8, 0.7, 0.25
     #GUESSED_ANCHOR_POSITION_COLOR2 = 0, 0.25, 0, 1 # Color of labels
     #GUESSED_ANCHOR_POSITION_COLOR2_FILL = 0.1, 0.4, 0.35, 0.25
-
-    ANCHOR_SELECT_DISTANCE = 48 # Within radius of this, an anchor gets selected by option-shift-click
 
     def initMerzAnchors(self, container):
         """Initialize the Merz object for this assistant part.
@@ -177,12 +175,254 @@ class AssistantPartAnchors(BaseAssistantPart):
         if changed:
             g.changed() # Force update. UpdateAnchors will then check and update.
 
+    def XXXanchorXModesCallback(self, sender):
+        """Save the x-mode selection in the name glyph for all open fonts."""
+        changed = False
+        g = self.getCurrentGlyph()
+        for f in AllFonts(): # Keep them compatible for the same glyph in all fonts
+            if g.name not in f:
+                continue
+            gg = f[g.name]
+            self.getLib(gg, 'Anchors', {})['Xmode'] = sender.get()
+            changed |= self._fixGlyphAnchorsX(gg)
+            if changed:
+                gg.changed()
+
+    def XXXanchorYModesCallback(self, sender):
+        """Save the y-mode selection in the name glyph for all open fonts."""
+        changed = False
+        g = self.getCurrentGlyph()
+        for f in AllFonts(): # Keep them compatible for the same glyph in all fonts
+            if g.name not in f:
+                continue
+            gg= f[g.name]
+            self.getLib(gg, 'Anchors', {})['Ymode'] = sender.get()
+            changed |= self._fixGlyphAnchorsY(gg)
+            if changed:
+                gg.changed()
+
+    def XXXcheckFixAnchorsXPosition(self, g):
+        """Check/fix the x-position of the anchors named in AD.CENTERING_ANCHORS. It is assumed there that all anchors exist."""
+        return self._fixGlyphAnchorsX(g)
+
+    def XXX_fixGlyphAnchorsX(self, g):
+        """In sequence (or as defined by the mode in radio-buttons) trying to find the x-position of anchors:
+        'X-Base', 'X-Box/2', 'X-Rom/Ita', 'X-Width/2', 'X-Manual'
+        """
+        changed = False
+        gd = self.getGlyphData(g)
+        xMode = self.getLib(g, 'Anchors', {}).get('Xmode')
+        if xMode is None: # Lib was not complete, reinitialize. Maybe make this more generic later.
+            self.setLib(g, 'Anchors', copy.copy(self.ANCHORS_DEFAULT_LIB_KEY))
+            xMode = self.getLib(g, 'Anchors', {}).get('Xmode')
+
+        for a in g.anchors:
+
+            """Check on the (horizontal) position of anchors for glyphs with zero with.
+            Make sure that the implementation of the anchors in assistants is done after checking the spacing.
+            Note that will be other checking/fixing done too, so the filter should be exclusive.
+            Answer the boolean flag if something changed to the glyph."""
+            if g.width == 0:
+                ix = self.italicX(g, 0, a.y)
+                if abs(ix - a.x) >= 1: # Not in position, move it
+                    print(f'... Move /{g.name} anchor.x {a.name} from {a.x} to {ix}')
+                    a.x = ix # Only change x position for this.
+                    changed = True
+                continue
+
+            if a.name not in AD.CENTERING_ANCHORS: 
+                # Only for these. Anchors do diacritics like /ogonekcomb and /tonoscomb need positions manually in x.
+                continue
+
+            if xMode == 0: # X-Base: If there is a base glyph, then set the x-position identical, shifted by the base offset.
+                #print(xMode, 'X-Base', a.name)
+                baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g)
+                if baseGlyph is not None:
+                    ba = self.getAnchor(baseGlyph, a.name)
+                    if ba is not None:
+                        changed = self._setAnchorXY(g, a, ba.x + dx, ba.y + dy, italicize=False) # Anchors from base are already italicized.
+                    continue
+
+            if xMode <= 1: # X-Box/2
+                #print(xMode, 'X-Box/2', a.name)
+                x1 = g.angledLeftMargin
+                x2 = g.width - g.angledRightMargin
+                changed = self._setAnchorX(g, a, x1 + (x2 - x1)/2)
+                continue
+
+            if xMode <= 2: # X-Rom/Ita
+                #print(xMode, 'X-Rom/Ita', a.name)
+                changed = self.checkFixRomanItalicAnchors(g, doX=True) # Check positions, not if the anchors exist.
+                continue
+
+            if xMode <= 3: # X-Width/2
+                #print(xMode, 'X-Width/2', a.name)
+                changed = self._setAnchorX(g, a, g.width/2)
+                continue
+
+            if xMode <= 4: # X-Manual
+                #print(xMode, 'X-Manual', a.name)
+                changed = False
+                continue
+
+        return changed
+
     def checkFixAnchorPositions(self, g):
         """Check/fix the y-position of the anchors named in AD.CENTERING_ANCHORS, according to which guessMethod names are defined in glyph.lib. 
         It is assumed there that required anchors exist."""
         changed = False#
         #return self._fixGlyphAnchorsY(g)
         #print(f'... Check-fix anchor positions of {g.name}')
+        return changed
+
+    def XXXcheckFixAnchorsYPosition(self, g):
+        """Check/fix the y-position of the anchors named in AD.CENTERING_ANCHORS. It is assumed there that all anchors exist."""
+        return self._fixGlyphAnchorsY(g)
+
+    def XXX_fixGlyphAnchorsY(self, g):
+        """Fix the anchors X-position if it is different from where it should be according to the current mode.
+        In sequence (or as defined by the mode in radio-buttons) trying to find the x-position of anchors:
+        'Y-Base', 'Y-Metrics', 'Y-Manual'
+        
+        Strategies: 
+        - If there are vertical metrics rules defined for each type of anchor, for the base or this type of glyph, then apply them.
+        - If there is a base, then take the y position of the base anchors
+        - If the vertical positions are too much inside the vertical bounds of the diacritics, then move up/down
+        """
+        changed = False
+        f = g.font
+        md = self.getMasterData(g.font)
+        gd = self.getGlyphData(g)
+        yMode = self.getLib(g, 'Anchors', {}).get('Ymode')
+        if yMode is None: # Lib was not complete, reinitialize. Maybe make this more generic later.
+            self.setLib(g, 'Anchors', copy.copy(self.ANCHORS_DEFAULT_LIB_KEY))
+            yMode = self.getLib(g, 'Anchors', {}).get('Ymode')
+
+        for a in g.anchors:
+
+            # H A C K S
+
+            if a.name == AD._TOP and a.y < 100:
+                a.y = f.info.xHeight - 16
+                changed = True
+
+            # Y - S C E N A R I O S
+
+            if yMode == 0: # Y-Base
+                #print(yMode, 'Y-Base', a.name')
+                baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g)
+                if baseGlyph is not None:
+                    ba = self.getAnchor(baseGlyph, a.name)
+                    if ba is not None:
+                        changed = self._setAnchorXY(g, a, ba.x + dx, ba.y + dy, italicize=False) # Anchors from base are already italicized.
+                continue
+
+            if yMode in (0, 1): # Y-Diacritics or Y-Metrics
+                #print(yMode, 'Y-Diacritics or Y-Metrics', a.name')
+
+                done = None
+                y = None
+                # First guess, if there is a base, the use that as a start. Then scan through all the components, find their 
+                # anchors and adjust the min/max y position of the anchor accordingly.
+                if a.name == AD.TOP_:
+
+                    hasDiacritics = False
+                    overshoot = md.getAnchorOvershoot(g.name)
+                    y = md.getHeight(g.name) - overshoot # This is what the masterData guess is, from info in the glyphSet parameters.
+                    # First check if the bounding box of this glyph exceeds a certain height above the standard y
+                    if g.bounds is not None and g.bounds[3] > y + 4 * overshoot:
+                        y = g.bounds[3]
+
+                    # Then check on the transformed vertical position of the anchors in the components
+                    for component in g.components: # Now we're going to look at the glyph itself.
+                        if component.baseGlyph not in f: # Checking, just to be sure
+                            print(f'### _fixGlyphAnchorsY: Cannot find component glyph /{component.baseGlyph} in /{g.name}')
+                            continue
+                        
+                        if not component.baseGlyph in AD.ACCENT_DATA: # Not an accent component, ignore.
+                            continue
+                        
+                        hasDiacritics = True
+                        tx, ty = component.transformation[-2:] # Get the transformation for this components, as offset for its anchor position
+                        cg = f[component.baseGlyph]
+                        ca = self.getAnchor(cg, a.name) # Get the equivalent anchor of the diacritics glyph
+                        if ca is not None:
+                            #print(f'### _fixGlyphAnchorsY: Cannot find anchor {a.name} in diacritics component {component.baseGlyph} in /{g.name}')
+                            y = max(y, ca.y + ty) # Move the anchor up if there is extra space needed for the diacritics.
+
+                    if gd.isUpper:
+                        y -= 62 # Extra lower for capitals. @@@ TODO Make this into a more generic rule, independent from unitsPerEm  
+                    elif hasDiacritics or g.name in AD.ACCENT_DATA:
+                        y -= 140 # Closer together for stacking diacritics. @@@ TODO Make this into a more generic rule, independent from unitsPerEm
+
+                elif a.name == AD.MIDDLE_:
+                    y = md.getHeight2(g.name) # Just set to half-height.
+
+                elif a.name == AD.BOTTOM_:
+
+                    overshoot = md.getAnchorOvershoot(g.name)
+                    y = md.getBaseline(g.name) + overshoot # This is what the masterData guess is, from info in the glyphSet parameters.
+                    # First check if the bounding box of this glyph exceeds a certain height above the standard y
+                    if g.bounds is not None and g.bounds[1] < y - 4 * overshoot:
+                        y = g.bounds[1]
+
+                    # Then check on the transformed vertical position of the anchors in the components
+                    for component in g.components: # Now we're going to look at the glyph itself.
+                        if component.baseGlyph not in f: # Checking, just to be sure
+                            print(f'### _fixGlyphAnchorsY: Cannot find component glyph /{component.baseGlyph} in /{g.name}')
+                            continue
+                        
+                        if not component.baseGlyph in AD.ACCENT_DATA: # Not an accent component, ignore.
+                            continue
+                        
+                        tx, ty = component.transformation[-2:] # Get the transformation for this components, as offset for its anchor position
+                        cg = f[component.baseGlyph]
+                        ca = self.getAnchor(cg, a.name) # Get the equivalent anchor of the diacritics glyph
+                        if ca is not None:
+                            y = max(y, ca.y + ty) # Move the anchor down if there is extra space needed for the diacritics.
+
+                    if g.name in AD.ACCENT_DATA:
+                        y += 100 # Closer together for stacking diacritics. @@@ TODO Make this into a more generic rule, independent from unitsPerEm
+
+                if y is not None:
+                    changed |= self._setAnchorY(g, a, y) # Move the anchor to its new y position, also adjusting the x-position accordingly
+                continue
+
+            elif yMode == 2: # Y-Manual
+                #print(yMode, 'Y-Manual', a.name')
+                pass
+        
+        return changed
+
+    def XXX_setAnchorX(self, g, a, x, italicize=True):
+        """Set the x-value of the anchor. If the italicize flag is on, then correct the x value by the italic angle in height.
+        If the difference is smaller than 1 unit, the don't change anything. Otherwise print a message about the changed value.
+        Answer the boolean flag if something did change.
+        """
+        changed = False
+        if italicize:
+            ax = int(round(self.italicX(g, x, a.y)))
+        else:
+            ax = x
+        if abs(ax - a.x) >= 1: # Too different, correct it
+            print(f'... Set /{g.name} anchor {a.name}.x from {int(round(a.x))} to {ax}')
+            a.x = ax
+            changed = True
+        return changed
+
+    def XXX_setAnchorY(self, g, a, y, italicize=True):
+        """Set the y-value of the anchor. If the italicize flag is on, then correct the x value by the relative change in height.
+        If the difference is smaller than 1 unit, the don't change anything. Otherwise print a message about the changed value.
+        Answer the boolean flag if something did change.
+        """
+        changed = False
+        dy = y - a.y # Get relative y-position, so we know how much to move x too.
+        if abs(dy) >= 1: # Too different, correct it
+            print(f'... Set /{g.name} anchor {a.name}.y from {int(round(a.y))} to {y}')
+            if italicize:
+                a.x += int(round(self.italicX(g, 0, dy)))
+            a.y = y
+            changed = True
         return changed
 
     def _setAnchorXY(self, g, a, x, y, italicize=True):
@@ -264,43 +504,13 @@ class AssistantPartAnchors(BaseAssistantPart):
         anchorsGlyphLib['anchorMethodX'][anchorName] = methodNameX
         anchorsGlyphLib['anchorMethodY'][anchorName] = methodNameY
 
-    def mouseMoveAnchors(self, g, x, y, event):
+    def mouseMoveAnchors(self, g, x, y):
         """Update the guessed anchor positions, as they may be partially dependent on the anchors, if they are dragged."""
-        #self.autoCheckFixAnchorPositions(g)
-        #self.updateGuessedAnchorPositions(g)
-        pass
+        self.updateGuessedAnchorPositions(g)
 
-    def mouseDownAnchors(self, g, x, y, event):
+    def mouseDownAnchors(self, g, x, y):
         """There was a mouse down. Check if it was near a guessed anchor position. If so, then store the guessed method name in the glyph.lib if not already there.
         Then store the method names in all family masters and checkSet the anchor position to that guessed value"""
-        #commandDown = event['commandDown'] # Cannot use command-key, as it pops up a RoboFont menu
-        shiftDown = event['shiftDown']
-        controlDown = event['controlDown']
-        optionDown = event['optionDown']
-        capLock = event['capLockDown']
-
-        if event['shiftDown'] and event['optionDown']:
-            if event['commandDown']: # Do all anchors in this glyph in all masters
-                for a in g.anchors: # All anchrs that are within reach
-                    #if capLock or self.distance(a.x, a.y, x, y) < self.ANCHOR_SELECT_DISTANCE:
-                    parentPath = self.filePath2ParentPath(g.font.path) 
-                    for pth in sorted(self.getUfoPaths(parentPath)): # Do all masters in the same way for this anchor
-                        fullPath = self.path2FullPath(pth)
-                        ff = self.getFont(fullPath, showInterface=g.font.path == fullPath) # Make sure RoboFont opens the current font.
-                        if g.name in ff:
-                            gg = ff[g.name]
-                            for aa in gg.anchors:
-                                if aa.name == a.name:
-                                    print(f'... autoCheckFixAnchorPosition: {pth} Anchor {a.name}')
-                                    self.autoCheckFixAnchorPosition(gg, aa)
-                    
-            else: # Only do a single anchor that is within click range.
-                for a in g.anchors:
-                    if self.distance(a.x, a.y, x, y) < self.ANCHOR_SELECT_DISTANCE:
-                        self.autoCheckFixAnchorPosition(g, a)
-        return
-
-    def ZZZZZ(self):
         changed = False
         for (ax, ay), (anchorName, mx, my) in self.guessedAnchorPositions.items():
             if (ax - self.GUESSED_ANCHOR_MARKER_R/2 <= x <= ax + self.GUESSED_ANCHOR_MARKER_R/2) and (ay - self.GUESSED_ANCHOR_MARKER_R/2 <= y <= ay + self.GUESSED_ANCHOR_MARKER_R/2):
@@ -386,103 +596,6 @@ class AssistantPartAnchors(BaseAssistantPart):
             print(f'### Cannot find anchorTypeGlyphSrc /{gd.anchorTypeGlyphSrc} for /{g.name}') 
         return g # By default use this glyph as its own source to guess possible anchor positions from
 
-    def autoCheckFixAnchorPosition(self, g, a):
-        changed = False
-        md = self.getMasterData(g.font)
-        gd = self.getGlyphData(g)
-
-        ax = ay = None
-        if a.name == AD.TOP_:
-            # Trying to guess vertical
-            baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g) # In case there is a base, just copy the vertical anchor position 
-            if baseGlyph is not None:
-                baseAnchor = self.getAnchor(baseGlyph, a.name)
-                if baseAnchor is not None:
-                    ay = baseAnchor.y + dy # Vertical position of the base anchor + component offset.
-            if ay is None: # No base component, get the height from xHeight or capHeight
-                if gd.isLower: # Default position below xHeight or capHeight
-                    ay = g.font.info.xHeight + md.xHeightAnchorOffsetY # Likely to ba a negative number
-                else:
-                    ay = g.font.info.capHeight + md.capHeightAnchorOffsetY # Likely to ba a negative number
-            # In case the a.y now is below the bounding box, then lift the anchor to fit the top of the bounding box
-            #print(g.bounds, a.x, a.y, ax, ay, h, g.bounds[3], md.baseOvershoot, g.bounds[3] + 2*md.baseOvershoot, h < g.bounds[3] + 2*md.baseOvershoot)
-            if md.capDiacriticsTop < g.bounds[3]: # Probably bounding box extended from diacritics
-                ay = g.bounds[3] + md.boxTopAnchorOffsetY
-
-            # Try to guess horizontal
-            if baseGlyph is not None: # In case there is a base
-                print(baseGlyph.name, dx, dy)
-                baseAnchor = self.getAnchor(baseGlyph, a.name)
-                if baseAnchor is not None:
-                    ax = baseAnchor.x + self.italicX(g, dx, ay - baseAnchor.y)
-            else: # Center on width by default
-                ax = self.italicX(g, g.width/2, ay)
-
-        elif a.name == AD._TOP:
-            print(2, a.name, a.x, a.y)
-
-        elif a.name == AD.MIDDLE_:
-            # Trying to guess vertical
-            if gd.isLower: # Default position below xHeight or capHeight
-                ay = g.font.info.xHeight/2
-            else:
-                ay = g.font.info.capHeight/2
-            # Try to guess horizontal
-            baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g) # In case there is a base 
-            if baseGlyph is not None:
-                print(baseGlyph.name, dx, dy)
-                baseAnchor = self.getAnchor(baseGlyph, a.name)
-                if baseAnchor is not None:
-                    ax = baseAnchor.x + dx
-            else: # Center on width by default
-                ax = self.italicX(g, g.width/2, ay)
-
-        elif a.name == AD._MIDDLE:
-            print(4, a.name, a.x, a.y)
-        
-        elif a.name == AD.BOTTOM_: # Try to guess bottom position
-            # Trying to guess vertical
-            # Default position below xHeight or capHeight
-            ay = md.baseOvershoot
-            # In case the a.y now is above the bounding box, then lift the anchor to fit the top of the bounding box
-            if ay < g.bounds[1] - 2*md.baseOvershoot:
-                ay = g.bounds[1]
-
-            # Try to guess horizontal
-            baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g) # In case there is a base 
-            if baseGlyph is not None:
-                baseAnchor = self.getAnchor(baseGlyph, a.name)
-                if baseAnchor is not None:
-                    ax = baseAnchor.x + self.italicX(g, dx, ay - baseAnchor.y)
-            else: # Center in width by default
-                ax = self.italicX(g, g.width/2, ay)
-        
-        elif a.name == AD._BOTTOM:
-            print(6, a.name, a.x, a.y)
-
-        elif a.name == AD.OGONEK_: # Try to guess bottom position
-            # Trying to guess vertical
-            # Default position below xHeight or capHeight
-            ay = md.ogonekAnchorOffsetY
-
-        elif a.name == AD.TONOS_: # Try to guess tonos position only for capitals
-            # Trying to guess vertical
-            ay = g.font.info.capHeight # Likely to ba a negative number
-            ax = self.italicX(g, g.angledLeftMargin/2, ay) # Right aligned, halfway left margin
-
-        elif a.name == AD._TONOS: # Try to guess _tonos position
-            # Trying to guess vertical
-            ay = g.font.info.capHeight # Likely to ba a negative number
-            ax = self.italicX(g, 0, ay) # Right aligned, halfway left margin
-
-        if ax is not None and ax != a.x:
-            a.x = ax
-            changed = True
-        if ay is not None and ay != a.y:
-            a.y = ay
-            changed = True
-        return changed
-
     def updateGuessedAnchorPositions(self, g):
         """Reset the guessed anchor positions for this glyph, e.g. after the glyphEditor set another glyph, or if spacing or bounding box changed.
         This method is not changing any position of the anchors it self."""
@@ -493,8 +606,6 @@ class AssistantPartAnchors(BaseAssistantPart):
         aIndex = 0
         showNames = c.w.showGuessedNames.get()
         for anchor in gSrc.anchors: # Using the anchors here just as template to know which anchors belong in this glyph.
-            continue # @@@@@@
-
             if anchor.name not in AD.AUTO_PLACED_ANCHORS:
                 continue # This type of anchor does not have guessing methods implemented
 

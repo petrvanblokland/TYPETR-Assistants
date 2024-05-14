@@ -324,7 +324,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             self.kerningLine[n].setVisible(False)
             self.kerningLineNames[n].setVisible(False)
 
-    def mouseMoveSpacer(self, g, x, y):
+    def mouseMoveSpacer(self, g, x, y, event):
         """Set the hoover color for the current selected glyph"""
         if g is None or not self.spacerGlyphPositions or self.mouseMovePoint is None:
             return
@@ -357,7 +357,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             self.kerningLine[gIndex].setFillColor(color)
             self.kerningLineNames[gIndex].setVisible(visible)
                     
-    def mouseDownSpacer(self, g, x, y):
+    def mouseDownSpacer(self, g, x, y, evnt):
         """Open Editor window on clicked glyph"""
         if g is None or not self.spacerGlyphPositions or self.mouseMovePoint is None:
             return

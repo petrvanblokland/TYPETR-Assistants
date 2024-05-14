@@ -31,12 +31,12 @@ class MS_GlyphSet(GlyphSet):
 
     """
 
-    MIN_MARGIN = 24
+    MIN_MARGIN = 48
     EM_WIDTH = 2048
     EN_WIDTH = int(EM_WIDTH/2)
     SPACE_WIDTH = int(EM_WIDTH/5)
     FIGURE_WIDTH = 1265
-    ACCENT_WIDTH = FIGURE_WIDTH
+    ACCENT_WIDTH = FIGURE_WIDTH/2
     HAIR_WIDTH = int(EM_WIDTH/8)
 
     CENTER = 'center' # KerningManager indicator for lm=CENTER to center the glyph at its current width.
@@ -427,7 +427,7 @@ class MS_GlyphSet(GlyphSet):
        'Iota': GD(name='Iota', uni=0x0399, hex='0399', c='Ι', bl='I', base='I', anchors=['top', 'middle', 'bottom'], gid=543),
        'Iotaafrican': GD(name='Iotaafrican', uni=0x0196, hex='0196', c='Ɩ', srcName='uni0196', gid=343),
        'Iotadasia': GD(name='Iotadasia', uni=0x1F39, hex='1F39', c='Ἱ', l='comma', r='H', bl='I', base='I', accents=['dasia-uc'], anchors=['top', 'middle', 'bottom'], gid=1226),
-       'Iotadasiaoxia': GD(name='Iotadasiaoxia', uni=0x1F3D, hex='1F3D', c='Ἵ', l='comma', r='H', base='I', accents=['dasiaoxia-uc'], anchors=['top', 'middle', 'bottom'], gid=1230),
+       'Iotadasiaoxia': GD(name='Iotadasiaoxia', uni=0x1F3D, hex='1F3D', c='Ἵ', l='comma', r='H', base='I', accents=['dasiaoxia-uc'], anchors=['top', 'middle', 'bottom', 'tonos',], gid=1230),
        'Iotadasiaperispomeni': GD(name='Iotadasiaperispomeni', uni=0x1F3F, hex='1F3F', c='Ἷ', l='comma', r='H', base='I', accents=['dasiaperispomeni-uc'], anchors=['top', 'middle', 'bottom'], gid=1232),
        'Iotadasiavaria': GD(name='Iotadasiavaria', uni=0x1F3B, hex='1F3B', c='Ἳ', l='comma', r='H', base='I', accents=['dasiavaria-uc'], anchors=['top', 'middle', 'bottom'], gid=1228),
        'Iotadieresis': GD(name='Iotadieresis', uni=0x03AA, hex='03AA', c='Ϊ', w='I', bl='I', base='I', accents=['dieresiscomb'], anchors=['top', 'middle', 'bottom'], gid=559),
@@ -1067,7 +1067,7 @@ class MS_GlyphSet(GlyphSet):
        'arrowleftrightbelowcomb': GD(name='arrowleftrightbelowcomb', uni=0x034D, hex='034D', c='͍', w=0, isLower=True, anchors=['bottom', '_bottom']),
        'arrowupbelowcomb': GD(name='arrowupbelowcomb', uni=0x034E, hex='034E', c='͎', w=0, isLower=True, anchors=['bottom', '_bottom']),
        'aschwareversed': GD(name='aschwareversed', uni=0xAB31, hex='AB31', c='ꬱ', l='a', r='e', isLower=True),
-       'asciicircum': GD(name='asciicircum', uni=0x005E, hex='005E', c='^', l=MIN_MARGIN, r=MIN_MARGIN, isLower=True, gid=64, comment='^ spacing circumflex accent'),
+       'asciicircum': GD(name='asciicircum', uni=0x005E, hex='005E', c='^', l2r='asciicircum', isLower=True, gid=64, comment='^ spacing circumflex accent'),
        'asciitilde': GD(name='asciitilde', uni=0x007E, hex='007E', c='~', l2r='asciitilde', isLower=True, gid=96, comment='~ tilde, spacing'),
        'asterisk': GD(name='asterisk', uni=0x002A, hex='002A', c='*', isLower=True, gid=12, comment='* star'),
        'asteriskabovecomb': GD(name='asteriskabovecomb', uni=0x20F0, hex='20F0', c='⃰', w=0, src='asterisk', isLower=True, anchors=['top', '_top']),
@@ -2064,7 +2064,7 @@ class MS_GlyphSet(GlyphSet):
        'overline': GD(name='overline', uni=0x203E, hex='203E', c='‾', srcName='radicalex', isLower=True, gid=1428, comment='‾ spacing overscore'),
        'overlinecomb': GD(name='overlinecomb', uni=0x0305, hex='0305', c='̅', w=0, base='overline', isLower=True, anchors=['top', '_top']),
        'oxia': GD(name='oxia', uni=0x1FFD, hex='1FFD', c='´', w=0, isLower=True, anchors=['top', '_top'], gid=1404),
-       'oxia-uc': GD(name='oxia-uc', w=0, isLower=True, anchors=['_tonos'], gid=1678),
+       'oxia-uc': GD(name='oxia-uc', w=0, isLower=True, base='oxia', anchors=['_tonos'], gid=1678),
 
         #   p
 
@@ -2406,8 +2406,8 @@ class MS_GlyphSet(GlyphSet):
        'tonesix': GD(name='tonesix', uni=0x0185, hex='0185', c='ƅ', srcName='uni0185', isLower=True, gid=326),
        'tonetwo': GD(name='tonetwo', uni=0x01A8, hex='01A8', c='ƨ', l2r='s', r2l='s', srcName='uni01A8', isLower=True, gid=361),
        'tonos': GD(name='tonos', uni=0x0384, hex='0384', c='΄', w=0, base='tonoscomb', anchors=[], isLower=True, gid=524),
-       'tonos-uc': GD(name='tonos-uc', w=0, isLower=True, anchors=['_tonos'], gid=1709),
-       'tonoscomb': GD(name='tonoscomb', w=0, anchors=['_top', 'top'], isLower=True),
+       'tonos-uc': GD(name='tonos-uc', w=0, isLower=True, anchors=['_tonos'], gid=1709), # Capital tonos is right aligned on the tonos anchor.
+       'tonoscomb': GD(name='tonoscomb', w=0, anchors=['_top', 'top'], isLower=True), # Lower case tonos just behaves as other diacritics
        'tpalatalhook': GD(name='tpalatalhook', uni=0x01AB, hex='01AB', c='ƫ', l='t', r='jdotless', srcName='uni01AB', isLower=True, gid=364, comment='Tonos for caps, connected to _tonos anchor'),
        'tpalatalhookmod': GD(name='tpalatalhookmod', uni=0x1DB5, hex='1DB5', c='ᶵ', l='t', r='jdotless', isLower=True, isMod=True),
        'trademark': GD(name='trademark', uni=0x2122, hex='2122', c='™', isLower=True, gid=1468, comment='™ TRADE MARK SIGN'),

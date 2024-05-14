@@ -26,7 +26,7 @@ class AnchorData:
     _TILDE = '_tilde'
     TILDE_ = 'tilde'
     _TONOS = '_tonos'
-    TONOS_ = 'tonos'
+    TONOS_ = 'tonos_'
     _HORN = '_horn'
     HORN_ = 'horn'
     _MIDDLE = '_middle'

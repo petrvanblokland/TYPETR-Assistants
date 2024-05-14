@@ -181,13 +181,13 @@ class AssistantPartDimensions(BaseAssistantPart):
         self.updateGlyphDimensions(g)
         return changed
 
-    def mouseMoveDimensions(self, g, x, y):
+    def mouseMoveDimensions(self, g, x, y, event):
         pass 
 
-    def mouseDownDimensions(self, g, x, y):
+    def mouseDownDimensions(self, g, x, y, event):
         pass 
         
-    def mouseUpDimensions(self, g, x, y):
+    def mouseUpDimensions(self, g, x, y, event):
         pass 
 
     def setGlyphDimensions(self, g):

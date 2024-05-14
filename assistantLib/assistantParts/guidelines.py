@@ -114,6 +114,20 @@ class AssistantPartGuidelines(BaseAssistantPart):
         guidelines.append((x + tg * xHeight, xHeight, 0, f'xHeight {xHeight}'))
         guidelines.append((x + tg * capHeight, capHeight, 0, f'capHeight {capHeight}'))
 
+
+        if gd.isLower or 'comb' in g.name:
+            if md.baseDiacriticsTop is not None: # Baseline of top diacritics
+                guidelines.append((xo + tg * md.baseDiacriticsTop, md.baseDiacriticsTop, 0, f'Bottom of top diacritics ({md.baseDiacriticsTop})'))
+                self.setLib(f, 'baseDiacriticsTop', md.baseDiacriticsTop) # Save value, so an independent proofing script can find it.
+        else:
+            if md.capDiacriticsTop is not None: # Baseline of top diacritics
+                guidelines.append((xo + tg * md.capDiacriticsTop, md.capDiacriticsTop, 0, f'Bottom of top diacritics ({md.capDiacriticsTop})'))
+                self.setLib(f, 'capDiacriticsTop', md.capDiacriticsTop) # Save value, so an independent proofing script can find it.
+
+        if md.baseDiacriticsBottom is not None:
+            guidelines.append((xo + tg * md.baseDiacriticsBottom, md.baseDiacriticsBottom, 0, f'Top of bottom diacritics ({md.baseDiacriticsBottom})'))
+            self.setLib(f, 'baseDiacriticsBottom', md.baseDiacriticsBottom) # Save value, so an independent proofing script can find it.
+
         if gd is None:
             print(f'### Cannot find /{g.name} in GlyphData {md.glyphSet.__class__.__name__}')
 
