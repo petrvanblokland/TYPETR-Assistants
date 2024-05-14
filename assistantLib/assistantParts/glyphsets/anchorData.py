@@ -396,6 +396,16 @@ class AnchorData:
         'plusmod': _MIDDLE,
 
         'dasiavaria-uc': _TONOS,
+        'oxia-uc': _TONOS,
+        'dasia-uc': _TONOS,
+        'dasiaperispomeni-uc': _TONOS,
+        'dasiavaria-uc': _TONOS,
+        'psili-uc': _TONOS,
+        'psilioxia-uc': _TONOS,
+        'psiliperispomeni-uc': _TONOS,
+        'psilivaria-uc': _TONOS,
+        'tonos-uc': _TONOS,
+        'varia-uc': _TONOS,
     }
 
     # Tables below are mainly use to export _export/Exported_Glyphset.py, etc. or to initialize in GlyphData contruction.

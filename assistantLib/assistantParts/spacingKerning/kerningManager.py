@@ -730,7 +730,11 @@ class KerningManager:
         if gd is None:
             return None # No entry in this glyphset for this glyph.
 
-        if gd.l is not None: # Plain angled left margin
+        if gd.w == 0: 
+            if g.width:
+                g.width = 0
+                changed = True
+        elif gd.l is not None: # Plain angled left margin
             if gd.l == 'off': # No automatic spacing, do manually
                 return False
             elif gd.l == 'center': # Center the glyph on it's current defined width

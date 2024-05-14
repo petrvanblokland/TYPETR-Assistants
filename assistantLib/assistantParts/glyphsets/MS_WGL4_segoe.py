@@ -2064,7 +2064,7 @@ class MS_GlyphSet(GlyphSet):
        'overline': GD(name='overline', uni=0x203E, hex='203E', c='‾', srcName='radicalex', isLower=True, gid=1428, comment='‾ spacing overscore'),
        'overlinecomb': GD(name='overlinecomb', uni=0x0305, hex='0305', c='̅', w=0, base='overline', isLower=True, anchors=['top', '_top']),
        'oxia': GD(name='oxia', uni=0x1FFD, hex='1FFD', c='´', w=0, isLower=True, anchors=['top', '_top'], gid=1404),
-       'oxia-uc': GD(name='oxia-uc', w=0, isLower=True, base='oxia', anchors=['_tonos'], gid=1678),
+       'oxia-uc': GD(name='oxia-uc', l='off', w=0, isLower=True, base='oxia', anchors=['_tonos'], gid=1678),
 
         #   p
 

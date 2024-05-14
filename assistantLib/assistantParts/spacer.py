@@ -819,6 +819,10 @@ class AssistantPartSpacer(BaseAssistantPart):
             if gd is None: # Cannot find this glyph
                 print(f'### checkFixGlyphLeftMargin: Cannot find GlyphData for /{g.name}')
             
+            elif 'off' in (gd.l, gd.r):
+                label = f'Auto-spacing is off'
+                print(f'... checkFixGlyphLeftMargin: /{g.name} auto-spacing is off')
+
             # First check if there is a masterData spacing source defined, that overwrites all other spacing rules
             elif md.spacingSrcUFOPath is not None and g.width:  # Only if defined and the glyph has width
                 src = self.getFont(md.spacingSrcUFOPath)
@@ -900,6 +904,10 @@ class AssistantPartSpacer(BaseAssistantPart):
 
             if gd is None: # Cannot find this glyph
                 print(f'### checkFixGlyphRightMargin: Cannot find GlyphData for /{g.name}')
+
+            elif 'off' in (gd.l, gd.r):
+                label = f'Auto-spacing is off'
+                print(f'... checkFixGlyphRightMargin: /{g.name} auto-spacing is off')
 
             elif md.spacingSrcUFOPath is not None and g.width: # Only if defined and if the glyph has width
                 src = self.getFont(md.spacingSrcUFOPath)
