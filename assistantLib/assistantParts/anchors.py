@@ -464,8 +464,8 @@ class AssistantPartAnchors(BaseAssistantPart):
             # Default position below xHeight or capHeight
             ay = md.baseOvershoot
             # In case the a.y now is above the bounding box, then lift the anchor to fit the top of the bounding box
-            if ay < g.bounds[1] - 2*md.baseOvershoot:
-                ay = g.bounds[1]
+            if md.baseDiacriticsBottom > g.bounds[1]:
+                ay = g.bounds[1] + md.boxBottomAnchorOffsetY
 
             # Try to guess horizontal
             baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g) # In case there is a base 
