@@ -768,7 +768,7 @@ class AnchorData:
 
     DOT_ANCHORS = {'C', 'L', 'SigmaLunateReversedSymbol', 'c', 'h', 'l', 'oopen'}
 
-    TONOS_ANCHORS = {'A', 'E', 'H', 'I', 'O', 'Ohm', 'P', 'UpsilonhookSymbol', 'Y'}
+    TONOS_ANCHORS = {'A', 'E', 'H', 'I', 'O', 'Ohm', 'P', 'UpsilonhookSymbol', 'Y', 'Alpha'}
 
     VERT_ANCHORS = {'L', 'd', 'l', 't'}
 

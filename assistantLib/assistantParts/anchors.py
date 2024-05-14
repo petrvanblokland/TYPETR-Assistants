@@ -487,7 +487,15 @@ class AssistantPartAnchors(BaseAssistantPart):
         elif a.name == AD.TONOS_: # Try to guess tonos position only for capitals
             # Trying to guess vertical
             ay = g.font.info.capHeight # Likely to ba a negative number
-            ax = self.italicX(g, g.angledLeftMargin/2, ay) # Right aligned, halfway left margin
+
+            # Try to guess horizontal
+            baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g) # In case there is a base 
+            if baseGlyph is not None:
+                baseAnchor = self.getAnchor(baseGlyph, a.name)
+                if baseAnchor is not None:
+                    ax = baseAnchor.x + self.italicX(g, dx, ay - baseAnchor.y)
+            else: # Center in width by default
+                ax = self.italicX(g, g.angledLeftMargin/2, ay) # Right aligned, halfway left margin
 
         elif a.name == AD._TONOS: # Try to guess _tonos position
             # Trying to guess vertical
