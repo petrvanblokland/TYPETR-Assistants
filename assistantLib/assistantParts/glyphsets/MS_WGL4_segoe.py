@@ -137,7 +137,7 @@ class MS_GlyphSet(GlyphSet):
        'Aogonek': GD(name='Aogonek', uni=0x0104, hex='0104', c='Ą', l='A', r='A', base='A', accents=['ogonekcomb'], anchors=['top', 'middle', 'bottom'], gid=197, comment='Ą LATIN CAPITAL LETTER A WITH OGONEK'),
        'Archaicsampi': GD(name='Archaicsampi', uni=0x0372, hex='0372', c='Ͳ', l='U', r='U', gid=512),
        'Aring': GD(name='Aring', uni=0x00C5, hex='00C5', c='Å', l='A', r='A', gid=134, anchors=['top', 'middle', 'bottom', 'ogonek'], comment='Å RING ABOVE, LATIN CAPITAL LETTER A WITH'),
-       'Aringacute': GD(name='Aringacute', uni=0x01FA, hex='01FA', c='Ǻ', l='A', r='A', base='A', accents=['ringacutecomb'], gid=443, comment='Ǻ LATIN CAPITAL LETTER A WITH RING ABOVE AND ACUTE'),
+       'Aringacute': GD(name='Aringacute', uni=0x01FA, hex='01FA', c='Ǻ', l='A', r='A', base='Aring', accents=['acutecomb'], gid=443, comment='Ǻ LATIN CAPITAL LETTER A WITH RING ABOVE AND ACUTE'),
        'Aringbelow': GD(name='Aringbelow', uni=0x1E00, hex='1E00', c='Ḁ', l='A', r='A', base='A', accents=['ringbelowcomb'], srcName='uni1E00', anchors=['top', 'middle', 'bottom'], gid=923),
        'Asmall': GD(name='Asmall', uni=0x1D00, hex='1D00', c='ᴀ', l='A', r='A', isSc=True),
        'Astroke': GD(name='Astroke', uni=0x023A, hex='023A', c='Ⱥ', l='A', w='A', base='A', accents=['Astroke.component'], anchors=['top', 'middle', 'bottom']),
