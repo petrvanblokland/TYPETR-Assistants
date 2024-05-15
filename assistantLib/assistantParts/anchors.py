@@ -327,13 +327,13 @@ class AssistantPartAnchors(BaseAssistantPart):
                     if g.name in f:
                         gg = f[g.name]
                         self.checkFixAnchors(gg) # Make sure the right amount of anchors exists.
-                        gSrc = self._getAnchorTypeGlyph(gg) # Get the glyph that is model for the anchor types, if defined in glyphData.anchorTypeGlyphSrc, otherwise use /g itself.
+                        gSrc = self._getAnchorTypeGlyph(gg) # Get the glyph that is model for the anchor types, if defined in glyphData.anchorGlyphSrc, otherwise use /g itself.
                         # We can't use (ax, ay) here, because it's specific for the current glyph. 
                         # Calculating them for all glyphs separate for all open fonts is a bit expensive, but it's only done on mouse click. Let's see.
                         a = self.getAnchor(gg, anchorName)
                         if a is None:
                             print(f'### Missing anchor "{anchorName} in /{g.name} in {f.path.split("/")[-1]}')
-                        # Get the guessed position of this anchor type. Possibly from the glyphData.anchorTypeGlyphSrc if defined. Otherwise from the gg glyph itself.
+                        # Get the guessed position of this anchor type. Possibly from the glyphData.anchorGlyphSrc if defined. Otherwise from the gg glyph itself.
                         guessedY = getattr(self, my)(gSrc, a.name)
                         guessedX = self.italicX(gSrc, getattr(self, mx)(gSrc, a.name) or a.x, guessedY or a.y)
                         # Apply this guessed values from the selected anchor type onto the anchor positions of /gg
@@ -389,15 +389,15 @@ class AssistantPartAnchors(BaseAssistantPart):
         #self.updateGuessedAnchorPositions(g)
 
     def _getAnchorTypeGlyph(self, g):
-        """Answer the glyph that is model for the anchorTypes of g. If glyphData.anchorTypeGlyphSrc is defined then use that glyph,
+        """Answer the glyph that is model for the anchors of g. If glyphData.anchorGlyphSrc is defined then use that glyph,
         e.g. as defined for /Uhorn using the anchor type positions of /U. Otherwise answer g as model."""
         assert g is not None
         gd = self.getGlyphData(g)
-        if gd.anchorTypeGlyphSrc is not None: # There is a src glyph other than /g to copy guessed anchor positions from
-            if gd.anchorTypeGlyphSrc in g.font: # Does the reference exist?
-                return g.font[gd.anchorTypeGlyphSrc]
+        if gd.anchorGlyphSrc is not None: # There is a src glyph other than /g to copy guessed anchor positions from
+            if gd.anchorGlyphSrc in g.font: # Does the reference exist?
+                return g.font[gd.anchorGlyphSrc]
             # Print the error if the referenced glyph cannot be found
-            print(f'### Cannot find anchorTypeGlyphSrc /{gd.anchorTypeGlyphSrc} for /{g.name}') 
+            print(f'### Cannot find anchorGlyphSrc /{gd.anchorGlyphSrc} for /{g.name}') 
         return g # By default use this glyph as its own source to guess possible anchor positions from
 
     def autoCheckFixAnchorPosition(self, g, a):
@@ -449,14 +449,14 @@ class AssistantPartAnchors(BaseAssistantPart):
         baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g) # In case there is a base, just copy the vertical and hotizontal anchor positions, with the component offset
 
         # TOP_ Construct vertical position
-        if gd.anchorTypeTopY is not None:
-            if gd.anchorTypeTopY in g.font: # In case it is an existing glyph name, then take the vertical position from the corresponding anchor
-                aa = self.getAnchor(g.font[gd.anchorTypeTopY], a.name)
+        if gd.anchorTopY is not None:
+            if gd.anchorTopY in g.font: # In case it is an existing glyph name, then take the vertical position from the corresponding anchor
+                aa = self.getAnchor(g.font[gd.anchorTopY], a.name)
                 if aa is not None:
                     ay = aa.y
             else: # If not an existing glyph name, then we can assume it is a valid method name that will calculate the ay
                 # Available: 
-                ay = getattr(self, 'constructAnchor'+gd.anchorTypeTopY)(g, a.name, a.x, ay or a.y) # @@@ Various methods still to be implemented
+                ay = getattr(self, 'constructAnchor'+gd.anchorTopY)(g, a.name, a.x, ay or a.y) # @@@ Various methods still to be implemented
 
         else: # No construction glyph or method defined, then try to figure out from this glyph shape
             # Trying to guess vertical from anchor in base glyph + its offset
@@ -480,15 +480,15 @@ class AssistantPartAnchors(BaseAssistantPart):
                     ay = g.bounds[3] + md.boxTopAnchorOffsetY
 
         # TOP_ Construct horizontal position
-        if gd.anchorTypeTopX is not None:
-            if gd.anchorTypeTopX in g.font: # In case it is an existing glyph name, then take the vertical position from the corresponding anchor
-                aa = self.getAnchor(g.font[gd.anchorTypeTopX], a.name)
+        if gd.anchorTopX is not None:
+            if gd.anchorTopX in g.font: # In case it is an existing glyph name, then take the vertical position from the corresponding anchor
+                aa = self.getAnchor(g.font[gd.anchorTopX], a.name)
                 if aa is not None:
                     ax = aa.x
             else: # If not an existing glyph name, then we can assume it is a valid method name that will calculate the ay
                 # Available: 
                 # Constructor methods are supposed to answer italic x-position
-                ax = getattr(self, 'constructAnchor' + gd.anchorTypeTopX)(g, a.name, a.x, ay or a.y) # Use new ay here. Various methods still to be implemented
+                ax = getattr(self, 'constructAnchor' + gd.anchorTopX)(g, a.name, a.x, ay or a.y) # Use new ay here. Various methods still to be implemented
 
         else: # No construction glyph or method name defined, then try to figure out from the glyph shape
             # Try to guess horizontal from anchor in base glyph + its offset
@@ -496,7 +496,7 @@ class AssistantPartAnchors(BaseAssistantPart):
                 baseAnchor = self.getAnchor(baseGlyph, a.name)
                 if baseAnchor is not None:
                     ax = baseAnchor.x + self.italicX(g, dx, ay - baseAnchor.y)
-            else: # Center on width by default, otherwise use the gd.anchorTypeTopX="Bounds" method
+            else: # Center on width by default, otherwise use the gd.anchorTopX="Bounds" method
                 ax = self.italicX(g, g.width/2, ay)
         
         return ax, ay
@@ -519,14 +519,14 @@ class AssistantPartAnchors(BaseAssistantPart):
         """
         gd = self.getGlyphData(g)
         # MIDDLE_ Construct vertical position
-        if gd.anchorTypeMiddleY is not None:
-            if gd.anchorTypeMiddleY in g.font: # In case it is an existing glyph name, then take the vertical position from the corresponding anchor
-                aa = self.getAnchor(g.font[gd.anchorTypeMiddleY], a.name)
+        if gd.anchorMiddleY is not None:
+            if gd.anchorMiddleY in g.font: # In case it is an existing glyph name, then take the vertical position from the corresponding anchor
+                aa = self.getAnchor(g.font[gd.anchorMiddleY], a.name)
                 if aa is not None:
                     ay = aa.y
             else: # If not an existing glyph name, then we can assume it is a valid method name that will calculate the ay
                 # Available: 
-                ay = getattr(self, 'constructAnchor' + gd.anchorTypeMiddleY)(g, a.name, a.x, ay or a.y) # @@@ Various methods still to be implemented
+                ay = getattr(self, 'constructAnchor' + gd.anchorMiddleY)(g, a.name, a.x, ay or a.y) # @@@ Various methods still to be implemented
 
         else: # No construction glyph or method defined, then try to figure out from this glyph shape
             gd = self.getGlyphData(g)
@@ -537,15 +537,15 @@ class AssistantPartAnchors(BaseAssistantPart):
                 ay = g.font.info.capHeight/2
 
         # TOP_ Construct horizontal position
-        if gd.anchorTypeMiddleX is not None:
-            if gd.anchorTypeMiddleX in g.font: # In case it is an existing glyph name, then take the vertical position from the corresponding anchor
-                aa = self.getAnchor(g.font[gd.anchorTypeMiddleX], a.name)
+        if gd.anchorMiddleX is not None:
+            if gd.anchorMiddleX in g.font: # In case it is an existing glyph name, then take the vertical position from the corresponding anchor
+                aa = self.getAnchor(g.font[gd.anchorMiddleX], a.name)
                 if aa is not None:
                     ax = aa.x
             else: # If not an existing glyph name, then we can assume it is a valid method name that will calculate the ay
                 # Available: 
                 # Constructor methods are supposed to answer italic x-position
-                ax = getattr(self, 'constructAnchor' + gd.anchorTypeMiddleX)(g, a.name, a.x, ay or a.y) # Use new ay here. Various methods still to be implemented
+                ax = getattr(self, 'constructAnchor' + gd.anchorMiddleX)(g, a.name, a.x, ay or a.y) # Use new ay here. Various methods still to be implemented
 
         else: # No construction glyph or method name defined, then try to figure out from the glyph shape
             # Try to guess horizontal
@@ -580,13 +580,13 @@ class AssistantPartAnchors(BaseAssistantPart):
         baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g) # In case there is a base, just copy the vertical and hotizontal anchor positions, with the component offset
 
         # BOTTOM_ Construct vertical position
-        if gd.anchorTypeBottomY is not None:
-            if gd.anchorTypeBottomY in g.font: # In case it is an existing glyph name, then take the vertical position from the corresponding anchor
-                aa = self.getAnchor(g.font[gd.anchorTypeBottomY], a.name)
+        if gd.anchorBottomY is not None:
+            if gd.anchorBottomY in g.font: # In case it is an existing glyph name, then take the vertical position from the corresponding anchor
+                aa = self.getAnchor(g.font[gd.anchorBottomY], a.name)
                 if aa is not None:
                     ay = aa.y
             else: # If not an existing glyph name, then we can assume it is a valid method name that will calculate the ay
-                ay = getattr(self, 'constructAnchor' + gd.anchorTypeBottomY)(g, a.name, a.x, ay or a.y) # @@@ Various methods still to be implemented
+                ay = getattr(self, 'constructAnchor' + gd.anchorBottomY)(g, a.name, a.x, ay or a.y) # @@@ Various methods still to be implemented
 
         else: # No glyph or construction method defined, then try to figure out from this glyph shape
             # Trying to guess vertical
@@ -597,14 +597,14 @@ class AssistantPartAnchors(BaseAssistantPart):
                 ay = g.bounds[1] + md.boxBottomAnchorOffsetY
 
         # BOTTOM_ Construct horizontal position
-        if gd.anchorTypeBottomX is not None:
-            if gd.anchorTypeBottomX in g.font: # In case it is an existing glyph name, then take the vertical position from the corresponding anchor
-                aa = self.getAnchor(g.font[gd.anchorTypeBottomX], a.name)
+        if gd.anchorBottomX is not None:
+            if gd.anchorBottomX in g.font: # In case it is an existing glyph name, then take the vertical position from the corresponding anchor
+                aa = self.getAnchor(g.font[gd.anchorBottomX], a.name)
                 if aa is not None:
                     ax = aa.x
             else: # If not an existing glyph name, then we can assume it is a valid method name that will calculate the ay
                 # Constructor methods are supposed to answer italic x-position
-                ax = getattr(self, 'constructAnchor' + gd.anchorTypeBottomX)(g, a.name, a.x, ay or a.y) # Use new ay here. Various methods still to be implemented
+                ax = getattr(self, 'constructAnchor' + gd.anchorBottomX)(g, a.name, a.x, ay or a.y) # Use new ay here. Various methods still to be implemented
 
         else: # No construction glyph or method name defined, then try to figure out from the glyph shape
             # BOTTOM_ Construct horizontal position
@@ -721,6 +721,12 @@ class AssistantPartAnchors(BaseAssistantPart):
         # Could not find an x, e.g. because of only components. Then use the bounding box width/2 instead.
         return self.constructAnchorBoundsX2(g, a, ax, ay)
 
+    def constructAnchorBaselineY(self, g, a, ax, ay):
+        """Answer the Y position on baseline."""
+        md = self.getMasterData(g.font)
+        ay = md.baselineAnchorOffsetY
+        return ay
+
     #   M E R Z  A N C H O R  P O S I T I O N S
 
     def XXXupdateGuessedAnchorPositions(self, g):
@@ -730,7 +736,7 @@ class AssistantPartAnchors(BaseAssistantPart):
 
         c = self.getController()
         self.guessedAnchorPositions = {}
-        # Get the glyph that is model for the anchor types, if defined in glyphData.anchorTypeGlyphSrc, otherwise use /g itself.
+        # Get the glyph that is model for the anchor types, if defined in glyphData.anchorGlyphSrc, otherwise use /g itself.
         gSrc = self._getAnchorTypeGlyph(g) 
         aIndex = 0
         showNames = c.w.showGuessedNames.get()
