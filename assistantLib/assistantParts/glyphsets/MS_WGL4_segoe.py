@@ -576,7 +576,7 @@ class MS_GlyphSet(GlyphSet):
        'OUmod': GD(name='OUmod', uni=0x1D3D, hex='1D3D', c='ᴽ', isMod=True),
        'OUsmall': GD(name='OUsmall', uni=0x1D15, hex='1D15', c='ᴕ', l='O', r='O', isSc=True),
        'Oacute': GD(name='Oacute', uni=0x00D3, hex='00D3', c='Ó', l='O', r='O', base='O', accents=['acutecomb'], anchors=['top', 'middle', 'bottom'], gid=148, comment='Ó O WITH ACUTE, LATIN CAPITAL LETTER'),
-       'Obarred-cy': GD(name='Obarred-cy', uni=0x04E8, hex='04E8', c='Ө', l='O', r='O', anchors=['top'], gid=877),
+       'Obarred-cy': GD(name='Obarred-cy', uni=0x04E8, hex='04E8', c='Ө', l='O', r='O', anchors=['top'], anchorTopX='TopX', gid=877),
        'Obarreddieresis-cy': GD(name='Obarreddieresis-cy', uni=0x04EA, hex='04EA', c='Ӫ', l='O', r='O', base='Obarred-cy', accents=['dieresiscomb'], anchors=['top'], gid=879),
        'Obreve': GD(name='Obreve', uni=0x014E, hex='014E', c='Ŏ', l='O', r='O', base='O', accents=['brevecomb'], anchors=['top', 'middle', 'bottom'], gid=271, comment='Ŏ'),
        'Ocaron': GD(name='Ocaron', uni=0x01D1, hex='01D1', c='Ǒ', l='O', r='O', base='O', accents=['caroncomb'], srcName='uni01D1', anchors=['top', 'middle', 'bottom'], gid=402),

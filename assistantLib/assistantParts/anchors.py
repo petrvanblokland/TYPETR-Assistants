@@ -291,6 +291,7 @@ class AssistantPartAnchors(BaseAssistantPart):
                         for aa in gg.anchors:
                             if aa.name == a.name:
                                 print(f'... autoCheckFixAnchorPosition: {pth} Anchor {a.name}')
+                                self.checkFixRequiredAnchors(gg) # First make sure that they all exist.
                                 self.autoCheckFixAnchorPosition(gg, aa)
                     
         elif shiftDown and commandDown: # All anchors of all masters
@@ -306,11 +307,14 @@ class AssistantPartAnchors(BaseAssistantPart):
                             for aa in gg.anchors:
                                 if aa.name == a.name:
                                     print(f'... autoCheckFixAnchorPosition: {pth} Anchor {a.name}')
+                                    self.checkFixRequiredAnchors(gg) # First make sure that they all exist.
                                     self.autoCheckFixAnchorPosition(gg, aa)
+                            gg.changed()
                     
         elif shiftDown and optionDown: # Only do a single anchor in the current glyph if click is within range.
             for a in g.anchors:
                 if self.distance(a.x, a.y, x, y) < self.ANCHOR_SELECT_DISTANCE:
+                    self.checkFixRequiredAnchors(g) # First make sure that they all exist.
                     self.autoCheckFixAnchorPosition(g, a)
         return
 
