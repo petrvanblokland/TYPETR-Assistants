@@ -816,7 +816,7 @@ class MS_GlyphSet(GlyphSet):
        'UeVolapuk': GD(name='UeVolapuk', uni=0xA79E, hex='A79E', r2l='B', c='Ꞟ'),
        'Ugrave': GD(name='Ugrave', uni=0x00D9, hex='00D9', c='Ù', l='U', r='U', base='U', accents=['gravecomb'], anchors=['top', 'middle', 'bottom'], gid=154, comment='Ù U WITH GRAVE, LATIN CAPITAL LETTER'),
        'Uhookabove': GD(name='Uhookabove', uni=0x1EE6, hex='1EE6', c='Ủ', l='U', r='U', base='U', accents=['hookabovecomb'], anchors=['top', 'middle', 'bottom'], gid=1153, comment='Ủ LATIN CAPITAL LETTER U WITH HOOK ABOVE'),
-       'Uhorn': GD(name='Uhorn', uni=0x01AF, hex='01AF', c='Ư', l='U', rightMin='minRight', anchorTypeTopY='U', anchors=['top', 'bottom'], gid=368, comment='Ư LATIN CAPITAL LETTER U WITH HORN'),
+       'Uhorn': GD(name='Uhorn', uni=0x01AF, hex='01AF', c='Ư', l='U', rightMin='minRight', anchorTypeTopY='U', anchorTypeTopX='U', anchorTypeBottomY='U', anchorTypeBottomX='U', anchors=['top', 'bottom'], gid=368, comment='Ư LATIN CAPITAL LETTER U WITH HORN'),
        'Uhornacute': GD(name='Uhornacute', uni=0x1EE8, hex='1EE8', c='Ứ', l='U', r='Uhorn', rightMin='minRight', base='Uhorn', accents=['acutecomb'], anchors=['top', 'bottom'], gid=1155, comment='Ứ LATIN CAPITAL LETTER U WITH HORN AND ACUTE'),
        'Uhorndotbelow': GD(name='Uhorndotbelow', uni=0x1EF0, hex='1EF0', c='Ự', l='U', r='Uhorn', rightMin='minRight', base='Uhorn', accents=['dotbelowcomb'], anchors=['top', 'bottom'], gid=1163, comment='Ự LATIN CAPITAL LETTER U WITH HORN AND DOT BELOW'),
        'Uhorngrave': GD(name='Uhorngrave', uni=0x1EEA, hex='1EEA', c='Ừ', l='U', r='Uhorn', rightMin='minRight', base='Uhorn', accents=['gravecomb'], anchors=['top', 'bottom'], gid=1157, comment='Ừ LATIN CAPITAL LETTER U WITH HORN AND GRAVE'),
