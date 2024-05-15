@@ -141,7 +141,7 @@ class MS_GlyphSet(GlyphSet):
        'Aringacute': GD(name='Aringacute', uni=0x01FA, hex='01FA', c='Ǻ', l='A', r='A', base='Aring', accents=['acutecomb'], gid=443, comment='Ǻ LATIN CAPITAL LETTER A WITH RING ABOVE AND ACUTE'),
        'Aringbelow': GD(name='Aringbelow', uni=0x1E00, hex='1E00', c='Ḁ', l='A', r='A', base='A', accents=['ringbelowcomb'], srcName='uni1E00', anchors=['top', 'middle', 'bottom'], gid=923),
        'Asmall': GD(name='Asmall', uni=0x1D00, hex='1D00', c='ᴀ', l='A', r='A', isSc=True),
-       'Astroke': GD(name='Astroke', uni=0x023A, hex='023A', c='Ⱥ', l='A', w='A', base='A', accents=['Astroke.component'], anchors=['top', 'middle', 'bottom']),
+       'Astroke': GD(name='Astroke', uni=0x023A, hex='023A', c='Ⱥ', l='A', w='A', base='A', accents=['Astroke.component'], anchorTypeTopY='A', anchorTypeBottomY='A',anchors=['top', 'middle', 'bottom']),
        'Astroke.component': GD(name='Astroke.component', gid=1598),
        'Atilde': GD(name='Atilde', uni=0x00C3, hex='00C3', c='Ã', l='A', r='A', base='A', accents=['tildecomb'], anchors=['top', 'middle', 'bottom'], gid=132, comment='Ã A WITH TILDE, LATIN CAPITAL LETTER'),
        'Aturned': GD(name='Aturned', uni=0x2C6F, hex='2C6F', c='Ɐ', l2r='A', r2l='A'),
