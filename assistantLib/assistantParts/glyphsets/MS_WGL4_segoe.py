@@ -1875,7 +1875,7 @@ class MS_GlyphSet(GlyphSet):
 
        'n': GD(name='n', uni=0x006E, hex='006E', c='n', isLower=True, anchors=['top', 'middle', 'bottom'], gid=80, comment='n'),
        'nacute': GD(name='nacute', uni=0x0144, hex='0144', c='ń', base='n', accents=['acutecomb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=261, comment='ń N WITH ACUTE, LATIN SMALL LETTER'),
-       'naira': GD(name='naira', uni=0x20A6, hex='20A6', c='₦', isLower=True, gid=1439),
+       'naira': GD(name='naira', uni=0x20A6, hex='20A6', c='₦', isLower=False, gid=1439),
        'napostrophe': GD(name='napostrophe', uni=0x0149, hex='0149', c='ŉ', base='n', accents=['quoteright'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=266, comment='ŉ'),
        'nbhyphen': GD(name='nbhyphen', isLower=True),
        'ncaron': GD(name='ncaron', uni=0x0148, hex='0148', c='ň', base='n', accents=['caroncomb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=265, comment='ň N WITH CARON, LATIN SMALL LETTER'),
@@ -2655,7 +2655,7 @@ class MS_GlyphSet(GlyphSet):
        'whiteSquare': GD(name='whiteSquare', uni=0x25A1, hex='25A1', c='□', srcName='uni25A1', isLower=True, gid=1554),
        'whook': GD(name='whook', uni=0x2C73, hex='2C73', c='ⱳ', isLower=True),
        'wmod': GD(name='wmod', uni=0x02B7, hex='02B7', c='ʷ', isLower=True, isMod=True),
-       'won': GD(name='won', uni=0x20A9, hex='20A9', c='₩', l2r='won', isLower=True, gid=1442),
+       'won': GD(name='won', uni=0x20A9, hex='20A9', c='₩', l2r='won', isLower=False, gid=1442),
        'wring': GD(name='wring', uni=0x1E98, hex='1E98', c='ẘ', l='w', r='w', base='w', accents=['ringcomb'], srcName='uni1E98', isLower=True, anchors=['top', 'middle', 'bottom'], gid=1075),
        'wturned': GD(name='wturned', uni=0x028D, hex='028D', c='ʍ', l='v', r='v', isLower=True),
        'wynn': GD(name='wynn', uni=0x01BF, hex='01BF', c='ƿ', l='p', r='p', srcName='uni01BF', isLower=True, gid=384),
