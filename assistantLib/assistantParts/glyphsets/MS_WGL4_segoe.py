@@ -1135,7 +1135,7 @@ class MS_GlyphSet(GlyphSet):
 
         #   c
 
-       'c': GD(name='c', uni=0x0063, hex='0063', c='c', isLower=True, anchors=['top', 'middle', 'bottom', 'dot'], gid=69, comment='c'),
+       'c': GD(name='c', uni=0x0063, hex='0063', c='c', isLower=True, anchors=['top', 'middle', 'bottom', 'dot'], anchorTypeTopX='TopX', anchorTypeMiddleX='MiddleX', anchorTypeBottomX='BottomX', gid=69, comment='c'),
        'cPalatalhook': GD(name='cPalatalhook', uni=0xA794, hex='A794', c='ꞔ', r='jdotless', base='c', isLower=True, anchors=['top', 'middle', 'bottom']),
        'cacute': GD(name='cacute', uni=0x0107, hex='0107', c='ć', base='c', accents=['acutecomb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=200, comment='ć C WITH ACUTE, LATIN SMALL LETTER'),
        'candrabinducomb': GD(name='candrabinducomb', uni=0x0310, hex='0310', c='̐', w=0, base='brevecomb', accents=['dotaccentcomb'], isLower=True, anchors=['top', '_top'], comment='COMBINING CANDRABINDU'),
@@ -1924,7 +1924,7 @@ class MS_GlyphSet(GlyphSet):
 
         #   o
 
-       'o': GD(name='o', uni=0x006F, hex='006F', c='o', l2r='o', isLower=True, anchors=['top', 'middle', 'bottom', 'ogonek'], gid=81, comment='o'),
+       'o': GD(name='o', uni=0x006F, hex='006F', c='o', l2r='o', isLower=True, anchors=['top', 'middle', 'bottom', 'ogonek'], anchorTypeTopX='TopX', anchorTypeMiddleX='MiddleX', anchorTypeBottomX='BottomX', gid=81, comment='o'),
        'o-blackletter': GD(name='o-blackletter', uni=0xAB3D, hex='AB3D', c='ꬽ', l='e-blackletter', r='e-blackletter', isLower=True),
        'o-cy': GD(name='o-cy', uni=0x043E, hex='043E', c='о', l2r='o', base='o', isLower=True, anchors=['top', 'middle', 'bottom'], gid=707),
        'oBottomhalf': GD(name='oBottomhalf', uni=0x1D17, hex='1D17', c='ᴗ', l='o', r='o', isLower=True),
