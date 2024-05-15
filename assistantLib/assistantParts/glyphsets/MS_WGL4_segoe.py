@@ -168,7 +168,7 @@ class MS_GlyphSet(GlyphSet):
 
         #   C
 
-       'C': GD(name='C', uni=0x0043, hex='0043', c='C', l='O', anchors=['top', 'middle', 'bottom', 'dot'], gid=37, comment='C LATIN CAPITAL LETTER C'),
+       'C': GD(name='C', uni=0x0043, hex='0043', c='C', l='O', anchors=['top', 'middle', 'bottom', 'dot'], anchorTypeTopX='TopX', anchorTypeMiddleX='MiddleX', anchorTypeBottomX='BottomX', gid=37, comment='C LATIN CAPITAL LETTER C'),
        'Cacute': GD(name='Cacute', uni=0x0106, hex='0106', c='Ć', l='O', r='C', base='C', accents=['acutecomb'], anchors=['top', 'middle', 'bottom'], gid=199, comment='Ć LATIN CAPITAL LETTER C WITH ACUTE'),
        'Cbar': GD(name='Cbar', uni=0xA792, hex='A792', c='Ꞓ', r='C', base='C', anchors=['top', 'middle', 'bottom']),
        'Ccaron': GD(name='Ccaron', uni=0x010C, hex='010C', c='Č', l='O', r='C', base='C', accents=['caroncomb'], anchors=['top', 'middle', 'bottom'], gid=205, comment='Č LATIN CAPITAL LETTER C WITH CARON'),
@@ -567,7 +567,7 @@ class MS_GlyphSet(GlyphSet):
 
         #   O
 
-       'O': GD(name='O', uni=0x004F, hex='004F', c='O', l2r='O', anchors=['top', 'middle', 'bottom', 'ogonek', 'tonos'], gid=49, comment='O'),
+       'O': GD(name='O', uni=0x004F, hex='004F', c='O', l2r='O', anchors=['top', 'middle', 'bottom', 'ogonek', 'tonos'], anchorTypeTopX='TopX', anchorTypeMiddleX='MiddleX', anchorTypeBottomX='BottomX', gid=49, comment='O'),
        'O-cy': GD(name='O-cy', uni=0x041E, hex='041E', c='О', l='O', r='O', base='O', anchors=['top', 'middle', 'bottom'], gid=675),
        'OE': GD(name='OE', uni=0x0152, hex='0152', c='Œ', l='O', r='E', anchors=['top', 'middle', 'bottom'], gid=275, comment='Œ'),
        'OEsmall': GD(name='OEsmall', uni=0x0276, hex='0276', c='ɶ', r='Esmall', isSc=True),

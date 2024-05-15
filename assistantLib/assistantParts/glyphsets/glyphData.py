@@ -93,7 +93,9 @@ class GlyphData:
             anchorSrc=None, # Master name to copy anchors from
             anchorTypeTopX=None, # Constructor method name or glyph name to copy guessed horizontal anchor positions from, overwriting the search for base glyph, fixed positions and bounds matching
             anchorTypeTopY=None, # Constructor method name or glyph name to copy guessed vertical anchor positions from, overwriting the search for base glyph, fixed positions and bounds matching
-           anchorTypeBottomX=None, 
+            anchorTypeMiddleX=None, 
+            anchorTypeMiddleY=None, 
+            anchorTypeBottomX=None, 
             anchorTypeBottomY=None, 
             # Force spacing dependencies
             l=None, r=None, w=None, 
@@ -148,6 +150,8 @@ class GlyphData:
         # More to be added if needed in the future
         self.anchorTypeTopX = anchorTypeTopX # Constructor method name or glyph name to copy guessed horizontal anchor positions from, overwriting the search for base glyph, fixed positions and bounds matching
         self.anchorTypeTopY = anchorTypeTopY # Constructor method name or glyph name to copy guessed vertical anchor positions from, overwriting the search for base glyph, fixed positions and bounds matching
+        self.anchorTypeMiddleX = anchorTypeMiddleX 
+        self.anchorTypeMiddleY = anchorTypeMiddleY 
         self.anchorTypeBottomX = anchorTypeBottomX 
         self.anchorTypeBottomY = anchorTypeBottomY 
 

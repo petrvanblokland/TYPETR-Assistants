@@ -518,20 +518,45 @@ class AssistantPartAnchors(BaseAssistantPart):
         @@@ No methods here yet.
         """
         gd = self.getGlyphData(g)
-        # Trying to guess vertical
-        if gd.isLower: # Default position below xHeight or capHeight
-            ay = g.font.info.xHeight/2
-        else:
-            ay = g.font.info.capHeight/2
-        # Try to guess horizontal
-        baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g) # In case there is a base 
-        if baseGlyph is not None:
-            #rint(baseGlyph.name, dx, dy)
-            baseAnchor = self.getAnchor(baseGlyph, a.name)
-            if baseAnchor is not None:
-                ax = baseAnchor.x + dx
-        else: # Center on width by default
-            ax = self.italicX(g, g.width/2, ay)
+        # MIDDLE_ Construct vertical position
+        if gd.anchorTypeMiddleY is not None:
+            if gd.anchorTypeMiddleY in g.font: # In case it is an existing glyph name, then take the vertical position from the corresponding anchor
+                aa = self.getAnchor(g.font[gd.anchorTypeMiddleY], a.name)
+                if aa is not None:
+                    ay = aa.y
+            else: # If not an existing glyph name, then we can assume it is a valid method name that will calculate the ay
+                # Available: 
+                ay = getattr(self, 'constructAnchor' + gd.anchorTypeMiddleY)(g, a.name, a.x, ay or a.y) # @@@ Various methods still to be implemented
+
+        else: # No construction glyph or method defined, then try to figure out from this glyph shape
+            gd = self.getGlyphData(g)
+            # Trying to guess vertical
+            if gd.isLower: # Default position below xHeight or capHeight
+                ay = g.font.info.xHeight/2
+            else:
+                ay = g.font.info.capHeight/2
+
+        # TOP_ Construct horizontal position
+        if gd.anchorTypeMiddleX is not None:
+            if gd.anchorTypeMiddleX in g.font: # In case it is an existing glyph name, then take the vertical position from the corresponding anchor
+                aa = self.getAnchor(g.font[gd.anchorTypeMiddleX], a.name)
+                if aa is not None:
+                    ax = aa.x
+            else: # If not an existing glyph name, then we can assume it is a valid method name that will calculate the ay
+                # Available: 
+                # Constructor methods are supposed to answer italic x-position
+                ax = getattr(self, 'constructAnchor' + gd.anchorTypeMiddleX)(g, a.name, a.x, ay or a.y) # Use new ay here. Various methods still to be implemented
+
+        else: # No construction glyph or method name defined, then try to figure out from the glyph shape
+            # Try to guess horizontal
+            baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g) # In case there is a base 
+            if baseGlyph is not None:
+                #rint(baseGlyph.name, dx, dy)
+                baseAnchor = self.getAnchor(baseGlyph, a.name)
+                if baseAnchor is not None:
+                    ax = baseAnchor.x + dx
+            else: # Center on width by default
+                ax = self.italicX(g, g.width/2, ay)
 
         return ax, ay
 
@@ -653,6 +678,48 @@ class AssistantPartAnchors(BaseAssistantPart):
         if not None in (ml, mr):
             return self.italicX(g, ml + (g.width - ml - mr)/2, ay) # Construct methods are supposed to answer italicized x-positions
         return g.width/2 # Cannot find margins, so just answer width/2
+
+    def constructAnchorTopX(self, g, a, ax, ay):
+        """Answer the X position of the highest point(s). If there is not point (e.g. just contours), then answer the middle of the bounaries."""
+        xx = []
+        y = None
+        for contour in g.contours:
+            for p in contour.points:
+                if p.type == 'offcurve':
+                    continue
+                if y is None or y == p.y:
+                    y = p.y
+                    xx.append(p.x)
+                elif y < p.y:
+                    y = p.y
+                    xx = [p.x]
+        if xx:
+            return int(round(sum(xx)/len(xx)))
+        # Could not find an x, e.g. because of only components. Then use the bounding box width/2 instead.
+        return self.constructAnchorBoundsX2(g, a, ax, ay)
+
+    def constructAnchorMiddleX(self, g, a, ax, ay):
+        """Answer the X position of as average of TopX and BottomX. If there is not point (e.g. just contours), then answer the middle of the bounaries."""
+        return (self.constructAnchorTopX(g, a, ax, ay) + self.constructAnchorBottomX(g, a, ax, ay))/2
+
+    def constructAnchorBottomX(self, g, a, ax, ay):
+        """Answer the X position of the lowest point(s). If there is not point (e.g. just contours), then answer the middle of the bounaries."""
+        xx = []
+        y = None
+        for contour in g.contours:
+            for p in contour.points:
+                if p.type == 'offcurve':
+                    continue
+                if y is None or y == p.y:
+                    y = p.y
+                    xx.append(p.x)
+                elif y > p.y:
+                    y = p.y
+                    xx = [p.x]
+        if xx:
+            return int(round(sum(xx)/len(xx)))
+        # Could not find an x, e.g. because of only components. Then use the bounding box width/2 instead.
+        return self.constructAnchorBoundsX2(g, a, ax, ay)
 
     #   M E R Z  A N C H O R  P O S I T I O N S
 
