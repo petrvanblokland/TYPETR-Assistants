@@ -236,13 +236,13 @@ class MasterData:
         }
 
         if baseDiacriticsTop is None: # Baseline of top diacritics
-            baseDiacriticsTop = xHeight * 1.2
+            baseDiacriticsTop = int(round(xHeight * 1.1))
         self.baseDiacriticsTop = baseDiacriticsTop
         if capDiacriticsTop is None:
-            capDiacriticsTop = capHeight * 1.1
+            capDiacriticsTop = int(round(capHeight * 1.1))
         self.capDiacriticsTop = capDiacriticsTop
         if baseDiacriticsBottom is None: # Top of bottom diacritis
-            baseDiacriticsBottom = -4 * baseOvershoot
+            baseDiacriticsBottom = int(round(-4 * baseOvershoot))
         self.baseDiacriticsBottom = baseDiacriticsBottom
 
         if baseline is None:

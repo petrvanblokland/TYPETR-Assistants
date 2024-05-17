@@ -2383,7 +2383,7 @@ class MS_GlyphSet(GlyphSet):
        'threeperemspace': GD(name='threeperemspace', uni=0x2004, hex='2004', c=' ', isLower=False),
        'threequarters': GD(name='threequarters', uni=0x00BE, hex='00BE', c='¾', base='three.numr', accents=['fraction', 'four.numr'], isLower=False, gid=127, comment='¾ VULGAR FRACTION THREE QUARTERS'),
        'threesuperior': GD(name='threesuperior', uni=0x00B3, hex='00B3', c='³', base='three.numr', isLower=False, gid=116, comment='³ THREE, SUPERSCRIPT'),
-       'thstrikethrough': GD(name='thstrikethrough', uni=0x1D7A, hex='1D7A', c='ᵺ', base='t', l='t', r='h', accents=['h', 'thstrikethrough.component'], isLower=True, anchors=['top', 'middle', 'bottom']),
+       'thstrikethrough': GD(name='thstrikethrough', uni=0x1D7A, hex='1D7A', c='ᵺ', base='t', l='t', r='h', accents=['h', 'thstrikethrough.component'], isLower=True, anchors=[]),
        'thstrikethrough.component': GD(name='thstrikethrough.component', w=0, isLower=True, gid=1705),
        'tilde': GD(name='tilde', uni=0x02DC, hex='02DC', c='˜', l=CENTER, w=ACCENT_WIDTH, base='tildecomb', isLower=True, gid=483),
        'tildebelow': GD(name='tildebelow', uni=0x0330, hex='0330', c='̰', w=0, base='tildecomb', isLower=True, anchors=['bottom', '_bottom'], gid=1706),
