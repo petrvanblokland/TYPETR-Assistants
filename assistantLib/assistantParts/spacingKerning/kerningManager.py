@@ -46,6 +46,12 @@ GR1 = 'gr1'
 GR2 = 'gr2'
 ALL1 = 'all1'
 ALL2 = 'all2'
+FIG1 = 'fig1'
+FIG2 = 'fig2'
+NUMR1 = 'numr1'
+NUMR2 = 'numr2'
+DNOM1 = 'dnom1'
+DNOM2 = 'dnom2'
 
 GROUP_NAME_PARTS = {
     LT1: (PUBLIC_KERN1, '_lt'), 
@@ -56,9 +62,15 @@ GROUP_NAME_PARTS = {
     GR2: (PUBLIC_KERN2, '_gr'),
     ALL1: (PUBLIC_KERN1, ''), 
     ALL2: (PUBLIC_KERN2, ''),
+    FIG1: (PUBLIC_KERN1, ''), 
+    FIG2: (PUBLIC_KERN2, ''),
+    NUMR1: (PUBLIC_KERN1, ''), 
+    NUMR2: (PUBLIC_KERN2, ''),
+    DNOM1: (PUBLIC_KERN1, ''), 
+    DNOM2: (PUBLIC_KERN2, ''),
 }
-BASE_SCRIPTS1 = (LT1, CY1, GR1, ALL1)
-BASE_SCRIPTS2 = (LT2, CY2, GR2, ALL2)
+BASE_SCRIPTS1 = (LT1, CY1, GR1, ALL1, FIG1, NUMR1, DNOM1)
+BASE_SCRIPTS2 = (LT2, CY2, GR2, ALL2, FIG2, NUMR2, DNOM2)
 
 # For now, this is an italic table.
 GROUP_BASE_GLYPHS = {
@@ -115,52 +127,74 @@ GROUP_BASE_GLYPHS = {
         #'bar', 
         'braceleft', 'braceright', 'bracketleft', 'bracketright', 'bullet', 
         #'cent', 
-        'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'zero',
-        'one.numr', 'two.numr', 'three.numr', 'four.numr', 'five.numr', 'six.numr', 'seven.numr', 'eight.numr', 'nine.numr', 'zero.numr',
-        'one.dnom', 'two.dnom', 'three.dnom', 'four.dnom', 'five.dnom', 'six.dnom', 'seven.dnom', 'eight.dnom', 'nine.dnom', 'zero.dnom',
         'semicolon', 'colon', 'comma', 'period',
         #'dagger', 'daggerdbl', 
-        'degree', 'dollar', 'exclam', 'exclamdown', 'fraction', 
+        'degree', 'dollar', 'exclam', 'exclamdown', 
         'guilsinglleft', 'guilsinglright', 'horizontalbar', 'hyphen', 'parenleft', 'parenright', 'percent',  
         #'periodcentered', 
         'question', 'questiondown', 
         'quoteleft', 'quoteright', 'quotesingle', 'slash', 
         #'space'
         )),
-    
     ALL2: set((
         #'euro', 
         'ampersand', 'asterisk', 'at', 'backslash', 
         #'bar', 
         'braceleft', 'braceright', 'bracketleft', 'bracketright', 'bullet', 
         #'cent', 
-        'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'zero',
-        'one.numr', 'two.numr', 'three.numr', 'four.numr', 'five.numr', 'six.numr', 'seven.numr', 'eight.numr', 'nine.numr', 'zero.numr',
-        'one.dnom', 'two.dnom', 'three.dnom', 'four.dnom', 'five.dnom', 'six.dnom', 'seven.dnom', 'eight.dnom', 'nine.dnom', 'zero.dnom',
         'semicolon', 'colon', 'comma', 'period',
         #'dagger', 'daggerdbl', 
-        'degree', 'dollar', 'exclam', 'exclamdown', 'fraction', 
+        'degree', 'dollar', 'exclam', 'exclamdown', 
         'guilsinglleft', 'guilsinglright', 'horizontalbar', 'hyphen', 'parenleft', 'parenright', 'percent',  
         #'periodcentered', 
         'question', 'questiondown', 
         'quoteleft', 'quoteright', 'quotesingle', 'slash', 
         #'space'
         )),
+    FIG1: set((
+        'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'zero',
+        )),
+    FIG2: set((
+        'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'zero',
+        )),
+    NUMR1: set((
+        'one.numr', 'two.numr', 'three.numr', 'four.numr', 'five.numr', 'six.numr', 'seven.numr', 'eight.numr', 'nine.numr', 'zero.numr',
+        )),
+    NUMR2: set((
+        'one.numr', 'two.numr', 'three.numr', 'four.numr', 'five.numr', 'six.numr', 'seven.numr', 'eight.numr', 'nine.numr', 'zero.numr',
+        )),
+    DNOM1: set((
+        'one.dnom', 'two.dnom', 'three.dnom', 'four.dnom', 'five.dnom', 'six.dnom', 'seven.dnom', 'eight.dnom', 'nine.dnom', 'zero.dnom',
+        )),
+    DNOM2: set((
+        'one.dnom', 'two.dnom', 'three.dnom', 'four.dnom', 'five.dnom', 'six.dnom', 'seven.dnom', 'eight.dnom', 'nine.dnom', 'zero.dnom',
+        )),
 }
 KERN_GROUPS = (
     (LT1, LT2),
+    (FIG1, LT2),
+    (LT1, FIG2),
+    (LT1, NUMR2),
+    (LT1, DNOM2),
     (ALL1, LT2),
     (LT1, ALL2),
 
     (CY1, CY2),
+    (FIG1, CY2),
+    (CY1, FIG2),
+    (CY1, NUMR2),
+    (CY1, DNOM2),
     (ALL1, CY2),
     (CY1, ALL2),
 
     (GR1, GR2),
+    (FIG1, GR2),
+    (GR1, FIG2),
+    (GR1, NUMR2),
+    (GR1, DNOM2),
     (ALL1, GR2),
     (GR1, ALL2),
 
-    (ALL1, ALL2),
 )
 # These groups are not recognized as identical by similarity. Force them to be part of the key base glyph name.
 FORCE_GROUP1 = {
@@ -284,9 +318,14 @@ class KerningManager:
                 if gName is not None:
                     sample.append(gName)
         
+        # Samples for kerning. If None, they will be initialize upon usage.
         self._sample = sample
         self._sampleC2SC = sampleC2SC
         self._sampleCAPS = sampleCAPS
+        # Kerning filters
+        self._kerningFilter1 = None # Select kerning pairs in sample if None or if pattern is in the group base glyph name
+        self._kerningFilterValue = None # Select kerning pairs if value is None or within a range
+        self._kerningFilter2 = None # Select kerning pairs in sample if none or if pattern is in the group base glyph name
 
         self.tabWidth = tabWidth
 
@@ -345,12 +384,51 @@ class KerningManager:
             return self._chr2glyphName 
     chr2glyphName = property(_get_chr2glyphName)      
 
-    def _initializeSamples(self):
+    def XXXX_initializeSamples(self):
         if sample is None: # Allows to define the sample, avoiding multiple generators if a whole family is open.
             sample, sampleCAPS, sampleC2SC = self._initSamples() 
         self._sample = sample
         self._sampleC2SC = sampleC2SC
         self._sampleCAPS = sampleCAPS
+
+    def _initializeKerningSample(self):
+        """Initialize the kerning sample. There are various flavrous for different stages in the process.
+        For now we just initialize from the base glyphs of each group.
+        """
+        self._sample = []
+        for scriptName1, scriptName2 in KERN_GROUPS:
+            pre1, ext1 = GROUP_NAME_PARTS[scriptName1]
+            pre2, ext2 = GROUP_NAME_PARTS[scriptName2]
+            baseGlyphs1 = sorted(GROUP_BASE_GLYPHS[scriptName1])
+            baseGlyphs2 = sorted(GROUP_BASE_GLYPHS[scriptName2])
+            for gName1 in baseGlyphs1:
+                if self._kerningSamplePattern1 is None or self._kerningSamplePattern1 == gName1:
+                    for gName2 in baseGlyphs2:
+                        if self._kerningSamplePattern2 is None or self._kerningSamplePattern2 == gName2:
+                            self._sample.append(gName1)
+                            self._sample.append(gName2)
+
+    def _get_kerningSamplePattern1(self):
+        return self._kerningSamplePattern1
+    def _set_kerningSamplePattern1(self, s):
+        self._kerningSamplePattern1 = s # Select kerning pairs in sample if None or if pattern is in the group base glyph name
+        self._sample = None # Force reset upon usage
+    kerningSamplePattern1 = property(_get_kerningSamplePattern1, _set_kerningSamplePattern1)
+    
+    def _get_kerningFilterValue(self):
+        return self._kerningFilterValue
+    def _set_kerningFilterValue(self, k):
+        self._kerningFilterValue = k # Select kerning pairs in sample if None or if pattern is in the group base glyph name
+        self._sample = None # Force reset upon usage
+    kerningSampleValue = property(_get_kerningFilterValue, _set_kerningFilterValue)
+
+    def _get_kerningSamplePattern2(self):
+        return self._kerningSamplePattern2
+    def _set_kerningSamplePattern2(self, s):
+        self._kerningSamplePattern2 = s # Select kerning pairs in sample if None or if pattern is in the group base glyph name
+        self._sample = None # Force reset upon usage
+    kerningSamplePattern2 = property(_get_kerningSamplePattern2, _set_kerningSamplePattern2)
+    
 
     #   G R O U P S
 
@@ -1226,7 +1304,7 @@ class KerningManager:
 
         print(f'... Groups: {len(self.f.groups)} Kerning pairs {len(self.f.kerning)}')
 
-                    
+
     #   K E R N N E T  A I 
 
     KERNNET_UNIT = 4
@@ -1687,6 +1765,8 @@ class KerningManager:
 
     def getSpacingSample_Kerning(self, g, length, index):
         """Sample mode 4. Answer the sample for kerning matching the script of g"""
+        if self._sample is None: # Kerning sample still needs to be initialized
+            self._initializeKerningSample()
         return self._sample[index: index+length]
 
     def getSpacingSample_GroupKerning(self, g, length, index):

@@ -1618,8 +1618,8 @@ class MS_GlyphSet(GlyphSet):
 
         #   i
 
-       'i': GD(name='i', uni=0x0069, hex='0069', c='i', isLower=True, l='off', w='idotless', anchors=['top', 'middle', 'bottom', 'ogonek'], gid=75, comment='i'),
-       'i-cy': GD(name='i-cy', uni=0x0456, hex='0456', c='і', l='i', w='idotless', base='i', isLower=True, anchors=['top', 'middle', 'bottom'], gid=731),
+       'i': GD(name='i', uni=0x0069, hex='0069', c='i', isLower=True, l='off', w='idotless', anchorBottomX='BottomX', anchorMiddleX='TopX', anchorTopX='TopX', anchors=['top', 'middle', 'bottom', 'ogonek'], gid=75, comment='i'),
+       'i-cy': GD(name='i-cy', uni=0x0456, hex='0456', c='і', l='i', w='idotless', base='i', anchorBottomX='BottomX', anchorMiddleX='TopX', anchorTopX='TopX', isLower=True, anchors=['top', 'middle', 'bottom'], gid=731),
        'iTurned': GD(name='iTurned', uni=0x1D09, hex='1D09', c='ᴉ', isLower=True),
        'iTurnedmod': GD(name='iTurnedmod', uni=0x1D4E, hex='1D4E', c='ᵎ', isLower=True, isMod=True),
        'ia-cy': GD(name='ia-cy', uni=0x044F, hex='044F', c='я', r='en-cy', isLower=True, gid=724),
@@ -1634,7 +1634,7 @@ class MS_GlyphSet(GlyphSet):
        'idieresis.component': GD(name='idieresis.component', w=0, isLower=True, anchors=['top', '_top'], gid=1660),
        'idieresisacute': GD(name='idieresisacute', uni=0x1E2F, hex='1E2F', c='ḯ', w='idotless', bl='idotless', base='idotless', accents=['idieresis.component'], srcName='uni1E2F', isLower=True, anchors=['top', 'middle', 'bottom'], gid=970),
        'idotbelow': GD(name='idotbelow', uni=0x1ECB, hex='1ECB', c='ị', w='idotless', bl='idotless', base='i', accents=['dotbelowcomb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=1126, comment='ị I WITH DOT BELOW, LATIN SMALL LETTER'),
-       'idotless': GD(name='idotless', uni=0x0131, hex='0131', l='l', r='off', c='ı', isLower=True, anchors=['top', 'middle', 'bottom', 'ogonek'], gid=242),
+       'idotless': GD(name='idotless', uni=0x0131, hex='0131', l='l', r='off', c='ı', isLower=True, anchorBottomX='BottomX', anchorMiddleX='TopX', anchorTopX='TopX', anchors=['top', 'middle', 'bottom', 'ogonek'], gid=242),
        'idotlessstroke': GD(name='idotlessstroke', uni=0x1D7B, hex='1D7B', c='ᵻ', r2l='Esmall', r='Esmall', srcName='uni1D7B', isLower=True, gid=922),
        'ie-cy': GD(name='ie-cy', uni=0x0435, hex='0435', c='е', l='o', w='e', base='e', isLower=True, anchors=['top', 'middle', 'bottom'], gid=698),
        'iebreve-cy': GD(name='iebreve-cy', uni=0x04D7, hex='04D7', c='ӗ', l='e', w='e', base='e', accents=['brevecomb.component'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=860),

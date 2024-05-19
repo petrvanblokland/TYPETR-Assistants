@@ -451,6 +451,9 @@ class AssistantPartSpacer(BaseAssistantPart):
         y += L
         c.w.spacerMode = RadioGroup((C0, y, 2*CW, L), ('Glyphs', 'Similar', 'Group', 'Space', 'Kern'), isVertical=False, sizeStyle='small', callback=self.updateEditor)
         c.w.spacerMode.set(1)
+        c.w.kerningSamplePattern1 = EditText((C2, y, CW/2-18, L), callback=self.makeKerningSampleCallback) # Pattern for selecting kerning sample group 1
+        c.w.kerningSampleValue = EditText((C2+CW/2-18, y, 36, L), callback=self.makeKerningSampleCallback) # Pattern for selecting kerning value range sample group 1
+        c.w.kerningSamplePattern2 = EditText((C2+CW/2+18, y, CW/2-18, L), callback=self.makeKerningSampleCallback) # Pattern for selecting kerning sample group 2
         #c.w.decKern2Button = Button((C2, y, CW/4, L), '<[%s]' % personalKey_m, callback=self.spacerDecKern2Callback)
         #c.w.incKern2Button = Button((C2+CW/4, y, CW/4, L), '[%s]>' % personalKey_n, callback=self.spacerIncKern2Callback)
         #c.w.decKern1Button = Button((C2+2*CW/4, y, CW/4, L), '<[%s]' % personalKey_period, callback=self.spacerDecKern1Callback)
@@ -472,6 +475,16 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         return y
 
+    def makeKerningSampleCallback(self, sender):
+        """One of the kerning sample filters changed, let de kerning manager make a new kerning sample."""
+        c = self.getController()
+        g = self.getCurrentGlyph()
+        km = self.getKerningManager(g.font)
+        km.kerningSamplePattern1 = c.w.kerningSamplePattern1.get() or None
+        km.kerningSampleValue = int(c.w.kerningSampleValue.get() or 0) or None
+        km.kerningSamplePattern2 = c.w.kerningSamplePattern2.get() or None
+        g.changed()
+        
     def autoSpaceAllCallback(self, sender):
         """Auto space all UFO's in the family, recursively applying all rules until that base glyph. Keep track of the glyphs 
         that were modified to avoid double work. Report on the glypns that got changed."""
