@@ -31,6 +31,10 @@ for path in PATHS:
 from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart
 from assistantLib.assistantParts.data import * # Import anchors names
 
+ARROW_KEYS = [NSUpArrowFunctionKey, NSDownArrowFunctionKey,
+        NSLeftArrowFunctionKey, NSRightArrowFunctionKey, NSPageUpFunctionKey,
+        NSPageDownFunctionKey, NSHomeFunctionKey, NSEndFunctionKey]
+
 class KerningLineGlyphPosition:
     """Element that holds position and name of glyphs in the spacer/kerning line. This makes it easier 
     for mouseover to detect clicks on the line"""
@@ -65,6 +69,8 @@ class AssistantPartSpacer(BaseAssistantPart):
     SPACER_HOVER_COLOR = 1, 0, 0, 1 # Mouse goes over the element
     SPACER_LINE_BOX_COLOR = 0, 0, 0, 0.5 # Stroke color of space box
 
+    SPACER_FILL_GLYPH_COLOR = 0, 0, 0, 0.9 # Fill color for large sample glyphs on left and right side
+
     def initMerzSpacer(self, container):
         """Define the Merz elements for feedback about where margins/width comes from."""
 
@@ -88,6 +94,17 @@ class AssistantPartSpacer(BaseAssistantPart):
             visible=False,
         )
         self.spacerWhiteBackground.addScaleTransformation(self.KERN_SCALE)
+
+        self.spacerGlyphLeft = container.appendPathSublayer(
+            position=(0, 0),
+            fillColor=self.SPACER_FILL_COLOR,
+            visible=False,
+        )
+        self.spacerGlyphRight = container.appendPathSublayer(
+            position=(0, 0),
+            fillColor=self.SPACER_FILL_COLOR,
+            visible=False,
+        )
         
         # Glyphs cells on the spacer/kerning line
 
@@ -755,12 +772,12 @@ class AssistantPartSpacer(BaseAssistantPart):
         #print('Page Down', event['shiftDown'], event['optionDown'], event['controlDown'], event['commandDown'])
 
     def spacerPageHome(self, g, c, event):
-        self.spacerSampleIndex = 0
+        self.spacerSampleIndex += 1
         g.changed()
         #print('Page Home', event['shiftDown'], event['optionDown'], event['controlDown'], event['commandDown'])
 
     def spacerPageEnd(self, g, c, event):
-        self.spacerSampleIndex = 1000
+        self.spacerSampleIndex -= 1
         g.changed()
         #print('Page End', event['shiftDown'], event['optionDown'], event['controlDown'], event['commandDown'])
 

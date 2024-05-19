@@ -1697,7 +1697,7 @@ class MS_GlyphSet(GlyphSet):
 
         #   j
 
-       'j': GD(name='j', uni=0x006A, hex='006A', c='j', isLower=True, anchors=['middle', 'bottom'], gid=76, comment='j'),
+       'j': GD(name='j', uni=0x006A, hex='006A', c='j', l='off', isLower=True, anchors=['middle', 'bottom'], gid=76, comment='j'),
        'jcaron': GD(name='jcaron', uni=0x01F0, hex='01F0', c='ǰ', l='j', w='j', base='jdotless', accents=['caroncomb'], srcName='uni01F0', isLower=True, anchors=['top', 'middle', 'bottom'], gid=433),
        'jcircumflex': GD(name='jcircumflex', uni=0x0135, hex='0135', c='ĵ', l='j', w='j', base='jdotless', accents=['circumflexcomb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=246, comment='ĵ J WITH CIRCUMFLEX, LATIN SMALL LETTER'),
        'jcrossedtail': GD(name='jcrossedtail', uni=0x029D, hex='029D', c='ʝ', rightMin='minRight', isLower=True),

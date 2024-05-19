@@ -395,7 +395,8 @@ class KerningManager:
         """Initialize the kerning sample. There are various flavrous for different stages in the process.
         For now we just initialize from the base glyphs of each group.
         """
-        self._sample = []
+        initSample = ['H', 'O', 'H', 'n', 'H', 'n', 'o']
+        self._sample = initSample.copy()
         for scriptName1, scriptName2 in KERN_GROUPS:
             pre1, ext1 = GROUP_NAME_PARTS[scriptName1]
             pre2, ext2 = GROUP_NAME_PARTS[scriptName2]
@@ -407,7 +408,8 @@ class KerningManager:
                         if self._kerningSamplePattern2 is None or self._kerningSamplePattern2 == gName2:
                             self._sample.append(gName1)
                             self._sample.append(gName2)
-
+        self._sample += initSample
+        
     def _get_kerningSamplePattern1(self):
         return self._kerningSamplePattern1
     def _set_kerningSamplePattern1(self, s):
