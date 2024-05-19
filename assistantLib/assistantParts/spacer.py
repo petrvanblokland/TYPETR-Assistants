@@ -140,6 +140,8 @@ class AssistantPartSpacer(BaseAssistantPart):
             kerningLineName.setHorizontalAlignment('center')
             self.kerningLineNames.append(kerningLineName)
 
+        # Full size in editor
+
         self.kerningSelectedGlyphMarker = container.appendRectangleSublayer(
             name='kerningSelectedGlyphMarker',
             position=(0, 0),
@@ -248,7 +250,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         m = h/5 # Margin around white rectangle.
         x = 0 # Adjusted from the previous line calculation
         y = f.info.descender/self.KERN_SCALE - 1.5*m/self.KERN_SCALE
-        k = 0 # TODO For now, later we'll add kerning here.
+        k = None
         dw = f.info.unitsPerEm/5 # Extra width to zero-width glyphs
 
         visible = c.w.showSpacingSampleLine.get()
@@ -272,12 +274,20 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         self.spacerGlyphPositions = [] # Reset the list of KerningLineGlyphPosition instances.
 
+        prevName = None # Remember previous glyph name to get the kerning for the pair
+
         # We need to do this in 2 runs unfortunately, constructing the list of spacerGlyphPositions first,
         # in order to center the line by its total width.
         for gIndex, kerningGlyphLayer in enumerate(self.kerningLine): # List of kerned glyph images
             if gIndex >= len(sample):
                 break
             spaceG = f[sample[gIndex]]
+
+            if prevName is None:
+                k = 0
+            else:
+                k, groupK, kerningType = km.getKerning(prevName, spaceG.name) # Get the kerning from the groups of these glyphs
+
             if g.name == spaceG.name:
                 color = self.SPACER_SELECTED_COLOR
             else:
@@ -286,10 +296,13 @@ class AssistantPartSpacer(BaseAssistantPart):
             if not sw: # In case of diacritics on width == 0, add wordspace in front and behind.
                 x += dw
                 sw += dw
+            x += k # Correct start position of this glyph by kerning with the previous glyph
             self.spacerGlyphPositions.append(KerningLineGlyphPosition(spaceG, x, y, sw, h, k, color))
-            x += sw + k # @@@ TODO Define kerning k later
+            x += sw
             if not sw: # In case of diacritics on width == 0, add wordspace in front and behind.
                 x += dw
+
+            prevName = spaceG.name # Rembmer for next kerning pair
 
         gpFirst = self.spacerGlyphPositions[0]
         gpLast = self.spacerGlyphPositions[-1]
@@ -320,9 +333,23 @@ class AssistantPartSpacer(BaseAssistantPart):
             kerningNameLayer.setPosition((gp.x + offsetX + gp.w/2, y + f.info.descender))
             kerningNameLayer.setVisible(False) # Will be shown on mouse over hover
 
+            # Show kerning value with the previous pair
+
+            kerningLineValue = self.kerningLineValues[gIndex]
+            if gp.k < 0:
+                kerningLineValue.setFillColor((1, 0, 0, 1))
+            elif gp.k == 0:
+                kerningLineValue.setFillColor((0.5, 0.5, 0.5, 1))
+            else: # gp.k > 0
+                kerningLineValue.setFillColor((0, 0, 0.5, 1))
+            kerningLineValue.setText(f'{round(gp.k)}')
+            kerningLineValue.setPosition((gp.x + offsetX, y + f.info.descender - 12))
+            kerningLineValue.setVisible(True)
+
         for n in range(gIndex, len(self.kerningLine)):
             self.kerningLine[n].setVisible(False)
             self.kerningLineNames[n].setVisible(False)
+            self.kerningLineValues[n].setVisible(False)
 
     def mouseMoveSpacer(self, g, x, y, event):
         """Set the hoover color for the current selected glyph"""
@@ -484,7 +511,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         km.kerningSampleValue = int(c.w.kerningSampleValue.get() or 0) or None
         km.kerningSamplePattern2 = c.w.kerningSamplePattern2.get() or None
         g.changed()
-        
+
     def autoSpaceAllCallback(self, sender):
         """Auto space all UFO's in the family, recursively applying all rules until that base glyph. Keep track of the glyphs 
         that were modified to avoid double work. Report on the glypns that got changed."""
@@ -596,20 +623,28 @@ class AssistantPartSpacer(BaseAssistantPart):
         return changed
 
     def spacerDecLeftMarginCallback(self, sender):
-        self._adjustLeftMarginByUnits(g, -1)
-        g.changed()
+        g = self.getCurrentGlyph()
+        if g is not None:
+            self._adjustLeftMarginByUnits(g, -1)
+            g.changed()
 
     def spacerIncLeftMarginCallback(self, sender):
-        self._adjustLeftMarginByUnits(g, 1)
-        g.changed()
+        g = self.getCurrentGlyph()
+        if g is not None:
+            self._adjustLeftMarginByUnits(g, 1)
+            g.changed()
 
     def spacerDecRightMarginCallback(self, sender):
-        self._adjustRightMarginByUnits(g, -1)
-        g.changed()
+        g = self.getCurrentGlyph()
+        if g is not None:
+            self._adjustRightMarginByUnits(g, -1)
+            g.changed()
 
     def spacerIncRightMarginCallback(self, sender):
-        self._adjustRightMarginByUnits(g, 1)
-        g.changed()
+        g = self.getCurrentGlyph()
+        if g is not None:
+            self._adjustRightMarginByUnits(g, 1)
+            g.changed()
 
 
     def spacerDecLeftMarginCap(self, g, c, event):
@@ -646,6 +681,7 @@ class AssistantPartSpacer(BaseAssistantPart):
 
     #   K E R N I N G  K E Y S
 
+    """
     def spacerDecKern2Callback(self, sender):
         self._adjustLeftMarginByUnits(g, -1)
         g.changed()
@@ -662,37 +698,38 @@ class AssistantPartSpacer(BaseAssistantPart):
         self._adjustRightMarginByUnits(g, 1)
         g.changed()
 
+    """
 
     def spacerDecKern2Cap(self, g, c, event):
-        self._adjustLeftMarginByUnits(g, -5)
+        self._adjustLeftKerning(g, -5)
         g.changed()
 
     def spacerDecKern2(self, g, c, event):
-        self._adjustLeftMarginByUnits(g, -1)
+        self._adjustLeftKerning(g, -1)
         g.changed()
 
     def spacerIncKern2Cap(self, g, c, event):
-        self._adjustLeftMarginByUnits(g, 5)
+        self._adjustLeftKerning(g, 5)
         g.changed()
 
     def spacerIncKern2(self, g, c, event):
-        self._adjustLeftMarginByUnits(g, 1)
+        self._adjustLeftKerning(g, 1)
         g.changed()
 
     def spacerDecKern1Cap(self, g, c, event):
-        self._adjustRightMarginByUnits(g, -5)
+        self._adjustRightKerning(g, -5)
         g.changed()
 
     def spacerDecKern1(self, g, c, event):
-        self._adjustRightMarginByUnits(g, -1)
+        self._adjustRightKerning(g, -1)
         g.changed()
 
     def spacerIncKern1Cap(self, g, c, event):
-        self._adjustRightMarginByUnits(g, 5)
+        self._adjustRightKerning(g, 5)
         g.changed()
 
     def spacerIncKern1(self, g, c, event):
-        self._adjustRightMarginByUnits(g, 1)
+        self._adjustRightKerning(g, 1)
         g.changed()
     
     #   S A M P L E  K E Y S
@@ -774,6 +811,67 @@ class AssistantPartSpacer(BaseAssistantPart):
                 self._adjustLeftKerning(g, 1) # 4           
             changed |= self.checkSpacingDependencies(g) # Update the spacing consistency for all glyphs in the kerning line
         """
+
+    def _adjustLeftKerning(self, g, value=None, newK=None):
+        """ 
+        Two ways of usage:
+        • value is relative adjustment
+        • newK is setting new kerning value.
+           
+            3 = glyph<-->glyph # Not used
+            2 = group<-->glyph
+            1 = glyph<-->group
+            0 or None = group<-->group
+        """
+        print('_adjustLeftKerning', g.name, value, newK)
+        return
+
+        assert value is not None or newK is not None
+        f = g.font
+        km = self.getKerningManager(f)
+        if self.kernGlyph1 is None:
+            return
+        k, groupK, kerningType = km.getKerning(self.kernGlyph1, g.name)
+        if newK is not None:
+            k = newK # Set this value, probably predicted.
+        else: # Adjust relative by rounded value
+            k = int(round(k/self.KERNING_UNIT))*self.KERNING_UNIT + value * self.KERNING_UNIT
+        if not kerningType and self.capLock:
+            kerningType = 2 # group<-->glyph
+        elif kerningType == 2 and self.capLock:
+            kerningType = 3 # glyph<-->glyph 
+        km.setKerning(self.kernGlyph1, g.name, k, kerningType)
+    
+    def _adjustRightKerning(self, g, value=None, newK=None):
+        """    
+        Two ways of usage:
+        • value is relative adjustment
+        • newK is setting new kerning value.
+
+            3 = glyph<-->glyph # Not used
+            2 = group<-->glyph
+            1 = glyph<-->group
+            0 or None = group<-->group
+        """
+        print('_adjustRightKerning', g.name, value, newK)
+        return
+
+        assert value is not None or newK is not None
+        f = g.font
+        km = self.getKerningManager(f)
+        unit = 4
+        if self.kernGlyph2 is None:
+            return
+        k, groupK, kerningType = km.getKerning(g.name, self.kernGlyph2)
+        if newK is not None:
+            k = newK # Set this value, probably predicted.
+        else: # Adjust relative by rounded value
+            k = int(round(k/self.KERNING_UNIT))*self.KERNING_UNIT + value * self.KERNING_UNIT
+        if not kerningType and self.capLock:
+            kerningType = 1 # glyph<-->group
+        elif kerningType == 1 and self.capLock:
+            kerningType = 3 # glyph<-->glyph
+        km.setKerning(g.name, self.kernGlyph2, k, kerningType)
 
     #   G U E S S  S P A C I N G  &  K E R N I N G
 
