@@ -422,6 +422,18 @@ class AssistantPartSpacer(BaseAssistantPart):
         g = info['glyph']
         if g is None:
             return changed # Nothing changed.
+
+        gLeft = g.font['g']
+        gRight = g.font['a']
+
+        self.spacerGlyphLeft.setPath(gLeft.getRepresentation("merz.CGPath"))
+        self.spacerGlyphLeft.setPosition((-gLeft.width, 0))
+        self.spacerGlyphLeft.setVisible(True)
+
+        self.spacerGlyphRight.setPath(gRight.getRepresentation("merz.CGPath"))
+        self.spacerGlyphRight.setPosition((g.width, 0))
+        self.spacerGlyphRight.setVisible(True)
+
         changed = self.checkFixGlyphSpacing(g)
         return changed
 
@@ -947,7 +959,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             if gd is None: # Cannot find this glyph
                 print(f'### checkFixGlyphLeftMargin: Cannot find GlyphData for /{g.name}')
             
-            elif 'off' in (gd.l, gd.r):
+            elif gd.l == 'off':
                 label = f'Auto-spacing is off'
                 print(f'... checkFixGlyphLeftMargin: /{g.name} auto-spacing is off')
 
@@ -1033,7 +1045,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             if gd is None: # Cannot find this glyph
                 print(f'### checkFixGlyphRightMargin: Cannot find GlyphData for /{g.name}')
 
-            elif 'off' in (gd.l, gd.r):
+            elif gd.r == 'off':
                 label = f'Auto-spacing is off'
                 print(f'... checkFixGlyphRightMargin: /{g.name} auto-spacing is off')
 

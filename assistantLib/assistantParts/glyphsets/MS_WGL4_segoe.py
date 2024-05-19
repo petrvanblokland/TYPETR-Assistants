@@ -1501,7 +1501,7 @@ class MS_GlyphSet(GlyphSet):
 
         #   g
 
-       'g': GD(name='g', uni=0x0067, hex='0067', c='g', isLower=True, anchors=['top', 'middle', 'bottom'], gid=73, comment='g'),
+       'g': GD(name='g', uni=0x0067, hex='0067', c='g', l2r='l', isLower=True, anchors=['top', 'middle', 'bottom'], gid=73, comment='g'),
        'gacute': GD(name='gacute', uni=0x01F5, hex='01F5', c='ǵ', base='g', accents=['acutecomb'], srcName='uni01F5', isLower=True, anchors=['top', 'middle', 'bottom'], gid=438),
        'gamma': GD(name='gamma', uni=0x03B3, hex='03B3', c='γ', isLower=True, gid=568),
        'gamma-latin': GD(name='gamma-latin', uni=0x0263, hex='0263', c='ɣ', isLower=True),
@@ -1697,12 +1697,12 @@ class MS_GlyphSet(GlyphSet):
 
         #   j
 
-       'j': GD(name='j', uni=0x006A, hex='006A', c='j', l='off', isLower=True, anchors=['middle', 'bottom'], gid=76, comment='j'),
+       'j': GD(name='j', uni=0x006A, hex='006A', c='j', l='off', r='g', isLower=True, anchors=['middle', 'bottom'], gid=76, comment='j'),
        'jcaron': GD(name='jcaron', uni=0x01F0, hex='01F0', c='ǰ', l='j', w='j', base='jdotless', accents=['caroncomb'], srcName='uni01F0', isLower=True, anchors=['top', 'middle', 'bottom'], gid=433),
        'jcircumflex': GD(name='jcircumflex', uni=0x0135, hex='0135', c='ĵ', l='j', w='j', base='jdotless', accents=['circumflexcomb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=246, comment='ĵ J WITH CIRCUMFLEX, LATIN SMALL LETTER'),
        'jcrossedtail': GD(name='jcrossedtail', uni=0x029D, hex='029D', c='ʝ', rightMin='minRight', isLower=True),
        'jcrossedtailmod': GD(name='jcrossedtailmod', uni=0x1DA8, hex='1DA8', c='ᶨ', isLower=True, isMod=True),
-       'jdotless': GD(name='jdotless', uni=0x0237, hex='0237', c='ȷ', l='j', isLower=True, anchors=['top', 'middle', 'bottom'], gid=455),
+       'jdotless': GD(name='jdotless', uni=0x0237, hex='0237', c='ȷ', l='j', r='j', isLower=True, anchors=['top', 'middle', 'bottom'], gid=455),
        'jdotlessstroke': GD(name='jdotlessstroke', uni=0x025F, hex='025F', l='jdotless', r='hyphen', c='ɟ', isLower=True),
        'jdotlessstrokehook': GD(name='jdotlessstrokehook', uni=0x0284, hex='0284', c='ʄ', l='j', r='f', isLower=True),
        'jdotlessstrokemod': GD(name='jdotlessstrokemod', uni=0x1DA1, hex='1DA1', c='ᶡ', isLower=True, isMod=True),
