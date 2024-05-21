@@ -790,11 +790,10 @@ class AssistantPartSpacer(BaseAssistantPart):
 
     def spacerPreviousKerningLine(self, g, c, event):
         km = self.getKerningManager(g.font)
-
+        dec = len(self.kerningLine)
         if event['shiftDown']:
-            dec = len(self.kerningLine) * 10
-        else:
-            dec = len(self.kernignLine)
+            dec *= 10
+        
         self.spacerSampleIndex = max(0, self.spacerSampleIndex - dec)
         prevGlyphName = km.kerningSample[self.spacerSampleIndex]
         if prevGlyphName in g.font:
@@ -806,10 +805,10 @@ class AssistantPartSpacer(BaseAssistantPart):
 
     def spacerNextKerningLine(self, g, c, event):
         km = self.getKerningManager(g.font)
+        inc = len(self.kerningLine) # Go to next kerning line
         if event['shiftDown']:
-            inc = len(self.kerningLine) * 10
-        else:
-            inc = len(self.kerningLine)
+            inc *= 10
+
         self.spacerSampleIndex = min(len(km.kerningSample), self.spacerSampleIndex + inc)
         nextGlyphName = km.kerningSample[self.spacerSampleIndex]
         if nextGlyphName in g.font:
@@ -821,10 +820,10 @@ class AssistantPartSpacer(BaseAssistantPart):
 
     def spacerPreviousKerningGlyph(self, g, c, event):
         km = self.getKerningManager(g.font)
+        dec = 1 # Units
         if event['shiftDown']:
-            dec = 10
-        else:
-            dec = 1
+            dec *= 10
+
         self.spacerSampleIndex = max(0, self.spacerSampleIndex - dec)
         prevGlyphName = km.kerningSample[self.spacerSampleIndex]
         if prevGlyphName in g.font:
@@ -836,10 +835,10 @@ class AssistantPartSpacer(BaseAssistantPart):
 
     def spacerNextKerningGlyph(self, g, c, event):
         km = self.getKerningManager(g.font)
+        inc = 1
         if event['shiftDown']:
-            inc = 10
-        else:
-            inc = 1
+            inc *= 10
+
         self.spacerSampleIndex = min(len(km.kerningSample), self.spacerSampleIndex + inc)
         nextGlyphName = km.kerningSample[self.spacerSampleIndex]
         if nextGlyphName in g.font:
