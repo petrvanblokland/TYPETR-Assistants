@@ -344,7 +344,8 @@ class BaseAssistant:
         """Open this glyph in a RoboFont glyph window, if it is not open of if newWindow is set to True.
         Otherwise open the glyph in the window of the current glyph.
         """
-        OpenGlyphWindow(g, newWindow=newWindow)
+        if g is not None:
+            OpenGlyphWindow(g, newWindow=newWindow)
 
     #   G L Y P H
 

@@ -232,13 +232,13 @@ class KerningManager:
     by groups, by specification in the GlyphData, by Similarity and by KernNet-AI. It is up to the calling assistant to decide
     which strategy fits best to a certain design and to a certain phase in the design process.
 
-    The KerningManager also is able to supply sample lists of glyphname, that fit best to the current task (spacing or kerning)
+    The KerningManager also is able to supply sample lists of glyphnames, that fit best to the current task (spacing or kerning)
     for a specific glyph.
 
     """
 
     def __init__(self, f, md, features=None, 
-            sample=None, sampleCAPS=None, sampleC2SC=None, # List of (kerning) glyph names
+            #sample=None, sampleCAPS=None, sampleC2SC=None, # List of (kerning) glyph names
             simT=0.90, simSameCategory=True, simSameScript=True, simClip=300, simZones=None,
             automaticGroups=True, verbose=True,
             tabWidth=TAB_WIDTH, fixedLeftMarginPatterns=None, fixedRightMarginPatterns=None, fixedWidthPatterns=None,
@@ -310,22 +310,22 @@ class KerningManager:
             groupBaseGlyphs = GROUP_BASE_GLYPHS # Use default
         self.groupBaseGlyphs = groupBaseGlyphs
 
-        if not sample: # Not defined, then construct default
-            sample = []
-            for ch in SAMPLES:
-                uni = ord(ch)
-                gName = md.glyphSet.unicode2GlyphName.get(uni)
-                if gName is not None:
-                    sample.append(gName)
+        # Deprecated, now we have as dictionary of samples, initialized upon property request.
+        #if not sample: # Not defined, then construct default
+        #    sample = []
+        #    for ch in SAMPLES:
+        #        uni = ord(ch)
+        #        gName = md.glyphSet.unicode2GlyphName.get(uni)
+        #        if gName is not None:
+        #            sample.append(gName)
         
-        # Samples for kerning. If None, they will be initialize upon usage.
-        self._sample = sample
-        self._sampleC2SC = sampleC2SC
-        self._sampleCAPS = sampleCAPS
+        # Cashed sample for kerning. If None, it will be initialize upon usage.
+        self._kerningSample = None
+
         # Kerning filters
-        self._kerningFilter1 = None # Select kerning pairs in sample if None or if pattern is in the group base glyph name
-        self._kerningFilterValue = None # Select kerning pairs if value is None or within a range
-        self._kerningFilter2 = None # Select kerning pairs in sample if none or if pattern is in the group base glyph name
+        self._kerningSampleFilter1 = None # Select sample kerning pairs in sample if None or if pattern is in the group base glyph name
+        self._kerningSampleFilterValue = None # Select sample kerning pairs if value is None or within a range
+        self._kerningSampleFilter2 = None # Select sample kerning pairs in sample if none or if pattern is in the group base glyph name
 
         self.tabWidth = tabWidth
 
@@ -384,53 +384,6 @@ class KerningManager:
             return self._chr2glyphName 
     chr2glyphName = property(_get_chr2glyphName)      
 
-    def XXXX_initializeSamples(self):
-        if sample is None: # Allows to define the sample, avoiding multiple generators if a whole family is open.
-            sample, sampleCAPS, sampleC2SC = self._initSamples() 
-        self._sample = sample
-        self._sampleC2SC = sampleC2SC
-        self._sampleCAPS = sampleCAPS
-
-    def _initializeKerningSample(self):
-        """Initialize the kerning sample. There are various flavrous for different stages in the process.
-        For now we just initialize from the base glyphs of each group.
-        """
-        initSample = ['H', 'O', 'H', 'n', 'H', 'n', 'o']
-        self._sample = initSample.copy()
-        for scriptName1, scriptName2 in KERN_GROUPS:
-            pre1, ext1 = GROUP_NAME_PARTS[scriptName1]
-            pre2, ext2 = GROUP_NAME_PARTS[scriptName2]
-            baseGlyphs1 = sorted(GROUP_BASE_GLYPHS[scriptName1])
-            baseGlyphs2 = sorted(GROUP_BASE_GLYPHS[scriptName2])
-            for gName1 in baseGlyphs1:
-                if self._kerningSamplePattern1 is None or self._kerningSamplePattern1 == gName1:
-                    for gName2 in baseGlyphs2:
-                        if self._kerningSamplePattern2 is None or self._kerningSamplePattern2 == gName2:
-                            self._sample.append(gName1)
-                            self._sample.append(gName2)
-        self._sample += initSample
-        
-    def _get_kerningSamplePattern1(self):
-        return self._kerningSamplePattern1
-    def _set_kerningSamplePattern1(self, s):
-        self._kerningSamplePattern1 = s # Select kerning pairs in sample if None or if pattern is in the group base glyph name
-        self._sample = None # Force reset upon usage
-    kerningSamplePattern1 = property(_get_kerningSamplePattern1, _set_kerningSamplePattern1)
-    
-    def _get_kerningFilterValue(self):
-        return self._kerningFilterValue
-    def _set_kerningFilterValue(self, k):
-        self._kerningFilterValue = k # Select kerning pairs in sample if None or if pattern is in the group base glyph name
-        self._sample = None # Force reset upon usage
-    kerningSampleValue = property(_get_kerningFilterValue, _set_kerningFilterValue)
-
-    def _get_kerningSamplePattern2(self):
-        return self._kerningSamplePattern2
-    def _set_kerningSamplePattern2(self, s):
-        self._kerningSamplePattern2 = s # Select kerning pairs in sample if None or if pattern is in the group base glyph name
-        self._sample = None # Force reset upon usage
-    kerningSamplePattern2 = property(_get_kerningSamplePattern2, _set_kerningSamplePattern2)
-    
 
     #   G R O U P S
 
@@ -1673,7 +1626,7 @@ class KerningManager:
 
     #   S A M P L E S
 
-    def _initSamples(self):
+    def XXX_initSamples(self):
         """Answer lists of glyph names for the MAIN_SAMPLES. If a lower case glyph exists as small cap then add it to sampleCAPS.
         If a capital exists as small cap, then add it to the sampleC2SC. """
         sample = [] # List of glyph names
@@ -1718,30 +1671,32 @@ class KerningManager:
         1: 'getSpacingSample_Similarity',
         2: 'getSpacingSample_Group',
         3: 'getSpacingSample_Spacing',
-        4: 'getSpacingSample_Kerning',
-        5: 'getSpacingSample_GroupKerning',
+        4: 'getSpacingSample_GroupKerning',
     }
 
-    def getSpacingSample(self, g, context=0, length=40, index=0):
+    def getSpacingSample(self, g, context=0, length=40, index=0, initialize=False):
         """Answer a single sample line of the defined length for the selected context.
         If the index in defined and the possible sample is larger than length, the slice the sample around the index.
         0    Glyphset
         1    According to similarity
         2    By group mode context
         3    By spacing mode context
-        4    By kerning mode context
+        4    By group-kerning mode context
 
+        The initialize flag forces the group-kerning to be initialized (or if it is still None)
         """
-        #print('fsdfsfds', getattr(self, self.SAMPLE_MODES[context])(g, length, index), index)
-        return getattr(self, self.SAMPLE_MODES[context])(g, length, index)
+        return getattr(self, self.SAMPLE_MODES[context])(g, length, index, initialize)
 
-    def getSpacingSample_GlyphSet(self, g, length, index):
-        """Sample mode 0. Answer the sample, containing the full glyphset in the current RoboFont sorting, sorted by unicode """
+
+    def getSpacingSample_GlyphSet(self, g, length, index, initialize=False):
+        """Sample mode 0. Answer the sample, containing the full glyphset in the current RoboFont sorting, sorted by unicode.
+        Always initialize, ignoring the flag."""
         glyphNames = g.font.glyphOrder
         return glyphNames[index - int(length / 2) : max(len(glyphNames), index + int(length / 2))]
 
-    def getSpacingSample_Similarity(self, g, length, index):
-        """Sample mode 1. Answer the sample with glyphs matching the two similar sides of g"""
+    def getSpacingSample_Similarity(self, g, length, index, initialize=False):
+        """Sample mode 1. Answer the sample with glyphs matching the two similar sides of g.
+        Always initialize, ignoring the flag."""
         sample = []
         for perc, names in sorted(self.getSimilar2(g).items(), reverse=True):
             sample += names
@@ -1750,38 +1705,75 @@ class KerningManager:
             sample += names
         return sample
 
-    def getSpacingSample_Group(self, g, length, index):
-        """Sample mode 2. Answer the sample, containing glyphs in the same groups as g"""
+    def getSpacingSample_Group(self, g, length, index, initialize=False):
+        """Sample mode 2. Answer the sample, containing glyphs in the same groups as g.
+        Always initialize, ignoring the flag."""
         sample = ['B', g.name, 'B', g.name, 'O', g.name, 'O', 'H', g.name, 'H', g.name, 'H', g.name, 'H']
         while len(sample) < length:
             sample.append(g.name)
         return sample
 
-    def getSpacingSample_Spacing(self, g, length, index):
-        """Sample mode 3. Answer the sample, containing glyphs in the same spacing types as defined in the GlyphData"""
-        print('Sample 3')
-        sample = [g.name, g.name, g.name, 'H', 'a', 'm', 'b', 'u', 'r', 'g', 'e', 'f', 'o', 'n', 't', 's', 't', 'i', 'v', 'I', g.name, 'I', g.name, 'O', g.name, 'O', 'i', g.name, 'i', g.name, 'o', g.name, 'o']
+    def getSpacingSample_Spacing(self, g, length, index, initialize=False):
+        """Sample mode 3. Answer the sample, containing glyphs in the same spacing types as defined in the GlyphData.
+        Always initialize, ignoring the flag."""
+        sample = [g.name, g.name, g.name, 'H', 'a', 'm', 'b', 'u', 'r', 'g', 'e', 'f', 'o', 'n', 't', 's', 't', 'i', 'v', 'I', 
+            g.name, 'I', g.name, 'O', g.name, 'O', 'i', g.name, 'i', g.name, 'o', g.name, 'o']
         while len(sample) < length:
             sample.append(g.name)
         return sample
 
-    def getSpacingSample_Kerning(self, g, length, index):
-        """Sample mode 4. Answer the sample for kerning matching the script of g"""
-        if self._sample is None: # Kerning sample still needs to be initialized
-            self._initializeKerningSample()
-        return self._sample[index: index+length]
+    def getSpacingSample_GroupKerning(self, g, length, index, initialize=False):
+        """Build sample from permutating the groups. Now this depends on the hard coded lists of base glyphs per script. 
+        This should become more generic, depending on the actual glyphset."""
+        if initialize:
+            self._kerningSample = None # Force initiazation
+        # Property will initialize the cached kerning sample if required, then slice it.
+        return self.kerningSample[index - int(length / 2) : max(len(self.kerningSample), index + int(length / 2))]
 
-    def getSpacingSample_GroupKerning(self, g, length, index):
-        """Build sample from permutating the groups"""
-        sample = []
-        for scriptName1, scriptName2 in KERN_GROUPS:
-            baseGlyphs1 = GROUP_BASE_GLYPHS[scriptName1]
-            baseGlyphs2 = GROUP_BASE_GLYPHS[scriptName2]
-            for gName1 in baseGlyphs1:
-                for gName2 in baseGlyphs2:
-                    sample.append(gName1)
-                    sample.append(gName2)
-        return sample
+    def _get_kerningSample(self):
+        """Propery way to get the initialize cached kerning sample line.
+        Initialize the kerning sample. There are various flavours possible for different stages in the process.
+        For now we just initialize from the base glyphs of each group.
+        """
+        if self._kerningSample is None:
+            initSample = ['H', 'O', 'H', 'H', 'O', 'H', 'n', 'H', 'a', 'm', 'b', 'u', 'r', 'g', 'e', 'f', 'o', 'n', 't', 's', 't', 'i', 'v']
+            self._kerningSample = initSample.copy()
+            for scriptName1, scriptName2 in KERN_GROUPS:
+                pre1, ext1 = GROUP_NAME_PARTS[scriptName1]
+                pre2, ext2 = GROUP_NAME_PARTS[scriptName2]
+                baseGlyphs1 = sorted(GROUP_BASE_GLYPHS[scriptName1])
+                baseGlyphs2 = sorted(GROUP_BASE_GLYPHS[scriptName2])
+                for gName1 in baseGlyphs1:
+                    if self._kerningSampleFilter1 is None or self._kerningSampleFilter1 == gName1:
+                        for gName2 in baseGlyphs2:
+                            if self._kerningSampleFilter2 is None or self._kerningSampleFilter2 == gName2:
+                                self._kerningSample.append(gName1)
+                                self._kerningSample.append(gName2)
+            self._kerningSample += initSample
+        return self._kerningSample
+    kerningSample = property(_get_kerningSample)
+
+    def _get_kerningSampleFilter1(self):
+        return self._kerningSampleFilter1
+    def _set_kerningSampleFilter1(self, s):
+        self._kerningSampleFilter1 = s # Select kerning pairs in sample if None or if pattern is in the group base glyph name
+        self._kerningSample = None # Force reset upon usage
+    kerningSampleFilter1 = property(_get_kerningSampleFilter1, _set_kerningSampleFilter1)
+    
+    def _get_kerningFilterValue(self):
+        return self._kerningFilterValue
+    def _set_kerningFilterValue(self, k):
+        self._kerningFilterValue = k # Select kerning pairs in sample if None or if pattern is in the group base glyph name
+        self._kerningSample = None # Force reset upon usage
+    kerningSampleValue = property(_get_kerningFilterValue, _set_kerningFilterValue)
+
+    def _get_kerningSampleFilter2(self):
+        return self._kerningSampleFilter2
+    def _set_kerningSampleFilter2(self, s):
+        self._kerningSampleFilter2 = s # Select kerning pairs in sample if None or if pattern is in the group base glyph name
+        self._kerningSample = None # Force reset upon usage
+    kerningSampleFilter2 = property(_get_kerningSampleFilter2, _set_kerningSampleFilter2)
+    
 
     def expandFractions(self, s):
         for c1 in s:

@@ -38,7 +38,7 @@ ARROW_KEYS = [NSUpArrowFunctionKey, NSDownArrowFunctionKey,
 class KerningLineGlyphPosition:
     """Element that holds position and name of glyphs in the spacer/kerning line. This makes it easier 
     for mouseover to detect clicks on the line"""
-    def __init__(self, glyph, x, y, w, h, k, fillColor):
+    def __init__(self, glyph, x, y, w, h, k, fillColor, lineIndex, sampleIndex):
         self.glyph = glyph # RGlyph object 
         self.name = glyph.name
         self.x = x
@@ -47,6 +47,8 @@ class KerningLineGlyphPosition:
         self.h = h
         self.k = k # Kerning with previoud glyph
         self.fillColor = fillColor
+        self.lineIndex = lineIndex
+        self.sampleIndex = sampleIndex
 
 class AssistantPartSpacer(BaseAssistantPart):
     """The Spacer assistant part handles all margins and widths that can be automated.
@@ -314,7 +316,7 @@ class AssistantPartSpacer(BaseAssistantPart):
                 x += dw
                 sw += dw
             x += k # Correct start position of this glyph by kerning with the previous glyph
-            self.spacerGlyphPositions.append(KerningLineGlyphPosition(spaceG, x, y, sw, h, k, color))
+            self.spacerGlyphPositions.append(KerningLineGlyphPosition(spaceG, x, y, sw, h, k, color, gIndex, self.spacerSampleIndex + gIndex))
             x += sw
             if not sw: # In case of diacritics on width == 0, add wordspace in front and behind.
                 x += dw
@@ -329,6 +331,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         self.spacerWhiteBackground.setPosition((gpFirst.x + offsetX - 2*m, y + f.info.descender - m))
         self.spacerWhiteBackground.setSize((gpLast.x - gpFirst.x + gpLast.w + 4*m, h + 2*m))
         self.spacerWhiteBackground.setVisible(True)
+
+        self.kerningSelectedGlyphMarker.setVisible(False)
 
         for gIndex, kerningGlyphLayer in enumerate(self.kerningLine):
             if gIndex >= len(self.spacerGlyphPositions):
@@ -363,6 +367,10 @@ class AssistantPartSpacer(BaseAssistantPart):
             kerningLineValue.setPosition((gp.x + offsetX, y + f.info.descender - 12))
             kerningLineValue.setVisible(True)
 
+            if gIndex == gp.lineIndex:
+                self.kerningSelectedGlyphMarker.setPosition((x, y))
+                self.kerningSelectedGlyphMarker.setVisible(True)
+
         for n in range(gIndex, len(self.kerningLine)):
             self.kerningLine[n].setVisible(False)
             self.kerningLineNames[n].setVisible(False)
@@ -383,7 +391,6 @@ class AssistantPartSpacer(BaseAssistantPart):
         self.selectedHoverGlyphName = None
 
         for gIndex, gp in enumerate(self.spacerGlyphPositions):
-            #print(gp.x, sx, gp.x + gp.w)
             if gp.x <= sx <= gp.x + gp.w and gp.y - gp.h <= sy <= gp.y + gp.h:
                 color = self.SPACER_HOVER_COLOR
                 visible = True
@@ -423,8 +430,10 @@ class AssistantPartSpacer(BaseAssistantPart):
         if g is None:
             return changed # Nothing changed.
 
-        gLeft = g.font['g']
-        gRight = g.font['a']
+        km = self.getKerningManager(g.font)
+
+        gLeft = g.font[km.kerningSample[self.spacerSampleIndex - 1]]
+        gRight = g.font[km.kerningSample[self.spacerSampleIndex + 1]]
 
         self.spacerGlyphLeft.setPath(gLeft.getRepresentation("merz.CGPath"))
         self.spacerGlyphLeft.setPosition((-gLeft.width, 0))
@@ -486,10 +495,10 @@ class AssistantPartSpacer(BaseAssistantPart):
         personalKey_N = self.registerKeyStroke(self.KEY_DEC_KERN1_CAP, 'spacerIncKern1Cap')
         personalKey_n = self.registerKeyStroke(self.KEY_DEC_KERN1, 'spacerIncKern1')
 
-        personalKey_pageUp = self.registerKeyStroke(self.PAGE_UP_FUNCTION_KEY, 'spacerPageUp')
-        personalKey_pageDown = self.registerKeyStroke(self.PAGE_DOWN_FUNCTION_KEY, 'spacerPageDown')
-        personalKey_pageHome = self.registerKeyStroke(self.PAGE_HOME_FUNCTION_KEY, 'spacerPageHome')
-        personalKey_pageEnd = self.registerKeyStroke(self.PAGE_END_FUNCTION_KEY, 'spacerPageEnd')
+        personalKey_pageHome = self.registerKeyStroke(self.PAGE_HOME_FUNCTION_KEY, 'spacerPreviousKerningGlyph') # (spacerPageHome) Actual key function "Home" here used as "Left": Previous kerning pair
+        personalKey_pageEnd = self.registerKeyStroke(self.PAGE_END_FUNCTION_KEY, 'spacerNextKerningGlyph') # (spacerPageEnd) Actual key function "End" here used as "Right": Next kerning pair
+        personalKey_pageUp = self.registerKeyStroke(self.PAGE_UP_FUNCTION_KEY, 'spacerPreviousKerningLine') # (spacerPageUp) Actual key function "Previous page" here used as: Previous kerning line
+        personalKey_pageDown = self.registerKeyStroke(self.PAGE_DOWN_FUNCTION_KEY, 'spacerNextKerningLine') # (spacerPageDown) Actual key function "Next page" here used as: Next kerning line
 
         c = self.getController()
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
@@ -500,8 +509,9 @@ class AssistantPartSpacer(BaseAssistantPart):
         c.w.splitSimScripts = CheckBox((C0, y, CW, L), 'Split Sim scripts', value=True, sizeStyle='small', callback=self.updateEditor)
         c.w.showSpacingSampleLine = CheckBox((C1, y, CW, L), 'Show sample line', value=True, sizeStyle='small', callback=self.updateEditor)
         
-        c.w.decLeftMarginButton = Button((C2, y, CW/4, L), f'<[{personalKey_u}]', callback=self.spacerDecLeftMarginCallback)
-        c.w.incLeftMarginButton = Button((C2+CW/4, y, CW/4, L), f'[{personalKey_i}]>', callback=self.spacerIncLeftMarginCallback)
+        # Decrement/Increment Left Margin is imaginary pushing on the sidebearing, not on the glyph.
+        c.w.incLeftMarginButton = Button((C2, y, CW/4, L), f'<[{personalKey_u}]', callback=self.spacerIncLeftMarginCallback)
+        c.w.decLeftMarginButton = Button((C2+CW/4, y, CW/4, L), f'[{personalKey_i}]>', callback=self.spacerDecLeftMarginCallback)
         c.w.decRightMarginButton = Button((C2+2*CW/4, y, CW/4, L), f'<[{personalKey_o}]', callback=self.spacerDecRightMarginCallback)
         c.w.incRightMarginButton = Button((C2+3*CW/4, y, CW/4, L), f'[{personalKey_p}]>', callback=self.spacerIncRightMarginCallback)
         y += L
@@ -730,72 +740,111 @@ class AssistantPartSpacer(BaseAssistantPart):
     """
 
     def spacerDecKern2Cap(self, g, c, event):
-        self._adjustLeftKerning(g, -5)
+        capLock = event['capLockDown'] # Used to determine the type of kerning to apply.
+        self._adjustRightKerning(g, -5, capLock=capLock)
         g.changed()
 
     def spacerDecKern2(self, g, c, event):
-        self._adjustLeftKerning(g, -1)
+        capLock = event['capLockDown'] # Used to determine the type of kerning to apply.
+        self._adjustRightKerning(g, -1, capLock=capLock)
         g.changed()
 
     def spacerIncKern2Cap(self, g, c, event):
-        self._adjustLeftKerning(g, 5)
+        capLock = event['capLockDown'] # Used to determine the type of kerning to apply.
+        self._adjustRightKerning(g, 5, capLock=capLock)
         g.changed()
 
     def spacerIncKern2(self, g, c, event):
-        self._adjustLeftKerning(g, 1)
+        capLock = event['capLockDown'] # Used to determine the type of kerning to apply.
+        self._adjustRightKerning(g, 1, capLock=capLock)
         g.changed()
 
     def spacerDecKern1Cap(self, g, c, event):
-        self._adjustRightKerning(g, -5)
+        capLock = event['capLockDown'] # Used to determine the type of kerning to apply.
+        self._adjustLeftKerning(g, -5, capLock=capLock)
         g.changed()
 
     def spacerDecKern1(self, g, c, event):
-        self._adjustRightKerning(g, -1)
+        capLock = event['capLockDown'] # Used to determine the type of kerning to apply.
+        self._adjustLeftKerning(g, -1, capLock=capLock)
         g.changed()
 
     def spacerIncKern1Cap(self, g, c, event):
-        self._adjustRightKerning(g, 5)
+        capLock = event['capLockDown'] # Used to determine the type of kerning to apply.
+        self._adjustLeftKerning(g, 5, capLock=capLock)
         g.changed()
 
     def spacerIncKern1(self, g, c, event):
-        self._adjustRightKerning(g, 1)
+        capLock = event['capLockDown'] # Used to determine the type of kerning to apply.
+        self._adjustLeftKerning(g, 1, capLock=capLock)
         g.changed()
     
     #   S A M P L E  K E Y S
 
-    def spacerPageUp(self, g, c, event):
+    def spacerPreviousKerningLine(self, g, c, event):
+        km = self.getKerningManager(g.font)
+
         if event['shiftDown']:
-            dec = len(self.kerningLine)
+            dec = len(self.kerningLine) * 10
+        else:
+            dec = len(self.kernignLine)
+        self.spacerSampleIndex = max(0, self.spacerSampleIndex - dec)
+        prevGlyphName = km.kerningSample[self.spacerSampleIndex]
+        if prevGlyphName in g.font:
+            prevGlyph = g.font[prevGlyphName]
+            self.updateMerzSpacerKerningLine(prevGlyph)
+            self.openGlyphWindow(prevGlyph, newWindow=False)
+        else:
+            print(f'### spacerPreviousKerningLine: Cannot find {prevGlyphName}')
+
+    def spacerNextKerningLine(self, g, c, event):
+        km = self.getKerningManager(g.font)
+        if event['shiftDown']:
+            inc = len(self.kerningLine) * 10
+        else:
+            inc = len(self.kerningLine)
+        self.spacerSampleIndex = min(len(km.kerningSample), self.spacerSampleIndex + inc)
+        nextGlyphName = km.kerningSample[self.spacerSampleIndex]
+        if nextGlyphName in g.font:
+            nextGlyph = g.font[nextGlyphName]
+            self.updateMerzSpacerKerningLine(nextGlyph)
+            self.openGlyphWindow(nextGlyph, newWindow=False)
+        else:
+            print(f'### spacerNextKerningLine: Cannot find {nextGlyphName}')
+
+    def spacerPreviousKerningGlyph(self, g, c, event):
+        km = self.getKerningManager(g.font)
+        if event['shiftDown']:
+            dec = 10
         else:
             dec = 1
         self.spacerSampleIndex = max(0, self.spacerSampleIndex - dec)
-        print(self.spacerSampleIndex)
-        g.changed()
-        #print('Page Up', event['shiftDown'], event['optionDown'], event['controlDown'], event['commandDown'])
+        prevGlyphName = km.kerningSample[self.spacerSampleIndex]
+        if prevGlyphName in g.font:
+            prevGlyph = g.font[prevGlyphName]
+            self.updateMerzSpacerKerningLine(prevGlyph)
+            self.openGlyphWindow(prevGlyph, newWindow=False)
+        else:
+            print(f'### spacerPreviousKerningGlyph: Cannot find {prevGlyphName}')
 
-    def spacerPageDown(self, g, c, event):
+    def spacerNextKerningGlyph(self, g, c, event):
+        km = self.getKerningManager(g.font)
         if event['shiftDown']:
-            inc = len(self.kerningLine)
+            inc = 10
         else:
             inc = 1
-        self.spacerSampleIndex += inc
-        print(self.spacerSampleIndex)
-        g.changed()
-        #print('Page Down', event['shiftDown'], event['optionDown'], event['controlDown'], event['commandDown'])
-
-    def spacerPageHome(self, g, c, event):
-        self.spacerSampleIndex += 1
-        g.changed()
-        #print('Page Home', event['shiftDown'], event['optionDown'], event['controlDown'], event['commandDown'])
-
-    def spacerPageEnd(self, g, c, event):
-        self.spacerSampleIndex -= 1
-        g.changed()
-        #print('Page End', event['shiftDown'], event['optionDown'], event['controlDown'], event['commandDown'])
+        self.spacerSampleIndex = min(len(km.kerningSample), self.spacerSampleIndex + inc)
+        nextGlyphName = km.kerningSample[self.spacerSampleIndex]
+        if nextGlyphName in g.font:
+            nextGlyph = g.font[nextGlyphName]
+            self.updateMerzSpacerKerningLine(nextGlyph)
+            self.openGlyphWindow(nextGlyph, newWindow=False)
+        else:
+            print(f'### spacerNextKerningGlyph: Cannot find {nextGlyphName}')
 
     #   A D J U S T  S P A C I N G
 
-    SPACING_UNIT = 4
+    SPACING_UNIT = KERNING_UNIT = 4
 
     def _adjustLeftMarginByUnits(self, g, value): 
         if self.isUpdating:
@@ -841,7 +890,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             changed |= self.checkSpacingDependencies(g) # Update the spacing consistency for all glyphs in the kerning line
         """
 
-    def _adjustLeftKerning(self, g, value=None, newK=None):
+    def _adjustLeftKerning(self, g, value=None, newK=None, capLock=False):
         """ 
         Two ways of usage:
         • value is relative adjustment
@@ -852,26 +901,22 @@ class AssistantPartSpacer(BaseAssistantPart):
             1 = glyph<-->group
             0 or None = group<-->group
         """
-        print('_adjustLeftKerning', g.name, value, newK)
-        return
-
         assert value is not None or newK is not None
         f = g.font
         km = self.getKerningManager(f)
-        if self.kernGlyph1 is None:
-            return
-        k, groupK, kerningType = km.getKerning(self.kernGlyph1, g.name)
+        kernGlyph1 = km.kerningSample[self.spacerSampleIndex - 1]
+        k, groupK, kerningType = km.getKerning(kernGlyph1, g.name)
         if newK is not None:
             k = newK # Set this value, probably predicted.
         else: # Adjust relative by rounded value
             k = int(round(k/self.KERNING_UNIT))*self.KERNING_UNIT + value * self.KERNING_UNIT
-        if not kerningType and self.capLock:
+        if not kerningType and capLock:
             kerningType = 2 # group<-->glyph
-        elif kerningType == 2 and self.capLock:
+        elif kerningType == 2 and capLock:
             kerningType = 3 # glyph<-->glyph 
-        km.setKerning(self.kernGlyph1, g.name, k, kerningType)
+        km.setKerning(kernGlyph1, g.name, k, kerningType)
     
-    def _adjustRightKerning(self, g, value=None, newK=None):
+    def _adjustRightKerning(self, g, value=None, newK=None, capLock=False):
         """    
         Two ways of usage:
         • value is relative adjustment
@@ -882,25 +927,21 @@ class AssistantPartSpacer(BaseAssistantPart):
             1 = glyph<-->group
             0 or None = group<-->group
         """
-        print('_adjustRightKerning', g.name, value, newK)
-        return
-
         assert value is not None or newK is not None
         f = g.font
         km = self.getKerningManager(f)
         unit = 4
-        if self.kernGlyph2 is None:
-            return
-        k, groupK, kerningType = km.getKerning(g.name, self.kernGlyph2)
+        kernGlyph2 = km.kerningSample[self.spacerSampleIndex + 1]
+        k, groupK, kerningType = km.getKerning(g.name, kernGlyph2)
         if newK is not None:
             k = newK # Set this value, probably predicted.
         else: # Adjust relative by rounded value
             k = int(round(k/self.KERNING_UNIT))*self.KERNING_UNIT + value * self.KERNING_UNIT
-        if not kerningType and self.capLock:
+        if not kerningType and capLock:
             kerningType = 1 # glyph<-->group
-        elif kerningType == 1 and self.capLock:
+        elif kerningType == 1 and capLock:
             kerningType = 3 # glyph<-->glyph
-        km.setKerning(g.name, self.kernGlyph2, k, kerningType)
+        km.setKerning(g.name, kernGlyph2, k, kerningType)
 
     #   G U E S S  S P A C I N G  &  K E R N I N G
 
