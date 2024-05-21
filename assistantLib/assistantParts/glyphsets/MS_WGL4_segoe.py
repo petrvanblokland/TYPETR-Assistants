@@ -1751,12 +1751,12 @@ class MS_GlyphSet(GlyphSet):
 
         #   l
 
-       'l': GD(name='l', uni=0x006C, hex='006C', c='l', l='h', r='idotless', isLower=True, anchors=['top', 'middle', 'bottom', 'dot', 'vert'], gid=78, comment='l'),
+       'l': GD(name='l', uni=0x006C, hex='006C', c='l', l='h', r='idotless', isLower=True, anchorTopX='TopX', anchorMiddleX='MiddleX', anchorBottomX='BottomX', anchors=['top', 'middle', 'bottom', 'dot', 'vert'], gid=78, comment='l'),
        'lacute': GD(name='lacute', uni=0x013A, hex='013A', c='ĺ', w='l', bl='l', base='l', accents=['acutecomb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=251, comment='ĺ L WITH ACUTE, LATIN SMALL LETTER'),
        'lambda': GD(name='lambda', uni=0x03BB, hex='03BB', c='λ', l='v', r='v', isLower=True, gid=576),
        'lambdastroke': GD(name='lambdastroke', uni=0x019B, hex='019B', c='ƛ', l='lambda', w='lambda', srcName='uni019B', isLower=True, gid=348),
        'lari': GD(name='lari', uni=0x20BE, hex='20BE', c='₾', srcName='uni20BE', isLower=True, gid=1463),
-       'lbar': GD(name='lbar', uni=0x019A, hex='019A', c='ƚ', l='t', r='t', srcName='uni019A', isLower=True, gid=347),
+       'lbar': GD(name='lbar', uni=0x019A, hex='019A', c='ƚ', l='t', r='t', srcName='uni019A', anchorTopX='TopX', anchorMiddleX='MiddleX', anchorBottomX='BottomX', isLower=True, gid=347),
        'lbelt': GD(name='lbelt', uni=0x026C, hex='026C', c='ɬ', l='omod', r='hyphen', isLower=True),
        'lbroken': GD(name='lbroken', uni=0xA747, hex='A747', c='ꝇ', l='l', l2r='l', isLower=True),
        'lcaron': GD(name='lcaron', uni=0x013E, hex='013E', c='ľ', rightMin='minRight', base='l', accents=['caronvert.component'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=255, comment='ľ L WITH CARON, LATIN SMALL LETTER'),

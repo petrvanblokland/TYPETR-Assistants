@@ -340,6 +340,12 @@ class BaseAssistant:
                 ufos.append(ufo)
         return ufos
 
+    def openGlyphWindow(self, g, newWindow=False):
+        """Open this glyph in a RoboFont glyph window, if it is not open of if newWindow is set to True.
+        Otherwise open the glyph in the window of the current glyph.
+        """
+        OpenGlyphWindow(g, newWindow=newWindow)
+
     #   G L Y P H
 
     def copyGlyph(self, srcFont, glyphName, dstFont=None, dstGlyphName=None, copyUnicode=True):
