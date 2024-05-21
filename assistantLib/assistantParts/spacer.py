@@ -369,6 +369,7 @@ class AssistantPartSpacer(BaseAssistantPart):
 
             if gIndex == gp.lineIndex:
                 self.kerningSelectedGlyphMarker.setPosition((x, y))
+                self.kerningSelectedGlyphMarker.setSize((g.width, 20))
                 self.kerningSelectedGlyphMarker.setVisible(True)
 
         for n in range(gIndex, len(self.kerningLine)):
@@ -475,6 +476,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         """Build the assistant UI for anchor controls."""
         personalKey_eq = self.registerKeyStroke(self.KEY_CENTER_GLYPH, 'spacerCenterGlyph')
 
+        # Incremental/decremental spacing by key
+
         personalKey_U = self.registerKeyStroke(self.KEY_DEC_LEFT_MARGIN_CAP, 'spacerDecLeftMarginCap')
         personalKey_u = self.registerKeyStroke(self.KEY_DEC_LEFT_MARGIN, 'spacerDecLeftMargin')
         personalKey_I = self.registerKeyStroke(self.KEY_INC_LEFT_MARGIN_CAP, 'spacerIncLeftMarginCap')
@@ -485,15 +488,19 @@ class AssistantPartSpacer(BaseAssistantPart):
         personalKey_P = self.registerKeyStroke(self.KEY_INC_RIGHT_MARGIN_CAP, 'spacerIncRightMarginCap')
         personalKey_p = self.registerKeyStroke(self.KEY_INC_RIGHT_MARGIN, 'spacerIncRightMargin')
 
-        personalKey_larger = self.registerKeyStroke(self.KEY_INC_KERN2_CAP, 'spacerDecKern2Cap')
-        personalKey_period = self.registerKeyStroke(self.KEY_INC_KERN2, 'spacerDecKern2')
-        personalKey_smaller = self.registerKeyStroke(self.KEY_DEC_KERN2_CAP, 'spacerIncKern2Cap')
-        personalKey_comma = self.registerKeyStroke(self.KEY_DEC_KERN2, 'spacerIncKern2')
+        # Incremental/decremental kerning by key
 
         personalKey_M = self.registerKeyStroke(self.KEY_INC_KERN1_CAP, 'spacerDecKern1Cap')
         personalKey_m = self.registerKeyStroke(self.KEY_INC_KERN1, 'spacerDecKern1')
         personalKey_N = self.registerKeyStroke(self.KEY_DEC_KERN1_CAP, 'spacerIncKern1Cap')
         personalKey_n = self.registerKeyStroke(self.KEY_DEC_KERN1, 'spacerIncKern1')
+
+        personalKey_larger = self.registerKeyStroke(self.KEY_INC_KERN2_CAP, 'spacerIncKern2Cap')
+        personalKey_period = self.registerKeyStroke(self.KEY_INC_KERN2, 'spacerIncKern2')
+        personalKey_smaller = self.registerKeyStroke(self.KEY_DEC_KERN2_CAP, 'spacerDecKern2Cap')
+        personalKey_comma = self.registerKeyStroke(self.KEY_DEC_KERN2, 'spacerDecKern2')
+
+        # Kerning sample selection
 
         personalKey_pageHome = self.registerKeyStroke(self.PAGE_HOME_FUNCTION_KEY, 'spacerPreviousKerningGlyph') # (spacerPageHome) Actual key function "Home" here used as "Left": Previous kerning pair
         personalKey_pageEnd = self.registerKeyStroke(self.PAGE_END_FUNCTION_KEY, 'spacerNextKerningGlyph') # (spacerPageEnd) Actual key function "End" here used as "Right": Next kerning pair
