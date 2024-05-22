@@ -367,9 +367,9 @@ class AssistantPartSpacer(BaseAssistantPart):
             kerningLineValue.setPosition((gp.x + offsetX, y + f.info.descender - 12))
             kerningLineValue.setVisible(True)
 
-            if gIndex == gp.lineIndex:
-                self.kerningSelectedGlyphMarker.setPosition((x, y))
-                self.kerningSelectedGlyphMarker.setSize((g.width, 20))
+            if gIndex == int(len(self.spacerGlyphPositions)/2):
+                self.kerningSelectedGlyphMarker.setPosition((gp.x + offsetX, y + f.info.descender - 100))
+                self.kerningSelectedGlyphMarker.setSize((g.width, 200))
                 self.kerningSelectedGlyphMarker.setVisible(True)
 
         for n in range(gIndex, len(self.kerningLine)):
@@ -820,9 +820,12 @@ class AssistantPartSpacer(BaseAssistantPart):
 
     def spacerPreviousKerningGlyph(self, g, c, event):
         km = self.getKerningManager(g.font)
-        dec = 1 # Units
-        if event['shiftDown']:
-            dec *= 10
+        if event['optionDown']:
+            dec = 1 # Next is next glyph
+        elif event['shiftDown']:
+            dec = 10 # Skip a chunk
+        else: # Previous is 2, to skip the pair
+            dec = 2
 
         self.spacerSampleIndex = max(0, self.spacerSampleIndex - dec)
         prevGlyphName = km.kerningSample[self.spacerSampleIndex]
@@ -835,10 +838,12 @@ class AssistantPartSpacer(BaseAssistantPart):
 
     def spacerNextKerningGlyph(self, g, c, event):
         km = self.getKerningManager(g.font)
-        inc = 1
-        if event['shiftDown']:
-            inc *= 10
-
+        if event['optionDown']:
+            inc = 1 # Next is next glyph
+        elif event['shiftDown']:
+            inc = 10 # Skip a chunk
+        else: # Next is 2, to skip the pair
+            inc = 2
         self.spacerSampleIndex = min(len(km.kerningSample), self.spacerSampleIndex + inc)
         nextGlyphName = km.kerningSample[self.spacerSampleIndex]
         if nextGlyphName in g.font:
