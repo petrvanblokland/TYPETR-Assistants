@@ -66,6 +66,8 @@ class AssistantPartSpacer(BaseAssistantPart):
     SPACER_LABEL_SIZE = 14
     SPACER_MARKER_R = 32 # Radius of space marker
 
+    SPACER_KERNING_LABEL_SIZE = 48
+
     SPACER_FILL_COLOR = 0.2, 0.2, 0.2, 1 # Default color
     SPACER_SELECTED_COLOR = 0.2, 0.2, 0.5, 1 # Current glyph
     SPACER_HOVER_COLOR = 1, 0, 0, 1 # Mouse goes over the element
@@ -88,14 +90,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         self.kerningLineBoxes = [] # List of kerned glyph em-boxes
         self.kerningSelectedGlyph = None # Name of the glyph selected by the kerning editor
 
-        # White rectangle as background of spacer/kerning line
-        self.spacerWhiteBackground = container.appendRectangleSublayer(name="spacesWhiteBackground",
-            position=(0, 0),
-            size=(1, 1),
-            fillColor=(1, 1, 1, 0.6), # Slightly transparant, so rest of EditorWindow can be seen through.
-            visible=False,
-        )
-        self.spacerWhiteBackground.addScaleTransformation(self.KERN_SCALE)
+        # Glyphs on the side in real size. Turn the Overlay glyphs off to avoid overlapping
 
         self.spacerGlyphLeft = container.appendPathSublayer(
             position=(0, 0),
@@ -107,6 +102,36 @@ class AssistantPartSpacer(BaseAssistantPart):
             fillColor=self.SPACER_FILL_COLOR,
             visible=False,
         )
+
+        self.spacerGlyphKerningLeft = container.appendTextLineSublayer(name="spacerGlyphKerningLeft",
+            position=(0, 0),
+            text='',
+            font='Verdana',
+            pointSize=self.SPACER_KERNING_LABEL_SIZE,
+            fillColor=(0, 0, 0, 1),
+            visible=False,
+        )
+        self.spacerGlyphKerningLeft.setHorizontalAlignment('right')
+        
+        self.spacerGlyphKerningRight = container.appendTextLineSublayer(name="spacerGlyphKerningRight",
+            position=(0, 0),
+            text='',
+            font='Verdana',
+            pointSize=self.SPACER_KERNING_LABEL_SIZE,
+            fillColor=(0, 0, 0, 1),
+            visible=False,
+        )
+        self.spacerGlyphKerningRight.setHorizontalAlignment('left')
+        
+
+        # White rectangle as background of spacer/kerning line
+        self.spacerWhiteBackground = container.appendRectangleSublayer(name="spacesWhiteBackground",
+            position=(0, 0),
+            size=(1, 1),
+            fillColor=(1, 1, 1, 0.6), # Slightly transparant, so rest of EditorWindow can be seen through.
+            visible=False,
+        )
+        self.spacerWhiteBackground.addScaleTransformation(self.KERN_SCALE)
         
         # Glyphs cells on the spacer/kerning line
 
@@ -436,13 +461,44 @@ class AssistantPartSpacer(BaseAssistantPart):
         gLeft = g.font[km.kerningSample[self.spacerSampleIndex - 1]]
         gRight = g.font[km.kerningSample[self.spacerSampleIndex + 1]]
 
+        kLeft, groupKLeft, kerningTypeLeft = km.getKerning(gLeft, g.name)
+        kRight, groupKRight, kerningTypeRight = km.getKerning(gRight, g.name)
+
+        #print(gLeft.name, kLeft, g.name, kRight, gRight.name)
+
+        y = g.font.info.descender
+
+        if kLeft < 0:
+            color = (1, 0, 0, 1)
+        elif kLeft == 0:
+            color = (0.5, 0.5, 0.5, 1)
+        else: # kLeft > 0
+            color = (0, 0.5, 0, 1)
+
         self.spacerGlyphLeft.setPath(gLeft.getRepresentation("merz.CGPath"))
-        self.spacerGlyphLeft.setPosition((-gLeft.width, 0))
+        self.spacerGlyphLeft.setPosition((-gLeft.width - kLeft, 0))
         self.spacerGlyphLeft.setVisible(True)
 
+        self.spacerGlyphKerningLeft.setText(str(kLeft))
+        self.spacerGlyphKerningLeft.setPosition((self.italicX(g, kLeft/2, y), y))
+        self.spacerGlyphKerningLeft.setFillColor(color)
+        self.spacerGlyphKerningLeft.setVisible(True)
+
+        if kRight < 0:
+            color = (1, 0, 0, 1)
+        elif kRight == 0:
+            color = (0.5, 0.5, 0.5, 1)
+        else: # kLeft > 0
+            color = (0, 0.5, 0, 1)
+
         self.spacerGlyphRight.setPath(gRight.getRepresentation("merz.CGPath"))
-        self.spacerGlyphRight.setPosition((g.width, 0))
+        self.spacerGlyphRight.setPosition((g.width - kRight, 0))
         self.spacerGlyphRight.setVisible(True)
+
+        self.spacerGlyphKerningRight.setText(str(kRight))
+        self.spacerGlyphKerningRight.setPosition((self.italicX(g, g.width + kRight/2, y), y))
+        self.spacerGlyphKerningRight.setFillColor(color)
+        self.spacerGlyphKerningRight.setVisible(True)
 
         changed = self.checkFixGlyphSpacing(g)
         return changed

@@ -208,7 +208,10 @@ FORCE_GROUP1 = {
     'ucircumflex': 'u',
     'Oslash': 'O',
     'Qdiagonalstroke': 'O',
+    'Scircumflex': 'S', 
+    'X': 'K',
     'Zstroke': 'Z',
+    'dollar.alt1': 'dollar',
 }
 
 FORCE_GROUP2 = {
@@ -222,7 +225,9 @@ FORCE_GROUP2 = {
     'ucircumflex': 'u',
     'Oslash': 'O',
     'Qdiagonalstroke': 'O',
+    'Scircumflex': 'S', 
     'Zstroke': 'Z',
+    'dollar.alt1': 'dollar',
 }
 
 GROUP_IGNORE = ('tnum', 'cmb', 'comb', 'mod', 'superior', 'inferior', 'component',) # Always ignore glyphs that include these patterns
@@ -1810,6 +1815,7 @@ class KerningManager:
         assert self.f is not None
         groupName1 = self.glyphName2GroupName1.get(gName1)
         groupName2 = self.glyphName2GroupName2.get(gName2)
+        print(gName1, groupName1, gName2, groupName2)
         if None in (groupName1, groupName2):
             return 0, 0, None
 
