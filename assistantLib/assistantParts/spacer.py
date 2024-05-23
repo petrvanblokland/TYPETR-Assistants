@@ -66,7 +66,7 @@ class AssistantPartSpacer(BaseAssistantPart):
     SPACER_LABEL_SIZE = 14
     SPACER_MARKER_R = 32 # Radius of space marker
 
-    SPACER_KERNING_LABEL_SIZE = 48
+    SPACER_KERNING_LABEL_SIZE = 24
 
     SPACER_FILL_COLOR = 0.2, 0.2, 0.2, 1 # Default color
     SPACER_SELECTED_COLOR = 0.2, 0.2, 0.5, 1 # Current glyph
@@ -103,12 +103,13 @@ class AssistantPartSpacer(BaseAssistantPart):
             visible=False,
         )
 
+        # Showing actual kerning below left and right glyph in EditorWindow
         self.spacerGlyphKerningLeft = container.appendTextLineSublayer(name="spacerGlyphKerningLeft",
             position=(0, 0),
             text='',
             font='Verdana',
             pointSize=self.SPACER_KERNING_LABEL_SIZE,
-            fillColor=(0, 0, 0, 1),
+            #fillColor depends on kerning value
             visible=False,
         )
         self.spacerGlyphKerningLeft.setHorizontalAlignment('right')
@@ -118,10 +119,32 @@ class AssistantPartSpacer(BaseAssistantPart):
             text='',
             font='Verdana',
             pointSize=self.SPACER_KERNING_LABEL_SIZE,
-            fillColor=(0, 0, 0, 1),
+            #fillColor depends on kerning value
             visible=False,
         )
         self.spacerGlyphKerningRight.setHorizontalAlignment('left')
+        
+        # Showing suggeste KernNet value below left and right glyph in EditorWindow
+
+        self.spacerGlyphKernNetLeft = container.appendTextLineSublayer(name="spacerGlyphKernNetLeft",
+            position=(0, 0),
+            text='',
+            font='Verdana',
+            pointSize=self.SPACER_KERNING_LABEL_SIZE,
+            #fillColor depends on kerning value
+            visible=False,
+        )
+        self.spacerGlyphKernNetLeft.setHorizontalAlignment('right')
+        
+        self.spacerGlyphKernNetRight = container.appendTextLineSublayer(name="spacerGlyphKernNetRight",
+            position=(0, 0),
+            text='',
+            font='Verdana',
+            pointSize=self.SPACER_KERNING_LABEL_SIZE,
+            #fillColor depends on kerning value
+            visible=False,
+        )
+        self.spacerGlyphKernNetRight.setHorizontalAlignment('left')
         
 
         # White rectangle as background of spacer/kerning line
@@ -467,7 +490,11 @@ class AssistantPartSpacer(BaseAssistantPart):
         kLeft, groupKLeft, kerningTypeLeft = km.getKerning(gNameLeft, g.name)
         kRight, groupKRight, kerningTypeRight = km.getKerning(g.name, gNameRight)
 
-        y = g.font.info.descender
+        # Recaclulate KernNet, since this the spacing or shape may have changed from last time
+        knLeft = km.getKernNetKerning(gLeft, g) or 0
+        knRight = km.getKernNetKerning(g, gRight) or 0
+
+        y = g.font.info.descender - 50
 
         if kLeft < 0:
             color = (1, 0, 0, 1)
@@ -476,14 +503,28 @@ class AssistantPartSpacer(BaseAssistantPart):
         else: # kLeft > 0
             color = (0, 0.5, 0, 1)
 
+        if knLeft < 0:
+            knColor = (1, 0, 0, 1)
+        elif knLeft == 0:
+            knColor = (0.5, 0.5, 0.5, 1)
+        else: # kLeft > 0
+            knColor = (0, 0.5, 0, 1)
+
         self.spacerGlyphLeft.setPath(gLeft.getRepresentation("merz.CGPath"))
         self.spacerGlyphLeft.setPosition((-gLeft.width - kLeft, 0))
         self.spacerGlyphLeft.setVisible(True)
 
+        # Actual kerning value
         self.spacerGlyphKerningLeft.setText(str(kLeft))
         self.spacerGlyphKerningLeft.setPosition((self.italicX(g, kLeft/2, y), y))
         self.spacerGlyphKerningLeft.setFillColor(color)
         self.spacerGlyphKerningLeft.setVisible(True)
+
+        # KernNet suggested kerning value
+        self.spacerGlyphKernNetLeft.setText(f'*{knLeft}')
+        self.spacerGlyphKernNetLeft.setPosition((self.italicX(g, kLeft/2, y-100), y-100))
+        self.spacerGlyphKernNetLeft.setFillColor(knColor)
+        self.spacerGlyphKernNetLeft.setVisible(True)
 
         if kRight < 0:
             color = (1, 0, 0, 1)
@@ -492,14 +533,28 @@ class AssistantPartSpacer(BaseAssistantPart):
         else: # kLeft > 0
             color = (0, 0.5, 0, 1)
 
+        if knRight < 0:
+            knColor = (1, 0, 0, 1)
+        elif knRight == 0:
+            knColor = (0.5, 0.5, 0.5, 1)
+        else: # kLeft > 0
+            knColor = (0, 0.5, 0, 1)
+
         self.spacerGlyphRight.setPath(gRight.getRepresentation("merz.CGPath"))
         self.spacerGlyphRight.setPosition((g.width + kRight, 0))
         self.spacerGlyphRight.setVisible(True)
 
-        self.spacerGlyphKerningRight.setText(str(kRight))
-        self.spacerGlyphKerningRight.setPosition((self.italicX(g, g.width + kRight/2, y), y))
+        # Actual kerning value
+        self.spacerGlyphKerningRight.setText(str(kLeft))
+        self.spacerGlyphKerningRight.setPosition((self.italicX(g, g.width + kLeft/2, y), y))
         self.spacerGlyphKerningRight.setFillColor(color)
         self.spacerGlyphKerningRight.setVisible(True)
+
+        # KernNet suggested kerning value
+        self.spacerGlyphKernNetRight.setText(f'{knRight}*')
+        self.spacerGlyphKernNetRight.setPosition((self.italicX(g, g.width + kRight/2, y-100), y-100))
+        self.spacerGlyphKernNetRight.setFillColor(knColor)
+        self.spacerGlyphKernNetRight.setVisible(True)
 
         changed = self.checkFixGlyphSpacing(g)
         return changed
