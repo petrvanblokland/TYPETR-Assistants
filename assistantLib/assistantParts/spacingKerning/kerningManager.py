@@ -1815,7 +1815,6 @@ class KerningManager:
         assert self.f is not None
         groupName1 = self.glyphName2GroupName1.get(gName1)
         groupName2 = self.glyphName2GroupName2.get(gName2)
-        print(gName1, groupName1, gName2, groupName2)
         if None in (groupName1, groupName2):
             return 0, 0, None
 

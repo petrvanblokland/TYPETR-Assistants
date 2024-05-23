@@ -458,13 +458,14 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         km = self.getKerningManager(g.font)
 
-        gLeft = g.font[km.kerningSample[self.spacerSampleIndex - 1]]
-        gRight = g.font[km.kerningSample[self.spacerSampleIndex + 1]]
+        gNameLeft = km.kerningSample[self.spacerSampleIndex - 1]
+        gNameRight = km.kerningSample[self.spacerSampleIndex + 1]
 
-        kLeft, groupKLeft, kerningTypeLeft = km.getKerning(gLeft, g.name)
-        kRight, groupKRight, kerningTypeRight = km.getKerning(gRight, g.name)
+        gLeft = g.font[gNameLeft]
+        gRight = g.font[gNameRight]
 
-        #print(gLeft.name, kLeft, g.name, kRight, gRight.name)
+        kLeft, groupKLeft, kerningTypeLeft = km.getKerning(gNameLeft, g.name)
+        kRight, groupKRight, kerningTypeRight = km.getKerning(g.name, gNameRight)
 
         y = g.font.info.descender
 
@@ -492,7 +493,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             color = (0, 0.5, 0, 1)
 
         self.spacerGlyphRight.setPath(gRight.getRepresentation("merz.CGPath"))
-        self.spacerGlyphRight.setPosition((g.width - kRight, 0))
+        self.spacerGlyphRight.setPosition((g.width + kRight, 0))
         self.spacerGlyphRight.setVisible(True)
 
         self.spacerGlyphKerningRight.setText(str(kRight))
