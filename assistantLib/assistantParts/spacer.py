@@ -155,6 +155,18 @@ class AssistantPartSpacer(BaseAssistantPart):
             visible=False,
         )
         self.spacerWhiteBackground.addScaleTransformation(self.KERN_SCALE)
+
+        # Current line number in the kerning sample (Corresponding with the proof line numbering)
+        self.spacerKerningLineNumber = container.appendTextLineSublayer(name="spacerKerningLineNumber",
+            position=(0, 0),
+            text='X',
+            font='Verdana',
+            pointSize=self.SPACER_KERNING_LABEL_SIZE,
+            fillColor=(0.4, 0.4, 0.4, 1),
+            visible=False,
+        )
+        self.spacerKerningLineNumber.addScaleTransformation(self.KERN_SCALE)
+        self.spacerKerningLineNumber.setHorizontalAlignment('left')
         
         # Glyphs cells on the spacer/kerning line
 
@@ -307,6 +319,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         for kerningNameLayer in self.kerningLineNames:
             kerningNameLayer.setVisible(False)
         self.spacerWhiteBackground.setVisible(False)
+        self.spacerKerningLineNumber.setVisible(False)
 
     def updateMerzSpacerKerningLine(self, g):
         """Update the spacing/kerning/sample line for the current glyphs and its settings."""
@@ -379,6 +392,11 @@ class AssistantPartSpacer(BaseAssistantPart):
         self.spacerWhiteBackground.setPosition((gpFirst.x + offsetX - 2*m, y + f.info.descender - m))
         self.spacerWhiteBackground.setSize((gpLast.x - gpFirst.x + gpLast.w + 4*m, h + 2*m))
         self.spacerWhiteBackground.setVisible(True)
+
+        lineNumber = int(round(self.spacerSampleIndex/len(self.kerningLine)))
+        self.spacerKerningLineNumber.setPosition((gpFirst.x + offsetX - 2*m, (f.info.descender - 120)/self.KERN_SCALE))
+        self.spacerKerningLineNumber.setText(str(lineNumber))
+        self.spacerKerningLineNumber.setVisible(True)
 
         self.kerningSelectedGlyphMarker.setVisible(False)
 
@@ -494,7 +512,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         knLeft = km.getKernNetKerning(gLeft, g) or 0
         knRight = km.getKernNetKerning(g, gRight) or 0
 
-        y = g.font.info.descender - 50
+        y1 = g.font.info.descender - 120
+        y2 = y1 - 120
 
         if kLeft < 0:
             color = (1, 0, 0, 1)
@@ -516,13 +535,13 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         # Actual kerning value
         self.spacerGlyphKerningLeft.setText(str(kLeft))
-        self.spacerGlyphKerningLeft.setPosition((self.italicX(g, kLeft/2, y), y))
+        self.spacerGlyphKerningLeft.setPosition((self.italicX(g, kLeft/2, y1), y1))
         self.spacerGlyphKerningLeft.setFillColor(color)
         self.spacerGlyphKerningLeft.setVisible(True)
 
         # KernNet suggested kerning value
         self.spacerGlyphKernNetLeft.setText(f'*{knLeft}')
-        self.spacerGlyphKernNetLeft.setPosition((self.italicX(g, kLeft/2, y-100), y-100))
+        self.spacerGlyphKernNetLeft.setPosition((self.italicX(g, kLeft/2, y2), y2))
         self.spacerGlyphKernNetLeft.setFillColor(knColor)
         self.spacerGlyphKernNetLeft.setVisible(True)
 
@@ -545,14 +564,14 @@ class AssistantPartSpacer(BaseAssistantPart):
         self.spacerGlyphRight.setVisible(True)
 
         # Actual kerning value
-        self.spacerGlyphKerningRight.setText(str(kLeft))
-        self.spacerGlyphKerningRight.setPosition((self.italicX(g, g.width + kLeft/2, y), y))
+        self.spacerGlyphKerningRight.setText(str(kRight))
+        self.spacerGlyphKerningRight.setPosition((self.italicX(g, g.width + kRight/2, y1), y1))
         self.spacerGlyphKerningRight.setFillColor(color)
         self.spacerGlyphKerningRight.setVisible(True)
 
         # KernNet suggested kerning value
         self.spacerGlyphKernNetRight.setText(f'{knRight}*')
-        self.spacerGlyphKernNetRight.setPosition((self.italicX(g, g.width + kRight/2, y-100), y-100))
+        self.spacerGlyphKernNetRight.setPosition((self.italicX(g, g.width + kRight/2, y2), y2))
         self.spacerGlyphKernNetRight.setFillColor(knColor)
         self.spacerGlyphKernNetRight.setVisible(True)
 
