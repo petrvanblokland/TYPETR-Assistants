@@ -1741,7 +1741,14 @@ class KerningManager:
         For now we just initialize from the base glyphs of each group.
         """
         if self._kerningSample is None:
-            initSample = ['H', 'O', 'H', 'H', 'O', 'H', 'n', 'H', 'a', 'm', 'b', 'u', 'r', 'g', 'e', 'f', 'o', 'n', 't', 's', 't', 'i', 'v']
+            # For now, in order to keep sync between the Assistant kerning lines and the proofing lines,
+            # the initSample length needs to be a multiple of the line length 48
+            initSample = [
+                #'H', 'O', 'H', 'H', 'O', 'H', 'n', 'o', 'O', 'o', 'O', 'o', 'O',
+                #'H', 'a', 'm', 'b', 'u', 'r', 'g', 'e', 'f', 'o', 'n', 't', 's', 't', 'i', 'v',
+                'H', 'a', 'm', 'b', 'u', 'r', 'g',
+                'H', 'A', 'M', 'B', 'U', 'R', 'G', 'E', 'F', 'O', 'N', 'T', 'S', 'T', 'I', 'V']
+            print('AAAAAAAA', len(initSample))
             self._kerningSample = initSample.copy()
             for scriptName1, scriptName2 in KERN_GROUPS:
                 pre1, ext1 = GROUP_NAME_PARTS[scriptName1]
@@ -1813,6 +1820,8 @@ class KerningManager:
         0 or None = group<-->group
         """ 
         assert self.f is not None
+        assert isinstance(gName1, str) and isinstance(gName2, str) # Common mistake to supply glyph here, instead of glyph names.
+
         groupName1 = self.glyphName2GroupName1.get(gName1)
         groupName2 = self.glyphName2GroupName2.get(gName2)
         if None in (groupName1, groupName2):

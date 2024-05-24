@@ -57,7 +57,7 @@ class AssistantPartSpacer(BaseAssistantPart):
     The assistant part gives feedback about where the automated values came from, so it's easier to debug.
     """
 
-    KERN_LINE_SIZE = 48 # Number of glyphs on kerning line
+    KERN_LINE_LENGTH = 48 # Number of glyphs on kerning line
     KERN_SCALE = 0.12 #0.2 Scaler for glyphs on kerning line
 
     SPACER_FIXED_WIDTH_MARKER_COLOR = 0.5, 0.5, 0.5, 0.5
@@ -170,7 +170,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         
         # Glyphs cells on the spacer/kerning line
 
-        for gIndex in range(self.KERN_LINE_SIZE):
+        for gIndex in range(self.KERN_LINE_LENGTH):
             # Previewing current glyphs on left/right side.        
             im = container.appendPathSublayer(
                 name=f'kernedGlyph-{gIndex}',
@@ -352,6 +352,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         # Get a spacing sample for the right amount of glyphs for the selected context
         sample = km.getSpacingSample(g, context=sampleContext, length=len(self.kerningLine), index=self.spacerSampleIndex) 
 
+        # @@@ TODO Move the generation of the line below to KerningManager method
         self.spacerGlyphPositions = [] # Reset the list of KerningLineGlyphPosition instances.
 
         prevName = None # Remember previous glyph name to get the kerning for the pair
@@ -428,7 +429,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             elif gp.k == 0:
                 kerningLineValue.setFillColor((0.5, 0.5, 0.5, 1))
             else: # gp.k > 0
-                kerningLineValue.setFillColor((0, 0, 0.5, 1))
+                kerningLineValue.setFillColor((0, 0.5, 0, 1))
             kerningLineValue.setText(f'{round(gp.k)}')
             kerningLineValue.setPosition((gp.x + offsetX, y + f.info.descender - 12))
             kerningLineValue.setVisible(True)
@@ -549,7 +550,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             color = (1, 0, 0, 1)
         elif kRight == 0:
             color = (0.5, 0.5, 0.5, 1)
-        else: # kLeft > 0
+        else: # kRight > 0
             color = (0, 0.5, 0, 1)
 
         if knRight < 0:

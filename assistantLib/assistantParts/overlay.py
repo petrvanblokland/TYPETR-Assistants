@@ -132,7 +132,7 @@ class AssistantPartOverlay(BaseAssistantPart):
         leftName = c.w.previewGlyphLeftName.get()
         if leftName and leftName in f:
             gLeft = f[leftName].getLayer('foreground')
-            k, groupK, kerningType = km.getKerning(gLeft, g)
+            k, groupK, kerningType = km.getKerning(gLeft.name, g.name) # Supply glyph names here, not the glyphs
             x = min(-gLeft.width, gLeft.angledLeftMargin-500) - k # Subtract: needs to move right
             glyphPathLeft = gLeft.getRepresentation("merz.CGPath") 
             self.previewGlyphLeft.setPath(glyphPathLeft)
@@ -140,7 +140,7 @@ class AssistantPartOverlay(BaseAssistantPart):
             self.previewGlyphLeft.setVisible(True)
 
         elif c.w.previewGlyphLeft.get():
-            k, groupK, kerningType = km.getKerning(g, g)
+            k, groupK, kerningType = km.getKerning(g.name, g.name)
             x = min(-g.width, g.angledLeftMargin-500) - k # Subtract: needs to move right
             self.previewGlyphLeft.setPath(glyphPath)
             self.previewGlyphLeft.setPosition((x, 0)) # Make sure not to overlap on zero-width
@@ -152,7 +152,7 @@ class AssistantPartOverlay(BaseAssistantPart):
         rightName = c.w.previewGlyphRightName.get()
         if rightName and rightName in f:
             gRight = f[rightName].getLayer('foreground')
-            k, groupK, kerningType = km.getKerning(g, gRight)
+            k, groupK, kerningType = km.getKerning(g.name, gRight.name)
             x = max(g.width, -g.angledRightMargin+500) + k # Add, with negative kerning moves to the left
             glyphPathRight = gRight.getRepresentation("merz.CGPath") 
             self.previewGlyphRight.setPath(glyphPathRight)
@@ -160,7 +160,7 @@ class AssistantPartOverlay(BaseAssistantPart):
             self.previewGlyphRight.setVisible(True)
         
         elif c.w.previewGlyphRight.get():
-            k, groupK, kerningType = km.getKerning(g, g)
+            k, groupK, kerningType = km.getKerning(g.name, g.name)
             x = max(g.width, -g.angledRightMargin+500) + k # Add, with negative kerning moves to the left
             self.previewGlyphRight.setPath(glyphPath)
             self.previewGlyphRight.setPosition((x, 0)) # Make sure not to overlap on zero-width

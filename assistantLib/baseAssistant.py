@@ -823,7 +823,7 @@ class AssistantController(BaseAssistant, WindowController):
     COLS = 3 # Number of columns on the UI window
             
     # Editor window drawin parameters for kerning
-    KERN_LINE_SIZE = 32 # Number of glyphs on kerning line
+    KERN_LINE_LENGTH = 32 # Number of glyphs on kerning line
     KERN_SCALE = 0.15 # Calibration factor for AI kerning
     
     SHOW_PART_TITLES = True # Can be set to inheriting class to not show part titles below the separation lines.

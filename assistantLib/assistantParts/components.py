@@ -43,11 +43,13 @@ class AssistantPartComponents(BaseAssistantPart):
         return changed
 
     def buildComponents(self, y):
-        personalKey_c = self.registerKeyStroke('C', 'componentFixAllKey')
+        personalKey_c = self.registerKeyStroke('c', 'componentFixAllKey')
+        personalKey_C = self.registerKeyStroke('C', 'componentFixGlyphAllMastersKey')
 
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
 
         c = self.getController()
+        c.w.checkFixAllMasterComponents = CheckBox((C1, y, CW, L), f'Fix all masters [{personalKey_C}{personalKey_c}]', value=True, sizeStyle='small')
         c.w.autoFixComponentPositions = CheckBox((C2, y, CW, L), 'Auto fix components', value=True, sizeStyle='small')
         y += L + L/5
         c.w.componentsEndLine = HorizontalLine((self.M, y, -self.M, 1))
@@ -57,13 +59,39 @@ class AssistantPartComponents(BaseAssistantPart):
         return y
 
     #   C O M P O N E N T S
+
+    def componentFixGlyphAllMastersKey(self, g, c=None, event=None):
+        """Fix the components for all glyphs in the current font."""
+        self.componentFixGlyphAllMasters(g)
     
+    def componentFixGlyphAllMasters(self, g):
+        """Fix the components for the current glyph in all masters in ufo/"""
+        if self.getController().w.checkFixAllMasterComponents.get():
+            fonts = []
+            parentPath = self.filePath2ParentPath(g.font.path)
+            for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
+                fullPath = self.path2FullPath(pth)
+                f = self.getFont(fullPath, showInterface=g.font.path == fullPath) # Make sure RoboFont opens the current font.
+                fonts.append(f)
+        else:
+            fonts = [g.font]
+
+        for f in fonts:
+            if g.name in f:
+                print(f"... Check/fix components for /{g.name} in {f.path.split('/')[-1]}")
+                gg = f[g.name]
+                changed = self.checkFixComponentsExist(gg)
+                changed |= self.checkFixComponentsPosition(gg)
+                gg.changed()
+
     def componentFixAllKey(self, g, c=None, event=None):
+        """Fix the components for all glyphs in the current font."""
         changed = self.componentFixAll(g.font)
         if changed:
             g.font.changed()
 
     def componentFixAll(self, f):
+        """Fix the components for all glyphs in the current font."""
         fontChanged = False
         for g in f:
             changed = self.checkFixComponentsExist(g)

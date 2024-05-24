@@ -135,7 +135,7 @@ M = 32
 SPACE_MARKER_R = 16
 POINT_MARKER_R = 6
 FAR = 100000 # Put drawing stuff outside the window
-KERN_LINE_SIZE = 32 # Number of glyphs on kerning line
+KERN_LINE_LENGTH = 32 # Number of glyphs on kerning line
 KERN_SCALE = 0.15 #0.2
 
 INTERPOLATION_ERROR_MARKER = (1, 0, 0, 1)
@@ -152,7 +152,7 @@ else:
 #KERNING = KERNING_START + KERNING_SIMPLE # Relatively small samplt with only one glyph per group
 #KerningSample = KERNING
 # Total number of kerning lines in this sample
-KerningNumLines = KERNING_NUM_LINES = int(round(KERN_LINE_SIZE / KERN_LINE_SIZE))
+KerningNumLines = KERNING_NUM_LINES = int(round(KERN_LINE_LENGTH / KERN_LINE_SIZE))
 
 WindowClass = vanilla.Window
 #WindowClass = vanilla.FloatingWindow
@@ -299,7 +299,7 @@ class KerningAssistant(Subscriber):
         self.kerningLineBoxes = [] # List of kerned glyph em-boxes
         self.kerningSelectedGlyph = None # Name of the glyph selected by the kerning editor
         
-        for gIndex in range(KERN_LINE_SIZE):
+        for gIndex in range(KERN_LINE_LENGTH):
             # Previewing current glyphs on left/right side.        
             im = self.backgroundContainer.appendPathSublayer(
                 name='kernedGlyph-%d' % gIndex,
@@ -722,12 +722,12 @@ class KerningAssistant(Subscriber):
             kerningSample = self.getKerningSample(g.font)
             currentCursor = int(round(self.controller.w.kerningSampleSelectSlider.get()))
             if shiftDown:
-                cursor = max(0, currentCursor - 8*KERN_LINE_SIZE)
+                cursor = max(0, currentCursor - 8*KERN_LINE_LENGTH)
             else:
-                cursor = max(0, currentCursor - KERN_LINE_SIZE)
+                cursor = max(0, currentCursor - KERN_LINE_LENGTH)
             self.controller.w.kerningSampleSelectSlider.set(cursor)
             self.controller.w.kerningSampleSelectSlider.setMaxValue(len(kerningSample))
-            self.controller.w.kerningSampleSelectLabel.set('Kerning sample %d/%d lines' % (int(round(cursor/KERN_LINE_SIZE)), len(kerningSample)/KERN_LINE_SIZE))
+            self.controller.w.kerningSampleSelectLabel.set('Kerning sample %d/%d lines' % (int(round(cursor/KERN_LINE_LENGTH)), len(kerningSample)/KERN_LINE_LENGTH))
             changed |= self.checkSpacingDependencies(g) # Update the spacing consistency for all glyphs in the kerning line
             self.randomWord = choice(ULCWORDS) # Random word changed on up/down cursor
             self.saveKerningCursor()
@@ -737,12 +737,12 @@ class KerningAssistant(Subscriber):
             kerningSample = self.getKerningSample(g.font)
             currentCursor = int(round(self.controller.w.kerningSampleSelectSlider.get()))
             if shiftDown:
-                cursor = min(len(kerningSample)- KERN_LINE_SIZE, currentCursor + 8*KERN_LINE_SIZE)
+                cursor = min(len(kerningSample)- KERN_LINE_LENGTH, currentCursor + 8*KERN_LINE_LENGTH)
             else:
-                cursor = min(len(kerningSample)- KERN_LINE_SIZE, currentCursor + KERN_LINE_SIZE)
+                cursor = min(len(kerningSample)- KERN_LINE_LENGTH, currentCursor + KERN_LINE_LENGTH)
             self.controller.w.kerningSampleSelectSlider.set(cursor) 
             self.controller.w.kerningSampleSelectSlider.setMaxValue(len(kerningSample))
-            self.controller.w.kerningSampleSelectLabel.set('Kerning sample %d/%d lines' % (int(round(cursor/KERN_LINE_SIZE)), len(kerningSample)/KERN_LINE_SIZE))
+            self.controller.w.kerningSampleSelectLabel.set('Kerning sample %d/%d lines' % (int(round(cursor/KERN_LINE_LENGTH)), len(kerningSample)/KERN_LINE_LENGTH))
             changed |= self.checkSpacingDependencies(g) # Update the spacing consistency for all glyphs in the kerning line
             self.randomWord = choice(ULCWORDS) # Random word changed on up/down cursor
             self.saveKerningCursor()
@@ -758,7 +758,7 @@ class KerningAssistant(Subscriber):
                 cursor = max(0, currentCursor - 1)
             self.controller.w.kerningSampleSelectSlider.set(cursor)
             self.controller.w.kerningSampleSelectSlider.setMaxValue(len(kerningSample))
-            self.controller.w.kerningSampleSelectLabel.set('Kerning sample %d/%d lines' % (int(round(cursor/KERN_LINE_SIZE)), len(kerningSample)/KERN_LINE_SIZE))
+            self.controller.w.kerningSampleSelectLabel.set('Kerning sample %d/%d lines' % (int(round(cursor/KERN_LINE_LENGTH)), len(kerningSample)/KERN_LINE_SIZE))
             changed |= self.checkSpacingDependencies(g) # Update the spacing consistency for all glyphs in the kerning line
             #self.saveKerningCursor()
             updatePreview = True

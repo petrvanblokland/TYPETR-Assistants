@@ -113,7 +113,7 @@ M = 32
 SPACE_MARKER_R = 16
 POINT_MARKER_R = 6
 FAR = 100000 # Put drawing stuff outside the window
-KERN_LINE_SIZE = 32 # Number of glyphs on kerning line
+KERN_LINE_LENGTH = 32 # Number of glyphs on kerning line
 KERN_SCALE = 0.15 #0.2
 
 NO_MARKER = (1, 1, 1, 1)
