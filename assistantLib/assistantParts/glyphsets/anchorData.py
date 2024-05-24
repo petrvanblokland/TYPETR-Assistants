@@ -497,7 +497,7 @@ class AnchorData:
         'iretroflexhook', 'itilde', 'itildebelow', 'izhitsa-cy', 'izhitsadblgrave-cy', 'jcaron', 'jcircumflex', 'jdotless', 'k', 'ka-cy', 'kacute', 'kcaron', 'kcommaaccent', 
         'kdiagonalstroke', 'kdotbelow', 'kgreenlandic', 'kje-cy', 'klinebelow', 'kobliquestroke', 'koronis', 'koroniscomb', 'kpalatalhook', 'kstroke', 'kstrokediagonalstroke', 
         'l', 'lacute', 'lcaron', 'lcircumflexbelow', 'lcommaaccent', 'ldot', 'ldotbelow', 'ldotbelowmacron', 'ldoublemiddletilde', 'leftangleabovecomb', 'lefthalfringabovecomb', 
-        'lj', 'llinebelow', 'longs', 'longsdotaccent', 'lowcircumflexmod', 'lowtildemod', 'lpalatalhook', 'm', 'macronacutecomb', 'macroncomb', 
+        'lj', 'llinebelow', 'longs', 'longsdotaccent', 'lpalatalhook', 'm', 'macronacutecomb', 'macroncomb', 
         'macroncomb.component', 'macroncomb.component1', 'macrongravecomb', 'macute', 'mcomb', 'mdotaccent', 'mdotbelow', 'mill', 'mmiddletilde', 
         'mpalatalhook', 'mum', 'n', 'nacute', 'napostrophe', 'ncaron', 'ncircumflexbelow', 'ncommaaccent', 'ndescender', 'ndotaccent', 'ndotbelow', 'ngrave', 'nj', 'nlinebelow', 
         'nmiddletilde', 'nobliquestroke', 'nottildeabovecomb', 'npalatalhook', 'ntilde', 'num', 'o', 'o-cy', 'oacute', 'obarred', 'obarred-cy', 

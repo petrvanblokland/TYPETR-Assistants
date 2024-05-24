@@ -685,9 +685,9 @@ class AssistantPartSpacer(BaseAssistantPart):
         c = self.getController()
         g = self.getCurrentGlyph()
         km = self.getKerningManager(g.font)
-        km.kerningSamplePattern1 = c.w.kerningSamplePattern1.get() or None
+        km.kerningSampleFilter1 = c.w.kerningSamplePattern1.get() or None
         km.kerningSampleValue = int(c.w.kerningSampleValue.get() or 0) or None
-        km.kerningSamplePattern2 = c.w.kerningSamplePattern2.get() or None
+        km.kerningSampleFilter2 = c.w.kerningSamplePattern2.get() or None
         g.changed()
 
     def autoSpaceAllCallback(self, sender):

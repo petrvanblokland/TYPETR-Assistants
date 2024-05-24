@@ -1746,9 +1746,15 @@ class KerningManager:
             initSample = [
                 #'H', 'O', 'H', 'H', 'O', 'H', 'n', 'o', 'O', 'o', 'O', 'o', 'O',
                 #'H', 'a', 'm', 'b', 'u', 'r', 'g', 'e', 'f', 'o', 'n', 't', 's', 't', 'i', 'v',
+                #'H', 'a', 'm', 'b', 'u', 'r', 'g',
+                #'H', 'A', 'M', 'B', 'U', 'R', 'G', 'E', 'F', 'O', 'N', 'T', 'S', 'T', 'I', 'V'
+                ]
+            exitSample = [
+                'H', 'O', 'H', 'H', 'O', 'H', 'n', 'o', 'O', 'o', 'O', 'o', 'O',
+                'H', 'a', 'm', 'b', 'u', 'r', 'g', 'e', 'f', 'o', 'n', 't', 's', 't', 'i', 'v',
                 'H', 'a', 'm', 'b', 'u', 'r', 'g',
-                'H', 'A', 'M', 'B', 'U', 'R', 'G', 'E', 'F', 'O', 'N', 'T', 'S', 'T', 'I', 'V']
-            print('AAAAAAAA', len(initSample))
+                'H', 'A', 'M', 'B', 'U', 'R', 'G', 'E', 'F', 'O', 'N', 'T', 'S', 'T', 'I', 'V'
+                ]
             self._kerningSample = initSample.copy()
             for scriptName1, scriptName2 in KERN_GROUPS:
                 pre1, ext1 = GROUP_NAME_PARTS[scriptName1]
@@ -1761,7 +1767,7 @@ class KerningManager:
                             if self._kerningSampleFilter2 is None or self._kerningSampleFilter2 == gName2:
                                 self._kerningSample.append(gName1)
                                 self._kerningSample.append(gName2)
-            self._kerningSample += initSample
+            self._kerningSample += exitSample
         return self._kerningSample
     kerningSample = property(_get_kerningSample)
 
