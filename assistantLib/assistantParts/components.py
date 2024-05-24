@@ -43,13 +43,13 @@ class AssistantPartComponents(BaseAssistantPart):
         return changed
 
     def buildComponents(self, y):
-        personalKey_c = self.registerKeyStroke('c', 'componentFixAllKey')
+        #personalKey_c = self.registerKeyStroke('c', 'componentFixAllKey')
         personalKey_C = self.registerKeyStroke('C', 'componentFixGlyphAllMastersKey')
 
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
 
         c = self.getController()
-        c.w.checkFixAllMasterComponents = CheckBox((C1, y, CW, L), f'Fix all masters [{personalKey_C}{personalKey_c}]', value=True, sizeStyle='small')
+        c.w.checkFixAllMasterComponents = CheckBox((C1, y, CW, L), f'Fix all masters [{personalKey_C}]', value=True, sizeStyle='small')
         c.w.autoFixComponentPositions = CheckBox((C2, y, CW, L), 'Auto fix components', value=True, sizeStyle='small')
         y += L + L/5
         c.w.componentsEndLine = HorizontalLine((self.M, y, -self.M, 1))
