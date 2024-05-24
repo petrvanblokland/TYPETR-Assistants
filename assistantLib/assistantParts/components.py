@@ -78,7 +78,7 @@ class AssistantPartComponents(BaseAssistantPart):
 
         for f in fonts:
             if g.name in f:
-                print(f"... Check/fix components for /{g.name} in {f.path.split('/')[-1]}")
+                #print(f"... Check/fix components for /{g.name} in {f.path.split('/')[-1]}")
                 gg = f[g.name]
                 changed = self.checkFixComponentsExist(gg)
                 changed |= self.checkFixComponentsPosition(gg)
