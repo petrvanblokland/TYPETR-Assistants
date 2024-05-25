@@ -157,6 +157,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         self.spacerWhiteBackground.addScaleTransformation(self.KERN_SCALE)
 
         # Current line number in the kerning sample (Corresponding with the proof line numbering)
+        # Also showing the number of groups and kerning pairs
         self.spacerKerningLineNumber = container.appendTextLineSublayer(name="spacerKerningLineNumber",
             position=(0, 0),
             text='X',
@@ -396,7 +397,7 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         lineNumber = int(round(self.spacerSampleIndex/len(self.kerningLine)))
         self.spacerKerningLineNumber.setPosition((gpFirst.x + offsetX - 2*m, (f.info.descender - 120)/self.KERN_SCALE))
-        self.spacerKerningLineNumber.setText(str(lineNumber))
+        self.spacerKerningLineNumber.setText(f'{lineNumber} G-{len(g.font.groups)} K-{len(g.font.kerning)}')
         self.spacerKerningLineNumber.setVisible(True)
 
         self.kerningSelectedGlyphMarker.setVisible(False)
@@ -603,6 +604,7 @@ class AssistantPartSpacer(BaseAssistantPart):
     KEY_INC_KERN1 = 'm'
     KEY_DEC_KERN1_CAP = 'N'
     KEY_DEC_KERN1 = 'n'
+    KEY_SET_KERNNET2 = '?'
 
     def buildSpacer(self, y):
         """Build the assistant UI for anchor controls."""
@@ -631,6 +633,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         personalKey_period = self.registerKeyStroke(self.KEY_INC_KERN2, 'spacerIncKern2')
         personalKey_smaller = self.registerKeyStroke(self.KEY_DEC_KERN2_CAP, 'spacerDecKern2Cap')
         personalKey_comma = self.registerKeyStroke(self.KEY_DEC_KERN2, 'spacerDecKern2')
+
+        personalKey_question = self.registerKeyStroke(self.KEY_SET_KERNNET2, 'spacerSetKernNet2')
 
         # Kerning sample selection
 
@@ -667,6 +671,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         c.w.autoSpaceAllButton = Button((C0, y, CW, L), 'Auto space all', callback=self.autoSpaceAllCallback)
         c.w.fixReportedSpacingDifferences = CheckBox((C1, y, CW, L), 'Fix reported', value=False, sizeStyle='small')
         c.w.reportSpacingButton = Button((C2, y, CW, L), 'Report spacing', callback=self.reportSpacingCallback)
+        y += L + 10
+        c.w.autoSpaceFontButton = Button((C0, y, CW, L), 'Auto space font', callback=self.autoSpaceFontCallback)
         y += L + 10
         c.w.factorKernNetTextBox = EditText((C0, y, 48, L))
         c.w.factorKernNetTextBox.set('1.2')
@@ -714,6 +720,27 @@ class AssistantPartSpacer(BaseAssistantPart):
                     g.changed()
             # Watch out: this will auto-save the adjusted font
             f.save()
+
+    def autoSpaceFontCallback(self, sender):
+        """Auto space the current font, recursively applying all rules until that base glyph. Keep track of the glyphs 
+        that were modified to avoid double work. Report on the glypns that got changed."""
+        print('--- Auto spacing all masters')
+        f = self.getCurrentFont()
+        print(f'... Auto spacing {f.path.split("/")[-1]}')
+        for g in f: # First check all glyphs without components
+            if g.components:
+                continue
+            changed = self.checkFixGlyphSpacing(g, updateMerz=False)
+            if changed:
+                g.changed()
+        for g in f: # Then check all glyphs with components
+            if not g.components:
+                continue
+            changed = self.checkFixGlyphSpacing(g, updateMerz=False)
+            if changed:
+                g.changed()
+        # Watch out: this will auto-save the adjusted font
+        f.save()
 
     def autoKernGroupsCallback(self, sender):
         """Auto kern all groups and kerning pairs for the given template for all UFO's in the family.
@@ -881,43 +908,42 @@ class AssistantPartSpacer(BaseAssistantPart):
     def spacerDecKern2Cap(self, g, c, event):
         capLock = event['capLockDown'] # Used to determine the type of kerning to apply.
         self._adjustRightKerning(g, -5, capLock=capLock)
-        g.changed()
 
     def spacerDecKern2(self, g, c, event):
         capLock = event['capLockDown'] # Used to determine the type of kerning to apply.
         self._adjustRightKerning(g, -1, capLock=capLock)
-        g.changed()
 
     def spacerIncKern2Cap(self, g, c, event):
         capLock = event['capLockDown'] # Used to determine the type of kerning to apply.
         self._adjustRightKerning(g, 5, capLock=capLock)
-        g.changed()
 
     def spacerIncKern2(self, g, c, event):
         capLock = event['capLockDown'] # Used to determine the type of kerning to apply.
         self._adjustRightKerning(g, 1, capLock=capLock)
-        g.changed()
 
     def spacerDecKern1Cap(self, g, c, event):
         capLock = event['capLockDown'] # Used to determine the type of kerning to apply.
         self._adjustLeftKerning(g, -5, capLock=capLock)
-        g.changed()
 
     def spacerDecKern1(self, g, c, event):
         capLock = event['capLockDown'] # Used to determine the type of kerning to apply.
         self._adjustLeftKerning(g, -1, capLock=capLock)
-        g.changed()
 
     def spacerIncKern1Cap(self, g, c, event):
         capLock = event['capLockDown'] # Used to determine the type of kerning to apply.
         self._adjustLeftKerning(g, 5, capLock=capLock)
-        g.changed()
 
     def spacerIncKern1(self, g, c, event):
         capLock = event['capLockDown'] # Used to determine the type of kerning to apply.
         self._adjustLeftKerning(g, 1, capLock=capLock)
-        g.changed()
     
+    def spacerSetKernNet2(self, g, c, event):
+        """Set the right kerning value to the calculated KernNet kerning value."""
+        km = self.getKerningManager(g.font)
+        kernGlyphName2 = km.kerningSample[self.spacerSampleIndex + 1]
+        knRight = km.getKernNetKerning(g, g.font[kernGlyphName2]) or 0 # Needs glyphs, not glyph names
+        self._adjustRightKerning(g, newK=knRight)
+
     #   S A M P L E  K E Y S
 
     def spacerPreviousKerningLine(self, g, c, event):
@@ -1047,8 +1073,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         assert value is not None or newK is not None
         f = g.font
         km = self.getKerningManager(f)
-        kernGlyph1 = km.kerningSample[self.spacerSampleIndex - 1]
-        k, groupK, kerningType = km.getKerning(kernGlyph1, g.name)
+        kernGlyphName1 = km.kerningSample[self.spacerSampleIndex - 1]
+        k, groupK, kerningType = km.getKerning(kernGlyphName1, g.name)
         if newK is not None:
             k = newK # Set this value, probably predicted.
         else: # Adjust relative by rounded value
@@ -1057,7 +1083,10 @@ class AssistantPartSpacer(BaseAssistantPart):
             kerningType = 2 # group<-->glyph
         elif kerningType == 2 and capLock:
             kerningType = 3 # glyph<-->glyph 
-        km.setKerning(kernGlyph1, g.name, k, kerningType)
+        changed = km.setKerning(kernGlyphName1, g.name, k, kerningType)
+        if changed:
+            print(f'... Kerning left changed to {k}')
+            g.changed()
     
     def _adjustRightKerning(self, g, value=None, newK=None, capLock=False):
         """    
@@ -1074,8 +1103,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         f = g.font
         km = self.getKerningManager(f)
         unit = 4
-        kernGlyph2 = km.kerningSample[self.spacerSampleIndex + 1]
-        k, groupK, kerningType = km.getKerning(g.name, kernGlyph2)
+        kernGlyphName2 = km.kerningSample[self.spacerSampleIndex + 1]
+        k, groupK, kerningType = km.getKerning(g.name, kernGlyphName2)
         if newK is not None:
             k = newK # Set this value, probably predicted.
         else: # Adjust relative by rounded value
@@ -1084,7 +1113,10 @@ class AssistantPartSpacer(BaseAssistantPart):
             kerningType = 1 # glyph<-->group
         elif kerningType == 1 and capLock:
             kerningType = 3 # glyph<-->glyph
-        km.setKerning(g.name, kernGlyph2, k, kerningType)
+        changed = km.setKerning(g.name, kernGlyphName2, k, kerningType)
+        if changed:
+            print(f'... Kerning right changed to {k}')
+            g.changed()
 
     #   G U E S S  S P A C I N G  &  K E R N I N G
 
