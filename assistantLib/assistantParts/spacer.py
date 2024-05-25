@@ -605,6 +605,7 @@ class AssistantPartSpacer(BaseAssistantPart):
     KEY_DEC_KERN1_CAP = 'N'
     KEY_DEC_KERN1 = 'n'
     KEY_SET_KERNNET2 = '?'
+    KEY_SET_KERN_0 = '/'
 
     def buildSpacer(self, y):
         """Build the assistant UI for anchor controls."""
@@ -635,6 +636,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         personalKey_comma = self.registerKeyStroke(self.KEY_DEC_KERN2, 'spacerDecKern2')
 
         personalKey_question = self.registerKeyStroke(self.KEY_SET_KERNNET2, 'spacerSetKernNet2')
+        personalKey_slash = self.registerKeyStroke(self.KEY_SET_KERN_0, 'spacerSetKernClear2')
 
         # Kerning sample selection
 
@@ -944,6 +946,10 @@ class AssistantPartSpacer(BaseAssistantPart):
         knRight = km.getKernNetKerning(g, g.font[kernGlyphName2]) or 0 # Needs glyphs, not glyph names
         self._adjustRightKerning(g, newK=knRight)
 
+    def spacerSetKernClear2(self, g, c, event):
+        """Clear the right kerning value"""
+        self._adjustRightKerning(g, newK=0)
+
     #   S A M P L E  K E Y S
 
     def spacerPreviousKerningLine(self, g, c, event):
@@ -1087,6 +1093,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         if changed:
             print(f'... Kerning left changed to {k}')
             g.changed()
+            f.changed()
     
     def _adjustRightKerning(self, g, value=None, newK=None, capLock=False):
         """    
@@ -1117,6 +1124,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         if changed:
             print(f'... Kerning right changed to {k}')
             g.changed()
+            f.changed()
 
     #   G U E S S  S P A C I N G  &  K E R N I N G
 

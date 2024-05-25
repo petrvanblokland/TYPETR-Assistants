@@ -1901,10 +1901,12 @@ class KerningManager:
         if k in (0, None) and pair in self.f.kerning: # Delete this existing pair that now gets value 0
             print('... Delete kerning %s' % str(pair))
             del self.f.kerning[pair]
+            changed = True
         elif k: # If kerningType in (1, 2, 3) then kerning can be 0 to correct the group kerning
             print('... Set kerning %s to %d' % (pair, k))
             self.f.kerning[pair] = k
-
+            changed = True
+            
         return changed
 
 
