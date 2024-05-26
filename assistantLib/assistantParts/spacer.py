@@ -499,6 +499,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         if g is None:
             return changed # Nothing changed.
 
+        print('12345 Here')
         km = self.getKerningManager(g.font)
 
         gNameLeft = km.kerningSample[self.spacerSampleIndex - 1]
@@ -578,6 +579,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         self.spacerGlyphKernNetRight.setVisible(True)
 
         changed = self.checkFixGlyphSpacing(g)
+        print('SSSSSS Here', changed)
         return changed
 
     def checkFixGlyphSpacing(self, g, updateMerz=True):
@@ -957,6 +959,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         dec = len(self.kerningLine)
         if event['shiftDown']:
             dec *= 10
+            if event['optionDown']:
+                dec *= 10
         
         self.spacerSampleIndex = max(0, self.spacerSampleIndex - dec)
         prevGlyphName = km.kerningSample[self.spacerSampleIndex]
@@ -972,6 +976,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         inc = len(self.kerningLine) # Go to next kerning line
         if event['shiftDown']:
             inc *= 10
+            if event['optionDown']:
+                inc *= 10
 
         self.spacerSampleIndex = min(len(km.kerningSample), self.spacerSampleIndex + inc)
         nextGlyphName = km.kerningSample[self.spacerSampleIndex]

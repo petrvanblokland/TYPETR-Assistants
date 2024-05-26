@@ -1896,17 +1896,17 @@ class KerningManager:
         #if kerningType and k == getKerning(gName1, gName2, 0)[0]: # Get kerning of group<-->group
         #    del self.f.kerning[pair] # If identical to group, then remove kerningType pair
         #elif k == 0 and pair in self.f.kerning:
-        if k != self.f.kerning.get(pair):
-            changed = True # Something will change.
+
         if k in (0, None) and pair in self.f.kerning: # Delete this existing pair that now gets value 0
             print('... Delete kerning %s' % str(pair))
             del self.f.kerning[pair]
             changed = True
-        elif k: # If kerningType in (1, 2, 3) then kerning can be 0 to correct the group kerning
+        elif k != self.f.kerning.get(pair): # If kerningType in (1, 2, 3) then kerning can be 0 to correct the group kerning
             print('... Set kerning %s to %d' % (pair, k))
             self.f.kerning[pair] = k
             changed = True
-            
+            print('AAAA Here')
+
         return changed
 
 
