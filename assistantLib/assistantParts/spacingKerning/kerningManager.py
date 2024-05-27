@@ -324,9 +324,16 @@ class KerningManager:
         #        gName = md.glyphSet.unicode2GlyphName.get(uni)
         #        if gName is not None:
         #            sample.append(gName)
-        
+
+        # Sample indices, remember different ones for different types of samples
+        self._sampleGlyphSetIndex = 0
+        self._sampleSimilarityIndex = 0
+        self._sampleGroupIndex = 0
+        self._sampleSpacingIndex = 0
+
         # Cashed sample for kerning. If None, it will be initialize upon usage.
         self._kerningSample = None
+        self._sampleKerningIndex = 0 # Current index in the sample to show
 
         # Kerning filters
         self._kerningSampleFilter1 = None # Select sample kerning pairs in sample if None or if pattern is in the group base glyph name
@@ -1682,7 +1689,7 @@ class KerningManager:
         4: 'getSpacingSample_GroupKerning',
     }
 
-    def getSpacingSample(self, g, context=0, length=40, index=0, initialize=False):
+    def getSpacingSample(self, g, context=0, length=40, index=None, initialize=False):
         """Answer a single sample line of the defined length for the selected context.
         If the index in defined and the possible sample is larger than length, the slice the sample around the index.
         0    Glyphset
@@ -1693,18 +1700,24 @@ class KerningManager:
 
         The initialize flag forces the group-kerning to be initialized (or if it is still None)
         """
-        return getattr(self, self.SAMPLE_MODES[context])(g, length, index, initialize)
+        return getattr(self, self.SAMPLE_MODES[context])(g, length, index=index, initialize=initialize)
 
 
-    def getSpacingSample_GlyphSet(self, g, length, index, initialize=False):
+    def getSpacingSample_GlyphSet(self, g, length, index=None, initialize=False):
         """Sample mode 0. Answer the sample, containing the full glyphset in the current RoboFont sorting, sorted by unicode.
-        Always initialize, ignoring the flag."""
+        Always initialize, ignoring the flag. If index is not defined, then use self.sampleGlyphSetIndex. Otherwise set it to the new index."""
+        if index is None:
+            index = self.sampleGlyphSetIndex
+        self.sampleGlyphSetIndex = index # Store this new index
         glyphNames = g.font.glyphOrder
         return glyphNames[index - int(length / 2) : max(len(glyphNames), index + int(length / 2))]
 
-    def getSpacingSample_Similarity(self, g, length, index, initialize=False):
+    def getSpacingSample_Similarity(self, g, length, index=None, initialize=False):
         """Sample mode 1. Answer the sample with glyphs matching the two similar sides of g.
-        Always initialize, ignoring the flag."""
+        Always initialize, ignoring the flag. If index is not defined, then use self.sampleSimilarityIndex. Otherwise set it to the new index."""
+        if index is None:
+            index = self.sampleSimilarityIndex
+        self.spacingSampleSimilarityIndex = index # Store this new index
         sample = []
         for perc, names in sorted(self.getSimilar2(g).items(), reverse=True):
             sample += names
@@ -1713,26 +1726,35 @@ class KerningManager:
             sample += names
         return sample
 
-    def getSpacingSample_Group(self, g, length, index, initialize=False):
+    def getSpacingSample_Group(self, g, length, index=None, initialize=False):
         """Sample mode 2. Answer the sample, containing glyphs in the same groups as g.
-        Always initialize, ignoring the flag."""
+        Always initialize, ignoring the flag. If index is not defined, then use self.sampleGroupIndex. Otherwise set it to the new index."""
+        if index is None:
+            index = self.sampleGroupIndex
+        self.spacingSampleGroupIndex = index # Store this new index
         sample = ['B', g.name, 'B', g.name, 'O', g.name, 'O', 'H', g.name, 'H', g.name, 'H', g.name, 'H']
         while len(sample) < length:
             sample.append(g.name)
         return sample
 
-    def getSpacingSample_Spacing(self, g, length, index, initialize=False):
+    def getSpacingSample_Spacing(self, g, length, index=None, initialize=False):
         """Sample mode 3. Answer the sample, containing glyphs in the same spacing types as defined in the GlyphData.
-        Always initialize, ignoring the flag."""
+        Always initialize, ignoring the flag. If index is not defined, then use self.sampleSpacingIndex. Otherwise set it to the new index."""
+        if index is None:
+            index = self.sampleSpacingIndex
+        self.sampleSpacingIndex = index # Store this new index
         sample = [g.name, g.name, g.name, 'H', 'a', 'm', 'b', 'u', 'r', 'g', 'e', 'f', 'o', 'n', 't', 's', 't', 'i', 'v', 'I', 
             g.name, 'I', g.name, 'O', g.name, 'O', 'i', g.name, 'i', g.name, 'o', g.name, 'o']
         while len(sample) < length:
             sample.append(g.name)
         return sample
 
-    def getSpacingSample_GroupKerning(self, g, length, index, initialize=False):
+    def getSpacingSample_GroupKerning(self, g, length, index=None, initialize=False):
         """Build sample from permutating the groups. Now this depends on the hard coded lists of base glyphs per script. 
         This should become more generic, depending on the actual glyphset."""
+        if index is None:
+            index = self.sampleKerningIndex
+        self.sampleKerningIndex = index # Store this new index
         if initialize:
             self._kerningSample = None # Force initiazation
         # Property will initialize the cached kerning sample if required, then slice it.
@@ -1773,6 +1795,38 @@ class KerningManager:
             self._kerningSample += exitSample
         return self._kerningSample
     kerningSample = property(_get_kerningSample)
+
+    def _get_sampleGlyphSetIndex(self):
+        return self._sampleGlyphSetIndex
+    def _set_sampleGlyphSetIndex(self, i):
+        self._sampleGlyphSetIndex = min(max(i, 0), len(self._kerningSample))
+    sampleGlyphSetIndex = property(_get_sampleGlyphSetIndex, _set_sampleGlyphSetIndex)
+    
+    def _get_sampleSimilarityIndex(self):
+        return self._sampleSimilarityIndex
+    def _set_sampleSimilarityIndex(self, i):
+        self._sampleSimilarityIndex = min(max(i, 0), len(self._kerningSample))
+    sampleSimilarityIndex = property(_get_sampleSimilarityIndex, _set_sampleSimilarityIndex)
+    
+    def _get_sampleGroupIndex(self):
+        return self._sampleGroupIndex
+    def _set_sampleGroupIndex(self, i):
+        self._sampleGroupIndex = min(max(i, 0), len(self._kerningSample))
+    sampleGroupIndex = property(_get_sampleGroupIndex, _set_sampleGroupIndex)
+    
+    def _get_sampleSpacingIndex(self):
+        return self._sampleSpacingIndex
+    def _set_sampleSpacingIndex(self, i):
+        self._sampleSpacingIndex = min(max(i, 0), len(self._kerningSample))
+    sampleSpacingIndex = property(_get_sampleSpacingIndex, _set_sampleSpacingIndex)
+    
+    def _get_sampleKerningIndex(self):
+        return self._sampleKerningIndex
+    def _set_sampleKerningIndex(self, i):
+        self._sampleKerningIndex = min(max(i, 0), len(self._kerningSample))
+    sampleKerningIndex = property(_get_sampleKerningIndex, _set_sampleKerningIndex)
+    
+    #   S A M P L E  F I L T E R S
 
     def _get_kerningSampleFilter1(self):
         return self._kerningSampleFilter1
@@ -1905,7 +1959,6 @@ class KerningManager:
             print('... Set kerning %s to %d' % (pair, k))
             self.f.kerning[pair] = k
             changed = True
-            print('AAAA Here')
 
         return changed
 
