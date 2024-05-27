@@ -217,6 +217,7 @@ FORCE_GROUP1 = {
 FORCE_GROUP2 = {
     'ellipsis': 'period',
     'abreve': 'a',
+    'dcroat': 'a',
     'eflourish' : 'e',
     'Nj': 'N',
     'gcommaaccent': 'g',
@@ -720,6 +721,8 @@ class KerningManager:
         return gd is not None and gd.rightSpaceSourceLabel is not None
 
     def fixGlyphWidth(self, g, width, label=''):
+        """Compare the rounded width to g.width. If it is different, then set the width."""
+        width = int(round(width))
         if g.width != width:
             print(f'... Fix glyph width: Set /{g.name} width from {g.width} to {width} {label}')
             g.width = width
@@ -1746,9 +1749,15 @@ class KerningManager:
             initSample = [
                 #'H', 'O', 'H', 'H', 'O', 'H', 'n', 'o', 'O', 'o', 'O', 'o', 'O',
                 #'H', 'a', 'm', 'b', 'u', 'r', 'g', 'e', 'f', 'o', 'n', 't', 's', 't', 'i', 'v',
+                #'H', 'a', 'm', 'b', 'u', 'r', 'g',
+                #'H', 'A', 'M', 'B', 'U', 'R', 'G', 'E', 'F', 'O', 'N', 'T', 'S', 'T', 'I', 'V'
+                ]
+            exitSample = [
+                'H', 'O', 'H', 'H', 'O', 'H', 'n', 'o', 'O', 'o', 'O', 'o', 'O',
+                'H', 'a', 'm', 'b', 'u', 'r', 'g', 'e', 'f', 'o', 'n', 't', 's', 't', 'i', 'v',
                 'H', 'a', 'm', 'b', 'u', 'r', 'g',
-                'H', 'A', 'M', 'B', 'U', 'R', 'G', 'E', 'F', 'O', 'N', 'T', 'S', 'T', 'I', 'V']
-            print('AAAAAAAA', len(initSample))
+                'H', 'A', 'M', 'B', 'U', 'R', 'G', 'E', 'F', 'O', 'N', 'T', 'S', 'T', 'I', 'V'
+                ]
             self._kerningSample = initSample.copy()
             for scriptName1, scriptName2 in KERN_GROUPS:
                 pre1, ext1 = GROUP_NAME_PARTS[scriptName1]
@@ -1761,7 +1770,7 @@ class KerningManager:
                             if self._kerningSampleFilter2 is None or self._kerningSampleFilter2 == gName2:
                                 self._kerningSample.append(gName1)
                                 self._kerningSample.append(gName2)
-            self._kerningSample += initSample
+            self._kerningSample += exitSample
         return self._kerningSample
     kerningSample = property(_get_kerningSample)
 
@@ -1851,14 +1860,16 @@ class KerningManager:
         return k, groupK, kerningType     
               
     def setKerning(self, gName1, gName2, k, kerningType=None):
-        """Set the kerning between gName1 and gName2 or their groups, depending on the kerningType
+        """Set the kerning between gName1 and gName2 or their groups, depending on the kerningType.
         3 = glyph<-->glyph
         2 = group<-->glyph
         1 = glyph<-->group
         0 or None = group<-->group
+        Answer the boolean if something changed.
         """
         assert self.f is not None
         assert kerningType in (None, 0, 1, 2, 3)
+        changed = False
         if not kerningType:
             if gName1 not in self.glyphName2GroupName1:
                 print(f'Glyph1 /{gName1} not in group1')
@@ -1885,13 +1896,18 @@ class KerningManager:
         #if kerningType and k == getKerning(gName1, gName2, 0)[0]: # Get kerning of group<-->group
         #    del self.f.kerning[pair] # If identical to group, then remove kerningType pair
         #elif k == 0 and pair in self.f.kerning:
+
         if k in (0, None) and pair in self.f.kerning: # Delete this existing pair that now gets value 0
             print('... Delete kerning %s' % str(pair))
             del self.f.kerning[pair]
-        elif k: # If kerningType in (1, 2, 3) then kerning can be 0 to correct the group kerning
+            changed = True
+        elif k != self.f.kerning.get(pair): # If kerningType in (1, 2, 3) then kerning can be 0 to correct the group kerning
             print('... Set kerning %s to %d' % (pair, k))
             self.f.kerning[pair] = k
+            changed = True
+            print('AAAA Here')
 
+        return changed
 
 
 def makeSpecimenPdf(glyphData, UNI2GLYPH_DATA):

@@ -12,11 +12,11 @@ from vanilla import *
 import importlib
 
 # Add paths to libs in sibling repositories
-PATHS = ('../TYPETR-Assistants/',)
-for path in PATHS:
-    if not path in sys.path:
-        print('@@@ Append to sys.path', path)
-        sys.path.append(path)
+#PATHS = ('../TYPETR-Assistants/',)
+#for path in PATHS:
+#    if not path in sys.path:
+#        print('@@@ Append to sys.path', path)
+#        sys.path.append(path)
 
 from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart
 from assistantLib.assistantParts.glyphsets.anchorData import AD

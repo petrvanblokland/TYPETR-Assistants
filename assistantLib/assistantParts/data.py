@@ -236,7 +236,7 @@ class MasterData:
         }
 
         if baseDiacriticsTop is None: # Baseline of top diacritics
-            baseDiacriticsTop = int(round(xHeight * 1.1))
+            baseDiacriticsTop = int(round(xHeight * 1.2))
         self.baseDiacriticsTop = baseDiacriticsTop
         if capDiacriticsTop is None:
             capDiacriticsTop = int(round(capHeight * 1.1))
