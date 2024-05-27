@@ -2044,7 +2044,7 @@ class MS_GlyphSet(GlyphSet):
        'oogonekmacron': GD(name='oogonekmacron', uni=0x01ED, hex='01ED', c='ǭ', base='oogonek', accents=['macroncomb'], srcName='uni01ED', isLower=True, anchors=['top'], gid=430),
        'oopen': GD(name='oopen', uni=0x0254, hex='0254', c='ɔ', srcName='uni0254', r2l='c', isLower=True, anchors=['dot'], gid=458, comment='ɔ OPEN O, LATIN SMALL LETTER'),
        'oopenoturned': GD(name='oopenoturned', uni=0xAB43, hex='AB43', c='ꭃ', isLower=True),
-       'oopenretroflexhook': GD(name='oopenretroflexhook', uni=0x1D97, hex='1D97', c='ᶗ', base='oopen', accents=['aretroflexhook.component'], isLower=True, anchors=['top']),
+       'oopenretroflexhook': GD(name='oopenretroflexhook', uni=0x1D97, hex='1D97', c='ᶗ', base='oopen', isLower=True, anchors=['top']),
        'oopenstroke-blackletter': GD(name='oopenstroke-blackletter', uni=0xAB3F, hex='AB3F', c='ꬿ', r2l='c', r='o', isLower=True),
        'openshelfmod': GD(name='openshelfmod', uni=0x02FE, hex='02FE', c='˾', isLower=False, isMod=True),
        'ordfeminine': GD(name='ordfeminine', uni=0x00AA, hex='00AA', c='ª', isLower=True, gid=107, comment='ª ORDINAL INDICATOR, FEMININE'),
