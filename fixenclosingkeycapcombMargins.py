@@ -6,5 +6,7 @@ for f in AllFonts():
             g.angledRightMargin = f['H'].angledRightMargin
             g.changed()
             
+    f.save()
+    f.close()
             
 print('Done')

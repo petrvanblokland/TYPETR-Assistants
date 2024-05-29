@@ -359,8 +359,8 @@ class KerningManager:
 
         if fixedWidthPatterns is None:
             # @@@ TODO: these are specific for Segoe, make these into tables of GlyphSet
-            fixedWidthPatterns = { # Key is right margin, value is list of glyph names
-            0: ('cmb|', 'comb|', 'comb-cy|', '-uc|', '.component', 'zerowidthspace', 'zerowidthjoiner', 
+            fixedWidthPatterns = { # Key is right margin, value is list of glyph names. Adding | vertical bar means that the patterns is at the end of the name.
+            0: ('cmb|', 'comb|', 'comb-cy|', '-uc|', 'mod|', '.component', 'zerowidthspace', 'zerowidthjoiner', 
                 'zerowidthnonjoiner', 'righttoleftmark', 'Otilde.component1', 'middledoublegraveaccentmod', 
                 'perispomeni', 'cedillacomb.component', 'psili', 'dblgravecomb', 
                 'dasiavaria-uc', 'ringhalfright', ), # "|" matches pattern on end of name"
@@ -779,11 +779,17 @@ class KerningManager:
         if gd is None:
             return None # No entry in this glyphset for this glyph.
 
+        # This sets the width, independent from later setting of the left margin.
         if gd.w == 0: 
-            if g.width:
-                g.width = 0
-                changed = True
-        elif gd.l is not None: # Plain angled left margin
+            if isinstance(gd.w, (int, float)):
+                w = gd.w
+            else:
+                assert gd.w in g.font, (f'### "gd.w={gd.w}" reference glyph for /{g.name} does not exist.') # Using "md.w" it should exist
+                w = g.font[gd.w].width
+            changed |= self.fixGlyphWidth(g, w, f'(w={gd.w})')
+
+        # Try to figure out the rules for left margin in this glyph.
+        if gd.l is not None: # Plain angled left margin
             if gd.l == 'off': # No automatic spacing, do manually
                 return False
             elif gd.l == 'center': # Center the glyph on it's current defined width
@@ -1237,6 +1243,7 @@ class KerningManager:
         for width, patterns in self.fixedWidthPatterns.items(): # Predefined list by inheriting assistant class
             for pattern in patterns:
                 if (pattern.endswith('|') and g.name.endswith(pattern[:-1])) or pattern in g.name:
+                    print('ASSSAS', pattern, width, g.name)
                     return width
         # Could not find a valid width guess for this glyph.
         return None

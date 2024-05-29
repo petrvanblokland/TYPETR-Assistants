@@ -1215,7 +1215,7 @@ class AssistantPartSpacer(BaseAssistantPart):
                 print(f'... checkFixGlyphLeftMargin: /{g.name} auto-spacing is off')
 
             # First check if there is a masterData spacing source defined, that overwrites all other spacing rules
-            elif md.spacingSrcUFOPath is not None and g.width:  # Only if defined and the glyph has width
+            elif md.spacingSrcUFOPath is not None and gd.w not in (0, None):  # Only if defined and the glyph has width
                 src = self.getFont(md.spacingSrcUFOPath)
                 if g.name in src:
                     lm = src[g.name].angledLeftMargin + md.spacingOffset
