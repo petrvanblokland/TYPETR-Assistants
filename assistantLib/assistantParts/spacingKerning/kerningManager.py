@@ -344,17 +344,18 @@ class KerningManager:
 
         # @@@ Generic fixed spacing patterns. These are glyphset dependent, so their should go into the GlyphSet class. 
 
-        if fixedLeftMarginPatterns is None:
-            fixedLeftMarginPatterns = { # Key is right margin, value is list of glyph names
-            0:  ('enclosingkeycapcomb',)
-        }
-        self.fixedLeftMarginPatterns = fixedLeftMarginPatterns # Key is margin, value is list of glyph names
-
-        if fixedRightMarginPatterns is None:
-            fixedRightMarginPatterns = { # Key is right margin, value is list of glyph names
-            0:  ('enclosingkeycapcomb',)
-        }
-        self.fixedRightMarginPatterns = fixedRightMarginPatterns # Key is margin, value is list of glyph names
+        # Does not seem to be in use anymore
+        #if fixedLeftMarginPatterns is None:
+        #    fixedLeftMarginPatterns = { # Key is right margin, value is list of glyph names
+        #    186:  ('enclosingkeycapcomb',) # Margin of /H
+        #}
+        #self.fixedLeftMarginPatterns = fixedLeftMarginPatterns # Key is margin, value is list of glyph names
+        #
+        #if fixedRightMarginPatterns is None:
+        #    fixedRightMarginPatterns = { # Key is right margin, value is list of glyph names
+        #    186:  ('enclosingkeycapcomb',) # Margin of /H
+        #}
+        #self.fixedRightMarginPatterns = fixedRightMarginPatterns # Key is margin, value is list of glyph names
 
         if fixedWidthPatterns is None:
             # @@@ TODO: these are specific for Segoe, make these into tables of GlyphSet
