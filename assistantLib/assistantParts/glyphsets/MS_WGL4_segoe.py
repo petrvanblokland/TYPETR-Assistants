@@ -1541,7 +1541,7 @@ class MS_GlyphSet(GlyphSet):
        'gobliquestroke': GD(name='gobliquestroke', uni=0xA7A1, hex='A7A1', c='ꞡ', base='g', w=ACCENT_WIDTH, isLower=True, anchors=['top', 'middle', 'bottom']),
        'gpalatalhook': GD(name='gpalatalhook', uni=0x1D83, hex='1D83', c='ᶃ', l='g', r='jdotless', base='g', accents=['dpalatalhook.component', 'gpalatalhook.component'], isLower=True, anchors=['top', 'middle', 'bottom']),
        'gpalatalhook.component': GD(name='gpalatalhook.component', isLower=True, gid=1652),
-       'graphemejoinercomb': GD(name='graphemejoinercomb', uni=0x034F, hex='034F', c='͏', w=0, isLower=True, anchors=['top', '_top']),
+       'graphemejoinercomb': GD(name='graphemejoinercomb', uni=0x034F, hex='034F', c='͏', w=0, isLower=True, anchors=[]),
        'grave': GD(name='grave', uni=0x0060, hex='0060', c='`', l=CENTER, w=ACCENT_WIDTH, base='gravecomb', isLower=True, gid=66, comment='` spacing grave accent'),
        'graveacutegravecomb': GD(name='graveacutegravecomb', uni=0x1DC8, hex='1DC8', c='᷈', w=0, isLower=True, anchors=['top', '_top']),
        'gravebelowcomb': GD(name='gravebelowcomb', uni=0x0316, hex='0316', c='̖', w=0, base='gravecomb', isLower=True, anchors=['bottom', '_bottom']),

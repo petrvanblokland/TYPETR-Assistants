@@ -11,6 +11,9 @@ for f in AllFonts():
                 print(g.name, g.width, f.path)
                 g.width = 0
                 g.changed()
+                
+    f.save()
+    f.close()
             
             
 print('Done')
