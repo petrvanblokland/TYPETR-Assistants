@@ -2329,7 +2329,7 @@ class MS_GlyphSet(GlyphSet):
        'spalatalhook': GD(name='spalatalhook', uni=0x1D8A, hex='1D8A', c='ᶊ', l='s', r='jdotless', base='s', accents=['dpalatalhook.component', 'gpalatalhook.component'], isLower=True, anchors=['top', 'middle', 'bottom']),
        'spesmilo': GD(name='spesmilo', uni=0x20B7, hex='20B7', c='₷', isLower=True, gid=1456),
        'spirantVoicedlaryngeal': GD(name='spirantVoicedlaryngeal', uni=0x1D24, hex='1D24', l2r='s', r2l='s', c='ᴤ', isLower=True),
-       'squarebelowcomb': GD(name='squarebelowcomb', uni=0x033B, hex='033B', c='̻', w=0, isLower=True, anchors=['bottom', '_bottom']),
+       'squarebelowcomb': GD(name='squarebelowcomb', uni=0x033B, hex='033B', c='̻', l='center', w=0, isLower=True, anchors=['bottom', '_bottom']),
        'sswashtail': GD(name='sswashtail', uni=0x023F, hex='023F', c='ȿ', l='s', isLower=True),
        'sterling': GD(name='sterling', uni=0x00A3, hex='00A3', c='£', isLower=True, gid=100, comment='£ sterling, pound'),
        'stigma': GD(name='stigma', uni=0x03DB, hex='03DB', c='ϛ', isLower=True, gid=608),

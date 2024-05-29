@@ -597,7 +597,7 @@ class AssistantPartAnchors(BaseAssistantPart):
             # Default position below xHeight or capHeight
             ay = md.baselineAnchorOffsetY
             # In case the a.y now is above the bounding box, then lift the anchor to fit the top of the bounding box
-            if md.baseDiacriticsBottom > g.bounds[1]:
+            if g.bounds is not None and md.baseDiacriticsBottom > g.bounds[1]:
                 ay = g.bounds[1] + md.boxBottomAnchorOffsetY
 
         # BOTTOM_ Construct horizontal position
