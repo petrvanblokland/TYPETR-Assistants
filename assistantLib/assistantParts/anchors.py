@@ -630,6 +630,8 @@ class AssistantPartAnchors(BaseAssistantPart):
         ay = md.baselineAnchorOffsetY
         ax = self.italicX(g, 0, ay) # All glyph that contain _bottom are supposed to have width = 0
 
+        return ax, ay
+
     def constructAnchorOGONEK_XY(self, g, a):
         """Answer the constructed (x, y) position of the OGONEK_ anchor for g, based on available rules and shape. The x and/or y can be None 
         in case not valid value could be constructed. In that case the position needs to be set manually in the editor.
