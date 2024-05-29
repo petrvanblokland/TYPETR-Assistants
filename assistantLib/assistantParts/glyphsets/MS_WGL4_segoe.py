@@ -1576,7 +1576,7 @@ class MS_GlyphSet(GlyphSet):
        'hahook-cy': GD(name='hahook-cy', uni=0x04FD, hex='04FD', c='ӽ', l='x', r='x', isLower=True, gid=898),
        'halfh': GD(name='halfh', uni=0x2C76, hex='2C76', c='ⱶ', r='hyphen', isLower=True),
        'hardsign-cy': GD(name='hardsign-cy', uni=0x044A, hex='044A', c='ъ', l='te-cy', r='softsign-cy', isLower=True, gid=719),
-       'hardsigncomb-cy': GD(name='hardsigncomb-cy', uni=0xA678, hex='A678', c='ꙸ', w=0, isLower=True, anchors=['_top'], gid=1579),
+       'hardsigncomb-cy': GD(name='hardsigncomb-cy', uni=0xA678, hex='A678', c='ꙸ', w=0, l='off', isLower=True, anchors=['_top'], gid=1579),
        'hastroke-cy': GD(name='hastroke-cy', uni=0x04FF, hex='04FF', c='ӿ', l='x', r='x', isLower=True, gid=900),
        'hbar': GD(name='hbar', uni=0x0127, hex='0127', c='ħ', l='hyphen', r='h', isLower=True, gid=232, comment='ħ H WITH STROKE, LATIN SMALL LETTER'),
        'hbrevebelow': GD(name='hbrevebelow', uni=0x1E2B, hex='1E2B', c='ḫ', base='h', accents=['brevebelowcomb'], srcName='uni1E2B', isLower=True, anchors=['top', 'middle', 'bottom'], gid=966),
