@@ -2322,7 +2322,7 @@ class MS_GlyphSet(GlyphSet):
        'sobliquestroke': GD(name='sobliquestroke', uni=0xA7A9, hex='A7A9', c='ꞩ', base='s', isLower=True, anchors=['top', 'middle', 'bottom']),
        'softhyphen': GD(name='softhyphen', uni=0x00AD, hex='00AD', c='­', w=0, isLower=True, gid=110),
        'softsign-cy': GD(name='softsign-cy', uni=0x044C, hex='044C', c='ь', l='en-cy', isLower=True, gid=721),
-       'softsigncomb-cy': GD(name='softsigncomb-cy', uni=0xA67A, hex='A67A', c='ꙺ', w=0, isLower=True, anchors=['top', '_top'], gid=1580),
+       'softsigncomb-cy': GD(name='softsigncomb-cy', uni=0xA67A, hex='A67A', c='ꙺ', w=0, l='off', isLower=True, anchors=['_top'], gid=1580),
        'northEastArrow': GD(name='northEastArrow', uni=0x2197, hex='2197', c='↗', isLower=True),
        'southWestArrow': GD(name='southWestArrow', uni=0x2199, hex='2199', c='↙', isLower=True),
        'spadeBlackSuit': GD(name='spadeBlackSuit', uni=0x2660, hex='2660', c='♠', l2r='spadeBlackSuit', srcName='spade', isLower=True, gid=1573),

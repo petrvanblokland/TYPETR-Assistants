@@ -13,7 +13,7 @@ for f in AllFonts():
                 g.changed()
                 
     f.save()
-    f.close()
+    #f.close()
             
             
 print('Done')
