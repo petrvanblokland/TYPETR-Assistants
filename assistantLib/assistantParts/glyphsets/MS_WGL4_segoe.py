@@ -2663,7 +2663,7 @@ class MS_GlyphSet(GlyphSet):
         #   x
 
        'x': GD(name='x', uni=0x0078, hex='0078', c='x', l2r='x', isLower=True, anchors=['top', 'middle', 'bottom'], gid=90, comment='x LATIN SMALL LETTER X'),
-       'xabovecomb': GD(name='xabovecomb', uni=0x033D, hex='033D', c='̽', w=0, base='xbelowcomb', isLower=True, anchors=['top', '_top']),
+       'xabovecomb': GD(name='xabovecomb', uni=0x033D, hex='033D', c='̽', l='center', w=0, base='xbelowcomb', isLower=True, anchors=['top', '_top']),
        'xbelowcomb': GD(name='xbelowcomb', uni=0x0353, hex='0353', c='͓', w=0, isLower=True, anchors=['bottom', '_bottom']),
        'xcomb': GD(name='xcomb', uni=0x036F, hex='036F', c='ͯ', w=0, isLower=True, anchors=['top', '_top']),
        'xdieresis': GD(name='xdieresis', uni=0x1E8D, hex='1E8D', c='ẍ', l='x', r='x', base='x', accents=['dieresiscomb'], srcName='uni1E8D', isLower=True, anchors=['top', 'middle', 'bottom'], gid=1064),
