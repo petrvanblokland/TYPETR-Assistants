@@ -1785,7 +1785,7 @@ class MS_GlyphSet(GlyphSet):
        'lhookretroflex': GD(name='lhookretroflex', uni=0x026D, hex='026D', c='ɭ', l='l', w='l', isLower=True),
        'lineseparator': GD(name='lineseparator', uni=0x2028, hex='2028', c=' ', isLower=True),
        'linferior': GD(name='linferior', uni=0x2097, hex='2097', c='ₗ', isLower=True),
-       'lira': GD(name='lira', uni=0x20A4, hex='20A4', c='₤', isLower=True, gid=1437),
+       'lira': GD(name='lira', uni=0x20A4, hex='20A4', c='₤', isLower=False, gid=1437),
        'liraTurkish': GD(name='liraTurkish', uni=0x20BA, hex='20BA', c='₺', srcName='turkishlira', isLower=True, gid=1459),
        'literSign': GD(name='literSign', uni=0x2113, hex='2113', c='ℓ', srcName='uni2113', isLower=True, gid=1466),
        'livreTournois': GD(name='livreTournois', uni=0x20B6, hex='20B6', c='₶', isLower=True, gid=1455),
@@ -1982,7 +1982,7 @@ class MS_GlyphSet(GlyphSet):
        'omacronacute': GD(name='omacronacute', uni=0x1E53, hex='1E53', c='ṓ', l='o', r='o', base='o', accents=['acutecomb.component1'], srcName='uni1E53', isLower=True, anchors=['top', 'middle', 'bottom'], gid=1006),
        'omacrongrave': GD(name='omacrongrave', uni=0x1E51, hex='1E51', c='ṑ', l='o', r='o', base='o', accents=['gravecomb.component1'], srcName='uni1E51', isLower=True, anchors=['top', 'middle', 'bottom'], gid=1004),
        'omega': GD(name='omega', uni=0x03C9, hex='03C9', c='ω', isLower=True, fixSpacing=False, anchors=['top', 'bottom'], gid=590, comment='ω'),
-       'omega-cy': GD(name='omega-cy', uni=0x0461, hex='0461', c='ѡ', l='v', r='v', isLower=True, anchors=['top'], gid=742),
+       'omega-cy': GD(name='omega-cy', uni=0x0461, hex='0461', c='ѡ', l='off', r='omega-cy', isLower=True, anchors=['top'], gid=742),
        'omega-latin': GD(name='omega-latin', uni=0xA7B7, hex='A7B7', c='ꞷ', base='omega', isLower=True, anchors=['top', 'bottom']),
        'omegaclosed-latin': GD(name='omegaclosed-latin', uni=0x0277, hex='0277', l='o', r='o', c='ɷ', isLower=True),
        'omegadasia': GD(name='omegadasia', uni=0x1F61, hex='1F61', c='ὡ', l='omega', r='omega', base='omega', accents=['dasia'], isLower=True, anchors=['top', 'bottom'], gid=1258),
@@ -2327,7 +2327,7 @@ class MS_GlyphSet(GlyphSet):
        'southWestArrow': GD(name='southWestArrow', uni=0x2199, hex='2199', c='↙', isLower=True),
        'spadeBlackSuit': GD(name='spadeBlackSuit', uni=0x2660, hex='2660', c='♠', l2r='spadeBlackSuit', srcName='spade', isLower=True, gid=1573),
        'spalatalhook': GD(name='spalatalhook', uni=0x1D8A, hex='1D8A', c='ᶊ', l='s', r='jdotless', base='s', accents=['dpalatalhook.component', 'gpalatalhook.component'], isLower=True, anchors=['top', 'middle', 'bottom']),
-       'spesmilo': GD(name='spesmilo', uni=0x20B7, hex='20B7', c='₷', isLower=True, gid=1456),
+       'spesmilo': GD(name='spesmilo', uni=0x20B7, hex='20B7', c='₷', isLower=False, gid=1456),
        'spirantVoicedlaryngeal': GD(name='spirantVoicedlaryngeal', uni=0x1D24, hex='1D24', l2r='s', r2l='s', c='ᴤ', isLower=True),
        'squarebelowcomb': GD(name='squarebelowcomb', uni=0x033B, hex='033B', c='̻', l='center', w=0, isLower=True, anchors=['bottom', '_bottom']),
        'sswashtail': GD(name='sswashtail', uni=0x023F, hex='023F', c='ȿ', l='s', isLower=True),
@@ -2366,7 +2366,7 @@ class MS_GlyphSet(GlyphSet):
        'theta': GD(name='theta', uni=0x03B8, hex='03B8', c='θ', isLower=False, gid=573), # Behaves as /zero
        'thetaSymbol': GD(name='thetaSymbol', uni=0x03D1, hex='03D1', c='ϑ', l=MIN_MARGIN, r=MIN_MARGIN, isLower=False, gid=598), # Behaves as capital
        'thinspace': GD(name='thinspace', uni=0x2009, hex='2009', c=' ', isLower=True),
-       'thook': GD(name='thook', uni=0x01AD, hex='01AD', c='ƭ', l='t', r='t', srcName='uni01AD', isLower=True, gid=366),
+       'thook': GD(name='thook', uni=0x01AD, hex='01AD', c='ƭ', l='t', w='t', srcName='uni01AD', isLower=True, gid=366),
        'thorn': GD(name='thorn', uni=0x00FE, hex='00FE', c='þ', isLower=True, gid=191, comment='þ THORN, LATIN SMALL LETTER'),
        'thornstroke': GD(name='thornstroke', uni=0xA765, hex='A765', c='ꝥ', bl='thorn', base='thorn', isLower=True),
        'thornstrokethroughdescender': GD(name='thornstrokethroughdescender', uni=0xA767, hex='A767', c='ꝧ', bl='thorn', base='thorn', isLower=True),

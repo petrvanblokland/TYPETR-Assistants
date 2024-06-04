@@ -19,6 +19,8 @@ import assistantLib.similarity.cosineSimilarity
 from assistantLib.similarity.cosineSimilarity import cosineSimilarity, SimilarGlyphsKey
 
 from assistantLib.kerningSamples import SAMPLES, CYRILLIC_KERNING, GREEK_KERNING
+# Seed relation between glyphs as start for similarity groups
+from assistantLib.assistantParts.glyphsets.groupBaseGlyphs import *
 
 # Defines types of spacing dependencies
 SPACING_TYPES_LEFT = ('', 'l', 'ml', 'r2l')
@@ -32,207 +34,6 @@ MAIN_SAMPLES = SAMPLES
 
 TAB_WIDTH = 650 # Default tab width.
 
-# Glyphs that are used as base for groups. Scripts only kern within the script (and "all") to the other side.
-# The "all" also kern to each other, on the other side. There is no kerning allowed between the scripts.
-
-PUBLIC_KERN2 = 'public.kern2.'
-PUBLIC_KERN1 = 'public.kern1.'
-
-LT1 = 'lt1'
-LT2 = 'lt2'
-CY1 = 'cy1'
-CY2 = 'cy2'
-GR1 = 'gr1'
-GR2 = 'gr2'
-ALL1 = 'all1'
-ALL2 = 'all2'
-FIG1 = 'fig1'
-FIG2 = 'fig2'
-NUMR1 = 'numr1'
-NUMR2 = 'numr2'
-DNOM1 = 'dnom1'
-DNOM2 = 'dnom2'
-
-GROUP_NAME_PARTS = {
-    LT1: (PUBLIC_KERN1, '_lt'), 
-    LT2: (PUBLIC_KERN2, '_lt'),
-    CY1: (PUBLIC_KERN1, '_cy'), 
-    CY2: (PUBLIC_KERN2, '_cy'),
-    GR1: (PUBLIC_KERN1, '_gr'), 
-    GR2: (PUBLIC_KERN2, '_gr'),
-    ALL1: (PUBLIC_KERN1, ''), 
-    ALL2: (PUBLIC_KERN2, ''),
-    FIG1: (PUBLIC_KERN1, ''), 
-    FIG2: (PUBLIC_KERN2, ''),
-    NUMR1: (PUBLIC_KERN1, ''), 
-    NUMR2: (PUBLIC_KERN2, ''),
-    DNOM1: (PUBLIC_KERN1, ''), 
-    DNOM2: (PUBLIC_KERN2, ''),
-}
-BASE_SCRIPTS1 = (LT1, CY1, GR1, ALL1, FIG1, NUMR1, DNOM1)
-BASE_SCRIPTS2 = (LT2, CY2, GR2, ALL2, FIG2, NUMR2, DNOM2)
-
-# For now, this is an italic table.
-GROUP_BASE_GLYPHS = {
-    LT1: set(('A', 'B', 'C', 'E', 'F', 'G', 'H', 
-        #'Hbar', 
-        'J', 'K', 'L', 'Lcommaaccent', 'Ldot', 'Lslash', 'O', 'P', 'R', 'S', 'T', 'Thorn', 'U', 'V', 'W', 'Y', 'Z', 
-        'a', 'c', 'd', 'dcroat', 'e', 'eth', 'f', 'g', 'germandbls', 'i', 'idotless', 'iacute', 'ibreve', 'icircumflex', 'idieresis', 'igrave', 'imacron', 
-        'iogonek', 'itilde', 'j', 'jcircumflex', 'jdotless', 'k', 'l', 
-        #'lacute', 'lcaron', 
-        #'ldot', 'lslash', 
-        'n', 'o', 'q', 'r', 's', 't', 'u', 'v', 'w', 'y', 'z')),
-    
-    LT2: set(('A', 'AE', 'Dcroat', 'H', 
-        #'Hbar', 
-        'J', 'O', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 
-        'a', 'abreve', # Getting a-diacritics and dcroat in a group
-        'f', 'g', 'germandbls', 'h', 'i', 'iacute', 'ibreve', 'icircumflex', 'idieresis', 'igrave', 'imacron', 'iogonek', 'itilde', 'idotless',
-        'j', 'jdotless', 
-        #'lslash', 
-        'n', 'o', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')),
-    
-    CY1: set(('Iegrave-cy', 'Io-cy', 'Dje-cy', 'Gje-cy', 'E-cy', 'Dze-cy', 'I-cy', 'Yi-cy', 'Je-cy', 'Lje-cy', 'Nje-cy', 'Tshe-cy', 'Kje-cy', 'Iigrave-cy', 'Ushort-cy', 'Dzhe-cy', 
-        'A-cy', 'Be-cy', 'Ve-cy', 'Ge-cy', 'De-cy', 'Ie-cy', 'Zhe-cy', 'Ze-cy', 'Ii-cy', 'Iishort-cy', 'Ka-cy', 'El-cy', 'Em-cy', 'En-cy', 'O-cy', 'Pe-cy', 'Er-cy', 'Es-cy', 
-        'Te-cy', 'U-cy', 'Ef-cy', 'Ha-cy', 'Tse-cy', 'Che-cy', 'Sha-cy', 'Shcha-cy', 'Hardsign-cy', 'Yeru-cy', 'Softsign-cy', 'Ereversed-cy', 'Iu-cy', 'Ia-cy', 
-        'Uk-cy', 
-        'a-cy', 'be-cy', 've-cy', 'ge-cy', 'de-cy', 'ie-cy', 'zhe-cy', 'ze-cy', 'ii-cy', 'iishort-cy', 'ka-cy', 'el-cy', 'em-cy', 'en-cy', 'o-cy', 'pe-cy', 'er-cy', 
-        'es-cy', 'te-cy', 'u-cy', 'ef-cy', 'ha-cy', 'tse-cy', 'che-cy', 'sha-cy', 'shcha-cy', 'hardsign-cy', 'yeru-cy', 'softsign-cy', 'ereversed-cy', 'iu-cy', 
-        'ia-cy', 'iegrave-cy', 'io-cy', 'dje-cy', 'gje-cy', 'e-cy', 'dze-cy', 'i-cy', 'yi-cy', 'je-cy', 'lje-cy', 'nje-cy', 'tshe-cy', 'kje-cy', 'iigrave-cy', 
-        'ushort-cy', 'dzhe-cy', 'Omega-cy', 'omega-cy', 'Yat-cy', 'yat-cy', 'Eiotified-cy', 'eiotified-cy', 'Yuslittle-cy', 'yuslittle-cy', 'Yuslittleiotified-cy', 
-        'yuslittleiotified-cy', 'Yusbig-cy', 'yusbig-cy', 'Yusbigiotified-cy', 'yusbigiotified-cy', 'Ksi-cy', 'ksi-cy')),
-    
-    CY2: set(('Iegrave-cy', 'Io-cy', 'Dje-cy', 'Gje-cy', 'E-cy', 'Dze-cy', 'I-cy', 'Yi-cy', 'Je-cy', 'Lje-cy', 'Nje-cy', 'Tshe-cy', 'Kje-cy', 'Iigrave-cy', 'Ushort-cy', 'Dzhe-cy', 
-        'A-cy', 'Be-cy', 'Ve-cy', 'Ge-cy', 'De-cy', 'Ie-cy', 'Zhe-cy', 'Ze-cy', 'Ii-cy', 'Iishort-cy', 'Ka-cy', 'El-cy', 'Em-cy', 'En-cy', 'O-cy', 'Pe-cy', 'Er-cy', 'Es-cy', 
-        'Te-cy', 'U-cy', 'Ef-cy', 'Ha-cy', 'Tse-cy', 'Che-cy', 'Sha-cy', 'Shcha-cy', 'Hardsign-cy', 'Yeru-cy', 'Softsign-cy', 'Ereversed-cy', 'Iu-cy', 'Ia-cy', 
-        'Uk-cy',
-        'a-cy', 'be-cy', 've-cy', 'ge-cy', 'de-cy', 'ie-cy', 'zhe-cy', 'ze-cy', 'ii-cy', 'iishort-cy', 'ka-cy', 'el-cy', 'em-cy', 'en-cy', 'o-cy', 'pe-cy', 'er-cy', 
-        'es-cy', 'te-cy', 'u-cy', 'ef-cy', 'ha-cy', 'tse-cy', 'che-cy', 'sha-cy', 'shcha-cy', 'hardsign-cy', 'yeru-cy', 'softsign-cy', 'ereversed-cy', 'iu-cy', 
-        'ia-cy', 'iegrave-cy', 'io-cy', 'dje-cy', 'gje-cy', 'e-cy', 'dze-cy', 'i-cy', 'yi-cy', 'je-cy', 'lje-cy', 'nje-cy', 'tshe-cy', 'kje-cy', 'iigrave-cy', 
-        'ushort-cy', 'dzhe-cy', 'Omega-cy', 'omega-cy', 'Yat-cy', 'yat-cy', 'Eiotified-cy', 'eiotified-cy', 'Yuslittle-cy', 'yuslittle-cy', 'Yuslittleiotified-cy', 
-        'yuslittleiotified-cy', 'Yusbig-cy', 'yusbig-cy', 'Yusbigiotified-cy', 'yusbigiotified-cy', 'Ksi-cy', 'ksi-cy')),
-    
-    GR1: set(('Alpha', 'Beta', 'Chi', 'Epsilon', 'Eta', 'Gamma', 'Kappa', 'Mu', 'Omega', 'Omicron', 'Psi', 'Rho', 'Sigma', 'Upsilon', 'Zeta', 
-        'alpha', 'beta', 'chi', 'delta', 'epsilon', 'eta', 'gamma', 'iota', 'iotadieresis', 'iotadieresistonos', 'iotatonos', 'kappa', 
-        'koppa', 'lambda', 'nu', 'omega', 'omicron', 'pi', 'psi', 'sigma', 'sigmafinal', 'tau', 'theta', 'upsilon', 'xi', 'zeta')),
-    
-    GR2: set(('Alpha', 'Alphatonos', 'Chi', 'Epsilontonos', 'Eta', 'Mu', 'Omega', 'Omegatonos', 'Omicron', 'Omicrontonos', 'Psi', 'Sigma', 'Tau', 
-        'Upsilon', 'Upsilontonos', 'Xi', 'Zeta', 
-        'beta', 'chi', 'delta', 'epsilon', 'eta', 'gamma', 'iota', 'iotadieresis', 'iotadieresistonos', 'iotatonos', 'kappa', 'lambda', 
-        'koppa', 'nu', 'omega', 'omicron', 'pi', 'psi', 'rho', 'tau', 'theta', 'upsilon', 'xi', 'zeta')),
-
-    ALL1: set((
-        #'euro', 
-        'ampersand', 'asterisk', 'at', 'backslash', 
-        #'bar', 
-        'braceleft', 'braceright', 'bracketleft', 'bracketright', 'bullet', 
-        #'cent', 
-        'semicolon', 'colon', 'comma', 'period',
-        #'dagger', 'daggerdbl', 
-        'degree', 'dollar', 'exclam', 'exclamdown', 
-        'guilsinglleft', 'guilsinglright', 'horizontalbar', 'hyphen', 'parenleft', 'parenright', 'percent',  
-        #'periodcentered', 
-        'question', 'questiondown', 
-        'quoteleft', 'quoteright', 'quotesingle', 'slash', 
-        #'space'
-        )),
-    ALL2: set((
-        #'euro', 
-        'ampersand', 'asterisk', 'at', 'backslash', 
-        #'bar', 
-        'braceleft', 'braceright', 'bracketleft', 'bracketright', 'bullet', 
-        #'cent', 
-        'semicolon', 'colon', 'comma', 'period',
-        #'dagger', 'daggerdbl', 
-        'degree', 'dollar', 'exclam', 'exclamdown', 
-        'guilsinglleft', 'guilsinglright', 'horizontalbar', 'hyphen', 'parenleft', 'parenright', 'percent',  
-        #'periodcentered', 
-        'question', 'questiondown', 
-        'quoteleft', 'quoteright', 'quotesingle', 'slash', 
-        #'space'
-        )),
-    FIG1: set((
-        'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'zero',
-        )),
-    FIG2: set((
-        'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'zero',
-        )),
-    NUMR1: set((
-        'one.numr', 'two.numr', 'three.numr', 'four.numr', 'five.numr', 'six.numr', 'seven.numr', 'eight.numr', 'nine.numr', 'zero.numr',
-        )),
-    NUMR2: set((
-        'one.numr', 'two.numr', 'three.numr', 'four.numr', 'five.numr', 'six.numr', 'seven.numr', 'eight.numr', 'nine.numr', 'zero.numr',
-        )),
-    DNOM1: set((
-        'one.dnom', 'two.dnom', 'three.dnom', 'four.dnom', 'five.dnom', 'six.dnom', 'seven.dnom', 'eight.dnom', 'nine.dnom', 'zero.dnom',
-        )),
-    DNOM2: set((
-        'one.dnom', 'two.dnom', 'three.dnom', 'four.dnom', 'five.dnom', 'six.dnom', 'seven.dnom', 'eight.dnom', 'nine.dnom', 'zero.dnom',
-        )),
-}
-KERN_GROUPS = (
-    (LT1, LT2),
-    (FIG1, LT2),
-    (LT1, FIG2),
-    (LT1, NUMR2),
-    (LT1, DNOM2),
-    (ALL1, LT2),
-    (LT1, ALL2),
-
-    (CY1, CY2),
-    (FIG1, CY2),
-    (CY1, FIG2),
-    (CY1, NUMR2),
-    (CY1, DNOM2),
-    (ALL1, CY2),
-    (CY1, ALL2),
-
-    (GR1, GR2),
-    (FIG1, GR2),
-    (GR1, FIG2),
-    (GR1, NUMR2),
-    (GR1, DNOM2),
-    (ALL1, GR2),
-    (GR1, ALL2),
-
-)
-# These groups are not recognized as identical by similarity. Force them to be part of the key base glyph name.
-FORCE_GROUP1 = {
-    'ellipsis': 'period',
-    'abreve': 'a',
-    'eflourish' : 'e',
-    'Nj': 'j',
-    'gcommaaccent': 'g',
-    'ngrave': 'n',
-    'ngrave': 'o',
-    'ucircumflex': 'u',
-    'Oslash': 'O',
-    'Qdiagonalstroke': 'O',
-    'Scircumflex': 'S', 
-    'X': 'K',
-    'Zstroke': 'Z',
-    'dollar.alt1': 'dollar',
-}
-
-FORCE_GROUP2 = {
-    'ellipsis': 'period',
-    'abreve': 'a',
-    'dcroat': 'a',
-    'eflourish' : 'e',
-    'Nj': 'N',
-    'gcommaaccent': 'g',
-    'ngrave': 'n',
-    'ngrave': 'o',
-    'ucircumflex': 'u',
-    'Oslash': 'O',
-    'Qdiagonalstroke': 'O',
-    'Scircumflex': 'S', 
-    'Zstroke': 'Z',
-    'dollar.alt1': 'dollar',
-}
-
-GROUP_IGNORE = ('tnum', 'cmb', 'comb', 'mod', 'superior', 'inferior', 'component',) # Always ignore glyphs that include these patterns
-
 class KerningManager:
     """Generic kerning manager, the spacing WizzKid. It knows all about groups, spacing and kerning and it offers several strategies for it:
     by groups, by specification in the GlyphData, by Similarity and by KernNet-AI. It is up to the calling assistant to decide
@@ -245,7 +46,7 @@ class KerningManager:
 
     def __init__(self, f, md, features=None, 
             #sample=None, sampleCAPS=None, sampleC2SC=None, # List of (kerning) glyph names
-            simT=0.90, simSameCategory=True, simSameScript=True, simClip=300, simZones=None,
+            simT=0.90, simSameUnicodeClass=True, simSameUnicodeRange=False, simSameUnicodeScript=True, simClip=300, simZones=None,
             automaticGroups=True, verbose=True,
             tabWidth=TAB_WIDTH, fixedLeftMarginPatterns=None, fixedRightMarginPatterns=None, fixedWidthPatterns=None,
             groupBaseGlyphs=None,
@@ -266,8 +67,9 @@ class KerningManager:
 
         # Similarity parameters
         self.simT = simT # the confidence threshold. Only show results > simT
-        self.simSameCategory = simSameCategory # only show glyphs in the same unicode category
-        self.simSameScript = simSameScript # only show glyphs in the same unicode script
+        self.simSameUnicodeClass = simSameUnicodeClass # only show glyphs in the same unicode category
+        self.simSameUnicodeRange = simSameUnicodeRange
+        self.simSameUnicodeScript = simSameUnicodeScript # only show glyphs in the same unicode script
         self.simClip = simClip # clip is how deep the profile should be, measured from the margin inward.
         # zones are pairs of y values of the areas we specifically want to compare.
         # useful if you want to exclude certain bands.
@@ -484,7 +286,7 @@ class KerningManager:
     def initializeGroups(self, fixKerning=False):
         """This (dangerous) method does clear the self.f.groups and builds them according to what is in self.groupBaseGlyphs.
         If the fixKerning flag is set, then clean the kerning, removing all pairs with group names that no longer exist.
-        Note that there may be base group glyphs that are so similar that they should not have separate groups.
+        Note that there may be base group glyphs that are so similar that they still should not have separate groups.
         """
         self.f.groups.clear() # Clear the current set of groups in this font
         # Then make groups for each of the glyphs in self.groupBaseGlyphs
@@ -519,6 +321,7 @@ class KerningManager:
             if g.name not in used1 and not self._groupIgnore1(g.name):
                 if g.name in FORCE_GROUP1:
                     simGroup1 = [FORCE_GROUP1[g.name]]
+                    print(f'... Force {g.name} in group 1 {simGroup1}')
                 else:
                     simGroup1 = sorted(self.getSimilarNames1(g))
                 #print('==== 1 ==', 'O' in simGroup1, g.name, simGroup1)
@@ -539,6 +342,7 @@ class KerningManager:
             if g.name not in used2 and not self._groupIgnore2(g.name):            
                 if g.name in FORCE_GROUP2:
                     simGroup2 = [FORCE_GROUP2[g.name]]
+                    print(f'... Force {g.name} in group 2 {simGroup2}')
                 else:
                     simGroup2 = sorted(self.getSimilarNames2(g))
                 #print('==== 2 ==', 'O' in simGroup2, g.name, simGroup2)
@@ -1542,8 +1346,9 @@ class KerningManager:
     def _getSimilar(self, g, side):
         return g.getRepresentation(SimilarGlyphsKey,
             threshold=self.simT, 
-            sameUnicodeClass=self.simSameCategory,
-            sameUnicodeScript=self.simSameScript,
+            sameUnicodeClass=self.simSameUnicodeClass,
+            sameUnicodeRange=self.simSameUnicodeRange,
+            sameUnicodeScript=self.simSameUnicodeScript,
             zones=self.simZones,
             side=side,
             clip=self.simClip

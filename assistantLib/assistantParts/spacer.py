@@ -124,7 +124,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         )
         self.spacerGlyphKerningRight.setHorizontalAlignment('left')
         
-        # Showing suggeste KernNet value below left and right glyph in EditorWindow
+        # Showing suggested KernNet value below left and right glyph in EditorWindow
 
         self.spacerGlyphKernNetLeft = container.appendTextLineSublayer(name="spacerGlyphKernNetLeft",
             position=(0, 0),
@@ -396,8 +396,9 @@ class AssistantPartSpacer(BaseAssistantPart):
         self.spacerWhiteBackground.setVisible(True)
 
         lineNumber = int(round(km.sampleKerningIndex/len(self.kerningLine)))
+        numLines = int(round(len(sample)/len(self.kerningLine)))
         self.spacerKerningLineNumber.setPosition((gpFirst.x + offsetX - 2*m, (f.info.descender - 120)/self.KERN_SCALE))
-        self.spacerKerningLineNumber.setText(f'{lineNumber} G-{len(g.font.groups)} K-{len(g.font.kerning)}')
+        self.spacerKerningLineNumber.setText(f'{lineNumber}/{numLines} G-{len(g.font.groups)} K-{len(g.font.kerning)}')
         self.spacerKerningLineNumber.setVisible(True)
 
         self.kerningSelectedGlyphMarker.setVisible(False)
@@ -683,6 +684,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         c.w.calibrateKernNetTextBox = EditText((C1, y, 48, L))
         c.w.calibrateKernNetTextBox.set('0')
         c.w.autoKernAllGroupsButton = Button((C2, y, CW, L), 'Auto kern groups', callback=self.autoKernGroupsCallback)
+        c.w.autoKernAllGroupsButton.enable(False)
         y += L + 10
         c.w.spacerEndLine = HorizontalLine((self.M, y, -self.M, 1))
         c.w.spacerEndLine2 = HorizontalLine((self.M, y, -self.M, 1))

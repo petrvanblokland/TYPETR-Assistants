@@ -83,14 +83,14 @@ class AssistantPartGroups(BaseAssistantPart):
         group1 = km.glyphName2Group1.get(g.name, [])
         groupName1 = km.glyphName2GroupName1.get(g.name, '(No group)')
         
-        x = -g.width / 2
+        x = -g.width * 1.5
         y = g.font.info.ascender
         self.groupsListLeftName.setText(groupName2)
         self.groupsListLeftName.setPosition((x, y))        
         self.groupsListLeft.setText('\n'.join(group2))
         self.groupsListLeft.setPosition((x, y - 3*self.GROUPS_LIST_NAME_SIZE))
 
-        x = g.width * 1.5
+        x = g.width * 2.5
         self.groupsListRightName.setText(groupName1)
         self.groupsListRightName.setPosition((x, y))        
         self.groupsListRight.setText('\n'.join(group1))
