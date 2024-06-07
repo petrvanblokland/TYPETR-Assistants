@@ -34,6 +34,42 @@ MAIN_SAMPLES = SAMPLES
 
 TAB_WIDTH = 650 # Default tab width.
 
+class Q2B:
+    """In order to do glyph.removeOverlap outside RoboFont, we can only have Bezier points.
+    KerningManager.kernedDistance is using a method where remove overlap is necessary.
+    The class may be brought outside this source. 
+    """
+    # Point types
+    POINTTYPE_BEZIER = 'curve'
+    POINTTYPE_QUADRATIC = 'qcurve'
+    POINTTYPE_OFFCURVE = 'offcurve'
+
+    FACTOR = 1.340   # This estimated value gives amazingly accurate conversion.
+
+    def curvesQ2B(self, g):
+        self.curvesConvert(g, self.POINTTYPE_QUADRATIC, self.POINTTYPE_BEZIER, self.FACTOR)
+
+    def factorizeOffCurve(self, onCurve, offCurve, factor):
+        dx = offCurve.x - onCurve.x
+        dy = offCurve.y - onCurve.y
+        offCurve.x = int(round(onCurve.x + dx * factor))
+        offCurve.y = int(round(onCurve.y + dy * factor))
+
+    def curvesConvert(self, g, fromType, toType, factor):
+        # Make sure to unselect all points
+        for contour in g.contours:
+            points = contour.points
+            for n in range(len(points)):
+                p_0, p_1, p_2, p_3 = points[n], points[n-1], points[n-2], points[n-3]
+                if p_0.type == fromType:
+                    p_0.type = toType
+                    if p_1.type == self.POINTTYPE_OFFCURVE:
+                        self.factorizeOffCurve(p_0, p_1, factor)
+                    if p_2.type == self.POINTTYPE_OFFCURVE:
+                        self.factorizeOffCurve(p_3, p_2, factor)
+
+q2b = Q2B()
+
 class KerningManager:
     """Generic kerning manager, the spacing WizzKid. It knows all about groups, spacing and kerning and it offers several strategies for it:
     by groups, by specification in the GlyphData, by Similarity and by KernNet-AI. It is up to the calling assistant to decide
@@ -1086,6 +1122,80 @@ class KerningManager:
 
         print(f'... Groups: {len(self.f.groups)} Kerning pairs {len(self.f.kerning)}')
 
+
+    #   K E R N I N G  M E A S U R E
+
+    def getTmpGlyph(self, g, tmpName):
+        f = g.font
+        if not tmpName in f:
+            g.font.newGlyph(tmpName)
+            tmp = f[tmpName]
+        else:
+            tmp = f[tmpName]
+            tmp.clear()
+
+        tmp.appendComponent(g.name)
+        tmp.width = g.width
+        tmp.decompose()
+        q2b.curvesQ2B(tmp) # Remove overlap on quadratics does not work outside RoboFont
+        tmp.removeOverlap()
+        #tmp.removeOverlap() Just to be sure???
+        return tmp
+
+    def kernedDistance(self, g1, g2):
+        """Answer the smallest distance that the kerned pair have to each other. Since there is not direct way to measure this,
+        we need to use a time-expensive method: place them on kerned distance in a separate temporary glyph, decompse and remove overlap.
+        If number of contours changes, then they are too close. Do a binary search for different distances until it falls within a range.
+        Then we know how much the right glyph moved. 
+        In order to make this happen we need to do a sequence of steps:
+        - Copy g1 to /TMP1 glyph
+        - Copy g2 to /TMP2 glyph
+        - Decompose both
+        - Convert to cubic, in case there are quadratic curves
+        - Remove overlap in both temp glyphs. Now we have a reliable contour count in both.
+        - Copy the glyph outlines of /TMP1 and /TMP2 to a combine TMP glyph, spaced by g1.width and (g1, g2) kerning.
+        - Remove overlap. 
+        Now if the amount of contours in /TMP changes, /TMP1 is too close and needs to move to the right (half the distance of last time)
+        If the amount of contours in /TMP did not change, /TMP1 is too far out still. Move it to the left, half the distance of last time.
+        Repeat the above until the moving distance gets below a certain threshold.
+        """
+        tmp1 = self.getTmpGlyph(g1, 'TMP1') # Could even be glyphs from another font than self.f 
+        tmp2 = self.getTmpGlyph(g2, 'TMP2')
+        k, groupK, kerningType = self.getKerning(g1.name, g2.name)
+        step = -g1.width/2
+        dist = newDist = g1.width + k
+        # Make sure that the /TMP exists
+        if 'TMP' not in self.f:
+            g1.font.newGlyph('TMP')
+        tmp = self.f['TMP']
+
+        for n in range(0, 100): # Max number of iterations in the binary search
+            #print(n, step)
+            tmp.clear()
+            tmp.appendComponent('TMP1')
+            tmp.appendComponent('TMP2', offset=(newDist + step + k, 0))
+            tmp.decompose()
+            tmp.removeOverlap()
+            if len(tmp.contours) == len(tmp1.contours) + len(tmp2.contours):
+                # No overlap, go left
+                #print('No overlap', dist, step, k, len(tmp.contours), len(tmp1.contours), len(tmp2.contours))
+                if step > 0: 
+                    step = -step * 0.5 # Reverse direction in slower speed
+                # Otherwise step again with the same amount
+            else:
+                #print('Overlap', dist, step, k, len(tmp.contours), len(tmp1.contours), len(tmp2.contours))
+                # Overlap, go right
+                if step < 0:
+                    step = -step * 0.5 # Reverse direction in slower speed
+                # Otherwise step again with the same amount
+ 
+            newDist += step # Keep new positiion
+
+            if abs(step) < 4:
+                break
+
+        tmp.changed()
+        return dist - newDist
 
     #   K E R N N E T  A I 
 

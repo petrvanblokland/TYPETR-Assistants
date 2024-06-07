@@ -10,8 +10,8 @@
 # Glyphs that are used as base for groups. Scripts only kern within the script (and "all") to the other side.
 # The "all" also kern to each other, on the other side. There is no kerning allowed between the scripts.
 
-PUBLIC_KERN2 = 'public.kern2.'
 PUBLIC_KERN1 = 'public.kern1.'
+PUBLIC_KERN2 = 'public.kern2.'
 
 LT1 = 'lt1'
 LT2 = 'lt2'
