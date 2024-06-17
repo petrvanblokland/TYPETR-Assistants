@@ -1298,6 +1298,20 @@ class AssistantPartSpacer(BaseAssistantPart):
             if gd is None: # Cannot find this glyph
                 print(f'### checkFixGlyphRightMargin: Cannot find GlyphData for /{g.name}')
 
+            elif isinstance(gd.w, (int, float)):
+                w = int(round(gd.w))
+                if g.width != w:
+                    g.width = w
+                    print(f'Set width of /{g.name} to {w}')
+                    changed = True
+
+            elif gd.w == 'tab':
+
+                if g.width != md.tabWidth:
+                    g.width = md.tabWidth
+                    print(f'Set tab width of /{g.name} to {md.tabWidth}')
+                    changed = True
+
             elif gd.r == 'off':
                 label = f'Auto-spacing is off'
                 print(f'... checkFixGlyphRightMargin: /{g.name} auto-spacing is off')

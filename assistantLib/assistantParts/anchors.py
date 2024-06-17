@@ -21,9 +21,16 @@ import sys, copy
 from math import *
 from vanilla import *
 
-from mojo.roboFont import AllFonts
+try:
+    from mojo.roboFont import AllFonts #
+except ImportError: # In case not running inside RoboFont
+    pass
 
+#
 # Add paths to libs in sibling repositories
+# It implices that the TYPETR-Assistants repository should live in the same directory as the project repositories.
+# This way no installation of libraries is required. Easier to update for new versions.
+#
 PATHS = ('../TYPETR-Assistants/',)
 for path in PATHS:
     if not path in sys.path:

@@ -32,7 +32,7 @@ SPACING_KEYS = ('typeRight', 'right', 'typeLeft', 'left')
 #MAIN_SAMPLES = GREEK_KERNING
 MAIN_SAMPLES = SAMPLES
 
-TAB_WIDTH = 650 # Default tab width.
+TAB_WIDTH = 650 # Default tab width, change for em != 1000
 
 class Q2B:
     """In order to do glyph.removeOverlap outside RoboFont, we can only have Bezier points.
@@ -69,6 +69,115 @@ class Q2B:
                         self.factorizeOffCurve(p_3, p_2, factor)
 
 q2b = Q2B()
+
+class GroupKerningStatistics:
+    def __init__(self, f):
+        self.path = f.path
+        self.totalGroups = len(f.groups)
+        self.totalKerning = len(f.kerning)
+        self.groupGroupKerning = 0
+        self.groupGlyphKerning = 0
+        self.glyphGroupKerning = 0
+        self.glyphGlyphKerning = 0
+
+        # Kerning statistics
+        self.missingKernedGroups1 = set()
+        self.missingKernedGlyph1 = set()
+        self.missingKernedGroups2 = set()
+        self.missingKernedGlyph2 = set()
+
+        self.negativeKerning = 0
+        self.zeroKerning = 0
+        self.positiveKerning = 0
+
+        # Group statistics
+        self.missingGroupName1 = {}
+        self.missingGroupName2 = {}
+        self.badGroupNames = set()
+
+        # Test if all kerning is either a valid group name or an existing glyph
+        for (name1, name2), k in f.kerning.items():
+
+            if name1 in f.groups and name2 in f.groups:
+                self.groupGroupKerning += 1
+            elif name1 in f.groups and name2 in f.keys():
+                self.groupGlyphKerning += 1
+            elif name1 in f.keys() and name2 in f.groups:
+                self.glyphGroupKerning += 1
+            elif name1 in f.keys() and name2 in f.keys():
+                self.glyphGlyphKerning += 1
+
+            if name1.startswith(PUBLIC_KERN1) and name1 not in self.f.groups:
+                self.missingKernedGroups1.add((name1, name2))
+            elif name1 not in f.keys():
+                self.missingKernedGlyph1.add(name1)
+            
+            if name2.startswith(PUBLIC_KERN2) and name2 not in self.f.groups:
+                self.missingKernedGroups2.add((name1, name2))
+            elif name2 not in f.keys():
+                self.missingKernedGlyph2.add(name1)
+
+            if k < 0:
+                self.negativeKerning += 1
+            elif k > 0:
+                self.positiveKerning += 1
+            else:
+                self.zeroKerning += 1
+
+        hasGroup1 = set()
+        hasGroup2 = set()
+
+        for groupName, group in f.groups.items():
+            for gName in group:
+
+                if groupName.startswith(PUBLIC_KERN1):
+                    if gName not in self.f.keys():
+                        if gName not in self.missingGroupName1:
+                            self.missingGroupName1[gName] = []
+                        self.missingGroupName1.append(gName)
+
+                    if gName in hasGroup1:
+                        if gName not in self.multipleGroups1:
+                            self.multipleGroups1[gName] = []
+                        self.multipleGroups1[gName].append(groupName)
+
+                    hasGroup1.add(gName)
+
+                elif groupName.startswith(PUBLIC_KERN2):
+                    if gName not in self.f.keys():
+                        if gName not in self.missingGroupName2:
+                            self.missingGroupName2[gName] = []
+                        self.missingGroupName2.append(gName)
+
+                    if gName in hasGroup2:
+                        if gName not in self.multipleGroups2:
+                            self.multipleGroups2[gName] = []
+                        self.multipleGroups2[gName].append(groupName)
+            
+                    hasGroup1.add(gName)
+
+                else:
+                    self.badGroupNames.add(groupName)
+    
+    def __repr__(self):
+        return f"""
+--- Group-Kerning statistics of {f.path.split('/')[-1]}
+    • Groups: {self.totalGroups}
+    • Kerning: {self.totalKerning}
+    • Group-Group kerning: {self.groupGroupKerning}
+
+    • Missing kerned groups1: {len(self.missingKernedGroups1)} {self.missingKernedGroups1}
+    • Missing kerned glyphs1: {len(self.missingKernedGlyph1)} {self.missingKernedGlyph1}
+    • Missing kerned groups2: {len(self.missingKernedGroups2)} {self.missingKernedGroups2}
+    • Missing kerned glyphs2: {len(self.missingKernedGlyph2)} {self.missingKernedGlyph2}
+
+    • Negative kerning: {self.negativeKerning}
+    • Zero kerning: {self.zeroKerning}
+    • Positive kerning: {self.positiveKerning}
+
+    
+    """
+
 
 class KerningManager:
     """Generic kerning manager, the spacing WizzKid. It knows all about groups, spacing and kerning and it offers several strategies for it:
@@ -236,6 +345,17 @@ class KerningManager:
             return self._chr2glyphName 
     chr2glyphName = property(_get_chr2glyphName)      
 
+    #   G R O U P  &  K E R N I N G  S T A T I S T I C S
+
+    def getGroupKerningStatistics(self):
+        """Answer statistics on groups and kerning for QA usage:
+        - Is there any kerning that refers to non-existing groups
+        - Is there any kerning that refers to non-existing glyphs
+        - Amount of kerning pairs for each type (group-group, group-glyph, glyph-group, glyph-glyph)
+        - Groups that have no kerning reference.
+        - Glyph that have no kerning reference.
+        """
+        return GroupKerningStatistics(f)
 
     #   G R O U P S
 
