@@ -35,7 +35,7 @@ class MS_GlyphSet(GlyphSet):
     EM_WIDTH = 2048
     EN_WIDTH = int(EM_WIDTH/2)
     SPACE_WIDTH = int(EM_WIDTH/5)
-    FIGURE_WIDTH = 1265
+    FIGURE_WIDTH = 1240 # Same as all TAB_WIDTH for tnum figures
     ACCENT_WIDTH = FIGURE_WIDTH/2
     HAIR_WIDTH = int(EM_WIDTH/8)
 
@@ -49,14 +49,14 @@ class MS_GlyphSet(GlyphSet):
        '.notdef': GD(name='.notdef'),
        '.null': GD(name='.null', uni=0x0000, hex='0000', gid=1),
        'uni000D': GD(name='uni000D', uni=0x000D, hex='000D'),
-       'nbspace': GD(name='nbspace', uni=0x00A0, hex='00A0', w=SPACE_WIDTH, c=' ', srcName='nonbreakingspace', isLower=False, gid=97, comment='  Symbols, Latin-1 Punctuation and'),
-       'space': GD(name='space', uni=0x0020, hex='0020', w=SPACE_WIDTH, c=' ', isLower=False, gid=2, comment='  Symbols, ASCII Punctuation and'),
-       'emspace': GD(name='emspace', uni=0x2003, hex='2003', w=EM_WIDTH, c=' ', isLower=False),
-       'enspace': GD(name='enspace', uni=0x2002, hex='2002', w=EN_WIDTH, c=' ', isLower=False),
-       'figurespace': GD(name='figurespace', uni=0x2007, w=FIGURE_WIDTH, hex='2007', c=' ', isLower=False),
-       'hairspace': GD(name='hairspace', uni=0x200A, hex='200A', w=HAIR_WIDTH, c=' ', isLower=False),
+       'nbspace': GD(name='nbspace', uni=0x00A0, hex='00A0', l='off', w=SPACE_WIDTH, c=' ', srcName='nonbreakingspace', isLower=False, gid=97, comment='  Symbols, Latin-1 Punctuation and'),
+       'space': GD(name='space', uni=0x0020, hex='0020', l='off', w=SPACE_WIDTH, c=' ', isLower=False, gid=2, comment='  Symbols, ASCII Punctuation and'),
+       'emspace': GD(name='emspace', uni=0x2003, hex='2003', l='off', w=EM_WIDTH, c=' ', isLower=False),
+       'enspace': GD(name='enspace', uni=0x2002, hex='2002', l='off', w=EN_WIDTH, c=' ', isLower=False),
+       'figurespace': GD(name='figurespace', uni=0x2007, l='off', w=FIGURE_WIDTH, hex='2007', c=' ', isLower=False),
+       'hairspace': GD(name='hairspace', uni=0x200A, hex='200A', l='off', w=HAIR_WIDTH, c=' ', isLower=False),
        'spacemarker': GD(name='spacemarker', w=0),
-       'narrownbspace': GD(name='narrownbspace', uni=0x202F, w=HAIR_WIDTH, hex='202F', c=' ', isLower=False),
+       'narrownbspace': GD(name='narrownbspace', uni=0x202F, l='off', w=HAIR_WIDTH, hex='202F', c=' ', isLower=False),
  
 
        'uni044C.loclBGR': GD(name=' uni044C.loclBGR'),
@@ -1570,7 +1570,7 @@ class MS_GlyphSet(GlyphSet):
 
         #   h
 
-       'h': GD(name='h', uni=0x0068, hex='0068', c='h', isLower=True, anchors=['top', 'middle', 'bottom', 'dot'], gid=74, comment='h'),
+       'h': GD(name='h', uni=0x0068, hex='0068', c='h', l='off', isLower=True, anchors=['top', 'middle', 'bottom', 'dot'], gid=74, comment='h'),
        'hPalatalhook': GD(name='hPalatalhook', uni=0xA795, hex='A795', c='ꞕ', bl='h', r='jdotless', base='h', accents=['dpalatalhook.component'], isLower=True, anchors=['top', 'middle', 'bottom']),
        'ha-cy': GD(name='ha-cy', uni=0x0445, hex='0445', c='х', l='x', r='x', base='x', isLower=True, anchors=['top', 'middle', 'bottom'], gid=714),
        'haabkhasian-cy': GD(name='haabkhasian-cy', uni=0x04A9, hex='04A9', c='ҩ', l='o', r='c', isLower=True, gid=814),
@@ -1753,7 +1753,7 @@ class MS_GlyphSet(GlyphSet):
 
         #   l
 
-       'l': GD(name='l', uni=0x006C, hex='006C', c='l', l='h', r='idotless', isLower=True, anchorTopX='TopX', anchorMiddleX='MiddleX', anchorBottomX='BottomX', anchors=['top', 'middle', 'bottom', 'dot', 'vert'], gid=78, comment='l'),
+       'l': GD(name='l', uni=0x006C, hex='006C', c='l', r='idotless', isLower=True, anchorTopX='TopX', anchorMiddleX='MiddleX', anchorBottomX='BottomX', anchors=['top', 'middle', 'bottom', 'dot', 'vert'], gid=78, comment='l'),
        'lacute': GD(name='lacute', uni=0x013A, hex='013A', c='ĺ', w='l', bl='l', base='l', accents=['acutecomb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=251, comment='ĺ L WITH ACUTE, LATIN SMALL LETTER'),
        'lambda': GD(name='lambda', uni=0x03BB, hex='03BB', c='λ', l='v', r='v', isLower=True, gid=576),
        'lambdastroke': GD(name='lambdastroke', uni=0x019B, hex='019B', c='ƛ', l='lambda', w='lambda', srcName='uni019B', isLower=True, gid=348),
@@ -2065,7 +2065,7 @@ class MS_GlyphSet(GlyphSet):
        'otildemacron': GD(name='otildemacron', uni=0x022D, hex='022D', c='ȭ', base='o', accents=['otilde.component1'], isLower=True, anchors=['top', 'middle', 'bottom']),
        'ou': GD(name='ou', uni=0x0223, hex='0223', c='ȣ', l='o', r='o', isLower=False),  # Stacked lowercases
        'overline': GD(name='overline', uni=0x203E, hex='203E', c='‾', srcName='radicalex', isLower=True, gid=1428, comment='‾ spacing overscore'),
-       'overlinecomb': GD(name='overlinecomb', uni=0x0305, hex='0305', c='̅', w=0, base='overline', isLower=True, anchors=['top', '_top']),
+       'overlinecomb': GD(name='overlinecomb', uni=0x0305, hex='0305', c='̅', l='center', w=0, base='overline', isLower=True, anchors=['top', '_top']),
        'oxia': GD(name='oxia', uni=0x1FFD, hex='1FFD', c='´', w=0, isLower=True, anchors=['top', '_top'], gid=1404),
        'oxia-uc': GD(name='oxia-uc', l='off', w=0, isLower=True, base='oxia', anchors=['_tonos'], gid=1678),
 

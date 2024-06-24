@@ -281,7 +281,7 @@ class AssistantPartBuilder(BaseAssistantPart):
         return pageNumber
 
     def proofText(self, fontPath, italicPath, positions, unicode2Glyph, text, pageNumber=0, maxPages=None):
-        # Make waterfall
+        # Make proof text
 
         W, H = 595, 842
         M = 72

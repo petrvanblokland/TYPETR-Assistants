@@ -69,7 +69,8 @@ class AssistantPartContours(BaseAssistantPart):
                 self.contoursSetStartPoint(f[g.name])
 
     def contoursSetStartPoint(self, g, c=None, event=None):
-        """Set the start point to the selected points on [e]. Auto select the point on [E] key."""
+        """Set the start point to the selected points on [e]. Auto select the point on [E] key.
+        If the [x] Do all fonts is checked, then do all fonts,"""
         changed = False
         doSelect = True
         doAuto = c is None or c != c.upper() # Auto select if lowercase of key was used

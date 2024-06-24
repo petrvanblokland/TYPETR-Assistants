@@ -183,6 +183,7 @@ class AnchorData:
 
     CENTERING_ANCHORS = [ # List of anchors that do center on width. Ignore TONOS, HORN, OGONEK, VERT
         TOP_, BOTTOM_, RING_, DOT_, TILDE_, MIDDLE_,
+        _TOP, _BOTTOM, _RING, _DOT, _TILDE, _MIDDLE,
     ]
     # Diacritics to show a subset-cloud by the contours part.
     EXAMPLE_DIACRITICS = {
