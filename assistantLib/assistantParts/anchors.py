@@ -286,7 +286,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         optionDown = event['optionDown']
         capLock = event['capLockDown']
 
-        if shiftDown and optionDown and commandDown: # All anchors of all masters
+        if False and shiftDown and optionDown and commandDown: # All anchors of all masters @@ Disabled, could be checkbox choice.
             for a in g.anchors: # All anchrs that are within reach
                 parentPath = self.filePath2ParentPath(g.font.path) 
                 for pth in sorted(self.getUfoPaths(parentPath)): # Do all masters in the same way for this anchor

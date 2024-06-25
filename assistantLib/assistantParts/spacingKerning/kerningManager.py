@@ -609,6 +609,20 @@ class KerningManager:
         self._initializeGlyph2Group()
         return changed
     
+    def getMatchingGroups1(self, groupName1):
+        """Answer the list group names that have a possible kerning match with groupName1, based on the KERN_GROUPS setting
+        that defined possible script combinations."""
+        matchingGroups1 = []
+
+        return matchingGroups1
+
+    def getMatchingGroups2(self, groupName2):
+        """Answer the list group names that have a possible kerning match with groupName1, based on the KERN_GROUPS setting
+        that defined possible script combinations."""
+        matchingGroups2 = []
+
+        return matchingGroups2
+
     #   S P A C I N G  B Y  G R O U P S
 
     #   Spacing by groups, answers the base glyph for the group of g (left or right side). 
@@ -2005,6 +2019,34 @@ class KerningManager:
 
         return changed
 
+    def splitKerningTypes(self):
+        """Split the kerning pairs of self.f by type. Answer a tuple of 5 dictionaries: (group-group, group-glyph, glyph-group, glyph-glyph, bad).
+        This is a relative expensive operation, so the idea is to query once and then do bookkeeping if pairs are added or removed.
+        The index of the tuple corresponds with the kerningType value of self.getKerning result.
+        """
+        GG = {} # Group-Group
+        Gg = {} # Group-glyph
+        gG = {} # glyph-Group
+        gg = {} # glyph-glyph
+        bad = {} # Kerning pairs that refer to non-existing groups or non-existing glyphs
+        for (name1, name2), k in self.f.kerning.items():
+            if name1 in self.f.groups:
+                if name2 in self.f.groups:
+                    GG[(name1, name2)] = k
+                elif name2 in self.f:
+                    Gg[(name1, name2)] = k
+                else:
+                    bad[(name1, name2)] = k
+            elif name1 in self.f:
+                if name2 in self.f.groups:
+                    gG[(name1, name2)] = k
+                elif name2 in self.f:
+                    gg[(name1, name2)] = k
+                else:
+                    bad[(name1, name2)] = k
+            else:
+                bad[(name1, name2)] = k
+        return GG, Gg, gG, gg, bad
 
 def makeSpecimenPdf(glyphData, UNI2GLYPH_DATA):
     specimen = KerningSample(GLYPH_DATA,)

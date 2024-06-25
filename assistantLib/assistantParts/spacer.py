@@ -31,6 +31,8 @@ for path in PATHS:
 from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart
 from assistantLib.assistantParts.data import * # Import anchors names
 
+from assistantLib.assistantParts.glyphsets.groupBaseGlyphs import KERN_GROUPS
+
 ARROW_KEYS = [NSUpArrowFunctionKey, NSDownArrowFunctionKey,
         NSLeftArrowFunctionKey, NSRightArrowFunctionKey, NSPageUpFunctionKey,
         NSPageDownFunctionKey, NSHomeFunctionKey, NSEndFunctionKey]
@@ -69,6 +71,7 @@ class AssistantPartSpacer(BaseAssistantPart):
     SPACER_KERNING_LABEL_SIZE = 24
 
     SPACER_FILL_COLOR = 0.2, 0.2, 0.2, 1 # Default color
+    SPACER_SIDE_OVERLAY_FILL_COLOR = 0.5, 0.5, 0.5, 0.5 # Default color for sides overlay kerning. Set to SPACER_FILL_COLOR if working on kerning.
     SPACER_SELECTED_COLOR = 0.2, 0.2, 0.5, 1 # Current glyph
     SPACER_HOVER_COLOR = 1, 0, 0, 1 # Mouse goes over the element
     SPACER_LINE_BOX_COLOR = 0, 0, 0, 0.5 # Stroke color of space box
@@ -90,18 +93,11 @@ class AssistantPartSpacer(BaseAssistantPart):
         self.kerningLineBoxes = [] # List of kerned glyph em-boxes
         self.kerningSelectedGlyph = None # Name of the glyph selected by the kerning editor
 
-        # Glyphs on the side in real size. Turn the Overlay glyphs off to avoid overlapping
-
-        self.spacerGlyphLeft = container.appendPathSublayer(
-            position=(0, 0),
-            fillColor=self.SPACER_FILL_COLOR,
-            visible=False,
-        )
-        self.spacerGlyphRight = container.appendPathSublayer(
-            position=(0, 0),
-            fillColor=self.SPACER_FILL_COLOR,
-            visible=False,
-        )
+        # If None, then initialize from kerningManager.splitKerningTypes(), anwering a list of 5 dicionaries that contain
+        # the (groupGroup, groupGlyph, glyphGroup, glyphGlyph, bad) kerning pairs, ordered by type. 
+        # Note that should only be used to show the amount of kerning types. It cannot be used to alter any of kerning.
+        # That should be done by kerningMananger.setKerning() or directly info the f.kerning
+        self.kerningTypes = None 
 
         # Showing actual kerning below left and right glyph in EditorWindow
         self.spacerGlyphKerningLeft = container.appendTextLineSublayer(name="spacerGlyphKerningLeft",
@@ -146,8 +142,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         )
         self.spacerGlyphKernNetRight.setHorizontalAlignment('left')
         
-
         # White rectangle as background of spacer/kerning line
+        
         self.spacerWhiteBackground = container.appendRectangleSublayer(name="spacesWhiteBackground",
             position=(0, 0),
             size=(1, 1),
@@ -158,6 +154,7 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         # Current line number in the kerning sample (Corresponding with the proof line numbering)
         # Also showing the number of groups and kerning pairs
+        
         self.spacerKerningLineNumber = container.appendTextLineSublayer(name="spacerKerningLineNumber",
             position=(0, 0),
             text='X',
@@ -233,6 +230,19 @@ class AssistantPartSpacer(BaseAssistantPart):
         )
         self.kerningSelectedGlyphMarker.addScaleTransformation(self.KERN_SCALE)
 
+        # Glyphs on the side in real size. Turn the Overlay glyphs off to avoid overlapping
+
+        self.spacerGlyphLeft = container.appendPathSublayer(
+            position=(0, 0),
+            fillColor=self.SPACER_SIDE_OVERLAY_FILL_COLOR,
+            visible=False,
+        )
+        self.spacerGlyphRight = container.appendPathSublayer(
+            position=(0, 0),
+            fillColor=self.SPACER_SIDE_OVERLAY_FILL_COLOR,
+            visible=False,
+        )
+
         self.kerning1Value = container.appendTextLineSublayer(
             name="kerning1Value",
             position=(0, 0),
@@ -243,6 +253,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             visible=False,
         )
         self.kerning1Value.setHorizontalAlignment('center')
+
         self.kerning2Value = container.appendTextLineSublayer(
             name="kerning2Value",
             position=(0, 0),
@@ -338,6 +349,16 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         km = self.getKerningManager(g.font)
 
+        # Update the list of kerningTypes. This is an "expensive" operation, so we cache.
+        # It's mostly to get an impressions how the kerning types are distributes in the f.kerning.
+        # For a better view on the amounts an update should be done, or we need to do some bookkeeping outselves.
+        # kerningTypes is a tuple of 5 kerning dictionaries where the types are split according
+        # (group-group, group-glyph, glyph-group, glyph-glyph and bad). The bad dictionary is all kerning pairs
+        # that refer to non-existing groups or non-existing glyphs. In principle it always should be empty,
+        # otherwise kerning table needs to be cleaned up. 
+        if self.kerningTypes is None:
+            self.kerningTypes = km.splitKerningTypes()
+
         # Testing the KernNet in kerningManager
         #g1Name = c.w.previewGlyphLeftName.get() or 'H'
         #if g1Name in f:
@@ -397,8 +418,8 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         lineNumber = int(round(km.sampleKerningIndex/len(self.kerningLine)))
         numLines = int(round(len(sample)/len(self.kerningLine)))
-        self.spacerKerningLineNumber.setPosition((gpFirst.x + offsetX - 2*m, (f.info.descender - 120)/self.KERN_SCALE))
-        self.spacerKerningLineNumber.setText(f'{lineNumber}/{numLines} G-{len(g.font.groups)} K-{len(g.font.kerning)}')
+        self.spacerKerningLineNumber.setPosition((gpFirst.x + offsetX - 2*m, (f.info.descender - 48)/self.KERN_SCALE))
+        self.spacerKerningLineNumber.setText(f'{lineNumber}/{numLines} G-{len(g.font.groups)} K-{len(g.font.kerning)} GG-{len(self.kerningTypes[0])} Gg-{len(self.kerningTypes[1])} gG-{len(self.kerningTypes[2])} gg-{len(self.kerningTypes[3])} bad-{len(self.kerningTypes[4])}')
         self.spacerKerningLineNumber.setVisible(True)
 
         self.kerningSelectedGlyphMarker.setVisible(False)
@@ -651,6 +672,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         c = self.getController()
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         LL = 18
+        c.w.showKerningOverlays = CheckBox((C0, y, CW, L), 'Show kerning overlays', value=True, sizeStyle='small', callback=self.updateEditor)
         c.w.autoSpace = CheckBox((C1, y, CW, L), 'Auto space', value=True, sizeStyle='small', callback=self.updateEditor)
         c.w.centerGlyphButton = Button((C2, y, CW, L), f'Center width [{personalKey_eq}]', callback=self.spacerCenterGlyphCallback)
         y += L
@@ -678,6 +700,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         c.w.reportSpacingButton = Button((C2, y, CW, L), 'Report spacing', callback=self.reportSpacingCallback)
         y += L + 10
         c.w.autoSpaceFontButton = Button((C0, y, CW, L), 'Auto space font', callback=self.autoSpaceFontCallback)
+        c.w.fixOverlappedKerningButton = Button((C1, y, CW, L), 'Fix overlapped kerns', callback=self.fixOverlappedKerningCallback)
         y += L + 10
         c.w.factorKernNetTextBox = EditText((C0, y, 48, L))
         c.w.factorKernNetTextBox.set('1.2')
@@ -764,6 +787,45 @@ class AssistantPartSpacer(BaseAssistantPart):
         except ValueError:
             calibrate = 0
         km.kernGroups(factor=factor, calibrate=calibrate, verbose=True)
+
+    def fixOverlappedKerningCallback(self, sender):
+        """Scan through all possible kerning pairs (groups x group) as defined in the allowed script combinations.
+        """
+        print('... fixOverlappedKerningCallback')
+        # Alway update the list of kerningTypes. This is an "expensive" operation, so we cache.
+        # It's mostly to get an impressions how the kerning types are distributes in the f.kerning.
+        # For a better view on the amounts an update should be done, or we need to do some bookkeeping outselves.
+        # kerningTypes is a tuple of 5 kerning dictionaries where the types are split according
+        # (group-group, group-glyph, glyph-group, glyph-glyph and bad). The bad dictionary is all kerning pairs
+        # that refer to non-existing groups or non-existing glyphs. In principle it always should be empty,
+        # otherwise kerning table needs to be cleaned up. 
+        
+        g = self.getCurrentGlyph()
+        if g is None:
+            return
+
+        km = self.getKerningManager(g.font)
+        self.kerningTypes = km.splitKerningTypes()
+
+        group2 = km.glyphName2Group2.get(g.name, [])
+        groupName2 = km.glyphName2GroupName2.get(g.name, '(No group)')
+        group1 = km.glyphName2Group1.get(g.name, [])
+        groupName1 = km.glyphName2GroupName1.get(g.name, '(No group)')
+
+        matchingGroups1 = km.getMatchingGroups1(groupName1)
+        matchingGroups2 = km.getMarchingGroups2(groupName2)
+
+        print(matchingGroups1)
+        print('-'*40)
+        print(matchingGroups2)        
+        print('-'*40)
+        print(groupName2, group2)
+        print('-'*40)
+        print(groupName1, group1)
+
+        # Find the glyphs that have an overlapping 
+        #overlappedGlyphs  = []
+        #for 
 
     def reportSpacingCallback(self, sender):
         """Report/fix margins for the current font that don't fit the epexted value as it would have been auto spaced.

@@ -338,6 +338,9 @@ class AnchorData:
         'gravecomb.component': _TOP,
         'acutegraveacutecomb': _TOP,
         'varia': _TOP,
+        'ringhalfright': _TOP,
+        'ringhalfleft': _TOP, 
+
 
         'commabelowcomb': _BOTTOM,
         'gravebelowcomb': _BOTTOM,
@@ -623,6 +626,7 @@ class AnchorData:
         'zcircumflex', 'zdotaccent', 'zdotbelow', 'zlinebelow', 'zmiddletilde', 'zpalatalhook', 
         'tildeoverlaycomb', 'strokeshortcomb', 'strokelongcomb', 'slashshortcomb', 'slashlongcomb',  'idieresisacute', 'ihookabove', 'igrave',
         'iacute','icircumflex', 'idieresis', 'Ohornacute', 'Ohorndotbelow', 'Ohorngrave', 'Ohornhookabove', 'Ohorntilde',
+        'ringhalfleftcentered', 'ringhalfrightcentered', 
         }
 
     BOTTOM_ANCHORS = {'A', 'Aring', 'Aringacute', 'A-cy', 'AE', 'AEacute', 'AEmacron', 'Aacute', 'Abreve', 'Abreve-cy', 'Abreveacute', 'Abrevedotbelow', 
@@ -793,10 +797,9 @@ class AnchorData:
         'lefthalfringabovecomb', 'macronacutecomb', 'macroncomb', 'macroncomb.component', 'macroncomb.component1', 'macrongravecomb', 'mcomb', 
         'nottildeabovecomb', 'ocomb', 'otilde.component', 'otilde.component1', 'overlinecomb', 'palatalizationcomb-cy', 
         'perispomenicomb', 'pokrytiecomb-cy', 'psilipneumatacomb-cy', 'rcomb', 'righthalfringabovecomb', 
-        'ringcomb', 'ringacutecomb', 'ringhalfright', 'sacute.component', 'scaron.component', 'softsigncomb-cy', 'suspensioncomb', 'tcomb', 
+        'ringcomb', 'ringacutecomb', 'ringhalfright', 'ringhalfleft', 'sacute.component', 'scaron.component', 'softsigncomb-cy', 'suspensioncomb', 'tcomb', 
         'tildecomb', 'tildecomb.component', 'tildedoublecomb', 'tildeverticalcomb', 'titlocomb-cy', 'ucomb', 'udieresis.component', 
-        'umacron.component', 'uni047E.component', 'vcomb', 'verticallineabovecomb', 'xabovecomb', 'xcomb', 'zigzagabovecomb',
-        'ringhalfleft', 'varia', 
+        'umacron.component', 'uni047E.component', 'vcomb', 'verticallineabovecomb', 'xabovecomb', 'xcomb', 'zigzagabovecomb', 'varia', 
         
         #'six.pnum_enclosingkeycapcomb',
         #'three.pnum_enclosingkeycapcomb',
@@ -812,8 +815,8 @@ class AnchorData:
         #'two.pnum_enclosingkeycapcomb]',
     }
 
-    _MIDDLE_ANCHORS = ['slashlongcomb', 'strokelongcomb', 'strokeshortcomb', 'slashshortcomb', 'tildeoverlaycomb',
-        'middlegraveaccentmod', 'dagesh-hb',]
+    _MIDDLE_ANCHORS = ['slashlongcomb', 'strokelongcomb', 'strokeshortcomb', 'slashshortcomb', 'tildeoverlaycomb', 'ringhalfleftcentered', 'ringhalfrightcentered', 
+        'middlegraveaccentmod', 'dagesh-hb', ', ']
 
     _BOTTOM_ANCHORS = {'acutebelowcomb', 'arrowdoublerightbelowcomb', 'arrowheadleftbelowcomb', 'arrowheadrightbelowcomb', 'arrowheadrightheadupbelowcomb', 
     'arrowleftrightbelowcomb', 'arrowupbelowcomb', 'asteriskbelowcomb', 'brevebelow', 'breveinvertedbelowcomb', 'bridgebelowcomb', 'bridgeinvertedbelowcomb', 
