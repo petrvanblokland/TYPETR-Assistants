@@ -807,6 +807,13 @@ class AssistantPartSpacer(BaseAssistantPart):
         km = self.getKerningManager(g.font)
         self.kerningTypes = km.splitKerningTypes()
 
+        for script, groupNames in km.scriptMatchingGroups1.items():
+            print(script, groupNames)
+        for script, groupNames in km.scriptMatchingGroups2.items():
+            print(script, groupNames)
+
+        return
+
         group2 = km.glyphName2Group2.get(g.name, [])
         groupName2 = km.glyphName2GroupName2.get(g.name, '(No group)')
         group1 = km.glyphName2Group1.get(g.name, [])

@@ -263,6 +263,20 @@ class KerningManager:
             groupBaseGlyphs = GROUP_BASE_GLYPHS # Use default
         self.groupBaseGlyphs = groupBaseGlyphs
 
+        self.scriptMatchingGroups1 = {} # Key is LT1, LT2, ... value is list with matching group names for that script
+        self.scriptMatchingGroups2 = {} # Key is LT1, LT2, ... value is list with matching group names for that script
+
+        for script1, script2 in KERN_GROUPS:
+            if not script1 in self.scriptMatchingGroups1:
+                self.scriptMatchingGroups1[script1] = []
+            if script2 not in self.scriptMatchingGroups2:
+                self.scriptMatchingGroups2[script2] = []
+            for groupName in f.groups.keys():
+                if groupName.startswith(PUBLIC_KERN1) and (groupName + '1').endswith(script1):
+                    self.scriptMatchingGroups1[script1].append(groupName)
+                if groupName.startswith(PUBLIC_KERN2) and (groupName + '2').endswith(script2):
+                    self.scriptMatchingGroups2[script2].append(groupName)
+
         # Deprecated, now we have as dictionary of samples, initialized upon property request.
         #if not sample: # Not defined, then construct default
         #    sample = []
@@ -609,20 +623,6 @@ class KerningManager:
         self._initializeGlyph2Group()
         return changed
     
-    def getMatchingGroups1(self, groupName1):
-        """Answer the list group names that have a possible kerning match with groupName1, based on the KERN_GROUPS setting
-        that defined possible script combinations."""
-        matchingGroups1 = []
-
-        return matchingGroups1
-
-    def getMatchingGroups2(self, groupName2):
-        """Answer the list group names that have a possible kerning match with groupName1, based on the KERN_GROUPS setting
-        that defined possible script combinations."""
-        matchingGroups2 = []
-
-        return matchingGroups2
-
     #   S P A C I N G  B Y  G R O U P S
 
     #   Spacing by groups, answers the base glyph for the group of g (left or right side). 

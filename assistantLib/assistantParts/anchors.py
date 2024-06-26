@@ -425,7 +425,7 @@ class AssistantPartAnchors(BaseAssistantPart):
             ax, ay = self.constructAnchorMIDDLE_XY(g, a)
 
         elif a.name == AD._MIDDLE:
-            ax, ay = self.constructAnchor_MIDDLE_XY(g, a)
+            ax, ay = self.constructAnchorMIDDLE_XY(g, a)
         
         elif a.name == AD.BOTTOM_: # Try to guess bottom position
             ax, ay = self.constructAnchorBOTTOM_XY(g, a)
