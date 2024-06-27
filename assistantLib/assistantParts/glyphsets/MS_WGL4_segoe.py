@@ -46,6 +46,10 @@ class MS_GlyphSet(GlyphSet):
 
         #   .
 
+       'TMP': GD(name='TMP'),
+       'TMP1': GD(name='TMP1'),
+       'TMP2': GD(name='TMP2'),
+
        '.notdef': GD(name='.notdef'),
        '.null': GD(name='.null', uni=0x0000, hex='0000', gid=1),
        'uni000D': GD(name='uni000D', uni=0x000D, hex='000D'),

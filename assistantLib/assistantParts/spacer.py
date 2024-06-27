@@ -804,35 +804,48 @@ class AssistantPartSpacer(BaseAssistantPart):
         if g is None:
             return
 
+        done = False
+        minOffset = 64 # Value to add to touching-kerning for minimal distance
+
         km = self.getKerningManager(g.font)
-        self.kerningTypes = km.splitKerningTypes()
+        #self.kerningTypes = km.splitKerningTypes()
+        for script1, script2 in KERN_GROUPS:
+            mg1 = km.scriptMatchingGroups1[script1]
+            mg2 = km.scriptMatchingGroups2[script2]
 
-        for script, groupNames in km.scriptMatchingGroups1.items():
-            print(script, groupNames)
-        for script, groupNames in km.scriptMatchingGroups2.items():
-            print(script, groupNames)
+            for groupName1 in mg1:
+                for groupName2 in mg2:
+                    group1 = g.font.groups[groupName1]
+                    group2 = g.font.groups[groupName2]
+                    for gName1 in group1:
+                        for gName2 in group2:
+                            if gName1 != 'T' or gName2 not in ('i', 'itilde', 'icircumflex', 'idieresis', 'igrave',):
+                                continue
+                            print('------', gName1, gName2)
+                            g1 = g.font[gName1]
+                            g2 = g.font[gName2]
+                            if 1 or km.hasKernedOverlap(g1, g2, minOffset): # minOffset forces a minimal gap for the overlap
+                                kk = int(round(km.kernedDistance(g1, g2) / 4)) * 4
+                                print('### Overlap', kk, kk + minOffset, kk, kk + minOffset, script1, script2, groupName1, groupName2, gName1, gName2)
+                                #print('Overlap', script1, script2, groupName1, groupName2, gName1, gName2)
+                                g.font.kerning[(groupName1, gName2)] = -kk + minOffset
+                            else:
+                                print('### No overlap', script1, script2, groupName1, groupName2, gName1, gName2)
+                                #g.font.kerning[(groupName1, gName2)] = 0
+                                break
+                            print('Kerning', groupName1, gName2, g.font.kerning[(groupName1, gName2)])
+                            done = True
+                        if done:
+                            break
+                    if done:
+                        break
+                if done:
+                    break
+            if done:
+                break
 
+        g.font.save()
         return
-
-        group2 = km.glyphName2Group2.get(g.name, [])
-        groupName2 = km.glyphName2GroupName2.get(g.name, '(No group)')
-        group1 = km.glyphName2Group1.get(g.name, [])
-        groupName1 = km.glyphName2GroupName1.get(g.name, '(No group)')
-
-        matchingGroups1 = km.getMatchingGroups1(groupName1)
-        matchingGroups2 = km.getMarchingGroups2(groupName2)
-
-        print(matchingGroups1)
-        print('-'*40)
-        print(matchingGroups2)        
-        print('-'*40)
-        print(groupName2, group2)
-        print('-'*40)
-        print(groupName1, group1)
-
-        # Find the glyphs that have an overlapping 
-        #overlappedGlyphs  = []
-        #for 
 
     def reportSpacingCallback(self, sender):
         """Report/fix margins for the current font that don't fit the epexted value as it would have been auto spaced.
