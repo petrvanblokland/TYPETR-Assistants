@@ -286,8 +286,9 @@ class AssistantPartAnchors(BaseAssistantPart):
         optionDown = event['optionDown']
         capLock = event['capLockDown']
 
-        if False and shiftDown and optionDown and commandDown: # All anchors of all masters @@ Disabled, could be checkbox choice.
-            for a in g.anchors: # All anchrs that are within reach
+        if False and shiftDown and optionDown and commandDown: # All anchors of all masters 
+            # @@@@@@@@@ Disabled, could be checkbox choice.
+            for a in g.anchors: # All anchors, not checking on nearness
                 parentPath = self.filePath2ParentPath(g.font.path) 
                 for pth in sorted(self.getUfoPaths(parentPath)): # Do all masters in the same way for this anchor
                     fullPath = self.path2FullPath(pth)
@@ -295,14 +296,14 @@ class AssistantPartAnchors(BaseAssistantPart):
                     if g.name in ff:
                         gg = ff[g.name]
                         gg.prepareUndo()
+                        self.checkFixRequiredAnchors(gg) # First make sure that they all exist.
                         for aa in gg.anchors:
                             if aa.name == a.name:
                                 print(f'... autoCheckFixAnchorPosition: {pth} Anchor {a.name}')
-                                self.checkFixRequiredAnchors(gg) # First make sure that they all exist.
                                 self.autoCheckFixAnchorPosition(gg, aa)
                     
-        elif shiftDown and commandDown: # All anchors of all masters
-            for a in g.anchors: # All anchrs that are within reach
+        elif shiftDown and commandDown: # All anchors of all masters with name of anchors near mouse click
+            for a in g.anchors: # All anchors that are within reach
                 if self.distance(a.x, a.y, x, y) < self.ANCHOR_SELECT_DISTANCE:
                     parentPath = self.filePath2ParentPath(g.font.path) 
                     for pth in sorted(self.getUfoPaths(parentPath)): # Do all masters in the same way for this anchor
@@ -311,17 +312,17 @@ class AssistantPartAnchors(BaseAssistantPart):
                         if g.name in ff:
                             gg = ff[g.name]
                             gg.prepareUndo()
+                            self.checkFixRequiredAnchors(gg) # First make sure that they all exist.
                             for aa in gg.anchors:
                                 if aa.name == a.name:
                                     print(f'... autoCheckFixAnchorPosition: {pth} Anchor {a.name}')
-                                    self.checkFixRequiredAnchors(gg) # First make sure that they all exist.
                                     self.autoCheckFixAnchorPosition(gg, aa)
                             gg.changed()
                     
         elif shiftDown and optionDown: # Only do a single anchor in the current glyph if click is within range.
+            self.checkFixRequiredAnchors(g) # First make sure that they all exist.
             for a in g.anchors:
                 if self.distance(a.x, a.y, x, y) < self.ANCHOR_SELECT_DISTANCE:
-                    self.checkFixRequiredAnchors(g) # First make sure that they all exist.
                     self.autoCheckFixAnchorPosition(g, a)
         return
 
@@ -397,7 +398,9 @@ class AssistantPartAnchors(BaseAssistantPart):
     def setGlyphAnchors(self, g):
         """Called when the EditWindow selected a new glyph. Try to  find previous anchor info in g.lib,
         about mode by which the current anchors are set and if they were manually moved."""
-        #self.updateGuessedAnchorPositions(g)
+        self.checkFixRequiredAnchors(g) # First make sure that they all exist.
+        for a in g.anchors:
+            self.autoCheckFixAnchorPosition(g, a)
 
     def _getAnchorTypeGlyph(self, g):
         """Answer the glyph that is model for the anchors of g. If glyphData.anchorGlyphSrc is defined then use that glyph,
@@ -442,12 +445,18 @@ class AssistantPartAnchors(BaseAssistantPart):
         elif a.name == AD._TONOS: # Try to guess _tonos position
             ax, ay = self.constructAnchor_TONOSXY(g, a)
 
-        if ax is not None and ax != a.x:
-            a.x = ax
-            changed = True
-        if ay is not None and ay != a.y:
-            a.y = ay
-            changed = True
+        if ax is not None:
+            ax = int(round(ax))
+            if ax != a.x:
+                print(f'... Fix /{g.name} anchor {a.name}.x {ax} --> {a.x}')
+                a.x = ax
+                changed = True
+        if ay is not None:
+            ay = int(round(ay))
+            if ay != a.y:
+                print(f'... Fix /{g.name} anchor {a.name}.y {ay} --> {a.y}')
+                a.y = ay
+                changed = True
         return changed
 
     def constructAnchorTOP_XY(self, g, a):
