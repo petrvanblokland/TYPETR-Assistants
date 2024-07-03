@@ -111,7 +111,7 @@ class MS_GlyphSet(GlyphSet):
        'Ainvertedbreve': GD(l='A', r='A', name='Ainvertedbreve', uni=0x0202, hex='0202', c='Ȃ', base='A', accents=['perispomeni'], anchors=['top', 'middle', 'bottom']),
        'Alef-egyptological': GD(name='Alef-egyptological', uni=0xA722, hex='A722', l=100, r=100, c='Ꜣ'),
        'Alpha': GD(name='Alpha', uni=0x0391, hex='0391', c='Α', l='A', r='A', base='A', anchors=['top', 'middle', 'bottom', 'tonos'], gid=535),
-       'Alpha-latin': GD(name='Alpha-latin', uni=0x2C6D, hex='2C6D', c='Ɑ'),
+       'Alpha-latin': GD(name='Alpha-latin', uni=0x2C6D, hex='2C6D', l='O', r='H', c='Ɑ'),
        # No tonos anchor for gllyphs that already have a tonos combination of diacritic components
        'Alphadasia': GD(name='Alphadasia', uni=0x1F09, hex='1F09', c='Ἁ', l='comma', r='A', base='A', accents=['dasia-uc'], anchors=['top', 'middle', 'bottom'], gid=1182),
        'Alphadasiaoxia': GD(name='Alphadasiaoxia', uni=0x1F0D, hex='1F0D', c='Ἅ', l='comma', r='A', base='A', accents=['dasiaoxia-uc'], anchors=['top', 'middle', 'bottom'], gid=1186),

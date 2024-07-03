@@ -350,7 +350,7 @@ class CurvePaletteController(WindowController):
         self.lastMouse = None # Actual position of last mouse click
         self.lastMouseDrag = None # Actual position of last mouse drag
         self.selectedDragPoints = None # Storage of selected points, while dragging
-
+        
         self.w = FloatingWindow((W + ML + MR, H + MT + MB), "Curve Palette")
         self.w.view = MerzView(
             (ML, MT, -MR, -MB),
@@ -452,6 +452,11 @@ class CurvePaletteController(WindowController):
         
         self.w.showPointsCheckBox = CheckBox((ML, y, W/3, POPUP_HEIGHT), 'Show points', value=False, 
             callback=self.updateUI, sizeStyle='small')
+
+        self.w.defaultCirclePopup = PopUpButton((ML + W/2, y, W/3, POPUP_HEIGHT),
+                              [str(v) for v in range(5, 17)])
+        self.w.defaultCirclePopup.set(5)
+
         #self.w.makeCircleButton = Button((W/2, y, W/3, BUTTON_HEIGHT), 'Make circle', callback=self.makeCircleCallback)
         
         self.w.open()
@@ -502,10 +507,12 @@ class CurvePaletteController(WindowController):
 
     def glyphEditorSelectedDefaultCurve(self, lessStress=False):
         """Key stroke inditing "Circle - (2, 2)" location hit."""
+        s = int(self.w.defaultCirclePopup.getItem())
+        print(s)
         if lessStress:
-            self.updateCurves(7, 7)
+            self.updateCurves(s, s)
         else:
-            self.updateCurves(8, 8)
+            self.updateCurves(s+2, s+2)
         self.glyphChanged()
         
     def getMouseCellPosition(self, event):
