@@ -1243,8 +1243,8 @@ class MS_GlyphSet(GlyphSet):
        'dcurl': GD(name='dcurl', uni=0x0221, hex='0221', c='ȡ', l='d', r=0, rightMin='minRight', isLower=True),
        'ddotaccent': GD(name='ddotaccent', uni=0x1E0B, hex='1E0B', c='ḋ', base='d', accents=['dotaccentcomb'], srcName='uni1E0B', isLower=True, anchors=['top', 'middle', 'bottom'], gid=934),
        'ddotbelow': GD(name='ddotbelow', uni=0x1E0D, hex='1E0D', c='ḍ', base='d', accents=['dotbelowcomb'], srcName='uni1E0D', isLower=True, anchors=['top', 'middle', 'bottom'], gid=936),
-       'de-cy': GD(name='de-cy', uni=0x0434, hex='0434', c='д', r='o', isLower=True, gid=697), # Italic variant has different shape.
-       'de-cy.loclSRB': GD(name='de-cy.loclSRB', base='g', isLower=True),
+       'de-cy': GD(name='de-cy', uni=0x0434, hex='0434', c='д', r='o', isLower=True, gid=697, anchors=['top', 'middle', 'bottom']), # Italic variant has different shape.
+       'de-cy.loclSRB': GD(name='de-cy.loclSRB', base='g', isLower=True, anchors=['top', 'middle', 'bottom']),
        'degree': GD(name='degree', uni=0x00B0, hex='00B0', c='°', isLower=True, gid=113, comment='° DEGREE SIGN'),
        'dei-coptic': GD(name='dei-coptic', uni=0x03EF, hex='03EF', c='ϯ', l='omod', r='hyphen', isLower=True, gid=628),
        'delta': GD(name='delta', uni=0x03B4, hex='03B4', c='δ', isLower=True, gid=569),
@@ -1520,7 +1520,7 @@ class MS_GlyphSet(GlyphSet):
        'gcircumflex': GD(name='gcircumflex', uni=0x011D, hex='011D', c='ĝ', base='g', accents=['circumflexcomb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=222, comment='ĝ G WITH CIRCUMFLEX, LATIN SMALL LETTER'),
        'gcommaaccent': GD(name='gcommaaccent', uni=0x0123, hex='0123', c='ģ', base='g', isLower=True, anchors=['top', 'middle', 'bottom'], gid=228),
        'gdotaccent': GD(name='gdotaccent', uni=0x0121, hex='0121', c='ġ', base='g', accents=['dotaccentcomb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=226),
-       'ge-cy': GD(name='ge-cy', uni=0x0433, hex='0433', c='г', l2r='s', r2l='s', isLower=True, anchors=['top'], gid=696),
+       'ge-cy': GD(name='ge-cy', uni=0x0433, hex='0433', c='г', l2r='s', r2l='s', isLower=True, anchors=['top', 'middle', 'bottom'], gid=696),
        'ge-cy.loclSRB': GD(name='ge-cy.loclSRB', base='imacron', isLower=True),
        'gedescender-cy': GD(name='gedescender-cy', uni=0x04F7, hex='04F7', c='ӷ', l='en-cy', r='ge-cy', isLower=True, gid=892),
        'germandbls': GD(name='germandbls', uni=0x00DF, hex='00DF', c='ß', isLower=True, gid=160, comment='ß SHARP S, LATIN SMALL LETTER'),
