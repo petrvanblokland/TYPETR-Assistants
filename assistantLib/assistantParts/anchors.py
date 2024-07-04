@@ -678,7 +678,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         # @@@ Hack to correct tonos anchor on specific glyph shapes
         elif g.name == 'A': # Special case, can't use the left margin. Find the top-left most corner point
             ax = self.getXBounds(g, y1=g.font.info.capHeight)[0].x * 3/4
-        elif g.name == 'O': # Special case, can't use the left margin. Find the top-left most corner point
+        elif g.name in ('O', 'Ohm'): # Special case, can't use the left margin. Find the top-left most corner point
             ax = self.italicX(g, g.angledLeftMargin, ay) # Right aligned on margin
 
         else: # Center in width by default

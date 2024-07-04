@@ -423,7 +423,7 @@ class MS_GlyphSet(GlyphSet):
        'Iigrave-cy': GD(name='Iigrave-cy', uni=0x040D, hex='040D', c='Ѝ', bl='H', br='H', base='Ii-cy', accents=['gravecomb'], anchors=['top'], gid=658),
        'Iinvertedbreve': GD(name='Iinvertedbreve', uni=0x020A, hex='020A', c='Ȋ', w='I', bl='I', base='I', accents=['perispomeni'], anchors=['top', 'middle', 'bottom']),
        'Iishort-cy': GD(name='Iishort-cy', uni=0x0419, hex='0419', c='Й', bl='H', br='H', base='Ii-cy', accents=['brevecomb.component'], anchors=['top'], gid=670),
-       'Iishorttail-cy': GD(name='Iishorttail-cy', uni=0x048A, hex='048A', c='Ҋ', bl='H', base='Iishort-cy', accents=['tail.component'], gid=783),
+       'Iishorttail-cy': GD(name='Iishorttail-cy', uni=0x048A, hex='048A', c='Ҋ', bl='H', r='off', base='Iishort-cy', accents=['tail.component'], gid=783),
        'Imacron': GD(name='Imacron', uni=0x012A, hex='012A', c='Ī', w='I', bl='I', base='I', accents=['macroncomb'], anchors=['top', 'middle', 'bottom'], gid=235, comment='Ī'),
        'Imacron-cy': GD(name='Imacron-cy', uni=0x04E2, hex='04E2', c='Ӣ', l='H', r='H', base='Ii-cy', accents=['macroncomb'], anchors=['top'], gid=871),
        'Imod': GD(name='Imod', uni=0x1D35, hex='1D35', c='ᴵ', isMod=True),
