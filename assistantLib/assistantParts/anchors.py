@@ -674,21 +674,28 @@ class AssistantPartAnchors(BaseAssistantPart):
             baseAnchor = self.getAnchor(baseGlyph, a.name)
             if baseAnchor is not None:
                 ax = baseAnchor.x + self.italicX(g, dx, ay - baseAnchor.y)
+
+        # @@@ Hack to correct tonos anchor on specific glyph shapes
+        elif g.name == 'A': # Special case, can't use the left margin. Find the top-left most corner point
+            ax = self.getXBounds(g, y1=g.font.info.capHeight)[0].x * 3/4
+        elif g.name == 'O': # Special case, can't use the left margin. Find the top-left most corner point
+            ax = self.italicX(g, g.angledLeftMargin, ay) # Right aligned on margin
+
         else: # Center in width by default
             ax = self.italicX(g, g.angledLeftMargin/2, ay) # Right aligned, halfway left margin
 
         return ax, ay
 
-    def constructAnchor_TONOSXY(self, g, a):
-        """Answer the constructed (x, y) position of the _TONOS anchor for g, based on available rules and shape. The x and/or y can be None 
-        in case not valid value could be constructed. In that case the position needs to be set manually in the editor.
-        @@@ No methods here yet.
-        """
-        # Trying to guess vertical
-        ay = g.font.info.capHeight # Likely to ba a negative number
-        ax = self.italicX(g, 0, ay) # Right aligned, halfway left margin
-
-        return ax, ay
+    #def constructAnchor_TONOSXY(self, g, a):
+    #    """Answer the constructed (x, y) position of the _TONOS anchor for g, based on available rules and shape. The x and/or y can be None 
+    #    in case not valid value could be constructed. In that case the position needs to be set manually in the editor.
+    #    @@@ No methods here yet.
+    #    """
+    #    # Trying to guess vertical
+    #    ay = g.font.info.capHeight # Likely to ba a negative number
+    #    ax = self.italicX(g, 0, ay) # Right aligned, halfway left margin
+    #
+    #    return ax, ay
 
     #   A N C H O R  P O S I T I O N  C O N S T R U C T O R S
 

@@ -581,6 +581,26 @@ class BaseAssistant:
                     return True
         return False
 
+    def getXBounds(self, g, y1, y2=None):
+        """Answer points that are in the bounding box."""
+        if y2 is None:
+            y2 = y1
+        p1 = p2 = None
+        for contour in g.contours:
+            for p in contour.points:
+                if y1 <= p.y and p.y <= y2:
+                    if p1 is None:
+                        p1 = p
+                    if p2 is None:
+                        p2 = p
+                    if p.x < p1.x:
+                        p1 = p
+                    if p.x > p2.x:
+                        p2 = p
+        print('4334234432', p1, p2)
+        return p1, p2
+
+
 class Assistant(BaseAssistant, Subscriber):
 
     # Editor window drawing parameters
