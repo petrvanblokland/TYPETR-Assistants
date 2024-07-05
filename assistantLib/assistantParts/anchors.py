@@ -510,6 +510,11 @@ class AssistantPartAnchors(BaseAssistantPart):
                 # Constructor methods are supposed to answer italic x-position
                 ax = getattr(self, 'constructAnchor' + gd.anchorTopX)(g, a.name, a.x, ay or a.y) # Use new ay here. Various methods still to be implemented
 
+        # Hack, this should become an optioncal construction method
+        elif g.name == 'J': # Special case, can't use the width. Find the top-left most corner point
+            p1, p2 = self.getXBounds(g, y1=g.font.info.capHeight)
+            ax = self.italicX(g, p1.x + (p2.x - p1.x)/2, ay, baseY=g.font.info.capHeight) # Half stem of /J
+
         else: # No construction glyph or method name defined, then try to figure out from the glyph shape
             # Try to guess horizontal from anchor in base glyph + its offset
             if baseGlyph is not None: # In case there is a base
@@ -566,6 +571,11 @@ class AssistantPartAnchors(BaseAssistantPart):
                 # Available: 
                 # Constructor methods are supposed to answer italic x-position
                 ax = getattr(self, 'constructAnchor' + gd.anchorMiddleX)(g, a.name, a.x, ay or a.y) # Use new ay here. Various methods still to be implemented
+
+        # Hack, this should become an optioncal construction method
+        elif g.name == 'J': # Special case, can't use the width. Find the top-left most corner point
+            p1, p2 = self.getXBounds(g, y1=g.font.info.capHeight)
+            ax = self.italicX(g, p1.x + (p2.x - p1.x)/2, ay, baseY=g.font.info.capHeight) # Half stem of /J
 
         else: # No construction glyph or method name defined, then try to figure out from the glyph shape
             # Try to guess horizontal

@@ -555,8 +555,11 @@ class BaseAssistant:
                     return True
         return False
 
-    def italicX(self, g, x, y):
-        """Answer the italic x value on position e, depending on the italic angle of the font."""
+    def italicX(self, g, x, y, baseY=None):
+        """Answer the italic x value on position e, depending on the italic angle of the font.
+        If baseY is defined, then first project x on the baseline."""
+        if baseY is not None:
+            x = self.italicX(g, x, -baseY)
         return x + int(round(tan(radians(-g.font.info.italicAngle or 0)) * y))
 
     def isQuadratic(self, g):
@@ -597,7 +600,6 @@ class BaseAssistant:
                         p1 = p
                     if p.x > p2.x:
                         p2 = p
-        print('4334234432', p1, p2)
         return p1, p2
 
 
