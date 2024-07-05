@@ -636,6 +636,11 @@ class AssistantPartAnchors(BaseAssistantPart):
                 # Constructor methods are supposed to answer italic x-position
                 ax = getattr(self, 'constructAnchor' + gd.anchorBottomX)(g, a.name, a.x, ay or a.y) # Use new ay here. Various methods still to be implemented
 
+        # Hack, this should become an optioncal construction method
+        elif g.name == 'R': # Special case, can't use the width. Find the top-left most corner point
+            p1, p2 = self.getXBounds(g, y1=0)
+            ax = self.italicX(g, p1.x + (p2.x - p1.x)/2, ay) # Half stem of /J
+
         else: # No construction glyph or method name defined, then try to figure out from the glyph shape
             # BOTTOM_ Construct horizontal position
             if baseGlyph is not None:
