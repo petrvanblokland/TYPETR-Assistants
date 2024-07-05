@@ -128,6 +128,8 @@ class AssistantPartInterpolate(BaseAssistantPart):
         iScale = iFactor = None
         changed = False
 
+        g.prepareUndo()
+
         if md.m1 is not None and md.m2 is not None:
             f1 = self.getFont(md.m1)
             f2 = self.getFont(md.m2)
