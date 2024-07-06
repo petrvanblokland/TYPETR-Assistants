@@ -88,6 +88,7 @@ class MasterData:
             HStem=None, HThin=None, OStem=None, OThin=None,
             HscStem=None, HscThin=None, OscStem=None, OscThin=None,
             nStem=None, oStem=None, oThin=None, UThin=None, VThin=None, eThin=None,
+            modStem=None, # Used for special factor to interpolate/extrapolate "mod" glyphs, e.g. extrapolating Black from Regular + Bold
             thickness=10, distance=16, # Used for Neon tubes, can be overwritten from GlyphData.thickness
             tabWidth=None,
             # Table stuff
@@ -289,6 +290,7 @@ class MasterData:
         self.UThin = UThin
         self.VThin = VThin
         self.eThin = eThin
+        self.modStem = modStem
 
         # Info
         self.ttfPath = ttfPath

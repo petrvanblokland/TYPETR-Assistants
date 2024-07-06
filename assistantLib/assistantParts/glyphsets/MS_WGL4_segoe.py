@@ -231,7 +231,7 @@ class MS_GlyphSet(GlyphSet):
 
        'E': GD(name='E', uni=0x0045, hex='0045', c='E', l='H', anchors=['top', 'middle', 'bottom', 'ogonek', 'tonos'], anchorTopX='BoundsX2', anchorMiddleX='BoundsX2', anchorBottomX='BoundsX2', gid=39, comment='E'),
        'E-cy': GD(name='E-cy', uni=0x0404, hex='0404', c='Є', l='O', r='C', gid=649),
-       'EReversedmod': GD(name='EReversedmod', uni=0x1D32, hex='1D32', c='ᴲ', isMod=True),
+       'EReversedmod': GD(name='EReversedmod', uni=0x1D32, hex='1D32', c='ᴲ', l2r='Emod', r2l='Emod', isMod=True),
        'Eacute': GD(name='Eacute', uni=0x00C9, hex='00C9', c='É', l='H', r='E', base='E', accents=['acutecomb'], anchors=['top', 'middle', 'bottom'], gid=138, comment='É E WITH ACUTE, LATIN CAPITAL LETTER'),
        'Ebreve': GD(name='Ebreve', uni=0x0114, hex='0114', c='Ĕ', l='H', r='E', base='E', accents=['brevecomb'], anchors=['top', 'middle', 'bottom'], gid=213, comment='Ĕ'),
        'Ecaron': GD(name='Ecaron', uni=0x011A, hex='011A', c='Ě', l='H', r='E', base='E', accents=['caroncomb'], anchors=['top', 'middle', 'bottom'], gid=219, comment='Ě'),
@@ -2150,7 +2150,7 @@ class MS_GlyphSet(GlyphSet):
 
         #   q
 
-       'q': GD(name='q', uni=0x0071, hex='0071', c='q', l='o', r='jdotless', isLower=True, anchors=['top', 'middle', 'bottom'], gid=83, comment='q'),
+       'q': GD(name='q', uni=0x0071, hex='0071', c='q', l='a', r='jdotless', isLower=True, anchors=['top', 'middle', 'bottom'], gid=83, comment='q'),
        'qdiagonalstroke': GD(name='qdiagonalstroke', uni=0xA759, hex='A759', c='ꝙ', r='omod', base='q', isLower=True, anchors=['top', 'middle', 'bottom']),
        'qhook': GD(name='qhook', uni=0x02A0, hex='02A0', c='ʠ', w='q', isLower=True),
        'qhooktail': GD(name='qhooktail', uni=0x024B, hex='024B', c='ɋ', l='o', w='q', isLower=True),

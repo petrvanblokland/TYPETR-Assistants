@@ -121,7 +121,8 @@ class AssistantPartInterpolate(BaseAssistantPart):
 
     def interpolateGlyph(self, g):
         """Interpolate the g from the settings in MasterData. This could be a plain interpolation, or it can be scalerpolation if
-        glyph.lib-->isLower and if the xHeight of the interpolation sources is different from the xHeight of the current target glyph."""
+        glyph.lib-->isLower and if the xHeight of the interpolation sources is different from the xHeight of the current target glyph.
+        If the glyph is "mod", then use the md.modStem values instead."""
         f = g.font
         md = self.getMasterData(f)
         gd = self.getGlyphData(g)
@@ -137,7 +138,10 @@ class AssistantPartInterpolate(BaseAssistantPart):
             md2 = self.getMasterData(f2)
 
             if g.name in f1 and g.name in f2:
-                iFactor = (md.HStem - md1.HStem)/(md2.HStem - md1.HStem)
+                if 'mod' in g.name: # Use gd.isMod instead?
+                    iFactor = (md.modStem - md1.modStem)/(md2.modStem - md1.modStem)
+                else:
+                    iFactor = (md.HStem - md1.HStem)/(md2.HStem - md1.HStem)
             else:
                 print(f'### Glyph {g.name} does not exist in source fonts')
                 iFactor = None
