@@ -156,12 +156,12 @@ class AssistantPartInterpolate(BaseAssistantPart):
             
             # Now we can just interpolate between the masters, where the factor is defined by their ratio of the three H-stems 
             if iFactor is not None:
-                print('cdsadsads interpolate', g.name, iFactor)
+                #print('cdsadsads interpolate', g.name, iFactor)
                 changed = self.interpolateByFactor(g, f1[g.name], f2[g.name], iFactor)
 
             # If we're doing scalerpolation for xHeight, they
             if iScale not in (None, 1):
-                print('cdsadsads scale', g.name, iScale)
+                #print('cdsadsads scale', g.name, iScale)
                 self.scaleGlyph(g, iScale)
                 changed = True
 
