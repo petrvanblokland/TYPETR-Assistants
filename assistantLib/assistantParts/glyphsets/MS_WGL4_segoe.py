@@ -1807,7 +1807,7 @@ class MS_GlyphSet(GlyphSet):
        'longsdiagonalstroke': GD(name='longsdiagonalstroke', uni=0x1E9C, hex='1E9C', c='ẜ', l='off', w='f', srcName='uni1E9C', isLower=True, gid=1079),
        'longsdotaccent': GD(name='longsdotaccent', uni=0x1E9B, hex='1E9B', c='ẛ', bl='longs', w='longs', base='longs', accents=['dotaccentcomb'], srcName='uni1E9B', isLower=True, anchors=['top'], gid=1078),
        'longshighstroke': GD(name='longshighstroke', uni=0x1E9D, hex='1E9D', c='ẝ', l='f', w='f', srcName='uni1E9D', isLower=True, gid=1080),
-       'lowcircumflexmod': GD(name='lowcircumflexmod', uni=0xA788, hex='A788', c='ꞈ', base='circumflexcomb', isLower=True, isMod=True, anchors=['top']),
+       'lowcircumflexmod': GD(name='lowcircumflexmod', uni=0xA788, hex='A788', c='ꞈ', base='circumflexcomb', isLower=True, isMod=True, anchors=['bottom', '_bottom']),
        'lowdownarrowheadmod': GD(name='lowdownarrowheadmod', uni=0x02EF, hex='02EF', c='˯', l='hyphen', r='hyphen', isLower=True, isMod=True),
        'lowernumeral-greek': GD(name='lowernumeral-greek', uni=0x0375, hex='0375', c='͵', isLower=True, gid=515),
        'lowleftarrowheadmod': GD(name='lowleftarrowheadmod', uni=0x02F1, hex='02F1', c='˱', w=0, srcName='uni02F1', isLower=True, isMod=True, gid=485),
