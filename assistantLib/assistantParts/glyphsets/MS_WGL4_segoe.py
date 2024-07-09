@@ -2323,7 +2323,7 @@ class MS_GlyphSet(GlyphSet):
        'slashlongcomb': GD(name='slashlongcomb', uni=0x0338, hex='0338', c='̸', w=0, srcName='uni0338', isLower=False, anchors=['middle', '_middle'], gid=507),
        'slashshortcomb': GD(name='slashshortcomb', uni=0x0337, hex='0337', c='̷', w=0, isLower=True, anchors=['middle', '_middle']),
        'smiddletilde': GD(name='smiddletilde', uni=0x1D74, hex='1D74', c='ᵴ', l='asciitilde', r='asciitilde', base='s', isLower=True, anchors=['top', 'middle', 'bottom']),
-       'smod': GD(name='smod', uni=0x02E2, hex='02E2', c='ˢ', isLower=False, isMod=True),
+       'smod': GD(name='smod', uni=0x02E2, hex='02E2', c='ˢ', l2r='smod', isLower=False, isMod=True),
        'snakebelowcomb': GD(name='snakebelowcomb', uni=0x1DC2, hex='1DC2', c='᷂', w=0, isLower=True, anchors=['bottom', '_bottom']),
        'sobliquestroke': GD(name='sobliquestroke', uni=0xA7A9, hex='A7A9', c='ꞩ', base='s', isLower=True, anchors=['top', 'middle', 'bottom']),
        'softhyphen': GD(name='softhyphen', uni=0x00AD, hex='00AD', c='­', w=0, isLower=True, gid=110),
