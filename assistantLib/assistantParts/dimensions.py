@@ -28,16 +28,17 @@ class AssistantPartDimensions(BaseAssistantPart):
     In the case of diagonals, it shows the distances inside diagonal stems.
     """
     DIMENSIONS_LINES_STROKE_WIDTH = 1
+    DIMENSIONS_CIRCLE_STROKE_WIDTH = 3
     DIMENSIONS_LINES_COLOR = (0, 0, 0, 0.5)
     DIMENSIONS_VALUE_COLOR = (0, 0, 0, 1)
     DIMENSIONS_LABEL_FONT = 'Verdana'
     DIMENSIONS_LABEL_SIZE = 12
 
     DIMENSIONS_BAR_MARKER_COLOR = (1, 1, 1, 1)
-    DIMENSIONS_BAR_MARKER_ERROR_COLOR = (1, 1, 0.8, 0.8)
+    DIMENSIONS_BAR_MARKER_ERROR_COLOR = (1, 1, 0.8, 0.5)
 
     DIMENSIONS_STEM_MARKER_COLOR = (1, 1, 1, 1)
-    DIMENSIONS_STEM_MARKER_ERROR_COLOR = (1, 1, 0.8, 0.8)
+    DIMENSIONS_STEM_MARKER_ERROR_COLOR = (1, 1, 0.8, 0.5)
 
     DIMENSIONS_DIAGONAL_MARKER_COLOR = (1, 1, 1, 0.25)
     DIMENSIONS_DIAGONAL_MARKER_ERROR_COLOR = (1, 1, 0, 0.4)
@@ -81,8 +82,9 @@ class AssistantPartDimensions(BaseAssistantPart):
             self.dimensionsBarMeasureBackgrounds.append(container.appendOvalSublayer(
                 position=(0, 0),
                 size=(self.DIMENSIONS_MARKER_R*2, self.DIMENSIONS_MARKER_R*2),
-                fillColor=self.DIMENSIONS_BAR_MARKER_COLOR,
-                strokeColor=None,
+                strokeColor=self.DIMENSIONS_BAR_MARKER_COLOR,
+                strokeWidth=self.DIMENSIONS_CIRCLE_STROKE_WIDTH,
+                fillColor=None,
                 visible=False,
             ))
             self.dimensionsBarMeasureValues.append(container.appendTextLineSublayer(
@@ -113,8 +115,9 @@ class AssistantPartDimensions(BaseAssistantPart):
             self.dimensionsStemMeasureBackgrounds.append(container.appendOvalSublayer(
                 position=(0, 0),
                 size=(self.DIMENSIONS_MARKER_R*2, self.DIMENSIONS_MARKER_R*2),
-                fillColor=self.DIMENSIONS_STEM_MARKER_COLOR,
-                strokeColor=None,
+                strokeColor=self.DIMENSIONS_STEM_MARKER_COLOR,
+                strokeWidth=self.DIMENSIONS_CIRCLE_STROKE_WIDTH,
+                fillColor=None,
                 visible=False,
             ))
             self.dimensionsStemMeasureValues.append(container.appendTextLineSublayer(
@@ -147,8 +150,9 @@ class AssistantPartDimensions(BaseAssistantPart):
             self.dimensionsDiagonalMeasureBackgrounds.append(container.appendOvalSublayer(
                 position=(0, 0),
                 size=(self.DIMENSIONS_MARKER_R*2, self.DIMENSIONS_MARKER_R*2),
-                fillColor=self.DIMENSIONS_DIAGONAL_MARKER_COLOR,
-                strokeColor=None,
+                strokeColor=self.DIMENSIONS_DIAGONAL_MARKER_COLOR,
+                strokeWidth=self.DIMENSIONS_CIRCLE_STROKE_WIDTH,
+                fillColor=None,
                 visible=False,
             ))
             self.dimensionsDiagonalMeasureValues.append(container.appendTextLineSublayer(
@@ -249,7 +253,8 @@ class AssistantPartDimensions(BaseAssistantPart):
                     self.dimensionsBarMeasureBackgrounds[sIndex].setVisible(True)
                     self.dimensionsBarMeasureBackgrounds[sIndex].setSize((r*2, r*2))
                     self.dimensionsBarMeasureBackgrounds[sIndex].setPosition((x - r, y - r))
-                    self.dimensionsBarMeasureBackgrounds[sIndex].setFillColor(markerColor)
+                    self.dimensionsBarMeasureBackgrounds[sIndex].setFillColor(None)
+                    self.dimensionsBarMeasureBackgrounds[sIndex].setStrokeColor(markerColor)
 
                     self.dimensionsBarMeasureValues[dIndex].setVisible(True)
                     self.dimensionsBarMeasureValues[dIndex].setText(str(int(round(bar.height))))
@@ -298,7 +303,8 @@ class AssistantPartDimensions(BaseAssistantPart):
                     self.dimensionsStemMeasureBackgrounds[sIndex].setVisible(True)
                     self.dimensionsStemMeasureBackgrounds[sIndex].setSize((r*2, r*2))
                     self.dimensionsStemMeasureBackgrounds[sIndex].setPosition((x - r, y - r))
-                    self.dimensionsStemMeasureBackgrounds[sIndex].setFillColor(markerColor)
+                    self.dimensionsStemMeasureBackgrounds[sIndex].setFillColor(None)
+                    self.dimensionsStemMeasureBackgrounds[sIndex].setStrokeColor(markerColor)
 
                     self.dimensionsStemMeasureValues[dIndex].setVisible(True)
                     self.dimensionsStemMeasureValues[dIndex].setText(str(int(round(stem.width))))
@@ -342,7 +348,8 @@ class AssistantPartDimensions(BaseAssistantPart):
                 self.dimensionsDiagonalMeasureBackgrounds[dIndex].setVisible(True)
                 self.dimensionsDiagonalMeasureBackgrounds[dIndex].setSize((r*2, r*2))
                 self.dimensionsDiagonalMeasureBackgrounds[dIndex].setPosition((x - r, y - r))
-                self.dimensionsDiagonalMeasureBackgrounds[dIndex].setFillColor(markerColor)
+                self.dimensionsDiagonalMeasureBackgrounds[dIndex].setFillColor(None)
+                self.dimensionsDiagonalMeasureBackgrounds[dIndex].setStrokeColor(markerColor)
 
                 self.dimensionsDiagonalMeasureValues[dIndex].setVisible(True)
                 self.dimensionsDiagonalMeasureValues[dIndex].setText(str(dxy))
