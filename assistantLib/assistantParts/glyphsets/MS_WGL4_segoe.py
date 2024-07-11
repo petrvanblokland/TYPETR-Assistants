@@ -871,7 +871,7 @@ class MS_GlyphSet(GlyphSet):
        'Vend': GD(name='Vend', uni=0xA768, hex='A768', c='Ꝩ'),
        'Vhook': GD(name='Vhook', uni=0x01B2, hex='01B2', c='Ʋ', srcName='uni01B2', l='U', r='O', gid=371, comment='Ʋ v, latin capital letter script'),
        'Vmod': GD(name='Vmod', uni=0x2C7D, hex='2C7D', c='ⱽ', l='Amod', r='Amod', isMod=True),
-       'Vsmall': GD(name='Vsmall', uni=0x1D20, hex='1D20', c='ᴠ', base='v', isSc=True, anchors=['top', 'middle', 'bottom']),
+       'Vsmall': GD(name='Vsmall', uni=0x1D20, hex='1D20', c='ᴠ', base='v', isSc=True, anchorTopY='v', anchorMiddleY='v', anchorBottomY='v', anchors=['top', 'middle', 'bottom']),
        'Vtilde': GD(name='Vtilde', uni=0x1E7C, hex='1E7C', c='Ṽ', l='V', r='V', base='V', accents=['tildecomb'], srcName='uni1E7C', anchors=['top', 'middle', 'bottom'], gid=1047),
        'Vturned': GD(name='Vturned', uni=0x0245, hex='0245', c='Ʌ', l2r='V', r2l='V', base='Lambda'),
 
@@ -886,7 +886,7 @@ class MS_GlyphSet(GlyphSet):
        'Wgrave': GD(name='Wgrave', uni=0x1E80, hex='1E80', c='Ẁ', l='W', r='W', base='W', accents=['gravecomb'], anchors=['top', 'middle', 'bottom'], gid=1051, comment='Ẁ'),
        'Whook': GD(name='Whook', uni=0x2C72, hex='2C72', c='Ⱳ'),
        'Wmod': GD(name='Wmod', uni=0x1D42, hex='1D42', c='ᵂ',l='Vmod', r='Vmod',  isMod=True),
-       'Wsmall': GD(name='Wsmall', uni=0x1D21, hex='1D21', c='ᴡ', base='w', isSc=True, anchors=['top', 'middle', 'bottom']),
+       'Wsmall': GD(name='Wsmall', uni=0x1D21, hex='1D21', c='ᴡ', base='w', isSc=True, anchorTopY='w', anchorMiddleY='w', anchorBottomY='w', anchors=['top', 'middle', 'bottom']),
        'Wynn': GD(name='Wynn', uni=0x01F7, hex='01F7', c='Ƿ', r='O', srcName='uni01F7', gid=440),
 
         #   X
@@ -942,7 +942,7 @@ class MS_GlyphSet(GlyphSet):
        'Zhedieresis-cy': GD(name='Zhedieresis-cy', uni=0x04DC, hex='04DC', c='Ӝ', l='Zhe-cy', r='Zhe-cy', base='Zhe-cy', accents=['dieresiscomb'], anchors=['top'], gid=865),
        'Zhook': GD(name='Zhook', uni=0x0224, hex='0224', l='Z', r='Z', c='Ȥ'),
        'Zlinebelow': GD(name='Zlinebelow', uni=0x1E94, hex='1E94', c='Ẕ', l='Z', r='Z', base='Z', accents=['macronbelow'], srcName='uni1E94', anchors=['top', 'middle', 'bottom'], gid=1071),
-       'Zsmall': GD(name='Zsmall', uni=0x1D22, hex='1D22', c='ᴢ', l='z', r='z', base='z', isSc=True, anchors=['top', 'middle', 'bottom']),
+       'Zsmall': GD(name='Zsmall', uni=0x1D22, hex='1D22', c='ᴢ', l='z', r='z', base='z', isSc=True, anchorTopY='z', anchorMiddleY='z', anchorBottomY='z', anchors=['top', 'middle', 'bottom']),
        'Zstroke': GD(name='Zstroke', uni=0x01B5, hex='01B5', c='Ƶ', l='Z', r='Z', srcName='uni01B5', gid=374),
        'Zswashtail': GD(name='Zswashtail', uni=0x2C7F, hex='2C7F', l='Z', w='Z', c='Ɀ'),
        'Zvisigothic': GD(name='Zvisigothic', uni=0xA762, hex='A762', l='o', r='three', c='Ꝣ'),
