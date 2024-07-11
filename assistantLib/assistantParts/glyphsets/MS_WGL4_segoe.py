@@ -656,7 +656,7 @@ class MS_GlyphSet(GlyphSet):
        'OopenSmall': GD(name='OopenSmall', uni=0x1D10, hex='1D10', c='ᴐ', r2l='Csmall', r='Osmall', base='oopen', gid=906),
        'Oslash': GD(name='Oslash', uni=0x00D8, hex='00D8', c='Ø', l='O', w='O', base='O', anchors=['top', 'middle', 'bottom'], gid=153, comment='Ø STROKE, LATIN CAPITAL LETTER O WITH'),
        'Oslashacute': GD(name='Oslashacute', uni=0x01FE, hex='01FE', c='Ǿ', l='Oslash', r='Oslash', base='Oslash', accents=['acutecomb'], anchors=['top', 'middle', 'bottom'], gid=447, comment='Ǿ'),
-       'Osmall': GD(name='Osmall', uni=0x1D0F, hex='1D0F', c='ᴏ', base='o', isSc=True, anchors=['top', 'middle', 'bottom']),
+       'Osmall': GD(name='Osmall', uni=0x1D0F, hex='1D0F', c='ᴏ', base='o', isSc=True, anchorTopY='o', anchorMiddleY='o', anchorBottomY='o', anchors=['top', 'middle', 'bottom']),
        'Otilde': GD(name='Otilde', uni=0x00D5, hex='00D5', c='Õ', l='O', r='O', base='O', accents=['tildecomb'], anchors=['top', 'middle', 'bottom'], gid=150, comment='Õ O WITH TILDE, LATIN CAPITAL LETTER'),
        'Otilde.component': GD(name='Otilde.component', w=0, anchors=['top', '_top'], gid=1603),
        'Otilde.component1': GD(name='Otilde.component1', w=0, anchors=['top', '_top'], gid=1604),
