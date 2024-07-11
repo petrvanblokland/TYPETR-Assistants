@@ -701,6 +701,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         y += L + 10
         c.w.autoSpaceFontButton = Button((C0, y, CW, L), 'Auto space font', callback=self.autoSpaceFontCallback)
         c.w.fixOverlappedKerningButton = Button((C1, y, CW, L), 'Fix overlapped kerns', callback=self.fixOverlappedKerningCallback)
+        c.w.autoSpaceAllTheseGlyphsButton = Button((C2, y, CW, L), 'Fix all these glyphs', callback=self.autoSpaceAllTheseGlyphsCallback)
         y += L + 10
         c.w.factorKernNetTextBox = EditText((C0, y, 48, L))
         c.w.factorKernNetTextBox.set('1.2')
@@ -750,6 +751,20 @@ class AssistantPartSpacer(BaseAssistantPart):
                     g.changed()
             # Watch out: this will auto-save the adjusted font
             f.save()
+
+    def autoSpaceAllTheseGlyphsCallback(self, sender):
+        """Auto space this glyph in all masters."""
+        g = self.getCurrentGlyph()
+        parentPath = self.filePath2ParentPath(g.font.path)
+
+        for pth in self.getUfoPaths(parentPath):
+            f = self.getFont(pth)
+            #print(f'... Fix spacing {f.path.split("/")[-1]} /{g.name}')
+            if g.name in f:
+                gg = f[g.name]
+                changed = self.checkFixGlyphSpacing(gg, updateMerz=False) # Only print what it did if there was a change.
+                if changed:
+                    gg.changed()
 
     def autoSpaceFontCallback(self, sender):
         """Auto space the current font, recursively applying all rules until that base glyph. Keep track of the glyphs 
