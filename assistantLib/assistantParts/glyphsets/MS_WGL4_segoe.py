@@ -1544,7 +1544,7 @@ class MS_GlyphSet(GlyphSet):
        'glottalstopstrokereversed': GD(name='glottalstopstrokereversed', uni=0x02A2, hex='02A2', c='ʢ', l2r='question', r2l='question', isLower=False),
        'gmacron': GD(name='gmacron', uni=0x1E21, hex='1E21', c='ḡ', base='g', accents=['macroncomb'], srcName='uni1E21', isLower=True, anchors=['top', 'middle', 'bottom'], gid=956),
        'gmod': GD(name='gmod', uni=0x1D4D, hex='1D4D', c='ᵍ', srcName='uni1D4D', l='omod', l2r='nmod', isLower=False, isMod=True, gid=911),
-       'gobliquestroke': GD(name='gobliquestroke', uni=0xA7A1, hex='A7A1', c='ꞡ', base='g', w=ACCENT_WIDTH, isLower=True, anchors=['top', 'middle', 'bottom']),
+       'gobliquestroke': GD(name='gobliquestroke', uni=0xA7A1, hex='A7A1', c='ꞡ', base='g',l='g', w='g', isLower=True, anchors=['top', 'middle', 'bottom']),
        'gpalatalhook': GD(name='gpalatalhook', uni=0x1D83, hex='1D83', c='ᶃ', l='g', r='jdotless', base='g', accents=['dpalatalhook.component', 'gpalatalhook.component'], isLower=True, anchors=['top', 'middle', 'bottom']),
        'gpalatalhook.component': GD(name='gpalatalhook.component', isLower=True, gid=1652),
        'graphemejoinercomb': GD(name='graphemejoinercomb', uni=0x034F, hex='034F', c='͏', w=0, isLower=True, anchors=[]),
