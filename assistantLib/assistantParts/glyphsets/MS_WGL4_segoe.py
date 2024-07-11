@@ -193,7 +193,7 @@ class MS_GlyphSet(GlyphSet):
        'Chook': GD(name='Chook', uni=0x0187, hex='0187', c='Ƈ', l='O', srcName='uni0187', gid=328),
        'Con': GD(name='Con', uni=0xA76E, hex='A76E', c='Ꝯ', l='nine', r='nine'),
        'Creverseddot': GD(name='Creverseddot', uni=0xA73E, hex='A73E', c='Ꜿ', base='SigmaLunateDottedReversedSymbol'),
-       'Csmall': GD(name='Csmall', uni=0x1D04, hex='1D04', c='ᴄ', l='C', r='C', base='c', isSc=True, anchors=['top', 'middle', 'bottom']),
+       'Csmall': GD(name='Csmall', uni=0x1D04, hex='1D04', c='ᴄ', l='C', r='C', base='c', isSc=True, anchorTopY='c', anchorMiddleY='c', anchorBottomY='c', anchors=['top', 'middle', 'bottom']),
        'Cstroke': GD(name='Cstroke', uni=0x023B, hex='023B', c='Ȼ', l='C', r='C', base='C', anchorTopY='C', anchorBottomY='C', accents=['Astroke.component'], anchors=['top', 'middle', 'bottom']),
        'Cuatrillo': GD(name='Cuatrillo', uni=0xA72C, hex='A72C', l='four', r='J', c='Ꜭ'),
        'Cuatrillocomma': GD(name='Cuatrillocomma', uni=0xA72E, hex='A72E', l='four', r='J', c='Ꜯ'),
