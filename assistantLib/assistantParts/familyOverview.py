@@ -135,14 +135,16 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                         for contour in ufoG.contours:
                             p = contour.points[0]
                             pos = x + p.x - self.FAMILY_OVERVIEW_START_POINT_SIZE/2, y + p.y - self.FAMILY_OVERVIEW_START_POINT_SIZE/2
-                            self.familyOverviewStartPoints[spIndex].setPosition(pos)
-                            self.familyOverviewStartPoints[spIndex].setVisible(True)
+                            if spIndex < len(self.familyOverviewStartPoints):
+                                self.familyOverviewStartPoints[spIndex].setPosition(pos)
+                                self.familyOverviewStartPoints[spIndex].setVisible(True)
                             spIndex += 1
 
                         for a in ufoG.anchors:
                             pos = x + a.x - self.FAMILY_OVERVIEW_ANCHOR_SIZE/2, y + a.y - self.FAMILY_OVERVIEW_ANCHOR_SIZE/2
-                            self.familyOverviewAnchors[aIndex].setPosition(pos)
-                            self.familyOverviewAnchors[aIndex].setVisible(True)
+                            if aIndex < len(self.familyOverviewAnchors):
+                                self.familyOverviewAnchors[aIndex].setPosition(pos)
+                                self.familyOverviewAnchors[aIndex].setVisible(True)
                             aIndex += 1
 
         for n in range(nIndex, len(self.familyOverviewGlyphs)):

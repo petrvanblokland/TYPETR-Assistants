@@ -359,6 +359,8 @@ class GlyphAnalyzer:
         for cIndex, contour in enumerate(g.contours):
             points = contour.points
             for pIndex in range(len(points)):
+                if len(points) < 4:
+                    continue
                 p_2, p_1, p, p1, p2 = pp = points[pIndex-4], points[pIndex-3], points[pIndex-2], points[pIndex-1], points[pIndex] # Trick to run over edge of point list
                 if p.type == 'offcurve': # Skip the off-curve points as main focus of interest.
                     continue
