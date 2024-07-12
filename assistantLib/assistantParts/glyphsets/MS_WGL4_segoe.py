@@ -2197,7 +2197,7 @@ class MS_GlyphSet(GlyphSet):
        'rfishhookmiddletilde': GD(name='rfishhookmiddletilde', uni=0x1D73, hex='1D73', c='ᵳ', base='rfishhook', isLower=True),
        'rfishhookreversed': GD(name='rfishhookreversed', uni=0x027F, hex='027F', c='ɿ', r2l='r', isLower=True),
        'rho': GD(name='rho', uni=0x03C1, hex='03C1', c='ρ', isLower=True, anchors=['top'], gid=582),
-       'rhoStrokeSymbol': GD(name='rhoStrokeSymbol', uni=0x03FC, hex='03FC', c='ϼ', bl='rho', base='rho', isLower=True, anchors=['top'], gid=641),
+       'rhoStrokeSymbol': GD(name='rhoStrokeSymbol', uni=0x03FC, hex='03FC', c='ϼ', bl='rho', r='o', base='rho', isLower=True, anchors=['top'], gid=641),
        'rhoSymbol': GD(name='rhoSymbol', uni=0x03F1, hex='03F1', c='ϱ', l='o', isLower=True, gid=630),
        'rhodasia': GD(name='rhodasia', uni=0x1FE5, hex='1FE5', c='ῥ', base='rho', accents=['dasia'], isLower=True, anchors=['top'], gid=1383),
        'rhook': GD(name='rhook', uni=0x027D, hex='027D', c='ɽ', l='r', w='r', isLower=True),

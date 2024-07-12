@@ -69,7 +69,7 @@ class MasterData:
             # Vertical metrics
             baseline=0, stemOvershoot=STEM_OVERSHOOT, baseOvershoot=None, capOvershoot=None, scOvershoot=None, supsOvershoot=None,
             ascender=None, descender=None,
-            xHeight=None, capHeight=None, scHeight=None, supsHeight=None,
+            xHeight=None, capHeight=None, scHeight=None, supsHeight=None, modHeight=None,
             numrBaseline=None, supsBaseline=None, sinfBaseline=None, dnomBaseline=None, modBaseline=None,
             middlexHeight=None, middleCapHeight=None,
             # Vertical anchor offsets to avoid collission with baseline, guidlines, etc. in mouse selection
@@ -221,7 +221,8 @@ class MasterData:
         if supsHeight is None:
             supsHeight = xHeight * 2/3
         self.supsHeight = supsHeight
-
+        self.modHeight = modHeight or self.supsHeight
+        
         if middlexHeight is None:
             middlexHeight = xHeight/2,
         self.middlexHeight = middlexHeight        
