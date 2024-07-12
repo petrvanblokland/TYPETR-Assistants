@@ -144,16 +144,16 @@ class AssistantPartGuidelines(BaseAssistantPart):
         if md.supsBaseline is not None and ('sups' in g.name or 'superior' in g.name):            
             guidelines.append((xo + tg * (md.supsBaseline), md.supsBaseline, 0, f"Baseline of superiors {md.supsBaseline} ({md.supsBaseline})"))
             if md.supsHeight is not None:
-                guidelines.append((xo + tg * (md.supsBaseline + md.supsHeight), md.supsBaseline + md.supsHeight, 0, f"{md.supsBaseline + md.supsHeight} ({md.supsBaseline + md.supsHeight})"))
+                guidelines.append((xo + tg * (md.supsBaseline + md.supsHeight), md.supsBaseline + md.supsHeight, 0, f"Height of superiors {md.supsBaseline + md.supsHeight} ({md.supsBaseline + md.supsHeight})"))
 
         if md.modBaseline is not None and 'mod' in g.name:            
             guidelines.append((xo + tg * (md.modBaseline), md.modBaseline, 0, f"Baseline of modifiers {md.modBaseline} ({md.modBaseline})"))
-            guidelines.append((xo + tg * (md.modBaseline + md.modHeight), md.modBaseline + md.modHeight, 0, f"{md.modBaseline + md.modHeight} ({md.modBaseline + md.modHeight})"))
+            guidelines.append((xo + tg * (md.modBaseline + md.modHeight), md.modBaseline + md.modHeight, 0, f"Height of modifiers {md.modBaseline + md.modHeight} ({md.modBaseline + md.modHeight})"))
 
         if md.sinfBaseline is not None and ('sinf' in g.name or 'inferior' in g.name):            
             guidelines.append((xo + tg * (md.sinfBaseline), md.sinfBaseline, 0, f"Baseline of inferiors {md.sinfBaseline} ({md.sinfBaseline})"))
-            if md.supsHeight is not None:
-                guidelines.append((xo + tg * (md.supsBaseline + md.supsHeight), md.supsBaseline + md.supsHeight, 0, f"{md.supsBaseline + md.supsHeight} ({md.supsBaseline + md.supsHeight})"))
+            if md.sinfHeight is not None:
+                guidelines.append((xo + tg * (md.sinfBaseline + md.sinfHeight), md.sinfBaseline + md.sinfHeight, 0, f"Height of inferiors {md.sinfBaseline + md.sinfHeight} ({md.sinfBaseline + md.sinfHeight})"))
 
         if forced or len(g.guidelines) != len(guidelines):
             # Amounts are different, too complex to compare. Just rebuild all guidelines.

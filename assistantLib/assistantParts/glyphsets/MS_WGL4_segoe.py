@@ -1695,7 +1695,7 @@ class MS_GlyphSet(GlyphSet):
        'ispace': GD(name='ispace', l='idotless', l2r='idotless', isLower=True, comment='Special symmetric i-space for spacing'),
        'istroke': GD(name='istroke', uni=0x0268, hex='0268', c='ɨ', l='hyphen', r='hyphen', isLower=True),
        'istrokemod': GD(name='istrokemod', uni=0x1DA4, hex='1DA4', r2l='istrokemod', c='ᶤ', isLower=False, isMod=True),
-       'isubscript': GD(name='isubscript', uni=0x1D62, hex='1D62', c='ᵢ', isLower=True),
+       'isubscript': GD(name='isubscript', uni=0x1D62, hex='1D62', c='ᵢ', l='imod', r='imod', isLower=True),
        'itilde': GD(name='itilde', uni=0x0129, hex='0129', c='ĩ', bl='idotless', base='idotless', accents=['tildecomb'], isLower=True, anchors=['top', 'middle', 'bottom', 'ogonek'], gid=234, comment='ĩ I WITH TILDE, LATIN SMALL LETTER'),
        'itildebelow': GD(name='itildebelow', uni=0x1E2D, hex='1E2D', c='ḭ', w='idotless', bl='i', base='i', accents=['tildebelow'], srcName='uni1E2D', isLower=True, anchors=['top', 'middle', 'bottom'], gid=968),
        'iu-cy': GD(name='iu-cy', uni=0x044E, hex='044E', c='ю', l='en-cy', r='o', isLower=True, gid=723),
@@ -1716,7 +1716,7 @@ class MS_GlyphSet(GlyphSet):
        'je-cy': GD(name='je-cy', uni=0x0458, hex='0458', c='ј', l='j', r='j', base='j', isLower=True, anchors=['middle', 'bottom'], gid=733),
        'jmod': GD(name='jmod', uni=0x02B2, hex='02B2', c='ʲ', r='imod', isLower=False, isMod=True),
        'jstroke': GD(name='jstroke', uni=0x0249, hex='0249', c='ɉ', base='j', l='j', r='hyphen', isLower=True, anchors=['middle', 'bottom']),
-       'jsubscript': GD(name='jsubscript', uni=0x2C7C, hex='2C7C', c='ⱼ', isLower=True),
+       'jsubscript': GD(name='jsubscript', uni=0x2C7C, hex='2C7C', c='ⱼ', l='jmod', r='jmod', isLower=True),
 
         #   k
 
@@ -2239,7 +2239,7 @@ class MS_GlyphSet(GlyphSet):
        'rscriptring': GD(name='rscriptring', uni=0xAB4C, hex='AB4C', c='ꭌ', l='rscript', r='omod', isLower=True),
        'rstirrup': GD(name='rstirrup', uni=0xAB45, hex='AB45', c='ꭅ', l='o', r='o', isLower=True),
        'rstroke': GD(name='rstroke', uni=0x024D, hex='024D', c='ɍ', base='r', isLower=True, anchors=['top', 'middle', 'bottom']),
-       'rsubscript': GD(name='rsubscript', uni=0x1D63, hex='1D63', c='ᵣ', base='rmod', isLower=True),
+       'rsubscript': GD(name='rsubscript', uni=0x1D63, hex='1D63', c='ᵣ', l='rmod', r='rmod', base='rmod', isLower=True),
        'rturned': GD(name='rturned', uni=0x0279, hex='0279', c='ɹ', r2l='r', isLower=True),
        'rturnedmod': GD(name='rturnedmod', uni=0x02B4, hex='02B4', c='ʴ', isLower=False, isMod=True),
        'ruble': GD(name='ruble', uni=0x20BD, hex='20BD', c='₽', srcName='uni20BD', isLower=True, gid=1462),
@@ -2614,7 +2614,7 @@ class MS_GlyphSet(GlyphSet):
        'ustrait-cy': GD(name='ustrait-cy', uni=0x04AF, hex='04AF', c='ү', l='v', l2r='ustrait-cy', isLower=True, gid=820),
        'ustraitstroke-cy': GD(name='ustraitstroke-cy', uni=0x04B1, hex='04B1', c='ұ', l='ustrait-cy', r='ustrait-cy', isLower=True, gid=822),
        'ustroke': GD(name='ustroke', uni=0x1D7E, hex='1D7E', c='ᵾ', l='hyphen', r='hyphen', isLower=True),
-       'usubscript': GD(name='usubscript', uni=0x1D64, hex='1D64', c='ᵤ', base='umod', isLower=True),
+       'usubscript': GD(name='usubscript', uni=0x1D64, hex='1D64', c='ᵤ', l='umod', r='umod', base='umod', isLower=True),
        'utilde': GD(name='utilde', uni=0x0169, hex='0169', c='ũ', base='u', accents=['tildecomb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=298, comment='ũ U WITH TILDE, LATIN SMALL LETTER'),
        'utildeacute': GD(name='utildeacute', uni=0x1E79, hex='1E79', c='ṹ', base='u', accents=['acutecomb.component3'], srcName='uni1E79', isLower=True, anchors=['top', 'middle', 'bottom'], gid=1044),
        'utildebelow': GD(name='utildebelow', uni=0x1E75, hex='1E75', c='ṵ', base='u', accents=['tildebelow'], srcName='uni1E75', isLower=True, anchors=['top', 'middle', 'bottom'], gid=1040),
@@ -2641,7 +2641,7 @@ class MS_GlyphSet(GlyphSet):
        'voicingmod': GD(name='voicingmod', uni=0x02EC, hex='02EC', c='ˬ', base='caroncomb', isLower=True, isMod=True, anchors=['_bottom']),
        'vpalatalhook': GD(name='vpalatalhook', uni=0x1D8C, hex='1D8C', c='ᶌ', l='v', r='jdotless', base='v', accents=['dpalatalhook.component', 'gpalatalhook.component'], isLower=True, anchors=['top', 'middle', 'bottom']),
        'vrighthook': GD(name='vrighthook', uni=0x2C71, hex='2C71', c='ⱱ', base='izhitsa-cy', isLower=True, anchors=['top']),
-       'vsubscript': GD(name='vsubscript', uni=0x1D65, hex='1D65', c='ᵥ', base='vmod', isLower=True),
+       'vsubscript': GD(name='vsubscript', uni=0x1D65, hex='1D65', c='ᵥ', l='vmod', r='vmod', base='vmod', isLower=True),
        'vtilde': GD(name='vtilde', uni=0x1E7D, hex='1E7D', c='ṽ', l='v', r='v', base='v', accents=['tildecomb'], srcName='uni1E7D', isLower=True, anchors=['top', 'middle', 'bottom'], gid=1048),
        'vturned': GD(name='vturned', uni=0x028C, hex='028C', c='ʌ', l2r='v', r2l='v', isLower=True),
        'vturnedmod': GD(name='vturnedmod', uni=0x1DBA, hex='1DBA', c='ᶺ', l='vmod', r='vmod', isLower=False, isMod=True),
@@ -2681,7 +2681,7 @@ class MS_GlyphSet(GlyphSet):
        'xlongleftlegandlowrightring': GD(name='xlongleftlegandlowrightring', uni=0xAB58, hex='AB58', c='ꭘ', r='omod', isLower=True),
        'xlongleftlegserif': GD(name='xlongleftlegserif', uni=0xAB59, hex='AB59', c='ꭙ', isLower=True),
        'xlowrightring': GD(name='xlowrightring', uni=0xAB56, hex='AB56', c='ꭖ', r='omod', isLower=True),
-       'xmod': GD(name='xmod', uni=0x02E3, hex='02E3', c='ˣ', isLower=False, isMod=True),
+       'xmod': GD(name='xmod', uni=0x02E3, hex='02E3', c='ˣ', l2r='xmod', isLower=False, isMod=True),
        'xpalatalhook': GD(name='xpalatalhook', uni=0x1D8D, hex='1D8D', c='ᶍ', l='x', r='jdotless', base='x', accents=['dpalatalhook.component'], isLower=True, anchors=['top', 'middle', 'bottom']),
 
         #   y
