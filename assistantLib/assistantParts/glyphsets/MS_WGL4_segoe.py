@@ -1667,7 +1667,7 @@ class MS_GlyphSet(GlyphSet):
        'inverseWhiteCircle': GD(name='inverseWhiteCircle', uni=0x25D9, hex='25D9', c='◙', srcName='invcircle', isLower=True, gid=1566),
        'io-cy': GD(name='io-cy', uni=0x0451, hex='0451', c='ё', l='o', r='e', base='e', accents=['dieresiscomb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=726),
        'iogonek': GD(name='iogonek', uni=0x012F, hex='012F', c='į', base='i', accents=['ogonekcomb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=240, comment='į I WITH OGONEK, LATIN SMALL LETTER'),
-       'iota': GD(name='iota', uni=0x03B9, hex='03B9', c='ι', isLower=True, anchorTopY='idotless', anchors=['top'], gid=574, comment='ι'),
+       'iota': GD(name='iota', uni=0x03B9, hex='03B9', c='ι', l='u', r='i', isLower=True, anchorTopY='idotless', anchors=['top'], gid=574, comment='ι'),
        'iota-latin': GD(name='iota-latin', uni=0x0269, hex='0269', c='ɩ', isLower=True),
        'iotadasia': GD(name='iotadasia', uni=0x1F31, hex='1F31', c='ἱ', r='i', base='iota', accents=['dasia'], isLower=True, anchors=['top'], gid=1218),
        'iotadasiaoxia': GD(name='iotadasiaoxia', uni=0x1F35, hex='1F35', c='ἵ', w='iota', bl='iota', base='iota', accents=['dasiaoxia'], isLower=True, anchors=['top'], gid=1222),
