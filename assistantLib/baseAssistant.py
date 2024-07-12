@@ -93,7 +93,7 @@ class BaseAssistant:
         ('/Users/caterinasantullo/Desktop', (226/255, 69/255, 0/255, 1), {}),
         ('/Users/til/Documents', (0.9, 0.75, 1.0, 1.0), {'g':'z'}),
         ('/Users/anna/Downloads/Dropbox', (57/255, 163/255, 160/255, 1), {}),
-        ('/Users/annakhorash/Desktop/Anna', (57/255, 163/255, 160/255, 1), {}),
+        ('/Users/annakhorash/Documents/GitHub', (57/255, 163/255, 160/255, 1), {}),
         ('/Users/lenalepommelet/Documents', (138/255, 43/255,  226/255, 1), {}),
         ('/Users/Marte/Documents', (255/255, 222/255,  0/255, .8), {}),
     ]
