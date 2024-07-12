@@ -1686,7 +1686,7 @@ class MS_GlyphSet(GlyphSet):
        'iotapsilioxia': GD(name='iotapsilioxia', uni=0x1F34, hex='1F34', c='ἴ', bl='iota', w='iota', base='iota', accents=['psilioxia'], isLower=True, anchors=['top'], gid=1221),
        'iotapsiliperispomeni': GD(name='iotapsiliperispomeni', uni=0x1F36, hex='1F36', c='ἶ', bl='iota', w='iota', base='iota', accents=['psiliperispomeni'], isLower=True, anchors=['top'], gid=1223),
        'iotapsilivaria': GD(name='iotapsilivaria', uni=0x1F32, hex='1F32', c='ἲ', bl='iota', w='iota', base='iota', accents=['psilivaria'], isLower=True, anchors=['top'], gid=1219),
-       'iotastroke': GD(name='iotastroke', uni=0x1D7C, hex='1D7C', c='ᵼ', l='hyphen', base='iota', isLower=True, anchors=['top']),
+       'iotastroke': GD(name='iotastroke', uni=0x1D7C, hex='1D7C', c='ᵼ', l=MIN_MARGIN, r='iota', base='iota', isLower=True, anchors=['top']),
        'iotatonos': GD(name='iotatonos', uni=0x03AF, hex='03AF', c='ί', bl='iota', w='iota', base='iota', accents=['tonoscomb'], isLower=True, anchors=['top'], gid=564),
        'iotavaria': GD(name='iotavaria', uni=0x1F76, hex='1F76', c='ὶ', base='iota', accents=['varia'], bl='iota', w='iota', isLower=True, anchors=['top'], gid=1279),
        'iotavrachy': GD(name='iotavrachy', uni=0x1FD0, hex='1FD0', c='ῐ', bl='iota', w='iota', base='iota', accents=['brevecomb'], isLower=True, anchors=['top'], gid=1365),
