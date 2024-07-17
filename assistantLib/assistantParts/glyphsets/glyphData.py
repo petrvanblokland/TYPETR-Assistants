@@ -87,7 +87,8 @@ class GlyphData:
             base=None, accents=None, 
             comment=None, spacing=None, fixAccents=True, fixSpacing=True, fixAnchors=False, 
             rightMin=None, top_y=None, 
-            # Anchors
+            # Anchor
+            autoFixAnchorPositions=True,
             # Force list of anchor names. Otherwise try to compose the list from the anchors that this glyph is associated with in AD.ANCHORS. 
             anchors=None, 
             anchorSrc=None, # Master name to copy anchors from
@@ -140,6 +141,7 @@ class GlyphData:
         self.composites = set() # Glyph names that refer to self as component. Collected by GlyphSet
 
         # If anchors is not defined (overwriting legacy data), then compose the anchor list from AD.ANCHORS
+        self.autoFixAnchorPositions = autoFixAnchorPositions
         if anchors is None:
             anchors = []
             for anchorName, glyphNames in AD.GLYPH_ANCHORS.items():

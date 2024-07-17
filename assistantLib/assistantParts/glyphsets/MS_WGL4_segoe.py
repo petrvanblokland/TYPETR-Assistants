@@ -325,7 +325,7 @@ class MS_GlyphSet(GlyphSet):
 
         #   F
 
-       'F': GD(name='F', uni=0x0046, hex='0046', c='F', l='H', anchorTopX='BoundsX2', anchorBottomX='BoundsX2', anchors=['top', 'middle', 'bottom'], gid=40, comment='F'),
+       'F': GD(name='F', uni=0x0046, hex='0046', c='F', l='H', r='E', anchorTopX='BoundsX2', anchorBottomX='BoundsX2', anchors=['top', 'middle', 'bottom'], gid=40, comment='F'),
        'FStroke': GD(name='FStroke', uni=0xA798, hex='A798', l='j', c='Ꞙ'),
        'Fdotaccent': GD(name='Fdotaccent', uni=0x1E1E, hex='1E1E', c='Ḟ', base='F', accents=['dotaccentcomb'], srcName='uni1E1E', anchors=['top', 'middle', 'bottom'], gid=953),
        'Fei-coptic': GD(name='Fei-coptic', uni=0x03E4, hex='03E4', c='Ϥ', l='o', r='H', gid=617),
@@ -1131,7 +1131,7 @@ class MS_GlyphSet(GlyphSet):
        'breveinvertedcomb': GD(name='breveinvertedcomb', uni=0x0311, hex='0311', c='̑', w=0, base='perispomeni', isLower=True, anchors=['top', '_top'], gid=500),
        'breveinverteddoublecomb': GD(name='breveinverteddoublecomb', uni=0x0361, hex='0361', c='͡', w=0, isLower=True, anchors=['top', '_top']),
        'bridgebelowcomb': GD(name='bridgebelowcomb', uni=0x032A, hex='032A', c='̪', w=0, isLower=True, anchors=['bottom', '_bottom']),
-       'bridgeinvertedbelowcomb': GD(name='bridgeinvertedbelowcomb', uni=0x033A, hex='033A', c='̺', l=MIN_MARGIN, r=MIN_MARGIN, base='shelfmod', isLower=True),
+       'bridgeinvertedbelowcomb': GD(name='bridgeinvertedbelowcomb', uni=0x033A, hex='033A', c='̺', w=0, l=CENTER, anchors=['bottom', '_bottom'], base='shelfmod', isLower=True),
        'brokenbar': GD(name='brokenbar', uni=0x00A6, hex='00A6', c='¦', isLower=True, gid=103, comment='¦ vertical bar, broken'),
        'bstroke': GD(name='bstroke', uni=0x0180, hex='0180', c='ƀ', l='hyphen', r='b', srcName='uni0180', isLower=True, gid=321),
        'btopbar': GD(name='btopbar', uni=0x0183, hex='0183', c='ƃ', srcName='uni0183', isLower=True, gid=324),
@@ -1215,7 +1215,7 @@ class MS_GlyphSet(GlyphSet):
 
         #   d
 
-       'd': GD(name='d', uni=0x0064, hex='0064', c='d', isLower=True, anchors=['top', 'middle', 'bottom', 'vert'], gid=70, comment='d'),
+       'd': GD(name='d', uni=0x0064, hex='0064', c='d', isLower=True, anchors=['top', 'middle', 'bottom', 'vert'], autoFixAnchorPositions=False, gid=70, comment='d'),
        'dagesh-hb': GD(name='dagesh-hb', uni=0x05BC, hex='05BC', c='ּ', w=0, isLower=True, anchors=['_middle'], gid=903),
        'dagger': GD(name='dagger', uni=0x2020, hex='2020', c='†', isLower=True, gid=1418, comment='† DAGGER'),
        'daggerdbl': GD(name='daggerdbl', uni=0x2021, hex='2021', c='‡', isLower=True, gid=1419, comment='‡ DOUBLE DAGGER'),
@@ -1545,7 +1545,7 @@ class MS_GlyphSet(GlyphSet):
        'glottalstopstrokereversed': GD(name='glottalstopstrokereversed', uni=0x02A2, hex='02A2', c='ʢ', l2r='question', r2l='question', isLower=False),
        'gmacron': GD(name='gmacron', uni=0x1E21, hex='1E21', c='ḡ', base='g', accents=['macroncomb'], srcName='uni1E21', isLower=True, anchors=['top', 'middle', 'bottom'], gid=956),
        'gmod': GD(name='gmod', uni=0x1D4D, hex='1D4D', c='ᵍ', srcName='uni1D4D', l='omod', l2r='nmod', isLower=False, isMod=True, gid=911),
-       'gobliquestroke': GD(name='gobliquestroke', uni=0xA7A1, hex='A7A1', c='ꞡ', base='g',l='g', w='g', isLower=True, anchors=['top', 'middle', 'bottom']),
+       'gobliquestroke': GD(name='gobliquestroke', uni=0xA7A1, hex='A7A1', c='ꞡ', base='g',l=MIN_MARGIN, r=MIN_MARGIN, isLower=True, anchors=['top', 'middle', 'bottom']),
        'gpalatalhook': GD(name='gpalatalhook', uni=0x1D83, hex='1D83', c='ᶃ', l='g', r='jdotless', base='g', accents=['dpalatalhook.component', 'gpalatalhook.component'], isLower=True, anchors=['top', 'middle', 'bottom']),
        'gpalatalhook.component': GD(name='gpalatalhook.component', isLower=True, gid=1652),
        'graphemejoinercomb': GD(name='graphemejoinercomb', uni=0x034F, hex='034F', c='͏', w=0, isLower=True, anchors=[]),
@@ -1738,7 +1738,7 @@ class MS_GlyphSet(GlyphSet):
        'kdotbelow': GD(name='kdotbelow', uni=0x1E33, hex='1E33', c='ḳ', base='k', accents=['dotbelowcomb'], srcName='uni1E33', isLower=True, anchors=['top', 'middle', 'bottom'], gid=974),
        'kgreenlandic': GD(name='kgreenlandic', uni=0x0138, hex='0138', c='ĸ', isLower=True, anchors=['top'], gid=249, comment='ĸ LATIN SMALL LETTER KRA'),
        'khei-coptic': GD(name='khei-coptic', uni=0x03E7, hex='03E7', c='ϧ', l=MIN_MARGIN, r='o', isLower=True, gid=620),
-       'khook': GD(name='khook', uni=0x0199, hex='0199', c='ƙ', l='k', srcName='uni0199', isLower=True, gid=346, comment='ƙ K WITH HOOK, LATIN SMALL LETTER'),
+       'khook': GD(name='khook', uni=0x0199, hex='0199', c='ƙ', l='k', r='k', srcName='uni0199', isLower=True, gid=346, comment='ƙ K WITH HOOK, LATIN SMALL LETTER'),
        'kinferior': GD(name='kinferior', uni=0x2096, hex='2096', c='ₖ', l='kmod', r='kmod', base='kmod', isLower=False),
        'kip': GD(name='kip', uni=0x20AD, hex='20AD', c='₭', isLower=False, gid=1446),
        'kje-cy': GD(name='kje-cy', uni=0x045C, hex='045C', c='ќ', l='en-cy', r='k', base='kgreenlandic', accents=['acutecomb'], isLower=True, anchors=['top'], gid=737),
@@ -1836,7 +1836,7 @@ class MS_GlyphSet(GlyphSet):
        'm': GD(name='m', uni=0x006D, hex='006D', c='m', l='n', r='n', isLower=True, anchors=['top', 'middle', 'bottom'], gid=79, comment='m'),
        'mSidewaysTurned': GD(name='mSidewaysTurned', uni=0x1D1F, hex='1D1F', c='ᴟ', l2r='E', r='o', isLower=True),
        'mTurnedmod': GD(name='mTurnedmod', uni=0x1D5A, hex='1D5A', c='ᵚ', l2r='mmod', r2l='mmod', isLower=False, isMod=True),
-       'macron': GD(name='macron', uni=0x00AF, hex='00AF', c='¯', l=CENTER, w=ACCENT_WIDTH, anchors=[], base='macroncomb', srcName='uni00AF', isLower=True, gid=112, comment='¯ spacing macron'),
+       'macron': GD(name='macron', uni=0x00AF, hex='00AF', c='¯', l=CENTER, w=ACCENT_WIDTH, base='macroncomb', srcName='uni00AF', isLower=True, gid=112, comment='¯ spacing macron'),
        'macronacutecomb': GD(name='macronacutecomb', uni=0x1DC4, hex='1DC4', c='᷄', w=0, base='firsttonechinese', accents=['acutecomb'], isLower=True, anchors=['top', '_top']),
        'macronbelow': GD(name='macronbelow', w=0, isLower=True, anchors=['bottom', '_bottom'], gid=1661),
        'macronbelowcomb': GD(name='macronbelowcomb', uni=0x0331, hex='0331', c='̱', w=0, base='macronbelow', isLower=True, anchors=['bottom', '_bottom'], comment='COMBINING MACRON BELOW'),
@@ -2604,7 +2604,7 @@ class MS_GlyphSet(GlyphSet):
        'upsilontonos': GD(name='upsilontonos', uni=0x03CD, hex='03CD', c='ύ', l='upsilon', r='upsilon', base='upsilon', accents=['tonoscomb'], isLower=True, anchors=['top'], gid=594),
        'upsilonvaria': GD(name='upsilonvaria', uni=0x1F7A, hex='1F7A', c='ὺ', l='upsilon', r='upsilon', base='upsilon', accents=['varia'], isLower=True, anchors=['top'], gid=1283),
        'upsilonvrachy': GD(name='upsilonvrachy', uni=0x1FE0, hex='1FE0', c='ῠ', l='upsilon', r='upsilon', base='upsilon', accents=['brevecomb'], isLower=True, anchors=['top'], gid=1378),
-       'uptackbelowcomb': GD(name='uptackbelowcomb', uni=0x031D, hex='031D', c='̝', l=MIN_MARGIN, r=MIN_MARGIN, base='uptackmod', isLower=True),
+       'uptackbelowcomb': GD(name='uptackbelowcomb', uni=0x031D, hex='031D', c='̝', w=0, l=CENTER, anchors=['_bottom', 'bottom'], base='uptackmod', isLower=True),
        'uptackmod': GD(name='uptackmod', uni=0x02D4, hex='02D4', l=MIN_MARGIN, r=MIN_MARGIN, c='˔', isLower=True, isMod=True),
        'uretroflexhook': GD(name='uretroflexhook', uni=0x1D99, hex='1D99', c='ᶙ', w='u', base='u', isLower=True, anchors=['top', 'middle', 'bottom']),
        'uring': GD(name='uring', uni=0x016F, hex='016F', c='ů', base='u', accents=['ringcomb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=304, comment='ů U WITH RING ABOVE, LATIN SMALL LETTER'),

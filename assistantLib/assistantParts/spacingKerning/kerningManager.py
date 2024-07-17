@@ -1217,7 +1217,6 @@ class KerningManager:
         for width, patterns in self.fixedWidthPatterns.items(): # Predefined list by inheriting assistant class
             for pattern in patterns:
                 if (pattern.endswith('|') and g.name.endswith(pattern[:-1])) or pattern in g.name:
-                    print('ASSSAS', pattern, width, g.name)
                     return width
         # Could not find a valid width guess for this glyph.
         return None
@@ -1256,6 +1255,26 @@ class KerningManager:
 
         print(f'... Groups: {len(self.f.groups)} Kerning pairs {len(self.f.kerning)}')
 
+    def initializeKernGroups(self):
+        """Check all script <--> script combinations to ensure that there is at least on kerning pair in that combination.
+        This is necessary to make all [kern] lookups being generated, in case on of the combinations does not have any pairs.
+        """
+        gName = '.notdef' # This will never be kerned, so not overwriting something.
+        for scriptName1, scriptName2 in KERN_GROUPS:
+            baseGlyphNames1 = self.groupBaseGlyphs[scriptName1]
+            baseGlyphNames2 = self.groupBaseGlyphs[scriptName2]
+
+            if (baseGlyphNames1[0], gName) not in self.f.kerning: # The place holder pair does not exist.
+                print(f'... Initialize placeholder pair {baseGlyphNames1[0], gName} in {self.f.path.split('/')[-1]}')
+                self.f.kerning[(baseGlyphNames1[0], gName)] = 1
+
+            if (gName, baseGlyphNames2[0]) not in self.f.kerning: # The place holder pair does not exist.
+                print(f'... Initialize placeholder pair {gName, baseGlyphNames2[0]} in {self.f.path.split('/')[-1]}')
+                self.f.kerning[(gName, baseGlyphNames2[0])] = 1
+
+            if (baseGlyphNames1[0], baseGlyphNames2[0]) not in self.f.kerning:
+                print(f'... Initialize placeholder pair {baseGlyphNames1[0], baseGlyphNames2[0]} in {self.f.path.split('/')[-1]}')
+                self.f.kerning[(baseGlyphNames1[0], baseGlyphNames2[0])] = 1
 
     #   K E R N I N G  M E A S U R E
 

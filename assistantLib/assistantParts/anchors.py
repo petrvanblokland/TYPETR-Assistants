@@ -399,8 +399,10 @@ class AssistantPartAnchors(BaseAssistantPart):
         """Called when the EditWindow selected a new glyph. Try to  find previous anchor info in g.lib,
         about mode by which the current anchors are set and if they were manually moved."""
         self.checkFixRequiredAnchors(g) # First make sure that they all exist.
-        for a in g.anchors:
-            self.autoCheckFixAnchorPosition(g, a)
+        gd = self.getGlyphData(g)
+        if gd.autoFixAnchorPositions:
+            for a in g.anchors:
+                self.autoCheckFixAnchorPosition(g, a)
 
     def _getAnchorTypeGlyph(self, g):
         """Answer the glyph that is model for the anchors of g. If glyphData.anchorGlyphSrc is defined then use that glyph,

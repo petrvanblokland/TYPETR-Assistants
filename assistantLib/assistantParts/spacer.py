@@ -710,11 +710,19 @@ class AssistantPartSpacer(BaseAssistantPart):
         c.w.autoKernAllGroupsButton = Button((C2, y, CW, L), 'Auto kern groups', callback=self.autoKernGroupsCallback)
         c.w.autoKernAllGroupsButton.enable(False)
         y += L + 10
+        c.w.initilalizeAllScriptScriptKerningButton = Button((C2, y, CW, L), 'Initialize all scripts', callback=self.initilalizeAllScriptScriptKerningCallback)
+        y += L + 10
         c.w.spacerEndLine = HorizontalLine((self.M, y, -self.M, 1))
         c.w.spacerEndLine2 = HorizontalLine((self.M, y, -self.M, 1))
         y += L/5
 
         return y
+
+    def initilalizeAllScriptScriptKerningCallback(self, sender):
+        """Make sure that all script <--> script kerning combinations have at least one placeholder kerning pair."""
+        for f in self.getAllFonts():
+            km = self.getKerningManager(f)
+            km.initializeKernGroups()
 
     def makeKerningSampleCallback(self, sender):
         """One of the kerning sample filters changed, let de kerning manager make a new kerning sample."""
@@ -1093,7 +1101,7 @@ class AssistantPartSpacer(BaseAssistantPart):
     def spacerPreviousKerningGlyph(self, g, c, event):
         km = self.getKerningManager(g.font)
         if event['optionDown']:
-            dec = 1 # Next is next glyph
+            dec = 1 # Next is previous glyph, instead of skipping 2
         elif event['shiftDown']:
             dec = 10 # Skip a chunk
         else: # Previous is 2, to skip the pair
@@ -1113,7 +1121,7 @@ class AssistantPartSpacer(BaseAssistantPart):
     def spacerNextKerningGlyph(self, g, c, event):
         km = self.getKerningManager(g.font)
         if event['optionDown']:
-            inc = 1 # Next is next glyph
+            inc = 1 # Next is next glyph, instead of skipping 2
         elif event['shiftDown']:
             inc = 10 # Skip a chunk
         else: # Next is 2, to skip the pair
