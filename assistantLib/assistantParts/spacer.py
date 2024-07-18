@@ -17,6 +17,7 @@ import sys
 from math import *
 from vanilla import *
 from AppKit import *
+from random import choice
 
 from mojo.UI import OpenGlyphWindow
 from mojo.roboFont import CurrentFont
@@ -88,6 +89,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         self.selectedHoverGlyphName = None # Name of glyph that is currently hovered over in the spacing line.
 
         self.kerningLine = [] # List of kerned/spaced glyph image layers, also buttons
+        self.kerningGroupLine1 = [] # List of group1 permutations
+        self.kerningGroupLine2 = [] # Lust of group2 permutations
         self.kerningLineValues = [] # List of kerning value layers
         self.kerningLineNames = [] # List of glyph name layers
         self.kerningLineBoxes = [] # List of kerned glyph em-boxes
@@ -217,6 +220,27 @@ class AssistantPartSpacer(BaseAssistantPart):
             kerningLineName.setHorizontalAlignment('center')
             self.kerningLineNames.append(kerningLineName)
 
+            # Kerning line 1 & 2 showing group permutations
+
+            im = container.appendPathSublayer(
+                name=f'kernedGroup1-{gIndex}',
+                position=(0, 0),
+                fillColor=self.SPACER_FILL_COLOR,
+                visible=False,
+            )
+            im.addScaleTransformation(self.KERN_SCALE)
+            self.kerningGroupLine1.append(im)
+            
+            im = container.appendPathSublayer(
+                name=f'kernedGroup2-{gIndex}',
+                position=(0, 0),
+                fillColor=self.SPACER_FILL_COLOR,
+                visible=False,
+            )
+            im.addScaleTransformation(self.KERN_SCALE)
+            self.kerningGroupLine2.append(im)
+            
+
         # Full size in editor
 
         self.kerningSelectedGlyphMarker = container.appendRectangleSublayer(
@@ -330,6 +354,10 @@ class AssistantPartSpacer(BaseAssistantPart):
             kerningGlyphLayer.setVisible(False)
         for kerningNameLayer in self.kerningLineNames:
             kerningNameLayer.setVisible(False)
+        for kerningGlyphLayer in self.kerningGroupLine1:
+            kerningGlyphLayer.setVisible(False)
+        for kerningGlyphLayer in self.kerningGroupLine2:
+            kerningGlyphLayer.setVisible(False)
         self.spacerWhiteBackground.setVisible(False)
         self.spacerKerningLineNumber.setVisible(False)
 
@@ -347,7 +375,7 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         visible = c.w.showSpacingSampleLine.get()
 
-        km = self.getKerningManager(g.font)
+        km = self.getKerningManager(f)
 
         # Update the list of kerningTypes. This is an "expensive" operation, so we cache.
         # It's mostly to get an impressions how the kerning types are distributes in the f.kerning.
@@ -378,6 +406,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         self.spacerGlyphPositions = [] # Reset the list of KerningLineGlyphPosition instances.
 
         prevName = None # Remember previous glyph name to get the kerning for the pair
+
+        glyphName1 = glyphName2 = None # Used for kerningGroupLines, names of glyph left & right of current glyph
 
         # We need to do this in 2 runs unfortunately, constructing the list of spacerGlyphPositions first,
         # in order to center the line by its total width.
@@ -410,6 +440,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         gpFirst = self.spacerGlyphPositions[0]
         gpLast = self.spacerGlyphPositions[-1]
 
+        gpPrev = gpCurr = gpNext = None # Set for reference of KerningGroupLines
+
         offsetX = g.width/2/self.KERN_SCALE - (gpLast.x - gpFirst.x)/2 + y * tan(radians(-f.info.italicAngle or 0))
 
         self.spacerWhiteBackground.setPosition((gpFirst.x + offsetX - 2*m, y + f.info.descender - m))
@@ -419,7 +451,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         lineNumber = int(round(km.sampleKerningIndex/len(self.kerningLine)))
         numLines = int(round(len(sample)/len(self.kerningLine)))
         self.spacerKerningLineNumber.setPosition((gpFirst.x + offsetX - 2*m, (f.info.descender - 48)/self.KERN_SCALE))
-        self.spacerKerningLineNumber.setText(f'{lineNumber}/{numLines} G-{len(g.font.groups)} K-{len(g.font.kerning)} GG-{len(self.kerningTypes[0])} Gg-{len(self.kerningTypes[1])} gG-{len(self.kerningTypes[2])} gg-{len(self.kerningTypes[3])} bad-{len(self.kerningTypes[4])}')
+        self.spacerKerningLineNumber.setText(f'{lineNumber}/{numLines} G-{len(f.groups)} K-{len(f.kerning)} GG-{len(self.kerningTypes[0])} Gg-{len(self.kerningTypes[1])} gG-{len(self.kerningTypes[2])} gg-{len(self.kerningTypes[3])} bad-{len(self.kerningTypes[4])}')
         self.spacerKerningLineNumber.setVisible(True)
 
         self.kerningSelectedGlyphMarker.setVisible(False)
@@ -457,15 +489,98 @@ class AssistantPartSpacer(BaseAssistantPart):
             kerningLineValue.setPosition((gp.x + offsetX, y + f.info.descender - 12))
             kerningLineValue.setVisible(True)
 
-            if gIndex == int(len(self.spacerGlyphPositions)/2):
+            midIndex = int(len(self.spacerGlyphPositions)/2)
+            if gIndex == midIndex - 1:
+                gpPrev = gp # Save for reference of kerningGroupLines
+            elif gIndex == midIndex:
                 self.kerningSelectedGlyphMarker.setPosition((gp.x + offsetX, y + f.info.descender - 100))
                 self.kerningSelectedGlyphMarker.setSize((g.width, 200))
                 self.kerningSelectedGlyphMarker.setVisible(True)
+                gpCurr = gp # Save for reverence of kerningGroupLines
+            elif gIndex == midIndex + 1:
+                gpNext = gp # Save for reference of kerningGroupLines
+
+        # Set Group1-Group2 permutations line to show alternative combinations for this kerning
+        # This primilinary is to test how generic the groups are defined.
+
+        ggIndex1, ggIndex2 = self._fillKerningGroupLines(km, gpPrev, gpCurr, gpNext, y)
 
         for n in range(gIndex, len(self.kerningLine)):
             self.kerningLine[n].setVisible(False)
             self.kerningLineNames[n].setVisible(False)
             self.kerningLineValues[n].setVisible(False)
+
+        for n in range(ggIndex1, len(self.kerningGroupLine1)):
+            self.kerningGroupLine1[ggIndex1].setVisible(False)
+
+        for n in range(ggIndex2, len(self.kerningGroupLine2)):
+            self.kerningGroupLine2[ggIndex2].setVisible(False)
+
+    def _fillKerningGroupLines(self, km, gpPrev, gpCurr, gpNext, y):
+        f = gpCurr.glyph.font 
+        prevGroup1 = km.glyphName2GroupName1.get(gpPrev.name)
+        currGroup2 = km.glyphName2GroupName2.get(gpCurr.name)
+        currGroup1 = km.glyphName2GroupName1.get(gpCurr.name)
+        nextGroup2 = km.glyphName2GroupName2.get(gpNext.name)
+
+        ggIndex1 = ggIndex2 = 0
+
+        if None not in (prevGroup1, currGroup2):
+            group1 = list(km.glyphName2Group1.get(gpPrev.name, []))
+            group2 = list(km.glyphName2Group2.get(gpCurr.name, []))
+            k = f.kerning.get((prevGroup1, currGroup2), 0)
+
+            xx = self.spacerGlyphPositions[0].x - 5000/self.KERN_SCALE # Take the left side of the main kerning line as start point
+            y -= f.info.unitsPerEm * 2
+
+            for ggIndex1 in range(0, int(len(self.kerningGroupLine1)), 2):
+                gName1 = choice(group1)
+                gName2 = choice(group2)
+                g1 = f[gName1] 
+                g2 = f[gName2]
+                #print('[1]', gName1, gName2, k)
+
+                kgl = self.kerningGroupLine1[ggIndex1]
+                kgl.setPath(g1.getRepresentation("merz.CGPath"))
+                kgl.setPosition((xx, y))
+                kgl.setVisible(True)
+                xx += g1.width + k
+
+                kgl = self.kerningGroupLine1[ggIndex1+1]
+                kgl.setPath(g2.getRepresentation("merz.CGPath"))
+                kgl.setPosition((xx, y))
+                kgl.setVisible(True)
+                xx += g2.width + 300
+
+        if None not in (currGroup1, nextGroup2):
+            group1 = list(km.glyphName2Group1.get(gpCurr.name, []))
+            group2 = list(km.glyphName2Group2.get(gpNext.name, []))
+            k = f.kerning.get((currGroup1, nextGroup2), 0)
+
+            xx = self.spacerGlyphPositions[0].x - 5000/self.KERN_SCALE # Take the left side of the main kerning line as start point
+            y -= f.info.unitsPerEm * 1.4
+
+            for ggIndex2 in range(0, int(len(self.kerningGroupLine2)), 2):
+                gName1 = choice(group1)
+                gName2 = choice(group2)
+                g1 = f[gName1] 
+                g2 = f[gName2]
+                #print('[2]', gName1, gName2, k)
+
+                kgl = self.kerningGroupLine2[ggIndex2]
+                kgl.setPath(g1.getRepresentation("merz.CGPath"))
+                kgl.setPosition((xx, y))
+                kgl.setVisible(True)
+                xx += g1.width + k
+
+                kgl = self.kerningGroupLine2[ggIndex2+1]
+                kgl.setPath(g2.getRepresentation("merz.CGPath"))
+                kgl.setPosition((xx, y))
+                kgl.setVisible(True)
+                xx += g2.width + 300
+
+        return ggIndex1, ggIndex2
+
 
     def mouseMoveSpacer(self, g, x, y, event):
         """Set the hoover color for the current selected glyph"""
@@ -498,7 +613,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             self.kerningLineNames[gIndex].setFillColor(color)
             self.kerningLine[gIndex].setFillColor(color)
             self.kerningLineNames[gIndex].setVisible(visible)
-                    
+                   
     def mouseDownSpacer(self, g, x, y, evnt):
         """Open Editor window on clicked glyph"""
         if g is None or not self.spacerGlyphPositions or self.mouseMovePoint is None:
@@ -777,7 +892,7 @@ class AssistantPartSpacer(BaseAssistantPart):
     def autoSpaceFontCallback(self, sender):
         """Auto space the current font, recursively applying all rules until that base glyph. Keep track of the glyphs 
         that were modified to avoid double work. Report on the glypns that got changed."""
-        print('--- Auto spacing all masters')
+        print('--- Auto spacing current master')
         f = self.getCurrentFont()
         print(f'... Auto spacing {f.path.split("/")[-1]}')
         for g in f: # First check all glyphs without components
@@ -1319,7 +1434,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             
             elif gd.l == 'off':
                 label = f'Auto-spacing is off'
-                print(f'... checkFixGlyphLeftMargin: /{g.name} auto-spacing is off')
+                #print(f'... checkFixGlyphLeftMargin: /{g.name} auto-spacing is off')
 
             # First check if there is a masterData spacing source defined, that overwrites all other spacing rules
             elif md.spacingSrcUFOPath is not None and gd.w not in (0, None):  # Only if defined and the glyph has width
@@ -1419,9 +1534,9 @@ class AssistantPartSpacer(BaseAssistantPart):
 
             elif gd.r == 'off':
                 label = f'Auto-spacing is off'
-                print(f'... checkFixGlyphRightMargin: /{g.name} auto-spacing is off')
+                #print(f'... checkFixGlyphRightMargin: /{g.name} auto-spacing is off')
 
-            elif md.spacingSrcUFOPath is not None and g.width: # Only if defined and if the glyph has width
+            elif md.spacingSrcUFOPath is not None and gd.w and g.width: # Only if defined and if the glyph has width
                 src = self.getFont(md.spacingSrcUFOPath)
                 if g.name in src:
                     rm = src[g.name].angledRightMargin + md.spacingOffset

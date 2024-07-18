@@ -713,7 +713,7 @@ class KerningManager:
 
     def fixLeftMargin(self, g, lm, label=''):
         """If the left margin is different from the current g value, then change it. Label is optional information about why it changed."""
-        if not self.hasEqualLeftMargin(g, lm):
+        if g.leftMargin is not None and not self.hasEqualLeftMargin(g, lm):
             print(f'... Fix left margin: Set /{g.name} from {g.angledLeftMargin} to {lm} {label}')
             g.angledLeftMargin = lm
             return True
@@ -721,7 +721,7 @@ class KerningManager:
 
     def fixRightMargin(self, g, rm, label=''):
         """If the right margin is different from the current g value, then change it. Label is optional information about why is changed."""
-        if not self.hasEqualRightMargin(g, rm):
+        if g.rightMargin is not None and not self.hasEqualRightMargin(g, rm):
             print(f'... Fix right margin: Set /{g.name} from {g.angledRightMargin} to {rm} {label}')
             g.angledRightMargin = rm
             return True
@@ -730,11 +730,12 @@ class KerningManager:
     def fixCenteredMargins(self, g, lable=''):
         """If the glyph is not centered on its current width then move it horizontally."""
         w = g.width
-        lm = (g.angledLeftMargin + g.angledRightMargin)/2
-        if not self.hasEqualLeftMargin(g, lm):
-            g.angledLeftMargin = lm
-            g.width = w # Restore the width to original.
-            return True
+        if g.leftMargin is not None and g.rightMargin is not None:
+            lm = (g.angledLeftMargin + g.angledRightMargin)/2
+            if not self.hasEqualLeftMargin(g, lm):
+                g.angledLeftMargin = lm
+                g.width = w # Restore the width to original.
+                return True
         return False
 
     def fixLeftMarginByGlyphSetReference(self, g, useBase=True, doneLeft=None, doneRight=None):
