@@ -1877,10 +1877,10 @@ class KerningManager:
             # For now, in order to keep sync between the Assistant kerning lines and the proofing lines,
             # the initSample length needs to be a multiple of the line length 48
             initSample = [
-                #'H', 'O', 'H', 'H', 'O', 'H', 'n', 'o', 'O', 'o', 'O', 'o', 'O',
-                #'H', 'a', 'm', 'b', 'u', 'r', 'g', 'e', 'f', 'o', 'n', 't', 's', 't', 'i', 'v',
-                #'H', 'a', 'm', 'b', 'u', 'r', 'g',
-                #'H', 'A', 'M', 'B', 'U', 'R', 'G', 'E', 'F', 'O', 'N', 'T', 'S', 'T', 'I', 'V'
+                'H', 'O', 'H', 'H', 'O', 'H', 'n', 'o', 'O', 'o', 'O', 'o', 'O',
+                'H', 'a', 'm', 'b', 'u', 'r', 'g', 'e', 'f', 'o', 'n', 't', 's', 't', 'i', 'v',
+                'H', 'a', 'm', 'b', 'u', 'r', 'g',
+                'H', 'A', 'M', 'B', 'U', 'R', 'G', 'E', 'F', 'O', 'N', 'T', 'S', 'T', 'I', 'V'
                 ]
             exitSample = [
                 'H', 'O', 'H', 'H', 'O', 'H', 'n', 'o', 'O', 'o', 'O', 'o', 'O',
