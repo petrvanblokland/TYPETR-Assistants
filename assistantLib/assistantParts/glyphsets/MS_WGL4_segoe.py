@@ -2352,7 +2352,7 @@ class MS_GlyphSet(GlyphSet):
        'tau': GD(name='tau', uni=0x03C4, hex='03C4', c='τ', isLower=True, gid=585),
        'tav-hb': GD(name='tav-hb', uni=0x05EA, hex='05EA', c='ת', isLower=True, gid=905),
        'tbar': GD(name='tbar', uni=0x0167, hex='0167', c='ŧ', l='t', r='t', isLower=True, gid=296, comment='ŧ T WITH STROKE, LATIN SMALL LETTER'),
-       'tcaron': GD(name='tcaron', uni=0x0165, hex='0165', c='ť', base='t', accents=['caronvert.component'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=294, comment='ť T WITH CARON, LATIN SMALL LETTER'),
+       'tcaron': GD(name='tcaron', uni=0x0165, hex='0165', c='ť', l='t', r='dcaron', base='t', accents=['caronvert.component'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=294, comment='ť T WITH CARON, LATIN SMALL LETTER'),
        'tccurl': GD(name='tccurl', uni=0x02A8, hex='02A8', c='ʨ', l='t', r='c', isLower=True),
        'tcedilla': GD(name='tcedilla', uni=0x0163, hex='0163', c='ţ', base='t', accents=['cedillacomb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=292, comment='ţ T WITH CEDILLA, LATIN SMALL LETTER'),
        'tcircumflexbelow': GD(name='tcircumflexbelow', uni=0x1E71, hex='1E71', c='ṱ', base='t', accents=['circumflexbelow'], srcName='uni1E71', isLower=True, anchors=['top', 'middle', 'bottom'], gid=1036),
