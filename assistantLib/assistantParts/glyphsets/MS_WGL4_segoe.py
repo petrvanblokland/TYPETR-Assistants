@@ -2158,7 +2158,7 @@ class MS_GlyphSet(GlyphSet):
        'qpdigraph': GD(name='qpdigraph', uni=0x0239, hex='0239', c='ȹ', l='q', r='p', isLower=True),
        'qstrokethroughdescender': GD(name='qstrokethroughdescender', uni=0xA757, hex='A757', c='ꝗ', l='q', w='q', base='q', isLower=True, anchors=['top', 'middle', 'bottom']),
        'question': GD(name='question', uni=0x003F, hex='003F', c='?', isLower=True, gid=33, comment='? QUESTION MARK'),
-       'questiondown': GD(name='questiondown', uni=0x00BF, hex='00BF', c='¿', isLower=True, gid=128, comment='¿ turned question mark'),
+       'questiondown': GD(name='questiondown', uni=0x00BF, hex='00BF', c='¿', l2r='question', r2l='question', isLower=True, gid=128, comment='¿ turned question mark'),
        'questiongreek': GD(name='questiongreek', uni=0x037E, hex='037E', c=';', base='semicolon', isLower=True, gid=522),
        'quotedbl': GD(name='quotedbl', uni=0x0022, hex='0022', c='"', l='quotesingle', r='quotesingle', isLower=True, gid=4, comment='" quotation mark, neutral'),
        'quotedblbase': GD(name='quotedblbase', uni=0x201E, hex='201E', c='„', l='quotesingle', r='quotesingle', isLower=True, gid=1417, comment='„ quotation mark, low double comma'),
