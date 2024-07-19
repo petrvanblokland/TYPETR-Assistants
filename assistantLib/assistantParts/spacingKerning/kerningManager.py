@@ -1266,15 +1266,15 @@ class KerningManager:
             baseGlyphNames2 = self.groupBaseGlyphs[scriptName2]
 
             if (baseGlyphNames1[0], gName) not in self.f.kerning: # The place holder pair does not exist.
-                print(f'... Initialize placeholder pair {baseGlyphNames1[0], gName} in {self.f.path.split('/')[-1]}')
+                print(f"... Initialize placeholder pair {baseGlyphNames1[0], gName} in {self.f.path.split('/')[-1]}")
                 self.f.kerning[(baseGlyphNames1[0], gName)] = 1
 
             if (gName, baseGlyphNames2[0]) not in self.f.kerning: # The place holder pair does not exist.
-                print(f'... Initialize placeholder pair {gName, baseGlyphNames2[0]} in {self.f.path.split('/')[-1]}')
+                print(f"... Initialize placeholder pair {gName, baseGlyphNames2[0]} in {self.f.path.split('/')[-1]}")
                 self.f.kerning[(gName, baseGlyphNames2[0])] = 1
 
             if (baseGlyphNames1[0], baseGlyphNames2[0]) not in self.f.kerning:
-                print(f'... Initialize placeholder pair {baseGlyphNames1[0], baseGlyphNames2[0]} in {self.f.path.split('/')[-1]}')
+                print(f"... Initialize placeholder pair {baseGlyphNames1[0], baseGlyphNames2[0]} in {self.f.path.split('/')[-1]}")
                 self.f.kerning[(baseGlyphNames1[0], baseGlyphNames2[0])] = 1
 
     #   K E R N I N G  M E A S U R E
