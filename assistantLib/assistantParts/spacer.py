@@ -97,6 +97,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         self.kerningLineValues = [] # List of kerning value layers
         self.kerningLineNames = [] # List of glyph name layers
         self.kerningLineBoxes = [] # List of kerned glyph em-boxes
+
         self.kerningSelectedGlyph = None # Name of the glyph selected by the kerning editor
 
         # If None, then initialize from kerningManager.splitKerningTypes(), anwering a list of 5 dicionaries that contain
@@ -479,7 +480,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             kerningNameLayer = self.kerningLineNames[gIndex]
             kerningNameLayer.setFillColor(color)
             kerningNameLayer.setText(gp.glyph.name)
-            kerningNameLayer.setPosition((gp.x + offsetX + gp.w/2, y + f.info.descender))
+            kerningNameLayer.setPosition((gp.x + offsetX + gp.w/2, y + f.info.descender*3))
             kerningNameLayer.setVisible(False) # Will be shown on mouse over hover
 
             # Show kerning value with the previous pair
@@ -516,7 +517,7 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         if self.needsGroupKerningLinesUpdate: # Forcing the two group kerning lines to be update. Only of the main kerning sample changes.
 
-            ggIndex1, ggIndex2 = self._fillKerningGroupLines(km, gpPrev, gpCurr, gpNext, y)
+            ggIndex1, ggIndex2 = self._fillKerningGroupLines(km, gpPrev, gpCurr, gpNext, gpFirst.x, y)
 
             for n in range(ggIndex1, len(self.kerningGroupLine1)):
                 self.kerningGroupLine1[ggIndex1].setVisible(False)
@@ -525,7 +526,7 @@ class AssistantPartSpacer(BaseAssistantPart):
                 self.kerningGroupLine2[ggIndex2].setVisible(False)
 
 
-    def _fillKerningGroupLines(self, km, gpPrev, gpCurr, gpNext, y):
+    def _fillKerningGroupLines(self, km, gpPrev, gpCurr, gpNext, x, y):
         f = gpCurr.glyph.font 
         prevGroup1 = km.glyphName2GroupName1.get(gpPrev.name)
         currGroup2 = km.glyphName2GroupName2.get(gpCurr.name)
@@ -538,13 +539,15 @@ class AssistantPartSpacer(BaseAssistantPart):
         self.spacerGlyphGroupPositions1 = []
         self.spacerGlyphGroupPositions2 = []
 
+        h = f.info.unitsPerEm
+
         if None not in (prevGroup1, currGroup2):
             group1 = list(km.glyphName2Group1.get(gpPrev.name, []))
             group2 = list(km.glyphName2Group2.get(gpCurr.name, []))
             k = f.kerning.get((prevGroup1, currGroup2), 0)
 
-            xx = self.spacerGlyphPositions[0].x - 5000/self.KERN_SCALE # Take the left side of the main kerning line as start point
             y -= f.info.unitsPerEm * 2
+            xx = x + y * tan(radians(-f.info.italicAngle or 0)) - 30000
 
             for ggIndex1 in range(0, int(len(self.kerningGroupLine1)), 2):
                 gName1 = choice(group1)
@@ -553,7 +556,7 @@ class AssistantPartSpacer(BaseAssistantPart):
                 g2 = f[gName2]
                 #print('[1]', gName1, gName2, k)
 
-                self.spacerGlyphGroupPositions1.append(KerningLineGlyphPosition(g1, xx, y, g1.width*self.KERN_SCALE, 50, k, self.SPACER_FILL_COLOR, ggIndex1))
+                self.spacerGlyphGroupPositions1.append(KerningLineGlyphPosition(g1, xx, y, g1.width + k, h, k, self.SPACER_FILL_COLOR, ggIndex1))
 
                 kgl = self.kerningGroupLine1[ggIndex1]
                 kgl.setPath(g1.getRepresentation("merz.CGPath"))
@@ -561,21 +564,21 @@ class AssistantPartSpacer(BaseAssistantPart):
                 kgl.setVisible(True)
                 xx += g1.width + k
 
-                self.spacerGlyphGroupPositions1.append(KerningLineGlyphPosition(g2, xx, y, g2.width*self.KERN_SCALE, 50, k, self.SPACER_FILL_COLOR, ggIndex1+1))
+                self.spacerGlyphGroupPositions1.append(KerningLineGlyphPosition(g2, xx, y, g2.width, h, k, self.SPACER_FILL_COLOR, ggIndex1+1))
 
                 kgl = self.kerningGroupLine1[ggIndex1+1]
                 kgl.setPath(g2.getRepresentation("merz.CGPath"))
                 kgl.setPosition((xx, y))
                 kgl.setVisible(True)
-                xx += g2.width + 300
+                xx += g2.width + 500
 
         if None not in (currGroup1, nextGroup2):
             group1 = list(km.glyphName2Group1.get(gpCurr.name, []))
             group2 = list(km.glyphName2Group2.get(gpNext.name, []))
             k = f.kerning.get((currGroup1, nextGroup2), 0)
 
-            xx = self.spacerGlyphPositions[0].x - 5000/self.KERN_SCALE # Take the left side of the main kerning line as start point
             y -= f.info.unitsPerEm * 1.4
+            xx = x + y * tan(radians(-f.info.italicAngle or 0)) - 30000
 
             for ggIndex2 in range(0, int(len(self.kerningGroupLine2)), 2):
                 gName1 = choice(group1)
@@ -584,7 +587,7 @@ class AssistantPartSpacer(BaseAssistantPart):
                 g2 = f[gName2]
                 #print('[2]', gName1, gName2, k)
 
-                self.spacerGlyphGroupPositions2.append(KerningLineGlyphPosition(g1, xx, y, g1.width*self.KERN_SCALE, 50, k, self.SPACER_FILL_COLOR, ggIndex1))
+                self.spacerGlyphGroupPositions2.append(KerningLineGlyphPosition(g1, xx, y, g1.width + k, h, k, self.SPACER_FILL_COLOR, ggIndex2))
 
                 kgl = self.kerningGroupLine2[ggIndex2]
                 kgl.setPath(g1.getRepresentation("merz.CGPath"))
@@ -592,13 +595,13 @@ class AssistantPartSpacer(BaseAssistantPart):
                 kgl.setVisible(True)
                 xx += g1.width + k
 
-                self.spacerGlyphGroupPositions2.append(KerningLineGlyphPosition(g2, xx, y, g2.width*self.KERN_SCALE, 50, k, self.SPACER_FILL_COLOR, ggIndex1+1))
+                self.spacerGlyphGroupPositions2.append(KerningLineGlyphPosition(g2, xx, y, g2.width, h, k, self.SPACER_FILL_COLOR, ggIndex2+1))
 
                 kgl = self.kerningGroupLine2[ggIndex2+1]
                 kgl.setPath(g2.getRepresentation("merz.CGPath"))
                 kgl.setPosition((xx, y))
                 kgl.setVisible(True)
-                xx += g2.width + 300
+                xx += g2.width + 500
 
         self.needsGroupKerningLinesUpdate = True # Indicate that we just did it.
 
@@ -610,22 +613,27 @@ class AssistantPartSpacer(BaseAssistantPart):
         if g is None or not self.spacerGlyphPositions or self.mouseMovePoint is None:
             return
 
-        gpFirst = self.spacerGlyphPositions[0]
-        gpLast = self.spacerGlyphPositions[-1]
-
-        sy = y/self.KERN_SCALE
-        offsetX = g.width/2/self.KERN_SCALE - (gpLast.x - gpFirst.x)/2 + sy * tan(radians(-g.font.info.italicAngle or 0))
-        sx = x/self.KERN_SCALE - offsetX
-
         self.selectedHoverGlyphName = None
 
-        for glyphPositions in (self.spacerGlyphPositions, self.spacerGlyphGroupPositions1, self.spacerGlyphGroupPositions2):
+        for gpLineIndex, glyphPositions in enumerate((self.spacerGlyphPositions, self.spacerGlyphGroupPositions1, self.spacerGlyphGroupPositions2)):
+
+            if not glyphPositions:
+                continue
+
+            gpFirst = glyphPositions[0]
+            gpLast = glyphPositions[-1]
+
+            sy = y/self.KERN_SCALE
+            offsetX = g.width/2/self.KERN_SCALE - (gpLast.x - gpFirst.x)/2 + sy * tan(radians(-g.font.info.italicAngle or 0))
+            sx = x/self.KERN_SCALE - offsetX
+
 
             for gIndex, gp in enumerate(glyphPositions):
                 if gp.x <= sx <= gp.x + gp.w and gp.y - gp.h <= sy <= gp.y + gp.h:
                     color = self.SPACER_HOVER_COLOR
                     visible = True
                     self.selectedHoverGlyphName = gp.name # Used to open the glyph if clicked on.
+                    #print(self.selectedHoverGlyphName)
 
                 elif gp.name == g.name:
                     color = self.SPACER_SELECTED_COLOR
@@ -635,9 +643,11 @@ class AssistantPartSpacer(BaseAssistantPart):
                     color = self.SPACER_FILL_COLOR
                     visible = False
                         
-                self.kerningLineNames[gIndex].setFillColor(color)
-                self.kerningLine[gIndex].setFillColor(color)
-                self.kerningLineNames[gIndex].setVisible(visible)
+                #self.kerningLineNames[gIndex].setFillColor(color)
+                #self.kerningLineNames[gIndex].setPosition((gp.x, gp.y))
+                #self.kerningLine[gIndex].setFillColor(color)
+                #self.kerningLineNames[gIndex]
+                #self.kerningLineNames[gIndex].setVisible(visible)
                    
     def mouseDownSpacer(self, g, x, y, evnt):
         """Open Editor window on clicked glyph"""
