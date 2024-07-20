@@ -2229,7 +2229,7 @@ class MS_GlyphSet(GlyphSet):
        'rlongleg': GD(name='rlongleg', uni=0x027C, hex='027C', c='ɼ', isLower=True),
        'rlonglegturned': GD(name='rlonglegturned', uni=0x027A, hex='027A', c='ɺ', r2l='r', isLower=True),
        'rmiddletilde': GD(name='rmiddletilde', uni=0x1D72, hex='1D72', c='ᵲ', l='asciitilde', base='r', isLower=True, fixAccents=False, anchors=['top', 'middle', 'bottom']),
-       'rmod': GD(name='rmod', uni=0x02B3, hex='02B3', c='ʳ', srcName='uni02B3', l='nmod', isLower=False, isMod=True, gid=469),
+       'rmod': GD(name='rmod', uni=0x02B3, hex='02B3', c='ʳ', srcName='uni02B3', l='nmod', r=MIN_MARGIN, isLower=False, isMod=True, gid=469),
        'rnohandle': GD(name='rnohandle', uni=0xAB47, hex='AB47', c='ꭇ', isLower=True),
        'robliquestroke': GD(name='robliquestroke', uni=0xA7A7, hex='A7A7', c='ꞧ', l=MIN_MARGIN, w='r', base='r', isLower=True, anchors=['top', 'middle', 'bottom']),
        'rpalatalhook': GD(name='rpalatalhook', uni=0x1D89, hex='1D89', c='ᶉ', bl='r', r='r', base='r', accents=['dpalatalhook.component'], isLower=True, anchors=['top', 'middle', 'bottom']),

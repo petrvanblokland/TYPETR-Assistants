@@ -923,7 +923,7 @@ class AssistantController(BaseAssistant, WindowController):
             changed |= self.checkFixGlyphSet(f) # First check if all glyphs are there. Create missing, delete obsolete.
             #changed |= self.fixInterpolations(f) # Fix contours where auto-interpolation is possible.
             changed |= self.componentFixAll(f) # Fix components
-            #changed |= self.checkFixAllAnchors(f) # Fix anchors in all glyphs
+            changed |= self.checkFixAllAnchors(f) # Fix anchors in all glyphs
             #hanged |= self.reportSpacing(f, doFix=True)
             # Fix groups
             # Fix kerning

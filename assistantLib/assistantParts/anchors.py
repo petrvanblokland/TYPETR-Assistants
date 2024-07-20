@@ -214,7 +214,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         First check on all glyphs that have no components. Then check on the glyphs that do have component, to avoid shifts in based glyphs.
         """
         fontChanged = False
-        if glyphNames is None:
+        if glyphNames is not None:
             if not isinstance(glyphNames, (list, tuple)):
                 glyphNames = [glyphNames]
         else:
@@ -544,6 +544,8 @@ class AssistantPartAnchors(BaseAssistantPart):
         in case not valid value could be constructed. In that case the position needs to be set manually in the editor.
         @@@ No methods here yet.
         """
+        ax = g.width/2
+        ay = g.font.info.capHeight/2
         gd = self.getGlyphData(g)
         # MIDDLE_ Construct vertical position
         if gd.anchorMiddleY is not None:
