@@ -469,7 +469,7 @@ class MS_GlyphSet(GlyphSet):
 
         #   K
 
-       'K': GD(name='K', uni=0x004B, hex='004B', c='K', l='H', anchors=['top', 'middle', 'bottom'], gid=45, comment='K'),
+       'K': GD(name='K', uni=0x004B, hex='004B', c='K', l='H', r='X', anchors=['top', 'middle', 'bottom'], gid=45, comment='K'),
        'Ka-cy': GD(name='Ka-cy', uni=0x041A, hex='041A', c='К', l='H', r='K', base='K', anchors=['top', 'middle', 'bottom'], gid=671),
        'Kabashkir-cy': GD(name='Kabashkir-cy', uni=0x04A0, hex='04A0', c='Ҡ', l='T', r='K', gid=805),
        'Kacute': GD(name='Kacute', uni=0x1E30, hex='1E30', c='Ḱ', l='H', r='K', base='K', accents=['acutecomb'], srcName='uni1E30', anchors=['top', 'middle', 'bottom'], gid=971),
@@ -484,7 +484,7 @@ class MS_GlyphSet(GlyphSet):
        'Kdescender': GD(name='Kdescender', uni=0x2C69, hex='2C69', r='Tse-cy', c='Ⱪ'),
        'Kdiagonalstroke': GD(name='Kdiagonalstroke', uni=0xA742, hex='A742', c='Ꝃ', base='K', anchors=['top', 'middle', 'bottom']),
        'Kdotbelow': GD(name='Kdotbelow', uni=0x1E32, hex='1E32', c='Ḳ', l='H', r='K', base='K', accents=['dotbelowcomb'], srcName='uni1E32', anchors=['top', 'middle', 'bottom'], gid=973),
-       'Khei-coptic': GD(name='Khei-coptic', uni=0x03E6, hex='03E6', r='n', l='J', c='Ϧ', gid=619),
+       'Khei-coptic': GD(name='Khei-coptic', uni=0x03E6, hex='03E6', r='n', l='off', c='Ϧ', gid=619),
        'Khook': GD(name='Khook', uni=0x0198, hex='0198', c='Ƙ', l='H', r='K', srcName='uni0198', gid=345, comment='Ƙ LATIN CAPITAL LETTER K WITH HOOK'),
        'Kje-cy': GD(name='Kje-cy', uni=0x040C, hex='040C', c='Ќ', l='H', r='K', base='K', accents=['acutecomb'], anchors=['top', 'middle', 'bottom'], gid=657),
        'Klinebelow': GD(name='Klinebelow', uni=0x1E34, hex='1E34', c='Ḵ', l='H', r='K', base='K', accents=['macronbelow'], srcName='uni1E34', anchors=['top', 'middle', 'bottom'], gid=975),
@@ -601,7 +601,7 @@ class MS_GlyphSet(GlyphSet):
        'Odotbelow': GD(name='Odotbelow', uni=0x1ECC, hex='1ECC', c='Ọ', l='O', r='O', base='O', accents=['dotbelowcomb'], anchors=['top', 'middle', 'bottom'], gid=1127, comment='Ọ LATIN CAPITAL LETTER O WITH DOT BELOW'),
        'OeVolapuk': GD(name='OeVolapuk', uni=0xA79C, hex='A79C', r2l='B', r='O', c='Ꞝ'),
        'Ograve': GD(name='Ograve', uni=0x00D2, hex='00D2', c='Ò', l='O', r='O', base='O', accents=['gravecomb'], anchors=['top', 'middle', 'bottom'], gid=147, comment='Ò O WITH GRAVE, LATIN CAPITAL LETTER'),
-       'Ohm': GD(name='Ohm', uni=0x2126, hex='2126', c='Ω', anchors=['top', 'bottom', 'tonos'], gid=1469),
+       'Ohm': GD(name='Ohm', uni=0x2126, hex='2126', c='Ω', l2r='Ohm', anchors=['top', 'bottom', 'tonos'], gid=1469),
        'Ohookabove': GD(name='Ohookabove', uni=0x1ECE, hex='1ECE', c='Ỏ', base='O', accents=['hookabovecomb'], anchors=['top', 'middle', 'bottom'], gid=1129, comment='Ỏ LATIN CAPITAL LETTER O WITH HOOK ABOVE'),
        'Ohorn': GD(name='Ohorn', uni=0x01A0, hex='01A0', c='Ơ', l='O', w='O', anchorTopY='O', anchorTopX='O', anchorMiddleX='O', anchorBottomX='BottomX', anchors=['top', 'middle', 'bottom'], gid=353, comment='Ơ'),
        'Ohornacute': GD(name='Ohornacute', uni=0x1EDA, hex='1EDA', c='Ớ', l='O', base='Ohorn', accents=['acutecomb'], anchors=['top', 'middle', 'bottom'], gid=1141, comment='Ớ LATIN CAPITAL LETTER O WITH HORN AND ACUTE'),
@@ -617,7 +617,7 @@ class MS_GlyphSet(GlyphSet):
        'Omacron': GD(name='Omacron', uni=0x014C, hex='014C', c='Ō', l='O', r='O', base='O', accents=['macroncomb'], anchors=['top', 'middle', 'bottom'], gid=269, comment='Ō'),
        'Omacronacute': GD(name='Omacronacute', uni=0x1E52, hex='1E52', c='Ṓ', l='O', r='O', base='O', accents=['acutecomb.component1'], srcName='uni1E52', anchors=['top', 'middle', 'bottom'], gid=1005),
        'Omacrongrave': GD(name='Omacrongrave', uni=0x1E50, hex='1E50', c='Ṑ', l='O', r='O', base='O', accents=['gravecomb.component1'], srcName='uni1E50', anchors=['top', 'middle', 'bottom'], gid=1003),
-       'Omega': GD(name='Omega', uni=0x03A9, hex='03A9', c='Ω', base='Ohm', anchors=['top', 'bottom'], gid=558),
+       'Omega': GD(name='Omega', uni=0x03A9, hex='03A9', c='Ω', l='Ohm', r='Ohm', base='Ohm', anchors=['top', 'bottom'], gid=558),
        'Omega-cy': GD(name='Omega-cy', uni=0x0460, hex='0460', c='Ѡ', l='V', r='V', anchors=['top'], gid=741),
        'Omega-latin': GD(name='Omega-latin', uni=0xA7B6, hex='A7B6', c='Ꞷ'),
        'Omegadasia': GD(name='Omegadasia', uni=0x1F69, hex='1F69', c='Ὡ', l='comma', r='Omega', base='Ohm', accents=['dasia-uc'], anchors=['top', 'bottom'], gid=1266),
@@ -801,7 +801,7 @@ class MS_GlyphSet(GlyphSet):
         #   U
 
        'U': GD(name='U', uni=0x0055, hex='0055', c='U', l2r='U', anchors=['top', 'middle', 'bottom', 'ogonek'], gid=55, comment='U'), # Best to keep bottom anchor centeres on bounds, not on curve-min
-       'U-cy': GD(name='U-cy', uni=0x0423, hex='0423', c='У', anchors=['top'], gid=680),
+       'U-cy': GD(name='U-cy', uni=0x0423, hex='0423', c='У', l2r='U-cy', anchors=['top'], gid=680),
        'Uacute': GD(name='Uacute', uni=0x00DA, hex='00DA', c='Ú', l='U', r='U', base='U', accents=['acutecomb'], anchors=['top', 'middle', 'bottom'], gid=155, comment='Ú U WITH ACUTE, LATIN CAPITAL LETTER'),
        'Ubar': GD(name='Ubar', uni=0x0244, hex='0244', c='Ʉ', l='Eth', l2r='Eth', base='U', anchors=['top', 'middle', 'bottom']),
        'Ubreve': GD(name='Ubreve', uni=0x016C, hex='016C', c='Ŭ', l='U', r='U', base='U', accents=['brevecomb'], anchors=['top', 'middle', 'bottom'], gid=301, comment='Ŭ'),
@@ -892,7 +892,7 @@ class MS_GlyphSet(GlyphSet):
 
         #   X
 
-       'X': GD(l2r='X', name='X', uni=0x0058, hex='0058', c='X', anchors=['top', 'middle', 'bottom'], gid=58, comment='X'),
+       'X': GD(name='X', uni=0x0058, hex='0058', c='X', r='off', l2r='X', anchors=['top', 'middle', 'bottom'], gid=58, comment='X'),
        'Xdieresis': GD(name='Xdieresis', uni=0x1E8C, hex='1E8C', c='Ẍ', base='X', accents=['dieresiscomb'], srcName='uni1E8C', anchors=['top', 'middle', 'bottom'], gid=1063),
        'Xdotaccent': GD(name='Xdotaccent', uni=0x1E8A, hex='1E8A', c='Ẋ', base='X', accents=['dotaccentcomb'], srcName='uni1E8A', anchors=['top', 'middle', 'bottom'], gid=1061),
        'Xi': GD(name='Xi', uni=0x039E, hex='039E', c='Ξ', l2r='Xi', gid=548),
@@ -916,7 +916,7 @@ class MS_GlyphSet(GlyphSet):
        'Yogh': GD(name='Yogh', uni=0x021C, hex='021C', l='three', r='three', c='Ȝ'),
        'Yot': GD(name='Yot', uni=0x037F, hex='037F', c='Ϳ', l='J', r='J', base='J', anchorTopY='J', anchors=['top', 'middle', 'bottom'], gid=523),
        'Yr': GD(name='Yr', uni=0x01A6, hex='01A6', c='Ʀ', srcName='uni01A6', gid=359),
-       'Ysmall': GD(name='Ysmall', uni=0x028F, hex='028F', c='ʏ', isSc=True),
+       'Ysmall': GD(name='Ysmall', uni=0x028F, hex='028F', c='ʏ', l='v', r='v', isSc=True),
        'Ystroke': GD(name='Ystroke', uni=0x024E, hex='024E', c='Ɏ', base='Y', anchors=['top', 'middle', 'bottom']),
        'Ytilde': GD(name='Ytilde', uni=0x1EF8, hex='1EF8', c='Ỹ', l='Y', r='Y', base='Y', accents=['tildecomb'], anchors=['top', 'middle', 'bottom'], gid=1171, comment='Ỹ LATIN CAPITAL LETTER Y WITH TILDE'),
        'Yusbig-cy': GD(name='Yusbig-cy', uni=0x046A, hex='046A', c='Ѫ', l2r='Yusbig-cy', gid=751),
@@ -1010,7 +1010,7 @@ class MS_GlyphSet(GlyphSet):
        'aktieselskab': GD(name='aktieselskab', uni=0x214D, hex='214D', c='⅍', l='Asmall', r='Ssmall', isLower=True),
        'alef-egyptological': GD(name='alef-egyptological', uni=0xA723, hex='A723', c='ꜣ', l='hyphen', r='omod', isLower=True),
        'almostequaltoabovecomb': GD(name='almostequaltoabovecomb', uni=0x034C, hex='034C', c='͌', w=0, isLower=True, anchors=['top', '_top']),
-       'alpha': GD(name='alpha', uni=0x03B1, hex='03B1', c='α', isLower=True, l='o', r='c', anchors=['top', 'bottom'], gid=566),
+       'alpha': GD(name='alpha', uni=0x03B1, hex='03B1', c='α', isLower=True, l='o', r='off', anchors=['top', 'bottom'], gid=566),
        'alpha-latin': GD(name='alpha-latin', uni=0x0251, hex='0251', c='ɑ', srcName='uni0251', isLower=True, gid=456),
        'alphabarred': GD(name='alphabarred', uni=0xAB30, hex='AB30', c='ꬰ', l='hyphen', r='alpha', isLower=True),
        'alphadasia': GD(name='alphadasia', uni=0x1F01, hex='1F01', c='ἁ', base='alpha', accents=['dasia'], isLower=True, anchors=['top', 'bottom'], gid=1174),
@@ -1217,8 +1217,8 @@ class MS_GlyphSet(GlyphSet):
 
        'd': GD(name='d', uni=0x0064, hex='0064', c='d', isLower=True, anchors=['top', 'middle', 'bottom', 'vert'], autoFixAnchorPositions=False, gid=70, comment='d'),
        'dagesh-hb': GD(name='dagesh-hb', uni=0x05BC, hex='05BC', c='ּ', w=0, isLower=True, anchors=['_middle'], gid=903),
-       'dagger': GD(name='dagger', uni=0x2020, hex='2020', c='†', isLower=True, gid=1418, comment='† DAGGER'),
-       'daggerdbl': GD(name='daggerdbl', uni=0x2021, hex='2021', c='‡', isLower=True, gid=1419, comment='‡ DOUBLE DAGGER'),
+       'dagger': GD(name='dagger', uni=0x2020, hex='2020', c='†', l2r='dagger', isLower=True, gid=1418, comment='† DAGGER'),
+       'daggerdbl': GD(name='daggerdbl', uni=0x2021, hex='2021', c='‡', l='dagger', r='dagger', isLower=True, gid=1419, comment='‡ DOUBLE DAGGER'),
        'dasia': GD(name='dasia', uni=0x1FFE, hex='1FFE', c='῾', w=0, isLower=True, anchors=['top', '_top'], gid=1405),
        'dasia-uc': GD(name='dasia-uc', w=0, isLower=True, anchors=['_tonos'], gid=1630),
        'dasiaoxia': GD(name='dasiaoxia', uni=0x1FDE, hex='1FDE', c='῞', w=0, isLower=True, anchors=['top', '_top'], gid=1376),
@@ -1336,7 +1336,7 @@ class MS_GlyphSet(GlyphSet):
        'eflourish': GD(name='eflourish', uni=0xAB34, hex='AB34', c='ꬴ', l='omod', r='e', isLower=True),
        'egrave': GD(name='egrave', uni=0x00E8, hex='00E8', c='è', bl='e', w='e', base='e', accents=['gravecomb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=169, comment='è E WITH GRAVE, LATIN SMALL LETTER'),
        'ehookabove': GD(name='ehookabove', uni=0x1EBB, hex='1EBB', c='ẻ', w='e', base='e', accents=['hookabovecomb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=1110, comment='ẻ E WITH HOOK ABOVE, LATIN SMALL LETTER'),
-       'eight': GD(name='eight', uni=0x0038, hex='0038', c='8', isLower=True, gid=26, comment='8'),
+       'eight': GD(name='eight', uni=0x0038, hex='0038', c='8', l='O', r='O', isLower=True, gid=26, comment='8'),
        'eight.blackCircled': GD(name='eight.blackCircled', uni=0x277D, hex='277D', c='❽', l='O', r='O', isLower=False),
        'eight.dnom': GD(name='eight.dnom', base='eight.numr', isLower=False, gid=1638),
        'eight.numr': GD(name='eight.numr', isLower=False, gid=1639),
@@ -1416,7 +1416,7 @@ class MS_GlyphSet(GlyphSet):
        'estimated': GD(name='estimated', uni=0x212E, hex='212E', c='℮', l='o', r='o', isLower=True, gid=1470, comment='℮ ESTIMATED SYMBOL'),
        'estroke': GD(name='estroke', uni=0x0247, hex='0247', c='ɇ', base='e', accents=['slashlongcomb'], isLower=True, anchorTopY='e', anchorBottomY='e', anchors=['top', 'middle', 'bottom']),
        'et': GD(name='et', uni=0xA76B, hex='A76B', c='ꝫ', l='three', r='three', isLower=True),
-       'eta': GD(name='eta', uni=0x03B7, hex='03B7', c='η', isLower=True, anchors=['top', 'bottom'], gid=572),
+       'eta': GD(name='eta', uni=0x03B7, hex='03B7', c='η', l='n', r='n', isLower=True, anchors=['top', 'bottom'], gid=572),
        'etadasia': GD(name='etadasia', uni=0x1F21, hex='1F21', c='ἡ', l='eta', r='eta', base='eta', accents=['dasia'], isLower=True, anchors=['top', 'bottom'], gid=1202),
        'etadasiaoxia': GD(name='etadasiaoxia', uni=0x1F25, hex='1F25', c='ἥ', l='eta', r='eta', base='eta', accents=['dasiaoxia'], isLower=True, anchors=['top', 'bottom'], gid=1206),
        'etadasiaoxiaypogegrammeni': GD(name='etadasiaoxiaypogegrammeni', uni=0x1F95, hex='1F95', c='ᾕ', l='eta', r='eta', base='eta', accents=['dasiaoxia', 'prosgegrammeni'], isLower=True, anchors=['top', 'bottom'], gid=1308),
@@ -1568,10 +1568,10 @@ class MS_GlyphSet(GlyphSet):
        'gturned': GD(name='gturned', uni=0x1D77, hex='1D77', c='ᵷ', l2r='g', r2l='g', isLower=True),
        'gturnedinsular': GD(name='gturnedinsular', uni=0xA77F, hex='A77F', l='o', r='o', c='ꝿ', isLower=True),
        'guarani': GD(name='guarani', uni=0x20B2, hex='20B2', c='₲', isLower=True, gid=1451),
-       'guillemetleft': GD(name='guillemetleft', uni=0x00AB, hex='00AB', c='«', srcName='guillemotleft', isLower=True, gid=108),
-       'guillemetright': GD(name='guillemetright', uni=0x00BB, hex='00BB', c='»', srcName='guillemotright', isLower=True, gid=124),
-       'guilsinglleft': GD(name='guilsinglleft', uni=0x2039, hex='2039', c='‹', isLower=True, gid=1425, comment='‹ SINGLE LEFT-POINTING ANGLE QUOTATION MARK'),
-       'guilsinglright': GD(name='guilsinglright', uni=0x203A, hex='203A', c='›', isLower=True, gid=1426, comment='› SINGLE RIGHT-POINTING ANGLE QUOTATION MARK'),
+       'guillemetleft': GD(name='guillemetleft', uni=0x00AB, hex='00AB', l2r='guillemetleft', c='«', srcName='guillemotleft', isLower=True, gid=108),
+       'guillemetright': GD(name='guillemetright', uni=0x00BB, hex='00BB', l='guillemetleft', r='guillemetleft', c='»', srcName='guillemotright', isLower=True, gid=124),
+       'guilsinglleft': GD(name='guilsinglleft', uni=0x2039, hex='2039', l='guillemetleft', r='guillemetleft', c='‹', isLower=True, gid=1425, comment='‹ SINGLE LEFT-POINTING ANGLE QUOTATION MARK'),
+       'guilsinglright': GD(name='guilsinglright', uni=0x203A, hex='203A', l='guillemetleft', r='guillemetleft', c='›', isLower=True, gid=1426, comment='› SINGLE RIGHT-POINTING ANGLE QUOTATION MARK'),
 
         #   h
 
@@ -1621,7 +1621,7 @@ class MS_GlyphSet(GlyphSet):
        'hungarumlaut': GD(name='hungarumlaut', uni=0x02DD, hex='02DD', c='˝', l=CENTER, w=ACCENT_WIDTH, base='hungarumlautcomb', isLower=True, gid=484, comment='˝ DOUBLE ACUTE ACCENT'),
        'hungarumlautcomb': GD(name='hungarumlautcomb', uni=0x030B, hex='030B', c='̋', w=0, isLower=True, anchors=['top', '_top'], gid=497),
        'hv': GD(name='hv', uni=0x0195, hex='0195', c='ƕ', srcName='uni0195', isLower=True, gid=342),
-       'hyphen': GD(name='hyphen', uni=0x002D, hex='002D', c='-', unicodes=(45, 8208), isLower=True, gid=15, comment='- minus sign, hyphen'),
+       'hyphen': GD(name='hyphen', uni=0x002D, hex='002D', c='-', l2r='hyphen', unicodes=(45, 8208), isLower=True, gid=15, comment='- minus sign, hyphen'),
 
         #   i
 
@@ -1896,7 +1896,7 @@ class MS_GlyphSet(GlyphSet):
        'ngrave': GD(name='ngrave', uni=0x01F9, hex='01F9', c='ǹ', bl='n', w='n', base='n', accents=['gravecomb'], srcName='uni01F9', isLower=True, anchors=['top', 'middle', 'bottom'], gid=442),
        'nhookleft': GD(name='nhookleft', uni=0x0272, hex='0272', c='ɲ', isLower=True),
        'nhookretroflex': GD(name='nhookretroflex', uni=0x0273, hex='0273', c='ɳ', l='n', w='n', isLower=True),
-       'nine': GD(name='nine', uni=0x0039, hex='0039', c='9', isLower=True, gid=27, comment='9'),
+       'nine': GD(name='nine', uni=0x0039, hex='0039', c='9', l='O', r='O',isLower=True, gid=27, comment='9'),
        'nine.blackCircled': GD(name='nine.blackCircled', uni=0x277E, hex='277E', c='❾', l='O', r='O', isLower=False),
        'nine.dnom': GD(name='nine.dnom', base='nine.numr', isLower=False, gid=1667),
        'nine.numr': GD(name='nine.numr', isLower=False, gid=1668),
@@ -2100,7 +2100,7 @@ class MS_GlyphSet(GlyphSet):
        'pedescender-cy.component': GD(name='pedescender-cy.component', w=0, isLower=True, gid=1681),
        'pemiddlehook-cy': GD(name='pemiddlehook-cy', uni=0x04A7, hex='04A7', c='ҧ', l='en-cy', r='o', isLower=True, gid=812),
        'percent': GD(name='percent', uni=0x0025, hex='0025', c='%', l2r='percent', isLower=True, gid=7, comment='% PERCENT SIGN'),
-       'period': GD(name='period', uni=0x002E, hex='002E', c='.', isLower=True, fixSpacing=False, gid=16, comment='. point, decimal'),
+       'period': GD(name='period', uni=0x002E, hex='002E', c='.', l2r='period', isLower=True, fixSpacing=False, gid=16, comment='. point, decimal'),
        'periodcentered': GD(name='periodcentered', uni=0x00B7, hex='00B7', c='·', isLower=True, gid=120),
        'perispomeni': GD(name='perispomeni', uni=0x1FC0, hex='1FC0', c='῀', w=0, isLower=True, anchors=['_top', 'top'], gid=1350),
        'perispomenicomb': GD(name='perispomenicomb', uni=0x0342, hex='0342', c='͂', w=0, base='tildecomb', isLower=True, anchors=['top', '_top']),
@@ -2115,7 +2115,7 @@ class MS_GlyphSet(GlyphSet):
        'phiSymbol': GD(name='phiSymbol', uni=0x03D5, hex='03D5', c='ϕ', l='o', r='o', isLower=True, gid=602),
        'phook': GD(name='phook', uni=0x01A5, hex='01A5', c='ƥ', l='p', r='p', srcName='uni01A5', isLower=True, gid=358),
        'pi': GD(name='pi', uni=0x03C0, hex='03C0', c='π', isLower=True, gid=581),
-       'piSymbol': GD(name='piSymbol', uni=0x03D6, hex='03D6', c='ϖ', isLower=True, gid=603),
+       'piSymbol': GD(name='piSymbol', uni=0x03D6, hex='03D6', c='ϖ', l='hyphen', l2r='piSymbol', isLower=True, gid=603),
        'pinferior': GD(name='pinferior', uni=0x209A, hex='209A', c='ₚ', l='pmod', r='pmod', base='pmod', isLower=False),
        'plus': GD(name='plus', uni=0x002B, hex='002B', c='+', isLower=True, gid=13, comment='+ PLUS SIGN'),
        'plus.component': GD(name='plus.component', isLower=True),
@@ -2257,7 +2257,7 @@ class MS_GlyphSet(GlyphSet):
        'sacutedotaccent': GD(name='sacutedotaccent', uni=0x1E65, hex='1E65', c='ṥ', l='s', w='s', base='s', accents=['sacute.component'], srcName='uni1E65', isLower=True, anchors=['top', 'middle', 'bottom'], gid=1024),
        'saltillo': GD(name='saltillo', uni=0xA78C, hex='A78C', c='ꞌ', base='quotesingle', isLower=True),
        'sampi': GD(name='sampi', uni=0x03E1, hex='03E1', c='ϡ', l=MIN_MARGIN, r='O', isLower=False, gid=614), # Behaves as capital
-       'san': GD(name='san', uni=0x03FB, hex='03FB', c='ϻ', isLower=True, r='Hsmall', gid=640),
+       'san': GD(name='san', uni=0x03FB, hex='03FB', c='ϻ', isLower=True, l='Hsmall', r='Hsmall', gid=640),
        'scaron': GD(name='scaron', uni=0x0161, hex='0161', c='š', l='s', r='s', base='s', accents=['caroncomb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=290, comment='š S WITH CARON, LATIN SMALL LETTER'),
        'scaron.component': GD(name='scaron.component', w=0, isLower=True, anchors=['top', '_top'], gid=1690),
        'scarondotaccent': GD(name='scarondotaccent', uni=0x1E67, hex='1E67', c='ṧ', l='s', r='s', base='s', accents=['scaron.component'], srcName='uni1E67', isLower=True, anchors=['top', 'middle', 'bottom'], gid=1026),
@@ -2311,7 +2311,7 @@ class MS_GlyphSet(GlyphSet):
        'sinferior': GD(name='sinferior', uni=0x209B, hex='209B', c='ₛ', l='smod', r='smod', base='smod', isLower=True),
        'sinologicaldot': GD(name='sinologicaldot', uni=0xA78F, hex='A78F', c='ꞏ', base='periodcentered', isLower=True),
        'sinsular': GD(name='sinsular', uni=0xA785, hex='A785', c='ꞅ', isLower=True),
-       'six': GD(name='six', uni=0x0036, hex='0036', c='6', isLower=True, gid=24, comment='6'),
+       'six': GD(name='six', uni=0x0036, hex='0036', c='6', l='zero', r='O', isLower=True, gid=24, comment='6'),
        'six.blackCircled': GD(name='six.blackCircled', uni=0x277B, hex='277B', c='❻', l='O', r='O', isLower=False),
        'six.dnom': GD(name='six.dnom', base='six.numr', isLower=False, gid=1695),
        'six.numr': GD(name='six.numr', isLower=False, gid=1696),
@@ -2367,7 +2367,7 @@ class MS_GlyphSet(GlyphSet):
        'te-cy.loclSRB': GD(name='te-cy.loclSRB', base='sha-cy', accents=['macroncomb'], isLower=True),
        'tedescender-cy': GD(name='tedescender-cy', uni=0x04AD, hex='04AD', c='ҭ', l='te-cy', r='te-cy', isLower=True, gid=818),
        'tenge': GD(name='tenge', uni=0x20B8, hex='20B8', c='₸', isLower=True, gid=1457),
-       'tesh': GD(name='tesh', uni=0x02A7, hex='02A7', c='ʧ', isLower=True),
+       'tesh': GD(name='tesh', uni=0x02A7, hex='02A7', c='ʧ', l='t', r='off', isLower=True),
        'tetse-cy': GD(name='tetse-cy', uni=0x04B5, hex='04B5', c='ҵ', l='te-cy', r='tse-cy', isLower=True, gid=826),
        'therefore': GD(name='therefore', uni=0x2234, hex='2234', c='∴', isLower=True),
        'theta': GD(name='theta', uni=0x03B8, hex='03B8', c='θ', isLower=False, gid=573), # Behaves as /zero
