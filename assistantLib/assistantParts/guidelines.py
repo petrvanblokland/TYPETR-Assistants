@@ -33,6 +33,8 @@ class AssistantPartGuidelines(BaseAssistantPart):
         """If the checkbox is set, then automatic build guidelines if another glyph is selected."""
         changed = False
         c = self.getController()
+        if c is None: # Sometimes not initialized when starting
+            return
         g = info['glyph']
         if g is None:
             return False # Nothing changed to the glyph

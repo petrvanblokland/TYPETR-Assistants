@@ -1295,14 +1295,14 @@ class AssistantPartSpacer(BaseAssistantPart):
     SPACING_UNIT = KERNING_UNIT = 4
 
     def _adjustLeftMarginByUnits(self, g, value): 
-        if self.isUpdating:
-            return
+        #if self.isUpdating:
+        #    return
         f = g.font        
         g.angledLeftMargin = int(round(g.angledLeftMargin/self.SPACING_UNIT) + value) * self.SPACING_UNIT
                           
     def _adjustRightMarginByUnits(self, g, value): # This moved to TYPETR-Assistants/KerningAssistant-005.py
-        if self.isUpdating:
-            return
+        #if self.isUpdating:
+        #    return
         f = g.font
         g.angledRightMargin = int(round(g.angledRightMargin/self.SPACING_UNIT) + value) * self.SPACING_UNIT
 

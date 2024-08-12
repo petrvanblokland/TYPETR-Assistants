@@ -104,6 +104,7 @@ class AssistantPartItalicize(BaseAssistantPart):
         # Get the glyph in the editing layer. Normally this is the foreground layer, but this method can be redefined
         # e.g. for masters that mainly draw in the background, such as TYPETR Responder and TYPETR Upgrade Neon.
         srcG = srcF[gName].getLayer(self.EDIT_LAYER)
+        print('111111', srcF, md.romanItalicUFOPath)
 
         # Glyphs like /O better use skew+rotate to italicize, just look at the checkbox, not at the GLYPH_DATA flags.
         # self.isCurved is inherited from the italicize Assistant part
@@ -117,8 +118,11 @@ class AssistantPartItalicize(BaseAssistantPart):
 
         print(f'... Italicize: Skew {skew } & Rotate {rotation}', )    
 
-        f[gName] = srcG # Copy all layers from roman
         dstG = f[gName].getLayer(self.EDIT_LAYER)
+        dstG.prepareUndo()
+        dstG.clear()
+        dstG.appendGlyph(srcG)
+
         
         if not addComponents:
             for component in dstG.components:
