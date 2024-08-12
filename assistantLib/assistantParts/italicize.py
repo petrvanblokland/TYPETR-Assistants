@@ -60,8 +60,9 @@ class AssistantPartItalicize(BaseAssistantPart):
     def italicizeCallback(self, sender):
         g = self.getCurrentGlyph()
         if g is not None:
-            if self.italicizeGlyph(g):
-                g.changed()
+            bg = g.getLayer(self.EDIT_LAYER)
+            if self.italicizeGlyph(bg):
+                bg.changed()
 
     def italicizeGlyphKey(self, g, c=None, event=None):
         """Callback for registered event on key stroke"""
