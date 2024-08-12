@@ -118,11 +118,11 @@ class AssistantPartItalicize(BaseAssistantPart):
 
         print(f'... Italicize: Skew {skew } & Rotate {rotation}', )    
 
+        f[gName].clear()
         dstG = f[gName].getLayer(self.EDIT_LAYER)
         dstG.prepareUndo()
         dstG.clear()
         dstG.appendGlyph(srcG)
-
         
         if not addComponents:
             for component in dstG.components:
