@@ -182,7 +182,7 @@ class BaseAssistant:
 
     def fixAllOfTheseGlyphsKey(self, g, c, event):
         """Force check/fix on the glyphs with the same name in all open fonts."""
-        for f in self.getAllFonts():
+        for f in self.getAllOpenFonts():
             if g.name in f:
                 f[g.name].changed() # Force check/fix on the glyphs with the same name in all open fonts.
 
@@ -230,7 +230,7 @@ class BaseAssistant:
 
         assert fullPath is not None and os.path.exists(fullPath), (f'### Cannot find {fullPath}')
 
-        for f in self.getAllFonts(): # Otherwise search if it already open
+        for f in self.getAllOpenFonts(): # Otherwise search if it already open
             if fullPath == f.path:
                 if fullPath in self.bgFonts: # It was opened before, but now RoboFont has it open.
                     del self.bgFonts[fullPath]
@@ -324,7 +324,7 @@ class BaseAssistant:
         inheriting assistant classes to force another current font selection."""
         return CurrentFont()
     
-    def getAllFonts(self):
+    def getAllOpenFonts(self):
         """Answer a list with all current open fonts. By default this is the result of AllFonts(), but it can be altered by
         inheriting assistant classes to fore another set of font selection."""
         return AllFonts()
@@ -899,14 +899,14 @@ class AssistantController(BaseAssistant, WindowController):
 
         # Some default buttons that every assistant window should have
         y = -2*self.L-self.M
-        c.w.fixAllButton = Button((self.C0, y, self.CW, self.L), f'Fix all [{personalKey_f}]', callback=self.fixAllCallback)
+        c.w.fixAllButton = Button((self.C0, y, self.CW, self.L), f'Fix all [{personalKey_f}]', callback=self.fixAllOpenFontsCallback)
         c.w.checkFixGlyphsetButton = Button((self.C1, y, self.CW, self.L), 'Fix glyphset', callback=self.checkFixGlyphSetCallback)
         c.w.saveAllButton = Button((self.C2, y, self.CW, self.L), 'Save all', callback=self.saveAllCallback)
         y += self.L
         c.w.fixAllSafety = CheckBox((self.C0, y, self.CW, self.L), 'Fix all safety', value=False, sizeStyle='small')
         c.w.fixGlyphSetSafety = CheckBox((self.C1, y, self.CW, self.L), 'Fix glyphset safety', value=False, sizeStyle='small')
 
-    def fixAllCallback(self, sender):
+    def fixAllOpenFontsCallback(self, sender):
         """This button will call automatic fixes on all open fonts that are available. And it will try to auto-fix as much as possible.
         Since not all parts may be loaded in the current assembly of the assistant, we need to check if certain functions are availalbe.
 
@@ -917,7 +917,7 @@ class AssistantController(BaseAssistant, WindowController):
             print(f'### Check [x] Fix all to enable this button.')
             return 
                    
-        for f in self.getAllFonts():
+        for f in [CurrentFont()]: #AllFonts(): #self.getAllOpenFonts():
             changed = False
             print(f'... Fixing all of {f.path.split("/")[-1]}')
             changed |= self.checkFixGlyphSet(f) # First check if all glyphs are there. Create missing, delete obsolete.
@@ -937,7 +937,7 @@ class AssistantController(BaseAssistant, WindowController):
         print('Done')
 
     def saveAllCallback(self, sender):
-        for f in self.getAllFonts():
+        for f in self.getAllOpenFonts():
             print(f'... Save {f.path}')
             f.save()
 

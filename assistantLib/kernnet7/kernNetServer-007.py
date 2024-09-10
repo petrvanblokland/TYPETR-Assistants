@@ -24,6 +24,7 @@ EM = 1000
 DEVICE_NAME = 'cpu'
 #DEVICE_NAME = 'mps'
 MODEL_NAME = 'Upgrade-V7'
+TMP_PATH = '/tmp/com.typetr_imagePredict/'
 
 class MyServer(BaseHTTPRequestHandler):
     INCREMENT = 4
@@ -42,7 +43,8 @@ class MyServer(BaseHTTPRequestHandler):
             print('###', parts)
             return
         gName1, gName2, imageFileName = parts[-3:]
-        imagePath = f'_imagePredict/{imageFileName}'
+        #imagePath = f'_imagePredict/{imageFileName}'
+        imagePath = f'{TMP_PATH}{imageFileName}'
         #print(gName1, gName2, imageFileName)
         # Roman + Italic + black side rectangles
         #checkPointFilePath = 'lightning_logs/version_16/checkpoints/epoch=49-step=589100.ckpt'
@@ -122,7 +124,7 @@ if 0:
 
 if 0:
     imageFileName = 'test.png'
-    imagePath = f'_imagePredict/{imageFileName}'
+    imagePath = f'{TMP_PATH}{imageFileName}'
     checkPointFilePath = 'models'
     modelName = 'Upgrade-V1-testing'
     #modelName = 'Presti-V2'

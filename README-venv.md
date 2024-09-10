@@ -35,3 +35,6 @@ pip install git+https://github.com/typemytype/drawbot
 # Run this parallel to assistants that use spacer.py part.
 cd assistantLib/kernnet7
 python kernNetServer-007.py
+
+Testing the server
+http://localhost:8080/A/O/test.png

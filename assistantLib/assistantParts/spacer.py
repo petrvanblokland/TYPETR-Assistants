@@ -399,7 +399,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         #g1Name = c.w.previewGlyphLeftName.get() or 'H'
         #if g1Name in f:
         #    k = km.getKernNetKerning(f[g1Name], g, step=None)
-        #    print(f'...KernNet {g1Name} {g.name} {k}')
+        #    print(f'#### ... KernNet {g1Name} {g.name} {k}')
 
         sampleContext = c.w.spacerMode.get()
         # 0    Glyphset
@@ -689,6 +689,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         knLeft = km.getKernNetKerning(gLeft, g) or 0
         knRight = km.getKernNetKerning(g, gRight) or 0
 
+        #print(f'--- ({knLeft}) {kLeft} {groupKLeft} {kerningTypeLeft} <--> ({knRight}) {kRight} {groupKRight} {kerningTypeRight}')
+
         y1 = g.font.info.descender - 120
         y2 = y1 - 120
 
@@ -779,8 +781,8 @@ class AssistantPartSpacer(BaseAssistantPart):
     KEY_INC_KERN1 = 'm'
     KEY_DEC_KERN1_CAP = 'N'
     KEY_DEC_KERN1 = 'n'
-    KEY_SET_KERNNET2 = '?'
-    KEY_SET_KERN_0 = '/'
+    KEY_SET_KERNNET2 = '/' # KernNet value by [/] is more default than clearing
+    KEY_SET_KERN_0 = '?' # Reverse these from previous spacer version. [?] clears kerning pair
 
     def buildSpacer(self, y):
         """Build the assistant UI for anchor controls."""
@@ -974,14 +976,69 @@ class AssistantPartSpacer(BaseAssistantPart):
         # that refer to non-existing groups or non-existing glyphs. In principle it always should be empty,
         # otherwise kerning table needs to be cleaned up. 
         
-        g = self.getCurrentGlyph()
-        if g is None:
+        f = self.getCurrentFont()
+        if f is None:
             return
 
+        # Only check for overlap on kerning for these glyphs
+        checkedGlyphs = set((
+            'i', 'itilde', 'icircumflex', 'idieresis', 'igrave', 'iacute', 'icaron', 
+            'E', 'K', 'V', 'T', 'W', 'X', 'Y', 'AE', 'OE',  
+            'backslash', 'braceleft', 'braceright', 'bracketleft', 'bracketright', 
+            'acircumflexgrave', 'acircumflexhookabove', 'adblgrave', 
+            'cacute', 'ccaron', 'ccircumflex', 
+            'd', 'dcaron', 'dcedilla', 'ddotaccent', 'ddotbelow', 
+            'edblgrave', 'edieresis', 'etilde', 
+            'i', 'iacute', 'ibreve', 'icaron', 'icircumflex', 'idblgrave', 'idieresis', 'idieresisacute', 'igrave', 
+            'ij', 'imacron', 'iogonek', 'itilde', 
+            'jcaron', 'jcircumflex', 
+            'ocircumflexacute', 'ocircumflexgrave', 'ocircumflexhookabove', 'odblgrave', 
+            'one', 'question', 'lcaron', 'scaron', 'scircumflex',
+            'racute', 'rcaron', 'rdblgrave', 'rinvertedbreve', 
+            'parenleft', 'parenright', 'percent', 'perthousand',  
+            'seven', 'slash', 'tcaron', 'three', 'trademark', 'two', 'uhorn',
+        ))
+        # Not checked for overlapping kerning combinations
+        UNCHECKED = set(('Tbar', 'Tcaron', 'Tcedilla', 'Tcommaaccent', 'Tdiagonalstroke', 'Tdotaccent', 'Tdotbelow', 'Thook', 'Tz', 
+            'Vdiagonalstroke', 'Vdotbelow', 'Vtilde', 
+            'AEacute', 'AEmacron', 'AY', 'Aturned', 'Au', 'Av', 
+            'Bhook', 'degree', 'dhook', 'dtopbar', 'eshbaseline',
+            'Chi-latin', 'Cstroke', 'Dhook', 
+            'Eacute', 'Ebreve', 'Ecaron', 'Ecedilla', 'Ecedillabreve', 'Ecircumflex', 'Ecircumflexacute', 'Ecircumflexdotbelow', 'Ecircumflexgrave', 'Ecircumflexhookabove', 'Ecircumflextilde', 'Edblgrave', 'Edieresis', 'Edotaccent', 'Edotbelow', 'Egrave', 'Ehookabove', 'Einvertedbreve', 'Emacron', 'Emacronacute', 'Emacrongrave', 'Estroke', 'Etilde', 
+            'Gammaafrican', 'Ghook', 'iinvertedbreve',
+            'Idblgrave', 'Itilde', 'product',
+            'Kacute', 'Kcaron', 'Kcommaaccent', 'Kdotbelow', 'Khook', 'Klinebelow', 'Kstroke', 
+            'Lcaron', 
+            'Pflourish', 'Phook', 
+            'Xdieresis', 'Xdotaccent', 
+            'Yacute', 'Ycircumflex', 'Ydieresis', 'Ydotaccent', 'Ydotbelow', 'Ygrave', 'Yhook', 'Yhookabove', 'Ymacron', 'Ystroke', 'Ytilde', 
+            'bstroke', 
+            'kstroke', 
+            'lhighstroke', 'longs', 'longsdotaccent', 
+            'qhook', 
+            'hbar', 
+            'rlonglegturned',  
+            'tesh', 'thook', 'thornstroke', 'turnedrtail', 
+            'ohorn', 'ohornacute', 'ohorndotbelow', 'ohorngrave', 'ohornhookabove', 'ohorntilde', 
+            'uhornacute', 'uhorndotbelow', 'uhorngrave', 'uhornhookabove', 'uhorntilde', 'uniA7AE'))
+
+        # Result of checked combinations for Segoe Black Italic
+        # ốV ổV ốř ốȑ ổȑ ốT ổT ốồ ốȅ ốȍ ốȁ ốầ ổồ ổȅ ổầ ốǐ ốì ốȉ ốĭ ốï ổǐ ổì ổȉ ổĭ ổï ốǰ ổǰ ốW ổW ốY ổY ḯi ïV ḯV ïȑ ḯȑ ïT ḯT ïồ ḯồ ḯầ ïǐ ïì ïȉ ïĭ ïï ïĩ ïî ïī ḯǐ ḯì ḯȉ ḯĭ ḯï ḯĩ ḯî ḯī ïǰ ïĵ ḯǰ ḯĵ ḯŝ ḯW ïĳ ïį ḯĳ ḯį ïY ḯY ẽȉ ëY ẽY íȑ ǐř ǐȑ íồ íȅ íȍ íầ ǐồ ǐȅ ǐȍ ǐȁ ǐầ íǐ íì íȉ íĭ íï ǐǐ ǐì ǐȉ ǐĭ ǐï ȉȉ ȉï ȉĩ ȉî ȉī īȉ īĭ īï īĩ īî īī íǰ ǐǰ ȉĵ īĵ ưȑ ưȉ ưï ưĩ ưî ưĵ ưŝ šȑ ŝT šồ šầ šǐ šì šȉ ŝî šǰ ŝĵ šY įǰ įĵ ďř ďȑ ďȓ ľř ľȑ ľȓ ľX ďč ďồ ďȅ ďȍ ďë ďḋ ďȁ ďầ ľč ľồ ľȅ ľȍ ľë ľḋ ľȁ ľầ ďì ďȉ ďĭ ľǐ ľì ľȉ ľĭ ľï ďǰ ďĵ ľǰ ľĵ ďš ďŝ ľš ľŝ ľÆ ďĳ ďį ľĳ ľį Æȉ Æï Eȉ Eï Œȉ Œï Vȑ Vồ Vầ Vȉ Vĭ Vï Vĩ Kȑ Kồ Kầ Kȉ Kĭ Kï Kǰ Yȑ Yồ Yȅ Yȍ Yȁ Yầ Yȉ Yǰ Yĵ YW Yĳ Yį ťȑ ťồ ťầ ťǐ ťì ťȉ ťĭ ťï ťǰ ŕť řť ȑť ȓť ŕȑ řȑ ŕồ ŕầ řồ řầ ŕǐ ŕì ŕȉ řǐ řì řȉ řĭ ȑî ȓȉ ȓï ȓĩ ȓî ŕǰ řǰ ȑĵ ȓĵ řY Wȑ Wồ Wȉ Wï Wĵ Xȑ Xồ Xầ Xȉ Xĭ Xï Xĩ Xǰ dȑ ḑȑ ḋȑ ḍȑ dồ ḑồ ḋồ ḍồ dì dȉ dĭ dï dĩ dî ḑì ḑȉ ḑĭ ḑï ḑĩ ḑî ḋì ḋȉ ḋĭ ḋï ḋĩ ḋî ḍì ḍȉ ḍĭ ḍï ḍĩ ḍî dĵ ḑĵ ḋĵ ḍĵ ǰV ĵV ǰř ǰȑ ĵT ǰồ ǰȅ ǰȍ ǰȁ ǰầ ĳȉ ĳï ǰǐ ǰì ǰȉ ǰĭ ǰï ǰĩ ĵȉ ĵï ĵĩ ĵî ĵī ǰǰ ĵĵ Tȑ Tồ Tầ Tȉ Tĵ ćȑ čȑ ćồ čồ čầ ćì ćȉ čǐ čì čȉ ĉĩ ĉî čǰ ĉĵ ẩȑ ẩT ẩồ ẩȅ ẩȍ ẩầ ẩǐ ẩì ẩȉ ẩĭ ẩï ẩǰ ẩY ĭȑ ĩȑ îT ĭồ ĭầ ĩồ ĩầ ĭǐ ĭì ĭȉ ĭĭ ĭï ĭĩ ĭī îȉ îï îĩ îî îī ĩǐ ĩì ĩȉ ĩĭ ĩï ĩĩ ĩî ĩī ĭǰ îĵ ĩǰ ĩĵ 1ȉ 7ȑ 7ồ 7ȉ 7ĭ 7ï 7ĩ 7î 7ĵ ố7 ï1 ḯ1 ï2 ḯ3 ḯ2 ï7 ḯ7 ȉ1 ī1 ư1 ĵ1 ĵ3 ĵ2 ĵ7 î1 î2 ]ȉ ™ȉ (ȑ [ȑ (ồ (ȅ (ầ {ồ [ồ [ȅ [ầ (ȉ (ĭ (ï {ȉ {ï [ì [ȉ [ĭ [ï [ĩ [î [ī (ǰ (ĵ {ǰ {ĵ [ǰ [ĵ (ĳ (į [ĳ [į /V /ȑ /T /ồ /ȅ /ȍ /ầ /ǐ /ì /ȉ /ĭ /ï /ĩ /î /ī /ǰ /ĵ /W /Y ố\ ổ\ ố™ ổ™ ï\ ḯ\ ï™ ḯ™ ï? ḯ? ï] ḯ} ḯ] ï% ï‰ ḯ% ḯ‰ ë\ ẽ\ í\ ǐ\ ī\ í™ ǐ™ ȉ™ ī™ ȉ? ī? ư? ư] š\ ŝ\ ŝ? i\ į\ i™ į™ ď\ ľ\ V\ K\ Y\ ť\ ŕ% ŕ‰ ř% ř‰ ȑ% ȑ‰ ȓ% ȓ‰ W\ X\ ǰ\ ĵ\ ĵ? ĵ] ĵ% ĵ‰ ĉ? ẩ\ ĭ\ î\ ĩ\ î? î% î‰ 
+        # ['AE', 'E', 'K', 'OE', 'T', 'V', 'W', 'X', 'Y', 'acircumflexgrave', 'acircumflexhookabove', 'adblgrave', 'backslash', 'braceleft', 'braceright', 'bracketleft', 'bracketright', 'cacute', 'ccaron', 'ccircumflex', 'd', 'dcaron', 'dcedilla', 'ddotaccent', 'ddotbelow', 'edblgrave', 'edieresis', 'etilde', 'i', 'iacute', 'ibreve', 'icaron', 'icircumflex', 'idblgrave', 'idieresis', 'idieresisacute', 'igrave', 'ij', 'imacron', 'iogonek', 'itilde', 'jcaron', 'jcircumflex', 'lcaron', 'ocircumflexacute', 'ocircumflexgrave', 'ocircumflexhookabove', 'odblgrave', 'one', 'parenleft', 'parenright', 'percent', 'perthousand', 'question', 'racute', 'rcaron', 'rdblgrave', 'rinvertedbreve', 'scaron', 'scircumflex', 'seven', 'slash', 'tcaron', 'three', 'trademark', 'two', 'uhorn']
+        
         done = False
         minOffset = 64 # Value to add to touching-kerning for minimal distance
 
-        km = self.getKerningManager(g.font)
+        fixedOverlap = ''
+        errorOverlap = ''
+        errorNames = set()
+        errorExceptions = set()
+
+        km = self.getKerningManager(f)
+        km.clearGlyphGlyphKerning() # Clear all glyph-glyph kerning, probably generated by a previous run.
+        km.clearGroupGlyphKerning() # Clear all Group-glyph kerning, probably generated by a previous run.
+        km.clearGlyphGroupKerning() # Clear all Group-glyph kerning, probably generated by a previous run.
+
         #self.kerningTypes = km.splitKerningTypes()
         for script1, script2 in KERN_GROUPS:
             mg1 = km.scriptMatchingGroups1[script1]
@@ -989,37 +1046,50 @@ class AssistantPartSpacer(BaseAssistantPart):
 
             for groupName1 in mg1:
                 for groupName2 in mg2:
-                    group1 = g.font.groups[groupName1]
-                    group2 = g.font.groups[groupName2]
+                    group1 = f.groups[groupName1]
+                    group2 = f.groups[groupName2]
                     for gName1 in group1:
                         for gName2 in group2:
-                            if gName1 != 'T' or gName2 not in ('i', 'itilde', 'icircumflex', 'idieresis', 'igrave',):
-                                continue
-                            print('------', gName1, gName2)
-                            g1 = g.font[gName1]
-                            g2 = g.font[gName2]
-                            if 1 or km.hasKernedOverlap(g1, g2, minOffset): # minOffset forces a minimal gap for the overlap
-                                kk = int(round(km.kernedDistance(g1, g2) / 4)) * 4
-                                print('### Overlap', kk, kk + minOffset, kk, kk + minOffset, script1, script2, groupName1, groupName2, gName1, gName2)
-                                #print('Overlap', script1, script2, groupName1, groupName2, gName1, gName2)
-                                g.font.kerning[(groupName1, gName2)] = -kk + minOffset
-                            else:
-                                print('### No overlap', script1, script2, groupName1, groupName2, gName1, gName2)
-                                #g.font.kerning[(groupName1, gName2)] = 0
-                                break
-                            print('Kerning', groupName1, gName2, g.font.kerning[(groupName1, gName2)])
-                            done = True
-                        if done:
-                            break
-                    if done:
-                        break
-                if done:
-                    break
-            if done:
-                break
+                            #if gName1 in errorNames and gName2 in errorNames:
+                            #    continue
+                            #if gName1 in errorExceptions and gName2 in errorExceptions:
+                            #    continue
+                            if gName1 in checkedGlyphs and gName2 in checkedGlyphs: # Only these combinations
+                                g1 = f[gName1]
+                                g2 = f[gName2]
+                                if km.hasKernedOverlap(g1, g2, minOffset): # minOffset forces a minimal gap for the overlap
+                                    #if gName1 != 'Tcaron' or gName2 != 'idieresis':
+                                    #    continue
+                                    kk = int(round(km.kernedDistance(g1, g2) / 4)) * 4
+                                    if abs(-kk + minOffset) < 5000: # Safety, in case the overlap is not matching
+                                        print('... Fix overlap', kk, -kk + minOffset, script1, script2, groupName1, groupName2, gName1, gName2)
+                                        f.kerning[(gName1, gName2)] = -kk + minOffset
+                                        fixedOverlap += chr(g1.unicode) + chr(g2.unicode) + ' '
+                                    else:
+                                        print('### Error overlap', kk, -kk + minOffset, script1, script2, groupName1, groupName2, gName1, gName2)
+                                        if g1.unicode and g2.unicode:
+                                            errorOverlap += chr(g1.unicode) + chr(g2.unicode) + ' '
+                                            errorNames.add(gName1)
+                                            errorNames.add(gName2)
+                                else:
+                                    #print('### Overlap of exception', gName1, gName2)
+                                    errorExceptions.add(gName1)
+                                    errorExceptions.add(gName2)
+                                #    #f.kerning[(groupName1, gName2)] = 0
+                                #    break
+                                #print('Kerning', groupName1, gName2, f.kerning[(groupName1, gName2)])
 
-        g.font.save()
-        return
+        if errorOverlap or errorNames or errorExceptions:
+            print('### Could not fix overlap for', errorOverlap)
+            print('### Fixed overlap', fixedOverlap)
+            print(sorted(errorNames))
+            print(sorted(errorExceptions))
+
+        # Now remove the TMP* glyphs again
+        if 1:
+            for gName in f.keys():
+                if gName.startswith('TMP'):
+                    f.removeGlyph(gName)
 
     def reportSpacingCallback(self, sender):
         """Report/fix margins for the current font that don't fit the epexted value as it would have been auto spaced.

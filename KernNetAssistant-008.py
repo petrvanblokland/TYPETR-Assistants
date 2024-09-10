@@ -869,6 +869,7 @@ class KernNetSpacingAssistant(Subscriber):
         drawBot.saveImage(kernImagePath)
 
         page = urllib.request.urlopen(f'http://localhost:8080/{g1.name}/{g2.name}/{imageName}')
+        print('dasads', page)
         
         # Returns value is glyphName1/glyphName2/predictedKerningValue
         # The glyph names are returned to check validity of the kerning value.

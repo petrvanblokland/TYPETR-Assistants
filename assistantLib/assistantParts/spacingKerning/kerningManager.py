@@ -1293,7 +1293,7 @@ class KerningManager:
         tmp.decompose()
         q2b.curvesQ2B(tmp) # Remove overlap on quadratics does not work outside RoboFont
         tmp.removeOverlap()
-        #tmp.removeOverlap() Just to be sure???
+        tmp.removeOverlap() # Just to be sure, sometimes one is not ernouh
         return tmp
 
     TMPNAME = 'TMP'
@@ -1322,12 +1322,14 @@ class KerningManager:
         """
         tmp1 = self.getTmpGlyph(g1, self.TMPNAME1) # Could even be glyphs from another font than self.f. It does decompose and remove overlap 
         tmp2 = self.getTmpGlyph(g2, self.TMPNAME2)
+        #print('AAA1', tmp1.hasOverlap())
+        #print('AAA2', tmp2.hasOverlap())
         # Ignore the current kerning. We just want to compare the shapes.
         # It is up to the caller to decide if the current kerning should be changed.
         #k = self.getKerning(g1.name, g2.name)[0] # Answered (kerning, groupK, kerningType)
         step = -g1.width/2
         dist = g1.width
-        newDist = max(0, dist + step) # Prevent "overkill" of large kerning or too large minOffset
+        newDist = dist + step # Prevent "overkill" of large kerning or too large minOffset
         # Make sure that the /TMP exists
         if self.TMPNAME not in self.f:
             self.f.newGlyph(self.TMPNAME)
@@ -1336,8 +1338,10 @@ class KerningManager:
         for n in range(0, 100): # Max number of iterations in the binary search
             tmp.clear()
             tmp.appendComponent(self.TMPNAME1) # Components from tmp1 have no nested components and no overlap.
-            tmp.appendComponent(self.TMPNAME2, offset=(newDist + step, 0)) # Components from tmp1 have no nested components and no overlap.
+            tmp.appendComponent(self.TMPNAME2, offset=(newDist, 0)) # Components from tmp1 have no nested components and no overlap.
             tmp.decompose()
+
+            #print(n, dist, newDist, step, tmp.hasOverlap())
             if tmp.hasOverlap():
                 #print('Overlap', dist, newDist, dist - newDist, step, len(tmp.contours), len(tmp1.contours), len(tmp2.contours))
                 # Overlap, go right
@@ -1347,7 +1351,7 @@ class KerningManager:
             else:
                 # No overlap, go left
                 #print('No overlap', dist, newDist, dist - newDist, step, len(tmp.contours), len(tmp1.contours), len(tmp2.contours))
-                if step > 0: 
+                if step >= 0: 
                     step = -step * 0.5 # Reverse direction in slower speed
                 # Otherwise step again with the same amount
  
@@ -1365,10 +1369,10 @@ class KerningManager:
         The optional offset allows to add a forced extra kerning, in order to create a minimal distance for not overlapping.
         """
         k = self.getKerning(g1.name, g2.name)[0] # Answered (kerning, groupK, kerningType)
-        # Offset for the second glyph. The minOffset forces to make a minimal gab of this distance.
+        # Offset for the second glyph. The minOffset forces to make a minimal gap of this distance.
         dist = max(g1.width/2, g1.width + k - minOffset)
 
-        tmp1 = self.getTmpGlyph(g1, self.TMPNAME1) # Could even be glyphs from another font than self.f 
+        tmp1 = self.getTmpGlyph(g1, self.TMPNAME1) # Could theoretically even be glyphs from another font than self.f 
         tmp2 = self.getTmpGlyph(g2, self.TMPNAME2)
         # Make sure that the /TMP exists
         if self.TMPNAME not in self.f:
@@ -1378,9 +1382,27 @@ class KerningManager:
         tmp.appendComponent(self.TMPNAME1)
         tmp.appendComponent(self.TMPNAME2, offset=(dist, 0))
         tmp.decompose()
+        tmp.decompose() # Sometimes one time it not enought
         tmp.angledRightMargin = g2.angledRightMargin # Not really needed, but useful for debugging.
         return tmp.hasOverlap()
 
+    def clearGlyphGlyphKerning(self):
+        for (p1, p2), k in sorted(self.f.kerning.items()):
+            if p1 in self.f and p2 in self.f:
+                print(f'... Clear glyph-glyph kerning ({k}) for /{p1} -- /{p2} ')
+                del self.f.kerning[(p1, p2)]
+
+    def clearGroupGlyphKerning(self):
+        for (p1, p2), k in sorted(self.f.kerning.items()):
+            if p1 not in self.f and p2 in self.f:
+                print(f'... Clear Group-glyph kerning ({k}) for {p1} -- /{p2} ')
+                del self.f.kerning[(p1, p2)]
+
+    def clearGlyphGroupKerning(self):
+        for (p1, p2), k in sorted(self.f.kerning.items()):
+            if p1 in self.f and p2 not in self.f:
+                print(f'... Clear glyph-Group kerning ({k}) for /{p1} -- {p2} ')
+                del self.f.kerning[(p1, p2)]
 
     #   K E R N N E T  A I 
 
@@ -1389,6 +1411,10 @@ class KerningManager:
     def getKernNetKerning(self, g1, g2, step=None, factor=1, calibrate=0):
         """Gernerate the kerning test image.
         Answer the KernNet predicted kerning for @g1 amd @g2. This assumes the KernNet server to be running on localhost:8080"""
+        
+        # In case the KernNet server is not running, just return kerning 0 here
+        #return 0
+        
         if step is None:
             step = self.KERNNET_UNIT
         f = g1.font
@@ -1437,12 +1463,13 @@ class KerningManager:
             
         db.saveImage(kernImagePath)
 
-        page = urllib.request.urlopen(f'http://localhost:8080/{g1.name}/{g2.name}/{imageName}')
-        
+        url = f'http://localhost:8080/{g1.name}/{g2.name}/{imageName}'
+        page = urllib.request.urlopen(url)  # parts should have a format equivalent to ['H', 'napostrophe', '-1.2810059']
+        parts = str(page.read())[2:-1].split('/')
+
         # Returned value is glyphName1/glyphName2/predictedKerningValue
         # The glyph names are returned to check validity of the kerning value.
         # Since the call is ansynchronic to the server, we still may get the answer here from a previous query.
-        parts = str(page.read())[2:-1].split('/')
         if not len(parts) == 3 or parts[0] != g1.name or parts[1] != g2.name:
             print('### Predicted kerning query not value', parts)
             return None
@@ -1454,7 +1481,7 @@ class KerningManager:
         if abs(k) <= step:
             k = 0 # Apply threshold for very small kerning values
         ki = int(round(k * f.info.unitsPerEm/1000/step))*step # Scale the kerning value to our Em-size.  
-        # print(f'... Predicted kerning {g1.name} -- {g2.name} k={k} kk={ki}')
+        #print(f'... Predicted kerning {g1.name} -- {g2.name} k={k} kk={ki}')
             
         return ki
 
@@ -1881,13 +1908,14 @@ class KerningManager:
                 'H', 'a', 'm', 'b', 'u', 'r', 'g', 'e', 'f', 'o', 'n', 't', 's', 't', 'i', 'v',
                 'H', 'a', 'm', 'b', 'u', 'r', 'g',
                 'H', 'A', 'M', 'B', 'U', 'R', 'G', 'E', 'F', 'O', 'N', 'T', 'S', 'T', 'I', 'V'
-                ]
+                ] * 2
             exitSample = [
                 'H', 'O', 'H', 'H', 'O', 'H', 'n', 'o', 'O', 'o', 'O', 'o', 'O',
                 'H', 'a', 'm', 'b', 'u', 'r', 'g', 'e', 'f', 'o', 'n', 't', 's', 't', 'i', 'v',
                 'H', 'a', 'm', 'b', 'u', 'r', 'g',
                 'H', 'A', 'M', 'B', 'U', 'R', 'G', 'E', 'F', 'O', 'N', 'T', 'S', 'T', 'I', 'V'
                 ]
+            donePairs = set()
             self._kerningSample = initSample.copy()
             for scriptName1, scriptName2 in KERN_GROUPS:
                 pre1, ext1 = GROUP_NAME_PARTS[scriptName1]
@@ -1897,9 +1925,42 @@ class KerningManager:
                 for gName1 in baseGlyphs1:
                     if self._kerningSampleFilter1 is None or self._kerningSampleFilter1 == gName1:
                         for gName2 in baseGlyphs2:
+                            if (gName1, gName2) in donePairs:
+                                continue
+                            if gName1 in ('exclamdown', 'questiondown') and scriptName2 != 'lt':
+                                continue
+                            if  scriptName2 != 'lt' and gName2 in ('exclamdown', 'questiondown'):
+                                continue
                             if self._kerningSampleFilter2 is None or self._kerningSampleFilter2 == gName2:
-                                self._kerningSample.append(gName1)
-                                self._kerningSample.append(gName2)
+                                if 'parenleft' in (gName1, gName2) or 'parenright' in (gName1, gName2):
+                                    self._kerningSample.append(gName1)
+                                    self._kerningSample.append(gName2)
+                                    self._kerningSample.append('parenright')
+                                    donePairs.add(('parenleft', gName1))
+                                    donePairs.add(('parenright', gName1))
+                                    donePairs.add((gName1, 'parenleft'))
+                                    donePairs.add((gName1, 'parenright'))
+                                    donePairs.add(('parenleft', gName2))
+                                    donePairs.add(('parenright', gName2))
+                                    donePairs.add((gName2, 'parenleft'))
+                                    donePairs.add((gName2, 'parenright'))
+                                elif 'guillemetleft' in (gName1, gName2) or 'guillemetright' in (gName1, gName2):
+                                    self._kerningSample.append(gName1)
+                                    self._kerningSample.append(gName2)
+                                    self._kerningSample.append('guillemetright')
+                                    donePairs.add(('guillemetleft', gName1))
+                                    donePairs.add(('guillemetright', gName1))
+                                    donePairs.add((gName1, 'guillemetleft'))
+                                    donePairs.add((gName1, 'guillemetright'))
+                                    donePairs.add(('guillemetleft', gName2))
+                                    donePairs.add(('guillemetright', gName2))
+                                    donePairs.add((gName2, 'guillemetleft'))
+                                    donePairs.add((gName2, 'guillemetright'))
+                                else:
+                                    self._kerningSample.append(gName1)
+                                    self._kerningSample.append(gName2)
+                                    donePairs.add((gName1, gName2))
+                                    donePairs.add((gName2, gName1))
             self._kerningSample += exitSample
         return self._kerningSample
     kerningSample = property(_get_kerningSample)

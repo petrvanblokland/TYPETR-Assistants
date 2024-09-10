@@ -7,6 +7,10 @@ Implement functions from old separate sources:
 * GlyphBrowser005.py
 * KerningAssistant001.py
 
+## Base layout of Assistant on AccordionView
+
+https://robofont.com/documentation/reference/api/mojo/mojo-ui/#mojo.UI.AccordionView
+
 ## KerningAssistant
 
 KerningAssistant needs PIL and torch

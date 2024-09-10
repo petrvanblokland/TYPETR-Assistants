@@ -64,7 +64,7 @@ class AssistantPartContours(BaseAssistantPart):
             self.contoursSetStartPoint(g)
 
     def contoursSetAllStartPoints(self, g, c=None, event=None):
-        for f in self.getAllFonts():
+        for f in self.getAllOpenFonts():
             if g.name in f:
                 self.contoursSetStartPoint(f[g.name])
 

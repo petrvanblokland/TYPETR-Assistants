@@ -136,8 +136,8 @@ class AssistantPartAnchors(BaseAssistantPart):
             return False # Nothing changed to the glyph
 
         # Make sure to check/fix the current glyph
-        if c.w.autoAnchors.get():
-            changed |= self.checkFixAnchors(g)
+        if c.w.autoAnchors.get(): # @@@ Hack to update all glyphs
+            changed = self.checkFixAnchors(g)
 
         # Update the guessed positions, in case one of the X/Y positions depends on the current positions of an axis
         #self.updateGuessedAnchorPositions(g)
@@ -187,7 +187,11 @@ class AssistantPartAnchors(BaseAssistantPart):
     def checkFixAnchorPositions(self, g):
         """Check/fix the y-position of the anchors named in AD.CENTERING_ANCHORS, according to which guessMethod names are defined in glyph.lib. 
         It is assumed there that required anchors exist."""
-        changed = False#
+        changed = False
+        gd = self.getGlyphData(g)
+        if gd.autoFixAnchorPositions:
+            for a in g.anchors:
+                changed |= self.autoCheckFixAnchorPosition(g, a)
         #return self._fixGlyphAnchorsY(g)
         #print(f'... Check-fix anchor positions of {g.name}')
         return changed
@@ -223,23 +227,28 @@ class AssistantPartAnchors(BaseAssistantPart):
         # First check on all glyphs without components.
         for gName in glyphNames:
             g = f[gName]
-            if g.components:
-                continue
-            changed = self.checkFixAnchors(g)
-            if changed:
-                fontChanged = True
-                g.changed()
+            if g.contours and not g.components:
+                changed = self.checkFixAnchors(g)
+                if changed:
+                    fontChanged = True
 
         # Then check on glyphs with components.
         for gName in glyphNames:
             g = f[gName]
-            if not g.components:
-                continue
-            changed = self.checkFixAnchors(g)
-            if changed:
-                fontChanged = True
-                g.changed()
+            if g.components and not g.contours:
+                changed = self.checkFixAnchors(g)
+                if changed:
+                    fontChanged = True
 
+        # Then check on hybrid glyphs with components and contours.
+        for gName in glyphNames:
+            g = f[gName]
+            if g.contours and g.components:
+                changed = self.checkFixAnchors(g)
+                if changed:
+                    fontChanged = True
+        
+        g.changed()
         return fontChanged
 
     ANCHORS_LIB_KEY = 'anchorsLib'
@@ -445,7 +454,8 @@ class AssistantPartAnchors(BaseAssistantPart):
             ax, ay = self.constructAnchorTONOS_XY(g, a)
 
         elif a.name == AD._TONOS: # Try to guess _tonos position
-            ax, ay = self.constructAnchor_TONOSXY(g, a)
+            ax = ay = None # Not for now
+            #ax, ay = self.constructAnchor_TONOSXY(g, a)
 
         if ax is not None:
             ax = int(round(ax))
