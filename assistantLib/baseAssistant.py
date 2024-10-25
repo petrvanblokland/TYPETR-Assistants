@@ -260,12 +260,14 @@ class BaseAssistant:
 
     def getMasterData(self, f):
         """Answer the MasterData instance for this font, containing meta-information about the entire font."""
-        ufoName = self.path2UfoName(f.path)
-        if self.MASTER_DATA is not None and ufoName in self.MASTER_DATA:
-            return self.MASTER_DATA[ufoName]
-        # Otherwise just answer a default MasterData for f
-        print(f'### Cannot find MasterData for {ufoName}')
-        return MasterData(f)
+        if f is not None:
+            ufoName = self.path2UfoName(f.path)
+            if self.MASTER_DATA is not None and ufoName in self.MASTER_DATA:
+                return self.MASTER_DATA[ufoName]
+            # Otherwise just answer a default MasterData for f
+            print(f'### Cannot find MasterData for {ufoName}')
+            return MasterData(f)
+        return None
 
     def getGlyphData(self, g):
         """Answer the GlyphData instance for this glyph, containing meta-information. It's either derives from g.lib

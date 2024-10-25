@@ -674,6 +674,11 @@ class AssistantPartSpacer(BaseAssistantPart):
         return self.updateSpacerKerningGlyphs(g)
 
     def updateSpacerKerningGlyphs(self, g):
+
+        c = self.getController()
+        if c is None: # The window may have been closed
+            return False # Nothing happened
+
         km = self.getKerningManager(g.font)
 
         gNameLeft = km.kerningSample[max(0, km.sampleKerningIndex - 1)]
@@ -708,21 +713,23 @@ class AssistantPartSpacer(BaseAssistantPart):
         else: # kLeft > 0
             knColor = (0, 0.5, 0, 1)
 
+        showOverlays = c.w.showKerningOverlays.get()
+
         self.spacerGlyphLeft.setPath(gLeft.getRepresentation("merz.CGPath"))
         self.spacerGlyphLeft.setPosition((-gLeft.width - kLeft, 0))
-        self.spacerGlyphLeft.setVisible(True)
+        self.spacerGlyphLeft.setVisible(showOverlays)
 
         # Actual kerning value
         self.spacerGlyphKerningLeft.setText(str(kLeft))
         self.spacerGlyphKerningLeft.setPosition((self.italicX(g, kLeft/2, y1), y1))
         self.spacerGlyphKerningLeft.setFillColor(color)
-        self.spacerGlyphKerningLeft.setVisible(True)
+        self.spacerGlyphKerningLeft.setVisible(showOverlays)
 
         # KernNet suggested kerning value
         self.spacerGlyphKernNetLeft.setText(f'*{knLeft}')
         self.spacerGlyphKernNetLeft.setPosition((self.italicX(g, kLeft/2, y2), y2))
         self.spacerGlyphKernNetLeft.setFillColor(knColor)
-        self.spacerGlyphKernNetLeft.setVisible(True)
+        self.spacerGlyphKernNetLeft.setVisible(showOverlays)
 
         if kRight < 0:
             color = (1, 0, 0, 1)
@@ -740,19 +747,19 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         self.spacerGlyphRight.setPath(gRight.getRepresentation("merz.CGPath"))
         self.spacerGlyphRight.setPosition((g.width + kRight, 0))
-        self.spacerGlyphRight.setVisible(True)
+        self.spacerGlyphRight.setVisible(showOverlays)
 
         # Actual kerning value
         self.spacerGlyphKerningRight.setText(str(kRight))
         self.spacerGlyphKerningRight.setPosition((self.italicX(g, g.width + kRight/2, y1), y1))
         self.spacerGlyphKerningRight.setFillColor(color)
-        self.spacerGlyphKerningRight.setVisible(True)
+        self.spacerGlyphKerningRight.setVisible(showOverlays)
 
         # KernNet suggested kerning value
         self.spacerGlyphKernNetRight.setText(f'{knRight}*')
         self.spacerGlyphKernNetRight.setPosition((self.italicX(g, g.width + kRight/2, y2), y2))
         self.spacerGlyphKernNetRight.setFillColor(knColor)
-        self.spacerGlyphKernNetRight.setVisible(True)
+        self.spacerGlyphKernNetRight.setVisible(showOverlays)
 
         changed = self.checkFixGlyphSpacing(g)
         return changed
@@ -825,7 +832,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         c = self.getController()
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         LL = 18
-        c.w.showKerningOverlays = CheckBox((C0, y, CW, L), 'Show kerning overlays', value=True, sizeStyle='small', callback=self.updateEditor)
+        c.w.showKerningOverlays = CheckBox((C0, y, CW, L), 'Show kerning overlays', value=False, sizeStyle='small', callback=self.updateEditor)
         c.w.autoSpace = CheckBox((C1, y, CW, L), 'Auto space', value=True, sizeStyle='small', callback=self.updateEditor)
         c.w.centerGlyphButton = Button((C2, y, CW, L), f'Center width [{personalKey_eq}]', callback=self.spacerCenterGlyphCallback)
         y += L
@@ -998,7 +1005,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             'parenleft', 'parenright', 'percent', 'perthousand',  
             'seven', 'slash', 'tcaron', 'three', 'trademark', 'two', 'uhorn',
         ))
-        # Not checked for overlapping kerning combinations
+        # Not checked for overlapping kerning combinations, avoiding a huge of permutated exceptions that are hardly used
         UNCHECKED = set(('Tbar', 'Tcaron', 'Tcedilla', 'Tcommaaccent', 'Tdiagonalstroke', 'Tdotaccent', 'Tdotbelow', 'Thook', 'Tz', 
             'Vdiagonalstroke', 'Vdotbelow', 'Vtilde', 
             'AEacute', 'AEmacron', 'AY', 'Aturned', 'Au', 'Av', 

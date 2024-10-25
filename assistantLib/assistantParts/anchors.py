@@ -696,6 +696,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         """
         # Trying to guess vertical
         ay = g.font.info.capHeight # Likely to ba a negative number
+        ax = None
 
         # Try to guess horizontal
         baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g) # In case there is a base 
@@ -706,7 +707,9 @@ class AssistantPartAnchors(BaseAssistantPart):
 
         # @@@ Hack to correct tonos anchor on specific glyph shapes
         elif g.name == 'A': # Special case, can't use the left margin. Find the top-left most corner point
-            ax = self.getXBounds(g, y1=g.font.info.capHeight)[0].x * 3/4
+            bounds = self.getXBounds(g, y1=g.font.info.capHeight) # Test if there are bounds, not if tonos is not supported
+            if bounds[0] is not None:
+                ax = bounds[0].x * 3/4
         elif g.name in ('O', 'Ohm'): # Special case, can't use the left margin. Find the top-left most corner point
             ax = self.italicX(g, g.angledLeftMargin, ay) # Right aligned on margin
 

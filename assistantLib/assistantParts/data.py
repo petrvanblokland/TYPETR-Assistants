@@ -376,6 +376,9 @@ class MasterData:
         if gd is None:
             print(f'### getHeight: Unknown glyph /{gName} in glyphSet of {self.name}')
             return self.capHeight
+        # Smallcaps
+        if gName.endswith('.sc') or gd.isSc:
+            return self.scHeight
         if gd.height is None: # Nothing defined in the glyph, use the default
             if gd.isLower:
                 return self.xHeight
@@ -383,9 +386,6 @@ class MasterData:
         if isinstance(gd.height, (int, float)): 
             return gd.height
         # If there is a category defined in the glyphData for this glyph, then answer the referenced category value.
-        # Smallcaps
-        if gd.isSc:
-            return self.scHeight
         # Not defined in the GlyphSet/GlyphData for this glyph. We need to do some quessing, based on the type of glyph or its name.
         if gd.isMod or gd.isSups or gd.isNumr or gd.isSinf or gd.isDnom:
             return self.supsHeight
@@ -398,7 +398,7 @@ class MasterData:
         return int(round(self.getHeight(gName)/2))
     
     def getAnchorOvershoot(self, gName):
-        """Answer the standard overshoot of anchors (to make sure theu don't overlap with outline points)"""
+        """Answer the standard overshoot of anchors (to make sure they don't overlap with outline points)"""
         return 16 # for now
 
 MD = MasterData
