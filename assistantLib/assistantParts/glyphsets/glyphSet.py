@@ -101,9 +101,6 @@ class GlyphSet:
         if sinf:
             self._appendSuperiorInferiorDnomNumr()
 
-        elif numr: # Already included in "sinf"
-            self._appendDnomNumr()
-
         if lc: # Lowercase (oldstyle) figures
             self._appendLc()
 
