@@ -291,9 +291,13 @@ class GlyphData:
         return components
     components = property(_get_components)
 
-    def asSourceLine(self):
-        """Answer the string of self as Python code that will reproduce self as instance."""
-        out = f"""       '{self.name}': GD(name='{self.name}'"""
+    def asSourceLine(self, toDict=False):
+        """Answer the string of self as Python code that will reproduce self as instance.
+        If toDict is set, then generate the code as """
+        if toDict:
+            out = f"""GDS['{self.name}'] = GD(name='{self.name}'"""
+        else:
+            out = f"""       '{self.name}': GD(name='{self.name}'"""
         if self.uni is not None:
             if self.name == '.null': # Special case
                 out += """, uni=0x%04X, hex='%04X'""" % (self.uni, self.uni)

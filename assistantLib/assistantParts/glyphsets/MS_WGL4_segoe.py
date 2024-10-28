@@ -63,7 +63,6 @@ class MS_GlyphSet(GlyphSet):
        'spacemarker': GD(name='spacemarker', w=0),
        'narrownbspace': GD(name='narrownbspace', uni=0x202F, l='off', w=HAIR_WIDTH, hex='202F', c=' ', isLower=False),
  
-
        'uni044C.loclBGR': GD(name=' uni044C.loclBGR'),
 
         #   A

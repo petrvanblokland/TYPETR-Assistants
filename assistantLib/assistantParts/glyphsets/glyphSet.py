@@ -10,28 +10,51 @@ from copy import deepcopy
 import codecs
 import os
 
+if __name__ == '__main__': # Used for doc tests to find assistantLib
+    import os, sys
+    PATH = '/'.join(__file__.split('/')[:-4]) # Relative path to this respository that holds AssistantLib
+    if not PATH in sys.path:
+        sys.path.append(PATH)
+
 from assistantLib.assistantParts.glyphsets.glyphData import *
 from assistantLib.assistantParts.glyphsets.anchorData import AD 
 
+# Different sizes of standard glyph set
+from assistantLib.assistantParts.glyphsets.Latin_S_set import LATIN_S_SET_NAME, LATIN_S_SET, SC_NAMES, SUPS_SINF_NAMES, NUMR_DNOM_NAMES, TAB_NAMES
+from assistantLib.assistantParts.glyphsets.Latin_M_set import LATIN_M_SET_NAME, LATIN_M_SET
+from assistantLib.assistantParts.glyphsets.Latin_L_set import LATIN_L_SET_NAME, LATIN_L_SET
+from assistantLib.assistantParts.glyphsets.Latin_XL_set import LATIN_XL_SET_NAME, LATIN_XL_SET
+from assistantLib.assistantParts.glyphsets.TYPETR_full_set import LATIN_XL_SET_NAME, LATIN_XL_SET
+from assistantLib.assistantParts.glyphsets.Latin_XL_set import LATIN_XL_SET_NAME, LATIN_XL_SET
+
+STANDARD_GLYPH_SETS = {
+    LATIN_S_SET_NAME: LATIN_S_SET,
+    LATIN_M_SET_NAME: LATIN_M_SET,
+    LATIN_L_SET_NAME: LATIN_L_SET,
+    LATIN_XL_SET_NAME: LATIN_XL_SET,
+}
 class GlyphSet:
     """GlyphSet behaves like a dictionary of GlyphData instances.
     GlyphData instances are records that keep information about each individual glyph.
 
     >>> from glyphData import *
     >>> from anchorData import AD
+    >>> from Latin_S_set import LATIN_S_SET_NAME
     >>> glyphs = {}
     >>> glyphs['A'] = GD(l2r='A', uni=65, c='A', name='A', srcName='A', hex='0041', anchors=(AD.TOP_, AD.MIDDLE_, AD.BOTTOM_), comment='A Uppercase Alphabet, Latin', gid=35)
     >>> glyphs['Aacute'] = GD(l='A', r='A', uni=193, c='Á', name='Aacute', srcName='Aacute', hex='00c1', anchors=(AD.TOP_, AD.MIDDLE_, AD.BOTTOM_),  base='A', accents=['acutecmb'], comment='Á A WITH ACUTE, LATIN CAPITAL LETTER', gid=130)
-    >>> gs = GlyphSet(glyphs)
+    >>> gs = GlyphSet(glyphData=glyphs) # Simple one
     >>> gs
     <GlyphSet 2 glyphs>
+    >>> gs = GlyphSet(name=LATIN_S_SET_NAME, sc=True, sinf=True, tab=True)
     >>> gs.saveGlyphSetSource() # Save Python source of the glyphset into _export/Exported_GlyphSet.py
     >>> gd = gs['A']
     >>> gd
     <GlyphData A>
-    >>> gd.anchors
-    ('top', 'middle', 'bottom')
+    >>> sorted(gd.anchors)
+    ['bottom', 'middle', 'ogonek', 'tonos', 'top']
     >>> gs['B']
+    <GlyphData B>
     >>> gd = gs['Aacute']
     >>> gd.c
     'Á'
@@ -43,16 +66,46 @@ class GlyphSet:
     ['A', 'acutecmb']
     >>> gd.comment
     'Á A WITH ACUTE, LATIN CAPITAL LETTER'
+    >>> #sorted(gs.glyphs.keys())
+    >>> gd = gs['A.sc']
+    >>> gd.name
+    'A.sc'
+    >>> gd = gs['one.tab']
+    >>> gd.name
+    'one.tab'
+    >>> gd.w
+    'zero.tab'
+    >>> gd = gs['one.sinf']
+    >>> gd.name
+    'one.sinf'
+    >>> gd.l, gd.r
+    ('zero.sinf', 'zero.sinf')
 
     """
 
     # For doc-testing only. Redefine in inheriting classes.
     GLYPH_DATA = {} # Key is glyph name, value is GlyphData instance
 
-    def __init__(self, glyphData=None):
-        if glyphData is None:
+    def __init__(self, name=None, glyphData=None, sc=False, sinf=False, numr=False, tab=False, ):
+        """Answer the request type of glyphset. 
+        """
+        if name in STANDARD_GLYPH_SETS:
+            glyphData  = STANDARD_GLYPH_SETS[name]
+        elif glyphData is None:
             glyphData = self.GLYPH_DATA # Redefined by inheriting class
         self.glyphs = deepcopy(glyphData) # Deep copy the data, in case it's altered by the instance.
+
+        if sc:
+            self._appendSmallCaps()
+
+        if tab:
+            self._appendTab()
+
+        if sinf:
+            self._appendSinfDnomSinfNumr()
+
+        elif numr: # Already included in "sinf"
+            self._appendDnomNumr()
 
         self.unicode2GlyphName = {} # Key is unicode, value is glyph name
         self.anchor2GlyphNames = {} # Key is names of anchors. Value if a list of glyph names that implement the anchor.
@@ -85,11 +138,65 @@ class GlyphSet:
                         self.anchor2DiacriticNames[anchorName] = []
                     self.anchor2DiacriticNames[anchorName].append(gName)
 
+    def _appendSmallCaps(self):
+        """Append small caps for every glyphs in SC_NAMES."""
+        ext = '.sc'
+        for gName in SC_NAMES:
+            if gName in self.glyphs:
+                gNameSc = gName + ext
+                self.glyphs[gNameSc] = gd = deepcopy(self.glyphs[gName])
+                gd.name = gNameSc
+                gd.uni = gd.hex = gd.c = None
+                if gd.l in SC_NAMES:
+                    gd.l += ext
+                if gd.r in SC_NAMES:
+                    gd.r += ext
+                if gd.l2r in SC_NAMES:
+                    gd.l2r += ext
+                if gd.r2l in SC_NAMES:
+                    gd.r2l += ext
+                if gd.w in SC_NAMES: 
+                    gd.w += ext
+
+    def _appendTab(self):
+        tabExt = '.tab'
+        for gName in TAB_NAMES:
+            gNameSc = gName + tabExt
+            if gName in self.glyphs:
+                gNameTab = gName + tabExt
+                self.glyphs[gNameTab] = gd = deepcopy(self.glyphs[gName])
+                gd.name = gNameTab
+                gd.uni = gd.hex = gd.c = None
+                gd.w = 'zero.tab'
+
+    def _appendSinfDnomSinfNumr(self):
+        for ext in ('.sups', '.dnom', '.sinf', '.numr'):
+            for gName in SUPS_SINF_NAMES:
+                gNameExt = gName + ext
+                if gName in self.glyphs:
+                    self.glyphs[gNameExt] = gd = deepcopy(self.glyphs[gName])
+                    gd.name = gNameExt
+                    gd.uni = gd.hex = gd.c = None
+                    gd.l = gd.r = 'zero' + ext
+
+    def _appendDnomNumr(self):
+        for ext in ('.dnom', '.numr'):
+            for gName in NUMR_DNOM_NAMES:
+                gNameExt = gName + ext
+                if gName in self.glyphs:
+                    self.glyphs[gNameExt] = gd = deepcopy(self.glyphs[gName])
+                    gd.name = gNameExt
+                    gd.uni = gd.hex = gd.c = None
+                    gd.l = gd.r = 'zero' + ext
+
     def __repr__(self):
         return(f'<{self.__class__.__name__} {len(self.glyphs)} glyphs>')
 
     def __getitem__(self, gName):
         return self.glyphs.get(gName, None)
+
+    def __setitem__(self, gName, gd):
+        self.glyphs[gName] = gd
 
     def getAnchorGlyphNames(self, anchorName):
         """Answer the list of glyphs that have this anchor"""
@@ -181,7 +288,7 @@ class GlyphSet:
                 os.mkdir(dirPath)
             filePath = dirPath + fileName
 
-        print(f'... Exported glyphs {filePath}')
+        #print(f'... Exported glyphs {filePath}')
         out = codecs.open(filePath, 'w', encoding='utf8')
         out.write("""# -*- coding: UTF-8 -*-
 # ------------------------------------------------------------------------------
@@ -207,6 +314,12 @@ GLYPH_DATA = {
             out.write(gd.asSourceLine())
         out.write('}\n')
         out.close()
+
+
+if __name__ == '__main__':
+    import doctest
+    import sys
+    sys.exit(doctest.testmod()[0])
 
 
 
