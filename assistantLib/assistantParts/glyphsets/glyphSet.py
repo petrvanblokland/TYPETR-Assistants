@@ -99,15 +99,10 @@ class GlyphSet:
             self._appendTab()
 
         if sinf:
-            self._appendSinfDnomSinfNumr()
+            self._appendSuperiorInferiorDnomNumr()
 
         elif numr: # Already included in "sinf"
             self._appendDnomNumr()
-
-        if sinf or numr:
-            self.glyphs['one.sups'].uni = 0x00B9
-            self.glyphs['two.sups'].uni = 0x00B9
-            self.glyphs['three.sups'].uni = 0x00B9
 
         if lc: # Lowercase (oldstyle) figures
             self._appendLc()
@@ -147,7 +142,7 @@ class GlyphSet:
         """Append small caps for every glyphs in SC_NAMES."""
         ext = '.sc'
         for gName in SC_NAMES:
-            if gName in self.glyphs
+            if gName in self.glyphs:
                 gNameSc = gName + ext
                 if gNameSc in self.glyphs: # Only if it does not already exist
                     print(f'### _appendSmallCaps: GlyphData /{gNameSc} already exists')

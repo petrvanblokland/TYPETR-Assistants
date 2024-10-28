@@ -54,7 +54,7 @@ class AssistantPartGlyphsets(BaseAssistantPart):
             # Check if all glyphs in the defined GlyphSet do exist in the font. Otherwise, create the glyph
             if not gName in f:
                 print(f'... Make new glyph {gName} in {f.path.split("/")[-1]}')
-                #f.newGlyph(gName)
+                f.newGlyph(gName)
         for g in f:
             if g.name not in gs.glyphs:
                 print(f'### Glyph /{g.name} is in font, but not in glyphset {gs.name}')
