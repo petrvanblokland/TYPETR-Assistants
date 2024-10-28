@@ -10,22 +10,16 @@ from copy import deepcopy
 import codecs
 import os
 
-if __name__ == '__main__': # Used for doc tests to find assistantLib
-    import os, sys
-    PATH = '/'.join(__file__.split('/')[:-4]) # Relative path to this respository that holds AssistantLib
-    if not PATH in sys.path:
-        sys.path.append(PATH)
-
 from assistantLib.assistantParts.glyphsets.glyphData import *
 from assistantLib.assistantParts.glyphsets.anchorData import AD 
 
 # Different sizes of standard glyph set
-from assistantLib.assistantParts.glyphsets.Latin_S_set import LATIN_S_SET_NAME, LATIN_S_SET, SC_NAMES, SUPS_SINF_NAMES, NUMR_DNOM_NAMES, TAB_NAMES
+from assistantLib.assistantParts.glyphsets.Latin_S_set import LATIN_S_SET_NAME, LATIN_S_SET, SC_NAMES, SUPS_SINF_NAMES, NUMR_DNOM_NAMES, TAB_NAMES, LC_NAMES
 from assistantLib.assistantParts.glyphsets.Latin_M_set import LATIN_M_SET_NAME, LATIN_M_SET
 from assistantLib.assistantParts.glyphsets.Latin_L_set import LATIN_L_SET_NAME, LATIN_L_SET
 from assistantLib.assistantParts.glyphsets.Latin_XL_set import LATIN_XL_SET_NAME, LATIN_XL_SET
-from assistantLib.assistantParts.glyphsets.TYPETR_full_set import LATIN_XL_SET_NAME, LATIN_XL_SET
-from assistantLib.assistantParts.glyphsets.Latin_XL_set import LATIN_XL_SET_NAME, LATIN_XL_SET
+# Deprecated
+#from assistantLib.assistantParts.glyphsets.TYPETR_full_set import TYPETR_FULL_SET_NAME, TYPETR_FULL_SET
 
 STANDARD_GLYPH_SETS = {
     LATIN_S_SET_NAME: LATIN_S_SET,
@@ -33,6 +27,7 @@ STANDARD_GLYPH_SETS = {
     LATIN_L_SET_NAME: LATIN_L_SET,
     LATIN_XL_SET_NAME: LATIN_XL_SET,
 }
+
 class GlyphSet:
     """GlyphSet behaves like a dictionary of GlyphData instances.
     GlyphData instances are records that keep information about each individual glyph.
@@ -86,9 +81,11 @@ class GlyphSet:
     # For doc-testing only. Redefine in inheriting classes.
     GLYPH_DATA = {} # Key is glyph name, value is GlyphData instance
 
-    def __init__(self, name=None, glyphData=None, sc=False, sinf=False, numr=False, tab=False, ):
+    def __init__(self, name=None, glyphData=None, sc=False, sinf=False, tab=False, lc=False):
         """Answer the request type of glyphset. 
         """
+        self.name = name
+
         if name in STANDARD_GLYPH_SETS:
             glyphData  = STANDARD_GLYPH_SETS[name]
         elif glyphData is None:
@@ -106,6 +103,14 @@ class GlyphSet:
 
         elif numr: # Already included in "sinf"
             self._appendDnomNumr()
+
+        if sinf or numr:
+            self.glyphs['one.sups'].uni = 0x00B9
+            self.glyphs['two.sups'].uni = 0x00B9
+            self.glyphs['three.sups'].uni = 0x00B9
+
+        if lc: # Lowercase (oldstyle) figures
+            self._appendLc()
 
         self.unicode2GlyphName = {} # Key is unicode, value is glyph name
         self.anchor2GlyphNames = {} # Key is names of anchors. Value if a list of glyph names that implement the anchor.
@@ -142,21 +147,24 @@ class GlyphSet:
         """Append small caps for every glyphs in SC_NAMES."""
         ext = '.sc'
         for gName in SC_NAMES:
-            if gName in self.glyphs:
+            if gName in self.glyphs
                 gNameSc = gName + ext
-                self.glyphs[gNameSc] = gd = deepcopy(self.glyphs[gName])
-                gd.name = gNameSc
-                gd.uni = gd.hex = gd.c = None
-                if gd.l in SC_NAMES:
-                    gd.l += ext
-                if gd.r in SC_NAMES:
-                    gd.r += ext
-                if gd.l2r in SC_NAMES:
-                    gd.l2r += ext
-                if gd.r2l in SC_NAMES:
-                    gd.r2l += ext
-                if gd.w in SC_NAMES: 
-                    gd.w += ext
+                if gNameSc in self.glyphs: # Only if it does not already exist
+                    print(f'### _appendSmallCaps: GlyphData /{gNameSc} already exists')
+                else:
+                    self.glyphs[gNameSc] = gd = deepcopy(self.glyphs[gName])
+                    gd.name = gNameSc
+                    gd.uni = gd.hex = gd.c = None
+                    if gd.l in SC_NAMES:
+                        gd.l += ext
+                    if gd.r in SC_NAMES:
+                        gd.r += ext
+                    if gd.l2r in SC_NAMES:
+                        gd.l2r += ext
+                    if gd.r2l in SC_NAMES:
+                        gd.r2l += ext
+                    if gd.w in SC_NAMES: 
+                        gd.w += ext
 
     def _appendTab(self):
         tabExt = '.tab'
@@ -164,30 +172,39 @@ class GlyphSet:
             gNameSc = gName + tabExt
             if gName in self.glyphs:
                 gNameTab = gName + tabExt
-                self.glyphs[gNameTab] = gd = deepcopy(self.glyphs[gName])
-                gd.name = gNameTab
-                gd.uni = gd.hex = gd.c = None
-                gd.w = 'zero.tab'
+                if gNameTab in self.glyphs: # Only if it does not exist already
+                    print(f'### _appendTab: GlyphData /{gNameTab} already exists')
+                else:
+                    self.glyphs[gNameTab] = gd = deepcopy(self.glyphs[gName])
+                    gd.name = gNameTab
+                    gd.uni = gd.hex = gd.c = None
+                    gd.w = 'zero.tab'
 
-    def _appendSinfDnomSinfNumr(self):
-        for ext in ('.sups', '.dnom', '.sinf', '.numr'):
+    def _appendSuperiorInferiorDnomNumr(self):
+        for ext in ('superior', 'inferior', '.dnom', '.numr'):
             for gName in SUPS_SINF_NAMES:
-                gNameExt = gName + ext
                 if gName in self.glyphs:
-                    self.glyphs[gNameExt] = gd = deepcopy(self.glyphs[gName])
-                    gd.name = gNameExt
-                    gd.uni = gd.hex = gd.c = None
-                    gd.l = gd.r = 'zero' + ext
+                    gNameExt = gName + ext
+                    if gNameExt in self.glyphs: # Only if it does not exist already
+                        print(f'### _appendSuperiorInferiorDnomNumr: GlyphData /{gNameExt} already exists')
+                    else:
+                        self.glyphs[gNameExt] = gd = deepcopy(self.glyphs[gName])
+                        gd.name = gNameExt
+                        gd.uni = gd.hex = gd.c = None
+                        gd.l = gd.r = 'zero' + ext
 
-    def _appendDnomNumr(self):
-        for ext in ('.dnom', '.numr'):
-            for gName in NUMR_DNOM_NAMES:
-                gNameExt = gName + ext
-                if gName in self.glyphs:
+    def _appendLc(self):
+        tabExt = '.lc'
+        for gName in LC_NAMES:
+            if gName in self.glyphs:
+                gNameExt = gName + tabExt
+                if gNameExt in self.glyphs: # Only if it does not exist already
+                    print(f'### _appendLc: GlyphData /{gNameExt} already exists')
+                else:
                     self.glyphs[gNameExt] = gd = deepcopy(self.glyphs[gName])
                     gd.name = gNameExt
                     gd.uni = gd.hex = gd.c = None
-                    gd.l = gd.r = 'zero' + ext
+                    gd.l = gd.r = gName
 
     def __repr__(self):
         return(f'<{self.__class__.__name__} {len(self.glyphs)} glyphs>')
@@ -197,6 +214,15 @@ class GlyphSet:
 
     def __setitem__(self, gName, gd):
         self.glyphs[gName] = gd
+
+    def keys(self):
+        return self.glyphs.keys()
+
+    def values(self):
+        return self.glyphs.values()
+
+    def items(self):
+        return self.glyphs.items()
 
     def getAnchorGlyphNames(self, anchorName):
         """Answer the list of glyphs that have this anchor"""

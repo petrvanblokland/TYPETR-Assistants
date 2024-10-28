@@ -20,6 +20,11 @@ for path in PATHS:
 from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart
 from assistantLib.assistantParts.data import * # Import anchors names
 
+from assistantLib.assistantParts.glyphsets.Latin_S_set import LATIN_S_SET_NAME, LATIN_S_SET
+from assistantLib.assistantParts.glyphsets.Latin_M_set import LATIN_M_SET_NAME, LATIN_M_SET
+from assistantLib.assistantParts.glyphsets.Latin_L_set import LATIN_L_SET_NAME, LATIN_L_SET
+from assistantLib.assistantParts.glyphsets.Latin_XL_set import LATIN_XL_SET_NAME, LATIN_XL_SET
+
 class AssistantPartGlyphsets(BaseAssistantPart):
     """The Glyphsets assistant part handles all the choice of available glyph sets and commands that bring the current font up to date.
     """
@@ -43,5 +48,17 @@ class AssistantPartGlyphsets(BaseAssistantPart):
     def makeGlyphsetsCallback(self, sender):
         """Make the missing glyphs"""
         f = self.getCurrentFont()
-        
+        md = self.getMasterData(f)
+        gs = md.glyphSet
+        for gName, gd in gs.items():
+            # Check if all glyphs in the defined GlyphSet do exist in the font. Otherwise, create the glyph
+            if not gName in f:
+                print(f'... Make new glyph {gName} in {f.path.split("/")[-1]}')
+                #f.newGlyph(gName)
+        for g in f:
+            if g.name not in gs.glyphs:
+                print(f'### Glyph /{g.name} is in font, but not in glyphset {gs.name}')
+        print(gs)
+
+
 

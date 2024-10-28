@@ -13,8 +13,6 @@ from assistantLib.assistantParts.glyphsets.glyphData import GD
 from assistantLib.assistantParts.glyphsets.anchorData import AD
 from assistantLib.assistantParts.glyphsets.glyphSet import GlyphSet
 
-TYPETR_FILL_SET = 'TYPETR Full set'
-
 class TYPETR_GlyphSet(GlyphSet):
     """GlyphSet for the default TYPETR families
 
