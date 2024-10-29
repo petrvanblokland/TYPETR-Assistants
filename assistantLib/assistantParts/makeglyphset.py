@@ -63,6 +63,8 @@ class AssistantPartGlyphsets(BaseAssistantPart):
             for g in f:
                 if g.name not in gs.glyphs:
                     print(f'### Glyph /{g.name} is in font, but not in glyphset {gs.name}')
+                    
+
             #print(gs)
 
 

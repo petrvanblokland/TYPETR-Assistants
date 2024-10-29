@@ -426,8 +426,10 @@ GDS['ezh'] = GD(name='ezh', uni=0x0292, hex='0292', c='ʒ', l='three', r='three'
 GDS['ezhcaron'] = GD(name='ezhcaron', uni=0x01EF, hex='01EF', c='ǯ', base='ezh', accents=['caroncmb'], srcName='uni01EF', isLower=True, anchors=['top'], gid=432)
 GDS['ezhreversed'] = GD(name='ezhreversed', uni=0x01B9, hex='01B9', c='ƹ', l='o', l2r='three', srcName='uni01B9', isLower=True, gid=378)
 
-GDS['esuperior'] = GD(name='esuperior', uni=0x1D49, hex='1D49', c='ᵉ', l='omod', r='omod', srcName='uni1D49', isLower=False, isMod=True, gid=909)
-GDS['einferior'] = GD(name='einferior', uni=0x2091, hex='2091', c='ₑ', l='emod', r='emod', base='emod', isLower=True)
+GDS['esuperior'] = GD(name='esuperior', uni=0x1D49, hex='1D49', c='ᵉ', l='osuperior', r='osuperior', srcName='uni1D49', isLower=False, isMod=True, gid=909)
+GDS['einferior'] = GD(name='einferior', uni=0x2091, hex='2091', c='ₑ', l='esuperior', r='esuperior', base='emod', isLower=True)
+GDS['egravesuperior'] = GD(name='egravesuperior', l='esuperior', r='esuperior', src='esuperior', isLower=False, isMod=True, gid=909)
+GDS['egraveinferior'] = GD(name='egraveinferior', l='egravesuperior', r='egravesuperior', base='egravesuperior', isLower=True)
 
 # f
 
@@ -436,6 +438,8 @@ GDS['fdotaccent'] = GD(name='fdotaccent', uni=0x1E1F, hex='1E1F', c='ḟ', right
 GDS['florin'] = GD(name='florin', uni=0x0192, hex='0192', c='ƒ', w='zero.tnum', gid=339, comment='ƒ script f, latin small letter')
 GDS['fourthtonechinese'] = GD(name='fourthtonechinese', uni=0x02CB, hex='02CB', c='ˋ', base='gravecmb', anchors=['top'])
 GDS['firsttonechinese'] = GD(name='firsttonechinese', uni=0x02C9, hex='02C9', w=0, c='ˉ', isLower=True, anchors=['_top', 'top'], gid=1643)
+       'fraction': GD(name='fraction', uni=0x2044, hex='2044', c='⁄', isLower=False, gid=1429, comment='⁄ solidus'),
+
 
 # g
 

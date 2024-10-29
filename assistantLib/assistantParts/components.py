@@ -49,8 +49,9 @@ class AssistantPartComponents(BaseAssistantPart):
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
 
         c = self.getController()
-        c.w.checkFixAllMasterComponents = CheckBox((C1, y, CW, L), f'Fix all masters [{personalKey_C}]', value=True, sizeStyle='small')
-        c.w.autoFixComponentPositions = CheckBox((C2, y, CW, L), 'Auto fix components', value=True, sizeStyle='small')
+        c.w.checkFixAllMasterComponents = CheckBox((C0, y, CW, L), f'Fix all masters [{personalKey_C}]', value=True, sizeStyle='small')
+        c.w.autoFixComponentPositions = CheckBox((C1, y, CW, L), 'Auto fix components', value=True, sizeStyle='small')
+        c.w.autoFixComponentButton = Button((C2, y, CW, L), 'Auto fix all', callback=self.autoFixComponentsButtonCallback)
         y += L + L/5
         c.w.componentsEndLine = HorizontalLine((self.M, y, -self.M, 1))
         c.w.componentsEndLine2 = HorizontalLine((self.M, y, -self.M, 1)) # Double for slightly darker line
@@ -101,6 +102,11 @@ class AssistantPartComponents(BaseAssistantPart):
                 g.changed()
         return fontChanged
 
+    def autoFixComponentsButtonCallback(self, sender):
+        f = self.getCurrentFont()
+        if f is not None:
+            self.componentFixAll(f)
+
     def checkFixComponentsExist(self, g):
         """Check the existence of gd.base and gd.accent component. Create them when necessary.
         And delete components that are not defined in the GlyphData.
@@ -131,6 +137,7 @@ class AssistantPartComponents(BaseAssistantPart):
             print(f'... Clear {len(g.components)} component(s) of /{g.name}')
             g.clearComponents()
             changed = True
+        
         # 2
         elif not g.components and gd.components: # Create missing components
             for componentName in gd.components:
@@ -138,6 +145,7 @@ class AssistantPartComponents(BaseAssistantPart):
                 print(f'... Append missing component /{componentName} to /{g.name}')
                 g.appendComponent(componentName)
             changed = True
+        
         # 3
         elif len(g.components) > len(gd.components): # More components than necessary
             # g.component cannot be set,  so we following the protocol of deleting selected components.
@@ -153,19 +161,27 @@ class AssistantPartComponents(BaseAssistantPart):
                 print(f'... Remove {obsoleteComponents} obsolete component(s) in /{g.name}')
 
             g.removeSelection(removePoints=False, removeAnchors=False, removeImages=False)
+        
         # 4
         elif len(g.components) < len(gd.components): # Fewer components than necessary
             for componentName in gd.components[len(g.components):]:
                 print(f'... Append component /{componentName} to /{g.name}')
                 g.appendComponent(componentName)
             changed = True
+        
         # 5 # Recheck all of the above the for the right baseGlyph reference
         if len(g.components) == len(gd.components): # May still not be eqaul, due to recursive update from lines above.
             for cIndex, component in enumerate(g.components):
+                print('dfsdfsfdsdsffds', g.name)
+                if component.baseGlyph is None:
+                    component.baseGlyph = 'A'
+                    print('### Fixing None component reference in', g.name)
+                    changed = True
                 if component.baseGlyph != gd.components[cIndex]:
                     print(f'... Rename component {cIndex} /{component.baseGlyph} to /{gd.components[cIndex]} in /{g.name}')
                     component.baseGlyph = gd.components[cIndex]
                     changed = True
+        
         # 6 All done
         return changed
 
@@ -179,8 +195,9 @@ class AssistantPartComponents(BaseAssistantPart):
         gd = md.glyphSet.get(g.name)
         # Check if autofixing
         dIndex = 0 # Index into showing diacritics Merz layers
-        assert gd is not None, (f'### Glyph data for /{g.name} not found') # Otherwise the glyph data does not exist.
-        if not g.components: # This must be a base glyph, check for drawing the diacritics cloud of glyphs that have g as base.
+        if gd is None: 
+            print(f'### Glyph data for /{g.name} not found') # Otherwise the glyph data does not exist.
+        elif not g.components: # This must be a base glyph, check for drawing the diacritics cloud of glyphs that have g as base.
             """
             # Here stuff goes to checkFix the position of all glyphs that have the current glyph as component
             for a in g.anchors:
@@ -204,32 +221,34 @@ class AssistantPartComponents(BaseAssistantPart):
 
         elif gd.autoFixComponentPositions and c.w.autoFixComponentPositions.get():
             # Otherwise the components should match their positions with the corresponding anchors
-            assert gd.base, (f'### Missing base in glyphData of /{g.name}. If there are components, there always must be a base glyph defined.')
-            baseG = g.font[gd.base]
-            baseAnchors = self.getAnchorsDict(baseG) # Collect the anchors that are used in the base glyph
-            found = False
-            tx = ty = 0 # Just to be sure, although there always should be a base glyph defined to get the base ofsset from.
-            for component in g.components:
-                if component.baseGlyph == gd.base: # Skip the base component, after getting its offset
-                    tx, ty = component.transformation[-2:]
-                    continue
-                componentGlyph = g.font[component.baseGlyph]
-                for a in componentGlyph.anchors:
-                    if a.name in AD.DIACRITICS_ANCHORS:
-                        baseAnchor = self.getCorrespondingAnchor(baseG, a.name) # Find the corresponding anchor in the base glyph _TOP --> TOP_ 
-                        if baseAnchor is not None: # Did we find a matching pair, then move the component accordingly
-                            dx = baseAnchor.x - a.x + tx # Add transformation of the base glyph
-                            dy = baseAnchor.y - a.y + ty
-                            t = list(component.transformation)
-                            if abs(t[-2] - dx) > 1 or abs(t[-1] - dy) > 1: # Is moving needed?
-                                print(f'... Move component /{component.baseGlyph} in /{g.name} to ({dx}, {dy})')
-                                t[-2] = dx
-                                t[-1] = dy 
-                                component.transformation = t
-                                found = changed = True
-                                break
-                    if found:
-                        break
+            if gd.base is None or gd.base not in g.font.keys():
+                print(f'### Missing base in glyphData of /{g.name}. If there are components, there always must be a base glyph defined.')
+            else:
+                baseG = g.font[gd.base]
+                baseAnchors = self.getAnchorsDict(baseG) # Collect the anchors that are used in the base glyph
+                found = False
+                tx = ty = 0 # Just to be sure, although there always should be a base glyph defined to get the base ofsset from.
+                for component in g.components:
+                    if component.baseGlyph == gd.base: # Skip the base component, after getting its offset
+                        tx, ty = component.transformation[-2:]
+                        continue
+                    componentGlyph = g.font[component.baseGlyph]
+                    for a in componentGlyph.anchors:
+                        if a.name in AD.DIACRITICS_ANCHORS:
+                            baseAnchor = self.getCorrespondingAnchor(baseG, a.name) # Find the corresponding anchor in the base glyph _TOP --> TOP_ 
+                            if baseAnchor is not None: # Did we find a matching pair, then move the component accordingly
+                                dx = baseAnchor.x - a.x + tx # Add transformation of the base glyph
+                                dy = baseAnchor.y - a.y + ty
+                                t = list(component.transformation)
+                                if abs(t[-2] - dx) > 1 or abs(t[-1] - dy) > 1: # Is moving needed?
+                                    print(f'... Move component /{component.baseGlyph} in /{g.name} to ({dx}, {dy})')
+                                    t[-2] = dx
+                                    t[-1] = dy 
+                                    component.transformation = t
+                                    found = changed = True
+                                    break
+                        if found:
+                            break
 
         return changed
 
