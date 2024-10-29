@@ -37,7 +37,8 @@ class AssistantPartGlyphsets(BaseAssistantPart):
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         LL = 18
  
-        c.w.makeGlyphset = Button((C2, y, CW, L), f'Make glyphset', callback=self.makeGlyphsetsCallback)
+        c.w.makeGlyphSetAllFonts = CheckBox((C1, y, CW, L), f'All fonts', value=False)
+        c.w.makeGlyphset = Button((C2, y, CW, L), f'Fix glyphset', callback=self.fixGlyphsetsCallback)
         y += L + L/5
         c.w.makeGlyphsetEndLine = HorizontalLine((self.M, y, -self.M, 1))
         c.w.makeGlyphsetEndLine2 = HorizontalLine((self.M, y, -self.M, 1))
@@ -45,20 +46,24 @@ class AssistantPartGlyphsets(BaseAssistantPart):
 
         return y
 
-    def makeGlyphsetsCallback(self, sender):
+    def fixGlyphsetsCallback(self, sender):
         """Make the missing glyphs"""
-        f = self.getCurrentFont()
-        md = self.getMasterData(f)
-        gs = md.glyphSet
-        for gName, gd in gs.items():
-            # Check if all glyphs in the defined GlyphSet do exist in the font. Otherwise, create the glyph
-            if not gName in f:
-                print(f'... Make new glyph {gName} in {f.path.split("/")[-1]}')
-                f.newGlyph(gName)
-        for g in f:
-            if g.name not in gs.glyphs:
-                print(f'### Glyph /{g.name} is in font, but not in glyphset {gs.name}')
-        print(gs)
+        if self.w.makeGlyphSetAllFonts.get():
+            fonts = self.getAllOpenFonts()
+        else:
+            fonts = [self.getCurrentFont()]
+        for f in fonts:
+            md = self.getMasterData(f)
+            gs = md.glyphSet
+            for gName, gd in gs.items():
+                # Check if all glyphs in the defined GlyphSet do exist in the font. Otherwise, create the glyph
+                if not gName in f:
+                    print(f'... Make new glyph {gName} in {f.path.split("/")[-1]}')
+                    f.newGlyph(gName)
+            for g in f:
+                if g.name not in gs.glyphs:
+                    print(f'### Glyph /{g.name} is in font, but not in glyphset {gs.name}')
+            #print(gs)
 
 
 
