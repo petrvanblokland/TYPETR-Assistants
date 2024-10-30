@@ -141,9 +141,11 @@ class AssistantPartComponents(BaseAssistantPart):
         # 2
         elif not g.components and gd.components: # Create missing components
             for componentName in gd.components:
-                assert componentName != g.name, (f'### Component can not refer to itself {componentName}')
-                print(f'... Append missing component /{componentName} to /{g.name}')
-                g.appendComponent(componentName)
+                if componentName == g.name:
+                    print(f'### Component can not refer to itself {componentName}')
+                else:
+                    print(f'... Append missing component /{componentName} to /{g.name}')
+                    g.appendComponent(componentName)
             changed = True
         
         # 3
@@ -165,16 +167,18 @@ class AssistantPartComponents(BaseAssistantPart):
         # 4
         elif len(g.components) < len(gd.components): # Fewer components than necessary
             for componentName in gd.components[len(g.components):]:
-                print(f'... Append component /{componentName} to /{g.name}')
-                g.appendComponent(componentName)
+                if componentName == g.name:
+                    print(f'### Glyph {g.name} cannot contain a component with the same name')
+                else:
+                    print(f'... Append component /{componentName} to /{g.name}')
+                    g.appendComponent(componentName)
             changed = True
         
         # 5 # Recheck all of the above the for the right baseGlyph reference
         if len(g.components) == len(gd.components): # May still not be eqaul, due to recursive update from lines above.
             for cIndex, component in enumerate(g.components):
-                print('dfsdfsfdsdsffds', g.name)
                 if component.baseGlyph is None:
-                    component.baseGlyph = 'A'
+                    component.baseGlyph = '.notdef'
                     print('### Fixing None component reference in', g.name)
                     changed = True
                 if component.baseGlyph != gd.components[cIndex]:

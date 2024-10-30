@@ -833,10 +833,13 @@ class KerningManager:
         if gd.w is not None: # Just copy the width
             if isinstance(gd.w, (int, float)):
                 w = gd.w
-            else:
-                assert gd.w in g.font, (f'### "gd.w={gd.w}" reference glyph for /{g.name} does not exist.') # Using "md.w" it should exist
+                changed |= self.fixGlyphWidth(g, w, f'(w={w})')
+            elif gd.w in g.font:
                 w = g.font[gd.w].width
-            changed |= self.fixGlyphWidth(g, w, f'(w={gd.w})')
+                changed |= self.fixGlyphWidth(g, w, f'(w={w})')
+            else:
+                print(f'### "gd.w={gd.w}" reference glyph for /{g.name} does not exist.') # Using "md.w" it should exist
+
 
         elif gd.r is not None: # Plain angled right margin
             if gd.r == 'off': # No automatic spacing, do manually

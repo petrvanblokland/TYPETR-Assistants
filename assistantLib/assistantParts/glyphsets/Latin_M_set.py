@@ -139,7 +139,7 @@ GDS['Ocircumflexgrave'] = GD(name='Ocircumflexgrave', uni=0x1ED2, hex='1ED2', c=
 GDS['Ocircumflexhookabove'] = GD(name='Ocircumflexhookabove', uni=0x1ED4, hex='1ED4', c='Ổ', l='O', w='O', base='O', accents=['hookabovecmb'], anchors=['bottom', 'middle', 'top'], gid=1135, comment='Ổ LATIN CAPITAL LETTER O WITH CIRCUMFLEX AND HOOK ABOVE')
 GDS['Ocircumflextilde'] = GD(name='Ocircumflextilde', uni=0x1ED6, hex='1ED6', c='Ỗ', l='O', r='O', base='O', accents=['tildecmb'], anchors=['bottom', 'middle', 'top'], gid=1137, comment='Ỗ LATIN CAPITAL LETTER O WITH CIRCUMFLEX AND TILDE')
 GDS['Ohookabove'] = GD(name='Ohookabove', uni=0x1ECE, hex='1ECE', c='Ỏ', base='O', accents=['hookabovecmb'], anchors=['bottom', 'middle', 'top'], gid=1129, comment='Ỏ LATIN CAPITAL LETTER O WITH HOOK ABOVE')
-GDS['Ohorn'] = GD(name='Ohorn', uni=0x01A0, hex='01A0', c='Ơ', l='O', w='O', anchors=['bottom', 'middle', 'top'], gid=353, comment='Ơ')
+GDS['Ohorn'] = GD(name='Ohorn', uni=0x01A0, hex='01A0', c='Ơ', l='O', w='O', base='O', accents=['horncmb'], anchors=['bottom', 'middle', 'top'], gid=353, comment='Ơ')
 GDS['Ohornacute'] = GD(name='Ohornacute', uni=0x1EDA, hex='1EDA', c='Ớ', l='O', base='Ohorn', accents=['acutecmb'], anchors=['bottom', 'middle', 'top'], gid=1141, comment='Ớ LATIN CAPITAL LETTER O WITH HORN AND ACUTE')
 GDS['Ohorndotbelow'] = GD(name='Ohorndotbelow', uni=0x1EE2, hex='1EE2', c='Ợ', l='O', base='Ohorn', accents=['dotbelowcmb'], anchors=['bottom', 'middle', 'top'], gid=1149, comment='Ợ LATIN CAPITAL LETTER O WITH HORN AND DOT BELOW')
 GDS['Ohorngrave'] = GD(name='Ohorngrave', uni=0x1EDC, hex='1EDC', c='Ờ', l='O', base='Ohorn', accents=['gravecmb'], anchors=['bottom', 'middle', 'top'], gid=1143, comment='Ờ LATIN CAPITAL LETTER O WITH HORN AND GRAVE')
@@ -165,7 +165,7 @@ GDS['Udieresiscaron'] = GD(name='Udieresiscaron', uni=0x01D9, hex='01D9', c='Ǚ'
 GDS['Udieresisgrave'] = GD(name='Udieresisgrave', uni=0x01DB, hex='01DB', c='Ǜ', l='U', r='U', base='Udieresis', accents=['gravecmb'], srcName='uni01DB', anchors=['bottom', 'middle', 'top'], gid=412)
 GDS['Udieresismacron'] = GD(name='Udieresismacron', uni=0x01D5, hex='01D5', c='Ǖ', l='U', r='U', base='Udieresis', accents=['macroncmb'], srcName='uni01D5', anchors=['bottom', 'middle', 'top'], gid=406)
 GDS['Uhookabove'] = GD(name='Uhookabove', uni=0x1EE6, hex='1EE6', c='Ủ', l='U', r='U', base='U', accents=['hookabovecmb'], anchors=['bottom', 'middle', 'top'], gid=1153, comment='Ủ LATIN CAPITAL LETTER U WITH HOOK ABOVE')
-GDS['Uhorn'] = GD(name='Uhorn', uni=0x01AF, hex='01AF', c='Ư', l='U', rightMin='minRight', anchors=['bottom', 'top'], gid=368, comment='Ư LATIN CAPITAL LETTER U WITH HORN')
+GDS['Uhorn'] = GD(name='Uhorn', uni=0x01AF, hex='01AF', c='Ư', l='U', rightMin='minRight', base='U', accents=['horncmb'], anchors=['bottom', 'top'], gid=368, comment='Ư LATIN CAPITAL LETTER U WITH HORN')
 GDS['Uhornacute'] = GD(name='Uhornacute', uni=0x1EE8, hex='1EE8', c='Ứ', l='U', r='Uhorn', rightMin='minRight', base='Uhorn', accents=['acutecmb'], anchors=['bottom', 'top'], gid=1155, comment='Ứ LATIN CAPITAL LETTER U WITH HORN AND ACUTE')
 GDS['Uhorndotbelow'] = GD(name='Uhorndotbelow', uni=0x1EF0, hex='1EF0', c='Ự', l='U', r='Uhorn', rightMin='minRight', base='Uhorn', accents=['dotbelowcmb'], anchors=['bottom', 'top'], gid=1163, comment='Ự LATIN CAPITAL LETTER U WITH HORN AND DOT BELOW')
 GDS['Uhorngrave'] = GD(name='Uhorngrave', uni=0x1EEA, hex='1EEA', c='Ừ', l='U', r='Uhorn', rightMin='minRight', base='Uhorn', accents=['gravecmb'], anchors=['bottom', 'top'], gid=1157, comment='Ừ LATIN CAPITAL LETTER U WITH HORN AND GRAVE')
@@ -225,7 +225,6 @@ GDS['hbrevebelow'] = GD(name='hbrevebelow', uni=0x1E2B, hex='1E2B', c='ḫ', bas
 GDS['hcedilla'] = GD(name='hcedilla', uni=0x1E29, hex='1E29', c='ḩ', base='h', accents=['cedillacmb'], srcName='uni1E29', isLower=True, fixAccents=False, anchors=['bottom', 'middle', 'top'], gid=964)
 GDS['hlinebelow'] = GD(name='hlinebelow', uni=0x1E96, hex='1E96', c='ẖ', base='h', accents=['macronbelowcmb'], srcName='uni1E96', isLower=True, anchors=['bottom', 'middle', 'top'], gid=1073)
 GDS['hookabovecmb'] = GD(name='hookabovecmb', uni=0x0309, hex='0309', c='̉', w='0', isLower=True, anchors=['_top', 'top'], gid=495, comment='̉ HOOK ABOVE, COMBINING')
-GDS['horncmb'] = GD(name='horncmb', uni=0x031B, hex='031B', c='̛', w='0', isLower=True, anchors=['_top', 'top'], gid=501)
 
 # i
 
@@ -260,7 +259,7 @@ GDS['ocircumflexgrave'] = GD(name='ocircumflexgrave', uni=0x1ED3, hex='1ED3', c=
 GDS['ocircumflexhookabove'] = GD(name='ocircumflexhookabove', uni=0x1ED5, hex='1ED5', c='ổ', w='o', bl='o', base='o', accents=['ocircumflexhookabove'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1136, comment='ổ LATIN SMALL LETTER O WITH CIRCUMFLEX AND HOOK ABOVE')
 GDS['ocircumflextilde'] = GD(name='ocircumflextilde', uni=0x1ED7, hex='1ED7', c='ỗ', w='o', bl='o', base='o', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1138, comment='ỗ LATIN SMALL LETTER O WITH CIRCUMFLEX AND TILDE')
 GDS['ohookabove'] = GD(name='ohookabove', uni=0x1ECF, hex='1ECF', c='ỏ', l='o', r='o', base='o', accents=['hookabovecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1130, comment='ỏ O WITH HOOK ABOVE, LATIN SMALL LETTER')
-GDS['ohorn'] = GD(name='ohorn', uni=0x01A1, hex='01A1', c='ơ', l='o', r='o', rightMin='minRight', isLower=True, anchors=['bottom', 'top'], gid=354, comment='ơ O WITH HORN, LATIN SMALL LETTER')
+GDS['ohorn'] = GD(name='ohorn', uni=0x01A1, hex='01A1', c='ơ', l='o', r='o', rightMin='minRight', isLower=True, base='o', accents=['horncmb'], anchors=['bottom', 'top'], gid=354, comment='ơ O WITH HORN, LATIN SMALL LETTER')
 GDS['ohornacute'] = GD(name='ohornacute', uni=0x1EDB, hex='1EDB', c='ớ', rightMin='minRight', base='ohorn', accents=['acutecmb'], isLower=True, anchors=['bottom', 'top'], gid=1142, comment='ớ LATIN SMALL LETTER O WITH HORN AND ACUTE')
 GDS['ohorndotbelow'] = GD(name='ohorndotbelow', uni=0x1EE3, hex='1EE3', c='ợ', rightMin='minRight', base='ohorn', accents=['dotbelowcmb'], isLower=True, anchors=['bottom', 'top'], gid=1150, comment='ợ LATIN SMALL LETTER O WITH HORN AND DOT BELOW')
 GDS['ohorngrave'] = GD(name='ohorngrave', uni=0x1EDD, hex='1EDD', c='ờ', rightMin='minRight', base='ohorn', accents=['gravecmb'], isLower=True, anchors=['bottom', 'top'], gid=1144, comment='ờ LATIN SMALL LETTER O WITH HORN AND GRAVE')
@@ -288,7 +287,7 @@ GDS['udieresiscaron'] = GD(name='udieresiscaron', uni=0x01DA, hex='01DA', c='ǚ'
 GDS['udieresisgrave'] = GD(name='udieresisgrave', uni=0x01DC, hex='01DC', c='ǜ', l='u', r='u', base='u', accents=['dieresisgravecmb'], srcName='uni01DC', isLower=True, anchors=['bottom', 'middle', 'top'], gid=413)
 GDS['udieresismacron'] = GD(name='udieresismacron', uni=0x01D6, hex='01D6', c='ǖ', l='u', r='u', base='u', accents=['dieresismacroncmb'], srcName='uni01D6', isLower=True, anchors=['bottom', 'middle', 'top'], gid=407)
 GDS['uhookabove'] = GD(name='uhookabove', uni=0x1EE7, hex='1EE7', c='ủ', l='u', r='u', base='u', accents=['hookabovecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1154, comment='ủ U WITH HOOK ABOVE, LATIN SMALL LETTER')
-GDS['uhorn'] = GD(name='uhorn', uni=0x01B0, hex='01B0', c='ư', l='u', rightMin='minRight', isLower=True, anchors=['bottom', 'top'], gid=369, comment='ư U WITH HORN, LATIN SMALL LETTER')
+GDS['uhorn'] = GD(name='uhorn', uni=0x01B0, hex='01B0', c='ư', l='u', rightMin='minRight', isLower=True, base='u', accents=['horncmb'], anchors=['bottom', 'top'], gid=369, comment='ư U WITH HORN, LATIN SMALL LETTER')
 GDS['uhornacute'] = GD(name='uhornacute', uni=0x1EE9, hex='1EE9', c='ứ', l='uhorn', r='uhorn', rightMin='minRight', base='uhorn', accents=['acutecmb'], isLower=True, anchors=['bottom', 'top'], gid=1156, comment='ứ LATIN SMALL LETTER U WITH HORN AND ACUTE')
 GDS['uhorndotbelow'] = GD(name='uhorndotbelow', uni=0x1EF1, hex='1EF1', c='ự', l='uhorn', r='uhorn', rightMin='minRight', base='uhorn', accents=['dotbelowcmb'], isLower=True, anchors=['bottom', 'top'], gid=1164, comment='ự LATIN SMALL LETTER U WITH HORN AND DOT BELOW')
 GDS['uhorngrave'] = GD(name='uhorngrave', uni=0x1EEB, hex='1EEB', c='ừ', l='uhorn', r='uhorn', rightMin='minRight', base='uhorn', accents=['gravecmb'], isLower=True, anchors=['bottom', 'top'], gid=1158, comment='ừ LATIN SMALL LETTER U WITH HORN AND GRAVE')
@@ -321,6 +320,7 @@ GDS['dieresisacutecmb'] = GD(name='dieresisacutecmb', w=0, anchors=['top', '_top
 GDS['dieresiscaroncmb'] = GD(name='dieresiscaroncmb', w=0, anchors=['top', '_top'])
 GDS['dieresisgravecmb'] = GD(name='dieresisgravecmb', w=0, anchors=['top', '_top'])
 GDS['dieresismacroncmb'] = GD(name='dieresismacroncmb', w=0, base='dieresiscmb', accents=['macroncmb'], anchors=['top', '_top'])
+GDS['horncmb'] = GD(name='horncmb', uni=0x031B, hex='031B', c='̛', w=0, isLower=True, anchors=['top', '_top'])
 
 
 

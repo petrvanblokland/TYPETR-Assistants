@@ -189,11 +189,12 @@ class AssistantPartAnchors(BaseAssistantPart):
         It is assumed there that required anchors exist."""
         changed = False
         gd = self.getGlyphData(g)
-        if gd.autoFixAnchorPositions:
-            for a in g.anchors:
-                changed |= self.autoCheckFixAnchorPosition(g, a)
-        #return self._fixGlyphAnchorsY(g)
-        #print(f'... Check-fix anchor positions of {g.name}')
+        if gd is not None:
+            if gd.autoFixAnchorPositions:
+                for a in g.anchors:
+                    changed |= self.autoCheckFixAnchorPosition(g, a)
+            #return self._fixGlyphAnchorsY(g)
+            #print(f'... Check-fix anchor positions of {g.name}')
         return changed
 
     def _setAnchorXY(self, g, a, x, y, italicize=True):
@@ -377,30 +378,31 @@ class AssistantPartAnchors(BaseAssistantPart):
         """Check/fix the required anchors if they don't all exist or if there are too many."""
         changed = False
         gd = self.getGlyphData(g)
-        requiredAnchorNames = gd.anchors  
-        anchorNames = self.getAnchorNames(g)
-        if requiredAnchorNames != anchorNames:
-            # Remove obsolete anchors
-            for a in g.anchors[:]: # Make a copy of the list, as it may be altered
-                if a.name not in requiredAnchorNames:  
-                    print(f'... Remove obsolete anchor "{a.name}" in /{g.name}')
-                    g.removeAnchor(a)
-                    changed = True
+        if gd is not None:
+            requiredAnchorNames = gd.anchors  
+            anchorNames = self.getAnchorNames(g)
+            if requiredAnchorNames != anchorNames:
+                # Remove obsolete anchors
+                for a in g.anchors[:]: # Make a copy of the list, as it may be altered
+                    if a.name not in requiredAnchorNames:  
+                        print(f'... Remove obsolete anchor "{a.name}" in /{g.name}')
+                        g.removeAnchor(a)
+                        changed = True
 
-            # Add missing anchors
-            for aName in requiredAnchorNames:
-                if aName not in anchorNames:
-                    print(f'... Add missing anchor "{aName}" in /{g.name}')
-                    g.appendAnchor(name=aName, position=(0, 0)) # Just put at origin, position will be set in later checks.
-                    changed = True 
+                # Add missing anchors
+                for aName in requiredAnchorNames:
+                    if aName not in anchorNames:
+                        print(f'... Add missing anchor "{aName}" in /{g.name}')
+                        g.appendAnchor(name=aName, position=(0, 0)) # Just put at origin, position will be set in later checks.
+                        changed = True 
 
-            # Check on duplicate anchors
-            done = [] # Remember which are already done, to detect duplicate anchors
-            for a in g.anchors[:]: # Make a copy of the list, as it may be altered
-                if a.name in done:
-                    print(f'... Remove duplicate anchor "{a.name}" in /{g.name}')
-                    g.removeAnchor(a)
-                done.append(a.name)
+                # Check on duplicate anchors
+                done = [] # Remember which are already done, to detect duplicate anchors
+                for a in g.anchors[:]: # Make a copy of the list, as it may be altered
+                    if a.name in done:
+                        print(f'... Remove duplicate anchor "{a.name}" in /{g.name}')
+                        g.removeAnchor(a)
+                    done.append(a.name)
 
         return changed
 
@@ -505,10 +507,10 @@ class AssistantPartAnchors(BaseAssistantPart):
             
             # In case the a.y now is below the bounding box, then lift the anchor to fit the top of the bounding box
             if gd.isLower: # Default position below xHeight or capHeight
-                if md.baseDiacriticsTop < g.bounds[3]: # Probably bounding box extended from diacritics
+                if g.bounds is not None and md.baseDiacriticsTop < g.bounds[3]: # Probably bounding box extended from diacritics
                     ay = g.bounds[3] + md.boxTopAnchorOffsetY
             else:
-                if md.capDiacriticsTop < g.bounds[3]: # Probably bounding box extended from diacritics
+                if g.bounds is not None and md.capDiacriticsTop < g.bounds[3]: # Probably bounding box extended from diacritics
                     ay = g.bounds[3] + md.boxTopAnchorOffsetY
 
         # TOP_ Construct horizontal position

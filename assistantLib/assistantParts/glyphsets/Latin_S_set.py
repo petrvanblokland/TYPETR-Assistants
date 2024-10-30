@@ -81,14 +81,16 @@ LATIN_S_SET = GDS = {
 
     'degree': GD(name='degree', uni=0x00B0, hex='00B0', c='°', isLower=True, gid=113, comment='° DEGREE SIGN'),
     'divide': GD(name='divide', uni=0x00F7, hex='00F7', c='÷', isLower=True, gid=184, comment='÷ obelus'),
-    'dollar': GD(name='dollar', uni=0x0024, hex='0024', c='$', w='zero.tnum', isLower=False, gid=6, comment='$ milreis'),
-    'dollar.alt': GD(name='dollar.alt', w='zero.tnum', src='dollar', isLower=False, gid=6, comment='$ milreis'),
+    'dollar': GD(name='dollar', uni=0x0024, hex='0024', c='$', w='zero.tnum', base='S', isLower=False, gid=6, comment='$ milreis'),
+    'dollar.alt': GD(name='dollar.alt', w='zero.tnum', srcName='dollar', isLower=False, gid=6, comment='$ milreis'),
 
     'exclam': GD(name='exclam', uni=0x0021, hex='0021', c='!', l='H', l2r='exclam', isLower=True, gid=3, comment='! factorial'),
     'exclamdown': GD(name='exclamdown', uni=0x00A1, hex='00A1', c='¡', l2r='exclam', r2l='exclam', isLower=True, gid=98, comment='¡ INVERTED EXCLAMATION MARK'),
     'equal': GD(name='equal', uni=0x003D, hex='003D', c='=', isLower=True, gid=31, comment='= EQUALS SIGN'),
 
     'hyphen': GD(name='hyphen', uni=0x002D, hex='002D', c='-', l2r='hyphen', unicodes=(45, 8208), isLower=True, gid=15, comment='- minus sign, hyphen'),
+    'hungarumlaut': GD(name='hungarumlaut', uni=0x02DD, hex='02DD', c='˝', l=CENTER, w=ACCENT_WIDTH, base='hungarumlautcmb', isLower=True, gid=484, comment='˝ DOUBLE ACUTE ACCENT'),
+    'hungarumlautcmb': GD(name='hungarumlautomb', uni=0x030B, hex='030B', c='̋', w=0, isLower=True, anchors=['top', '_top'], gid=497),
 
     'less': GD(name='less', uni=0x003C, hex='003C', c='<', isLower=False, gid=30, comment='< LESS-THAN SIGN'),
     'logicalnot': GD(name='logicalnot', uni=0x00AC, hex='00AC', c='¬', isLower=False, gid=109, comment='¬ NOT SIGN'),
@@ -115,7 +117,8 @@ LATIN_S_SET = GDS = {
     'pi': GD(name='pi', uni=0x03C0, hex='03C0', c='π', isLower=True),
 
     'question': GD(name='question', uni=0x003F, hex='003F', c='?', isLower=True, gid=33, comment='? QUESTION MARK'),
-    'questiondown': GD(name='questiondown', uni=0x00BF, hex='00BF', c='¿', l2r='question', r2l='question', isLower=True, gid=128, comment='¿ turned question mark'),
+    'questiondown': GD(name='questiondown', uni=0x00BF, hex='00BF', c='¿', l2r='question', r2l='question', isLower=True, comment='¿ turned question mark'),
+    'questiondown.uc': GD(name='questiondown.uc', l='questiondown', r='questiondown', base='questiondown', isLower=True, comment='¿ turned question mark'),
 
     'quotedbl': GD(name='quotedbl', uni=0x0022, hex='0022', c='"', l='quotesingle', r='quotesingle', isLower=True, gid=4, comment='" quotation mark, neutral'),
     'quoteleft': GD(name='quoteleft', uni=0x2018, hex='2018', c='‘', l='quotesingle', r='quotesingle', base='quoteleftcmb', isLower=True, gid=1411, comment='‘ turned comma quotation mark, single'),
@@ -139,9 +142,9 @@ LATIN_S_SET = GDS = {
 
     # Fixed fractions
 
-    'onesuperior': GD(name='onesuperior', uni=0x00B9, hex='00B9', c='¹', base='one.numr', isLower=True, gid=122, comment='¹ SUPERSCRIPT ONE'),
-    'twosuperior': GD(name='twosuperior', uni=0x00B2, hex='00B2', c='²', l='two.numr', r='two.numr', base='two.numr', isLower=False, gid=115, comment='² TWO, SUPERSCRIPT'),
-    'threesuperior': GD(name='threesuperior', uni=0x00B3, hex='00B3', c='³', l='three.numr', r='three.numr', base='three.numr', isLower=False, gid=116, comment='³ THREE, SUPERSCRIPT'),
+    'onesuperior': GD(name='onesuperior', uni=0x00B9, hex='00B9', c='¹', isLower=True, gid=122, comment='¹ SUPERSCRIPT ONE'),
+    'twosuperior': GD(name='twosuperior', uni=0x00B2, hex='00B2', c='²', l='two.numr', r='two.numr', isLower=False, gid=115, comment='² TWO, SUPERSCRIPT'),
+    'threesuperior': GD(name='threesuperior', uni=0x00B3, hex='00B3', c='³', l='three.numr', r='three.numr', isLower=False, gid=116, comment='³ THREE, SUPERSCRIPT'),
 
     'onehalf': GD(name='onehalf', uni=0x00BD, hex='00BD', c='½', base='one.numr', accents=['fraction', 'two.numr'], isLower=False, gid=126, comment='½ VULGAR FRACTION ONE HALF'),
     'onequarter': GD(name='onequarter', uni=0x00BC, hex='00BC', c='¼', base='one.numr', accents=['fraction', 'four.numr'], isLower=True, gid=125, comment='¼ VULGAR FRACTION ONE QUARTER'),
@@ -204,7 +207,7 @@ LATIN_S_SET = GDS = {
     'Eogonek': GD(name='Eogonek', uni=0x0118, hex='0118', c='Ę', base='E', accents=['ogonekcmb'], anchors=['bottom', 'middle', 'top'], gid=217, comment='Ę'),
     'Eopen': GD(name='Eopen', uni=0x0190, hex='0190', c='Ɛ', r='C', r2l='B', srcName='uni0190', gid=337, comment='Ɛ OPEN E, LATIN CAPITAL LETTER'),
     'Ereversed': GD(name='Ereversed', uni=0x018E, hex='018E', c='Ǝ', r2l='E', srcName='uni018E', gid=335, comment='Ǝ turned e, latin capital letter'),
-    'Eth': GD(name='Eth', uni=0x00D0, hex='00D0', c='Ð', r='D', gid=145, comment='Ð ETH, LATIN CAPITAL LETTER'),
+    'Eth': GD(name='Eth', uni=0x00D0, hex='00D0', c='Ð', r='D', gid=145, base='D', comment='Ð ETH, LATIN CAPITAL LETTER'),
     'Etilde': GD(name='Etilde', uni=0x1EBC, hex='1EBC', c='Ẽ', l='E', r='E', base='E', accents=['tildecmb'], anchors=['bottom', 'middle', 'top'], gid=1111, comment='Ẽ LATIN CAPITAL LETTER E WITH TILDE'),
 
     # F
@@ -429,7 +432,7 @@ LATIN_S_SET = GDS = {
     'bullet.uc': GD(name='bullet.uc', l='bullet', r='bullet', base='bullet', isLower=True, gid=1420, comment='• small circle, black'),
 
     'brevecmb': GD(name='brevecmb', uni=0x0306, hex='0306', c='̆', w=0, srcName='uni0306', isLower=True, anchors=['_top', 'top']),
-    'brevecmb.uc': GD(name='brevecmb.uc', w=0, src='brevecmb', isLower=True, anchors=['_top', 'top']),
+    'brevecmb.uc': GD(name='brevecmb.uc', w=0, srcName='brevecmb', isLower=True, anchors=['_top', 'top']),
 
     # c
 
@@ -445,11 +448,12 @@ LATIN_S_SET = GDS = {
 
     'cedillacmb': GD(name='cedillacmb', uni=0x0327, hex='0327', c='̧', w=0, isLower=True, anchors=['_bottom', 'bottom']),
     'caroncmb': GD(name='caroncmb', uni=0x030C, hex='030C', c='̌', w=0, isLower=True, anchors=['_top', 'top']),
-    'caroncmb.uc': GD(name='caroncmb.uc', w=0, src='caroncmb', isLower=True, anchors=['_top', 'top']),
+    'caroncmb.uc': GD(name='caroncmb.uc', w=0, srcName='caroncmb', isLower=True, anchors=['_top', 'top']),
+    'caroncmb.vert': GD(name='caroncmb.vert', l='caroncmb', w=0, srcName='commabelowcmb', anchors=[AD._VERT]),
     'commaaccentcmb': GD(name='commaaccentcmb', uni=0x0326, hex='0326', c='̦', w=0, isLower=True, anchors=['_bottom', 'bottom']),
-    'commaaccentcmb.uc': GD(name='commaaccentcmb.uc', w=0, src='commaaccentcmb', isLower=True, anchors=['_bottom', 'bottom']),
+    'commaaccentcmb.uc': GD(name='commaaccentcmb.uc', w=0, srcName='commaaccentcmb', isLower=True, anchors=['_bottom', 'bottom']),
     'commaturnedabovecmb': GD(name='commaturnedabovecmb', uni=0x0312, hex='0312', c='̒', w=0, isLower=True, anchors=['_top', 'top']),
-    'commaturnedabovecmb.uc': GD(name='commaturnedabovecmb.uc', w=0, src='commaturnedabovecmb', isLower=True, anchors=['_top', 'top']),
+    'commaturnedabovecmb.uc': GD(name='commaturnedabovecmb.uc', w=0, srcName='commaturnedabovecmb', isLower=True, anchors=['_top', 'top']),
     'circumflexcmb': GD(name='circumflexcmb', uni=0x0302, hex='0302', c='̂', w=0, isLower=True, anchors=['_top', 'top']),
     'circumflexcmb.uc': GD(name='circumflexcmb.uc', w=0, base='circumflexcmb', isLower=True, anchors=['_top', 'top']),
 
@@ -459,17 +463,17 @@ LATIN_S_SET = GDS = {
 
     'd': GD(name='d', uni=0x0064, hex='0064', c='d', isLower=True, anchors=['bottom', 'middle', 'top', 'vert'], gid=70, comment='d'),
     'dcaron': GD(name='dcaron', uni=0x010F, hex='010F', c='ď', rightMin='minRight', base='d', accents=['caronvertcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=208, comment='ď D WITH CARON, LATIN SMALL LETTER'),
-    'dcroat': GD(name='dcroat', uni=0x0111, hex='0111', c='đ', l='d', r='hyphen', isLower=True, gid=210, comment='đ D WITH STROKE, LATIN SMALL LETTER'),
+    'dcroat': GD(name='dcroat', uni=0x0111, hex='0111', c='đ', l='d', r='hyphen', isLower=True, base='d', gid=210, comment='đ D WITH STROKE, LATIN SMALL LETTER'),
     'ddotbelow': GD(name='ddotbelow', uni=0x1E0D, hex='1E0D', c='ḍ', base='d', accents=['dotbelowcmb'], srcName='uni1E0D', isLower=True, anchors=['bottom', 'middle', 'top'], gid=936),
     'dhook': GD(name='dhook', uni=0x0257, hex='0257', c='ɗ', w='d', isLower=True, gid=460),
 
     'dieresis': GD(name='dieresis', uni=0x00A8, hex='00A8', c='¨', l=CENTER, w=ACCENT_WIDTH, base='dieresiscmb', isLower=True, gid=105, comment='¨ spacing diaeresis'),
     'dieresiscmb': GD(name='dieresiscmb', uni=0x0308, hex='0308', c='̈', w=0, isLower=True, anchors=['_top', 'top']),
-    'dieresiscmb.uc': GD(name='dieresiscmb.uc', w=0, src='dieresiscmb', isLower=True, anchors=['_top', 'top']),
+    'dieresiscmb.uc': GD(name='dieresiscmb.uc', w=0, srcName='dieresiscmb', isLower=True, anchors=['_top', 'top']),
     'dotaccentcmb': GD(name='dotaccentcmb', uni=0x0307, hex='0307', c='̇', w=0, isLower=True, anchors=['_top', 'top']),
-    'dotaccentcmb.uc': GD(name='dotaccentcmb.uc', w=0, src='dotaccentcmb', isLower=True, anchors=['_top', 'top']),
-    'dotbelowcmb': GD(name='dotbelowcmb', uni=0x0323, hex='0323', c='̣', w=0, isLower=True, anchors=['_bottom', 'bottom']),
-    'dotbelowcmb.uc': GD(name='dotbelowcmb.uc', w=0, src='dotbelowcmb', isLower=True, anchors=['_bottom', 'bottom']),
+    'dotaccentcmb.uc': GD(name='dotaccentcmb.uc', w=0, srcName='dotaccentcmb', isLower=True, anchors=['_top', 'top']),
+    'dotbelowcmb': GD(name='dotbelowcmb', uni=0x0323, hex='0323', c='̣', w=0, base='dotaccentcmb', isLower=True, anchors=['_bottom', 'bottom']),
+    'dotbelowcmb.uc': GD(name='dotbelowcmb.uc', w=0, srcName='dotbelowcmb', isLower=True, anchors=['_bottom', 'bottom']),
 
     # e
 
@@ -528,7 +532,7 @@ LATIN_S_SET = GDS = {
     'hdotbelow': GD(name='hdotbelow', uni=0x1E25, hex='1E25', c='ḥ', base='h', accents=['dotbelowcmb'], srcName='uni1E25', isLower=True, anchors=['bottom', 'middle', 'top'], gid=960),
     
     'hungarumlautcmb': GD(name='hungarumlautcmb', uni=0x030B, hex='030B', c='̋', w=0, isLower=True, anchors=['_top', 'top'], gid=497),
-    'hungarumlautcmb.uc': GD(name='hungarumlautcmb.uc', w=0, src='hungarumlautcmb', isLower=True, anchors=['_top', 'top'], gid=497),
+    'hungarumlautcmb.uc': GD(name='hungarumlautcmb.uc', w=0, srcName='hungarumlautcmb', isLower=True, anchors=['_top', 'top'], gid=497),
 
     # i
 
@@ -597,13 +601,14 @@ LATIN_S_SET = GDS = {
     'odieresis': GD(name='odieresis', uni=0x00F6, hex='00F6', c='ö', w='o', bl='o', base='o', accents=['dieresiscmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=183, comment='ö O WITH DIAERESIS, LATIN SMALL LETTER'),
     'odotbelow': GD(name='odotbelow', uni=0x1ECD, hex='1ECD', c='ọ', w='o', bl='o', base='o', accents=['dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1128, comment='ọ O WITH DOT BELOW, LATIN SMALL LETTER'),
     'oe': GD(name='oe', uni=0x0153, hex='0153', c='œ', l='o', r='e', isLower=True, anchors=['bottom', 'middle', 'top'], gid=276, comment='œ SMALL LIGATURE OE, LATIN'),
-    'ogonekcmb': GD(name='ogonekcmb', uni=0x0328, hex='0328', c='̨', w=0, isLower=True, anchors=['_ogonek', 'bottom'], gid=506),
     'ograve': GD(name='ograve', uni=0x00F2, hex='00F2', c='ò', l='o', r='o', base='o', accents=['gravecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=179, comment='ò O WITH GRAVE, LATIN SMALL LETTER'),
     'ohungarumlaut': GD(name='ohungarumlaut', uni=0x0151, hex='0151', c='ő', w='o', base='o', accents=['hungarumlautcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=274),
     'omacron': GD(name='omacron', uni=0x014D, hex='014D', c='ō', l='o', r='o', base='o', accents=['macroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=270, comment='ō O WITH MACRON, LATIN SMALL LETTER'),
     'oopen': GD(name='oopen', uni=0x0254, hex='0254', c='ɔ', r2l='c', srcName='uni0254', isLower=True, anchors=['dot'], gid=458, comment='ɔ OPEN O, LATIN SMALL LETTER'),
     'oslash': GD(name='oslash', uni=0x00F8, hex='00F8', c='ø', base='o', isLower=True, anchors=['bottom', 'middle', 'top'], gid=185, comment='ø STROKE, LATIN SMALL LETTER O WITH'),
     'otilde': GD(name='otilde', uni=0x00F5, hex='00F5', c='õ', base='o', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=182, comment='õ O WITH TILDE, LATIN SMALL LETTER'),
+
+    'ogonekcmb': GD(name='ogonekcmb', uni=0x0328, hex='0328', c='̨', w=0, isLower=True, anchors=['_ogonek', 'bottom'], gid=506),
 
     # p
 
@@ -706,17 +711,17 @@ LATIN_S_SET = GDS = {
     # Figures
 
     'zero': GD(g2='zero', g1='zero', l2r='zero', uni=0x0030, c='0', name='zero', comment='0 Digits, ASCII', useSkewRotate=True, addItalicExtremePoints=True),
-    'zeroslash': GD(g2='zero', g1='zero', l='zero', w='zero', name='zeroslash', base='zero', src='slash', comment='0 Digits, ASCII'),
+    'zeroslash': GD(g2='zero', g1='zero', l='zero', w='zero', name='zeroslash', base='zero', srcName='slash', comment='0 Digits, ASCII'),
     'one': GD(g2='one', g1='one', l2r='one', uni=0x0031, c='1', name='one', comment='1'),
     'two': GD(g2='two', g1='two', l2r='two', uni=0x0032, c='2', name='two', comment='2'),
-    'two.alt1': GD(g2='two', g1='two', l='two', r='two', name='two.alt1', src='two', comment='2 alternative'),
+    'two.alt1': GD(g2='two', g1='two', l='two', r='two', name='two.alt1', srcName='two', comment='2 alternative'),
     'three': GD(g2='three', g1='three', l2r='three', uni=0x0033, c='3', name='three', comment='3'),
     'four': GD(g2='four', g1='four', uni=0x0034, c='4', name='four', comment='4'),
     'five': GD(g2='five', g1='five', l2r='five', uni=0x0035, c='5', name='five', comment='5'),
-    'five.alt1': GD(g2='five', g1='five', l='five', r='five', name='five.alt1', src='five', comment='5 alternative'),
+    'five.alt1': GD(g2='five', g1='five', l='five', r='five', name='five.alt1', srcName='five', comment='5 alternative'),
     'six': GD(g2='six', g1='six',  l2r='six', uni=0x0036, c='6', name='six', comment='6'),
     'seven': GD(g2='seven', g1='seven', uni=0x0037, c='7', name='seven', comment='7'),
-    'seven.alt1': GD(g2='seven', g1='seven', l='seven', r='seven', name='seven.alt1', src='seven', comment='7 alternative'),
+    'seven.alt1': GD(g2='seven', g1='seven', l='seven', r='seven', name='seven.alt1', srcName='seven', comment='7 alternative'),
     'eight': GD(g2='eight', g1='eight', l2r='eight', uni=0x0038, c='8', name='eight', comment='8'),
     'nine': GD(g2='nine', g1='nine', l2r='six', r2l='six', uni=0x0039, c='9', name='nine', comment='9'),
 
@@ -751,8 +756,8 @@ SC_NAMES = (
     'Y', 'Yacute', 'Ycircumflex', 'Ydieresis', 'Ygrave', 'Yhook', 'Ymacron', 'Ytilde', 
     'Z', 'Zacute', 'Zcaron', 'Zdotaccent', 'Zdotbelow'
     'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
-    'slash', 'Euro', 
-    'parenleft', 'parenright', 
+    'slash', 'Euro', 'degree', 'germandbls', 'yen', 'ampersand', 
+    'parenleft', 'parenright', 'bracketleft', 'bracketright',
 )
 # Used by GlyphSet class to add sinf/dnom/numr/subs glyph data records. 
 # Alternative naming for letter glyphs: /amod and /ainferior
@@ -779,7 +784,7 @@ TAB_NAMES = (
     'percent', 'perthousand', 'degree', 'approxequal', 
     'parenleft', 'parenright', 'bracketleft', 'bracketright',
     'quoteleft', 'quoteright', 'quotedblleft', 'quotedblright',
-    'hyphen', 'endash', 'minute', 
+    'hyphen', 'endash', 'minute', 'backslash', 
 )
 # Used by GlyphSet class to add oldstyle figures glyph data records.
 LC_NAMES = (
