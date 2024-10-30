@@ -538,6 +538,7 @@ GDS['minusbelowcmb'] = GD(name='minusbelowcmb', uni=0x0320, hex='0320', c='̠', 
 
 GDS['msuperior'] = GD(name='msuperior', uni=0x1D50, hex='1D50', c='ᵐ', l='nsuperior', r='nsuperior', srcName='uni1D50', isLower=False, isMod=True)
 GDS['minferior'] = GD(name='minferior', uni=0x2098, hex='2098', c='ₘ', l='minferior', r='minferior', base='minferior', isLower=True)
+GDS['mu'] = GD(name='mu', uni=0x03BC, hex='03BC', c='μ', isLower=True, gid=577, base='u', comment='mu')
 
 # n
 
@@ -722,7 +723,7 @@ GDS['invertedbrevecmb'] = GD(name='invertedbrevecmb', w=0, anchors=['_middle'])
 GDS['diagonalstrokecmb'] = GD(name='diagonalstrokecmb', w=0, anchors=['_middle'])
 GDS['ringacutecmb'] = GD(name='ringacutecmb', w=0, base='ringcmb', accents=['acutecmb'], anchors=['_top'])
 GDS['macronbelowcmb'] = GD(name='macronbelowcmb', uni=0x0331, hex='0331', c='̱', w=0, base='macroncmb', isLower=True, anchors=['bottom', '_bottom'], comment='COMBINING MACRON BELOW')
-GDS['dblgravecomb'] = GD(name='dblgravecmb', uni=0x030F, hex='030F', c='̏', w=0, isLower=True, base='gravecmb', accents=['gravecmb'], anchors=['top', '_top'], gid=499),
+GDS['dblgravecomb'] = GD(name='dblgravecmb', uni=0x030F, hex='030F', c='̏', w=0, isLower=True, base='gravecmb', accents=['gravecmb'], anchors=['top', '_top'])
 
 
 if __name__ == '__main__':

@@ -240,6 +240,14 @@ class GlyphData:
         return self.name.endswith(self.MOD)
     isMod = property(_get_isMod)
 
+    def _get_isSuperior(self):
+        return self.name.endswith(self.MOD_SUPERIOR)
+    isSuperior = property(_get_isSuperior)
+            
+    def _get_isInferior(self):
+        return self.name.endswith(self.MOD_INFERIOR)
+    isInferior = property(_get_isInferior)
+            
     def _get_isSups(self):
         return self.name.endswith(self.MOD_SUPS)
     isSups = property(_get_isSups)

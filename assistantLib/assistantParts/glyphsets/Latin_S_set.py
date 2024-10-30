@@ -676,7 +676,7 @@ LATIN_S_SET = GDS = {
     # v
 
     'v': GD(name='v', uni=0x0076, hex='0076', c='v', l2r='v', isLower=True, anchors=['bottom', 'middle', 'top'], gid=88, comment='v LATIN SMALL LETTER V'),
-    'vturned': GD(name='vturned', uni=0x028C, hex='028C', c='ʌ', l2r='v', r2l='v', isLower=True),
+    'vturned': GD(name='vturned', uni=0x028C, hex='028C', c='ʌ', l2r='v', r2l='v', srcName='v', isLower=True),
 
     # w
 

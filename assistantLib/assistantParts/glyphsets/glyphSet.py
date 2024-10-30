@@ -110,6 +110,7 @@ class GlyphSet:
         self.diacritic2GlyphNames = {} # Key is name of a diacritic. Value is a list of glyph names that use the diacritic as component
 
         for gName, gd in sorted(self.glyphs.items()):
+            print(gd)
             if gd.uni:
                 #assert gd.uni not in UNICODE2GLYPH, ("Unicode %04x already defined for /%s" % (gd.uni, gName))
                 self.unicode2GlyphName[gd.uni] = gd.name
@@ -183,7 +184,11 @@ class GlyphSet:
                         self.glyphs[gNameExt] = gd = deepcopy(self.glyphs[gName])
                         gd.name = gNameExt
                         gd.uni = gd.hex = gd.c = None
-                        gd.l = gd.r = 'zero' + ext
+                        if ext != 'superior':
+                            gd.l = gd.r = 'zero' + ext
+                            gd.base = gName + 'superior'
+                        else:
+                            gd.base = None
 
     def _appendLc(self):
         tabExt = '.lc'
