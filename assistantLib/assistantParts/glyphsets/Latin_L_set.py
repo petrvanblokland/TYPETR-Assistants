@@ -469,7 +469,7 @@ GDS['hhook'] = GD(name='hhook', uni=0x0266, hex='0266', c='ɦ', l='h', r='h', is
 GDS['hturned'] = GD(name='hturned', uni=0x0265, hex='0265', c='ɥ', isLower=True)
 
 GDS['hsuperior'] = GD(name='hsuperior', uni=0x02B0, hex='02B0', c='ʰ', l='nsuperior', r='nsuperior', isMod=True)
-GDS['hinferior'] = GD(name='hinferior', l='hinferior', r='hinferior', base='hinferior', isLower=True)
+GDS['hinferior'] = GD(name='hinferior', l='hinferior', r='hinferior', base='hsuperior', isLower=True)
 GDS['hhooksuperior'] = GD(name='hhooksuperior', uni=0x02B1, hex='02B1', c='ʱ', l='nsuperior', r='nsuperior', isMod=True)
 GDS['hhookinferior'] = GD(name='hhookinferior', base='hhookinferior', l='nsuperior', r='nsuperior', isMod=True)
 
@@ -538,7 +538,7 @@ GDS['minusbelowcmb'] = GD(name='minusbelowcmb', uni=0x0320, hex='0320', c='̠', 
 
 GDS['msuperior'] = GD(name='msuperior', uni=0x1D50, hex='1D50', c='ᵐ', l='nsuperior', r='nsuperior', srcName='uni1D50', isLower=False, isMod=True)
 GDS['minferior'] = GD(name='minferior', uni=0x2098, hex='2098', c='ₘ', l='minferior', r='minferior', base='minferior', isLower=True)
-GDS['mu'] = GD(name='mu', uni=0x03BC, hex='03BC', c='μ', isLower=True, gid=577, base='u', comment='mu')
+GDS['mu'] = GD(name='mu', uni=0x03BC, hex='03BC', c='μ', l='verticalbar', r='u', isLower=True, gid=577, comment='mu')
 
 # n
 

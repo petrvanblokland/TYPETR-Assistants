@@ -143,14 +143,14 @@ LATIN_S_SET = GDS = {
     # Fixed fractions
 
     'onesuperior': GD(name='onesuperior', uni=0x00B9, hex='00B9', c='¹', isLower=True, gid=122, comment='¹ SUPERSCRIPT ONE'),
-    'twosuperior': GD(name='twosuperior', uni=0x00B2, hex='00B2', c='²', l='two.numr', r='two.numr', isLower=False, gid=115, comment='² TWO, SUPERSCRIPT'),
-    'threesuperior': GD(name='threesuperior', uni=0x00B3, hex='00B3', c='³', l='three.numr', r='three.numr', isLower=False, gid=116, comment='³ THREE, SUPERSCRIPT'),
+    'twosuperior': GD(name='twosuperior', uni=0x00B2, hex='00B2', c='²', isLower=False, gid=115, comment='² TWO, SUPERSCRIPT'),
+    'threesuperior': GD(name='threesuperior', uni=0x00B3, hex='00B3', c='³', isLower=False, gid=116, comment='³ THREE, SUPERSCRIPT'),
 
-    'onehalf': GD(name='onehalf', uni=0x00BD, hex='00BD', c='½', base='one.numr', accents=['fraction', 'two.numr'], isLower=False, gid=126, comment='½ VULGAR FRACTION ONE HALF'),
-    'onequarter': GD(name='onequarter', uni=0x00BC, hex='00BC', c='¼', base='one.numr', accents=['fraction', 'four.numr'], isLower=True, gid=125, comment='¼ VULGAR FRACTION ONE QUARTER'),
-    'oneseventh': GD(name='oneseventh', uni=0x2150, hex='2150', c='⅐', l='one.numr', r='seven.dnom', base='one.numr', accents=['fraction', 'seven.numr'], isLower=False),
+    'onehalf': GD(name='onehalf', uni=0x00BD, hex='00BD', c='½', base='one.numr', accents=['fraction', 'two.dnom'], isLower=False, gid=126, comment='½ VULGAR FRACTION ONE HALF'),
+    'onequarter': GD(name='onequarter', uni=0x00BC, hex='00BC', c='¼', base='one.numr', accents=['fraction', 'four.dnom'], isLower=True, gid=125, comment='¼ VULGAR FRACTION ONE QUARTER'),
+    'oneseventh': GD(name='oneseventh', uni=0x2150, hex='2150', c='⅐', l='one.numr', r='seven.dnom', base='one.numr', accents=['fraction', 'seven.dnom'], isLower=False),
     'onesixth': GD(name='onesixth', uni=0x2159, hex='2159', c='⅙', l='one.numr', r='six.dnom', base='one.numr', accents=['fraction', 'six.dnom'], isLower=False),
-    'threequarters': GD(name='threequarters', uni=0x00BE, hex='00BE', c='¾', base='three.numr', accents=['fraction', 'four.numr'], isLower=False, gid=127, comment='¾ VULGAR FRACTION THREE QUARTERS'),
+    'threequarters': GD(name='threequarters', uni=0x00BE, hex='00BE', c='¾', base='three.numr', accents=['fraction', 'four.dnom'], isLower=False, gid=127, comment='¾ VULGAR FRACTION THREE QUARTERS'),
    
     # A
 
@@ -701,8 +701,6 @@ LATIN_S_SET = GDS = {
     'yhook': GD(name='yhook', uni=0x01B4, hex='01B4', c='ƴ', l='y', r='y', srcName='uni01B4', isLower=True, gid=373, comment='ƴ Y WITH HOOK, LATIN SMALL LETTER'),
     'ymacron': GD(name='ymacron', uni=0x0233, hex='0233', c='ȳ', base='y', accents=['macroncmb'], isLower=True, anchors=['bottom', 'middle', 'top']),
     'ytilde': GD(name='ytilde', uni=0x1EF9, hex='1EF9', c='ỹ', l='y', r='y', base='y', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1172, comment='ỹ Y WITH TILDE, LATIN SMALL LETTER'),
-
-    'ysuperior': GD(name='ysuperior', uni=0x02B8, hex='02B8', c='ʸ', isLower=False, isMod=True),
 
     # z
 

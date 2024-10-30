@@ -185,7 +185,7 @@ class GlyphSet:
                         gd.name = gNameExt
                         gd.uni = gd.hex = gd.c = None
                         if ext != 'superior':
-                            gd.l = gd.r = 'zero' + ext
+                            gd.l = gd.r = 'zerosuperior'
                             gd.base = gName + 'superior'
                         else:
                             gd.base = None
