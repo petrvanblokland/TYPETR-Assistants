@@ -704,11 +704,14 @@ class KerningManager:
 
     def fixGlyphWidth(self, g, width, label=''):
         """Compare the rounded width to g.width. If it is different, then set the width."""
-        width = int(round(width))
-        if g.width != width:
-            print(f'... Fix glyph width: Set /{g.name} width from {g.width} to {width} {label}')
-            g.width = width
-            return True
+        if not isinstance(width, (float, int)):
+            print(f'### Width {width} for /{g.name} should be a number')
+        else:
+            width = int(round(width))
+            if g.width != width:
+                print(f'... Fix glyph width: Set /{g.name} width from {g.width} to {width} {label}')
+                g.width = width
+                return True
         return False
 
     def fixLeftMargin(self, g, lm, label=''):
