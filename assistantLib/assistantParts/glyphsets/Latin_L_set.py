@@ -721,6 +721,8 @@ GDS['strokecmb'] = GD(name='strokecmb', w=0, anchors=['_middle'])
 GDS['invertedbrevecmb'] = GD(name='invertedbrevecmb', w=0, anchors=['_middle'])
 GDS['diagonalstrokecmb'] = GD(name='diagonalstrokecmb', w=0, anchors=['_middle'])
 GDS['ringacutecmb'] = GD(name='ringacutecmb', w=0, base='ringcmb', accents=['acutecmb'], anchors=['_top'])
+GDS['macronbelowcmb'] = GD(name='macronbelowcmb', uni=0x0331, hex='0331', c='̱', w=0, base='macroncmb', isLower=True, anchors=['bottom', '_bottom'], comment='COMBINING MACRON BELOW')
+GDS['dblgravecomb'] = GD(name='dblgravecmb', uni=0x030F, hex='030F', c='̏', w=0, isLower=True, base='gravecmb', accents=['gravecmb'], anchors=['top', '_top'], gid=499),
 
 
 if __name__ == '__main__':

@@ -138,7 +138,7 @@ LATIN_S_SET = GDS = {
 
     'underscore': GD(name='underscore', uni=0x005F, hex='005F', c='_', isLower=True, gid=65, comment='_ underscore, spacing'),
 
-    'yen': GD(name='yen', uni=0x00A5, hex='00A5', c='¥', isLower=True, gid=102, comment='¥ yuan sign'),
+    'yen': GD(name='yen', uni=0x00A5, hex='00A5', c='¥', isLower=True, gid=102, base='Y', comment='¥ yuan sign'),
 
     # Fixed fractions
 
@@ -654,7 +654,7 @@ LATIN_S_SET = GDS = {
     'thorn': GD(name='thorn', uni=0x00FE, hex='00FE', c='þ', isLower=True, gid=191, comment='þ THORN, LATIN SMALL LETTER'),
     'tilde': GD(name='tilde', uni=0x02DC, hex='02DC', c='˜', l=CENTER, w=ACCENT_WIDTH, base='tildecmb', isLower=True, gid=483),
 
-    'tildecmb': GD(name='tildecmb', uni=0x0303, hex='0303', c='̃', w=0, isLower=True, anchors=['_top', 'top']),
+    'tildecmb': GD(name='tildecmb', uni=0x0303, hex='0303', c='̃', w=0, srcName='tilde', isLower=True, anchors=['_top', 'top']),
     'tildecmb.uc': GD(name='tildecmb.uc', w=0, base='tildecmb', isLower=True, anchors=['_top', 'top']),
 
     # u
