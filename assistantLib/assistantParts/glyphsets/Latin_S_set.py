@@ -93,6 +93,7 @@ LATIN_S_SET = GDS = {
     'hungarumlautcmb': GD(name='hungarumlautomb', uni=0x030B, hex='030B', c='̋', w=0, isLower=True, anchors=['top', '_top'], gid=497),
 
     'less': GD(name='less', uni=0x003C, hex='003C', c='<', isLower=False, gid=30, comment='< LESS-THAN SIGN'),
+    'lessequal': GD(name='lessequal', uni=0x2264, hex='2264', c='≤', isLower=False, gid=1499, comment='≤ LESS-THAN OR EQUAL TO'),
     'logicalnot': GD(name='logicalnot', uni=0x00AC, hex='00AC', c='¬', isLower=False, gid=109, comment='¬ NOT SIGN'),
 
     'macron': GD(name='macron', uni=0x00AF, hex='00AF', c='¯', l=CENTER, w=ACCENT_WIDTH, base='macroncmb', srcName='uni00AF', isLower=True, gid=112, comment='¯ spacing macron'),
@@ -228,7 +229,7 @@ LATIN_S_SET = GDS = {
     # H
 
     'H': GD(name='H', uni=0x0048, hex='0048', c='H', l2r='H', anchors=['bottom', 'middle', 'tonos', 'top'], gid=42, comment='H'),
-    'Hbar': GD(name='Hbar', uni=0x0126, hex='0126', c='Ħ', l='Eth', l2r='Hbar', gid=231, comment='Ħ'),
+    'Hbar': GD(name='Hbar', uni=0x0126, hex='0126', c='Ħ', l='Eth', l2r='Hbar', base='H', gid=231, comment='Ħ'),
     'Hcircumflex': GD(name='Hcircumflex', uni=0x0124, hex='0124', c='Ĥ', l='H', r='H', base='H', accents=['circumflexcmb'], anchors=['bottom', 'middle', 'top'], gid=229, comment='Ĥ'),
     'Hdieresis': GD(name='Hdieresis', uni=0x1E26, hex='1E26', c='Ḧ', l='H', r='H', base='H', accents=['dieresiscmb'], srcName='uni1E26', anchors=['bottom', 'middle', 'top'], gid=961),
     'Hdotbelow': GD(name='Hdotbelow', uni=0x1E24, hex='1E24', c='Ḥ', l='H', r='H', base='H', accents=['dotbelowcmb'], srcName='uni1E24', anchors=['bottom', 'middle', 'top'], gid=959),
@@ -266,7 +267,7 @@ LATIN_S_SET = GDS = {
     'Lacute': GD(name='Lacute', uni=0x0139, hex='0139', c='Ĺ', l='H', r='L', base='L', accents=['acutecmb'], fixAccents=False, anchors=['bottom', 'middle', 'top'], gid=250, comment='Ĺ'),
     'Lcaron': GD(name='Lcaron', uni=0x013D, hex='013D', c='Ľ', l='H', w='L', base='L', accents=['caronvertcmb'], anchors=['bottom', 'middle', 'top'], gid=254, comment='Ľ'),
     'Lcommaaccent': GD(name='Lcommaaccent', uni=0x013B, hex='013B', c='Ļ', l='H', r='L', base='L', accents=['cedillacmb'], anchors=['bottom', 'middle', 'top'], gid=252, comment='Ļ'),
-    'Lslash': GD(name='Lslash', uni=0x0141, hex='0141', c='Ł', r='L', gid=258, comment='Ł'),
+    'Lslash': GD(name='Lslash', uni=0x0141, hex='0141', c='Ł', r='L', base='L', comment='Ł'),
 
     # M
 
@@ -470,6 +471,8 @@ LATIN_S_SET = GDS = {
     'dcroat': GD(name='dcroat', uni=0x0111, hex='0111', c='đ', l='d', r='hyphen', isLower=True, base='d', gid=210, comment='đ D WITH STROKE, LATIN SMALL LETTER'),
     'ddotbelow': GD(name='ddotbelow', uni=0x1E0D, hex='1E0D', c='ḍ', base='d', accents=['dotbelowcmb'], srcName='uni1E0D', isLower=True, anchors=['bottom', 'middle', 'top'], gid=936),
     'dhook': GD(name='dhook', uni=0x0257, hex='0257', c='ɗ', w='d', isLower=True, gid=460),
+    'dagger': GD(name='dagger', uni=0x2020, hex='2020', c='†', l2r='dagger', isLower=True, gid=1418, comment='† DAGGER'),
+    'daggerdbl': GD(name='daggerdbl', uni=0x2021, hex='2021', c='‡', l='dagger', r='dagger', isLower=True, gid=1419, comment='‡ DOUBLE DAGGER'),
 
     'dieresis': GD(name='dieresis', uni=0x00A8, hex='00A8', c='¨', l=CENTER, w=ACCENT_WIDTH, base='dieresiscmb', isLower=True, gid=105, comment='¨ spacing diaeresis'),
     'dieresiscmb': GD(name='dieresiscmb', uni=0x0308, hex='0308', c='̈', w=0, isLower=True, anchors=['_top', 'top']),

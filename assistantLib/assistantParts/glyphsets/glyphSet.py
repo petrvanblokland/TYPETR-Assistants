@@ -158,6 +158,13 @@ class GlyphSet:
                         gd.r2l += ext
                     if gd.w in SC_NAMES: 
                         gd.w += ext
+                    if gd.base is not None and gd.base + '.sc' in self.glyphs:
+                        gd.base += '.sc'
+                    accents = []
+                    for accent in gd.accents:
+                        if accent + 'sc' in self.glyphs:
+                            accents.append(accent + '.sc')
+                    gd.accents = accents
 
     def _appendTab(self):
         tabExt = '.tab'

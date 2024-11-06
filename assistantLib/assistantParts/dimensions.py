@@ -209,6 +209,9 @@ class AssistantPartDimensions(BaseAssistantPart):
             gd = self.getGlyphData(g)
             md = self.getMasterData(g.font)
 
+            if gd is None:
+                print(f'### updateGlyphDimensions: Cannot find GlyphData for /{g.name}')
+                return
             containerScale = self.dimensionsDiagonalMeasureBackgrounds[dIndex].getContainer().getContainerScale()
             # TODO: Solve the scale of the marker circle
             r = self.DIMENSIONS_MARKER_R #* containerScale

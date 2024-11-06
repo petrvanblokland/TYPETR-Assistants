@@ -105,24 +105,26 @@ class AssistantPartAnchors(BaseAssistantPart):
         md = self.getMasterData(g.font)
         gd = md.glyphSet.get(g.name)
         dIndex = 0 # Index into showing diacritics Merz layers
-        assert gd is not None # Otherwise the glyph data does not exist.
-        for a in g.anchors:
-            for dName in AD.EXAMPLE_DIACRITICS.get(a.name, []):
-                if dName in g.font:
-                    dg = g.font[dName]
-                    dAnchor = self.getAnchor(dg, AD.CONNECTED_ANCHORS[a.name])
-                    if dAnchor is not None:
-                        diacriticsLayer = self.anchorsDiacriticsCloud[dIndex] # Get layer for this diacritics glyph
-                        diacriticsPath = dg.getRepresentation("merz.CGPath") 
-                        diacriticsLayer.setPath(diacriticsPath)
-                        ax = a.x - dAnchor.x
-                        ay = a.y - dAnchor.y
-                        diacriticsLayer.setPosition((ax, ay))
-                        diacriticsLayer.setVisible(True)
-                        dIndex += 1
+        if gd is None:
+            print(f'### No GlyphData found for /{g.name}')
+        else:
+            for a in g.anchors:
+                for dName in AD.EXAMPLE_DIACRITICS.get(a.name, []):
+                    if dName in g.font:
+                        dg = g.font[dName]
+                        dAnchor = self.getAnchor(dg, AD.CONNECTED_ANCHORS[a.name])
+                        if dAnchor is not None:
+                            diacriticsLayer = self.anchorsDiacriticsCloud[dIndex] # Get layer for this diacritics glyph
+                            diacriticsPath = dg.getRepresentation("merz.CGPath") 
+                            diacriticsLayer.setPath(diacriticsPath)
+                            ax = a.x - dAnchor.x
+                            ay = a.y - dAnchor.y
+                            diacriticsLayer.setPosition((ax, ay))
+                            diacriticsLayer.setVisible(True)
+                            dIndex += 1
 
-        for n in range(dIndex, len(self.anchorsDiacriticsCloud)):
-            self.anchorsDiacriticsCloud[n].setVisible(False)
+            for n in range(dIndex, len(self.anchorsDiacriticsCloud)):
+                self.anchorsDiacriticsCloud[n].setVisible(False)
         
     def updateAnchors(self, info):
         """If the checkbox is set, then try to check and fix automated margins and width."""
@@ -411,7 +413,9 @@ class AssistantPartAnchors(BaseAssistantPart):
         about mode by which the current anchors are set and if they were manually moved."""
         self.checkFixRequiredAnchors(g) # First make sure that they all exist.
         gd = self.getGlyphData(g)
-        if gd.autoFixAnchorPositions:
+        if gd is None:
+            print(f'### setGlyphAnchors: Cannot find GlyphData for /{g.name}')
+        elif gd.autoFixAnchorPositions:
             for a in g.anchors:
                 self.autoCheckFixAnchorPosition(g, a)
 
@@ -420,7 +424,9 @@ class AssistantPartAnchors(BaseAssistantPart):
         e.g. as defined for /Uhorn using the anchor type positions of /U. Otherwise answer g as model."""
         assert g is not None
         gd = self.getGlyphData(g)
-        if gd.anchorGlyphSrc is not None: # There is a src glyph other than /g to copy guessed anchor positions from
+        if gd is None:
+            print(f'### setGlyphAnchors: Cannot find GlyphData for /{g.name}')
+        elif gd.anchorGlyphSrc is not None: # There is a src glyph other than /g to copy guessed anchor positions from
             if gd.anchorGlyphSrc in g.font: # Does the reference exist?
                 return g.font[gd.anchorGlyphSrc]
             # Print the error if the referenced glyph cannot be found

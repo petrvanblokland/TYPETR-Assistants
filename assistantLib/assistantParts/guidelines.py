@@ -87,6 +87,10 @@ class AssistantPartGuidelines(BaseAssistantPart):
         md = self.getMasterData(g.font)
         gd = self.getGlyphData(g)
 
+        if gd is None:
+            print(f'### checkFixGuidelines: Cannot find GlyphData for /{g.name}')
+            return
+
         # Guideline label position angled for italics
         tg = tan(radians(-f.info.italicAngle or 0))
 
