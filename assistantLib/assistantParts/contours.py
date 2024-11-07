@@ -38,7 +38,20 @@ class AssistantPartContours(BaseAssistantPart):
 
     def checkFixContours(self, g):
         changed = False
-        # ...
+        gName = g.name
+        f = g.font
+        c = self.getController()
+        if c.w.autoCopyContourFromSrc.get():
+            g = self.getCurrentGlyph()
+            gd = self.getGlyphData(g)
+            if gd is not None and gd.srcName:
+                if gd.srcName not in f:
+                    print(f'### Source glyph /{gd.srcName} for /{gName} does not exist')
+                else:
+                    srcG = f[gd.srcName]
+                    if not g.contours:
+                        f[gName] = srcG
+                        changed = True
         return changed
 
     def buildContours(self, y):
@@ -48,6 +61,7 @@ class AssistantPartContours(BaseAssistantPart):
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
 
         c = self.getController()
+        c.w.autoCopyContourFromSrc = CheckBox((C2, y, CW, L), f'Auto copy from source', value=True)
         c.w.setStartPointButton = Button((C2, y, CW, L), f'Set start [{personalKey_E}{personalKey_e}]', callback=self.contoursSetStartPointCallback)
         y += L + L/5
         c.w.contoursEndLine = HorizontalLine((self.M, y, -self.M, 1))

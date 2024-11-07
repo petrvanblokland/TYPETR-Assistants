@@ -500,7 +500,12 @@ class AssistantPartAnchors(BaseAssistantPart):
 
         else: # No construction glyph or method defined, then try to figure out from this glyph shape
             # Trying to guess vertical from anchor in base glyph + its offset
-            if baseGlyph is not None:
+            if gd.isSc and 'H.sc' in g.font:
+                scAnchor = self.getAnchor(g.font['H.sc'], a.name)
+                if scAnchor:
+                    ay = scAnchor.y + dy
+
+            elif baseGlyph is not None:
                 baseAnchor = self.getAnchor(baseGlyph, a.name)
                 if baseAnchor is not None:
                     ay = baseAnchor.y + dy # Vertical position of the base anchor + component offset.
@@ -578,7 +583,12 @@ class AssistantPartAnchors(BaseAssistantPart):
         else: # No construction glyph or method defined, then try to figure out from this glyph shape
             gd = self.getGlyphData(g)
             # Trying to guess vertical
-            if gd.isLower: # Default position below xHeight or capHeight
+            if gd.isSc and 'H.sc' in g.font:
+                scAnchor = self.getAnchor(g.font['H.sc'], a.name)
+                if scAnchor:
+                    ay = scAnchor.y
+
+            elif gd.isLower: # Default position below xHeight or capHeight
                 ay = g.font.info.xHeight/2
             else:
                 ay = g.font.info.capHeight/2
