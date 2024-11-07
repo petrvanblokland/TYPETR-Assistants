@@ -164,6 +164,8 @@ class GlyphSet:
                     for accent in gd.accents:
                         if accent + 'sc' in self.glyphs:
                             accents.append(accent + '.sc')
+                        else:
+                            accents.append(accent)
                     gd.accents = accents
 
     def _appendTab(self):

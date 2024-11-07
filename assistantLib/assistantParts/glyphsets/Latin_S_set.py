@@ -76,7 +76,9 @@ LATIN_S_SET = GDS = {
     'cedilla': GD(name='cedilla', base='cedillacmb', l=CENTER, w=ACCENT_WIDTH, isLower=True),
     'cent': GD(name='cent', uni=0x00A2, hex='00A2', w='zero.tnum', c='¢', isLower=True, gid=99, comment='¢ CENT SIGN'),
     'comma': GD(name='comma', uni=0x002C, hex='002C', c=',', l='off', isLower=True, gid=14, comment=', separator, decimal'),
-    'copyright': GD(name='copyright', uni=0x00A9, hex='00A9', c='©', isLower=True, gid=106, comment='© COPYRIGHT SIGN'),
+    'copyright': GD(name='copyright', uni=0x00A9, hex='00A9', c='©', l='O', r='O', isLower=True, gid=106, base='largecircle', comment='© COPYRIGHT SIGN'),
+    'copyrightsound': GD(l='copyright', r='copyright', uni=0x2117, base='largecircle', name='copyrightsound'),
+    'largecircle': GD(l='O', r='O', uni=0x25ef, c='◯', name='largecircle', comment='circle for ® trade mark sign, registered', useSkewRotate=True, addItalicExtremePoints=True),
     'currency': GD(name='currency', uni=0x00A4, hex='00A4', c='¤', isLower=True, gid=101, comment='¤ CURRENCY SIGN'),
 
     'degree': GD(name='degree', uni=0x00B0, hex='00B0', c='°', isLower=True, gid=113, comment='° DEGREE SIGN'),
@@ -130,12 +132,12 @@ LATIN_S_SET = GDS = {
     'quoteleftcmb': GD(name='quoteright', w=0),
     'quoterightcmb': GD(name='quoterightcmb', w=0),
 
-    'registered': GD(name='registered', uni=0x00AE, hex='00AE', c='®', l2r='registered', isLower=True, gid=111, comment='® trade mark sign, registered'),
+    'registered': GD(name='registered', uni=0x00AE, hex='00AE', c='®', l='copyright', r='copyright', base='largecircle', isLower=True, gid=111, comment='® trade mark sign, registered'),
 
     'section': GD(name='section', uni=0x00A7, hex='00A7', c='§', l='s', r='s', isLower=True, gid=104, comment='§ SECTION SIGN'),
     'semicolon': GD(name='semicolon', uni=0x003B, hex='003B', c=';', l='comma', r='comma', isLower=True, gid=29, comment='; SEMICOLON'),
     'slash': GD(name='slash', uni=0x002F, hex='002F', c='/', l2r='slash', isLower=False, gid=17, comment='/ virgule'),
-    'sterling': GD(name='sterling', uni=0x00A3, hex='00A3', w='zero.tnum', c='£', isLower=True, gid=100, comment='£ sterling, pound'),
+    'sterling': GD(name='sterling', uni=0x00A3, hex='00A3', w='zero.tab', c='£', isLower=True, gid=100, comment='£ sterling, pound'),
 
     'underscore': GD(name='underscore', uni=0x005F, hex='005F', c='_', isLower=True, gid=65, comment='_ underscore, spacing'),
 
@@ -459,6 +461,7 @@ LATIN_S_SET = GDS = {
     'commaaccentcmb.uc': GD(name='commaaccentcmb.uc', w=0, srcName='commaaccentcmb', isLower=True, anchors=['_bottom', 'bottom']),
     'commaturnedabovecmb': GD(name='commaturnedabovecmb', uni=0x0312, hex='0312', c='̒', w=0, isLower=True, anchors=['_top', 'top']),
     'commaturnedabovecmb.uc': GD(name='commaturnedabovecmb.uc', w=0, srcName='commaturnedabovecmb', isLower=True, anchors=['_top', 'top']),
+    'circumflex': GD(name='circumflex', uni=0x02C6, hex='02C6', c='ˆ', l=CENTER, w=ACCENT_WIDTH, base='circumflexcmb', isLower=True, comment='ˆ Legacy CIRCUMFLEX ACCENT, MODIFIER LETTER'),
     'circumflexcmb': GD(name='circumflexcmb', uni=0x0302, hex='0302', c='̂', w=0, isLower=True, anchors=['_top', 'top']),
     'circumflexcmb.uc': GD(name='circumflexcmb.uc', w=0, base='circumflexcmb', isLower=True, anchors=['_top', 'top']),
 
@@ -743,7 +746,7 @@ SC_NAMES = (
     'G', 'Gbreve', 'Gcaron', 'Gcircumflex', 'Gcommaaccent', 'Gdotaccent', 'Germandbls', 'Gmacron', 
     'H', 'Hbar', 'Hcircumflex', 'Hdieresis', 'Hdotbelow', 
     'I', 'Iacute', 'Ibreve', 'Icaron', 'Icircumflex', 'Idieresis', 'Idotaccent', 'Idotbelow', 'Igrave', 'Imacron', 'Iogonek', 'Istroke', 'Itilde', 
-    'J', 'Jcircumflex', 'IJ', 
+    'J', 'Jcircumflex', 'IJ', 'J.base', 'Jcircumflex.base',
     'K', 'Kcommaaccent', 'Khook', 
     'L', 'Lacute', 'Lcaron', 'Lcommaaccent', 'Lslash', 
     'M', 
@@ -761,7 +764,7 @@ SC_NAMES = (
     'Y', 'Yacute', 'Ycircumflex', 'Ydieresis', 'Ygrave', 'Yhook', 'Ymacron', 'Ytilde', 
     'Z', 'Zacute', 'Zcaron', 'Zdotaccent', 'Zdotbelow'
     'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
-    'slash', 'Euro', 'degree', 'germandbls', 'yen', 'ampersand', 
+    'slash', 'Euro', 'degree', 'germandbls', 'yen', 'ampersand', 'question', 'backslash', 'sterling', 
     'parenleft', 'parenright', 'bracketleft', 'bracketright',
 )
 # Used by GlyphSet class to add sinf/dnom/numr/subs glyph data records. 

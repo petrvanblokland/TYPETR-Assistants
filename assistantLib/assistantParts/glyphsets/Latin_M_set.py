@@ -229,6 +229,7 @@ GDS['hookabovecmb'] = GD(name='hookabovecmb', uni=0x0309, hex='0309', c='̉', w=
 # i
 
 GDS['ihookabove'] = GD(name='ihookabove', uni=0x1EC9, hex='1EC9', c='ỉ', w='idotless', bl='idotless', base='idotless', accents=['hookabovecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1124, comment='ỉ I WITH HOOK ABOVE, LATIN SMALL LETTER')
+GDS['i.trk'] = GD(g2='i', g1='i', l='n', r='n', name='i.trk', isLower=True, comment='i.trk', base='idotless', accents=['dotaccentcmb'])
 
 # k
 

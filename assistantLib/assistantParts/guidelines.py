@@ -89,7 +89,7 @@ class AssistantPartGuidelines(BaseAssistantPart):
 
         if gd is None:
             print(f'### checkFixGuidelines: Cannot find GlyphData for /{g.name}')
-            return
+            return False
 
         # Guideline label position angled for italics
         tg = tan(radians(-f.info.italicAngle or 0))

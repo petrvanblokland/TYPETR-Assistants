@@ -228,8 +228,8 @@ GDS['Iinferior'] = GD(name='Iinferior', base='Isuperior', isLower=True)
 GDS['Jcrossedtail'] = GD(name='Jcrossedtail', uni=0xA7B2, hex='A7B2', c='Ʝ', l='J', r='J')
 GDS['Jstroke'] = GD(name='Jstroke', uni=0x0248, hex='0248', c='Ɉ', l='J', r='Eth', base='J', anchors=['bottom', 'middle', 'top'])
 
-GDS['J.base'] = GD(g2='J.base', g1='U', r='J', name='J.base')
-GDS['Jcircumflex.base'] = GD(g2='J.base', g1='U', l='J.base', w='J.base', name='Jcircumflex.base', base='J.base', accents=['circumflexcmb.uc'])
+GDS['J.base'] = GD(g2='J.base', g1='U', r='J', name='J.base', anchors=['bottom', 'middle', 'top'])
+GDS['Jcircumflex.base'] = GD(g2='J.base', g1='U', l='J.base', w='J.base', name='Jcircumflex.base', base='J.base', accents=['circumflexcmb.uc'], anchors=['bottom', 'middle', 'top'])
 
 GDS['Jsuperior'] = GD(name='Jsuperior', isMod=True)
 GDS['Jinferior'] = GD(name='Jinferior', base='Jsuperior', isLower=True)
