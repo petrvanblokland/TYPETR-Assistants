@@ -22,6 +22,9 @@ from assistantLib.kerningSamples import SAMPLES, CYRILLIC_KERNING, GREEK_KERNING
 # Seed relation between glyphs as start for similarity groups
 from assistantLib.assistantParts.glyphsets.groupBaseGlyphs import *
 
+FORCE_GROUP1 = {}
+FORCE_GROUP2 = {}
+
 # Defines types of spacing dependencies
 SPACING_TYPES_LEFT = ('', 'l', 'ml', 'r2l')
 SPACING_TYPES_RIGHT = ('', 'r', 'mr', 'l2r', 'w')
@@ -704,6 +707,8 @@ class KerningManager:
 
     def fixGlyphWidth(self, g, width, label=''):
         """Compare the rounded width to g.width. If it is different, then set the width."""
+        if isinstance(width, str) and width in g.font:
+            width = g.font[width].width
         if not isinstance(width, (float, int)):
             print(f'### Width {width} for /{g.name} should be a number')
         else:
@@ -716,7 +721,9 @@ class KerningManager:
 
     def fixLeftMargin(self, g, lm, label=''):
         """If the left margin is different from the current g value, then change it. Label is optional information about why it changed."""
-        if g.leftMargin is not None and not self.hasEqualLeftMargin(g, lm):
+        if isinstance(lm, str) and lm in g.font:
+            lm = g.font[lm].angledLeftMargin
+        if g.leftMargin is not None and lm is not None and not self.hasEqualLeftMargin(g, lm):
             print(f'... Fix left margin: Set /{g.name} from {g.angledLeftMargin} to {lm} {label}')
             g.angledLeftMargin = lm
             return True
@@ -724,7 +731,11 @@ class KerningManager:
 
     def fixRightMargin(self, g, rm, label=''):
         """If the right margin is different from the current g value, then change it. Label is optional information about why is changed."""
-        if g.rightMargin is not None and not self.hasEqualRightMargin(g, rm):
+        #f 'Sim' in label and g.name == 'r':
+        #    ss = dd
+        if isinstance(rm, str) and rm in g.font:
+            rm = g.font[rm].angledRightMargin
+        if g.rightMargin is not None and rm is not None and not self.hasEqualRightMargin(g, rm):
             print(f'... Fix right margin: Set /{g.name} from {g.angledRightMargin} to {rm} {label}')
             g.angledRightMargin = rm
             return True
@@ -767,7 +778,10 @@ class KerningManager:
             changed |= self.fixGlyphWidth(g, w, f'(w={gd.w})')
 
         # Try to figure out the rules for left margin in this glyph.
-        if gd.l is not None: # Plain angled left margin
+        if gd.r and gd.w: # Special case, left margin depends on combination of width and right margin
+            changed |= self.fixGlyphWidth(g, gd.w, f"w={gd.w}")
+            changed |= self.fixRightMargin(g, gd.r, f"r={gd.r}")
+        elif gd.l is not None: # Plain angled left margin
             if gd.l == 'off': # No automatic spacing, do manually
                 return False
             elif gd.l == 'center': # Center the glyph on it's current defined width
@@ -1043,7 +1057,6 @@ class KerningManager:
             if xy is not None:
                 x, y, = xy
                 return base.angledRightMargin - x
-        print(f'### getBasedRightMargin: Cannot find base glyph or base component for /{g.name}')
         return g.angledRightMargin
 
     def fixBasedLeftMargin(self, g, lm, label=''):
@@ -1902,7 +1915,7 @@ class KerningManager:
         return self.kerningSample[index - int(length / 2) : max(len(self.kerningSample), index + int(length / 2))]
 
     def _get_kerningSample(self):
-        """Propery way to get the initialize cached kerning sample line.
+        """Properly way to get the initialize cached kerning sample line.
         Initialize the kerning sample. There are various flavours possible for different stages in the process.
         For now we just initialize from the base glyphs of each group.
         """
@@ -1929,8 +1942,12 @@ class KerningManager:
                 baseGlyphs1 = sorted(GROUP_BASE_GLYPHS[scriptName1])
                 baseGlyphs2 = sorted(GROUP_BASE_GLYPHS[scriptName2])
                 for gName1 in baseGlyphs1:
+                    if gName1 not in self.f: # Skip non-existing glyphs:
+                        continue
                     if self._kerningSampleFilter1 is None or self._kerningSampleFilter1 == gName1:
                         for gName2 in baseGlyphs2:
+                            if gName2 not in self.f: # Skip non-existing glyphs:
+                                continue
                             if (gName1, gName2) in donePairs:
                                 continue
                             if gName1 in ('exclamdown', 'questiondown') and scriptName2 != 'lt':
@@ -1986,19 +2003,22 @@ class KerningManager:
     def _get_sampleGroupIndex(self):
         return self._sampleGroupIndex
     def _set_sampleGroupIndex(self, i):
-        self._sampleGroupIndex = min(max(i, 0), len(self._kerningSample))
+        kerningSample = self.kerningSame # Property makes sure it is initialized
+        self._sampleGroupIndex = min(max(i, 0), len(kerningSample))
     sampleGroupIndex = property(_get_sampleGroupIndex, _set_sampleGroupIndex)
     
     def _get_sampleSpacingIndex(self):
         return self._sampleSpacingIndex
     def _set_sampleSpacingIndex(self, i):
-        self._sampleSpacingIndex = min(max(i, 0), len(self._kerningSample))
+        kerningSample = self.kerningSample # Property makes sure it is initialized
+        self._sampleSpacingIndex = min(max(i, 0), len(kerningSample))
     sampleSpacingIndex = property(_get_sampleSpacingIndex, _set_sampleSpacingIndex)
     
     def _get_sampleKerningIndex(self):
         return self._sampleKerningIndex
     def _set_sampleKerningIndex(self, i):
-        self._sampleKerningIndex = min(max(i, 0), len(self._kerningSample))
+        kerningSample = self.kerningSample # Property makes sure it is initialized
+        self._sampleKerningIndex = min(max(i, 0), len(kerningSample))
     sampleKerningIndex = property(_get_sampleKerningIndex, _set_sampleKerningIndex)
     
     #   S A M P L E  F I L T E R S

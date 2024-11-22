@@ -52,7 +52,7 @@ if __name__ == '__main__': # Used for doc tests to find assistantLib
         sys.path.append(PATH)
 
 from assistantLib.assistantParts.glyphsets.glyphData import * #GD, TOP, TOP_, _BOTTOM, BOTTOM_ etc.
-from assistantLib.assistantParts.glyphsets.Latin_S_set import LATIN_S_SET
+from assistantLib.assistantParts.glyphsets.Latin_S_set import LATIN_S_SET, MOD_MIN
 
 LATIN_M_SET_NAME = 'Latin M'
 

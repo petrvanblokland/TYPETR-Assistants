@@ -21,6 +21,7 @@ from assistantLib.assistantParts.glyphsets.glyphSet import GlyphSet
 import assistantLib.assistantParts.glyphsets.anchorData
 importlib.reload(assistantLib.assistantParts.glyphsets.anchorData)
 from assistantLib.assistantParts.glyphsets.anchorData import AD
+from assistantLib.assistantParts.glyphsets.Latin_L_set import LATIN_L_SET
 
 class MasterData:
     """Storing additional data about masters, without storing the actual RFont instance. 
@@ -159,7 +160,10 @@ class MasterData:
         self.tabWidth = tabWidth
 
         # Glyphs
-        assert glyphSet is not None, (f'### Glyphset {glyphSet} should be defined')
+        if glyphSet is None: # Print warning and use a standard glyphset
+            print('### Glyphset undefined, using default.')
+            glyphSet = LATIN_L_SET
+        #assert glyphSet is not None, (f'### Glyphset {glyphSet} should be defined')
         self.glyphSet = glyphSet
         
         # Vertical metrics. Do some guessing for missing values. 

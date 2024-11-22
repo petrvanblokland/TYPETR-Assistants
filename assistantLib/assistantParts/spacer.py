@@ -518,7 +518,8 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         if self.needsGroupKerningLinesUpdate: # Forcing the two group kerning lines to be update. Only of the main kerning sample changes.
 
-            ggIndex1, ggIndex2 = self._fillKerningGroupLines(km, gpPrev, gpCurr, gpNext, gpFirst.x, y)
+            if gpPrev is not None and gpCurr is not None and gpNext is not None:
+                ggIndex1, ggIndex2 = self._fillKerningGroupLines(km, gpPrev, gpCurr, gpNext, gpFirst.x, y)
 
             for n in range(ggIndex1, len(self.kerningGroupLine1)):
                 self.kerningGroupLine1[ggIndex1].setVisible(False)

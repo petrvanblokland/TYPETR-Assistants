@@ -8,6 +8,10 @@
 #
 
 from copy import deepcopy
+import importlib
+
+import assistantLib.assistantParts.glyphsets.TYPETR_full_set
+importlib.reload(assistantLib.assistantParts.glyphsets.TYPETR_full_set)
 
 from assistantLib.assistantParts.glyphsets.glyphData import * #GD, TOP, TOP_, _BOTTOM, BOTTOM_ etc.
 from assistantLib.assistantParts.glyphsets.TYPETR_full_set import TYPETR_GlyphSet
@@ -32,16 +36,17 @@ class TYPETR_UpgradeNeonGlyphSet(TYPETR_GlyphSet):
     #gds['Euro.lc'] = GD(name='Euro.lc')
     gds['J.base_sc'] = GD(name='J.base_sc')
     gds['Ruble'] = GD(name='Ruble')
-    gds['Sigma'] = GD(name='Sigma')
+    gds['Sigma'] = GD(name='Sigma', base='summation')
     gds['Won'] = GD(name='Won')
-    gds['a.alt'] = GD(name='a.alt')
-    gds['a.sinf'] = GD(name='a.sinf', base='a.sups')
+    gds['a.alt'] = GD(name='a.alt', l='a', r='a')
+    gds['a.sinf'] = GD(name='a.sinf', l='a.sups', r='a.sups', base='a.sups')
     gds['a.sups'] = GD(name='a.sups')
     gds['aacute.alt'] = GD(name='aacute.alt', base='a.alt', accents=('acutecmb'))
     gds['abreve.alt'] = GD(name='abreve.alt', base='a.alt', accents=('brevecmb'))
     gds['acircumflex.alt'] = GD(name='acircumflex.alt', base='a.alt', accents=('circumflexcmb'))
     gds['adieresis.alt'] = GD(name='adieresis.alt', base='a.alt', accents=('dieresiscmb'))
-    gds['ae.alt'] = GD(name='ae.alt')
+    gds['ae.alt'] = GD(name='ae.alt', l='a', r='e')
+    gds['aeacute.alt'] = GD(name='ae.alt', l='a', r='e', base='ae.alt', accents=['acutecmb'])
     gds['agrave.alt'] = GD(name='agrave.alt', base='a.alt', accents=('gravecmb'))
     gds['amacron.alt'] = GD(name='amacron.alt', base='a.alt', accents=('macroncmb'))
     gds['aogonek.alt'] = GD(name='aogonek.alt', base='a.alt', accents=('ogonekcmb'))
@@ -295,3 +300,5 @@ class TYPETR_UpgradeNeonGlyphSet(TYPETR_GlyphSet):
     gds['zero.tab_lc_salt_slash'] = GD(name='zero.tab_lc_salt_slash', base='zero.sc')
     gds['zero.tab_salt_slash'] = GD(name='zero.tab_salt_slash')
     gds['zero.tab_sc'] = GD(name='zero.tab_sc', base='zero.sc')
+
+

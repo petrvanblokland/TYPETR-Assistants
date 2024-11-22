@@ -51,6 +51,7 @@ class AssistantPartContours(BaseAssistantPart):
                     srcG = f[gd.srcName]
                     if not g.contours:
                         f[gName] = srcG
+                        f[gName].decompose()
                         changed = True
         return changed
 

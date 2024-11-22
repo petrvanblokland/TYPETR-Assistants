@@ -1235,7 +1235,7 @@ class MS_GlyphSet(GlyphSet):
        'dbloverlinecomb': GD(name='dbloverlinecomb', uni=0x033F, hex='033F', c='̿', w=0, base='underscoredbl', isLower=True, anchors=['top', '_top']),
        'dblverticalbar': GD(name='dblverticalbar', uni=0x2016, hex='2016', c='‖', base='bar', accents=['bar'], isLower=True),
        'dblverticallineabovecomb': GD(name='dblverticallineabovecomb', uni=0x030E, hex='030E', c='̎', w=0, isLower=True, anchors=['top', '_top']),
-       'dcaron': GD(name='dcaron', uni=0x010F, hex='010F', c='ď', rightMin='minRight', base='d', accents=['caronvert.component'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=208, comment='ď D WITH CARON, LATIN SMALL LETTER'),
+       'dcaron': GD(name='dcaron', uni=0x010F, hex='010F', c='ď', l='d', r='comma', base='d', accents=['caronvert.component'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=208, comment='ď D WITH CARON, LATIN SMALL LETTER'),
        'dcedilla': GD(name='dcedilla', uni=0x1E11, hex='1E11', c='ḑ', base='d', accents=['cedillacomb.component1'], srcName='uni1E11', isLower=True, anchors=['top', 'middle', 'bottom'], gid=940),
        'dcircumflexbelow': GD(name='dcircumflexbelow', uni=0x1E13, hex='1E13', c='ḓ', base='d', accents=['circumflexbelow'], srcName='uni1E13', isLower=True, anchors=['top', 'middle', 'bottom'], gid=942),
        'dcomb': GD(name='dcomb', uni=0x0369, hex='0369', c='ͩ', w=0, isLower=True, anchors=['top', '_top']),
