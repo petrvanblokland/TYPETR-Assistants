@@ -1946,6 +1946,9 @@ class KerningManager:
                         continue
                     if self._kerningSampleFilter1 is None or self._kerningSampleFilter1 == gName1:
                         for gName2 in baseGlyphs2:
+                            if gName2.endswith('.sc'): # Skip if lc <--> sc. Keep sc <--> sc and keep capital <--> sc
+                                if gName1[0].upper() != gName1[0] and not gName1.endswith('.sc'):
+                                    continue 
                             if gName2 not in self.f: # Skip non-existing glyphs:
                                 continue
                             if (gName1, gName2) in donePairs:

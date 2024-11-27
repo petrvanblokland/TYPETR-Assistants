@@ -293,12 +293,12 @@ class TYPETR_UpgradeNeonGlyphSet(TYPETR_GlyphSet):
     gds['z.sinf'] = GD(name='z.sinf', base='z.sups')
     gds['z.sups'] = GD(name='z.sups')
     #gds['zero.lc'] = GD(name='zero.lc')
-    #gds['zero.lc_salt_slash'] = GD(name='zero.lc_salt_slash', base='zero.lc')
+    #gds['zeroslash.lc'] = GD(name='zeroslash.lc', base='zero.lc')
     gds['zero.salt_slash'] = GD(name='zero.salt_slash', base='zero')
     gds['zero.sc_salt_slash'] = GD(name='zero.sc_salt_slash')
     #gds['zero.tab_lc'] = GD(name='zero.tab_lc', base='zero.lc')
     gds['zero.tab_lc_salt_slash'] = GD(name='zero.tab_lc_salt_slash', base='zero.sc')
-    gds['zero.tab_salt_slash'] = GD(name='zero.tab_salt_slash')
+    gds['zeroslash.tab'] = GD(name='zeroslash.tab')
     gds['zero.tab_sc'] = GD(name='zero.tab_sc', base='zero.sc')
 
 
