@@ -12,7 +12,7 @@
 #   - Or by the anchors in the roman/italic companion masters
 #   - Anchors that refer to a base, get their (relative) horizontal (slanted) positions from it, with the base component offset.
 #   - Vertical position too, unless there are already diacritics lower and/or higher, then the vertical position is adjusted to fit the glyph bounding box.
-#   - Otherwise check if there is a set of predefined vertical position for each anchor type
+#   - Otherwise check if there is a set of predefined vertical positions for each anchor type
 #   - The assistant decides on an initial strategy, but then the user can alter that.
 #   - If an anchor was dragged, this is stored in the glyph.lib, so it will not change by the assistant anymore.
 #   - Unless that flag is cleared.
@@ -188,13 +188,16 @@ class AssistantPartAnchors(BaseAssistantPart):
 
     def checkFixAnchorPositions(self, g):
         """Check/fix the y-position of the anchors named in AD.CENTERING_ANCHORS, according to which guessMethod names are defined in glyph.lib. 
-        It is assumed there that required anchors exist."""
+        It is assumed there that the required anchors exist."""
         changed = False
         gd = self.getGlyphData(g)
-        if gd is not None:
-            if gd.autoFixAnchorPositions:
-                for a in g.anchors:
-                    changed |= self.autoCheckFixAnchorPosition(g, a)
+        if gd is None:
+            print(f'### checkFixAnchorPositions: Cannot find GlyphData for /{g.name}')
+            return changed
+
+        if gd.autoFixAnchorPositions:
+            for a in g.anchors:
+                changed |= self.autoCheckFixAnchorPosition(g, gd, a)
             #return self._fixGlyphAnchorsY(g)
             #print(f'... Check-fix anchor positions of {g.name}')
         return changed
@@ -256,7 +259,7 @@ class AssistantPartAnchors(BaseAssistantPart):
 
     ANCHORS_LIB_KEY = 'anchorsLib'
     ANCHORS_DEFAULT_LIB = dict(
-        anchorMethodX={}, # Key is anchor name, value is method name for geussing the position. Values can be None or missing.
+        anchorMethodX={}, # Key is anchor name, value is method name for guessing the position. Values can be None or missing.
         anchorMethodY={},
     )
 
@@ -293,6 +296,12 @@ class AssistantPartAnchors(BaseAssistantPart):
         """There was a mouse down. Check if it was near a guessed anchor position. If so, then store the guessed method name in the glyph.lib if not already there.
         Then store the method names in all family masters and checkSet the anchor position to that guessed value"""
         #controlDown = event['controlDown'] # Cannot use control-key, as it pops up a RoboFont menu
+
+        gd = self.getGlyphData(g)
+        if gd is None:
+            print(f'### mouseDownAnchors: Cannot find GlyphData for /{g.name}')
+            return
+
         shiftDown = event['shiftDown']
         commandDown = event['commandDown']
         optionDown = event['optionDown']
@@ -312,7 +321,7 @@ class AssistantPartAnchors(BaseAssistantPart):
                         for aa in gg.anchors:
                             if aa.name == a.name:
                                 print(f'... autoCheckFixAnchorPosition: {pth} Anchor {a.name}')
-                                self.autoCheckFixAnchorPosition(gg, aa)
+                                self.autoCheckFixAnchorPosition(gg, gd, aa) # GlyphData is supposed to be equal for all glyphs in the family
                     
         elif shiftDown and commandDown: # All anchors of all masters with name of anchors near mouse click
             for a in g.anchors: # All anchors that are within reach
@@ -328,14 +337,14 @@ class AssistantPartAnchors(BaseAssistantPart):
                             for aa in gg.anchors:
                                 if aa.name == a.name:
                                     print(f'... autoCheckFixAnchorPosition: {pth} Anchor {a.name}')
-                                    self.autoCheckFixAnchorPosition(gg, aa)
+                                    self.autoCheckFixAnchorPosition(gg, gd, aa) # GlyphData is supposed to be equal for all glyphs in the family
                             gg.changed()
                     
         elif shiftDown and optionDown: # Only do a single anchor in the current glyph if click is within range.
             self.checkFixRequiredAnchors(g) # First make sure that they all exist.
             for a in g.anchors:
                 if self.distance(a.x, a.y, x, y) < self.ANCHOR_SELECT_DISTANCE:
-                    self.autoCheckFixAnchorPosition(g, a)
+                    self.autoCheckFixAnchorPosition(g, gd, a)
         return
 
     def ZZZZZ(self):
@@ -380,44 +389,48 @@ class AssistantPartAnchors(BaseAssistantPart):
         """Check/fix the required anchors if they don't all exist or if there are too many."""
         changed = False
         gd = self.getGlyphData(g)
-        if gd is not None:
-            requiredAnchorNames = gd.anchors  
-            anchorNames = self.getAnchorNames(g)
-            if requiredAnchorNames != anchorNames:
-                # Remove obsolete anchors
-                for a in g.anchors[:]: # Make a copy of the list, as it may be altered
-                    if a.name not in requiredAnchorNames:  
-                        print(f'... Remove obsolete anchor "{a.name}" in /{g.name}')
-                        g.removeAnchor(a)
-                        changed = True
+        if gd is None:
+            print(f'### checkFixRequiredAnchors: Cannot find GlyphData for /{g.name}')
+            return
 
-                # Add missing anchors
-                for aName in requiredAnchorNames:
-                    if aName not in anchorNames:
-                        print(f'... Add missing anchor "{aName}" in /{g.name}')
-                        g.appendAnchor(name=aName, position=(0, 0)) # Just put at origin, position will be set in later checks.
-                        changed = True 
+        requiredAnchorNames = gd.anchors  
+        anchorNames = self.getAnchorNames(g)
+        if requiredAnchorNames != anchorNames:
+            # Remove obsolete anchors
+            for a in g.anchors[:]: # Make a copy of the list, as it may be altered
+                if a.name not in requiredAnchorNames:  
+                    print(f'... Remove obsolete anchor "{a.name}" in /{g.name}')
+                    g.removeAnchor(a)
+                    changed = True
 
-                # Check on duplicate anchors
-                done = [] # Remember which are already done, to detect duplicate anchors
-                for a in g.anchors[:]: # Make a copy of the list, as it may be altered
-                    if a.name in done:
-                        print(f'... Remove duplicate anchor "{a.name}" in /{g.name}')
-                        g.removeAnchor(a)
-                    done.append(a.name)
+            # Add missing anchors
+            for aName in requiredAnchorNames:
+                if aName not in anchorNames:
+                    print(f'... Add missing anchor "{aName}" in /{g.name}')
+                    g.appendAnchor(name=aName, position=(0, 0)) # Just put at origin, position will be set in later checks.
+                    changed = True 
+
+            # Check on duplicate anchors
+            done = [] # Remember which are already done, to detect duplicate anchors
+            for a in g.anchors[:]: # Make a copy of the list, as it may be altered
+                if a.name in done:
+                    print(f'... Remove duplicate anchor "{a.name}" in /{g.name}')
+                    g.removeAnchor(a)
+                done.append(a.name)
 
         return changed
 
     def setGlyphAnchors(self, g):
-        """Called when the EditWindow selected a new glyph. Try to  find previous anchor info in g.lib,
+        """Called when the EditWindow selected a new glyph. Try to find previous anchor info in g.lib,
         about mode by which the current anchors are set and if they were manually moved."""
         self.checkFixRequiredAnchors(g) # First make sure that they all exist.
         gd = self.getGlyphData(g)
         if gd is None:
             print(f'### setGlyphAnchors: Cannot find GlyphData for /{g.name}')
+
         elif gd.autoFixAnchorPositions:
             for a in g.anchors:
-                self.autoCheckFixAnchorPosition(g, a)
+                self.autoCheckFixAnchorPosition(g, gd, a)
 
     def _getAnchorTypeGlyph(self, g):
         """Answer the glyph that is model for the anchors of g. If glyphData.anchorGlyphSrc is defined then use that glyph,
@@ -426,40 +439,44 @@ class AssistantPartAnchors(BaseAssistantPart):
         gd = self.getGlyphData(g)
         if gd is None:
             print(f'### setGlyphAnchors: Cannot find GlyphData for /{g.name}')
+
         elif gd.anchorGlyphSrc is not None: # There is a src glyph other than /g to copy guessed anchor positions from
             if gd.anchorGlyphSrc in g.font: # Does the reference exist?
                 return g.font[gd.anchorGlyphSrc]
             # Print the error if the referenced glyph cannot be found
             print(f'### Cannot find anchorGlyphSrc /{gd.anchorGlyphSrc} for /{g.name}') 
+
         return g # By default use this glyph as its own source to guess possible anchor positions from
 
-    def autoCheckFixAnchorPosition(self, g, a):
+    #   A N C H O R  P O S I T I O N  C O N S T R U C T I O N S
+
+    def autoCheckFixAnchorPosition(self, g, gd, a):
         changed = False
 
         ax = ay = None
         if a.name == AD.TOP_:
-            ax, ay = self.constructAnchorTOP_XY(g, a)
+            ax, ay = self.constructAnchorTOP_XY(g, gd, a)
 
         elif a.name == AD._TOP:
-            ax, ay = self.constructAnchor_TOPXY(g, a)
+            ax, ay = self.constructAnchor_TOPXY(g, gd, a)
 
         elif a.name == AD.MIDDLE_:
-            ax, ay = self.constructAnchorMIDDLE_XY(g, a)
+            ax, ay = self.constructAnchorMIDDLE_XY(g, gd, a)
 
         elif a.name == AD._MIDDLE:
-            ax, ay = self.constructAnchorMIDDLE_XY(g, a)
+            ax, ay = self.constructAnchorMIDDLE_XY(g, gd, a)
         
         elif a.name == AD.BOTTOM_: # Try to guess bottom position
-            ax, ay = self.constructAnchorBOTTOM_XY(g, a)
+            ax, ay = self.constructAnchorBOTTOM_XY(g, gd, a)
         
         elif a.name == AD._BOTTOM:
-            ax, ay = self.constructAnchor_BOTTOMXY(g, a)
+            ax, ay = self.constructAnchor_BOTTOMXY(g, gd, a)
 
         elif a.name == AD.OGONEK_: # Try to guess bottom position
-            ax, ay = self.constructAnchorOGONEK_XY(g, a)
+            ax, ay = self.constructAnchorOGONEK_XY(g, gd, a)
 
         elif a.name == AD.TONOS_: # Try to guess tonos position only for capitals
-            ax, ay = self.constructAnchorTONOS_XY(g, a)
+            ax, ay = self.constructAnchorTONOS_XY(g, gd, a)
 
         elif a.name == AD._TONOS: # Try to guess _tonos position
             ax = ay = None # Not for now
@@ -479,12 +496,12 @@ class AssistantPartAnchors(BaseAssistantPart):
                 changed = True
         return changed
 
-    def constructAnchorTOP_XY(self, g, a):
+    def constructAnchorTOP_XY(self, g, gd, a):
         """Answer the constructed (x, y) position of the TOP_ anchor for g, based on available rules and shape. The x and/or y can be None 
         in case not valid value could be constructed. In that case the position needs to be set manually in the editor.
         """
         md = self.getMasterData(g.font)
-        gd = self.getGlyphData(g)
+
         ax = ay = None
         baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g) # In case there is a base, just copy the vertical and hotizontal anchor positions, with the component offset
 
@@ -496,7 +513,7 @@ class AssistantPartAnchors(BaseAssistantPart):
                     ay = aa.y
             else: # If not an existing glyph name, then we can assume it is a valid method name that will calculate the ay
                 # Available: 
-                ay = getattr(self, 'constructAnchor'+gd.anchorTopY)(g, a.name, a.x, ay or a.y) # @@@ Various methods still to be implemented
+                ay = getattr(self, 'constructAnchor'+gd.anchorTopY)(g, gd, a.name, a.x, ay or a.y) # @@@ Various methods still to be implemented
 
         else: # No construction glyph or method defined, then try to figure out from this glyph shape
             # Trying to guess vertical from anchor in base glyph + its offset
@@ -530,10 +547,10 @@ class AssistantPartAnchors(BaseAssistantPart):
                 aa = self.getAnchor(g.font[gd.anchorTopX], a.name)
                 if aa is not None:
                     ax = aa.x
-            else: # If not an existing glyph name, then we can assume it is a valid method name that will calculate the ay
+            else: # If not an existing glyph name, then we can assume it is a valid method name that will calculate the ax
                 # Available: 
                 # Constructor methods are supposed to answer italic x-position
-                ax = getattr(self, 'constructAnchor' + gd.anchorTopX)(g, a.name, a.x, ay or a.y) # Use new ay here. Various methods still to be implemented
+                ax = getattr(self, 'constructAnchor' + gd.anchorTopX)(g, gd, a.name, a.x, ay or a.y) # Use new ay here. Various methods still to be implemented
 
         # Hack, this should become an optioncal construction method
         elif g.name == 'J': # Special case, can't use the width. Find the top-left most corner point
@@ -551,7 +568,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         
         return ax, ay
 
-    def constructAnchor_TOPXY(self, g, a):
+    def constructAnchor_TOPXY(self, g, gd, a):
         """Answer the constructed (x, y) position of the _TOP anchor for g, based on available rules and shape. The x and/or y can be None 
         in case not valid value could be constructed. In that case the position needs to be set manually in the editor.
         @@@ No methods here yet.
@@ -562,14 +579,14 @@ class AssistantPartAnchors(BaseAssistantPart):
         
         return ax, ay
 
-    def constructAnchorMIDDLE_XY(self, g, a):
+    def constructAnchorMIDDLE_XY(self, g, gd, a):
         """Answer the constructed (x, y) position of the MIDDLE_ anchor for g, based on available rules and shape. The x and/or y can be None 
         in case not valid value could be constructed. In that case the position needs to be set manually in the editor.
         @@@ No methods here yet.
         """
         ax = g.width/2
         ay = g.font.info.capHeight/2
-        gd = self.getGlyphData(g)
+
         # MIDDLE_ Construct vertical position
         if gd.anchorMiddleY is not None:
             if gd.anchorMiddleY in g.font: # In case it is an existing glyph name, then take the vertical position from the corresponding anchor
@@ -578,10 +595,9 @@ class AssistantPartAnchors(BaseAssistantPart):
                     ay = aa.y
             else: # If not an existing glyph name, then we can assume it is a valid method name that will calculate the ay
                 # Available: 
-                ay = getattr(self, 'constructAnchor' + gd.anchorMiddleY)(g, a.name, a.x, ay or a.y) # @@@ Various methods still to be implemented
+                ay = getattr(self, 'constructAnchor' + gd.anchorMiddleY)(g, gd, a.name, a.x, ay or a.y) # @@@ Various methods still to be implemented
 
         else: # No construction glyph or method defined, then try to figure out from this glyph shape
-            gd = self.getGlyphData(g)
             # Trying to guess vertical
             if gd.isSc and 'H.sc' in g.font:
                 scAnchor = self.getAnchor(g.font['H.sc'], a.name)
@@ -602,7 +618,7 @@ class AssistantPartAnchors(BaseAssistantPart):
             else: # If not an existing glyph name, then we can assume it is a valid method name that will calculate the ay
                 # Available: 
                 # Constructor methods are supposed to answer italic x-position
-                ax = getattr(self, 'constructAnchor' + gd.anchorMiddleX)(g, a.name, a.x, ay or a.y) # Use new ay here. Various methods still to be implemented
+                ax = getattr(self, 'constructAnchor' + gd.anchorMiddleX)(g, gd, a.name, a.x, ay or a.y) # Use new ay here. Various methods still to be implemented
 
         # Hack, this should become an optioncal construction method
         elif g.name == 'J': # Special case, can't use the width. Find the top-left most corner point
@@ -622,23 +638,24 @@ class AssistantPartAnchors(BaseAssistantPart):
 
         return ax, ay
 
-    def constructAnchor_MIDDLEXY(self, g, a):
+    def constructAnchor_MIDDLEXY(self, g, gd, a):
         """Answer the constructed (x, y) position of the _MIDDLE anchor for g, based on available rules and shape. The x and/or y can be None 
         in case not valid value could be constructed. In that case the position needs to be set manually in the editor.
         @@@ No methods here yet.
         """
-        ay = g.font.info.xHeight/2
-        ax = self.italicX(g, 0, ay) # All glyph that contain _top are supposed to have width = 0
+        ay = gd.height/2
+        ax = self.italicX(g, 0, ay) # All glyph that contain _middle are supposed to have width = 0
 
         return ax, ay
 
-    def constructAnchorBOTTOM_XY(self, g, a):
+    def constructAnchorBOTTOM_XY(self, g, gd, a):
         """Answer the constructed (x, y) position of the BOTTOM_ anchor for g, based on available rules and shape. The x and/or y can be None 
         in case not valid value could be constructed. In that case the position needs to be set manually in the editor.
         """
         ax = ay = None
         md = self.getMasterData(g.font)
         gd = self.getGlyphData(g)
+
         baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g) # In case there is a base, just copy the vertical and hotizontal anchor positions, with the component offset
 
         # BOTTOM_ Construct vertical position
@@ -648,7 +665,7 @@ class AssistantPartAnchors(BaseAssistantPart):
                 if aa is not None:
                     ay = aa.y
             else: # If not an existing glyph name, then we can assume it is a valid method name that will calculate the ay
-                ay = getattr(self, 'constructAnchor' + gd.anchorBottomY)(g, a.name, a.x, ay or a.y) # @@@ Various methods still to be implemented
+                ay = getattr(self, 'constructAnchor' + gd.anchorBottomY)(g, gd, a.name, a.x, ay or a.y) # @@@ Various methods still to be implemented
 
         else: # No glyph or construction method defined, then try to figure out from this glyph shape
             # Trying to guess vertical
@@ -666,14 +683,15 @@ class AssistantPartAnchors(BaseAssistantPart):
                     ax = aa.x
             else: # If not an existing glyph name, then we can assume it is a valid method name that will calculate the ay
                 # Constructor methods are supposed to answer italic x-position
-                ax = getattr(self, 'constructAnchor' + gd.anchorBottomX)(g, a.name, a.x, ay or a.y) # Use new ay here. Various methods still to be implemented
+                ax = getattr(self, 'constructAnchor' + gd.anchorBottomX)(g, gd, a.name, a.x, ay or a.y) # Use new ay here. Various methods still to be implemented
 
         # Hack, this should become an optioncal construction method
-        elif g.name == 'R': # Special case, can't use the width. Find the top-left most corner point
+        elif g.name == 'R' and ay is not None: # Special case, can't use the width. Find the top-left most corner point
             p1, p2 = self.getXBounds(g, y1=0)
-            ax = self.italicX(g, p1.x + (p2.x - p1.x)/2, ay) # Half stem of /J
+            if p1 is not None and p2 is not None:
+                ax = self.italicX(g, p1.x + (p2.x - p1.x)/2, ay or 0) # Half stem of /J
 
-        else: # No construction glyph or method name defined, then try to figure out from the glyph shape
+        elif ay is not None: # No construction glyph or method name defined, then try to figure out from the glyph shape
             # BOTTOM_ Construct horizontal position
             if baseGlyph is not None:
                 baseAnchor = self.getAnchor(baseGlyph, a.name)
@@ -684,7 +702,7 @@ class AssistantPartAnchors(BaseAssistantPart):
 
         return ax, ay
 
-    def constructAnchor_BOTTOMXY(self, g, a):
+    def constructAnchor_BOTTOMXY(self, g, gd, a):
         """Answer the constructed (x, y) position of the BOTTOM_ anchor for g, based on available rules and shape. The x and/or y can be None 
         in case not valid value could be constructed. In that case the position needs to be set manually in the editor.
         @@@ No methods here yet.
@@ -695,7 +713,7 @@ class AssistantPartAnchors(BaseAssistantPart):
 
         return ax, ay
 
-    def constructAnchorOGONEK_XY(self, g, a):
+    def constructAnchorOGONEK_XY(self, g, gd, a):
         """Answer the constructed (x, y) position of the OGONEK_ anchor for g, based on available rules and shape. The x and/or y can be None 
         in case not valid value could be constructed. In that case the position needs to be set manually in the editor.
         @@@ No methods here yet.
@@ -707,7 +725,7 @@ class AssistantPartAnchors(BaseAssistantPart):
 
         return ax, ay
 
-    def constructAnchorTONOS_XY(self, g, a):
+    def constructAnchorTONOS_XY(self, g, gd, a):
         """Answer the constructed (x, y) position of the TONOS_ anchor for g, based on available rules and shape. The x and/or y can be None 
         in case not valid value could be constructed. In that case the position needs to be set manually in the editor.
         @@@ No methods here yet.
@@ -728,6 +746,7 @@ class AssistantPartAnchors(BaseAssistantPart):
             bounds = self.getXBounds(g, y1=g.font.info.capHeight) # Test if there are bounds, not if tonos is not supported
             if bounds[0] is not None:
                 ax = bounds[0].x * 3/4
+
         elif g.name in ('O', 'Ohm'): # Special case, can't use the left margin. Find the top-left most corner point
             ax = self.italicX(g, g.angledLeftMargin, ay) # Right aligned on margin
 
@@ -749,7 +768,7 @@ class AssistantPartAnchors(BaseAssistantPart):
 
     #   A N C H O R  P O S I T I O N  C O N S T R U C T O R S
 
-    def constructAnchorBoundsX2(self, g, a, ax, ay):
+    def constructAnchorBoundsX2(self, g, gd, a, ax, ay):
         """Constructor method for half bounds width. Because of italic shapes, we cannot use g.bounds here. Use angled margins instead."""
         print('... Anchor position by constructAnchorBoundsX2')
         ml = g.angledLeftMargin
@@ -758,7 +777,7 @@ class AssistantPartAnchors(BaseAssistantPart):
             return self.italicX(g, ml + (g.width - ml - mr)/2, ay) # Construct methods are supposed to answer italicized x-positions
         return g.width/2 # Cannot find margins, so just answer width/2
 
-    def constructAnchorTopX(self, g, a, ax, ay):
+    def constructAnchorTopX(self, g, gd, a, ax, ay):
         """Answer the X position of the highest point(s). If there is not point (e.g. just contours), then answer the middle of the bounaries."""
         xx = []
         y = None
@@ -775,13 +794,25 @@ class AssistantPartAnchors(BaseAssistantPart):
         if xx:
             return int(round(sum(xx)/len(xx)))
         # Could not find an x, e.g. because of only components. Then use the bounding box width/2 instead.
-        return self.constructAnchorBoundsX2(g, a, ax, ay)
+        return self.constructAnchorBoundsX2(g, gd, a, ax, ay)
 
-    def constructAnchorMiddleX(self, g, a, ax, ay):
-        """Answer the X position of as average of TopX and BottomX. If there is not point (e.g. just contours), then answer the middle of the bounaries."""
+    def constructAnchorTopY(self, g, gd, a, ax, ay):
+        """Answer the anchor TopX measured against the bounding box.""" 
+        md = self.getMasterData(g.font)
+        if gd.isUpper:
+            if g.bounds is not None and ay < g.bounds[3] + md.capHeightAnchorOffsetY: # Probably bounding box extended from diacritics
+                ay = g.bounds[3] + md.capHeightAnchorOffsetY
+        # Test on small caps too here.
+        else:
+            if g.bounds is not None and ay < g.bounds[3] + md.xHeightAnchorOffsetY: # Probably bounding box extended from diacritics
+                ay = g.bounds[3] + md.xHeightAnchorOffsetY
+        return ay
+
+    def constructAnchorMiddleX(self, g, gd, a, ax, ay):
+        """Answer the X position of as average of TopX and BottomX. If there is not point (e.g. just contours), then answer the middle of the boundaries."""
         return (self.constructAnchorTopX(g, a, ax, ay) + self.constructAnchorBottomX(g, a, ax, ay))/2
 
-    def constructAnchorBottomX(self, g, a, ax, ay):
+    def constructAnchorBottomX(self, g, gd, a, ax, ay):
         """Answer the X position of the lowest point(s). If there is not point (e.g. just contours), then answer the middle of the bounaries."""
         xx = []
         y = None
@@ -795,12 +826,12 @@ class AssistantPartAnchors(BaseAssistantPart):
                 elif y > p.y:
                     y = p.y
                     xx = [p.x]
-        if xx:
+        if xx: # In case it was defined
             return int(round(sum(xx)/len(xx)))
         # Could not find an x, e.g. because of only components. Then use the bounding box width/2 instead.
         return self.constructAnchorBoundsX2(g, a, ax, ay)
 
-    def constructAnchorBaselineY(self, g, a, ax, ay):
+    def constructAnchorBaselineY(self, g, gd, a, ax, ay):
         """Answer the Y position on baseline."""
         md = self.getMasterData(g.font)
         ay = md.baselineAnchorOffsetY
@@ -1060,6 +1091,10 @@ class AssistantPartAnchors(BaseAssistantPart):
         f = g.font
         md = self.getMasterData(f)
         gd = self.getGlyphData(g)
+        if gd is None:
+            print(f'### checkFixRomanItalicAnchors: Cannot find GlyphData for /{g.name}')
+            return
+
         src = self.getFont(md.romanItalicUFOPath)
         if g.name in src:
             srcG = src[g.name]

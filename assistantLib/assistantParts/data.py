@@ -78,8 +78,8 @@ class MasterData:
             baseDiacriticsBottom=None, # Top of bottom diacritis
             ascenderAnchorOffsetY= -AD.ANCHOR_ASCENDER_OFFSET,
             boxTopAnchorOffsetY= -AD.ANCHOR_BOXTOP_OFFSET,
-            capHeightAnchorOffsetY= -AD.ANCHOR_CAP_OFFSET, # Optional vertical offset of cap-anhors or lower capital diacritics.
-            xHeightAnchorOffsetY= -AD.ANCHOR_OFFSET,
+            capHeightAnchorOffsetY= -AD.ANCHOR_CAP_OFFSET, # Optional vertical offset of cap-anchors or lower capital diacritics.
+            xHeightAnchorOffsetY= -AD.ANCHOR_OFFSET, 
             baselineAnchorOffsetY=AD.ANCHOR_OFFSET,
             ogonekAnchorOffsetY=AD.ANCHOR_OGONEK_OFFSET,
             boxBottomAnchorOffsetY= AD.ANCHOR_BOXBOTTOM_OFFSET,
@@ -331,13 +331,12 @@ class MasterData:
         if gd is None:
             print(f'### getOvershoot: Unknown glyph /{gName} in glyphSet of {self.name}')
             return self.baseOvershoot
-        if gd.overshoot is None: # Nothing defined in the glyph, use the default
-            return self.baseOvershoot
-        if isinstance(gd.overshoot, (int, float)): 
-            return gd.overshoot
         # If there is a category defined in the glyphData for this glyph, then answer the referenced category value.
         if gd.overshoot in self.cat2Overshoot:
             return self.cat2Overshoot[gd.overshoot]
+        if isinstance(gd.overshoot, (int, float)): 
+            return gd.overshoot
+
         # Not defined in the GlyphSet/GlyphData for this glyph. We need to do some quessing, based on the name.
         if gd.isUpper: # All glyph that start with initial cap
             return self.cat2Overshoot[GD.CAT_CAP_OVERSHOOT]

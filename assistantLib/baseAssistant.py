@@ -275,7 +275,9 @@ class BaseAssistant:
         if g is not None:  
             md = self.getMasterData(g.font)
             if md is not None:
-                return md.glyphSet[g.name]
+                gd = md.glyphSet.get(g.name)
+                if gd is not None:
+                    return gd
             print(f'### Cannot find GlyphData for {g.name}')
         return None
 

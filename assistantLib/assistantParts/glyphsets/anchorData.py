@@ -188,14 +188,16 @@ class AnchorData:
     # Diacritics to show a subset-cloud by the contours part.
     EXAMPLE_DIACRITICS = {
         TOP_: ('gravecomb', 'acutecomb', 'circumflexcomb', 'macroncomb', 'dotaccentcomb', 'dieresiscomb', 'tildecomb',
-               'gravecmb', 'acutecmb', 'circumflexcmb', 'macroncmb', 'dotaccentcmb', 'dieresiscmb', 'tildecmb',),
+               'gravecmb', 'acutecmb', 'circumflexcmb', 'macroncmb', 'dotaccentcmb', 'dieresiscmb', 'tildecmb', 'ringcmb',
+                'gravecomb.uc', 'acutecomb.uc', 'circumflexcomb.uc', 'macroncomb.uc', 'dotaccentcomb.uc', 'dieresiscomb.uc', 'tildecomb.uc',
+               'gravecmb.uc', 'acutecmb.uc', 'circumflexcmb.uc', 'macroncmb.uc', 'dotaccentcmb.uc', 'dieresiscmb.uc', 'tildecmb.uc', 'ringcmb.uc'),
         BOTTOM_: ('plusbelowcomb', 'ringbelowcomb', 'cedillacomb', 
                   'plusbelowcmb', 'ringbelowcmb', 'cedillacmb'),
         MIDDLE_: ('slashshortcomb', 'slashshortcmb'),
         OGONEK_: ('ogonekcomb', 'ogonekcmb'),
         TONOS_: ('tonoscomb', 'tonoscmb', 'tonos-uc',),
         VERT_: ('caronvert.component',),
-        DOT_: ('dotmiddle.component',),
+        DOT_: ('dotmiddle.component', 'dotmiddlecmb', ),
     }
 
     ACCENT_DATA = {

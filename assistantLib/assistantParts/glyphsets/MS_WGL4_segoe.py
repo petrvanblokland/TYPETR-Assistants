@@ -709,7 +709,7 @@ class MS_GlyphSet(GlyphSet):
        'Rhodasia': GD(name='Rhodasia', uni=0x1FEC, hex='1FEC', c='Ῥ', l='H', r='P', base='P', accents=['dasia-uc'], anchors=['top', 'middle', 'bottom'], gid=1390),
        'Rinsular': GD(name='Rinsular', uni=0xA782, hex='A782', r='t', c='Ꞃ'),
        'Rinvertedbreve': GD(name='Rinvertedbreve', uni=0x0212, hex='0212', c='Ȓ', base='R', accents=['perispomeni'], anchors=['top', 'middle', 'bottom']),
-       'Rlinebelow': GD(name='Rlinebelow', uni=0x1E5E, hex='1E5E', c='Ṟ', base='R', accents=['macronbelow'], srcName='uni1E5E', anchors=['top', 'middle', 'bottom'], gid=1017),
+       'Rlinebelow': GD(name='Rlinebelow', uni=0x1E5E, hex='1E5E', c='Ṟ', base='R', anchors=['top', 'middle', 'bottom'], gid=1017),
        'Rmod': GD(name='Rmod', uni=0x1D3F, hex='1D3F', c='ᴿ', l='Hmod', isMod=True),
        'Robliquestroke': GD(name='Robliquestroke', uni=0xA7A6, hex='A7A6', c='Ꞧ', l='Eth', base='R', anchors=['top', 'middle', 'bottom']),
        'RreversedSmall': GD(name='RreversedSmall', uni=0x1D19, hex='1D19', c='ᴙ', r2l='Rsmall'),
@@ -802,7 +802,7 @@ class MS_GlyphSet(GlyphSet):
        'U': GD(name='U', uni=0x0055, hex='0055', c='U', l2r='U', anchors=['top', 'middle', 'bottom', 'ogonek'], gid=55, comment='U'), # Best to keep bottom anchor centeres on bounds, not on curve-min
        'U-cy': GD(name='U-cy', uni=0x0423, hex='0423', c='У', l2r='U-cy', anchors=['top'], gid=680),
        'Uacute': GD(name='Uacute', uni=0x00DA, hex='00DA', c='Ú', l='U', r='U', base='U', accents=['acutecomb'], anchors=['top', 'middle', 'bottom'], gid=155, comment='Ú U WITH ACUTE, LATIN CAPITAL LETTER'),
-       'Ubar': GD(name='Ubar', uni=0x0244, hex='0244', c='Ʉ', l='Eth', l2r='Eth', base='U', anchors=['top', 'middle', 'bottom']),
+       'Ubar': GD(name='Ubar', uni=0x0244, hex='0244', c='Ʉ', l='Eth', l2r='Eth', base='U', anchors=['top', 'middle', 'bottom', 'ogonek']),
        'Ubreve': GD(name='Ubreve', uni=0x016C, hex='016C', c='Ŭ', l='U', r='U', base='U', accents=['brevecomb'], anchors=['top', 'middle', 'bottom'], gid=301, comment='Ŭ'),
        'Ucaron': GD(name='Ucaron', uni=0x01D3, hex='01D3', c='Ǔ', l='U', r='U', base='U', accents=['caroncomb'], srcName='uni01D3', anchors=['top', 'middle', 'bottom'], gid=404),
        'Ucircumflex': GD(name='Ucircumflex', uni=0x00DB, hex='00DB', c='Û', l='U', r='U', base='U', accents=['circumflexcomb'], anchors=['top', 'middle', 'bottom'], gid=156, comment='Û U WITH CIRCUMFLEX, LATIN CAPITAL LETTER'),

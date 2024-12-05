@@ -42,6 +42,8 @@ class GlyphData:
     MOD_DNOM = 'dnom'
     MOD = 'mod'
 
+    SC = 'sc'
+
     # Categories of spacing and size
     CAT_EM = 'em'
     CAT_EM2 = 'em2'
@@ -134,7 +136,7 @@ class GlyphData:
         self.gid = gid # Glyph id
         assert name is not None
         self.name = name
-        if srcName == name:
+        if srcName == name or (isinstance(srcName, str) and srcName.startswith('uni')):
             srcName = None
         self.srcName = srcName
 
@@ -219,16 +221,23 @@ class GlyphData:
         return(f'<{self.__class__.__name__} {self.name}>')
 
     def _get_isUpper(self):
-        return not self.isLower
+        return not self.isLower and not self.isSc
     isUpper = property(_get_isUpper)
+
+    def _get_isSc(self):
+        """Answer the boolean flag if this glyph is a small cap."""
+        if self._isSc is not None: # Has a forced setting?
+            return bool(self._isSc)
+        return self.name.endswith(self.SC) # This must be a smallcap
+    isSc = property(_get_isSc)
 
     def _get_isLower(self):
         """Answer the boolean flag if this glyph is lowercase. If the flag is undefined in self._isLower
         then take a guess.
         """
-        if self._isLower is not None:
-            return self._isLower
-        return bool(self.name[0].upper() != self.name[0]) # This is an uppercase.
+        if self._isLower is not None:  # Has a forced setting?
+            return bool(self._isLower)
+        return bool(self.name[0].upper() != self.name[0]) # This is an lowercase.
     isLower = property(_get_isLower)
 
     def _get_isMod(self):
