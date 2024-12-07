@@ -37,14 +37,12 @@ class MasterData:
     LOWEST_PPEM = 5
 
     BASELINE = 0
-    TAB_WIDTH = 650
     BASE_OVERSHOOT = 12
     STEM_OVERSHOOT = 0 # Used for small  dovershoot if single stems, e.g. in rounded terminals such as Upgrade Neon
     ASCENDER = 750
     DESCENDER = -250
     XHEIGHT = 500
     CAPHEIGHT = 750
-    DEFAULT_TAB_WIDTH = 650
     
     VERSION_MAJOR = 1
     VERSION_MINOR = 0
@@ -67,7 +65,23 @@ class MasterData:
             tripletData1=None, tripletData2=None, featurePath=None, 
             # GlyphSet instance, describing the glyph set and GlyphData characteristics. This attribute must be defined
             glyphSet=None, 
+            # Spacing category rules
+            spaceWidth=None,
+            emWidth=None,
+            emWidth2=None,
+            enWidth=None,
+            hairWidth=None,
+            accentWidth=None,
+            tabWidth=None,
+            figureWidth=None,
+            mathWidth=None,
+            fractionWidth=None,
+            # Margins
+            centerWidth=None,
+            minMargin=None,
+            modMinMargin=None,
             # Vertical metrics
+            unitsPerEm=UNITS_PER_EM, 
             baseline=0, stemOvershoot=STEM_OVERSHOOT, baseOvershoot=None, capOvershoot=None, scOvershoot=None, supsOvershoot=None,
             ascender=None, descender=None,
             xHeight=None, capHeight=None, scHeight=None, supsHeight=None, modHeight=None,
@@ -91,10 +105,9 @@ class MasterData:
             nStem=None, oStem=None, oThin=None, UThin=None, VThin=None, eThin=None,
             modStem=None, # Used for special factor to interpolate/extrapolate "mod" glyphs, e.g. extrapolating Black from Regular + Bold
             thickness=10, distance=16, # Used for Neon tubes, can be overwritten from GlyphData.thickness
-            tabWidth=None,
             # Table stuff
             ttfPath=None, platformID=None, platEncID=None, langID=None, 
-            unitsPerEm=UNITS_PER_EM, copyright=COPYRIGHT, uniqueID=None, trademark=TRADEMARK, 
+            copyright=COPYRIGHT, uniqueID=None, trademark=TRADEMARK, 
             lowestRecPPEM=LOWEST_PPEM,
             familyName=None, styleName=None,
             fullName=None, version=None, versionMajor=VERSION_MAJOR, versionMinor=VERSION_MINOR,
@@ -152,12 +165,8 @@ class MasterData:
         # This can be different from HStem (with m1, m2) interpolation.
         self.dsPosition = dsPosition 
         self.tripletData1 = tripletData1
-        self.tripletData2 = tripletData2, # Compatible triplet sets of (name1, name2, name3, kerning) tuples for interpolation.
+        self.tripletData2 = tripletData2 # Compatible triplet sets of (name1, name2, name3, kerning) tuples for interpolation.
         self.featurePath = featurePath
-        
-        if tabWidth is None:
-            tabWidth = self.DEFAULT_TAB_WIDTH
-        self.tabWidth = tabWidth
 
         # Glyphs
         if glyphSet is None: # Print warning and use a standard glyphset
@@ -202,6 +211,7 @@ class MasterData:
         self.boxBottomAnchorOffsetY = boxBottomAnchorOffsetY
         self.descenderAnchorOffsetY = descenderAnchorOffsetY
         
+        # Vertical metrics
         if unitsPerEm is None:
             unitsPerEm = self.UNITS_PER_EM
         self.unitsPerEm = unitsPerEm
@@ -282,6 +292,60 @@ class MasterData:
             GD.CAT_DNOM_BASELINE: dnomBaseline ,
         }
 
+        # Spacing
+
+        if emWidth is None:
+            emWidth = unitsPerEm
+        self.emWidth = emWidth
+        if emWidth2 is None:
+            emWidth2 = int(round(unitsPerEm/2))
+        self.emWidth2 = emWidth2
+        if enWidth is None:
+            enWidth = enWidth
+        self.enWidth = enWidth
+        if accentWidth is None:
+            accentWidth = int(round(unitsPerEm/5))
+        self.accentWidth = accentWidth
+        if figureWidth is None:
+            figureWidth = int(round(unitsPerEm * 0.65))
+        self.figureWidth = figureWidth
+        if mathWidth is None:
+            mathWidth = figureWidth
+        self.mathWidth = mathWidth
+        if fractionWidth is None:
+            fractionWidth = int(round(unitsPerEm/10))
+        self.fractionWidth = fractionWidth
+        print('243234464354', tabWidth)
+        if tabWidth == 1240:
+            dadasdsa = asdda
+        if tabWidth is None:
+            tabWidth = figureWidth
+        self.tabWidth = tabWidth
+
+        # Margin
+        if minMargin is None:
+            minMargin = int(round(unitsPerEm/10))
+        self.minMargin = minMargin 
+        if modMinMargin is None:
+            modMinMargin = int(round(unitsPerEm/12))
+        self.modMinMargin = modMinMargin 
+
+        self.cat2Width = {
+            GD.CAT_ACCENT_WIDTH: accentWidth,
+            GD.CAT_TAB_WIDTH: tabWidth,
+            GD.CAT_MATH_WIDTH: mathWidth,
+            GD.CAT_FIGURE_WIDTH: figureWidth,
+            GD.CAT_FRACTION_WIDTH: fractionWidth,
+            GD.CAT_EM_WIDTH: emWidth,
+            GD.CAT_EM_WIDTH2: emWidth2, # Half emWidth
+            GD.CAT_EN_WIDTH: enWidth,
+            GD.CAT_SPACE_WIDTH: spaceWidth, # Word space
+            GD.CAT_HAIR_WIDTH: hairWidth,
+            # Margin
+            GD.CAT_MIN_MARGIN: minMargin,
+            GD.CAT_MOD_MIN_MARGIN: modMinMargin,
+        }
+        
         # Horizontal metrics
         self.diagonalTolerance = diagonalTolerance # ± Tolerance for italic diagonals to be marked as off-limit
         self.HStem = HStem # Used for m1->m2 interpolation

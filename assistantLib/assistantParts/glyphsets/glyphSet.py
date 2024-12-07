@@ -168,6 +168,8 @@ class GlyphSet:
                             accents.append(accent)
                     gd.accents = accents
                     gd.srcName = gName
+                    gd.isLower = False
+                    gd.overshoot = gd.CAT_SC_OVERSHOOT
 
     def _appendTab(self):
         tabExt = '.tab'
@@ -181,10 +183,10 @@ class GlyphSet:
                     self.glyphs[gNameTab] = gd = deepcopy(self.glyphs[gName])
                     gd.name = gNameTab
                     gd.uni = gd.hex = gd.c = None
-                    gd.w = 'zero.tab'
+                    gd.w = gd.CAT_TAB_WIDTH
 
     def _appendSuperiorInferiorDnomNumr(self):
-        for ext in ('superior', 'inferior', '.dnom', '.numr'):
+        for ext in ('superior', 'inferior', '.dnom', '.numr', '.sups', '.sinf'):
             for gName in SUPS_SINF_NAMES:
                 if gName in self.glyphs:
                     gNameExt = gName + ext
@@ -194,6 +196,8 @@ class GlyphSet:
                         self.glyphs[gNameExt] = gd = deepcopy(self.glyphs[gName])
                         gd.name = gNameExt
                         gd.uni = gd.hex = gd.c = None
+                        gd.isLower = False
+                        gd.overshoot = gd.CAT_SUPS_OVERSHOOT
                         if ext != 'superior':
                             gd.l = gd.r = 'zerosuperior'
                             gd.base = gName + 'superior'

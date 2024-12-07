@@ -479,7 +479,7 @@ class TYPETR_GlyphSet(GlyphSet):
         'f.ij': GD(g2='f', l='f', w='f', name='f.ij', comment='f with extended flag for f-->i and f-->j'),
 
         'florin': GD(g2='florin', g1='florin', w='f', uni=0x0192, c='ƒ', name='florin', src='f', comment='ƒ script f, latin small letter'),
-        'fraction': GD(g2='fraction', g1='fraction', l=-130, r=-130, name='fraction', uni=0x2044, c='⁄', comment='⁄ solidus', anchors=[]),
+        'fraction': GD(g2='fraction', g1='fraction', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, name='fraction', uni=0x2044, c='⁄', comment='⁄ solidus', anchors=[]),
 
         'g': GD(g2='g', g1='g', uni=0x0067, c='g', name='g', isLower=True, comment='g'),
         'earlessg': GD(g2='g', g1='g', l='g', w='g', name='earlessg', isLower=True, src='g', comment='g with ear to accommodate accents'),
@@ -652,7 +652,7 @@ class TYPETR_GlyphSet(GlyphSet):
         'semicolon': GD(g2='colon', g1='colon', l='comma', w='comma', uni=0x003b, c=';', name='semicolon', base='comma', accents=['period'], comment='; SEMICOLON', anchors=[]),
         'slash': GD(l='A', l2r='slash', uni=0x002f, c='/', name='slash', comment='/ virgule', anchors=[]),
         'slash.sc': GD(l='A', l2r='slash.sc', name='slash.sc', src='slash', comment='/ virgule smallcap', anchors=[]),
-        'space': GD(g1='space', g2='space', w=GD.CAT_WORD_SPACE, uni=0x0020, c=' ', name='space', comment='  Symbols, ASCII Punctuation and', anchors=[]),
+        'space': GD(g1='space', g2='space', w=GD.CAT_SPACE_WIDTH, uni=0x0020, c=' ', name='space', comment='  Symbols, ASCII Punctuation and', anchors=[]),
         'sterling': GD(l2r='sterling', uni=0x00a3, c='£', name='sterling', comment='£ sterling, pound', height=GD.CAT_CAP_HEIGHT, overshoot=GD.CAT_CAP_OVERSHOOT),
         'sterling.tab': GD(g2='tab', g1='tab', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, name='sterling.tab', src='sterling', comment='£ sterling, pound TAB', height=GD.CAT_CAP_HEIGHT, overshoot=GD.CAT_CAP_OVERSHOOT),
         'summation': GD(l='H', r='E', uni=0x2211, c='∑', name='summation', src='E', height=GD.CAT_CAP_HEIGHT, overshoot=GD.CAT_CAP_OVERSHOOT, comment='∑ SUMMATION, N-ARY'),

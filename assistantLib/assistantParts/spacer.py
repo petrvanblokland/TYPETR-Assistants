@@ -1636,7 +1636,7 @@ class AssistantPartSpacer(BaseAssistantPart):
                 w = int(round(gd.w))
                 if g.width != w:
                     g.width = w
-                    print(f'Set width of /{g.name} to {w}')
+                    print(f'... Set width of /{g.name} to {w}')
                     changed = True
 
             elif gd.w == 'tab':
@@ -1712,12 +1712,13 @@ class AssistantPartSpacer(BaseAssistantPart):
             if self.spacerCenterGlyph(g):
                 g.changed()
 
-    def spacerCenterGlyph(self, g, c, event):     
+    def spacerCenterGlyph(self, g, c=None, event=None):     
         """Snap the selected points of the current glyph onto points that are within range on the background glyph."""
         changed = False
         lm = g.angledLeftMargin
         rm = g.angledRightMargin
         w = g.width
+        print('SSAASASSA', lm, rm, w)
         if lm is not None:
             g.angledLeftMargin = (lm + rm)/2
             g.width = w

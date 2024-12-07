@@ -299,7 +299,7 @@ class BaseAssistant:
         if not f.path in self.kerningManagers:
             md = self.getMasterData(f)
             simClip = self.SIM_CLIP * f.info.unitsPerEm / 1000 # Correct for other em-squares.
-            self.kerningManagers[f.path] = KerningManager(f, md, tabWidth=md.tabWidth, simClip=simClip)
+            self.kerningManagers[f.path] = KerningManager(f, md, simClip=simClip)
         return self.kerningManagers[f.path]
 
     #   L I B

@@ -71,7 +71,7 @@ if __name__ == '__main__': # Used for doc tests to find assistantLib
         sys.path.append(PATH)
 
 from assistantLib.assistantParts.glyphsets.glyphData import * #GD, TOP, TOP_, _BOTTOM, BOTTOM_ etc.
-from assistantLib.assistantParts.glyphsets.Latin_L_set import LATIN_L_SET, MOD_MIN
+from assistantLib.assistantParts.glyphsets.Latin_L_set import LATIN_L_SET
 
 LATIN_XL_SET_NAME = 'Latin XL'
 
@@ -132,7 +132,7 @@ GDS['Hsmall'] = GD(name='Hsmall', uni=0x029C, hex='029C', c='ʜ', isSc=True)
 
 # I
 
-GDS['Ismallsuperior'] = GD(name='Ismallsuperior', uni=0x1DA6, hex='1DA6', c='ᶦ', l='48', r=MOD_MIN)
+GDS['Ismallsuperior'] = GD(name='Ismallsuperior', uni=0x1DA6, hex='1DA6', c='ᶦ', l='48', r=GD.CAT_MOD_MIN_MARGIN)
 
 # K
 
@@ -497,9 +497,9 @@ GDS['ustroke'] = GD(name='ustroke', uni=0x1D7E, hex='1D7E', c='ᵾ', l='hyphen',
 GDS['undertie'] = GD(name='undertie', uni=0x203F, hex='203F', c='‿', comment='Undertie')
 
 GDS['ubarsuperior'] = GD(name='ubarsuperior', uni=0x1DB6, hex='1DB6', c='ᶶ', l='48', r='48')
-GDS['unaspiratedsuperior'] = GD(name='unaspiratedsuperior', uni=0x02ED, hex='02ED', c='˭', l=MOD_MIN, r=MOD_MIN, isLower=True)
+GDS['unaspiratedsuperior'] = GD(name='unaspiratedsuperior', uni=0x02ED, hex='02ED', c='˭', l=GD.CAT_MOD_MIN_MARGIN, r=GD.CAT_MOD_MIN_MARGIN, isLower=True)
 GDS['upsilonsuperior'] = GD(name='upsilonsuperior', uni=0x1DB7, hex='1DB7', c='ᶷ', l='osuperior', r='osuperior')
-GDS['uptacksuperior'] = GD(name='uptacksuperior', uni=0x02D4, hex='02D4', c='˔', l=MOD_MIN, r=MOD_MIN, isLower=True)
+GDS['uptacksuperior'] = GD(name='uptacksuperior', uni=0x02D4, hex='02D4', c='˔', l=GD.CAT_MOD_MIN_MARGIN, r=GD.CAT_MOD_MIN_MARGIN, isLower=True)
 
 GDS['ucmb'] = GD(name='ucmb', uni=0x0367, hex='0367', c='ͧ', w=0, isLower=True, anchors=['_top', 'top'])
 GDS['uptackbelowcmb'] = GD(name='uptackbelowcmb', uni=0x031D, hex='031D', c='̝', l='center', w=0, base='uptacksuperior', isLower=True, anchors=['_bottom', 'bottom'])

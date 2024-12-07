@@ -543,7 +543,7 @@ class AssistantPartAnchors(BaseAssistantPart):
 
         # TOP_ Construct horizontal position
         if gd.anchorTopX is not None:
-            if gd.anchorTopX in g.font: # In case it is an existing glyph name, then take the vertical position from the corresponding anchor
+            if gd.anchorTopX in g.font: # In case it is an existing glyph name, then take the horizontal position from the corresponding anchor
                 aa = self.getAnchor(g.font[gd.anchorTopX], a.name)
                 if aa is not None:
                     ax = aa.x
@@ -791,6 +791,7 @@ class AssistantPartAnchors(BaseAssistantPart):
                 elif y < p.y:
                     y = p.y
                     xx = [p.x]
+        print('DSDSDDSSDDS', xx)
         if xx:
             return int(round(sum(xx)/len(xx)))
         # Could not find an x, e.g. because of only components. Then use the bounding box width/2 instead.

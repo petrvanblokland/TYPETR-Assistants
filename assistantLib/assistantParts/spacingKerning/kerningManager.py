@@ -30,12 +30,12 @@ SPACING_TYPES_LEFT = ('', 'l', 'ml', 'r2l')
 SPACING_TYPES_RIGHT = ('', 'r', 'mr', 'l2r', 'w')
 SPACING_KEYS = ('typeRight', 'right', 'typeLeft', 'left')
 
+SPACING_CENTERED = 'center'
+
 # Preselect sample script. This should become an option in KerningManager selection
 #MAIN_SAMPLES = CYRILLIC_KERNING
 #MAIN_SAMPLES = GREEK_KERNING
 MAIN_SAMPLES = SAMPLES
-
-TAB_WIDTH = 650 # Default tab width, change for em != 1000
 
 class Q2B:
     """In order to do glyph.removeOverlap outside RoboFont, we can only have Bezier points.
@@ -196,7 +196,7 @@ class KerningManager:
             #sample=None, sampleCAPS=None, sampleC2SC=None, # List of (kerning) glyph names
             simT=0.90, simSameUnicodeClass=True, simSameUnicodeRange=False, simSameUnicodeScript=True, simClip=300, simZones=None,
             automaticGroups=True, verbose=True,
-            tabWidth=TAB_WIDTH, fixedLeftMarginPatterns=None, fixedRightMarginPatterns=None, fixedWidthPatterns=None,
+            fixedLeftMarginPatterns=None, fixedRightMarginPatterns=None, fixedWidthPatterns=None,
             groupBaseGlyphs=None,
             ):
         """Calculate all values, patterns and similarity caching to guess margins for individual glyphs.
@@ -285,7 +285,7 @@ class KerningManager:
         #    sample = []
         #    for ch in SAMPLES:
         #        uni = ord(ch)
-        #        gName = md.glyphSet.unicode2GlyphName.get(uni)
+        #        gName = self.md.glyphSet.unicode2GlyphName.get(uni)
         #        if gName is not None:
         #            sample.append(gName)
 
@@ -303,8 +303,6 @@ class KerningManager:
         self._kerningSampleFilter1 = None # Select sample kerning pairs in sample if None or if pattern is in the group base glyph name
         self._kerningSampleFilterValue = None # Select sample kerning pairs if value is None or within a range
         self._kerningSampleFilter2 = None # Select sample kerning pairs in sample if none or if pattern is in the group base glyph name
-
-        self.tabWidth = tabWidth
 
         # @@@ Generic fixed spacing patterns. These are glyphset dependent, so their should go into the GlyphSet class. 
 
@@ -328,7 +326,6 @@ class KerningManager:
                 'zerowidthnonjoiner', 'righttoleftmark', 'Otilde.component1', 'middledoublegraveaccentmod', 
                 'perispomeni', 'cedillacomb.component', 'psili', 'dblgravecomb', 
                 'dasiavaria-uc', 'ringhalfright', ), # "|" matches pattern on end of name"
-            self.tabWidth: ('.tab|', '.tnum|')
         }
         self.fixedWidthPatterns = fixedWidthPatterns # Key is margin, value is list of glyph names
 
@@ -672,28 +669,28 @@ class KerningManager:
         alm = g.angledLeftMargin
         if None in (alm, lm):
             return True # Undefined margins, as in /space, are not difference, by defintion.
-        return abs(alm - lm) <= 1
+        return abs(alm - lm) < 1
 
     def hasEqualLeftBaseMargin(self, g, lm):
         """Answer the boolean flag if the left margin is different from the current g value,"""
         blm = self.getLeftMarginByGlyphSetReference(g)
         if None in (blm, lm):
             return True # Undefined margins, as in /space, are not difference, by defintion.
-        return abs(blm - lm) <= 1
+        return abs(blm - lm) < 1
 
     def hasEqualRightMargin(self, g, rm):
         """Answer the boolean flag if the right margin is different from the current g value,"""
         arm = g.angledRightMargin
         if None in (arm, rm):
             return True # Undefined margins, as in /space, are not difference, by defintion.
-        return abs(arm - rm) <= 1
+        return abs(arm - rm) < 1
 
     def hasEqualRightBaseMargin(self, g, rm):
         """Answer the boolean flag if the right margin is different from the current g value,"""
         arm = g.angledRightMargin
         if None in (arm, rm):
             return True # Undefined margins, as in /space, are not difference, by defintion.
-        return abs(arm - rm) <= 1
+        return abs(arm - rm) < 1
 
     def hasLeftMarginReference(self, g):
         """Answer the boolean flag if the has a reference rule for the left margin."""
@@ -705,17 +702,23 @@ class KerningManager:
         gd = self.md.glyphSet.glyphs[g.name]
         return gd is not None and gd.rightSpaceSourceLabel is not None
 
-    def fixGlyphWidth(self, g, width, label=''):
+    def fixGlyphWidth(self, g, w, label=''):
         """Compare the rounded width to g.width. If it is different, then set the width."""
-        if isinstance(width, str) and width in g.font:
-            width = g.font[width].width
-        if not isinstance(width, (float, int)):
-            print(f'### Width {width} for /{g.name} should be a number')
+        gd = self.md.glyphSet.glyphs[g.name]
+        if isinstance(w, str) and w in g.font:
+            w = g.font[width].width
+        elif w in self.md.cat2Width: # Predefined width category?
+            ww = w
+            w = self.md.cat2Width[gd.w]
+            print('34243234243342', w, gd.w, ww)
+
+        if not isinstance(w, (float, int)):
+            print(f'### Width {w} for /{g.name} should be a number')
         else:
-            width = int(round(width))
-            if g.width != width:
+            width = int(round(w))
+            if g.width != w:
                 print(f'... Fix glyph width: Set /{g.name} width from {g.width} to {width} {label}')
-                g.width = width
+                g.width = w
                 return True
         return False
 
@@ -770,11 +773,15 @@ class KerningManager:
 
         # This sets the width, independent from later setting of the left margin.
         if gd.w == 0: 
+            w = gd.w
             if isinstance(gd.w, (int, float)):
                 w = gd.w
+            elif w in self.md.cat2Width: # Predefined width category?
+                w = self.md.cat2Width[gd.w]
             else:
                 assert gd.w in g.font, (f'### "gd.w={gd.w}" reference glyph for /{g.name} does not exist.') # Using "md.w" it should exist
                 w = g.font[gd.w].width
+                print('SASASASASDE###', w)
             changed |= self.fixGlyphWidth(g, w, f'(w={gd.w})')
 
         # Try to figure out the rules for left margin in this glyph.
@@ -805,24 +812,36 @@ class KerningManager:
             changed |= self.fixBasedLeftMargin(g, lm, f'(bl={gd.bl})')
         
         elif gd.r2l is not None: # Plain angled right margin to plain angled left margin
-            assert gd.r2l in g.font, (f'### "gd.r2l={gd.r2l}" reference glyph for /{g.name} does not exist.') # Using "md.r2l" it should exist
-            lm = self.getRightMarginByGlyphSetReference(g.font[gd.r2l], useBase, doneLeft, None) # Get the right margin of the referenced glyph
-            changed |= self.fixLeftMargin(g, lm, f'(r2l={gd.r2l})')
+            r2l = gd.r2l
+            if r2l == 'self':
+                r2l = g.name
+            assert r2l in g.font, (f'### "gd.r2l={gd.r2l}" reference glyph for /{g.name} does not exist.') # Using "md.r2l" it should exist
+            lm = self.getRightMarginByGlyphSetReference(g.font[r2l], useBase, doneLeft, None) # Get the right margin of the referenced glyph
+            changed |= self.fixLeftMargin(g, lm, f'(r2l={r2l})')
         
         elif gd.br2l is not None: # Based right margin to plain angled left margin
-            assert gd.br2l in g.font, (f'### "gd.br2l={gd.br2l}" reference glyph for /{g.name} does not exist.') # Using "bd.br2l" it should exist
-            lm = self.getRightMarginByGlyphSetReference(g.font[gd.br2l], useBase, doneLeft, None) # Get the right margin of the referenced glyph
-            changed |= self.fixLeftMargin(g, lm, f'(br2l={gd.br2l})')
+            br2l = gd.br2l
+            if br2l == 'self':
+                br2l = g.name
+            assert br2l in g.font, (f'### "gd.br2l={gd.br2l}" reference glyph for /{g.name} does not exist.') # Using "bd.br2l" it should exist
+            lm = self.getRightMarginByGlyphSetReference(g.font[br2l], useBase, doneLeft, None) # Get the right margin of the referenced glyph
+            changed |= self.fixLeftMargin(g, lm, f'(br2l={br2l})')
         
         elif gd.r2bl is not None: # Plain angled right margin to based left margin
-            assert gd.r2bl in g.font, (f'### "gd.r2bl={gd.r2bl}" reference glyph for /{g.name} does not exist.') # Using "md.r2bl" it should exist
-            lm = self.getRightMarginByGlyphSetReference(g.font[gd.r2bl], useBase, doneLeft, None) # Get the right margin of the referenced glyph
-            changed |= self.fixBasedLeftMargin(g, lm, f'(r2bl={gd.r2bl})')
+            r2bl = gd.r2bl
+            if r2bl == 'self':
+                r2bl = g.name
+            assert r2bl in g.font, (f'### "gd.r2bl={gd.r2bl}" reference glyph for /{g.name} does not exist.') # Using "md.r2bl" it should exist
+            lm = self.getRightMarginByGlyphSetReference(g.font[r2bl], useBase, doneLeft, None) # Get the right margin of the referenced glyph
+            changed |= self.fixBasedLeftMargin(g, lm, f'(r2bl={r2bl})')
         
         elif gd.br2bl is not None: # Based right margin to based left margin
-            assert gd.br2bl in g.font, (f'### "gd.br2bl={gd.br2bl}" reference glyph for /{g.name} does not exist.') # Using "md.br2bl" it should exist
-            lm = self.getRightMarginByGlyphSetReference(g.font[gd.br2bl], useBase, doneLeft, None) # Get the right margin of the referenced glyph
-            changed |= self.fixBasedLeftMargin(g, lm, f'(br2bl={gd.br2bl})')
+            br2bl = gd.br2bl
+            if br2bl == 'self':
+                br2bl = g.name
+            assert br2bl in g.font, (f'### "gd.br2bl={gd.br2bl}" reference glyph for /{g.name} does not exist.') # Using "md.br2bl" it should exist
+            lm = self.getRightMarginByGlyphSetReference(g.font[br2bl], useBase, doneLeft, None) # Get the right margin of the referenced glyph
+            changed |= self.fixBasedLeftMargin(g, lm, f'(br2bl={br2bl})')
         
         # If there is a base in the glyphdata and no left margin reference, we go for that by default
         elif useBase and gd.base:
@@ -847,9 +866,12 @@ class KerningManager:
         if gd is None:
             return None # No entry in this glyphset for this glyph.
 
-        if gd.w is not None: # Just copy the width
+        if gd.w is not None: # Interpret width category or just copy the width
             if isinstance(gd.w, (int, float)):
                 w = gd.w
+                changed |= self.fixGlyphWidth(g, w, f'(w={w})')
+            elif gd.w in self.md.cat2Width: # Predefined width category?
+                w = self.md.cat2Width[gd.w]
                 changed |= self.fixGlyphWidth(g, w, f'(w={w})')
             elif gd.w in g.font:
                 w = g.font[gd.w].width
@@ -863,6 +885,8 @@ class KerningManager:
                 return False
             elif isinstance(gd.r, (int, float)): # It can be a value intead of a reference name
                 rm = gd.r
+            elif gd.r in self.md.cat2Width: # Predefined width category?
+                rm = self.md.cat2Width[gd.r]
             else:
                 assert gd.r in g.font, (f'### "gd.r={gd.r}" reference glyph for /{g.name} does not exist.') # Using "md.r" it should exist
                 rm = self.getRightMarginByGlyphSetReference(g.font[gd.r], useBase, doneLeft, doneRight) # Get the right margin of the referenced glyph
@@ -871,30 +895,44 @@ class KerningManager:
         elif gd.br is not None: # Based right margin
             if isinstance(gd.br, (int, float)): # Not entirely right, but we'll support values here too.
                 rm = gd.br
+            elif gd.br in self.md.cat2Width: # Predefined width category?
+                rm = self.md.cat2Width[gd.br]
             else:
                 assert gd.br in g.font, (f'### "gd.br={gd.br}" reference glyph for /{g.name} does not exist.') # Using "md.br" it should exist
                 rm = self.getRightMarginByGlyphSetReference(g.font[gd.br], True, doneLeft, doneRight) # Get the right margin of the referenced glyph
             changed |= self.fixBasedRightMargin(g, rm, f'(br={gd.br})')
         
         elif gd.l2r is not None: # Plain angled left margin to plain angled right margin
-            assert gd.l2r in g.font, (f'### "gd.l2r={gd.l2r}" reference glyph for /{g.name} does not exist.') # Using "md.l2r" it should exist
-            rm = self.getLeftMarginByGlyphSetReference(g.font[gd.l2r], useBase, doneLeft, None) # Get the left margin of the referenced glyph
-            changed |= self.fixRightMargin(g, rm, f'(l2r={gd.l2r})')
+            l2r = gd.l2r
+            if l2r == 'self':
+                l2r = g.name
+            assert l2r in g.font, (f'### "gd.l2r={gd.l2r}" reference glyph for /{g.name} does not exist.') # Using "md.l2r" it should exist
+            rm = self.getLeftMarginByGlyphSetReference(g.font[l2r], useBase, doneLeft, None) # Get the left margin of the referenced glyph
+            changed |= self.fixRightMargin(g, rm, f'(l2r={l2r})')
         
         elif gd.bl2r is not None: # Based left margin to plain angled right margin
-            assert gd.bl2r in g.font, (f'### "gd.bl2r={gd.bl2r}" reference glyph for /{g.name} does not exist.') # Using "bd.bl2r" it should exist
-            rm = self.getLeftMarginByGlyphSetReference(g.font[gd.bl2r], useBase, doneLeft, None) # Get the left margin of the referenced glyph
-            changed |= self.fixRightMargin(g, rm, f'(bl2r={gd.bl2r})')
+            bl2r = gd.bl2r
+            if bl2r == 'self':
+                bl2r = g.name
+            assert bl2r in g.font, (f'### "gd.bl2r={gd.bl2r}" reference glyph for /{g.name} does not exist.') # Using "bd.bl2r" it should exist
+            rm = self.getLeftMarginByGlyphSetReference(g.font[bl2r], useBase, doneLeft, None) # Get the left margin of the referenced glyph
+            changed |= self.fixRightMargin(g, rm, f'(bl2r={bl2r})')
         
         elif gd.l2br is not None: # Plain angled left margin to based right margin
-            assert gd.l2br in g.font, (f'### "gd.l2br={gd.l2br}" reference glyph for /{g.name} does not exist.') # Using "md.l2br" it should exist
-            rm = self.getLeftMarginByGlyphSetReference(g.font[gd.l2br], useBase, doneLeft, None) # Get the left margin of the referenced glyph
-            changed |= self.fixBasedRightMargin(g, rm, f'(l2br={gd.l2br})')
+            l2br = gd.l2b2
+            if l2br == 'self':
+                l2br = g.name
+            assert l2br in g.font, (f'### "gd.l2br={gd.l2br}" reference glyph for /{g.name} does not exist.') # Using "md.l2br" it should exist
+            rm = self.getLeftMarginByGlyphSetReference(g.font[l2br], useBase, doneLeft, None) # Get the left margin of the referenced glyph
+            changed |= self.fixBasedRightMargin(g, rm, f'(l2br={l2br})')
         
         elif gd.bl2br is not None: # Based right margin to based left margin
-            assert gd.bl2br in g.font, (f'### "gd.bl2br={gd.bl2br}" reference glyph for /{g.name} does not exist.') # Using "md.bl2br" it should exist
-            rm = self.getLeftMarginByGlyphSetReference(g.font[gd.bl2br], useBase, doneLeft, None) # Get the left margin of the referenced glyph
-            changed |= self.fixBasedRightMargin(g, rm, f'(bl2br={gd.bl2br})')
+            bl2br = gd.br2br
+            if bl2br == 'self':
+                bl2br = g.name
+            assert bl2br in g.font, (f'### "gd.bl2br={gd.bl2br}" reference glyph for /{g.name} does not exist.') # Using "md.bl2br" it should exist
+            rm = self.getLeftMarginByGlyphSetReference(g.font[bl2br], useBase, doneLeft, None) # Get the left margin of the referenced glyph
+            changed |= self.fixBasedRightMargin(g, rm, f'(bl2br={bl2br})')
         
         # If there is a base in the glyphdata and no left margin reference, we go for that by default
         elif useBase and gd.base:
@@ -925,6 +963,9 @@ class KerningManager:
             elif gd.l == 'center': # The margin is supposed to be centered.
                 return (g.width - g.angledLeftMargin - g.angledRightMargin)/2
 
+            if gd.l in self.md.cat2Width: # Predefined margin category?
+                return self.md.cat2Width[gd.l]
+
             elif isinstance(gd.l, (int, float)): # It can be a value intead of a reference name
                 return gd.l
             
@@ -934,6 +975,10 @@ class KerningManager:
         if gd.bl is not None: # Based left margin
             if isinstance(gd.bl, (int, float)): # Not entirely right, but we'll support values here too.
                 return gd.bl
+
+            if gd.bl in self.md.cat2Width: # Predefined margin category?
+                return self.md.cat2Width[gd.bl]
+
             assert gd.bl in g.font, (f'### "gd.bl={gd.bl}" reference glyph for /{g.name} does not exist.') # Using "md.bl" it should exist
             return self.getLeftMarginByGlyphSetReference(g.font[gd.bl], True, doneLeft, doneRight) # Get the left margin of the referenced glyph
         
@@ -993,20 +1038,32 @@ class KerningManager:
             return self.getRightMarginByGlyphSetReference(g.font[gd.br], True, doneLeft, doneRight) # Get the right margin of the referenced glyph
         
         if gd.l2r is not None:
-            assert gd.l2r in g.font, (f'### "gd.l2r={gd.l2r}" reference glyph for /{g.name} does not exist.') # Using "md.l2r" it should exist
-            return self.getLeftMarginByGlyphSetReference(g.font[gd.l2r], useBase, None, doneRight) # Get the left margin of the referenced glyph
+            l2r = gd.l2r
+            if l2r == 'self':
+                l2r = g.name
+            assert l2r in g.font, (f'### "gd.l2r={gd.l2r}" reference glyph for /{g.name} does not exist.') # Using "md.l2r" it should exist
+            return self.getLeftMarginByGlyphSetReference(g.font[l2r], useBase, None, doneRight) # Get the left margin of the referenced glyph
         
         if gd.l2br is not None: # Plain angled left margin to plain angled right margin
-            assert gd.l2br in g.font, (f'### "gd.l2br={gd.l2br}" reference glyph for /{g.name} does not exist.') # Using "md.l2br" it should exist
-            return self.getLeftMarginByGlyphSetReference(g.font[gd.ml2r], useBase, None, doneRight) # Get the left margin of the referenced glyph
+            l2br = gd.l2br
+            if l2br == 'self':
+                l2br = g.name
+            assert l2br in g.font, (f'### "gd.l2br={gd.l2br}" reference glyph for /{g.name} does not exist.') # Using "md.l2br" it should exist
+            return self.getLeftMarginByGlyphSetReference(g.font[l2br], useBase, None, doneRight) # Get the left margin of the referenced glyph
         
-        if gd.bl2r is not None: # Based left margin to plain right margin 
-            assert gd.bl2r in g.font, (f'### "gd.bl2r={gd.bl2r}" reference glyph for /{g.name} does not exist.') # Using "md.bl2r" it should exist
-            return self.getLeftMarginByGlyphSetReference(g.font[gd.bl2r], useBase, None, doneRight) # Get the left margin of the referenced glyph
+        if gd.bl2r is not None: # Based left margin to plain right margin
+            bl2r = gb.bl2r 
+            if bl2r == 'self':
+                bl2r = g.name
+            assert bl2r in g.font, (f'### "gd.bl2r={gd.bl2r}" reference glyph for /{g.name} does not exist.') # Using "md.bl2r" it should exist
+            return self.getLeftMarginByGlyphSetReference(g.font[bl2r], useBase, None, doneRight) # Get the left margin of the referenced glyph
         
         if gd.bl2br is not None:
-            assert gd.bl2br in g.font, (f'### "gd.bl2br={gd.bl2br}" reference glyph for /{g.name} does not exist.') # Using "md.bl2br" it should exist
-            return self.getLeftMarginByGlyphSetReference(g.font[gd.bl2br], useBase, None, doneRight) # Get the left margin of the referenced glyph
+            bl2br = gd.bl2br
+            if bl2br == 'self':
+                bl2br = g.name
+            assert bl2br in g.font, (f'### "gd.bl2br={gd.bl2br}" reference glyph for /{g.name} does not exist.') # Using "md.bl2br" it should exist
+            return self.getLeftMarginByGlyphSetReference(g.font[bl2br], useBase, None, doneRight) # Get the left margin of the referenced glyph
         
         # If there is a base in the glyphdata, we go for that.
         if useBase and gd.base:
@@ -1184,6 +1241,8 @@ class KerningManager:
                 if value in g.font: # Is it a glyph reference?
                     refG = g.font[value]
                     lm = self.getRightMargin(refG)
+            else:
+                print(f'### Invalid left space type: {spacingType} in /{g.name}')
         return lm
 
     def getRightMargin(self, g, visited=None):

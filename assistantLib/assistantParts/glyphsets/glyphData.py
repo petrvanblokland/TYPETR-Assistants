@@ -48,14 +48,20 @@ class GlyphData:
     CAT_EM = 'em'
     CAT_EM2 = 'em2'
     CAT_CENTER = 'center'
-    CAT_MIN_RIGHT = 'minRight'
     # Categories of width
     CAT_ACCENT_WIDTH = 'accentWidth'
     CAT_TAB_WIDTH = 'tabWidth'
     CAT_MATH_WIDTH = 'mathWidth'
+    CAT_FIGURE_WIDTH = 'figureWidth'
+    CAT_FRACTION_WIDTH = 'fractionWidth'
     CAT_EM_WIDTH = 'emWidth'
     CAT_EM_WIDTH2 = 'emWidth/2' # Half emWidth
-    CAT_WORD_SPACE = 'wordSpace'
+    CAT_EN_WIDTH = 'enWidth'
+    CAT_SPACE_WIDTH = 'spaceWidth' # Word space
+    CAT_HAIR_WIDTH = 'hairWidth'
+    # Categories of margins
+    CAT_MIN_MARGIN = 'minMargin'
+    CAT_MOD_MIN_MARGIN = 'modMinMargin'
     # Categories of height
     CAT_XHEIGHT = 'xHeight'
     CAT_XHEIGHT2 = 'xHeight/2'
@@ -79,9 +85,11 @@ class GlyphData:
 
     # Allowed category names
     CAT_OVERSHOOTS = (None, CAT_OVERSHOOT, CAT_CAP_OVERSHOOT, CAT_SUPS_OVERSHOOT, CAT_SC_OVERSHOOT)
-    CAT_BASELINES = (None, CAT_BASELINE, CAT_MOD_BASELINE, CAT_NUMR_BASELINE, CAT_SINF_BASELINE, CAT_SUPS_BASELINE, CAT_DNOM_BASELINE)
+    CAT_BASELINES = (None, CAT_BASELINE, CAT_MOD_BASELINE, CAT_NUMR_BASELINE, CAT_SINF_BASELINE, 
+        CAT_SUPS_BASELINE, CAT_DNOM_BASELINE)
     CAT_HEIGHTS = (None, CAT_XHEIGHT, CAT_CAP_HEIGHT, CAT_SC_HEIGHT, CAT_SUPS_HEIGHT)
-    CAT_WIDTHS = (None, CAT_ACCENT_WIDTH, CAT_TAB_WIDTH, CAT_MATH_WIDTH, CAT_EM_WIDTH, CAT_EM_WIDTH2, CAT_WORD_SPACE)
+    CAT_WIDTHS = (None, CAT_ACCENT_WIDTH, CAT_TAB_WIDTH, CAT_MATH_WIDTH, CAT_FIGURE_WIDTH, 
+            CAT_EM_WIDTH, CAT_EM_WIDTH2, CAT_EN_WIDTH, CAT_SPACE_WIDTH, CAT_SPACE_WIDTH)
 
     def __init__(self, uni=None, c=None, gid=None, name=None, srcName=None, hex=None, composites=None,
             unicodes=None, 
@@ -238,7 +246,9 @@ class GlyphData:
         if self._isLower is not None:  # Has a forced setting?
             return bool(self._isLower)
         return bool(self.name[0].upper() != self.name[0]) # This is an lowercase.
-    isLower = property(_get_isLower)
+    def _set_isLower(self, isLower):
+        self._isLower = isLower
+    isLower = property(_get_isLower, _set_isLower)
 
     def _get_isMod(self):
         """Answer the boolean flag if this glyph is a modifier. If the flag is undefined in self._isMod
@@ -432,7 +442,7 @@ class GlyphData:
         if self.r is not None:
             return f'Right /{self.r}'
         if self.br is not None:
-            return f'Base left /{self.br}'
+            return f'Base right /{self.br}'
         if self.l2r is not None:
             return f'L-->R /{self.l2r}'
         if self.bl2r is not None:

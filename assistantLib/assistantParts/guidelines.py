@@ -152,14 +152,23 @@ class AssistantPartGuidelines(BaseAssistantPart):
             if md.supsHeight is not None:
                 guidelines.append((xo + tg * (md.supsBaseline + md.supsHeight), md.supsBaseline + md.supsHeight, 0, f"Height of superiors {md.supsBaseline + md.supsHeight} ({md.supsBaseline + md.supsHeight})"))
 
+                guidelines.append((xo + tg * (md.supsBaseline + md.supsHeight), md.supsBaseline - overshoot, 0, f"{md.supsBaseline - overshoot} ({overshoot})"))
+                guidelines.append((xo + tg * (md.supsBaseline + md.supsHeight), md.supsBaseline + md.supsHeight + overshoot, 0, f"{md.supsBaseline + md.supsHeight + overshoot} ({overshoot})"))
+
         if md.modBaseline is not None and 'mod' in g.name:            
             guidelines.append((xo + tg * (md.modBaseline), md.modBaseline, 0, f"Baseline of modifiers {md.modBaseline} ({md.modBaseline})"))
             guidelines.append((xo + tg * (md.modBaseline + md.modHeight), md.modBaseline + md.modHeight, 0, f"Height of modifiers {md.modBaseline + md.modHeight} ({md.modBaseline + md.modHeight})"))
+
+            guidelines.append((xo + tg * (md.modBaseline), md.modBaseline - overshoot, 0, f"{md.modBaseline - overshoot} ({overshoot})"))
+            guidelines.append((xo + tg * (md.modBaseline + md.modHeight), md.modBaseline + md.modHeight + overshoot, 0, f"{md.modBaseline + md.modHeight + overshoot} ({overshoot})"))
 
         if md.sinfBaseline is not None and ('sinf' in g.name or 'inferior' in g.name):            
             guidelines.append((xo + tg * (md.sinfBaseline), md.sinfBaseline, 0, f"Baseline of inferiors {md.sinfBaseline} ({md.sinfBaseline})"))
             if md.sinfHeight is not None:
                 guidelines.append((xo + tg * (md.sinfBaseline + md.sinfHeight), md.sinfBaseline + md.sinfHeight, 0, f"Height of inferiors {md.sinfBaseline + md.sinfHeight} ({md.sinfBaseline + md.sinfHeight})"))
+
+                guidelines.append((xo + tg * (md.sinfBaseline + md.sinfHeight), md.sinfBaseline - overshoot, 0, f"{md.sinfBaseline - overshoot} ({overshoot})"))
+                guidelines.append((xo + tg * (md.sinfBaseline + md.sinfHeight), md.sinfBaseline + md.sinfHeight + overshoot, 0, f"{md.sinfBaseline + md.sinfHeight + overshoot} ({overshoot})"))
 
         if forced or len(g.guidelines) != len(guidelines):
             # Amounts are different, too complex to compare. Just rebuild all guidelines.
