@@ -315,7 +315,6 @@ class MasterData:
         if fractionWidth is None:
             fractionWidth = int(round(unitsPerEm/10))
         self.fractionWidth = fractionWidth
-        print('243234464354', tabWidth)
         if tabWidth == 1240:
             dadasdsa = asdda
         if tabWidth is None:

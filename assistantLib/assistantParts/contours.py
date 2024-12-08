@@ -49,7 +49,7 @@ class AssistantPartContours(BaseAssistantPart):
                     print(f'### Source glyph /{gd.srcName} for /{gName} does not exist')
                 else:
                     srcG = f[gd.srcName]
-                    if not g.contours:
+                    if not g.contours and not g.components:
                         f[gName] = srcG
                         f[gName].decompose()
                         changed = True

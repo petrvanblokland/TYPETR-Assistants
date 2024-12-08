@@ -708,9 +708,7 @@ class KerningManager:
         if isinstance(w, str) and w in g.font:
             w = g.font[width].width
         elif w in self.md.cat2Width: # Predefined width category?
-            ww = w
             w = self.md.cat2Width[gd.w]
-            print('34243234243342', w, gd.w, ww)
 
         if not isinstance(w, (float, int)):
             print(f'### Width {w} for /{g.name} should be a number')
@@ -726,6 +724,8 @@ class KerningManager:
         """If the left margin is different from the current g value, then change it. Label is optional information about why it changed."""
         if isinstance(lm, str) and lm in g.font:
             lm = g.font[lm].angledLeftMargin
+        elif lm in self.md.cat2Width: # Predefined width category?
+            lm = self.md.cat2Width[lm]
         if g.leftMargin is not None and lm is not None and not self.hasEqualLeftMargin(g, lm):
             print(f'... Fix left margin: Set /{g.name} from {g.angledLeftMargin} to {lm} {label}')
             g.angledLeftMargin = lm

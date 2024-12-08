@@ -791,7 +791,6 @@ class AssistantPartAnchors(BaseAssistantPart):
                 elif y < p.y:
                     y = p.y
                     xx = [p.x]
-        print('DSDSDDSSDDS', xx)
         if xx:
             return int(round(sum(xx)/len(xx)))
         # Could not find an x, e.g. because of only components. Then use the bounding box width/2 instead.

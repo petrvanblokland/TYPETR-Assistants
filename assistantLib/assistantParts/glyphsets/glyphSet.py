@@ -166,7 +166,9 @@ class GlyphSet:
                             accents.append(accent + '.sc')
                         else:
                             accents.append(accent)
-                    gd.accents = accents
+                    gd.accents = []
+                    for accent in accents: # Make a copy, because we're going to change the .uc to lowercase diacritics
+                        gd.accents.append(accent.replace('.uc', ''))
                     gd.srcName = gName
                     gd.isLower = False
                     gd.overshoot = gd.CAT_SC_OVERSHOOT
