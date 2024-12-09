@@ -217,7 +217,7 @@ LATIN_S_SET = GDS = {
     'Eng': GD(name='Eng', uni=0x014A, hex='014A', c='Ŋ', l='N', r='N', comment='Ŋ'),
     'Eogonek': GD(name='Eogonek', uni=0x0118, hex='0118', c='Ę', base='E', accents=['ogonekcmb'], anchors=['bottom', 'middle', 'top'], gid=217, comment='Ę'),
     'Eopen': GD(name='Eopen', uni=0x0190, hex='0190', c='Ɛ', r='C', r2l='B', srcName='uni0190', gid=337, comment='Ɛ OPEN E, LATIN CAPITAL LETTER'),
-    'Ereversed': GD(name='Ereversed', uni=0x018E, hex='018E', c='Ǝ', r2l='E', srcName='uni018E', gid=335, comment='Ǝ turned e, latin capital letter'),
+    'Ereversed': GD(name='Ereversed', uni=0x018E, hex='018E', c='Ǝ', r2l='E', l2r='E', srcName='E', gid=335, comment='Ǝ turned e, latin capital letter'),
     'Eth': GD(name='Eth', uni=0x00D0, hex='00D0', c='Ð', r='D', gid=145, base='D', comment='Ð ETH, LATIN CAPITAL LETTER'),
     'Etilde': GD(name='Etilde', uni=0x1EBC, hex='1EBC', c='Ẽ', l='E', r='E', base='E', accents=['tildecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], gid=1111, comment='Ẽ LATIN CAPITAL LETTER E WITH TILDE'),
     'Euro': GD(g1='C', g2='Euro', r='C', uni=0x20AC, c='€', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, src=['C', 'hyphen', 'hyphen'], name='Euro'),

@@ -125,7 +125,7 @@ GDS['Ainferior'] = GD(name='Ainferior', base='Asuperior', isLower=True)
 
 GDS['Bdotaccent'] = GD(name='Bdotaccent', uni=0x1E02, hex='1E02', c='Ḃ', l='H', r='B', base='B', accents=['dotaccentcmb.uc'], srcName='uni1E02', anchors=['bottom', 'middle', 'top'], gid=925)
 GDS['Beta'] = GD(name='Beta', uni=0x0392, hex='0392', c='Β', l='H', r='B', base='B', anchors=['bottom', 'middle', 'top'], gid=536)
-GDS['Beta-latin'] = GD(name='Beta-latin', uni=0xA7B4, hex='A7B4', c='Ꞵ')
+GDS['Beta-latin'] = GD(name='Beta-latin', uni=0xA7B4, hex='A7B4', c='Ꞵ', l='B', r='B', srcName='B')
 GDS['Blinebelow'] = GD(name='Blinebelow', uni=0x1E06, hex='1E06', c='Ḇ', l='H', r='B', base='B', accents=['macronbelowcmb'], srcName='uni1E06', anchors=['bottom', 'middle', 'top'], gid=929)
 GDS['Bstroke'] = GD(name='Bstroke', uni=0x0243, hex='0243', c='Ƀ', l='Eth', base='B', anchors=['bottom', 'middle', 'top'])
 
@@ -217,7 +217,7 @@ GDS['Idieresisacute'] = GD(name='Idieresisacute', uni=0x1E2E, hex='1E2E', c='Ḯ
 GDS['Iinvertedbreve'] = GD(name='Iinvertedbreve', uni=0x020A, hex='020A', c='Ȋ', w='I', bl='I', base='I', accents=['invertedbrevecmb.uc'], anchors=['bottom', 'middle', 'top'])
 GDS['Iotaafrican'] = GD(name='Iotaafrican', uni=0x0196, hex='0196', c='Ɩ', srcName='uni0196', gid=343)
 GDS['Ismall'] = GD(name='Ismall', uni=0x026A, hex='026A', c='ɪ', l='hyphen', r='hyphen', srcName='uni026A', isSc=True, gid=463)
-GDS['Itildebelow'] = GD(name='Itildebelow', uni=0x1E2C, hex='1E2C', c='Ḭ', w='I', bl='I', base='I', accents=['tildebelowcmb.uc'], srcName='uni1E2C', anchors=['bottom', 'middle', 'top'], gid=967)
+GDS['Itildebelow'] = GD(name='Itildebelow', uni=0x1E2C, hex='1E2C', c='Ḭ', w='I', bl='I', base='I', accents=['tildebelowcmb'], srcName='uni1E2C', anchors=['bottom', 'middle', 'top'], gid=967)
 
 GDS['Isuperior'] = GD(name='Isuperior', isMod=True)
 GDS['Iinferior'] = GD(name='Iinferior', base='Isuperior', isLower=True)
@@ -280,7 +280,7 @@ GDS['Ninferior'] = GD(name='Ninferior', base='Nsuperior', isLower=True)
 # O
 
 GDS['OU'] = GD(name='OU', uni=0x0222, hex='0222', c='Ȣ', l='o', r='o')
-GDS['Ocenteredtilde'] = GD(name='Ocenteredtilde', uni=0x019F, hex='019F', c='Ɵ', l='O', r='O', srcName='uni019F', gid=352)
+GDS['Ocenteredtilde'] = GD(name='Ocenteredtilde', uni=0x019F, hex='019F', c='Ɵ', l='O', r='O', base='O', srcName='asciitilde', gid=352)
 GDS['Odblgrave'] = GD(name='Odblgrave', uni=0x020C, hex='020C', c='Ȍ', bl='O', base='O', accents=['dblgravecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'])
 GDS['Odieresismacron'] = GD(name='Odieresismacron', uni=0x022A, hex='022A', c='Ȫ', base='Odieresis', accents=['macroncmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'])
 GDS['Odotaccent'] = GD(name='Odotaccent', uni=0x022E, hex='022E', c='Ȯ', base='O', accents=['dotaccentcmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'])
