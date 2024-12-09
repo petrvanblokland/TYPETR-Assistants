@@ -806,6 +806,19 @@ SC_NAMES = (
     'zeroslash', 'question', 
     'slash', 'Euro', 'degree', 'germandbls', 'yen', 'ampersand', 'questiondown', 'backslash', 'sterling', 'dollar', 'dollar.alt',
     'parenleft', 'parenright', 'bracketleft', 'bracketright', 'exclam', 'exclamdown', 'braceleft', 'braceright',
+
+    # In case CYRILLIC_SET is included, these need to become smallcaps too
+    'A-cy', 'Abreve-cy', 'Adieresis-cy', 'Aie-cy', 'Be-cy', 'Che-cy', 'Cheabkhasian-cy', 'Chedescender-cy', 'Chedescenderabkhasian-cy', 'Chedieresis-cy', 
+    'Chekhakassian-cy', 'Cheverticalstroke-cy', 'De-cy', 'Dje-cy', 'Dze-cy', 'Dzhe-cy', 'E-cy', 'Edieresis-cy', 'Ef-cy', 'Eiotified-cy', 'El-cy', 'Eltail-cy', 
+    'Em-cy', 'Emtail-cy', 'En-cy', 'Endescender-cy', 'Enghe-cy', 'Enhook-cy', 'Entail-cy', 'Er-cy', 'Ereversed-cy', 'Ertick-cy', 'Es-cy', 'Esdescender-cy', 
+    'Fita-cy', 'Ge-cy', 'Gedescender-cy', 'Gestrokehook-cy', 'Ghemiddlehook-cy', 'Ghestroke-cy', 'Gheupturn-cy', 'Gje-cy', 'Ha-cy', 'Haabkhasian-cy', 
+    'Hadescender-cy', 'Hahook-cy', 'Hardsign-cy', 'Hastroke-cy', 'I-cy', 'Ia-cy', 'Idieresis-cy', 'Ie-cy', 'Iebreve-cy', 'Iegrave-cy', 'Ii-cy', 'Iigrave-cy', 
+    'Iishort-cy', 'Iishorttail-cy', 'Imacron-cy', 'Io-cy', 'Iu-cy', 'Izhitsa-cy', 'Izhitsadblgrave-cy', 'Je-cy', 'Ka-cy', 'Kabashkir-cy', 'Kadescender-cy', 
+    'Kahook-cy', 'Kastroke-cy', 'Kaverticalstroke-cy', 'Kje-cy', 'Koppa-cy', 'Ksi-cy', 'Lje-cy', 'Nje-cy', 'O-cy', 'Obarred-cy', 'Obarreddieresis-cy', 
+    'Odieresis-cy', 'Omega-cy', 'Palochka-cy', 'Pe-cy', 'Pedescender-cy', 'Pemiddlehook-cy', 'Psi-cy', 'Schwa-cy', 'Schwadieresis-cy', 'Semisoftsign-cy', 
+    'Sha-cy', 'Shcha-cy', 'Shha-cy', 'Softsign-cy', 'Te-cy', 'Tedescender-cy', 'Tetse-cy', 'Tse-cy', 'Tshe-cy', 'U-cy', 'Udieresis-cy', 'Uhungarumlaut-cy', 
+    'Uk-cy', 'Umacron-cy', 'Ushort-cy', 'Ustrait-cy', 'Ustraitstroke-cy', 'Ve-cy', 'Yat-cy', 'Yeru-cy', 'Yerudieresis-cy', 'Yi-cy', 'Yusbig-cy', 'Yusbigiotified-cy', 
+    'Yuslittle-cy', 'Yuslittleiotified-cy', 'Ze-cy', 'Zedescender-cy', 'Zedieresis-cy', 'Zhe-cy', 'Zhebreve-cy', 'Zhedescender-cy', 'Zhedieresis-cy'
 )
 # Used by GlyphSet class to add sinf/dnom/numr/subs glyph data records. 
 # Alternative naming for letter glyphs: /amod and /ainferior
