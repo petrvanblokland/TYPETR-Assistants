@@ -182,7 +182,7 @@ LATIN_S_SET = GDS = {
 
     'B': GD(name='B', uni=0x0042, hex='0042', c='B', l='H', anchors=['bottom', 'middle', 'top'], gid=36, comment='B LATIN CAPITAL LETTER B'),
     'Bdotbelow': GD(name='Bdotbelow', uni=0x1E04, hex='1E04', c='Ḅ', l='H', r='B', base='B', accents=['dotbelowcmb.uc'], srcName='uni1E04', anchors=['bottom', 'middle', 'top'], gid=927),
-    'Bhook': GD(name='Bhook', uni=0x0181, hex='0181', c='Ɓ', l=GD.CAT_MIN_MARGIN, r='B', base='B', gid=322, comment='Ɓ B WITH HOOK, LATIN CAPITAL LETTER'),
+    'Bhook': GD(name='Bhook', uni=0x0181, hex='0181', c='Ɓ', l=GD.CAT_HAIR_WIDTH, r='B', base='B', gid=322, comment='Ɓ B WITH HOOK, LATIN CAPITAL LETTER'),
 
     # C
 
@@ -199,7 +199,7 @@ LATIN_S_SET = GDS = {
     'Dcaron': GD(name='Dcaron', uni=0x010E, hex='010E', c='Ď', l='D', r='D', base='D', accents=['caroncmb.uc'], anchors=['bottom', 'middle', 'top'], gid=207, comment='Ď'),
     'Dcroat': GD(name='Dcroat', uni=0x0110, hex='0110', c='Đ', base='Eth', gid=209, comment='Đ'),
     'Ddotbelow': GD(name='Ddotbelow', uni=0x1E0C, hex='1E0C', c='Ḍ', l='D', r='D', base='D', accents=['dotbelowcmb.uc'], srcName='uni1E0C', anchors=['bottom', 'middle', 'top'], gid=935),
-    'Dhook': GD(name='Dhook', uni=0x018A, hex='018A', c='Ɗ', l=GD.CAT_MIN_MARGIN, r='D', base='D', gid=331, comment='Ɗ D WITH HOOK, LATIN CAPITAL LETTER'),
+    'Dhook': GD(name='Dhook', uni=0x018A, hex='018A', c='Ɗ', l=GD.CAT_HAIR_WIDTH, r='D', base='D', gid=331, comment='Ɗ D WITH HOOK, LATIN CAPITAL LETTER'),
     'Delta': GD(name='Delta', uni=0x0394, hex='0394', c='Δ', l='off', l2r='self', comment='∆ symmetric difference'),
 
     # E
@@ -270,7 +270,7 @@ LATIN_S_SET = GDS = {
 
     'K': GD(name='K', uni=0x004B, hex='004B', c='K', l='H', anchors=['bottom', 'middle', 'top'], gid=45, comment='K'),
     'Kcommaaccent': GD(name='Kcommaaccent', uni=0x0136, hex='0136', c='Ķ', l='H', r='K', base='K', accents=['cedillacmb.noconnect'], anchors=['bottom', 'middle', 'top'], gid=247, comment='Ķ'),
-    'Khook': GD(name='Khook', uni=0x0198, hex='0198', c='Ƙ', l='H', r='K', srcName='uni0198', gid=345, comment='Ƙ LATIN CAPITAL LETTER K WITH HOOK'),
+    'Khook': GD(name='Khook', uni=0x0198, hex='0198', c='Ƙ', l='H', w='K', srcName='K', gid=345, comment='Ƙ LATIN CAPITAL LETTER K WITH HOOK'),
 
     # L
 
@@ -388,7 +388,7 @@ LATIN_S_SET = GDS = {
     'Ycircumflex': GD(name='Ycircumflex', uni=0x0176, hex='0176', c='Ŷ', l='Y', r='Y', base='Y', accents=['circumflexcmb.uc'], anchors=['bottom', 'middle', 'top'], gid=311, comment='Ŷ'),
     'Ydieresis': GD(name='Ydieresis', uni=0x0178, hex='0178', c='Ÿ', l='Y', r='Y', base='Y', accents=['dieresiscmb.uc'], anchors=['bottom', 'middle', 'top'], gid=313, comment='Ÿ Y WITH DIAERESIS, LATIN CAPITAL LETTER'),
     'Ygrave': GD(name='Ygrave', uni=0x1EF2, hex='1EF2', c='Ỳ', l='Y', r='Y', base='Y', accents=['gravecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1165, comment='Ỳ'),
-    'Yhook': GD(name='Yhook', uni=0x01B3, hex='01B3', c='Ƴ', l='Y', r='Y', base='Y', accents=['hookabovecmb.uc'], anchors=['bottom', 'middle', 'top'], comment='Ƴ LATIN CAPITAL LETTER Y WITH HOOK'),
+    'Yhook': GD(name='Yhook', uni=0x01B3, hex='01B3', c='Ƴ', l='Y', r='Y', srcName='Y', anchors=['bottom', 'middle', 'top'], comment='Ƴ LATIN CAPITAL LETTER Y WITH HOOK'),
     'Ymacron': GD(name='Ymacron', uni=0x0232, hex='0232', c='Ȳ', base='Y', accents=['macroncmb.uc'], anchors=['bottom', 'middle', 'top']),
     'Ytilde': GD(name='Ytilde', uni=0x1EF8, hex='1EF8', c='Ỹ', l='Y', r='Y', base='Y', accents=['tildecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1171, comment='Ỹ LATIN CAPITAL LETTER Y WITH TILDE'),
 
@@ -803,9 +803,9 @@ SC_NAMES = (
     'Y', 'Yacute', 'Ycircumflex', 'Ydieresis', 'Ygrave', 'Yhook', 'Ymacron', 'Ytilde', 
     'Z', 'Zacute', 'Zcaron', 'Zdotaccent', 'Zdotbelow'
     'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
-    'zeroslash', 
-    'slash', 'Euro', 'degree', 'germandbls', 'yen', 'ampersand', 'questiondown', 'backslash', 'sterling', 
-    'parenleft', 'parenright', 'bracketleft', 'bracketright',
+    'zeroslash', 'question', 
+    'slash', 'Euro', 'degree', 'germandbls', 'yen', 'ampersand', 'questiondown', 'backslash', 'sterling', 'dollar', 'dollar.alt',
+    'parenleft', 'parenright', 'bracketleft', 'bracketright', 'exclam', 'exclamdown', 'braceleft', 'braceright',
 )
 # Used by GlyphSet class to add sinf/dnom/numr/subs glyph data records. 
 # Alternative naming for letter glyphs: /amod and /ainferior

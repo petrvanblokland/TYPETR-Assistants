@@ -315,11 +315,12 @@ class MasterData:
         if fractionWidth is None:
             fractionWidth = int(round(unitsPerEm/10))
         self.fractionWidth = fractionWidth
-        if tabWidth == 1240:
-            dadasdsa = asdda
         if tabWidth is None:
             tabWidth = figureWidth
         self.tabWidth = tabWidth
+        if hairWidth is None:
+            hairWidth = int(round(unitsPerEm/24))
+        self.hairWidth = hairWidth
 
         # Margin
         if minMargin is None:

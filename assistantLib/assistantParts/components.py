@@ -132,6 +132,12 @@ class AssistantPartComponents(BaseAssistantPart):
         if not c.w.autoFixComponentPositions.get():
             return False
 
+        # As side effect, also check the unicode, now we are here anyway
+        if g.unicode != gd.uni:
+            print(f'... Fix unicode {gd.hex} for /{g.name}')
+            g.unicode = gd.uni
+            changed = True
+
         # 1
         if g.components and not gd.components: # Clear existing components
             print(f'... Clear {len(g.components)} component(s) of /{g.name}')

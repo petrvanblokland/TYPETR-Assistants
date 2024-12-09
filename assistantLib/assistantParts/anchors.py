@@ -391,7 +391,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         gd = self.getGlyphData(g)
         if gd is None:
             print(f'### checkFixRequiredAnchors: Cannot find GlyphData for /{g.name}')
-            return
+            return False
 
         requiredAnchorNames = gd.anchors  
         anchorNames = self.getAnchorNames(g)
@@ -1093,7 +1093,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         gd = self.getGlyphData(g)
         if gd is None:
             print(f'### checkFixRomanItalicAnchors: Cannot find GlyphData for /{g.name}')
-            return
+            return False
 
         src = self.getFont(md.romanItalicUFOPath)
         if g.name in src:

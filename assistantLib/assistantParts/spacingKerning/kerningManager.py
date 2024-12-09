@@ -781,7 +781,6 @@ class KerningManager:
             else:
                 assert gd.w in g.font, (f'### "gd.w={gd.w}" reference glyph for /{g.name} does not exist.') # Using "md.w" it should exist
                 w = g.font[gd.w].width
-                print('SASASASASDE###', w)
             changed |= self.fixGlyphWidth(g, w, f'(w={gd.w})')
 
         # Try to figure out the rules for left margin in this glyph.
@@ -796,6 +795,8 @@ class KerningManager:
                 changed |= self.fixGlyphWidth(g, gd.w, f"w={gd.w}")
                 changed |= self.fixCenteredMargins(g, f"l='center'")
                 return changed
+            elif gd.l in self.md.cat2Width: # Predefined width category?
+                lm = self.md.cat2Width[gd.l]
             elif isinstance(gd.l, (int, float)): # It can be a value intead of a reference name
                 lm = gd.l
             else:
@@ -867,6 +868,7 @@ class KerningManager:
             return None # No entry in this glyphset for this glyph.
 
         if gd.w is not None: # Interpret width category or just copy the width
+            print('SSSSSSSSSS', gd.w)
             if isinstance(gd.w, (int, float)):
                 w = gd.w
                 changed |= self.fixGlyphWidth(g, w, f'(w={w})')
@@ -877,6 +879,7 @@ class KerningManager:
                 w = g.font[gd.w].width
                 changed |= self.fixGlyphWidth(g, w, f'(w={w})')
             else:
+                print('SWEEEEWEEWEW', gd.w, gd.w in g.font)
                 print(f'### "gd.w={gd.w}" reference glyph for /{g.name} does not exist.') # Using "md.w" it should exist
 
 
