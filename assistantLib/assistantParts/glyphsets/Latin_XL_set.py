@@ -493,7 +493,6 @@ GDS['tildeverticalcmb'] = GD(name='tildeverticalcmb', uni=0x033E, hex='033E', c=
 
 GDS['underscoredbl'] = GD(name='underscoredbl', uni=0x2017, hex='2017', c='‗', isLower=True, gid=1410)
 GDS['uretroflexhook'] = GD(name='uretroflexhook', uni=0x1D99, hex='1D99', c='ᶙ', w='u', base='u', isLower=True, anchors=['bottom', 'middle', 'top'])
-GDS['ustroke'] = GD(name='ustroke', uni=0x1D7E, hex='1D7E', c='ᵾ', l='hyphen', r='hyphen', isLower=True)
 GDS['undertie'] = GD(name='undertie', uni=0x203F, hex='203F', c='‿', comment='Undertie')
 
 GDS['ubarsuperior'] = GD(name='ubarsuperior', uni=0x1DB6, hex='1DB6', c='ᶶ', l='48', r='48')

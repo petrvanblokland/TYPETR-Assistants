@@ -104,7 +104,7 @@ GDS['Ehookabove'] = GD(name='Ehookabove', uni=0x1EBA, hex='1EBA', c='Ẻ', l='H'
 
 # H
 
-GDS['Hbrevebelow'] = GD(name='Hbrevebelow', uni=0x1E2A, hex='1E2A', c='Ḫ', l='H', r='H', base='H', accents=['brevebelowcmb.uc'], srcName='uni1E2A', anchors=['bottom', 'middle', 'top'], gid=965)
+GDS['Hbrevebelow'] = GD(name='Hbrevebelow', uni=0x1E2A, hex='1E2A', c='Ḫ', l='H', r='H', base='H', accents=['brevebelowcmb'], srcName='uni1E2A', anchors=['bottom', 'middle', 'top'], gid=965)
 GDS['Hcedilla'] = GD(name='Hcedilla', uni=0x1E28, hex='1E28', c='Ḩ', w='H', base='H', accents=['cedillacmb.noconnect'], fixAccents=False, anchors=['bottom', 'middle', 'top'], gid=963)
 
 # I
@@ -311,7 +311,7 @@ GDS['zlinebelow'] = GD(name='zlinebelow', uni=0x1E95, hex='1E95', c='ẕ', base=
 
 # Accents
 
-GDS['brevebelowcmb'] = GD(name='brevebelowcmb', base='brevecmb', w=0, anchors=['bottom', '_bottom'])
+GDS['brevebelowcmb'] = GD(name='brevebelowcmb', base='brevecmb', l=GD.CAT_CENTER, w=0, anchors=['bottom', '_bottom'])
 GDS['horncmb'] = GD(name='horncmb', uni=0x031B, hex='031B', c='̛', w=0, isLower=True)
 GDS['horncmb.uc'] = GD(name='horncmb.uc', w=0, isLower=True, srcName='horncmb') # No anchors
 

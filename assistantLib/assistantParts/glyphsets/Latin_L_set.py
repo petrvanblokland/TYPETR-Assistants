@@ -103,9 +103,6 @@ LATIN_L_SET = GDS = deepcopy(LATIN_M_SET)
 #    0x030D, 0x030F, 0x0311, 0x0313, 0x0315, 0x0320, 0x0324, 0x0325, 0x0329, 0x032D, 0x032F, 0x0330, 0x0332, 0x035C, 
 #    0x035D, 0x0361, 0x1DCA, 0x0334, 0x0358, 0x02CA, 0x02CB
 
-GDS['Ustroke'] = GD(name='Ustroke', uni=0xA7B8, hex='A7B8', c='Ꞹ')
-GDS['ustroke'] = GD(name='ustroke', uni=0xA7B9, hex='A7B9', c='ꞹ')
-
 # A
 
 GDS['AEacute'] = GD(name='AEacute', uni=0x01FC, hex='01FC', c='Ǽ', l='A', r='E', base='AE', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=445, comment='Ǽ LATIN CAPITAL LETTER AE WITH ACUTE')
@@ -172,7 +169,7 @@ GDS['Emacrongrave'] = GD(name='Emacrongrave', uni=0x1E14, hex='1E14', c='Ḕ', l
 GDS['Epsilon'] = GD(name='Epsilon', uni=0x0395, hex='0395', c='Ε', l='E', r='E', base='E', anchors=['bottom', 'middle', 'top'], gid=539)
 GDS['Esh'] = GD(name='Esh', uni=0x01A9, hex='01A9', c='Ʃ', srcName='uni01A9', gid=362)
 GDS['Estroke'] = GD(name='Estroke', uni=0x0246, hex='0246', c='Ɇ', base='E', accents=['slashlongcmb.uc'], anchors=['bottom', 'middle', 'top'])
-GDS['Etildebelow'] = GD(name='Etildebelow', uni=0x1E1A, hex='1E1A', c='Ḛ', base='E', accents=['tildebelowcmb.uc'], srcName='uni1E1A', anchors=['bottom', 'middle', 'top'], gid=949)
+GDS['Etildebelow'] = GD(name='Etildebelow', uni=0x1E1A, hex='1E1A', c='Ḛ', base='E', accents=['tildebelowcmb'], srcName='uni1E1A', anchors=['bottom', 'middle', 'top'], gid=949)
 GDS['Ezh'] = GD(name='Ezh', uni=0x01B7, hex='01B7', c='Ʒ', l='three', r='B', srcName='uni01B7', anchors=['top'], gid=376, comment='Ʒ EZH, LATIN CAPITAL LETTER')
 GDS['Ezhcaron'] = GD(name='Ezhcaron', uni=0x01EE, hex='01EE', c='Ǯ', r='B', base='Ezh', accents=['caroncmb.uc'], srcName='uni01EE', anchors=['top'], gid=431)
 GDS['Ezhreversed'] = GD(name='Ezhreversed', uni=0x01B8, hex='01B8', c='Ƹ', r2l='B', srcName='uni01B8', gid=377)
@@ -484,7 +481,6 @@ GDS['dblgravecmb.uc'] = GD(name='dblgravecmb.uc',w=0, srcName='dblgravecmb', isL
 GDS['dotaboverightcmb'] = GD(name='dotaboverightcmb', uni=0x0358, hex='0358', c='͘', w=0, base='dotaccentcmb', isLower=True, anchors=['_top', 'top'])
 GDS['dotaboverightcmb.uc'] = GD(name='dotaboverightcmb.uc', w=0, srcName='dotaboverightcmb', isLower=True, anchors=['_top', 'top'])
 GDS['doublebrevebelowcmb'] = GD(name='doublebrevebelowcmb', uni=0x035C, hex='035C', c='͜', w=0, base='doublebrevecmb', isLower=True, anchors=['_bottom', 'bottom'])
-GDS['doublebrevebelowcmb'] = GD(name='doublebrevebelowcmb', w=0, srcName='doublebrevebelowcmb', isLower=True, anchors=['_bottom', 'bottom'])
 GDS['doublebrevecmb'] = GD(name='doublebrevecmb', uni=0x035D, hex='035D', c='͝', w=0, srcName='uni035D', isLower=True, anchors=['_top', 'top'])
 GDS['doublebrevecmb.uc'] = GD(name='doublebrevecmb.uc', w=0, srcName='doublebrevecmb', isLower=True, anchors=['_top', 'top'])
 
@@ -546,10 +542,10 @@ GDS['glottalstopsuperior'] = GD(name='glottalstopsuperior', uni=0x02C0, hex='02C
 
 GDS['hcaron'] = GD(name='hcaron', uni=0x021F, hex='021F', c='ȟ', base='h', accents=['caroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
 GDS['hdotaccent'] = GD(name='hdotaccent', uni=0x1E23, hex='1E23', c='ḣ', base='h', accents=['dotaccentcmb'], srcName='uni1E23', isLower=True, anchors=['bottom', 'middle', 'top'], gid=958)
-GDS['heng'] = GD(name='heng', uni=0xA727, hex='A727', c='ꜧ', l='h', isLower=True)
+GDS['heng'] = GD(name='heng', uni=0xA727, hex='A727', c='ꜧ', l='h', w='h', srcName='h', isLower=True)
 GDS['henghook'] = GD(name='henghook', uni=0x0267, hex='0267', c='ɧ', l='h', r='h', isLower=True)
-GDS['hhook'] = GD(name='hhook', uni=0x0266, hex='0266', c='ɦ', l='h', r='h', isLower=True)
-GDS['hturned'] = GD(name='hturned', uni=0x0265, hex='0265', c='ɥ', isLower=True)
+GDS['hhook'] = GD(name='hhook', uni=0x0266, hex='0266', c='ɦ', l='h', r='h', srcName='h', isLower=True)
+GDS['hturned'] = GD(name='hturned', uni=0x0265, hex='0265', c='ɥ', l2r='h', r2l='h', srcName='h', isLower=True)
 
 GDS['hsuperior'] = GD(name='hsuperior', uni=0x02B0, hex='02B0', c='ʰ', l='nsuperior', r='nsuperior', isMod=True)
 GDS['hinferior'] = GD(name='hinferior', l='hinferior', r='hinferior', base='hsuperior', isLower=True)
@@ -573,8 +569,8 @@ GDS['iinferior'] = GD(name='iinderior', l='isuperior', r='isuperior', base='isup
 
 GDS['jcaron'] = GD(name='jcaron', uni=0x01F0, hex='01F0', c='ǰ', l='j', w='j', base='jdotless', accents=['caroncmb'], srcName='uni01F0', isLower=True, anchors=['bottom', 'middle', 'top'], gid=433)
 GDS['jcrossedtail'] = GD(name='jcrossedtail', uni=0x029D, hex='029D', c='ʝ', rightMin='minRight', isLower=True)
-GDS['jdotlessstroke'] = GD(name='jdotlessstroke', uni=0x025F, hex='025F', c='ɟ', l='jdotless', base='j', r='hyphen', isLower=True)
-GDS['jdotlessstrokehook'] = GD(name='jdotlessstrokehook', uni=0x0284, hex='0284', c='ʄ', l='j', r='f', base='jdotless', accents=['hookabovecmd'], isLower=True)
+GDS['jdotlessstroke'] = GD(name='jdotlessstroke', uni=0x025F, hex='025F', c='ɟ', l='jdotless', w='j', base='j', r='hyphen', isLower=True)
+GDS['jdotlessstrokehook'] = GD(name='jdotlessstrokehook', uni=0x0284, hex='0284', c='ʄ', l='j', w='j', base='jdotless', accents=['hookabovecmb'], isLower=True)
 GDS['jstroke'] = GD(name='jstroke', uni=0x0249, hex='0249', c='ɉ', l='j', r='hyphen', base='j', isLower=True, anchors=['bottom', 'middle'])
 
 GDS['jsuperior'] = GD(name='jsuperior', uni=0x02B2, hex='02B2', c='ʲ', r='isuperior', isMod=True)
@@ -585,7 +581,7 @@ GDS['jinferior'] = GD(name='jsuperior', r='isuperior', base='jsuperior', isMod=T
 GDS['kacute'] = GD(name='kacute', uni=0x1E31, hex='1E31', c='ḱ', base='k', accents=['acutecmb'], srcName='uni1E31', isLower=True, anchors=['bottom', 'middle', 'top'], gid=972)
 GDS['kcaron'] = GD(name='kcaron', uni=0x01E9, hex='01E9', c='ǩ', base='k', accents=['caroncmb'], srcName='uni01E9', isLower=True, anchors=['bottom', 'middle', 'top'], gid=426)
 GDS['kgreenlandic'] = GD(name='kgreenlandic', uni=0x0138, hex='0138', c='ĸ', isLower=True, anchors=['top'], gid=249, comment='ĸ LATIN SMALL LETTER KRA')
-GDS['kstroke'] = GD(name='kstroke', uni=0xA741, hex='A741', c='ꝁ', l='hyphen', r='k', base='k', accents=['strokecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
+GDS['kstroke'] = GD(name='kstroke', uni=0xA741, hex='A741', c='ꝁ', l='hyphen', r='k', base='k', isLower=True, anchors=['bottom', 'middle', 'top'])
 GDS['koronis'] = GD(name='koronis', uni=0x1FBD, hex='1FBD', c='᾽', w=0, isLower=True, anchors=['top'], gid=1347)
 
 GDS['ksuperior'] = GD(name='ksuperior', uni=0x1D4F, hex='1D4F', c='ᵏ', l='hsuperior', srcName='uni1D4F', isLower=False, isMod=True, gid=912)
@@ -599,7 +595,7 @@ GDS['lbar'] = GD(name='lbar', uni=0x019A, hex='019A', c='ƚ', l='t', r='t', srcN
 GDS['lbelt'] = GD(name='lbelt', uni=0x026C, hex='026C', c='ɬ', l='osuperior', r='hyphen', isLower=True)
 GDS['lcircumflexbelow'] = GD(name='lcircumflexbelow', uni=0x1E3D, hex='1E3D', c='ḽ', w='l', bl='l', base='l', accents=['circumflexbelowcmb'], srcName='uni1E3D', isLower=True, anchors=['bottom', 'middle', 'top'], gid=984)
 GDS['ldot'] = GD(name='ldot', uni=0x0140, hex='0140', c='ŀ', l='l', r='off', base='l', accents=['dotmiddlecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=257, comment='ŀ MIDDLE DOT, LATIN SMALL LETTER L WITH')
-GDS['ldoublebar'] = GD(name='ldoublebar', uni=0x2C61, hex='2C61', c='ⱡ', l='hyphen', r='hyphen', isLower=True)
+GDS['ldoublebar'] = GD(name='ldoublebar', uni=0x2C61, hex='2C61', c='ⱡ', base='l', l='hyphen', r='hyphen', isLower=True)
 GDS['lj'] = GD(name='lj', uni=0x01C9, hex='01C9', c='ǉ', l='l', r='j', base='l', accents=['j'], srcName='uni01C9', isLower=True, gid=394)
 GDS['lmiddletilde'] = GD(name='lmiddletilde', uni=0x026B, hex='026B', c='ɫ', l='asciitilde', r='asciitilde', isLower=True)
 GDS['longs'] = GD(name='longs', uni=0x017F, hex='017F', c='ſ', w='f', r2l='j', isLower=True, fixAccents=False, anchors=['top'], gid=320, comment='ſ S, LATIN SMALL LETTER LONG')
@@ -624,7 +620,7 @@ GDS['mu'] = GD(name='mu', uni=0x03BC, hex='03BC', c='μ', l='verticalbar', r='u'
 
 # n
 
-GDS['napostrophe'] = GD(name='napostrophe', uni=0x0149, hex='0149', c='ŉ', base='n', accents=['quoterightcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=266, comment='ŉ')
+GDS['napostrophe'] = GD(name='napostrophe', uni=0x0149, hex='0149', c='ŉ', base='n', l='quoteright', r='n', accents=['quoterightcmb'], isLower=True, comment='ŉ')
 GDS['ncircumflexbelow'] = GD(name='ncircumflexbelow', uni=0x1E4B, hex='1E4B', c='ṋ', base='n', accents=['circumflexbelowcmb'], srcName='uni1E4B', isLower=True, anchors=['bottom', 'middle', 'top'], gid=998)
 GDS['ngrave'] = GD(name='ngrave', uni=0x01F9, hex='01F9', c='ǹ', w='n', bl='n', base='n', accents=['gravecmb'], srcName='uni01F9', isLower=True, anchors=['bottom', 'middle', 'top'], gid=442)
 GDS['nj'] = GD(name='nj', uni=0x01CC, hex='01CC', c='ǌ', base='n', accents=['j'], srcName='uni01CC', isLower=True)
@@ -740,6 +736,7 @@ GDS['uniA7AE'] = GD(name='uniA7AE', uni=0xA7AE, hex='A7AE', c='Ɪ', r='L', l2r=
 GDS['upsilon-latin'] = GD(name='upsilon-latin', uni=0x028A, hex='028A', c='ʊ', l='o', r='o', srcName='uni028A', isLower=True, gid=467)
 GDS['utildeacute'] = GD(name='utildeacute', uni=0x1E79, hex='1E79', c='ṹ', base='utilde', accents=['acutecmb'], srcName='uni1E79', isLower=True, anchors=['bottom', 'middle', 'top'], gid=1044)
 GDS['utildebelow'] = GD(name='utildebelow', uni=0x1E75, hex='1E75', c='ṵ', base='u', accents=['tildebelowcmb'], srcName='uni1E75', isLower=True, anchors=['bottom', 'middle', 'top'], gid=1040)
+GDS['ustroke'] = GD(name='ustroke', uni=0x1D7E, hex='1D7E', c='ᵾ', l='hyphen', r='hyphen', isLower=True)
 
 GDS['usuperior'] = GD(name='usuperior', uni=0x1D58, hex='1D58', c='ᵘ', l2r='nsuperior', r2l='nsuperior', srcName='uni1D58', isMod=True)
 GDS['uinferior'] = GD(name='uinferior', l='usuperior', r='usuperior', base='usuperior', isMod=True)
@@ -775,7 +772,7 @@ GDS['xinferior'] = GD(name='xinferior', uni=0x2093, hex='2093', c='ₓ', l='xsup
 
 # y
 
-GDS['yogh'] = GD(name='yogh', uni=0x021D, hex='021D', c='ȝ', l='three', r='three', isLower=True)
+GDS['yogh'] = GD(name='yogh', uni=0x021D, hex='021D', c='ȝ', l='three', r='three', base='three', isLower=True)
 GDS['yring'] = GD(name='yring', uni=0x1E99, hex='1E99', c='ẙ', l='y', r='y', base='y', accents=['ringcmb'], srcName='uni1E99', isLower=True, anchors=['bottom', 'middle', 'top'], gid=1076)
 GDS['ystroke'] = GD(name='ystroke', uni=0x024F, hex='024F', c='ɏ', l='hyphen', r='hyphen', base='y', isLower=True, anchors=['bottom', 'middle', 'top'])
 GDS['yturned'] = GD(name='yturned', uni=0x028E, hex='028E', c='ʎ', w='y', r2l='y', isLower=True)
@@ -824,14 +821,14 @@ GDS['tildebelowcmb'] = GD(name='tildebelowcmb', w=0, base='tildecmb', anchors=['
 GDS['slashlongcmb'] = GD(name='slashlongcmb', l=GD.CAT_CENTER, w=0, anchors=['_middle'])
 GDS['dotmiddlecmb'] = GD(name='dotmiddlecmb', w=0, anchors=['_dot'], base='dotaccentcmb')
 GDS['strokecmb'] = GD(name='strokecmb', w=0, anchors=['_middle'])
-GDS['invertedbrevecmb'] = GD(name='invertedbrevecmb', w=0, anchors=['_top'], srcName='brevecmb')
+GDS['invertedbrevecmb'] = GD(name='invertedbrevecmb', l=GD.CAT_CENTER, w=0, anchors=['_top'], srcName='brevecmb')
 GDS['macronbelowcmb'] = GD(name='macronbelowcmb', uni=0x0331, hex='0331', c='̱', w=0, base='macroncmb', isLower=True, anchors=['bottom', '_bottom'], comment='COMBINING MACRON BELOW')
 GDS['dblgravecomb'] = GD(name='dblgravecmb', uni=0x030F, hex='030F', c='̏', w=0, isLower=True, base='gravecmb', accents=['gravecmb'], anchors=['top', '_top'])
 GDS['ringbelowcmb'] = GD(name='ringbelowcmb', uni=0x0325, hex='0325', c='̥', l='center', w=0, base='ringcmb', isLower=True, anchors=['_bottom', 'bottom'], comment='COMBINING RING BELOW')
 
 GDS['slashlongcmb.uc'] = GD(name='slashlongcmb.uc', w=0, anchors=['_middle'])
 GDS['strokecmb.uc'] = GD(name='strokecmb.uc', w=0, srcName='strokecmb', anchors=['_middle'])
-GDS['invertedbrevecmb.uc'] = GD(name='invertedbrevecmb.uc', w=0, anchors=['_top'], srcName='brevecmd.uc')
+GDS['invertedbrevecmb.uc'] = GD(name='invertedbrevecmb.uc', w=0, anchors=['_top'], srcName='brevecmb.uc')
 GDS['dblgravecomb.uc'] = GD(name='dblgravecmb.uc', w=0, isLower=True, base='gravecmb.uc', accents=['gravecmb.uc'], anchors=['top', '_top'])
 GDS['ringbelowcmb.uc'] = GD(name='ringbelowcmb.uc', l='center', w=0, base='ringcmb.uc', isLower=True, anchors=['_bottom', 'bottom'], comment='COMBINING RING BELOW')
 
