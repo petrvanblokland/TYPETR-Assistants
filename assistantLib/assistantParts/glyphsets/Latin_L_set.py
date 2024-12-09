@@ -380,7 +380,7 @@ GDS['Vinferior'] = GD(name='Vinferior', base='Vsuperior', isLower=True)
 # W
 
 GDS['Wdotaccent'] = GD(name='Wdotaccent', uni=0x1E86, hex='1E86', c='Ẇ', l='W', r='W', base='W', accents=['dotaccentcmb.uc'], srcName='uni1E86', anchors=['bottom', 'middle', 'top'], gid=1057)
-GDS['Whook'] = GD(name='Whook', uni=0x2C72, hex='2C72', c='Ⱳ')
+GDS['Whook'] = GD(name='Whook', uni=0x2C72, hex='2C72', srcName='W', c='Ⱳ')
 
 GDS['Wsuperior'] = GD(name='Wsuperior', isMod=True)
 GDS['Winferior'] = GD(name='Winferior', base='Wsuperior', isLower=True)
@@ -396,8 +396,8 @@ GDS['Xinferior'] = GD(name='Xinferior', base='Xsuperior', isLower=True)
 
 GDS['Yogh'] = GD(name='Yogh', uni=0x021C, hex='021C', c='Ȝ', l='three', r='three')
 GDS['Ystroke'] = GD(name='Ystroke', uni=0x024E, hex='024E', c='Ɏ', base='Y', anchors=['bottom', 'middle', 'top'])
-GDS['Zcircumflex'] = GD(name='Zcircumflex', uni=0x1E90, hex='1E90', c='Ẑ', l='Z', r='Z', base='Z', accents=['circumflexcmb.uc'], srcName='uni1E90', anchors=['bottom', 'middle', 'top'], gid=1067)
-GDS['Zstroke'] = GD(name='Zstroke', uni=0x01B5, hex='01B5', c='Ƶ', l='Z', r='Z', srcName='uni01B5', gid=374)
+GDS['Zcircumflex'] = GD(name='Zcircumflex', uni=0x1E90, hex='1E90', c='Ẑ', l='Z', r='Z', base='Z', accents=['circumflexcmb.uc'], srcName='Z', anchors=['bottom', 'middle', 'top'], gid=1067)
+GDS['Zstroke'] = GD(name='Zstroke', uni=0x01B5, hex='01B5', c='Ƶ', l='Z', r='Z', srcName='Z', anchors=['bottom', 'middle', 'top'], gid=374)
 
 GDS['Ysuperior'] = GD(name='Ysuperior', isMod=True)
 GDS['Yinferior'] = GD(name='Yinferior', base='Ysuperior', isLower=True)
