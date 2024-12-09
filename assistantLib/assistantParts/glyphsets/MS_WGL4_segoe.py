@@ -42,7 +42,7 @@ class MS_GlyphSet(GlyphSet):
 
     CENTER = 'center' # KerningManager indicator for lm=CENTER to center the glyph at its current width.
 
-    # The "c" attribtes are redundant, if the @uni or @hex atre defined, but they are offer easy searching in the source by char.
+    # The "c" attribtes are redundant, if the @uni or @hex are defined, but they are offer easy searching in the source by char.
     GLYPH_DATA = {
 
         #   .

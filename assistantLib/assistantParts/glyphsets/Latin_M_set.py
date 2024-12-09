@@ -56,7 +56,7 @@ from assistantLib.assistantParts.glyphsets.Latin_S_set import LATIN_S_SET
 
 LATIN_M_SET_NAME = 'Latin M'
 
-# The "c" attribtes are redundant, if the @uni or @hex atre defined, but they offer easy searching in the source by char.
+# The "c" attribtes are redundant, if the @uni or @hex are defined, but they offer easy searching in the source by char.
 
 LATIN_M_SET = GDS = deepcopy(LATIN_S_SET)
 

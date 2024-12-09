@@ -818,7 +818,16 @@ SC_NAMES = (
     'Odieresis-cy', 'Omega-cy', 'Palochka-cy', 'Pe-cy', 'Pedescender-cy', 'Pemiddlehook-cy', 'Psi-cy', 'Schwa-cy', 'Schwadieresis-cy', 'Semisoftsign-cy', 
     'Sha-cy', 'Shcha-cy', 'Shha-cy', 'Softsign-cy', 'Te-cy', 'Tedescender-cy', 'Tetse-cy', 'Tse-cy', 'Tshe-cy', 'U-cy', 'Udieresis-cy', 'Uhungarumlaut-cy', 
     'Uk-cy', 'Umacron-cy', 'Ushort-cy', 'Ustrait-cy', 'Ustraitstroke-cy', 'Ve-cy', 'Yat-cy', 'Yeru-cy', 'Yerudieresis-cy', 'Yi-cy', 'Yusbig-cy', 'Yusbigiotified-cy', 
-    'Yuslittle-cy', 'Yuslittleiotified-cy', 'Ze-cy', 'Zedescender-cy', 'Zedieresis-cy', 'Zhe-cy', 'Zhebreve-cy', 'Zhedescender-cy', 'Zhedieresis-cy'
+    'Yuslittle-cy', 'Yuslittleiotified-cy', 'Ze-cy', 'Zedescender-cy', 'Zedieresis-cy', 'Zhe-cy', 'Zhebreve-cy', 'Zhedescender-cy', 'Zhedieresis-cy',
+
+    # In case GREEK_SET is inlcuded, these need to be come smallcaps too
+    'Alpha', 'Alphatonos', 'Archaicsampi', 'Beta', 'Chi', 'Dei-coptic', 'Delta', 'Digamma', 'Epsilon', 'Epsilontonos', 'Eta', 'Etatonos', 'Fei-coptic', 
+    'Gamma', 'Gangia-coptic', 'Heta', 'Hori-coptic', 'Iota', 'Iotadieresis', 'Iotatonos', 'KaiSymbol', 'Kappa', 'Khei-coptic', 'Koppa', 'KoppaArchaic', 
+    'Lambda', 'Mu', 'Nu', 'Omega', 'Omegatonos', 'Omicron', 'Omicrontonos', 'Pamphyliandigamma', 'Phi', 'Pi', 'Psi', 'Rho', 'Sampi', 'San', 'Shei-coptic', 
+    'Shima-coptic', 'Sho', 'Sigma', 'SigmaLunateDottedReversedSymbol', 'SigmaLunateDottedSymbol', 'SigmaLunateReversedSymbol', 'SigmaLunateSymbol', 
+    'Stigma', 'Tau', 'Theta', 'ThetaSymbol', 'Upsilon', 'UpsilonacutehookSymbol', 'Upsilondieresis', 'UpsilondieresishookSymbol', 'UpsilonhookSymbol', 
+    'Upsilontonos', 'Xi', 'Yot', 'Zeta',
+
 )
 # Used by GlyphSet class to add sinf/dnom/numr/subs glyph data records. 
 # Alternative naming for letter glyphs: /amod and /ainferior

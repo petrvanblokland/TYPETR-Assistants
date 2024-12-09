@@ -13,7 +13,7 @@ if __name__ == '__main__': # Used for doc tests to find assistantLib
 
 from assistantLib.assistantParts.glyphsets.glyphData import * #GD, TOP, TOP_, _BOTTOM, BOTTOM_ etc.
 
-CYRILLIC_SET_NAME = 'Latin L'
+CYRILLIC_SET_NAME = 'Cyrillic'
 
 # The "c" attribtes are redundant, if the @uni or @hex are defined, but they offer easy searching in the source by char.
 

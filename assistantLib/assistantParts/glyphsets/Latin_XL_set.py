@@ -75,7 +75,7 @@ from assistantLib.assistantParts.glyphsets.Latin_L_set import LATIN_L_SET
 
 LATIN_XL_SET_NAME = 'Latin XL'
 
-# The "c" attribtes are redundant, if the @uni or @hex atre defined, but they offer easy searching in the source by char.
+# The "c" attribtes are redundant, if the @uni or @hex are defined, but they offer easy searching in the source by char.
 
 LATIN_XL_SET = GDS = deepcopy(LATIN_L_SET)
 
