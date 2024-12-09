@@ -868,7 +868,6 @@ class KerningManager:
             return None # No entry in this glyphset for this glyph.
 
         if gd.w is not None: # Interpret width category or just copy the width
-            print('SSSSSSSSSS', gd.w)
             if isinstance(gd.w, (int, float)):
                 w = gd.w
                 changed |= self.fixGlyphWidth(g, w, f'(w={w})')
@@ -879,7 +878,6 @@ class KerningManager:
                 w = g.font[gd.w].width
                 changed |= self.fixGlyphWidth(g, w, f'(w={w})')
             else:
-                print('SWEEEEWEEWEW', gd.w, gd.w in g.font)
                 print(f'### "gd.w={gd.w}" reference glyph for /{g.name} does not exist.') # Using "md.w" it should exist
 
 
