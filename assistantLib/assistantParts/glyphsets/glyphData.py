@@ -69,11 +69,11 @@ class GlyphData:
     CAT_CAP_HEIGHT2 = 'capHeight/2'
     CAT_SC_HEIGHT = 'scHeight'
     CAT_SC_HEIGHT2 = 'scHeight/2'
-    CAT_SUPS_HEIGHT = 'supsHeight' # Height of .sups, .sinf, .numr, .dnom and mod
+    CAT_SUPERIOR_HEIGHT = 'supsHeight' # Height of .sups, .sinf, .numr, .dnom and mod
     # Categories of overshoot
     CAT_OVERSHOOT = 'overshoot'
     CAT_CAP_OVERSHOOT = 'capOvershoot'
-    CAT_SUPS_OVERSHOOT = 'supsOvershoot'
+    CAT_SUPERIOR_OVERSHOOT = 'superiorOvershoot'
     CAT_SC_OVERSHOOT = 'scOvershoot'
     # Categories of baselines
     CAT_BASELINE = 'baseline'
@@ -84,10 +84,10 @@ class GlyphData:
     CAT_DNOM_BASELINE = 'dnomBaseline'
 
     # Allowed category names
-    CAT_OVERSHOOTS = (None, CAT_OVERSHOOT, CAT_CAP_OVERSHOOT, CAT_SUPS_OVERSHOOT, CAT_SC_OVERSHOOT)
+    CAT_OVERSHOOTS = (None, CAT_OVERSHOOT, CAT_CAP_OVERSHOOT, CAT_SUPERIOR_OVERSHOOT, CAT_SC_OVERSHOOT)
     CAT_BASELINES = (None, CAT_BASELINE, CAT_MOD_BASELINE, CAT_NUMR_BASELINE, CAT_SINF_BASELINE, 
         CAT_SUPS_BASELINE, CAT_DNOM_BASELINE)
-    CAT_HEIGHTS = (None, CAT_XHEIGHT, CAT_CAP_HEIGHT, CAT_SC_HEIGHT, CAT_SUPS_HEIGHT)
+    CAT_HEIGHTS = (None, CAT_XHEIGHT, CAT_CAP_HEIGHT, CAT_SC_HEIGHT, CAT_SUPERIOR_HEIGHT)
     CAT_WIDTHS = (None, CAT_ACCENT_WIDTH, CAT_TAB_WIDTH, CAT_MATH_WIDTH, CAT_FIGURE_WIDTH, 
             CAT_EM_WIDTH, CAT_EM_WIDTH2, CAT_EN_WIDTH, CAT_SPACE_WIDTH, CAT_SPACE_WIDTH)
 

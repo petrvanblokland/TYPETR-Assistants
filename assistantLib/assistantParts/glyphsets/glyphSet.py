@@ -201,7 +201,7 @@ class GlyphSet:
                         gd.name = gNameExt
                         gd.uni = gd.hex = gd.c = None
                         gd.isLower = False
-                        gd.overshoot = gd.CAT_SUPS_OVERSHOOT
+                        gd.overshoot = gd.CAT_SUPERIOR_OVERSHOOT
                         if ext != 'superior':
                             gd.l = gd.r = 'zerosuperior'
                             gd.base = gName + 'superior'

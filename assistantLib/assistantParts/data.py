@@ -82,10 +82,10 @@ class MasterData:
             modMinMargin=None,
             # Vertical metrics
             unitsPerEm=UNITS_PER_EM, 
-            baseline=0, stemOvershoot=STEM_OVERSHOOT, baseOvershoot=None, capOvershoot=None, scOvershoot=None, supsOvershoot=None,
+            baseline=0, stemOvershoot=STEM_OVERSHOOT, baseOvershoot=None, capOvershoot=None, scOvershoot=None, superiorOvershoot=None,
             ascender=None, descender=None,
-            xHeight=None, capHeight=None, scHeight=None, supsHeight=None, modHeight=None,
-            numrBaseline=None, supsBaseline=None, sinfBaseline=None, sinfHeight=None, dnomBaseline=None, modBaseline=None,
+            xHeight=None, capHeight=None, scHeight=None, superiorHeight=None, modHeight=None,
+            numrBaseline=None, supsBaseline=None, sinfBaseline=None, dnomBaseline=None, modBaseline=None,
             middlexHeight=None, middleCapHeight=None,
             # Vertical anchor offsets to avoid collission with baseline, guidlines, etc. in mouse selection
             baseDiacriticsTop=None, capDiacriticsTop=None, scDiacriticsTop=None, # Baseline of top diacritics
@@ -105,6 +105,9 @@ class MasterData:
             nStem=None, oStem=None, oThin=None, UThin=None, VThin=None, eThin=None,
             modStem=None, # Used for special factor to interpolate/extrapolate "mod" glyphs, e.g. extrapolating Black from Regular + Bold
             thickness=10, distance=16, # Used for Neon tubes, can be overwritten from GlyphData.thickness
+            iFactor=None, superiorIFactorX=None, superiorIFactorY=None, scIFactor=None,
+            superiorOutline=None, # Used for scalarpolation of superiors
+            superiorWidthFactor=1, # Additional horizontal scaling factor of superiors.
             # Table stuff
             ttfPath=None, platformID=None, platEncID=None, langID=None, 
             copyright=COPYRIGHT, uniqueID=None, trademark=TRADEMARK, 
@@ -151,8 +154,30 @@ class MasterData:
         self.spacingSrcUFOPath = spacingSrcUFOPath # If defined, used as spacing reference, overwriting all spacing rules. Goes with spacingOffset
         self.spacingOffset = spacingOffset # Value to add to margins of self.spacingSrcUFOPath (if defined)
 
+
+        # Standard interpolation factors (e.g. for scalarpolations). This overwrites the corrections directly derived from comparing the stems.
+        if iFactor is None:
+            iFactor = 0.5
+        self.iFactor = iFactor or 0.5
+
+        if superiorIFactorX is None:
+            superiorIFactorX = 0.3
+        self.superiorIFactorX = superiorIFactorX
+        if superiorIFactorY is None:
+            superiorIFactorY = self.superiorIFactorX
+        self.superiorIFactorY = superiorIFactorY
+        
+        self.superiorWidthFactor = superiorWidthFactor
+
+        if superiorOutline is None:
+            superiorOutline = 16
+        self.superiorOutline=superiorOutline
+
+        if scIFactor is None:
+            scIFactor = 0.3
+        self.scIFactor = scIFactor
+
         # Interpolation & design space
-        self.interpolationFactor = 0.5
         self.m0 = m0 # Regular origin
         self.m1 = m1 # Direct interpolation master in "min" side
         self.m2 = m2 # Direct interpolation master on "max" side
@@ -160,7 +185,7 @@ class MasterData:
         self.sm2 = sm2
         self.osm1 = osm1 # If defined, lighter master on same optical size level
         self.osm2 = osm2 # If defined, bolder master on same optical size level
-        
+
         # Design space position (matching .designspace) to calculate triplet kerning.
         # This can be different from HStem (with m1, m2) interpolation.
         self.dsPosition = dsPosition 
@@ -190,14 +215,14 @@ class MasterData:
         if scOvershoot is None: # Overshoot value for smallcaps, mod, etc.
             scOvershoot = baseOvershoot
         self.scOvershoot = scOvershoot
-        if supsOvershoot is None: # Overshoot value for sups, numr, sinf and dnom
-            supsOvershoot = baseOvershoot
-        self.supsOvershoot = supsOvershoot
+        if superiorOvershoot is None: # Overshoot value for superior, inferior, .sups, .numr, .sinf and .dnom
+            superiorOvershoot = baseOvershoot
+        self.superiorOvershoot = superiorOvershoot
         
         self.cat2Overshoot = { # Category --> overshoot
             GD.CAT_OVERSHOOT: baseOvershoot,
             GD.CAT_CAP_OVERSHOOT: capOvershoot,
-            GD.CAT_SUPS_OVERSHOOT: supsOvershoot,
+            GD.CAT_SUPERIOR_OVERSHOOT: superiorOvershoot,
             GD.CAT_SC_OVERSHOOT: scOvershoot,
         }
 
@@ -232,13 +257,10 @@ class MasterData:
         if scHeight is None:
             scHeight = xHeight
         self.scHeight = scHeight
-        if supsHeight is None:
-            supsHeight = xHeight * 2/3
-        self.supsHeight = supsHeight
-        self.modHeight = modHeight or self.supsHeight
-        if sinfHeight is None:
-            sinfHeight = self.supsHeight
-        self.sinfHeight = sinfHeight
+        if superiorHeight is None:
+            superiorHeight = xHeight * 2/3
+        self.superiorHeight = superiorHeight
+        self.modHeight = modHeight or self.superiorHeight
 
         if middlexHeight is None:
             middlexHeight = xHeight/2,
@@ -251,7 +273,7 @@ class MasterData:
             GD.CAT_XHEIGHT: xHeight,
             GD.CAT_CAP_HEIGHT: capHeight,
             GD.CAT_SC_HEIGHT: scHeight,
-            GD.CAT_SUPS_HEIGHT: supsHeight, # Height of .sups, .sinf, .numr, .dnom and mod
+            GD.CAT_SUPERIOR_HEIGHT: superiorHeight, # Height of .sups, .sinf, .numr, .dnom and mod
         }
 
         if baseDiacriticsTop is None: # Baseline of top diacritics
@@ -274,7 +296,7 @@ class MasterData:
             supsBaseline = xHeight
         self.supsBaseline = supsBaseline
         if numrBaseline is None: 
-            numrBaseline = ascender - supsHeight  
+            numrBaseline = ascender - superiorHeight  
         self.numrBaseline = numrBaseline
         if dnomBaseline is None: 
             dnomBaseline = baseline  
@@ -405,7 +427,7 @@ class MasterData:
         if gd.isUpper: # All glyph that start with initial cap
             return self.cat2Overshoot[GD.CAT_CAP_OVERSHOOT]
         if gd.isMod: # One of sups, sinf, dnom, numr, mod in the name
-            return self.cat2Overshoot[GD.CAT_SUPS_OVERSHOOT]
+            return self.cat2Overshoot[GD.CAT_SUPERIOR_OVERSHOOT]
         if gd.isSc: # One of .sc, small in the name
             return self.cat2Overshoot[GD.CAT_SC_OVERSHOOT]
         # Otherwise answer the default overshoot. 

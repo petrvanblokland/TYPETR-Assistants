@@ -352,6 +352,16 @@ class BaseAssistant:
         if g is not None:
             OpenGlyphWindow(g, newWindow=newWindow)
 
+    def isEqualFont(self, f1, f2):
+        """Answer the boolean flag if f1 and f2 are the same font. Point to the same path is also True."""
+        if f1 is None or f2 is None:
+            return False
+        if f1 is f2 or f1 == f2:
+            return True
+        if f1.path == f2.path:
+            return True
+        return False
+
     #   G L Y P H
 
     def copyGlyph(self, srcFont, glyphName, dstFont=None, dstGlyphName=None, copyUnicode=True):
@@ -364,9 +374,12 @@ class BaseAssistant:
             dstFont = srcFont
         if dstGlyphName is None:
             dstGlyphName = glyphName
-        assert srcFont != dstFont or glyphName != dstGlyphName, ('### copyGlyph: Either dstFont or dstGlyphName should be defined.')
-        srcGlyph = srcFont[glyphName]
-        dstFont.insertGlyph(srcGlyph, name=dstGlyphName)
+        #if srcFont.path == dstFont.path:
+        #    assert glyphName != dstGlyphName, (f'### copyGlyph: Either srcFont {srcFont} != dstFont {dstFont} or /{glyphName} != dstGlyphName /{dstGlyphName} should be defined.')
+        #srcGlyph = srcFont[glyphName]
+        print(f'... Copy /{glyphName} to /{dstGlyphName}')
+        dstFont[dstGlyphName] = srcFont[glyphName]
+        #dstFont.insertGlyph(srcGlyph, name=dstGlyphName)
         return dstFont[dstGlyphName]
 
     def getCurrentGlyph(self, layerName=EDIT_LAYER):
@@ -479,6 +492,13 @@ class BaseAssistant:
         for anchor in g.anchors:
             anchor.x = int(round(anchor.x + dx))
             anchor.y = int(round(anchor.y + dy))
+
+    def resetComponentPositions(self, g):
+        for component in g.components:
+            t = list(component.transformation)
+            t[-2] = 0
+            t[-1] = 0
+            component.transformation = t
 
     def roundGlyph(self, g):
         for contour in g.contours:
