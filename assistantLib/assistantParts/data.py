@@ -105,9 +105,13 @@ class MasterData:
             nStem=None, oStem=None, oThin=None, UThin=None, VThin=None, eThin=None,
             modStem=None, # Used for special factor to interpolate/extrapolate "mod" glyphs, e.g. extrapolating Black from Regular + Bold
             thickness=10, distance=16, # Used for Neon tubes, can be overwritten from GlyphData.thickness
-            iFactor=None, superiorIFactorX=None, superiorIFactorY=None, scIFactor=None,
+            iFactor=None, 
+            superiorIFactorX=None, superiorIFactorY=None, scIFactor=None,
             superiorOutline=None, # Used for scalarpolation of superiors
             superiorWidthFactor=1, # Additional horizontal scaling factor of superiors.
+            scIFactorX=None, scIFactorY=None, 
+            scOutline=None, # Used for scalarpolations of .sc
+            scWidthFactor=1, # Additional horizontal scaling factor of .sc
             # Table stuff
             ttfPath=None, platformID=None, platEncID=None, langID=None, 
             copyright=COPYRIGHT, uniqueID=None, trademark=TRADEMARK, 
@@ -173,9 +177,19 @@ class MasterData:
             superiorOutline = 16
         self.superiorOutline=superiorOutline
 
-        if scIFactor is None:
-            scIFactor = 0.3
-        self.scIFactor = scIFactor
+        if scIFactorX is None:
+            scIFactorX = 0.3
+        self.scIFactorX = scIFactorX
+        if scIFactorY is None:
+            scIFactorY = self.scIFactorX
+        self.scIFactorY = scIFactorY
+        
+        self.scWidthFactor = scWidthFactor
+
+        if scOutline is None:
+            scOutline = 16
+        self.scOutline=scOutline
+
 
         # Interpolation & design space
         self.m0 = m0 # Regular origin

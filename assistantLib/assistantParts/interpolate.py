@@ -159,16 +159,22 @@ class AssistantPartInterpolate(BaseAssistantPart):
 
             # Change to glyphData.height, so scalerpolation will also work for small caps.
             if g.name.endswith('.sc'):
-                iScaleY = md.scHeight / f.info.capHeight
+                iScaleY = (md.scHeight - md.scOutline) / f.info.capHeight
                 iScaleX = iScaleY * md.scWidthFactor
-                iFactor = md.scIFactor
                 gName = g.name
                 srcName = gName.replace('.sc', '')
-                print(f'... Scalarpolate: Copy /{srcName} to /{gName}')
-                orgG = g # Keep the original for interpolation
-                g = self.copyGlyph(f, srcName, dstGlyphName=gName, copyUnicode=False)  # Copy the glyph from the normal sized glyph
-                #f[gName] = f[srcName] # Copy the glyph from the capital
-                self.scaleGlyph(g, iScale)
+                tmpName = 'TMP'
+                tmpG = self.copyGlyph(f, srcName, f, tmpName, copyUnicode=False)
+                g = self.copyGlyph(f, srcName, f, gName, copyUnicode=False)
+                print(f'... Scalerpolating /{gName} from /{tmpName} + /{srcName} scOutline={md.scOutline} iScale={(iScaleX, iScaleY)} scFactor={(md.scIFactorX, md.scIFactorY)}')
+                self.interpolateByFactor(g, tmpG, f2[srcName], ix=md.scIFactorX, iy=md.scIFactorY, doCopy=False, copyUnicode=False)
+                calculateOutline(g, thickness=md.scOutline, corner=OL_SQUARE, cap=OL_SQUARE, drawOuter=False)
+                self.scaleGlyph(g, iScaleX, iScaleY)
+                self.offsetGlyph(g, dx=0, dy=md.scOutline/2)
+                g.removeOverlap()
+                g.angledLeftMargin = tmpG.angledLeftMargin  # * iScaleX
+                g.angledRightMargin = tmpG.angledRightMargin    # * iScaleX
+                #f.removeGlyph(tmpName)
                 changed = True
 
             elif g.name.endswith('superior'):
@@ -185,8 +191,8 @@ class AssistantPartInterpolate(BaseAssistantPart):
                 self.scaleGlyph(g, iScaleX, iScaleY)
                 self.offsetGlyph(g, dx=0, dy=md.supsBaseline + md.superiorOutline/2)
                 g.removeOverlap()
-                g.angledLeftMargin = tmpG.angledLeftMargin# * iScaleX
-                g.angledRightMargin = tmpG.angledRightMargin# * iScaleX
+                g.angledLeftMargin = tmpG.angledLeftMargin # * iScaleX
+                g.angledRightMargin = tmpG.angledRightMargin # * iScaleX
                 #f.removeGlyph(tmpName)
                 changed = True
 

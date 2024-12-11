@@ -246,16 +246,16 @@ class OutlinePen(BasePen):
         self.connectionCallback = getattr(self, "connection%s" % (connection.title()))
         self.capCallback = getattr(self, "cap%s" % (cap.title()))
 
-        self.originalGlyph = Glyph()
+        self.originalGlyph = RGlyph()
         self.originalPen = self.originalGlyph.getPen()
 
-        self.outerGlyph = Glyph()
+        self.outerGlyph = RGlyph()
         self.outerPen = self.outerGlyph.getPen()
         self.outerCurrentPoint = None
         self.outerFirstPoint = None
         self.outerPrevPoint = None
 
-        self.innerGlyph = Glyph()
+        self.innerGlyph = RGlyph()
         self.innerPen = self.innerGlyph.getPen()
         self.innerCurrentPoint = None
         self.innerFirstPoint = None

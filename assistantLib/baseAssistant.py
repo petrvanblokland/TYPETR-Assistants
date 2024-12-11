@@ -42,7 +42,6 @@ from mojo.events import extractNSEvent
 from mojo.UI import OpenGlyphWindow
 from mojo.roboFont import AllFonts, OpenFont, RGlyph, RPoint, CurrentGlyph, CurrentFont
 from mojo.subscriber import Subscriber, WindowController, registerGlyphEditorSubscriber, unregisterGlyphEditorSubscriber
-from mojo.events import extractNSEvent
 
 from fontTools.misc.transform import Transform
 
