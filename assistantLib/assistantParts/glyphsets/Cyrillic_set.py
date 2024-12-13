@@ -103,7 +103,7 @@ CYRILLIC_SET = {
    'Iegrave-cy': GD(name='Iegrave-cy', uni=0x0400, hex='0400', c='Ѐ', bl='E', br='E', base='E', accents=['gravecmb.uc'], anchors=['top', 'middle', 'bottom'], gid=645),
    'Ii-cy': GD(name='Ii-cy', uni=0x0418, hex='0418', c='И', l='H', r='H', anchors=['top'], gid=669),
    'Iigrave-cy': GD(name='Iigrave-cy', uni=0x040D, hex='040D', c='Ѝ', bl='H', br='H', base='Ii-cy', accents=['gravecmb.uc'], anchors=['top'], gid=658),
-   'Iinvertedbreve': GD(name='Iinvertedbreve', uni=0x020A, hex='020A', c='Ȋ', w='I', bl='I', base='I', accents=['perispomeni'], anchors=['top', 'middle', 'bottom']),
+   'Iinvertedbreve': GD(name='Iinvertedbreve', uni=0x020A, hex='020A', c='Ȋ', w='I', bl='I', base='I', accents=['invertedbrevecmb'], anchors=['top', 'middle', 'bottom']),
    'Iishort-cy': GD(name='Iishort-cy', uni=0x0419, hex='0419', c='Й', bl='H', br='H', base='Ii-cy', accents=['brevecmb.uc'], anchors=['top'], gid=670),
    'Iishorttail-cy': GD(name='Iishorttail-cy', uni=0x048A, hex='048A', c='Ҋ', bl='H', r='off', base='Iishort-cy', accents=['tail.component'], gid=783),
    'Imacron-cy': GD(name='Imacron-cy', uni=0x04E2, hex='04E2', c='Ӣ', l='H', r='H', base='Ii-cy', accents=['macroncmb.uc'], anchors=['top'], gid=871),

@@ -192,8 +192,8 @@ GDS['Gacute'] = GD(name='Gacute', uni=0x01F4, hex='01F4', c='Ǵ', l='G', r='G', 
 GDS['Gammaafrican'] = GD(name='Gammaafrican', uni=0x0194, hex='0194', c='Ɣ', srcName='uni0194', gid=341, comment='Ɣ GAMMA, LATIN CAPITAL LETTER')
 GDS['Ghook'] = GD(name='Ghook', uni=0x0193, hex='0193', c='Ɠ', l='G', w='G', srcName='G', gid=340)
 GDS['Glottalstop'] = GD(name='Glottalstop', uni=0x0241, hex='0241', c='Ɂ', l='question', r='question')
-GDS['Gscript'] = GD(name='Gscript', uni=0xA7AC, hex='A7AC', c='Ɡ', l='O', r='H')
-GDS['Gstroke'] = GD(name='Gstroke', uni=0x01E4, hex='01E4', c='Ǥ', l='G', r='G', srcName='uni01E4', gid=421)
+GDS['Gscript'] = GD(name='Gscript', uni=0xA7AC, hex='A7AC', c='Ɡ', l='O', r='J', srcName='g')
+GDS['Gstroke'] = GD(name='Gstroke', uni=0x01E4, hex='01E4', c='Ǥ', l='G', r='G', base='G', gid=421)
 
 GDS['Gsuperior'] = GD(name='Gsuperior', isMod=True)
 GDS['Ginferior'] = GD(name='Ginferior', base='Gsuperior', isLower=True)
@@ -215,7 +215,7 @@ GDS['IJ'] = GD(name='IJ', uni=0x0132, hex='0132', c='Ĳ', l='I', r='J', base='I'
 GDS['Idblgrave'] = GD(name='Idblgrave', uni=0x0208, hex='0208', c='Ȉ', w='I', bl='I', base='I', accents=['dblgravecmb.uc'], anchors=['bottom', 'middle', 'top'])
 GDS['Idieresisacute'] = GD(name='Idieresisacute', uni=0x1E2E, hex='1E2E', c='Ḯ', w='I', bl='Idieresis', base='I', accents=['acutecmb.uc'], srcName='uni1E2E', anchors=['bottom', 'middle', 'top'], gid=969)
 GDS['Iinvertedbreve'] = GD(name='Iinvertedbreve', uni=0x020A, hex='020A', c='Ȋ', w='I', bl='I', base='I', accents=['invertedbrevecmb.uc'], anchors=['bottom', 'middle', 'top'])
-GDS['Iotaafrican'] = GD(name='Iotaafrican', uni=0x0196, hex='0196', c='Ɩ', srcName='uni0196', gid=343)
+GDS['Iotaafrican'] = GD(name='Iotaafrican', uni=0x0196, hex='0196', c='Ɩ', l2r='J', r2l='J', srcName='J', gid=343)
 GDS['Ismall'] = GD(name='Ismall', uni=0x026A, hex='026A', c='ɪ', l='hyphen', r='hyphen', srcName='uni026A', isSc=True, gid=463)
 GDS['Itildebelow'] = GD(name='Itildebelow', uni=0x1E2C, hex='1E2C', c='Ḭ', w='I', bl='I', base='I', accents=['tildebelowcmb'], srcName='uni1E2C', anchors=['bottom', 'middle', 'top'], gid=967)
 
@@ -448,7 +448,7 @@ GDS['binferior'] = GD(name='binferior', l='hsuperior', r='osuperior', base='bsup
 
 GDS['ccedillaacute'] = GD(name='ccedillaacute', uni=0x1E09, hex='1E09', c='ḉ', base='ccedilla', accents=['acutecmb'], srcName='uni1E09', isLower=True, anchors=['bottom', 'middle', 'top'], gid=932)
 GDS['chi-latin'] = GD(name='chi-latin', uni=0xAB53, hex='AB53', c='ꭓ', isLower=True, comment='Based on Greek /chi')
-GDS['chook'] = GD(name='chook', uni=0x0188, hex='0188', c='ƈ', l='c', w='c', srcName='uni0188', isLower=True, gid=329)
+GDS['chook'] = GD(name='chook', uni=0x0188, hex='0188', c='ƈ', l='c', w='c', srcName='c', isLower=True, gid=329)
 GDS['clickalveolar'] = GD(name='clickalveolar', uni=0x01C2, hex='01C2', c='ǂ', srcName='uni01C2', isLower=True, gid=387)
 GDS['clickdental'] = GD(name='clickdental', uni=0x01C0, hex='01C0', c='ǀ', l='bar', r='bar', base='bar', isLower=True, gid=385)
 GDS['clicklateral'] = GD(name='clicklateral', uni=0x01C1, hex='01C1', c='ǁ', l='bar', r='bar', base='bar', accents=['bar'], srcName='uni01C1', isLower=True, gid=386)

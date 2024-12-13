@@ -258,7 +258,7 @@ LATIN_S_SET = GDS = {
     'Igrave': GD(name='Igrave', uni=0x00CC, hex='00CC', c='Ì', w='I', bl='I', base='I', accents=['gravecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], gid=141, comment='Ì I WITH GRAVE, LATIN CAPITAL LETTER'),
     'Imacron': GD(name='Imacron', uni=0x012A, hex='012A', c='Ī', w='I', bl='I', base='I', accents=['macroncmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], gid=235, comment='Ī'),
     'Iogonek': GD(name='Iogonek', uni=0x012E, hex='012E', c='Į', w='I', bl='I', base='I', accents=['ogonekcmb'], anchors=['bottom', 'middle', 'top'], gid=239, comment='Į'),
-    'Istroke': GD(name='Istroke', uni=0x0197, hex='0197', c='Ɨ', l2r='self', srcName='uni0197', gid=344),
+    'Istroke': GD(name='Istroke', uni=0x0197, hex='0197', c='Ɨ', l='hyphen', l2r='self', base='I', gid=344),
     'Itilde': GD(name='Itilde', uni=0x0128, hex='0128', c='Ĩ', w='I', bl='I', base='I', accents=['tildecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], gid=233, comment='Ĩ'),
 
     # J
@@ -292,7 +292,7 @@ LATIN_S_SET = GDS = {
     'Ncommaaccent': GD(name='Ncommaaccent', uni=0x0145, hex='0145', c='Ņ', l='H', r='H', base='N', accents=['cedillacmb.noconnect'], anchors=['bottom', 'middle', 'top'], gid=262, comment='Ņ'),
     'Ndotaccent': GD(name='Ndotaccent', uni=0x1E44, hex='1E44', c='Ṅ', l='H', r='H', base='N', accents=['dotaccentcmb.uc'], srcName='uni1E44', anchors=['bottom', 'middle', 'top'], gid=991),
     'Ndotbelow': GD(name='Ndotbelow', uni=0x1E46, hex='1E46', c='Ṇ', l='H', r='H', base='N', accents=['dotbelowcmb.uc'], srcName='uni1E46', anchors=['bottom', 'middle', 'top'], gid=993),
-    'Nhookleft': GD(name='Nhookleft', uni=0x019D, hex='019D', c='Ɲ', srcName='uni019D', gid=350),
+    'Nhookleft': GD(name='Nhookleft', uni=0x019D, hex='019D', c='Ɲ', l='N', r='N', srcName='N', gid=350),
     'Ntilde': GD(name='Ntilde', uni=0x00D1, hex='00D1', c='Ñ', l='H', r='H', base='N', accents=['tildecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=146, comment='Ñ N WITH TILDE, LATIN CAPITAL LETTER'),
 
     # O
@@ -459,7 +459,7 @@ LATIN_S_SET = GDS = {
     'ccedilla': GD(name='ccedilla', uni=0x00E7, hex='00E7', c='ç', base='c', accents=['cedillacmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=168, comment='ç CEDILLA, LATIN SMALL LETTER C WITH'),
     'ccircumflex': GD(name='ccircumflex', uni=0x0109, hex='0109', c='ĉ', anchorTopY='TopY', base='c', accents=['circumflexcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=202, comment='ĉ C WITH CIRCUMFLEX, LATIN SMALL LETTER'),
     'cdotaccent': GD(name='cdotaccent', uni=0x010B, hex='010B', c='ċ', anchorTopY='TopY', base='c', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=204),
-    'cedi': GD(name='cedi', uni=0x20B5, hex='20B5', c='₵', isLower=True, gid=1454),
+    'cedi': GD(name='cedi', uni=0x20B5, hex='20B5', c='₵', base='C', l='C', r='C', isLower=True, gid=1454),
     'colonsign': GD(name='colonsign', uni=0x20A1, hex='20A1', c='₡', isLower=True, gid=1434),
     'caron': GD(name='caron', uni=0x02C7, hex='02C7', c='ˇ', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, isLower=True, gid=476, comment='ˇ tone, mandarin chinese third'),
 

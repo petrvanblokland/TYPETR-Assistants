@@ -438,12 +438,12 @@ class MasterData:
             return gd.overshoot
 
         # Not defined in the GlyphSet/GlyphData for this glyph. We need to do some quessing, based on the name.
-        if gd.isUpper: # All glyph that start with initial cap
-            return self.cat2Overshoot[GD.CAT_CAP_OVERSHOOT]
-        if gd.isMod: # One of sups, sinf, dnom, numr, mod in the name
+        if gd.isSups or gd.isNumr or gd.isSinf or gd.isDnom or gd.isMod: # One of sups, sinf, dnom, numr, mod in the name
             return self.cat2Overshoot[GD.CAT_SUPERIOR_OVERSHOOT]
         if gd.isSc: # One of .sc, small in the name
             return self.cat2Overshoot[GD.CAT_SC_OVERSHOOT]
+        if gd.isUpper: # All glyph that start with initial cap
+            return self.cat2Overshoot[GD.CAT_CAP_OVERSHOOT]
         # Otherwise answer the default overshoot. 
         return self.baseOvershoot
 
