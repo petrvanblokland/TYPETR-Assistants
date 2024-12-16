@@ -484,7 +484,7 @@ GDS['doublebrevebelowcmb'] = GD(name='doublebrevebelowcmb', uni=0x035C, hex='035
 GDS['doublebrevecmb'] = GD(name='doublebrevecmb', uni=0x035D, hex='035D', c='͝', w=0, srcName='uni035D', isLower=True, anchors=['_top', 'top'])
 GDS['doublebrevecmb.uc'] = GD(name='doublebrevecmb.uc', w=0, srcName='doublebrevecmb', isLower=True, anchors=['_top', 'top'])
 
-GDS['dsuperior'] = GD(name='dsuperior', l='osuperio', r='lsuperior', srcName='uni1D49', isLower=False, isMod=True, gid=909)
+GDS['dsuperior'] = GD(name='dsuperior', l='osuperior', r='lsuperior', srcName='uni1D49', isLower=False, isMod=True, gid=909)
 GDS['dinferior'] = GD(name='dinferior', l='dsuperior', r='dsuperior', base='dsuperior', isLower=True)
 
 GDS['dblquotesuperior'] = GD(name='dblquotesuperior', uni=0x02EE, hex='02EE', c='ˮ', base='quotedblright', isLower=True, isMod=True)
@@ -519,6 +519,9 @@ GDS['fdotaccent'] = GD(name='fdotaccent', uni=0x1E1F, hex='1E1F', c='ḟ', right
 GDS['florin'] = GD(name='florin', uni=0x0192, hex='0192', c='ƒ', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, gid=339, comment='ƒ script f, latin small letter')
 GDS['fourthtonechinese'] = GD(name='fourthtonechinese', uni=0x02CB, hex='02CB', c='ˋ', base='gravecmb', anchors=['top'])
 GDS['firsttonechinese'] = GD(name='firsttonechinese', uni=0x02C9, hex='02C9', w=0, c='ˉ', isLower=True, anchors=['_top', 'top'])
+
+GDS['fsuperior'] = GD(name='fsuperior', isLower=False, isMod=True, gid=909)
+GDS['finferior'] = GD(name='finferior', l='fsuperior', r='fsuperior', base='fsuperior', isLower=True)
 
 # g
 
