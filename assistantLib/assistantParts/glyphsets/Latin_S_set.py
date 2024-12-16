@@ -266,6 +266,7 @@ LATIN_S_SET = GDS = {
     'J': GD(name='J', uni=0x004A, hex='004A', c='J', anchors=['bottom', 'middle', 'top'], gid=44, comment='J'),
     'Jcircumflex': GD(name='Jcircumflex', uni=0x0134, hex='0134', c='Ĵ', w='J', bl='J', base='J', accents=['circumflexcmb.uc'], anchors=['bottom', 'middle', 'top'], gid=245, comment='Ĵ'),
 
+
     # K
 
     'K': GD(name='K', uni=0x004B, hex='004B', c='K', l='H', anchors=['bottom', 'middle', 'top'], gid=45, comment='K'),
@@ -308,7 +309,7 @@ LATIN_S_SET = GDS = {
     'Ograve': GD(name='Ograve', uni=0x00D2, hex='00D2', c='Ò', l='O', r='O', base='O', accents=['gravecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], gid=147, comment='Ò O WITH GRAVE, LATIN CAPITAL LETTER'),
     'Ohungarumlaut': GD(name='Ohungarumlaut', uni=0x0150, hex='0150', c='Ő', base='O', accents=['hungarumlautcmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], gid=273, comment='Ő'),
     'Omacron': GD(name='Omacron', uni=0x014C, hex='014C', c='Ō', l='O', r='O', base='O', accents=['macroncmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], gid=269, comment='Ō'),
-    'Oopen': GD(name='Oopen', uni=0x0186, hex='0186', c='Ɔ', r='O', r2l='C', srcName='uni0186', gid=327, comment='Ɔ OPEN O, LATIN CAPITAL LETTER'),
+    'Oopen': GD(name='Oopen', uni=0x0186, hex='0186', c='Ɔ', r='O', r2l='C', srcName='O', gid=327, comment='Ɔ OPEN O, LATIN CAPITAL LETTER'),
     'Oslash': GD(name='Oslash', uni=0x00D8, hex='00D8', c='Ø', l='O', w='O', base='O', anchors=['bottom', 'middle', 'ogonek', 'top'], gid=153, comment='Ø STROKE, LATIN CAPITAL LETTER O WITH'),
     'Otilde': GD(name='Otilde', uni=0x00D5, hex='00D5', c='Õ', l='O', r='O', base='O', accents=['tildecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], gid=150, comment='Õ O WITH TILDE, LATIN CAPITAL LETTER'),
 
@@ -517,9 +518,9 @@ LATIN_S_SET = GDS = {
 
     # f
 
-    'f': GD(name='f', uni=0x0066, hex='0066', c='f', rightMin='-100', anchorTopX='TopX', isLower=True, fixAccents=False, anchors=['bottom', 'middle', 'top'], gid=72, comment='f'),
-    'fi': GD(name='fi', uni=0xFB01, hex='FB01', c='ﬁ', isLower=True, gid=1586, comment='ﬁ f_i'),
-    'fl': GD(name='fl', uni=0xFB02, hex='FB02', c='ﬂ', isLower=True, gid=1587, comment='ﬂ f_l'),
+    'f': GD(name='f', uni=0x0066, hex='0066', c='f', l='t', rightMin='-100', anchorTopX='TopX', isLower=True, fixAccents=False, anchors=['bottom', 'middle', 'top'], gid=72, comment='f'),
+    'fi': GD(name='fi', uni=0xFB01, hex='FB01', c='ﬁ', l='f', r='i', base='f.salt_connect', accents=['idotless'], isLower=True, gid=1586, comment='ﬁ f_i'),
+    'fl': GD(name='fl', uni=0xFB02, hex='FB02', c='ﬂ', l='f', r='l', isLower=True, base='f.salt_noconnect', accents=['l'], gid=1587, comment='ﬂ f_l'),
 
     # g
 
@@ -596,7 +597,7 @@ LATIN_S_SET = GDS = {
     # m
 
     'm': GD(name='m', uni=0x006D, hex='006D', c='m', l='n', r='n', isLower=True, anchors=['bottom', 'middle', 'top'], gid=79, comment='m'),
-    'manat': GD(name='manat', uni=0x20BC, hex='20BC', c='₼', srcName='uni20BC', isLower=True, gid=1461),
+    'manat': GD(name='manat', uni=0x20BC, hex='20BC', c='₼', l='O', r='O', srcName='O', isLower=True, gid=1461),
 
     'macroncmb': GD(name='macroncmb', uni=0x0304, anchorTopY='TopY', hex='0304', c='̄', w=0, srcName='uni0304', isLower=True, anchors=['_top', 'top']),
     'macroncmb.uc': GD(name='macroncmb.uc', w=0, anchorTopY='TopY', srcName='macroncmb', isLower=True, anchors=['_top', 'top']),
