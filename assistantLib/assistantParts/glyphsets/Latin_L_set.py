@@ -395,7 +395,7 @@ GDS['Xinferior'] = GD(name='Xinferior', l='Xsuperior', r='Xsuperior', base='Xsup
 GDS['Yogh'] = GD(name='Yogh', uni=0x021C, hex='021C', c='Ȝ', l='three', r='three')
 GDS['Ystroke'] = GD(name='Ystroke', uni=0x024E, hex='024E', c='Ɏ', base='Y', anchors=['bottom', 'middle', 'top'])
 GDS['Zcircumflex'] = GD(name='Zcircumflex', uni=0x1E90, hex='1E90', c='Ẑ', l='Z', r='Z', base='Z', accents=['circumflexcmb.uc'], srcName='Z', anchors=['bottom', 'middle', 'top'], gid=1067)
-GDS['Zstroke'] = GD(name='Zstroke', uni=0x01B5, hex='01B5', c='Ƶ', l='Z', r='Z', srcName='Z', anchors=['bottom', 'middle', 'top'], gid=374)
+GDS['Zstroke'] = GD(name='Zstroke', uni=0x01B5, hex='01B5', c='Ƶ', l='Z', r='Z', base='Z', anchors=['bottom', 'middle', 'top'], gid=374)
 
 GDS['Ysuperior'] = GD(name='Ysuperior', l='Y.sc', l2r='Ysuperior', isMod=True)
 GDS['Yinferior'] = GD(name='Yinferior', l='Ysuperior', r='Ysuperior', base='Ysuperior', isLower=True)
