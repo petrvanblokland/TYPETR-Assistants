@@ -344,7 +344,7 @@ GDS['Tbar'] = GD(name='Tbar', uni=0x0166, hex='0166', c='Ŧ', l='T', r='T', base
 GDS['Tcircumflexbelow'] = GD(name='Tcircumflexbelow', uni=0x1E70, hex='1E70', c='Ṱ', l='T', r='T', base='T', accents=['circumflexbelowcmb'], srcName='uni1E70', anchors=['bottom', 'middle', 'top'], gid=1035)
 GDS['Tdiagonalstroke'] = GD(name='Tdiagonalstroke', uni=0x023E, hex='023E', c='Ⱦ', w='T', bl='T', base='T', anchors=['bottom', 'middle', 'top'])
 GDS['Tdotaccent'] = GD(name='Tdotaccent', uni=0x1E6A, hex='1E6A', c='Ṫ', l='T', r='T', base='T', accents=['dotaccentcmb.uc'], srcName='uni1E6A', anchors=['bottom', 'middle', 'top'], gid=1029)
-GDS['Theta'] = GD(name='Theta', uni=0x0398, hex='0398', c='Θ', l='O', r='O', gid=542)
+GDS['Theta'] = GD(name='Theta', uni=0x0398, hex='0398', c='Θ', base='O', l='O', r='O', gid=542)
 GDS['Thook'] = GD(name='Thook', uni=0x01AC, hex='01AC', c='Ƭ', srcName='T', l='Bhook', r='T', gid=365)
 GDS['Tretroflexhook'] = GD(name='Tretroflexhook', uni=0x01AE, hex='01AE', c='Ʈ', l='T', w='T', srcName='T', gid=367)
 
