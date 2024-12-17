@@ -364,7 +364,7 @@ CYRILLIC_SET = {
 
     #   s
 
-   'schwa-cy': GD(name='schwa-cy', uni=0x04D9, hex='04D9', c='ә', r='o', base='eturned', isLower=True, anchors=['top'], gid=862),
+   'schwa-cy': GD(name='schwa-cy', uni=0x04D9, hex='04D9', c='ә', r='o', base='schwa', isLower=True, anchors=['top'], gid=862),
    'schwadieresis-cy': GD(name='schwadieresis-cy', uni=0x04DB, hex='04DB', c='ӛ', l='schwa-cy', r='o', base='schwa-cy', accents=['dieresiscmb.uc'], isLower=True, anchors=['top'], gid=864),
    'semisoftsign-cy': GD(name='semisoftsign-cy', uni=0x048D, hex='048D', c='ҍ', r='softsign-cy', isLower=True, gid=786),
    'sha-cy': GD(name='sha-cy', uni=0x0448, hex='0448', c='ш', l='en-cy', r='en-cy', isLower=True, gid=717),
