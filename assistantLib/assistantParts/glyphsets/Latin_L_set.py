@@ -345,8 +345,8 @@ GDS['Tcircumflexbelow'] = GD(name='Tcircumflexbelow', uni=0x1E70, hex='1E70', c=
 GDS['Tdiagonalstroke'] = GD(name='Tdiagonalstroke', uni=0x023E, hex='023E', c='Ⱦ', w='T', bl='T', base='T', anchors=['bottom', 'middle', 'top'])
 GDS['Tdotaccent'] = GD(name='Tdotaccent', uni=0x1E6A, hex='1E6A', c='Ṫ', l='T', r='T', base='T', accents=['dotaccentcmb.uc'], srcName='uni1E6A', anchors=['bottom', 'middle', 'top'], gid=1029)
 GDS['Theta'] = GD(name='Theta', uni=0x0398, hex='0398', c='Θ', l='O', r='O', gid=542)
-GDS['Thook'] = GD(name='Thook', uni=0x01AC, hex='01AC', c='Ƭ', srcName='uni01AC', gid=365)
-GDS['Tretroflexhook'] = GD(name='Tretroflexhook', uni=0x01AE, hex='01AE', c='Ʈ', l='T', w='T', srcName='uni01AE', gid=367)
+GDS['Thook'] = GD(name='Thook', uni=0x01AC, hex='01AC', c='Ƭ', srcName='T', l='Bhook', r='T', gid=365)
+GDS['Tretroflexhook'] = GD(name='Tretroflexhook', uni=0x01AE, hex='01AE', c='Ʈ', l='T', w='T', srcName='T', gid=367)
 
 GDS['Tsuperior'] = GD(name='Tsuperior', l='T.sc', l2r='T.sc', isMod=True)
 GDS['Tinferior'] = GD(name='Tinferior', l='Tsuperior', r='Tsuperior', base='Tsuperior', isLower=True)
@@ -600,7 +600,7 @@ GDS['lcircumflexbelow'] = GD(name='lcircumflexbelow', uni=0x1E3D, hex='1E3D', c=
 GDS['ldot'] = GD(name='ldot', uni=0x0140, hex='0140', c='ŀ', l='l', r='off', base='l', accents=['dotmiddlecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=257, comment='ŀ MIDDLE DOT, LATIN SMALL LETTER L WITH')
 GDS['ldoublebar'] = GD(name='ldoublebar', uni=0x2C61, hex='2C61', c='ⱡ', base='l', l='hyphen', r='hyphen', isLower=True)
 GDS['lj'] = GD(name='lj', uni=0x01C9, hex='01C9', c='ǉ', l='l', r='j', base='l', accents=['j'], srcName='uni01C9', isLower=True, gid=394)
-GDS['lmiddletilde'] = GD(name='lmiddletilde', uni=0x026B, hex='026B', c='ɫ', l='asciitilde', r='asciitilde', isLower=True)
+GDS['lmiddletilde'] = GD(name='lmiddletilde', uni=0x026B, hex='026B', c='ɫ', l='asciitilde', r='asciitilde', base='l', isLower=True)
 GDS['longs'] = GD(name='longs', uni=0x017F, hex='017F', c='ſ', w='f', r2l='j', isLower=True, fixAccents=False, anchors=['top'], gid=320, comment='ſ S, LATIN SMALL LETTER LONG')
 GDS['longsdotaccent'] = GD(name='longsdotaccent', uni=0x1E9B, hex='1E9B', c='ẛ', w='longs', bl='longs', base='longs', accents=['dotaccentcmb'], srcName='uni1E9B', isLower=True, anchors=['top'], gid=1078)
 GDS['lowlinecmb'] = GD(name='lowlinecmb', uni=0x0332, hex='0332', c='̲', w=0, isLower=True, anchors=['_bottom', 'bottom'])
@@ -611,7 +611,7 @@ GDS['linferior'] = GD(name='linferior', uni=0x2097, hex='2097', c='ₗ', l='lsup
 # m
 
 GDS['macute'] = GD(name='macute', uni=0x1E3F, hex='1E3F', c='ḿ', base='m', accents=['acutecmb'], srcName='uni1E3F', isLower=True, anchors=['bottom', 'middle', 'top'], gid=986)
-GDS['mhook'] = GD(name='mhook', uni=0x0271, hex='0271', c='ɱ', isLower=True)
+GDS['mhook'] = GD(name='mhook', uni=0x0271, hex='0271', c='ɱ', srcName='m', l='m', r='j', isLower=True)
 GDS['minussuperior'] = GD(name='minussuperio', uni=0x02D7, hex='02D7', c='˗', l=GD.CAT_MOD_MIN_MARGIN, r=GD.CAT_MOD_MIN_MARGIN, srcName='uni02D7', isLower=True, isMod=True, gid=478)
 GDS['mturned'] = GD(name='mturned', uni=0x026F, hex='026F', c='ɯ', isLower=True)
 
@@ -762,6 +762,7 @@ GDS['verticallineinferior'] = GD(name='verticallineinferior', w=0, isMod=True)
 GDS['wdotaccent'] = GD(name='wdotaccent', uni=0x1E87, hex='1E87', c='ẇ', l='w', r='w', base='w', accents=['dotaccentcmb'], srcName='uni1E87', isLower=True, anchors=['bottom', 'middle', 'top'], gid=1058)
 GDS['whook'] = GD(name='whook', uni=0x2C73, hex='2C73', c='ⱳ', isLower=True)
 GDS['wring'] = GD(name='wring', uni=0x1E98, hex='1E98', c='ẘ', l='w', r='w', base='w', accents=['ringcmb'], srcName='uni1E98', isLower=True, anchors=['bottom', 'middle', 'top'], gid=1075)
+GDS['won'] = GD(name='won', uni=0x20A9, hex='20A9', c='₩', l='W', l2r='W', srcName='W', isLower=False, gid=1442)
 
 GDS['wsuperior'] = GD(name='wsuperior', uni=0x02B7, hex='02B7', c='ʷ', l='vsuperior', r='vsuperior', isMod=True)
 GDS['winferior'] = GD(name='winferior', l='wsuperior', r='wsuperior', base='wsuperior', isMod=True)

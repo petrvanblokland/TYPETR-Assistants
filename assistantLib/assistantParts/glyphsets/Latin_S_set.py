@@ -118,6 +118,7 @@ LATIN_S_SET = GDS = {
     'parenright': GD(name='parenright', uni=0x0029, hex='0029', c=')', l2r='parenleft', r2l='parenleft', isLower=True, gid=11, comment=') RIGHT PARENTHESIS'),
     'parenright.uc': GD(name='parenright.uc', srcName='parenright', l2r='parenleft', r2l='parenleft', comment='( parenthesis, for capitals'),
     'percent': GD(name='percent', uni=0x0025, hex='0025', c='%', l='zerosuperior', r='zerosuperior', isLower=True, gid=7, comment='% PERCENT SIGN', baseline=GD.CAT_NUMR_BASELINE, height=GD.CAT_SUPERIOR_HEIGHT, overshoot=GD.CAT_SUPERIOR_OVERSHOOT),
+    'percent.tab': GD(name='percent.tab', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, comment='% PERCENT SIGN TAB'),
     'perthousand': GD(l='zerosuperior', r='zerosuperior', uni=0x2030, c='‰', name='perthousand', comment='‰ per thousand', baseline=GD.CAT_NUMR_BASELINE, height=GD.CAT_SUPERIOR_HEIGHT, overshoot=GD.CAT_SUPERIOR_OVERSHOOT),
     'period': GD(name='period', uni=0x002E, hex='002E', c='.', l2r='self', isLower=True, fixSpacing=False, gid=16, comment='. point, decimal'),
     'ellipsis': GD(name='ellipsis', uni=0x2026, hex='2026', c='…', l='period', r='period', isLower=True, gid=1421, comment='… three dot leader'),
@@ -549,7 +550,7 @@ LATIN_S_SET = GDS = {
     # h
 
     'h': GD(name='h', uni=0x0068, hex='0068', c='h', isLower=True, anchorTopY='TopY', anchors=['bottom', 'dot', 'middle', 'top'], gid=74, comment='h'),
-    'hbar': GD(name='hbar', uni=0x0127, hex='0127', c='ħ', l='hyphen', r='h', isLower=True, gid=232, comment='ħ H WITH STROKE, LATIN SMALL LETTER'),
+    'hbar': GD(name='hbar', uni=0x0127, hex='0127', c='ħ', l='hyphen', r='h', base='h', isLower=True, gid=232, comment='ħ H WITH STROKE, LATIN SMALL LETTER'),
     'hcircumflex': GD(name='hcircumflex', uni=0x0125, hex='0125', c='ĥ', anchorTopY='TopY', base='h', accents=['circumflexcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=230, comment='ĥ H WITH CIRCUMFLEX, LATIN SMALL LETTER'),
     'hdieresis': GD(name='hdieresis', uni=0x1E27, hex='1E27', c='ḧ', anchorTopY='TopY', base='h', accents=['dieresiscmb'], srcName='uni1E27', isLower=True, anchors=['bottom', 'middle', 'top'], gid=962),
     'hdotbelow': GD(name='hdotbelow', uni=0x1E25, hex='1E25', c='ḥ', anchorTopY='TopY', base='h', accents=['dotbelowcmb'], srcName='uni1E25', isLower=True, anchors=['bottom', 'middle', 'top'], gid=960),
@@ -591,8 +592,8 @@ LATIN_S_SET = GDS = {
     'lacute': GD(name='lacute', uni=0x013A, hex='013A', c='ĺ', w='l', bl='l', anchorTopY='TopY', base='l', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=251, comment='ĺ L WITH ACUTE, LATIN SMALL LETTER'),
     'lcaron': GD(name='lcaron', uni=0x013E, hex='013E', c='ľ', rightMin='minRight', anchorTopY='TopY', base='l', accents=['caronvertcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=255, comment='ľ L WITH CARON, LATIN SMALL LETTER'),
     'lcommaaccent': GD(name='lcommaaccent', uni=0x013C, hex='013C', c='ļ', w='l', anchorTopY='TopY', base='l', accents=['cedillacmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=253),
-    'liraTurkish': GD(name='liraTurkish', uni=0x20BA, hex='20BA', c='₺', srcName='turkishlira', isLower=True, gid=1459),
-    'lslash': GD(name='lslash', uni=0x0142, hex='0142', c='ł', isLower=True, gid=259, comment='ł L WITH STROKE, LATIN SMALL LETTER'),
+    'liraTurkish': GD(name='liraTurkish', uni=0x20BA, hex='20BA', c='₺', srcName='l', isLower=True, gid=1459),
+    'lslash': GD(name='lslash', uni=0x0142, hex='0142', c='ł', base='l', l='hyphen', r='hyphen', isLower=True, comment='ł L WITH STROKE, LATIN SMALL LETTER'),
 
     # m
 
@@ -851,9 +852,10 @@ TAB_NAMES = (
     'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
     'cent', 'cent.alt', 'dollar', 'dollar.alt', 'Euro', 'yen', 'sterling',
     'period', 'comma', 'colon', 'semicolon',
-    'plus', 'minus', 'equal', 'notequal', 'less', 'greater', 'lessequal', 'greaterequal', 'multiply', 'divide', 'asterisk', 
-    'percent', 'perthousand', 'degree', 'approxequal', 'plusminus, '
-    'parenleft', 'parenright', 'bracketleft', 'bracketright',
+    'plus', 'minus', 'equal', 'notequal', 'less', 'greater', 'lessequal', 'greaterequal', 
+    'multiply', 'divide', 'asterisk', 
+    'percent', 'perthousand', 'degree', 'approxequal', 'plusminus', 
+    'parenleft', 'parenright', 'bracketleft', 'bracketright', 'braceleft', 'braceright',
     'quoteleft', 'quoteright', 'quotedblleft', 'quotedblright',
     'hyphen', 'endash', 'minute', 'backslash', 
 )

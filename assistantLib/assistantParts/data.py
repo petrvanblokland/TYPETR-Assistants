@@ -302,22 +302,23 @@ class MasterData:
 
         if baseline is None:
             baseline = self.BASELINE
-        self.baseline = baseline
+        self.baseline = baseline # Main baseline, default is 0
         if modBaseline is None:
             modBaseline = xHeight
-        self.modBaseline = modBaseline
+        self.modBaseline = modBaseline # Mod baseline, default is xHeight
         if supsBaseline is None:
             supsBaseline = xHeight
-        self.supsBaseline = supsBaseline
-        if numrBaseline is None: 
-            numrBaseline = ascender - superiorHeight  
-        self.numrBaseline = numrBaseline
-        if dnomBaseline is None: 
-            dnomBaseline = baseline  
-        self.dnomBaseline = dnomBaseline
         if sinfBaseline is None: 
             sinfBaseline = descender  
-        self.sinfBaseline = sinfBaseline
+        self.sinfBaseline = sinfBaseline # Inferior (sinf) baseline, default is descender
+
+        self.supsBaseline = supsBaseline # Superior (sups) baseline, default is xHeight
+        if numrBaseline is None: 
+            numrBaseline = ascender - superiorHeight  
+        self.numrBaseline = numrBaseline # Numr baseline (for fractions), default is moved down by height from ascender
+        if dnomBaseline is None: 
+            dnomBaseline = baseline  
+        self.dnomBaseline = dnomBaseline # Dnom baseline (for fractions), default is 0
 
         self.cat2Baseline = {
             GD.CAT_BASELINE: baseline,

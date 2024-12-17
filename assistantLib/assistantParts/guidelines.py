@@ -147,26 +147,46 @@ class AssistantPartGuidelines(BaseAssistantPart):
             guidelines.append((xo + tg * (height + md.stemOvershoot), height + md.stemOvershoot, 0, f"{height + md.stemOvershoot} ({md.stemOvershoot})"))
             guidelines.append((xo + tg * (baseline - md.stemOvershoot), baseline - md.stemOvershoot, 0, f"{baseline - md.stemOvershoot} ({md.stemOvershoot})"))
 
-        if md.supsBaseline is not None and ('sups' in g.name or 'superior' in g.name):            
-            guidelines.append((xo + tg * (md.supsBaseline), md.supsBaseline, 0, f"Baseline of superiors {md.supsBaseline} ({md.supsBaseline})"))
+        # Numr/Dnom fractions
+        
+        if md.numrBaseline is not None and 'numr' in g.name:            
+            guidelines.append((xo + tg * (md.numrBaseline), md.numrBaseline, 0, f"Baseline of fraction numr {md.numrBaseline}"))
             if md.superiorHeight is not None:
-                guidelines.append((xo + tg * (md.supsBaseline + md.superiorHeight), md.supsBaseline + md.superiorHeight, 0, f"Height of superiors {md.supsBaseline + md.superiorHeight} ({md.supsBaseline + md.superiorHeight})"))
+                guidelines.append((xo + tg * (md.numrBaseline + md.superiorHeight), md.numrBaseline + md.superiorHeight, 0, f"Height of numr {md.numrBaseline + md.superiorHeight}"))
 
-                guidelines.append((xo + tg * (md.supsBaseline + md.superiorHeight), md.supsBaseline - overshoot, 0, f"{md.supsBaseline - overshoot} ({overshoot})"))
-                guidelines.append((xo + tg * (md.supsBaseline + md.superiorHeight), md.supsBaseline + md.superiorHeight + overshoot, 0, f"{md.supsBaseline + md.superiorHeight + overshoot} ({overshoot})"))
+                guidelines.append((xo + tg * (md.numrBaseline + md.superiorHeight), md.numrBaseline - overshoot, 0, f"{md.numrBaseline - overshoot} ({overshoot})"))
+                guidelines.append((xo + tg * (md.numrBaseline + md.superiorHeight), md.numrBaseline + md.superiorHeight + overshoot, 0, f"{md.numrBaseline + md.superiorHeight + overshoot} ({overshoot})"))
+
+        if md.dnomBaseline is not None and 'dnom' in g.name:            
+            guidelines.append((xo + tg * (md.dnomBaseline), md.dnomBaseline, 0, f"Baseline of fraction numr {md.dnomBaseline}"))
+            if md.superiorHeight is not None:
+                guidelines.append((xo + tg * (md.dnomBaseline + md.superiorHeight), md.dnomBaseline + md.superiorHeight, 0, f"Height of numr {md.numrBaseline + md.superiorHeight}"))
+
+                guidelines.append((xo + tg * (md.dnomBaseline + md.superiorHeight), md.dnomBaseline - overshoot, 0, f"{md.dnomBaseline - overshoot} ({overshoot})"))
+                guidelines.append((xo + tg * (md.dnomBaseline + md.superiorHeight), md.dnomBaseline + md.superiorHeight + overshoot, 0, f"{md.dnomBaseline + md.superiorHeight + overshoot} ({overshoot})"))
 
         if md.modBaseline is not None and 'mod' in g.name:            
-            guidelines.append((xo + tg * (md.modBaseline), md.modBaseline, 0, f"Baseline of modifiers {md.modBaseline} ({md.modBaseline})"))
-            guidelines.append((xo + tg * (md.modBaseline + md.modHeight), md.modBaseline + md.modHeight, 0, f"Height of modifiers {md.modBaseline + md.modHeight} ({md.modBaseline + md.modHeight})"))
+            guidelines.append((xo + tg * (md.modBaseline), md.modBaseline, 0, f"Baseline of modifiers {md.modBaseline}"))
+            guidelines.append((xo + tg * (md.modBaseline + md.modHeight), md.modBaseline + md.modHeight, 0, f"Height of modifiers {md.modBaseline + md.modHeight}"))
 
             guidelines.append((xo + tg * (md.modBaseline), md.modBaseline - overshoot, 0, f"{md.modBaseline - overshoot} ({overshoot})"))
             guidelines.append((xo + tg * (md.modBaseline + md.modHeight), md.modBaseline + md.modHeight + overshoot, 0, f"{md.modBaseline + md.modHeight + overshoot} ({overshoot})"))
 
-        if md.sinfBaseline is not None and ('sinf' in g.name or 'inferior' in g.name):            
-            guidelines.append((xo + tg * (md.sinfBaseline), md.sinfBaseline, 0, f"Baseline of inferiors {md.sinfBaseline} ({md.sinfBaseline})"))
+        # Superior/inferior
+
+        if md.supsBaseline is not None and ('sups' in g.name or 'superior' in g.name):            
+            guidelines.append((xo + tg * (md.supsBaseline), md.supsBaseline, 0, f"Baseline of superiors {md.supsBaseline}"))
+            if md.superiorHeight is not None:
+                guidelines.append((xo + tg * (md.supsBaseline + md.superiorHeight), md.supsBaseline + md.superiorHeight, 0, f"Height of superiors {md.supsBaseline + md.superiorHeight}"))
+
+                guidelines.append((xo + tg * (md.supsBaseline + md.superiorHeight), md.supsBaseline - overshoot, 0, f"{md.supsBaseline - overshoot} ({overshoot})"))
+                guidelines.append((xo + tg * (md.supsBaseline + md.superiorHeight), md.supsBaseline + md.superiorHeight + overshoot, 0, f"{md.supsBaseline + md.superiorHeight + overshoot} ({overshoot})"))
+
+        if md.sinfBaseline is not None and ('sinf' in g.name or 'inferior' in g.name or 'dnom' in g.name):            
+            guidelines.append((xo + tg * (md.sinfBaseline), md.sinfBaseline, 0, f"Baseline of inferiors {md.sinfBaseline}"))
             # Make separation between superiorHeight and inferiorHeight?
             if md.superiorHeight is not None:
-                guidelines.append((xo + tg * (md.sinfBaseline + md.superiorHeight), md.sinfBaseline + md.superiorHeight, 0, f"Height of inferiors {md.sinfBaseline + md.superiorHeight} ({md.sinfBaseline + md.superiorHeight})"))
+                guidelines.append((xo + tg * (md.sinfBaseline + md.superiorHeight), md.sinfBaseline + md.superiorHeight, 0, f"Height of inferiors {md.sinfBaseline + md.superiorHeight}"))
 
                 guidelines.append((xo + tg * (md.sinfBaseline + md.superiorHeight), md.sinfBaseline - overshoot, 0, f"{md.sinfBaseline - overshoot} ({overshoot})"))
                 guidelines.append((xo + tg * (md.sinfBaseline + md.superiorHeight), md.sinfBaseline + md.superiorHeight + overshoot, 0, f"{md.sinfBaseline + md.superiorHeight + overshoot} ({overshoot})"))

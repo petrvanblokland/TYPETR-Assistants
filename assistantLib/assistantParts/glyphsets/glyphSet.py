@@ -14,7 +14,8 @@ from assistantLib.assistantParts.glyphsets.glyphData import *
 from assistantLib.assistantParts.glyphsets.anchorData import AD 
 
 # Different sizes of standard glyph set
-from assistantLib.assistantParts.glyphsets.Latin_S_set import LATIN_S_SET_NAME, LATIN_S_SET, SC_NAMES, SUPS_SINF_NAMES, NUMR_DNOM_NAMES, TAB_NAMES, LC_NAMES
+from assistantLib.assistantParts.glyphsets.Latin_S_set import (LATIN_S_SET_NAME, LATIN_S_SET, SC_NAMES, 
+    SUPS_SINF_NAMES, NUMR_DNOM_NAMES, TAB_NAMES, LC_NAMES)
 from assistantLib.assistantParts.glyphsets.Latin_M_set import LATIN_M_SET_NAME, LATIN_M_SET
 from assistantLib.assistantParts.glyphsets.Latin_L_set import LATIN_L_SET_NAME, LATIN_L_SET
 from assistantLib.assistantParts.glyphsets.Latin_XL_set import LATIN_XL_SET_NAME, LATIN_XL_SET
@@ -83,7 +84,7 @@ class GlyphSet:
     # For doc-testing only. Redefine in inheriting classes.
     GLYPH_DATA = {} # Key is glyph name, value is GlyphData instance
 
-    def __init__(self, name=None, glyphData=None, sc=False, sinf=False, tab=False, lc=False):
+    def __init__(self, name=None, glyphData=None, sc=False, superior=False, tab=False, lc=False):
         """Answer the request type of glyphset. 
         """
         self.name = name
@@ -100,8 +101,9 @@ class GlyphSet:
         if tab:
             self._appendTab()
 
-        if sinf:
-            self._appendSuperiorInferiorDnomNumr()
+        if superior:
+            self._appendSuperiorInferior()
+            self._appendDnomNumrSupsSinf()
 
         if lc: # Lowercase (oldstyle) figures
             self._appendLc()
@@ -178,25 +180,24 @@ class GlyphSet:
     def _appendTab(self):
         tabExt = '.tab'
         for gName in TAB_NAMES:
-            gNameSc = gName + tabExt
             if gName in self.glyphs:
                 gNameTab = gName + tabExt
-                if gNameTab in self.glyphs: # Only if it does not exist already
-                    print(f'### _appendTab: GlyphData /{gNameTab} already exists')
-                else:
+                if gNameTab not in self.glyphs: # Only if it does not exist already
                     self.glyphs[gNameTab] = gd = deepcopy(self.glyphs[gName])
                     gd.name = gNameTab
                     gd.uni = gd.hex = gd.c = None
+                    gd.l = gd.CAT_CENTER
                     gd.w = gd.CAT_TAB_WIDTH
+                    gd.base = gName # Assuming that the tab as component of the main glyph. # Otherwise make the BG manually
+                #else:
+                #    print(f'### _appendTab: GlyphData /{gNameTab} already exists')
 
-    def _appendSuperiorInferiorDnomNumr(self):
-        for ext in ('superior', 'inferior', '.dnom', '.numr', '.sups', '.sinf'):
+    def _appendSuperiorInferior(self):
+        for ext in ('superior', 'inferior'):
             for gName in SUPS_SINF_NAMES:
                 if gName in self.glyphs:
                     gNameExt = gName + ext
-                    if gNameExt in self.glyphs: # Only if it does not exist already
-                        print(f'### _appendSuperiorInferiorDnomNumr: GlyphData /{gNameExt} already exists')
-                    else:
+                    if gNameExt not in self.glyphs: # Only if it does not exist already
                         self.glyphs[gNameExt] = gd = deepcopy(self.glyphs[gName])
                         gd.name = gNameExt
                         gd.uni = gd.hex = gd.c = None
@@ -207,6 +208,25 @@ class GlyphSet:
                             gd.base = gName + 'superior'
                         else:
                             gd.base = None
+                    #else:
+                    #    print(f'### _appendSuperiorInferiorDnomNumr: GlyphData /{gNameExt} already exists')
+
+    def _appendDnomNumrSupsSinf(self):
+        for ext in ('.dnom', '.numr', '.sups', '.sinf'):
+            for gName in NUMR_DNOM_NAMES:
+                if gName in self.glyphs:
+                    gNameExt = gName + ext
+                    if gNameExt not in self.glyphs: # Only if it does not exist already
+                        self.glyphs[gNameExt] = gd = deepcopy(self.glyphs[gName])
+                        gd.name = gNameExt
+                        gd.uni = gd.hex = gd.c = None
+                        gd.isLower = False
+                        gd.overshoot = gd.CAT_SUPERIOR_OVERSHOOT
+                        gd.l = gd.r = 'zerosuperior'
+                        gd.base = gName + 'superior'
+                    #else:
+                    #    print(f'### _appendSuperiorInferiorDnomNumr: GlyphData /{gNameExt} already exists')
+
 
     def _appendLc(self):
         tabExt = '.lc'
