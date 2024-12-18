@@ -71,7 +71,7 @@ CYRILLIC_SET = {
 
     #   F
 
-   'Fita-cy': GD(name='Fita-cy', uni=0x0472, hex='0472', c='Ѳ', l='O', r='O', gid=759),
+   'Fita-cy': GD(name='Fita-cy', uni=0x0472, hex='0472', c='Ѳ', l='O', r='O', base='Obarred-cy', gid=759),
 
     #   G
 
@@ -273,7 +273,7 @@ CYRILLIC_SET = {
 
     #   f
 
-   'fita-cy': GD(name='fita-cy', uni=0x0473, hex='0473', c='ѳ', l='o', r='o', isLower=True, gid=760),
+   'fita-cy': GD(name='fita-cy', uni=0x0473, hex='0473', c='ѳ', l='o', r='o', base='obarred-cy', isLower=True, gid=760),
 
     #   g
 
@@ -364,7 +364,7 @@ CYRILLIC_SET = {
 
     #   s
 
-   'schwa-cy': GD(name='schwa-cy', uni=0x04D9, hex='04D9', c='ә', r='o', base='schwa', isLower=True, anchors=['top'], gid=862),
+   'schwa-cy': GD(name='schwa-cy', uni=0x04D9, hex='04D9', c='ә', r='o', isLower=True, anchors=['top'], gid=862),
    'schwadieresis-cy': GD(name='schwadieresis-cy', uni=0x04DB, hex='04DB', c='ӛ', l='schwa-cy', r='o', base='schwa-cy', accents=['dieresiscmb.uc'], isLower=True, anchors=['top'], gid=864),
    'semisoftsign-cy': GD(name='semisoftsign-cy', uni=0x048D, hex='048D', c='ҍ', r='softsign-cy', isLower=True, gid=786),
    'sha-cy': GD(name='sha-cy', uni=0x0448, hex='0448', c='ш', l='en-cy', r='en-cy', isLower=True, gid=717),
@@ -423,4 +423,6 @@ CYRILLIC_SET = {
    'zhebreve-cy': GD(name='zhebreve-cy', uni=0x04C2, hex='04C2', c='ӂ', l='zhe-cy', r='zhe-cy', base='zhe-cy', accents=['brevecmb-cy'], isLower=True, anchors=['top'], gid=839),
    'zhedescender-cy': GD(name='zhedescender-cy', uni=0x0497, hex='0497', c='җ', l='zhe-cy', isLower=True, gid=796),
    'zhedieresis-cy': GD(name='zhedieresis-cy', uni=0x04DD, hex='04DD', c='ӝ', l='zhe-cy', r='zhe-cy', base='zhe-cy', accents=['dieresiscmb.uc'], isLower=True, anchors=['top'], gid=866),
+   
+   
 }
