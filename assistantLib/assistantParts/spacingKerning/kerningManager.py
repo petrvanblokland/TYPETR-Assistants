@@ -706,7 +706,7 @@ class KerningManager:
         """Compare the rounded width to g.width. If it is different, then set the width."""
         gd = self.md.glyphSet.glyphs[g.name]
         if isinstance(w, str) and w in g.font:
-            w = g.font[width].width
+            w = g.font[g.name].width
         elif w in self.md.cat2Width: # Predefined width category?
             w = self.md.cat2Width[gd.w]
 
