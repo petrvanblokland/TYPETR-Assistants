@@ -239,8 +239,11 @@ class GlyphSet:
                     self.glyphs[gNameExt] = gd = deepcopy(self.glyphs[gName])
                     gd.name = gNameExt
                     gd.uni = gd.hex = gd.c = None
-                    if not '.tab' in gName:
+                    if '.tab' not in gName:
                         gd.l = gd.r = gName
+                    elif gd.base is not None:
+                        gd.base = gd.base.replace('.onum', '.tab.onum')
+
 
     def appendGlyphSet(self, gs):
         for gdName, gd in gs.items():
