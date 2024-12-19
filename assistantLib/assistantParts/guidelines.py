@@ -147,6 +147,14 @@ class AssistantPartGuidelines(BaseAssistantPart):
             guidelines.append((xo + tg * (height + md.stemOvershoot), height + md.stemOvershoot, 0, f"{height + md.stemOvershoot} ({md.stemOvershoot})"))
             guidelines.append((xo + tg * (baseline - md.stemOvershoot), baseline - md.stemOvershoot, 0, f"{baseline - md.stemOvershoot} ({md.stemOvershoot})"))
 
+        # Onum, old-style figures
+
+        if md.onumHeight is not None and g.name.endswith('.onum'):
+            guidelines.append((xo + tg * md.onumHeight, md.onumHeight, 0, f"Height of onum {md.onumHeight}"))
+
+            guidelines.append((xo, -overshoot, 0, f"{-overshoot} ({overshoot})"))
+            guidelines.append((xo + tg * md.onumHeight, md.onumHeight + overshoot, 0, f"{md.onumHeight + overshoot} ({overshoot})"))
+
         # Numr/Dnom fractions
         
         if md.numrBaseline is not None and 'numr' in g.name:            

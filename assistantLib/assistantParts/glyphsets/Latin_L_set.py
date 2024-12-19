@@ -291,7 +291,7 @@ GDS['Omacrongrave'] = GD(name='Omacrongrave', uni=0x1E50, hex='1E50', c='Ṑ', l
 GDS['Omega'] = GD(name='Omega', uni=0x03A9, hex='03A9', c='Ω', anchors=['bottom', 'top'], gid=558)
 GDS['Omega-latin'] = GD(name='Omega-latin', uni=0xA7B6, hex='A7B6', c='Ꞷ', base='Omega')
 GDS['Oogonek'] = GD(name='Oogonek', uni=0x01EA, hex='01EA', c='Ǫ', l='O', r='O', base='O', accents=['ogonekcmb'], srcName='uni01EA', anchors=['bottom', 'middle', 'top'], gid=427)
-GDS['Oogonekmacron'] = GD(name='Oogonekmacron', uni=0x01EC, hex='01EC', c='Ǭ', l='O', r='O', base='O', accents=['macroncmb.uc', 'ogonekcmb.uc'], srcName='uni01EC', anchors=['bottom', 'middle', 'ogonek', 'top'], gid=429)
+GDS['Oogonekmacron'] = GD(name='Oogonekmacron', uni=0x01EC, hex='01EC', c='Ǭ', l='O', r='O', base='Oogonek', accents=['macroncmb.uc'], srcName='uni01EC', anchors=['bottom', 'middle', 'top'], gid=429)
 GDS['Oslashacute'] = GD(name='Oslashacute', uni=0x01FE, hex='01FE', c='Ǿ', l='Oslash', r='Oslash', base='Oslash', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], gid=447, comment='Ǿ')
 GDS['Otildeacute'] = GD(name='Otildeacute', uni=0x1E4C, hex='1E4C', c='Ṍ', l='O', r='O', base='Otilde', accents=['acutecmb.uc'], srcName='uni1E4C', anchors=['bottom', 'middle', 'ogonek', 'top'], gid=999)
 GDS['Otildedieresis'] = GD(name='Otildedieresis', uni=0x1E4E, hex='1E4E', c='Ṏ', l='O', r='O', base='Otilde', accents=['dieresiscmb.uc'], srcName='uni1E4E', anchors=['bottom', 'middle', 'ogonek', 'top'], gid=1001)

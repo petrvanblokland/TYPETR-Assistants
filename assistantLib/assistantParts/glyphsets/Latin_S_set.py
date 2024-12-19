@@ -84,7 +84,7 @@ LATIN_S_SET = GDS = {
     'degree': GD(name='degree', uni=0x00B0, hex='00B0', c='°', isLower=True, gid=113, comment='° DEGREE SIGN'),
     'divide': GD(name='divide', uni=0x00F7, hex='00F7', c='÷', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=True, gid=184, comment='÷ obelus'),
     'dollar': GD(name='dollar', uni=0x0024, hex='0024', c='$', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='S', isLower=False, gid=6, comment='$ milreis'),
-    'dollar.alt': GD(name='dollar.alt', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, srcName='dollar', isLower=False, gid=6, comment='$ milreis'),
+    'dollar.alt': GD(name='dollar.alt', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='S', isLower=False, gid=6, comment='$ milreis'),
     'bitcoin': GD(uni=0x20bf, c='₿', name='bitcoin', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='B', height=GD.CAT_CAP_HEIGHT, overshoot=GD.CAT_CAP_OVERSHOOT),
     'bitcoin.alt': GD(l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, name='bitcoin.alt', srcName='bitcoin', height=GD.CAT_CAP_HEIGHT, overshoot=GD.CAT_CAP_OVERSHOOT),
 
@@ -782,7 +782,7 @@ SC_NAMES = (
     'B', 'Bdotbelow', 'Bhook', 
     'C', 'Cacute', 'Ccaron', 'Ccedilla', 'Ccircumflex', 'Cdotaccent', 
     'D', 'Dcaron', 'Dcroat', 'Ddotbelow', 'Dhook', 
-    'E', 'Eacute', 'Ebreve', 'Ecaron', 'Ecircumflex', 'Edieresis', 'Edotaccent', 'Edotbelow', 'Egrave', 'Emacron', 'Eng', 'Eogonek', 'Eopen', 'Ereversed', 'Eth', 'Etilde', 'Eopen', 
+    'E', 'Eacute', 'Ebreve', 'Ecaron', 'Ecircumflex', 'Edieresis', 'Edotaccent', 'Edotbelow', 'Egrave', 'Emacron', 'Eng', 'Eogonek', 'Eopen', 'Ereversed', 'Eth', 'Etilde', 
     'F', 
     'G', 'Gbreve', 'Gcaron', 'Gcircumflex', 'Gcommaaccent', 'Gdotaccent', 'Germandbls', 'Gmacron', 
     'H', 'Hbar', 'Hcircumflex', 'Hdieresis', 'Hdotbelow', 
@@ -849,19 +849,21 @@ NUMR_DNOM_NAMES = (
 )
 # Used by GlyphSet class to add tab glyph data records. 
 TAB_NAMES = (
-    'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
-    'cent', 'cent.alt', 'dollar', 'dollar.alt', 'Euro', 'yen', 'sterling',
+    'zero', 'zeroslash', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
+    'cent', 'cent.alt', 'dollar', 'dollar.alt', 'Euro', 'yen', 'sterling', 'bitcoin', 
     'period', 'comma', 'colon', 'semicolon',
     'plus', 'minus', 'equal', 'notequal', 'less', 'greater', 'lessequal', 'greaterequal', 
     'multiply', 'divide', 'asterisk', 
-    'percent', 'perthousand', 'degree', 'approxequal', 'plusminus', 
+    'percent', 'perthousand', 'degree', 'approxequal', 'plusminus',  
     'parenleft', 'parenright', 'bracketleft', 'bracketright', 'braceleft', 'braceright',
     'quoteleft', 'quoteright', 'quotedblleft', 'quotedblright',
-    'hyphen', 'endash', 'minute', 'backslash', 
+    'hyphen', 'endash', 'minute', 'second', 'slash', 'backslash', 'numbersign',
 )
-# Used by GlyphSet class to add oldstyle figures glyph data records.
-LC_NAMES = (
-    'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
+# Used by GlyphSet class to add oldstyle figures glyph data records with .onum extension
+ONUM_NAMES = (
+    'zero', 'zeroslash', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
+    'zero.tab', 'zeroslash.tab', 'one.tab', 'two.tab', 'three.tab', 'four.tab', 'five.tab', 'six.tab', 'seven.tab', 'eight.tab', 'nine.tab',
+
 )
 
 

@@ -82,9 +82,9 @@ class MasterData:
             modMinMargin=None,
             # Vertical metrics
             unitsPerEm=UNITS_PER_EM, 
-            baseline=0, stemOvershoot=STEM_OVERSHOOT, baseOvershoot=None, capOvershoot=None, scOvershoot=None, superiorOvershoot=None,
+            baseline=0, stemOvershoot=STEM_OVERSHOOT, baseOvershoot=None, capOvershoot=None, scOvershoot=None, onumOvershoot=None, superiorOvershoot=None,
             ascender=None, descender=None,
-            xHeight=None, capHeight=None, scHeight=None, superiorHeight=None, modHeight=None,
+            xHeight=None, capHeight=None, scHeight=None, onumHeight=None, superiorHeight=None, modHeight=None,
             numrBaseline=None, supsBaseline=None, sinfBaseline=None, dnomBaseline=None, modBaseline=None,
             middlexHeight=None, middleCapHeight=None,
             # Vertical anchor offsets to avoid collission with baseline, guidlines, etc. in mouse selection
@@ -229,6 +229,9 @@ class MasterData:
         if scOvershoot is None: # Overshoot value for smallcaps, mod, etc.
             scOvershoot = baseOvershoot
         self.scOvershoot = scOvershoot
+        if onumOvershoot is None: # Overshoot value for old-style figures. Defaults to scOvershoot
+            onumOvershoot = scOvershoot
+        self.onumOvershoot = onumOvershoot
         if superiorOvershoot is None: # Overshoot value for superior, inferior, .sups, .numr, .sinf and .dnom
             superiorOvershoot = baseOvershoot
         self.superiorOvershoot = superiorOvershoot
@@ -238,6 +241,7 @@ class MasterData:
             GD.CAT_CAP_OVERSHOOT: capOvershoot,
             GD.CAT_SUPERIOR_OVERSHOOT: superiorOvershoot,
             GD.CAT_SC_OVERSHOOT: scOvershoot,
+            GD.CAT_ONUM_OVERSHOOT: onumOvershoot,
         }
 
         # Vertical anchor offsets
@@ -271,6 +275,9 @@ class MasterData:
         if scHeight is None:
             scHeight = xHeight
         self.scHeight = scHeight
+        if onumHeight is None:
+            onumHeight = scHeight # Default old-style figures same height as small caps
+        self.onumHeight = onumHeight
         if superiorHeight is None:
             superiorHeight = xHeight * 2/3
         self.superiorHeight = superiorHeight
@@ -287,6 +294,7 @@ class MasterData:
             GD.CAT_XHEIGHT: xHeight,
             GD.CAT_CAP_HEIGHT: capHeight,
             GD.CAT_SC_HEIGHT: scHeight,
+            GD.CAT_ONUM_HEIGHT: onumHeight,
             GD.CAT_SUPERIOR_HEIGHT: superiorHeight, # Height of .sups, .sinf, .numr, .dnom and mod
         }
 
@@ -439,6 +447,8 @@ class MasterData:
             return gd.overshoot
 
         # Not defined in the GlyphSet/GlyphData for this glyph. We need to do some quessing, based on the name.
+        if gd.isOnum: # Old-style figures
+            return self.cat2Overshoot[GD.CAT_ONUM_OVERSHOOT]
         if gd.isSups or gd.isNumr or gd.isSinf or gd.isDnom or gd.isMod: # One of sups, sinf, dnom, numr, mod in the name
             return self.cat2Overshoot[GD.CAT_SUPERIOR_OVERSHOOT]
         if gd.isSc: # One of .sc, small in the name
@@ -480,9 +490,13 @@ class MasterData:
         if gd is None:
             print(f'### getHeight: Unknown glyph /{gName} in glyphSet of {self.name}')
             return self.capHeight
+        # Old-style figures
+        if gName.endswith('.onum') or gd.isOnum:
+            return self.onumHeight
         # Smallcaps
         if gName.endswith('.sc') or gd.isSc:
             return self.scHeight
+        # Normal height
         if gd.height is None: # Nothing defined in the glyph, use the default
             if gd.isLower:
                 return self.xHeight

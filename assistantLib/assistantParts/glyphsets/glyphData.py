@@ -43,6 +43,7 @@ class GlyphData:
     MOD = 'mod'
 
     SC = 'sc'
+    ONUM = 'onum' # Extension of old-style figures
 
     # Categories of spacing and size
     CAT_EM = 'em'
@@ -69,12 +70,14 @@ class GlyphData:
     CAT_CAP_HEIGHT2 = 'capHeight/2'
     CAT_SC_HEIGHT = 'scHeight'
     CAT_SC_HEIGHT2 = 'scHeight/2'
+    CAT_ONUM_HEIGHT = 'onumHeight' # Height of old-style figures.
     CAT_SUPERIOR_HEIGHT = 'supsHeight' # Height of .sups, .sinf, .numr, .dnom and mod
     # Categories of overshoot
     CAT_OVERSHOOT = 'overshoot'
     CAT_CAP_OVERSHOOT = 'capOvershoot'
     CAT_SUPERIOR_OVERSHOOT = 'superiorOvershoot'
     CAT_SC_OVERSHOOT = 'scOvershoot'
+    CAT_ONUM_OVERSHOOT = 'onumOvershoot'
     # Categories of baselines
     CAT_BASELINE = 'baseline'
     CAT_MOD_BASELINE = 'modBaseline'
@@ -84,7 +87,7 @@ class GlyphData:
     CAT_DNOM_BASELINE = 'dnomBaseline'
 
     # Allowed category names
-    CAT_OVERSHOOTS = (None, CAT_OVERSHOOT, CAT_CAP_OVERSHOOT, CAT_SUPERIOR_OVERSHOOT, CAT_SC_OVERSHOOT)
+    CAT_OVERSHOOTS = (None, CAT_OVERSHOOT, CAT_CAP_OVERSHOOT, CAT_SUPERIOR_OVERSHOOT, CAT_SC_OVERSHOOT, CAT_ONUM_OVERSHOOT)
     CAT_BASELINES = (None, CAT_BASELINE, CAT_MOD_BASELINE, CAT_NUMR_BASELINE, CAT_SINF_BASELINE, 
         CAT_SUPS_BASELINE, CAT_DNOM_BASELINE)
     CAT_HEIGHTS = (None, CAT_XHEIGHT, CAT_CAP_HEIGHT, CAT_SC_HEIGHT, CAT_SUPERIOR_HEIGHT)
@@ -113,7 +116,7 @@ class GlyphData:
             bl=None, br=None, # Based glyph references
             l2r=None, r2l=None, bl2r=None, br2l=None, l2br=None, r2bl=None, bl2br=None, br2bl=None, # Switch margins
             # Type of glyph. Guess if undefined as None.
-            isLower=None, isMod=None, isSc=None,
+            isLower=None, isMod=None, isSc=None, isOnum=None,
             # Italicize forcing conversion behavior
             useSkewRotate=False, addItalicExtremePoints=True, 
             # Glyphs to copy from, initially before editing starts
@@ -172,6 +175,7 @@ class GlyphData:
 
         self._isLower = isLower # If not None, force the flag. Otherwise try to guess.
         self._isSc = isSc # Is smallcap
+        self._isOnum = isOnum # Is old-style figure
         self._isMod = isMod # Glyph is a modifier.
 
         self.base = base # Base component if used
@@ -231,6 +235,13 @@ class GlyphData:
     def _get_isUpper(self):
         return not self.isLower and not self.isSc
     isUpper = property(_get_isUpper)
+
+    def _get_isOnum(self):
+        """Answer the boolean flag if this glyph is a old-style figure."""
+        if self._isOnum is not None: # Has a forced setting?
+            return bool(self._isOnum)
+        return self.name.endswith(self.ONUM) # This must be an old-style figure
+    isOnum = property(_get_isOnum)
 
     def _get_isSc(self):
         """Answer the boolean flag if this glyph is a small cap."""

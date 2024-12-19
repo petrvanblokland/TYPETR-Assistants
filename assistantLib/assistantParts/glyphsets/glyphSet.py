@@ -15,7 +15,7 @@ from assistantLib.assistantParts.glyphsets.anchorData import AD
 
 # Different sizes of standard glyph set
 from assistantLib.assistantParts.glyphsets.Latin_S_set import (LATIN_S_SET_NAME, LATIN_S_SET, SC_NAMES, 
-    SUPS_SINF_NAMES, NUMR_DNOM_NAMES, TAB_NAMES, LC_NAMES)
+    SUPS_SINF_NAMES, NUMR_DNOM_NAMES, TAB_NAMES, ONUM_NAMES)
 from assistantLib.assistantParts.glyphsets.Latin_M_set import LATIN_M_SET_NAME, LATIN_M_SET
 from assistantLib.assistantParts.glyphsets.Latin_L_set import LATIN_L_SET_NAME, LATIN_L_SET
 from assistantLib.assistantParts.glyphsets.Latin_XL_set import LATIN_XL_SET_NAME, LATIN_XL_SET
@@ -84,7 +84,7 @@ class GlyphSet:
     # For doc-testing only. Redefine in inheriting classes.
     GLYPH_DATA = {} # Key is glyph name, value is GlyphData instance
 
-    def __init__(self, name=None, glyphData=None, sc=False, superior=False, tab=False, lc=False):
+    def __init__(self, name=None, glyphData=None, sc=False, superior=False, tab=False, onum=False):
         """Answer the request type of glyphset. 
         """
         self.name = name
@@ -105,8 +105,8 @@ class GlyphSet:
             self._appendSuperiorInferior()
             self._appendDnomNumrSupsSinf()
 
-        if lc: # Lowercase (oldstyle) figures
-            self._appendLc()
+        if onum: # Lowercase (oldstyle) figures
+            self._appendOnum()
 
         self.unicode2GlyphName = {} # Key is unicode, value is glyph name
         self.anchor2GlyphNames = {} # Key is names of anchors. Value if a list of glyph names that implement the anchor.
@@ -228,9 +228,9 @@ class GlyphSet:
                     #    print(f'### _appendSuperiorInferiorDnomNumr: GlyphData /{gNameExt} already exists')
 
 
-    def _appendLc(self):
-        tabExt = '.lc'
-        for gName in LC_NAMES:
+    def _appendOnum(self):
+        tabExt = '.onum'
+        for gName in ONUM_NAMES:
             if gName in self.glyphs:
                 gNameExt = gName + tabExt
                 if gNameExt in self.glyphs: # Only if it does not exist already
@@ -239,7 +239,8 @@ class GlyphSet:
                     self.glyphs[gNameExt] = gd = deepcopy(self.glyphs[gName])
                     gd.name = gNameExt
                     gd.uni = gd.hex = gd.c = None
-                    gd.l = gd.r = gName
+                    if not '.tab' in gName:
+                        gd.l = gd.r = gName
 
     def appendGlyphSet(self, gs):
         for gdName, gd in gs.items():
