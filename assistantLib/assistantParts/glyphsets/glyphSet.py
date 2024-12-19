@@ -242,7 +242,7 @@ class GlyphSet:
                     if '.tab' not in gName:
                         gd.l = gd.r = gName
                     elif gd.base is not None:
-                        gd.base = gd.base.replace('.onum', '.tab.onum')
+                        gd.base = gName.replace('.tab', '.onum')
 
 
     def appendGlyphSet(self, gs):
