@@ -294,7 +294,6 @@ GDS['eOpensuperior'] = GD(name='eOpensuperior', uni=0x1D4B, hex='1D4B', c='ᵋ')
 
 GDS['fengdigraph'] = GD(name='fengdigraph', uni=0x02A9, hex='02A9', c='ʩ', isLower=True)
 GDS['fermatacmb'] = GD(name='fermatacmb', uni=0x0352, hex='0352', c='͒', w=0, isLower=True, anchors=['_top', 'top'])
-GDS['firsttonechinese'] = GD(name='firsttonechinese', uni=0x02C9, hex='02C9', c='ˉ', w=0, isLower=True, anchors=['_top', 'top'], gid=1643)
 GDS['fmiddletilde'] = GD(name='fmiddletilde', uni=0x1D6E, hex='1D6E', c='ᵮ', base='f', isLower=True, anchors=['bottom', 'middle', 'top'])
 GDS['fpalatalhook'] = GD(name='fpalatalhook', uni=0x1D82, hex='1D82', c='ᶂ', l='f', w='f', base='dpalatalhookcmb', anchors=['bottom', 'middle', 'top'])
 
