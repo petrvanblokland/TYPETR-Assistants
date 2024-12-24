@@ -328,7 +328,7 @@ CYRILLIC_SET = {
    'ksi-cy': GD(name='ksi-cy', uni=0x046F, hex='046F', c='ѯ', r='ze-cy', isLower=True, gid=756),
 
     #   l
-   'lje-cy': GD(name='lje-cy', uni=0x0409, hex='0459', c='љ', l='el-cy', r='softsign-cy', gid=654),
+   #'lje-cy': GD(name='lje-cy', uni=0x0459, hex='0459', c='љ', l='el-cy', r='softsign-cy', gid=654),
 
     #   m
 
