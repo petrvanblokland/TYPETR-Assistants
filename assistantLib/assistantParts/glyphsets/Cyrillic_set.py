@@ -294,8 +294,8 @@ CYRILLIC_SET = {
    'hastroke-cy': GD(name='hastroke-cy', uni=0x04FF, hex='04FF', c='ӿ', l='x', r='x', isLower=True, gid=900),
 
     #   i
-
-   'iukrcyr': GD(name='iukrcyr', uni=0x0456, hex='0456', c='і', l='i', w='idotless', base='i', anchorBottomX='BottomX', anchorMiddleX='TopX', anchorTopX='TopX', isLower=True, anchors=['top', 'middle', 'bottom'], gid=731),
+    
+   'i-cy': GD(name='i-cy', uni=0x0456, hex='0456', c='і', l='i', w='idotless', base='i', anchorBottomX='BottomX', anchorMiddleX='TopX', anchorTopX='TopX', isLower=True, anchors=['top', 'middle', 'bottom'], gid=731),
    'ia-cy': GD(name='ia-cy', uni=0x044F, hex='044F', c='я', r='en-cy', isLower=True, gid=724),
    'idieresis-cy': GD(name='idieresis-cy', uni=0x04E5, hex='04E5', c='ӥ', base='ii-cy', accents=['dieresiscmb.uc'], isLower=True, anchors=['top'], gid=874),
    'ie-cy': GD(name='ie-cy', uni=0x0435, hex='0435', c='е', l='o', w='e', base='e', isLower=True, anchors=['top', 'middle', 'bottom'], gid=698),
@@ -328,6 +328,7 @@ CYRILLIC_SET = {
    'ksi-cy': GD(name='ksi-cy', uni=0x046F, hex='046F', c='ѯ', r='ze-cy', isLower=True, gid=756),
 
     #   l
+   'lje-cy': GD(name='lje-cy', uni=0x0409, hex='0459', c='љ', l='el-cy', r='softsign-cy', gid=654),
 
     #   m
 
