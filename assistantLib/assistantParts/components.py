@@ -139,14 +139,14 @@ class AssistantPartComponents(BaseAssistantPart):
             changed = True
 
         # 1
-        if g.components and not gd.components: # Clear existing components
+        if g.components and not gd.componentNames: # Clear existing components
             print(f'... Clear {len(g.components)} component(s) of /{g.name}')
             g.clearComponents()
             changed = True
         
         # 2
-        elif not g.components and gd.components: # Create missing components
-            for componentName in gd.components:
+        elif not g.components and gd.componentNames: # Create missing components
+            for componentName in gd.componentNames:
                 if componentName == g.name:
                     print(f'### Component can not refer to itself {componentName}')
                 else:
@@ -155,12 +155,12 @@ class AssistantPartComponents(BaseAssistantPart):
             changed = True
         
         # 3
-        elif len(g.components) > len(gd.components): # More components than necessary
+        elif len(g.components) > len(gd.componentNames): # More components than necessary
             # g.component cannot be set,  so we following the protocol of deleting selected components.
-            obsoleteComponents = len(g.components) - len(gd.components)
+            obsoleteComponents = len(g.components) - len(gd.componentNames)
             components = g.components  # Convert to a list
             for cIndex, component in enumerate(components):
-                if cIndex < len(gd.components): # Keep it?
+                if cIndex < len(gd.componentNames): # Keep it?
                     component.selected = False
                 else: # Select it to be removed
                     component.selected = True
@@ -171,8 +171,8 @@ class AssistantPartComponents(BaseAssistantPart):
             g.removeSelection(removePoints=False, removeAnchors=False, removeImages=False)
         
         # 4
-        elif len(g.components) < len(gd.components): # Fewer components than necessary
-            for componentName in gd.components[len(g.components):]:
+        elif len(g.components) < len(gd.componentNames): # Fewer components than necessary
+            for componentName in gd.componentNames[len(g.components):]:
                 if componentName == g.name:
                     print(f'### Glyph {g.name} cannot contain a component with the same name')
                 else:
@@ -181,15 +181,15 @@ class AssistantPartComponents(BaseAssistantPart):
             changed = True
         
         # 5 # Recheck all of the above the for the right baseGlyph reference
-        if len(g.components) == len(gd.components): # May still not be eqaul, due to recursive update from lines above.
+        if len(g.components) == len(gd.componentNames): # May still not be eqaul, due to recursive update from lines above.
             for cIndex, component in enumerate(g.components):
                 if component.baseGlyph is None:
                     component.baseGlyph = '.notdef'
                     print('### Fixing None component reference in', g.name)
                     changed = True
-                if component.baseGlyph != gd.components[cIndex]:
-                    print(f'... Rename component {cIndex} /{component.baseGlyph} to /{gd.components[cIndex]} in /{g.name}')
-                    component.baseGlyph = gd.components[cIndex]
+                if component.baseGlyph != gd.componentNames[cIndex]:
+                    print(f'... Rename component {cIndex} /{component.baseGlyph} to /{gd.componentNames[cIndex]} in /{g.name}')
+                    component.baseGlyph = gd.componentNames[cIndex]
                     changed = True
         
         # 6 All done

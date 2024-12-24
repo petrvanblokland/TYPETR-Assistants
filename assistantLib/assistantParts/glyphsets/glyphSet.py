@@ -60,7 +60,7 @@ class GlyphSet:
     'A'
     >>> gd.accents
     ['acutecmb']
-    >>> gd.components
+    >>> gd.componentNames
     ['A', 'acutecmb']
     >>> gd.comment
     'Á A WITH ACUTE, LATIN CAPITAL LETTER'
@@ -119,7 +119,7 @@ class GlyphSet:
                 #assert gd.uni not in UNICODE2GLYPH, ("Unicode %04x already defined for /%s" % (gd.uni, gName))
                 self.unicode2GlyphName[gd.uni] = gd.name
             # Make the dict of disacritics --> List of glyphs that use them
-            for componentName in gd.components:
+            for componentName in gd.componentNames:
                 gdc = self.glyphs.get(componentName)
                 if gdc is not None and gdc.isDiacritic:
                     if not gdc.name in self.diacritic2GlyphNames:

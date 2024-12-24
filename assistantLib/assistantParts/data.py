@@ -87,7 +87,9 @@ class MasterData:
             xHeight=None, capHeight=None, scHeight=None, onumHeight=None, superiorHeight=None, modHeight=None,
             numrBaseline=None, supsBaseline=None, sinfBaseline=None, dnomBaseline=None, modBaseline=None,
             middlexHeight=None, middleCapHeight=None,
-            # Vertical anchor offsets to avoid collission with baseline, guidlines, etc. in mouse selection
+            # Vertical anchor offsets to avoid collission with baseline, guidelines, etc. in mouse selection
+            capStackedDiacriticsVKerning=None, # Offset for stacked diacritics on capitals
+            stackedDiacriticsVKerning=None, # Offset for stacked diacritics
             baseDiacriticsTop=None, capDiacriticsTop=None, scDiacriticsTop=None, # Baseline of top diacritics
             baseDiacriticsBottom=None, # Top of bottom diacritis
             ascenderAnchorOffsetY= -AD.ANCHOR_ASCENDER_OFFSET,
@@ -216,6 +218,9 @@ class MasterData:
         
         # Vertical metrics. Do some guessing for missing values. 
         # This may not be matching the current font, as we don't have it available as open RFont here.
+
+        self.capStackedDiacriticsVKerning = capStackedDiacriticsVKerning or 0 # Offset for stacked diacritics on capitals
+        self.stackedDiacriticsVKerning = stackedDiacriticsVKerning or 0 # Offset for stacked diacritics
 
         if baseOvershoot is None: # Generic overshoot value, specifically for lower case
             baseOvershoot = self.BASE_OVERSHOOT
@@ -449,7 +454,7 @@ class MasterData:
         # Not defined in the GlyphSet/GlyphData for this glyph. We need to do some quessing, based on the name.
         if gd.isOnum: # Old-style figures
             return self.cat2Overshoot[GD.CAT_ONUM_OVERSHOOT]
-        if gd.isSups or gd.isNumr or gd.isSinf or gd.isDnom or gd.isMod: # One of sups, sinf, dnom, numr, mod in the name
+        if gd.isSuperior or gd.isNumr or gd.isInferior or gd.isDnom or gd.isMod: # One of sups, sinf, dnom, numr, mod in the name
             return self.cat2Overshoot[GD.CAT_SUPERIOR_OVERSHOOT]
         if gd.isSc: # One of .sc, small in the name
             return self.cat2Overshoot[GD.CAT_SC_OVERSHOOT]
@@ -472,16 +477,16 @@ class MasterData:
         if gd.baseline in self.cat2Baseline:
             return self.cat2Baseline[gd.baseline]
         # Not defined in the GlyphSet/GlyphData for this glyph. We need to do some quessing, based on the type of glyph or its name.
-        if gd.isMod:
-            return self.modBaseline
-        if gd.isSups:
+        if gd.isSuperior:
             return self.supsBaseline
+        if gd.isInferior:
+            return self.sinfBaseline
         if gd.isNumr:
             return self.numrBaseline
-        if gd.isSinf:
-            return self.sinfBaseline
         if gd.isDnom:
             return self.dnomBaseline
+        if gd.isMod:
+            return self.modBaseline
         return self.BASELINE
 
     def getHeight(self, gName):

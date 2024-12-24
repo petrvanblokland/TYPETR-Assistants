@@ -26,7 +26,7 @@ GREEK_SET = {
    'Chi': GD(name='Chi', uni=0x03A7, hex='03A7', c='Χ', l='X', r='X', base='X', anchors=['bottom', 'middle', 'top'], gid=556),
    'Dei-coptic': GD(name='Dei-coptic', uni=0x03EE, hex='03EE', c='Ϯ', l='o', r='hyphen', gid=627),
    'Delta': GD(name='Delta', uni=0x0394, hex='0394', c='Δ', l='off', l2r='Delta', gid=538, comment='∆ symmetric difference'),
-   'Digamma': GD(name='Digamma', uni=0x03DC, hex='03DC', c='Ϝ', r='F', gid=609),
+   'Digamma': GD(name='Digamma', uni=0x03DC, hex='03DC', c='Ϝ', r='F', srcName='F', gid=609),
    'Epsilon': GD(name='Epsilon', uni=0x0395, hex='0395', c='Ε', l='E', r='E', base='E', anchors=['bottom', 'middle', 'top'], gid=539),
    'Epsilontonos': GD(name='Epsilontonos', uni=0x0388, hex='0388', c='Έ', l='comma', r='E', base='E', accents=['tonos-uc'], anchors=['bottom', 'middle', 'top'], gid=528),
    'Eta': GD(name='Eta', uni=0x0397, hex='0397', c='Η', l='H', r='H', base='H', anchors=['bottom', 'middle', 'top'], gid=541),

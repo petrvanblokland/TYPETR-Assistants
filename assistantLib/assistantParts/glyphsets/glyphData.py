@@ -30,7 +30,7 @@ class GlyphData:
     'Á'
     >>> gd.hex
     '00C1'
-    >>> gd.components
+    >>> gd.componentNames
     ['A', 'acutecmb']
     """    
     # Types of mods, parts of glyph names
@@ -116,7 +116,7 @@ class GlyphData:
             bl=None, br=None, # Based glyph references
             l2r=None, r2l=None, bl2r=None, br2l=None, l2br=None, r2bl=None, bl2br=None, br2bl=None, # Switch margins
             # Type of glyph. Guess if undefined as None.
-            isLower=None, isMod=None, isSc=None, isOnum=None,
+            isLower=None, isMod=None, isSc=None, isOnum=None, hasDiacritics=None, isDiacritic=None,
             # Italicize forcing conversion behavior
             useSkewRotate=False, addItalicExtremePoints=True, 
             # Glyphs to copy from, initially before editing starts
@@ -177,6 +177,8 @@ class GlyphData:
         self._isSc = isSc # Is smallcap
         self._isOnum = isOnum # Is old-style figure
         self._isMod = isMod # Glyph is a modifier.
+        self._hasDiacritics = hasDiacritics # Glyph contains one or more diacritics
+        self._isDiacritic = isDiacritic
 
         self.base = base # Base component if used
         self.accents = accents or [] # List of other component names, besides the base. Tested on by property self.hasDiacritics
@@ -271,26 +273,34 @@ class GlyphData:
     isMod = property(_get_isMod)
 
     def _get_isSuperior(self):
+        """Answer the boolean flag if this glyph is superior (has "superior" in its name)"""
         return self.name.endswith(self.MOD_SUPERIOR)
     isSuperior = property(_get_isSuperior)
             
     def _get_isInferior(self):
+        """Answer the boolean flag if this glyph is superior (has "inferior" in its name)"""
         return self.name.endswith(self.MOD_INFERIOR)
     isInferior = property(_get_isInferior)
             
     def _get_isSups(self):
+        """DEPRECATED. Answer the boolean flag if this glyph is superior (has "sups" in its name)"""
+        print('### DEPRECATED: isSups. Use gd.isSuperior instead.')
         return self.name.endswith(self.MOD_SUPS)
     isSups = property(_get_isSups)
             
     def _get_isSinf(self):
+        """DEPRECATED. Answer the boolean flag if this glyph is superior (has "sinf" in its name)"""
+        print('### DEPRECATED: isSups.  Use gd.isInferior instead')
         return self.name.endswith(self.MOD_SINF)
     isSinf = property(_get_isSinf)
             
     def _get_isNumr(self):
+        """Answer the boolean flag if this glyph is superior (has "numr" in its name). Used for fractions"""
         return self.name.endswith(self.MOD_NUMR)
     isNumr = property(_get_isNumr)
             
     def _get_isDnom(self):
+        """Answer the boolean flag if this glyph is superior (has "dnom" in its name). Used for fractions"""
         return self.name.endswith(self.MOD_DNOM)
     isDnom = property(_get_isDnom)
             
@@ -306,9 +316,21 @@ class GlyphData:
         return False
     isSc = property(_get_isSc)
     
+    def _get_hasDiacritics(self):
+        """Answer the boolean flag if this glyphs contains one or more diacritics."""
+        if self._hasDiacritics is not None: # Overwriting flag
+            return self._hasDiacritics
+        for componentName in self.accents: # Otherwise check the names.
+            if 'cmb' in componentName:
+                return True
+        return False
+    hasDiacritics = property(_get_hasDiacritics)
+
     def _get_isDiacritic(self):
         """Answer the boolean flag if this glyph is a diacritic."""
-        return self.name in AD.ACCENT_DATA
+        if self._isDiacritic is not None: # Overwriting flag?
+            return self._isDiacritic
+        return self.name in AD.ACCENT_DATA # Otherwise use this table
     isDiacritic = property(_get_isDiacritic)
 
     def _get_hasDiacritics(self):
@@ -319,15 +341,24 @@ class GlyphData:
         return False
     hasDiacritics = property(_get_hasDiacritics)
     
-    def _get_components(self):
+    def _get_diacriticNames(self):
+        """Answer the list of diacritic components, ignoring the base. An empty list if there are no diacritic components in the glyph."""
+        diacriticNames = []
+        for componentName in self.accents:
+            if 'cmb' in componentName:
+                diacriticsNames.append(componentName)
+        return diacriticNames
+    diacriticNames = property(_get_diacriticNames)
+
+    def _get_componentNames(self):
         """Answer the list of all component names. An empty list if there are no components in the glyph."""
-        components = []
+        componentNames = []
         if self.base is not None:
-            components.append(self.base)
+            componentNames.append(self.base)
         if self.accents:
-            components += self.accents 
-        return components
-    components = property(_get_components)
+            componentNames += self.accents 
+        return componentNames
+    componentNames = property(_get_componentNames)
 
     def asSourceLine(self, toDict=False):
         """Answer the string of self as Python code that will reproduce self as instance.
