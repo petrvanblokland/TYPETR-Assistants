@@ -196,7 +196,7 @@ GDS['Gscript'] = GD(name='Gscript', uni=0xA7AC, hex='A7AC', c='Ɡ', l='O', r='J
 GDS['Gstroke'] = GD(name='Gstroke', uni=0x01E4, hex='01E4', c='Ǥ', l='G', r='G', base='G', gid=421)
 
 GDS['Gsuperior'] = GD(name='Gsuperior', l='Osuperior', r='G.sc', isMod=True)
-GDS['Ginferior'] = GD(name='Ginferior', l='Gsuperior', r='GsuperiorF', base='Gsuperior', isLower=True)
+GDS['Ginferior'] = GD(name='Ginferior', l='Gsuperior', r='Gsuperior', base='Gsuperior', isLower=True)
 
 # H
 
@@ -558,7 +558,7 @@ GDS['hhookinferior'] = GD(name='hhookinferior', base='hhookinferior', l='nsuperi
 # i
 
 GDS['idblgrave'] = GD(name='idblgrave', uni=0x0209, hex='0209', c='ȉ', w='idotless', bl='idotless', base='idotless', accents=['dblgravecmb'], isLower=True, anchors=['top'])
-GDS['idieresisacute'] = GD(name='idieresisacute', uni=0x1E2F, hex='1E2F', c='ḯ', w='idotless', bl='idotless', base='idotless', accents=['dieresiscmb', 'acute'], srcName='uni1E2F', isLower=True, anchors=['bottom', 'middle', 'top'], gid=970)
+GDS['idieresisacute'] = GD(name='idieresisacute', uni=0x1E2F, hex='1E2F', c='ḯ', w='idotless', bl='idotless', base='idieresis', accents=['acute'], srcName='uni1E2F', isLower=True, anchors=['bottom', 'middle', 'top'], gid=970)
 GDS['iinvertedbreve'] = GD(name='iinvertedbreve', uni=0x020B, hex='020B', c='ȋ', w='idotless', bl='idotless', base='idotless', accents=['invertedbrevecmb'], isLower=True, anchors=['top'])
 GDS['ij'] = GD(name='ij', uni=0x0133, hex='0133', c='ĳ', l='i', r='j', base='i', accents=['j'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=244, comment='ĳ SMALL LIGATURE IJ, LATIN')
 GDS['iota-latin'] = GD(name='iota-latin', uni=0x0269, hex='0269', c='ɩ', isLower=True)
@@ -687,7 +687,7 @@ GDS['rstroke'] = GD(name='rstroke', uni=0x024D, hex='024D', c='ɍ', base='r', is
 GDS['radical'] = GD(name='radical', uni=0x221A, hex='221A', c='√', l='r', r='r', rightMin=-100, isLower=True, gid=1490, comment='√ SQUARE ROOT')
 
 GDS['rsuperior'] = GD(name='rsuperior', uni=0x02B3, hex='02B3', c='ʳ', l='nsuperior', r=GD.CAT_MOD_MIN_MARGIN, srcName='uni02B3', isMod=True)
-GDS['rinferior'] = GD(name='rinferior', l='rinferior', r='rinferior', base='rinferior', isMod=True)
+GDS['rinferior'] = GD(name='rinferior', l='rsuperior', r='rsuperior', base='rsuperior', isMod=True)
 
 GDS['rbelowcmb'] = GD(name='rbelowcmb', uni=0x1DCA, hex='1DCA', c='᷊', w=0, base='rsuperior', anchors=['_bottom', 'bottom'])
 

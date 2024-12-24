@@ -517,7 +517,20 @@ class AssistantPartAnchors(BaseAssistantPart):
 
         else: # No construction glyph or method defined, then try to figure out from this glyph shape
             # Trying to guess vertical from anchor in base glyph + its offset
-            if gd.isSc and 'H.sc' in g.font:
+            if gd.accents: 
+                # This is a glyph, probably with diacritics. If these are on top, then the anchor position needs
+                # to be lifted to accommodate the higher bounding box. Since there are accents, we can safely
+                # assume that the base glyph is also defined. So let's start there.
+                baseAnchor = self.getAnchor(baseGlyph, a.name)
+                if baseAnchor is not None:
+                    ay = baseAnchor.y + dy # Vertical position of the base anchor + component offset.
+                    if g.bounds is not None: # Probably bounding box extended from diacritics
+                        if gd.isLower: # Default position below xHeight or capHeight
+                            ay = g.bounds[3] + md.xHeightAnchorOffsetY # Likely to ba a negative number
+                        else:
+                            ay = g.bounds[3] + md.capHeightAnchorOffsetY # Likely to ba a negative number
+            
+            elif gd.isSc and 'H.sc' in g.font:
                 scAnchor = self.getAnchor(g.font['H.sc'], a.name)
                 if scAnchor:
                     ay = scAnchor.y + dy
@@ -718,10 +731,21 @@ class AssistantPartAnchors(BaseAssistantPart):
         in case not valid value could be constructed. In that case the position needs to be set manually in the editor.
         @@@ No methods here yet.
         """
+        ax = ay = None
         md = self.getMasterData(g.font)
-        # Trying to guess vertical
-        ay = md.ogonekAnchorOffsetY
-        ax = None # Horizontal position always manual
+        gd = self.getGlyphData(g)
+        # If there is a base, then take the horizontal position of the ogonek
+        if gd.base:
+            # In case there is a base, just copy the vertical and hotizontal anchor positions, with the component offset
+            baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g) 
+            baseAnchor = self.getAnchor(baseGlyph, a.name)
+            if baseAnchor is not None:
+                ax = baseAnchor.x + dx
+                ay = baseAnchor.y + dy
+        if ax is None:
+            # Trying to guess vertical
+            ay = md.ogonekAnchorOffsetY
+            ax = None # Otherwise the horizontal position is always manual
 
         return ax, ay
 
