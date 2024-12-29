@@ -15,7 +15,7 @@ from assistantLib.assistantParts.glyphsets.anchorData import AD
 
 # Different sizes of standard glyph set
 from assistantLib.assistantParts.glyphsets.Latin_S_set import (LATIN_S_SET_NAME, LATIN_S_SET, SC_NAMES, 
-    SUPS_SINF_NAMES, NUMR_DNOM_NAMES, TAB_NAMES, ONUM_NAMES)
+    SUPS_SINF_NAMES, NUMR_DNOM_NAMES, TAB_NAMES, ONUM_NAMES, ALT_NAMES)
 from assistantLib.assistantParts.glyphsets.Latin_M_set import LATIN_M_SET_NAME, LATIN_M_SET
 from assistantLib.assistantParts.glyphsets.Latin_L_set import LATIN_L_SET_NAME, LATIN_L_SET
 from assistantLib.assistantParts.glyphsets.Latin_XL_set import LATIN_XL_SET_NAME, LATIN_XL_SET
@@ -84,7 +84,7 @@ class GlyphSet:
     # For doc-testing only. Redefine in inheriting classes.
     GLYPH_DATA = {} # Key is glyph name, value is GlyphData instance
 
-    def __init__(self, name=None, glyphData=None, sc=False, superior=False, tab=False, onum=False):
+    def __init__(self, name=None, glyphData=None, sc=False, superior=False, tab=False, onum=False, alt=False):
         """Answer the request type of glyphset. 
         """
         self.name = name
@@ -94,6 +94,9 @@ class GlyphSet:
         elif glyphData is None:
             glyphData = self.GLYPH_DATA # Redefined by inheriting class
         self.glyphs = deepcopy(glyphData) # Deep copy the data, in case it's altered by the instance.
+
+        if alt:
+            self._appendAlt()
 
         if sc:
             self._appendSmallCaps()
@@ -234,7 +237,7 @@ class GlyphSet:
             if gName in self.glyphs:
                 gNameExt = gName + tabExt
                 if gNameExt in self.glyphs: # Only if it does not exist already
-                    print(f'### _appendLc: GlyphData /{gNameExt} already exists')
+                    print(f'### _appendOnum: GlyphData /{gNameExt} already exists')
                 else:
                     self.glyphs[gNameExt] = gd = deepcopy(self.glyphs[gName])
                     gd.name = gNameExt
@@ -243,6 +246,18 @@ class GlyphSet:
                         gd.l = gd.r = gName
                     elif gd.base is not None:
                         gd.base = gName.replace('.tab', '.onum')
+
+    def _appendAlt(self):
+        altExt = '.alt'
+        for gName in ALT_NAMES:
+            if gName in self.glyphs:
+                gNameExt = gName + altExt
+                if gNameExt in self.glyphs: # Only if it does not exist already
+                    print(f'### _appendAlt: GlyphData /{gNameExt} already exists')
+                else:
+                    self.glyphs[gNameExt] = gd = deepcopy(self.glyphs[gName])
+                    gd.name = gNameExt
+                    gd.uni = gd.hex = gd.c = None
 
 
     def appendGlyphSet(self, gs):

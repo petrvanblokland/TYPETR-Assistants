@@ -84,9 +84,9 @@ LATIN_S_SET = GDS = {
     'degree': GD(name='degree', uni=0x00B0, hex='00B0', c='°', isLower=True, comment='° DEGREE SIGN'),
     'divide': GD(name='divide', uni=0x00F7, hex='00F7', c='÷', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=True, comment='÷ obelus'),
     'dollar': GD(name='dollar', uni=0x0024, hex='0024', c='$', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='S', isLower=False, comment='$ milreis'),
-    'dollar.alt': GD(name='dollar.alt', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='S', isLower=False, comment='$ milreis'),
+    #'dollar.alt': GD(name='dollar.alt', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='S', isLower=False, comment='$ milreis'),
     'bitcoin': GD(uni=0x20bf, c='₿', name='bitcoin', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='B', height=GD.CAT_CAP_HEIGHT, overshoot=GD.CAT_CAP_OVERSHOOT),
-    'bitcoin.alt': GD(l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, name='bitcoin.alt', srcName='bitcoin', height=GD.CAT_CAP_HEIGHT, overshoot=GD.CAT_CAP_OVERSHOOT),
+    #'bitcoin.alt': GD(l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, name='bitcoin.alt', srcName='bitcoin', height=GD.CAT_CAP_HEIGHT, overshoot=GD.CAT_CAP_OVERSHOOT),
 
     'exclam': GD(name='exclam', uni=0x0021, hex='0021', c='!', l='H', l2r='self', isLower=True, comment='! factorial'),
     'exclamdown': GD(name='exclamdown', uni=0x00A1, hex='00A1', c='¡', l2r='exclam', r2l='exclam', isLower=True, comment='¡ INVERTED EXCLAMATION MARK'),
@@ -734,14 +734,11 @@ LATIN_S_SET = GDS = {
     'zeroslash': GD(g2='zero', g1='zero', l='zero', w='zero', name='zeroslash', base='zero', isLower=False, srcName='slash', comment='0 Digits, ASCII'),
     'one': GD(g2='one', g1='one', l2r='self', uni=0x0031, c='1', name='one', isLower=False, comment='1'),
     'two': GD(g2='two', g1='two', l2r='self', uni=0x0032, c='2', name='two', isLower=False, comment='2'),
-    'two.alt1': GD(g2='two', g1='two', l='two', r='two', name='two.alt1', srcName='two', isLower=False, comment='2 alternative'),
     'three': GD(g2='three', g1='three', l2r='self', uni=0x0033, c='3', name='three', isLower=False, comment='3'),
     'four': GD(g2='four', g1='four', uni=0x0034, c='4', name='four', isLower=False, comment='4'),
     'five': GD(g2='five', g1='five', l2r='self', uni=0x0035, c='5', name='five', isLower=False, comment='5'),
-    'five.alt1': GD(g2='five', g1='five', l='five', r='five', name='five.alt1', srcName='five', isLower=False, comment='5 alternative'),
     'six': GD(g2='six', g1='six',  l2r='self', uni=0x0036, c='6', name='six', isLower=False, comment='6'),
     'seven': GD(g2='seven', g1='seven', uni=0x0037, c='7', name='seven', isLower=False, comment='7'),
-    'seven.alt1': GD(g2='seven', g1='seven', l='seven', r='seven', name='seven.alt1', srcName='seven', isLower=False, comment='7 alternative'),
     'eight': GD(g2='eight', g1='eight', l2r='self', uni=0x0038, c='8', name='eight', isLower=False, comment='8'),
     'nine': GD(g2='nine', g1='nine', l2r='six', r2l='six', uni=0x0039, c='9', name='nine', isLower=False, comment='9'),
 
@@ -789,7 +786,7 @@ SC_NAMES = (
     'L', 'Lacute', 'Lcaron', 'Lcommaaccent', 'Lslash', 'Ldot', 
     'M', 
     'N', 'Nacute', 'Ncaron', 'Ncommaaccent', 'Ndotaccent', 'Ndotbelow', 'Nhookleft', 'Ntilde', 
-    'O', 'OE', 'Oacute', 'Obreve', 'Ocaron', 'Ocircumflex', 'Odieresis', 'Odotbelow', 'Ograve', 'Ohungarumlaut', 'Omacron', 'Oopen', 'Oslash', 'Otilde', 'Oslashacute', 
+    'O', 'OE', 'Oacute', 'Obreve', 'Ocaron', 'Ocircumflex', 'Odieresis', 'Odotbelow', 'Ograve', 'Ohungarumlaut', 'Omacron', 'Oopen', 'Oslash', 'Oslash.alt', 'Otilde', 'Oslashacute', 'Oslashacute.alt', 
     'P', 'Pdotaccent', 
     'Q', 
     'R', 'Racute', 'Rcaron', 'Rcommaaccent', 
@@ -862,6 +859,12 @@ ONUM_NAMES = (
     'zero', 'zeroslash', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
     'zero.tab', 'zeroslash.tab', 'one.tab', 'two.tab', 'three.tab', 'four.tab', 'five.tab', 'six.tab', 'seven.tab', 'eight.tab', 'nine.tab',
 
+)
+# Used by GlyphSet class to add alt glyphs with .alt extension
+ALT_NAMES = (
+    'dollar', 'cent', 'ef-cy', 'bitcoin', 
+    'Oslash', 'Oslashacute', 
+    'oslash', 'oslashacute', 
 )
 
 
