@@ -254,7 +254,7 @@ CYRILLIC_SET = {
    'e-cy': GD(name='e-cy', uni=0x0454, hex='0454', c='є', l='o', r='c', isLower=True, gid=729),
    'edieresis-cy': GD(name='edieresis-cy', uni=0x04ED, hex='04ED', c='ӭ', l='ereversed-cy', r='o', base='ereversed-cy', accents=['dieresiscmb.uc'], isLower=True, anchors=['top'], gid=882),
    'ef-cy': GD(name='ef-cy', uni=0x0444, hex='0444', c='ф', l2r='ef-cy', isLower=True, gid=713),
-   # /ef-cy.alt is auto-created.
+   'ef-cy.alt': GD(name='ef-cy.alt', l2r='ef-cy', isLower=True, gid=713),
    'eiotified-cy': GD(name='eiotified-cy', uni=0x0465, hex='0465', c='ѥ', l='en-cy', r='c', isLower=True, gid=746),
    'el-cy': GD(name='el-cy', uni=0x043B, hex='043B', c='л', r='en-cy', isLower=True, gid=704),
    'eltail-cy': GD(name='eltail-cy', uni=0x04C6, hex='04C6', c='ӆ', l='el-cy', r='iishorttail-cy', base='el-cy', accents=['tail.component-cy'], isLower=True, gid=843),

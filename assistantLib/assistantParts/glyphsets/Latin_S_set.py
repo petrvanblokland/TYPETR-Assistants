@@ -75,6 +75,7 @@ LATIN_S_SET = GDS = {
     'colon': GD(name='colon', uni=0x003A, hex='003A', c=':', l='period', r='period', isLower=True, comment=': COLON'),
     'cedilla': GD(name='cedilla', base='cedillacmb', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, isLower=True),
     'cent': GD(name='cent', uni=0x00A2, hex='00A2', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, c='¢', isLower=True, comment='¢ CENT SIGN'),
+    'cent.alt': GD(name='cent.alt', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=True, comment='¢ CENT SIGN'),
     'comma': GD(name='comma', uni=0x002C, hex='002C', c=',', l='off', isLower=True, comment=', separator, decimal'),
     'copyright': GD(name='copyright', uni=0x00A9, hex='00A9', c='©', l='O', r='O', isLower=True, base='largecircle', comment='© COPYRIGHT SIGN'),
     'copyrightsound': GD(l='copyright', r='copyright', uni=0x2117, base='largecircle', name='copyrightsound'),
@@ -84,9 +85,9 @@ LATIN_S_SET = GDS = {
     'degree': GD(name='degree', uni=0x00B0, hex='00B0', c='°', isLower=True, comment='° DEGREE SIGN'),
     'divide': GD(name='divide', uni=0x00F7, hex='00F7', c='÷', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=True, comment='÷ obelus'),
     'dollar': GD(name='dollar', uni=0x0024, hex='0024', c='$', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='S', isLower=False, comment='$ milreis'),
-    #'dollar.alt': GD(name='dollar.alt', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='S', isLower=False, comment='$ milreis'),
+    'dollar.alt': GD(name='dollar.alt', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='S', isLower=False, comment='$ milreis'),
     'bitcoin': GD(uni=0x20bf, c='₿', name='bitcoin', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='B', height=GD.CAT_CAP_HEIGHT, overshoot=GD.CAT_CAP_OVERSHOOT),
-    #'bitcoin.alt': GD(l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, name='bitcoin.alt', srcName='bitcoin', height=GD.CAT_CAP_HEIGHT, overshoot=GD.CAT_CAP_OVERSHOOT),
+    'bitcoin.alt': GD(l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, name='bitcoin.alt', base='B', height=GD.CAT_CAP_HEIGHT, overshoot=GD.CAT_CAP_OVERSHOOT),
 
     'exclam': GD(name='exclam', uni=0x0021, hex='0021', c='!', l='H', l2r='self', isLower=True, comment='! factorial'),
     'exclamdown': GD(name='exclamdown', uni=0x00A1, hex='00A1', c='¡', l2r='exclam', r2l='exclam', isLower=True, comment='¡ INVERTED EXCLAMATION MARK'),
@@ -313,6 +314,7 @@ LATIN_S_SET = GDS = {
     'Omacron': GD(name='Omacron', uni=0x014C, hex='014C', c='Ō', l='O', r='O', base='O', accents=['macroncmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ō'),
     'Oopen': GD(name='Oopen', uni=0x0186, hex='0186', c='Ɔ', r='O', r2l='C', srcName='O', comment='Ɔ OPEN O, LATIN CAPITAL LETTER'),
     'Oslash': GD(name='Oslash', uni=0x00D8, hex='00D8', c='Ø', l='O', w='O', base='O', anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ø STROKE, LATIN CAPITAL LETTER O WITH'),
+    'Oslash.alt': GD(name='Oslash.alt', l='O', w='O', base='O', anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ø STROKE, LATIN CAPITAL LETTER O WITH'),
     'Otilde': GD(name='Otilde', uni=0x00D5, hex='00D5', c='Õ', l='O', r='O', base='O', accents=['tildecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Õ O WITH TILDE, LATIN CAPITAL LETTER'),
 
     # P
@@ -618,6 +620,7 @@ LATIN_S_SET = GDS = {
     'omacron': GD(name='omacron', uni=0x014D, hex='014D', c='ō', l='o', r='o', base='o', accents=['macroncmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ō O WITH MACRON, LATIN SMALL LETTER'),
     'oopen': GD(name='oopen', uni=0x0254, hex='0254', c='ɔ', r2l='c', srcName='o', isLower=True, anchors=['dot'], comment='ɔ OPEN O, LATIN SMALL LETTER'),
     'oslash': GD(name='oslash', uni=0x00F8, hex='00F8', c='ø', base='o', isLower=True, anchors=['bottom', 'middle', 'top'], comment='ø STROKE, LATIN SMALL LETTER O WITH'),
+    'oslash.alt': GD(name='oslash.alt', base='o', isLower=True, anchors=['bottom', 'middle', 'top'], comment='ø STROKE, LATIN SMALL LETTER O WITH'),
     'otilde': GD(name='otilde', uni=0x00F5, hex='00F5', c='õ', base='o', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='õ O WITH TILDE, LATIN SMALL LETTER'),
     'oogonek': GD(name='oogonek', uni=0x01EB, hex='01EB', c='ǫ', base='o', accents=['ogonekcmb'],  isLower=True, anchors=['top', 'middle', 'bottom']),
 
@@ -860,13 +863,6 @@ ONUM_NAMES = (
     'zero.tab', 'zeroslash.tab', 'one.tab', 'two.tab', 'three.tab', 'four.tab', 'five.tab', 'six.tab', 'seven.tab', 'eight.tab', 'nine.tab',
 
 )
-# Used by GlyphSet class to add alt glyphs with .alt extension
-ALT_NAMES = (
-    'dollar', 'cent', 'ef-cy', 'bitcoin', 
-    'Oslash', 'Oslashacute', 
-    'oslash', 'oslashacute', 
-)
-
 
 if __name__ == '__main__':
     for gName, gd in GDS.items():

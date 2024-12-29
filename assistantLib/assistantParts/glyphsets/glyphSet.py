@@ -95,9 +95,6 @@ class GlyphSet:
             glyphData = self.GLYPH_DATA # Redefined by inheriting class
         self.glyphs = deepcopy(glyphData) # Deep copy the data, in case it's altered by the instance.
 
-        if alt:
-            self._appendAlt()
-
         if sc:
             self._appendSmallCaps()
 
@@ -246,19 +243,6 @@ class GlyphSet:
                         gd.l = gd.r = gName
                     elif gd.base is not None:
                         gd.base = gName.replace('.tab', '.onum')
-
-    def _appendAlt(self):
-        altExt = '.alt'
-        for gName in ALT_NAMES:
-            if gName in self.glyphs:
-                gNameExt = gName + altExt
-                if gNameExt in self.glyphs: # Only if it does not exist already
-                    print(f'### _appendAlt: GlyphData /{gNameExt} already exists')
-                else:
-                    self.glyphs[gNameExt] = gd = deepcopy(self.glyphs[gName])
-                    gd.name = gNameExt
-                    gd.uni = gd.hex = gd.c = None
-
 
     def appendGlyphSet(self, gs):
         for gdName, gd in gs.items():
