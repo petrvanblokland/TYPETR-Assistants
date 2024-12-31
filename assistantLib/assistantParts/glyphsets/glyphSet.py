@@ -15,7 +15,7 @@ from assistantLib.assistantParts.glyphsets.anchorData import AD
 
 # Different sizes of standard glyph set
 from assistantLib.assistantParts.glyphsets.Latin_S_set import (LATIN_S_SET_NAME, LATIN_S_SET, SC_NAMES, 
-    SUPS_SINF_NAMES, NUMR_DNOM_NAMES, TAB_NAMES, ONUM_NAMES, ALT_NAMES)
+    SUPS_SINF_NAMES, NUMR_DNOM_NAMES, TAB_NAMES, ONUM_NAMES)
 from assistantLib.assistantParts.glyphsets.Latin_M_set import LATIN_M_SET_NAME, LATIN_M_SET
 from assistantLib.assistantParts.glyphsets.Latin_L_set import LATIN_L_SET_NAME, LATIN_L_SET
 from assistantLib.assistantParts.glyphsets.Latin_XL_set import LATIN_XL_SET_NAME, LATIN_XL_SET

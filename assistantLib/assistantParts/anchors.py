@@ -834,7 +834,7 @@ class AssistantPartAnchors(BaseAssistantPart):
 
     def constructAnchorMiddleX(self, g, gd, a, ax, ay):
         """Answer the X position of as average of TopX and BottomX. If there is not point (e.g. just contours), then answer the middle of the boundaries."""
-        return (self.constructAnchorTopX(g, a, ax, ay) + self.constructAnchorBottomX(g, a, ax, ay))/2
+        return (self.constructAnchorTopX(g, gd, a, ax, ay) + self.constructAnchorBottomX(g, gd, a, ax, ay))/2
 
     def constructAnchorBottomX(self, g, gd, a, ax, ay):
         """Answer the X position of the lowest point(s). If there is not point (e.g. just contours), then answer the middle of the bounaries."""
@@ -853,7 +853,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         if xx: # In case it was defined
             return int(round(sum(xx)/len(xx)))
         # Could not find an x, e.g. because of only components. Then use the bounding box width/2 instead.
-        return self.constructAnchorBoundsX2(g, a, ax, ay)
+        return self.constructAnchorBoundsX2(g, gd, a, ax, ay)
 
     def constructAnchorBaselineY(self, g, gd, a, ax, ay):
         """Answer the Y position on baseline."""

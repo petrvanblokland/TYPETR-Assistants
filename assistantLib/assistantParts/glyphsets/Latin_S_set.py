@@ -97,6 +97,11 @@ LATIN_S_SET = GDS = {
     'hyphen': GD(name='hyphen', uni=0x002D, hex='002D', c='-', l2r='self', unicodes=(45, 8208), isLower=True, comment='- minus sign, hyphen'),
     'hyphen.uc': GD(name='hyphen.uc', l='hyphen', r='hyphen', base='hyphen', comment='- minus sign, hyphen'),
     'endash': GD(name='endash', uni=0x2013, hex='2013', c='–', isLower=True, comment='– EN DASH'),
+    'endash.uc': GD(name='endash.uc', isLower=True, base='endash', comment='– EN DASH'),
+    'emdash': GD(g2='hyphen', g1='hyphen', w=GD.CAT_EM, uni=0x2014, c='—', name='emdash', comment='— EM DASH', anchors=[]),
+    'emdash.uc': GD(g2='hyphen', g1='hyphen', l='emdash', r='emdash', name='emdash.uc', base='emdash', comment='— EM DASH Uppercase', anchors=[]),
+    'horizontalbar': GD(g2='hyphen', g1='hyphen', l='emdash', r='emdash', uni=0x2015, c='―', name='horizontalbar', base='emdash', anchors=[]),
+    'horizontalbar.uc': GD(g2='hyphen', g1='hyphen', l='horizontalbar', r='horizontalbar', name='horizontalbar.uc', comment='Horizontal base Uppercase', anchors=[]),
 
     'hungarumlaut': GD(name='hungarumlaut', uni=0x02DD, hex='02DD', c='˝', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='hungarumlautcmb', isLower=True, comment='˝ DOUBLE ACUTE ACCENT'),
 
@@ -123,8 +128,10 @@ LATIN_S_SET = GDS = {
     'percent.tab': GD(name='percent.tab', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, comment='% PERCENT SIGN TAB'),
     'perthousand': GD(l='zerosuperior', r='zerosuperior', uni=0x2030, c='‰', name='perthousand', comment='‰ per thousand', baseline=GD.CAT_NUMR_BASELINE, height=GD.CAT_SUPERIOR_HEIGHT, overshoot=GD.CAT_SUPERIOR_OVERSHOOT),
     'period': GD(name='period', uni=0x002E, hex='002E', c='.', l2r='self', isLower=True, fixSpacing=False, comment='. point, decimal'),
+    'period.uc': GD(name='period.uc', l2r='self', isLower=True, fixSpacing=False, base='period', comment='. point, decimal'),
     'ellipsis': GD(name='ellipsis', uni=0x2026, hex='2026', c='…', l='period', r='period', isLower=True, comment='… three dot leader'),
     'periodcentered': GD(name='periodcentered', uni=0x00B7, hex='00B7', c='·', l='period', r='period', isLower=True),
+    'periodcentered.uc': GD(name='periodcentered.uc', base='periodcentered', l='period', r='period', isLower=True),
     'partialdiff': GD(name='partialdiff', uni=0x2202, hex='2202', c='∂', l='o', r='O', isLower=True, comment='∂ PARTIAL DIFFERENTIAL'),
 
     'plusminus': GD(name='plusminus', uni=0x00B1, hex='00B1', c='±', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=True, comment='± PLUS-MINUS SIGN'),
@@ -527,7 +534,9 @@ LATIN_S_SET = GDS = {
     'greater': GD(name='greater', uni=0x003E, hex='003E', c='>', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='> GREATER-THAN SIGN'),
     'greaterequal': GD(name='greaterequal', uni=0x2265, hex='2265', c='≥', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='≥ GREATER-THAN OR EQUAL TO'),
     'guillemotleft': GD(name='guillemotleft', uni=0x00AB, hex='00AB', l2r='self', c='«', isLower=True),
+    'guillemotleft.uc': GD(name='guillemotleft.uc', l2r='self', isLower=True),
     'guillemotright': GD(name='guillemotright', uni=0x00BB, hex='00BB', l='guillemotleft', r='guillemotleft', c='»', srcName='guillemotright', isLower=True),
+    'guillemotright.uc': GD(name='guillemotright.uc',  l='guillemotleft', r='guillemotleft',  srcName='guillemotright', isLower=True),
     'guilsinglleft': GD(name='guilsinglleft', uni=0x2039, hex='2039', l='guillemotleft', r='guillemotleft', c='‹', isLower=True, comment='‹ SINGLE LEFT-POINTING ANGLE QUOTATION MARK'),
     'guilsinglleft.uc': GD(name='guilsinglleft.uc', l='guilsinglleft', r='guilsinglleft', base='guilsinglleft', isLower=True, comment='‹ SINGLE LEFT-POINTING ANGLE QUOTATION MARK'),
     'guilsinglright': GD(name='guilsinglright', uni=0x203A, hex='203A', l='guillemotleft', r='guillemotleft', c='›', isLower=True, comment='› SINGLE RIGHT-POINTING ANGLE QUOTATION MARK'),
@@ -803,7 +812,7 @@ SC_NAMES = (
     'Z', 'Zacute', 'Zcaron', 'Zdotaccent', 'Zdotbelow'
     'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
     'zeroslash', 'question', 
-    'slash', 'Euro', 'degree', 'germandbls', 'yen', 'ampersand', 'questiondown', 'backslash', 'sterling', 'dollar', 'dollar.alt',
+    'slash', 'Euro', 'degree', 'germandbls', 'yen', 'ampersand', 'questiondown', 'backslash', 'sterling', 'dollar', 'dollar.alt', 'bitcoin', 'bitcoin.alt',
     'parenleft', 'parenright', 'bracketleft', 'bracketright', 'exclam', 'exclamdown', 'braceleft', 'braceright',
 
     # In case CYRILLIC_SET is included, these need to become smallcaps too
@@ -848,7 +857,7 @@ NUMR_DNOM_NAMES = (
 # Used by GlyphSet class to add tab glyph data records. 
 TAB_NAMES = (
     'zero', 'zeroslash', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
-    'cent', 'cent.alt', 'dollar', 'dollar.alt', 'Euro', 'yen', 'sterling', 'bitcoin', 
+    'cent', 'cent.alt', 'dollar', 'dollar.alt', 'Euro', 'yen', 'sterling', 'bitcoin', 'bitcoin.alt', 
     'period', 'comma', 'colon', 'semicolon',
     'plus', 'minus', 'equal', 'notequal', 'less', 'greater', 'lessequal', 'greaterequal', 
     'multiply', 'divide', 'asterisk', 

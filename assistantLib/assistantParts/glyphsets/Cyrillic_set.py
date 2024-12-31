@@ -95,7 +95,7 @@ CYRILLIC_SET = {
 
     #   I
 
-   'I-cy': GD(name='I-cy', uni=0x0406, hex='0406', bl='I', br='I', base='I', anchors=['top', 'middle', 'bottom'], gid=651),
+   'I-cy': GD(name='I-cy', uni=0x0406, hex='0406', l='I', r='I', base='I', anchors=['top', 'middle', 'bottom'], gid=651),
    'Ia-cy': GD(name='Ia-cy', uni=0x042F, hex='042F', c='Я', r='H', gid=692),
    'Idieresis-cy': GD(name='Idieresis-cy', uni=0x04E4, hex='04E4', c='Ӥ', bl='H', br='H', base='Ii-cy', accents=['dieresiscmb.uc'], anchors=['top'], gid=873),
    'Ie-cy': GD(name='Ie-cy', uni=0x0415, hex='0415', c='Е', bl='H', r='E', base='E', anchors=['top', 'middle', 'bottom'], gid=666),
