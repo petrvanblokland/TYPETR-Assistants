@@ -78,7 +78,7 @@ LATIN_M_SET = GDS = deepcopy(LATIN_S_SET)
 
 GDS['AEmacron'] = GD(name='AEmacron', uni=0x01E2, hex='01E2', c='Ǣ', l='A', r='E', base='AE', accents=['macroncmb.uc'], anchors=['bottom', 'middle', 'top'], gid=419)
 GDS['Abreveacute'] = GD(name='Abreveacute', uni=0x1EAE, hex='1EAE', c='Ắ', l='A', r='A', base='Abreve', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1097, comment='Ắ LATIN CAPITAL LETTER A WITH BREVE AND ACUTE')
-GDS['Abrevedotbelow'] = GD(name='Abrevedotbelow', uni=0x1EB6, hex='1EB6', c='Ặ', l='A', r='A', base='Abrevecmb', accents=['dotbelowcmb'], anchors=['bottom', 'middle', 'top'], gid=1105, comment='Ặ LATIN CAPITAL LETTER A WITH BREVE AND DOT BELOW')
+GDS['Abrevedotbelow'] = GD(name='Abrevedotbelow', uni=0x1EB6, hex='1EB6', c='Ặ', l='A', r='A', base='Abreve', accents=['dotbelowcmb'], anchors=['bottom', 'middle', 'top'], gid=1105, comment='Ặ LATIN CAPITAL LETTER A WITH BREVE AND DOT BELOW')
 GDS['Abrevegrave'] = GD(name='Abrevegrave', uni=0x1EB0, hex='1EB0', c='Ằ', l='A', r='A', base='Abreve', accents=['gravecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1099, comment='Ằ LATIN CAPITAL LETTER A WITH BREVE AND GRAVE')
 GDS['Abrevehookabove'] = GD(name='Abrevehookabove', uni=0x1EB2, hex='1EB2', c='Ẳ', l='A', r='A', base='Abreve', accents=['hookabovecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1101, comment='Ẳ LATIN CAPITAL LETTER A WITH BREVE AND HOOK ABOVE')
 GDS['Abrevetilde'] = GD(name='Abrevetilde', uni=0x1EB4, hex='1EB4', c='Ẵ', l='A', r='A', base='Abreve', accents=['tildecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1103, comment='Ẵ LATIN CAPITAL LETTER A WITH BREVE AND TILDE')

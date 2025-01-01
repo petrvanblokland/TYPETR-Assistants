@@ -140,84 +140,90 @@ class AssistantPartInterpolate(BaseAssistantPart):
 
         g.prepareUndo()
 
-        if md.m1 is not None and md.m2 is not None:
+        if md.m1 is None:
+            f1 = f
+        else:
             f1 = self.getFont(md.m1)
+        if md.m2 is None:
+            f2 = f
+        else:
             f2 = self.getFont(md.m2)
-            md1 = self.getMasterData(f1)
-            md2 = self.getMasterData(f2)
 
-            if g.name in f1 and g.name in f2:
-                if 'mod' in g.name: # Use gd.isMod instead?
-                    iFactor = (md.modStem - md1.modStem)/(md2.modStem - md1.modStem)
-                else:
-                    iFactor = (md.HStem - md1.HStem)/(md2.HStem - md1.HStem)
+        md1 = self.getMasterData(f1)
+        md2 = self.getMasterData(f2)
+
+        if g.name in f1 and g.name in f2:
+            if 'mod' in g.name: # Use gd.isMod instead?
+                iFactor = (md.modStem - md1.modStem)/(md2.modStem - md1.modStem)
             else:
-                print(f'### Glyph {g.name} does not exist in source fonts')
-                iFactor = None
+                iFactor = (md.HStem - md1.HStem)/(md2.HStem - md1.HStem)
+        else:
+            print(f'### Glyph {g.name} does not exist in source fonts')
+            iFactor = None
 
-            isLower = self.getLib(g, 'glyphIsLower', gd.isLower) # In case it does not exists, using the flag in GlyphData.isLower as default
+        isLower = self.getLib(g, 'glyphIsLower', gd.isLower) # In case it does not exists, using the flag in GlyphData.isLower as default
 
-            # Change to glyphData.height, so scalerpolation will also work for small caps.
-            if g.name.endswith('.sc'):
-                iScaleY = (md.scHeight - md.scOutline) / f.info.capHeight
-                iScaleX = iScaleY * md.scWidthFactor
-                gName = g.name
-                srcName = gName.replace('.sc', '')
-                tmpName = 'TMP'
-                tmpG = self.copyGlyph(f, srcName, f, tmpName, copyUnicode=False)
-                g = self.copyGlyph(f, srcName, f, gName, copyUnicode=False)
-                print(f'... Scalerpolating /{gName} from /{tmpName} + /{srcName} scOutline={md.scOutline} iScale={(iScaleX, iScaleY)} scFactor={(md.scIFactorX, md.scIFactorY)}')
-                self.interpolateByFactor(g, tmpG, f2[srcName], ix=md.scIFactorX, iy=md.scIFactorY, doCopy=False, copyUnicode=False)
-                calculateOutline(g, thickness=md.scOutline, corner=OL_SQUARE, cap=OL_SQUARE, drawOuter=False)
-                self.scaleGlyph(g, iScaleX, iScaleY)
-                self.offsetGlyph(g, dx=0, dy=md.scOutline/2)
-                g.removeOverlap()
-                g.angledLeftMargin = tmpG.angledLeftMargin  # * iScaleX
-                g.angledRightMargin = tmpG.angledRightMargin    # * iScaleX
-                #f.removeGlyph(tmpName)
+        # Change to glyphData.height, so scalerpolation will also work for small caps.
+        if g.name.endswith('.sc'):
+            iScaleY = (md.scHeight - md.scOutline) / f.info.capHeight
+            iScaleX = iScaleY * md.scWidthFactor
+            gName = g.name
+            srcName = gName.replace('.sc', '')
+            tmpName = 'TMP'
+            tmpG = self.copyGlyph(f, srcName, f, tmpName, copyUnicode=False)
+            g = self.copyGlyph(f, srcName, f, gName, copyUnicode=False)
+            print(f'... Scalerpolating /{gName} from /{tmpName} + /{srcName} scOutline={md.scOutline} iScale={(iScaleX, iScaleY)} scFactor={(md.scIFactorX, md.scIFactorY)}')
+            self.interpolateByFactor(g, tmpG, f2[srcName], ix=md.scIFactorX, iy=md.scIFactorY, doCopy=False, copyUnicode=False)
+            calculateOutline(g, thickness=md.scOutline, corner=OL_SQUARE, cap=OL_SQUARE, drawOuter=False)
+            self.scaleGlyph(g, iScaleX, iScaleY)
+            self.offsetGlyph(g, dx=0, dy=md.scOutline/2)
+            g.removeOverlap()
+            g.angledLeftMargin = tmpG.angledLeftMargin  # * iScaleX
+            g.angledRightMargin = tmpG.angledRightMargin    # * iScaleX
+            #f.removeGlyph(tmpName)
+            changed = True
+
+        elif g.name.endswith('superior'):
+            iScaleY = (md.superiorHeight - md.superiorOutline) / f.info.xHeight
+            iScaleX = iScaleY * md.superiorWidthFactor
+            gName = g.name
+            srcName = gName.replace('superior', '')
+            tmpName = 'TMP'
+            tmpG = self.copyGlyph(f, srcName, f, tmpName, copyUnicode=False)
+            g = self.copyGlyph(f, srcName, f, gName, copyUnicode=False)
+            print(f'... Scalerpolating /{gName} from /{tmpName} + /{srcName} scOutline={md.scOutline} iScale={(iScaleX, iScaleY)} scFactor={(md.scIFactorX, md.scIFactorY)}')
+            self.interpolateByFactor(g, tmpG, f2[srcName], ix=md.superiorIFactorX, iy=md.superiorIFactorY, doCopy=False, copyUnicode=False)
+            calculateOutline(g, thickness=md.superiorOutline, corner=OL_SQUARE, cap=OL_SQUARE, drawOuter=False)
+            self.scaleGlyph(g, iScaleX, iScaleY)
+            self.offsetGlyph(g, dx=0, dy=md.supsBaseline + md.superiorOutline/2)
+            g.removeOverlap()
+            g.angledLeftMargin = tmpG.angledLeftMargin # * iScaleX
+            g.angledRightMargin = tmpG.angledRightMargin # * iScaleX
+            #f.removeGlyph(tmpName)
+            changed = True
+
+        elif g.name.endswith('inferior'):
+            # Assume that the superior component is already there.
+            self.resetComponentPositions(g)
+            self.offsetGlyph(g, dx=0, dy=-md.supsBaseline + md.sinfBaseline)
+
+        elif isLower and f1.info.xHeight != f.info.xHeight: # Test if scalerpolation on the xHeight is needed?
+            iScale = f.info.xHeight / f1.info.xHeight # Now the stems get thicker. Compensate that in the interpolation factor
+            iFactor /= iScale 
+            print(iScale, iFactor)
+        
+            # Now we can just interpolate between the masters, where the factor is defined by their ratio of the three H-stems 
+            if iScale in (None, 1) and iFactor is not None:
+                #print('cdsadsads interpolate', g.name, iFactor)
+                changed = self.interpolateByFactor(g, f1[g.name], f2[g.name], iFactor)
+
+            # If we're doing scalerpolation for xHeight, they
+            elif iScale not in (None, 1):
+                #print('cdsadsads scale', g.name, iScale)
+                self.scaleGlyph(g, iScale)
+                if iFactor is not None:
+                    self.interpolateByFactor(g, f1[g.name], f2[g.name], iFactor)
                 changed = True
-
-            elif g.name.endswith('superior'):
-                iScaleY = (md.superiorHeight - md.superiorOutline) / f.info.xHeight
-                iScaleX = iScaleY * md.superiorWidthFactor
-                gName = g.name
-                srcName = gName.replace('superior', '')
-                tmpName = 'TMP'
-                tmpG = self.copyGlyph(f, srcName, f, tmpName, copyUnicode=False)
-                g = self.copyGlyph(f, srcName, f, gName, copyUnicode=False)
-                #print(f'... superior {tmpName} {srcName} {iFactor}')
-                self.interpolateByFactor(g, tmpG, f2[srcName], ix=md.superiorIFactorX, iy=md.superiorIFactorY, doCopy=False, copyUnicode=False)
-                calculateOutline(g, thickness=md.superiorOutline, corner=OL_SQUARE, cap=OL_SQUARE, drawOuter=False)
-                self.scaleGlyph(g, iScaleX, iScaleY)
-                self.offsetGlyph(g, dx=0, dy=md.supsBaseline + md.superiorOutline/2)
-                g.removeOverlap()
-                g.angledLeftMargin = tmpG.angledLeftMargin # * iScaleX
-                g.angledRightMargin = tmpG.angledRightMargin # * iScaleX
-                #f.removeGlyph(tmpName)
-                changed = True
-
-            elif g.name.endswith('inferior'):
-                # Assume that the superior component is already there.
-                self.resetComponentPositions(g)
-                self.offsetGlyph(g, dx=0, dy=-md.supsBaseline + md.sinfBaseline)
-
-            elif isLower and f1.info.xHeight != f.info.xHeight: # Test if scalerpolation on the xHeight is needed?
-                iScale = f.info.xHeight / f1.info.xHeight # Now the stems get thicker. Compensate that in the interpolation factor
-                iFactor /= iScale 
-                print(iScale, iFactor)
-            
-                # Now we can just interpolate between the masters, where the factor is defined by their ratio of the three H-stems 
-                if iScale in (None, 1) and iFactor is not None:
-                    #print('cdsadsads interpolate', g.name, iFactor)
-                    changed = self.interpolateByFactor(g, f1[g.name], f2[g.name], iFactor)
-
-                # If we're doing scalerpolation for xHeight, they
-                elif iScale not in (None, 1):
-                    #print('cdsadsads scale', g.name, iScale)
-                    self.scaleGlyph(g, iScale)
-                    if iFactor is not None:
-                        self.interpolateByFactor(g, f1[g.name], f2[g.name], iFactor)
-                    changed = True
 
         return changed
 

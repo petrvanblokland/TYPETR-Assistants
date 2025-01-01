@@ -368,7 +368,7 @@ CYRILLIC_SET = {
    'semisoftsign-cy': GD(name='semisoftsign-cy', uni=0x048D, hex='048D', c='ҍ', r='softsign-cy', base='yat-cy', isLower=True, gid=786),
    'sha-cy': GD(name='sha-cy', uni=0x0448, hex='0448', c='ш', l='en-cy', r='en-cy', isLower=True, gid=717),
    'shcha-cy': GD(name='shcha-cy', uni=0x0449, hex='0449', c='щ', l='en-cy', r='tse-cy', isLower=True, gid=718),
-   'shha-cy': GD(name='shha-cy', uni=0x04BB, hex='04BB', c='һ', l='h', r='h', isLower=True, anchors=['top', 'middle', 'bottom'], gid=832),
+   'shha-cy': GD(name='shha-cy', uni=0x04BB, hex='04BB', c='һ', l='h', r='h', base='h', isLower=True, anchors=['top', 'middle', 'bottom'], gid=832),
    'softsign-cy': GD(name='softsign-cy', uni=0x044C, hex='044C', c='ь', l='en-cy', isLower=True, gid=721),
 
     #   t

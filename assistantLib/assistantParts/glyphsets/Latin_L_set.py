@@ -144,14 +144,14 @@ GDS['Cinferior'] = GD(name='Cinferior', l='Csuperior', r='Csuperior', base='Csup
 
 # D
 
-GDS['DZ'] = GD(name='DZ', uni=0x01F1, hex='01F1', c='Ǳ', l='D', r='Z', base='D', accents=['Z'])
-GDS['DZcaron'] = GD(name='DZcaron', uni=0x01C4, hex='01C4', c='Ǆ', l='D', r='Z', base='D', accents=['Z', 'caroncmb.uc'], fixAccents=False)
+GDS['DZ'] = GD(name='DZ', uni=0x01F1, hex='01F1', c='Ǳ', l='D', r='Z', base='Z', accents=['D']) # /Z as base to make anchors go there. /D has negative position on left.
+GDS['DZcaron'] = GD(name='DZcaron', uni=0x01C4, hex='01C4', c='Ǆ', l='D', r='Z', base='DZ', accents=['caroncmb.uc'], fixAccents=False)
 GDS['Dafrican'] = GD(name='Dafrican', uni=0x0189, hex='0189', c='Ɖ', l='Eth', r='D', base='Eth', comment='Ɖ D, LATIN CAPITAL LETTER AFRICAN')
 GDS['Dcedilla'] = GD(name='Dcedilla', uni=0x1E10, hex='1E10', c='Ḑ', l='D', r='D', base='D', accents=['cedillacmb'], anchors=['bottom', 'middle', 'top'])
 GDS['Dcircumflexbelow'] = GD(name='Dcircumflexbelow', uni=0x1E12, hex='1E12', c='Ḓ', l='D', r='D', base='D', accents=['circumflexbelowcmb'], anchors=['bottom', 'middle', 'top'])
 GDS['Ddotaccent'] = GD(name='Ddotaccent', uni=0x1E0A, hex='1E0A', c='Ḋ', l='D', r='D', base='D', accents=['dotaccentcmb.uc'], anchors=['bottom', 'middle', 'top'])
-GDS['Dz'] = GD(name='Dz', uni=0x01F2, hex='01F2', c='ǲ', l='D', r='z', base='D', accents=['z'])
-GDS['Dzcaron'] = GD(name='Dzcaron', uni=0x01C5, hex='01C5', c='ǅ', l='D', r='z', base='D', accents=['z', 'caroncmb.uc'], fixAccents=False)
+GDS['Dz'] = GD(name='Dz', uni=0x01F2, hex='01F2', c='ǲ', l='D', r='z', base='z', isLower=True, accents=['D']) # /z as base to make anchors go there. /D has negative position on left.
+GDS['Dzcaron'] = GD(name='Dzcaron', uni=0x01C5, hex='01C5', c='ǅ', l='D', r='z', base='Dz', isLower=True, accents=['caroncmb.uc'], fixAccents=False)
 
 GDS['Dsuperior'] = GD(name='Dsuperior', l='Hsuperior', r='Osuperior', isMod=True)
 GDS['Dinferior'] = GD(name='Dinferior', l='Dsuperior', r='Dsuperior', base='Dsuperior', isLower=True)
@@ -474,8 +474,8 @@ GDS['dcircumflexbelow'] = GD(name='dcircumflexbelow', uni=0x1E13, hex='1E13', c=
 GDS['ddotaccent'] = GD(name='ddotaccent', uni=0x1E0B, hex='1E0B', c='ḋ', base='d', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
 GDS['dieresisbelowcmb'] = GD(name='dieresisbelowcmb', uni=0x0324, hex='0324', c='̤', w=0, base='dieresiscmb',isLower=True, anchors=['_bottom', 'bottom'])
 GDS['dtail'] = GD(name='dtail', uni=0x0256, hex='0256', c='ɖ', w='d', isLower=True, comment='Glyph unicode 0256 is the lowercase letter "ɖ" in the International Phonetic Alphabet (IPA). It is used to represent a voiced retroflex plosive sound in various languages, including African languages such as Igbo, Yoruba, and Ewe. It is also used in some Native American languages such as Navajo and Tlingit. In linguistics, the IPA is commonly used to transcribe the sounds of human speech, and the glyph unicode 0256 helps to accurately represent this specific sound.')
-GDS['dz'] = GD(name='dz', uni=0x01F3, hex='01F3', c='ǳ', l='d', r='z', base='d', accents=['z'], isLower=True)
-GDS['dzcaron'] = GD(name='dzcaron', uni=0x01C6, hex='01C6', c='ǆ', l='d', r='z', base='d', accents=['z', 'caroncmb'], isLower=True)
+GDS['dz'] = GD(name='dz', uni=0x01F3, hex='01F3', c='ǳ', l='d', r='z', base='z', accents=['d'], isLower=True)
+GDS['dzcaron'] = GD(name='dzcaron', uni=0x01C6, hex='01C6', c='ǆ', l='d', r='z', base='dz', accents=['caroncmb'], isLower=True)
 
 GDS['dblgravecmb'] = GD(name='dblgravecmb', uni=0x030F, hex='030F', c='̏', w=0, isLower=True, anchors=['_top', 'top'])
 GDS['dblgravecmb.uc'] = GD(name='dblgravecmb.uc',w=0, srcName='dblgravecmb', isLower=True, anchors=['_top', 'top'])
