@@ -171,6 +171,7 @@ class AssistantPartInterpolate(BaseAssistantPart):
             srcName = gName.replace('.sc', '')
             tmpName = 'TMP'
             tmpG = self.copyGlyph(f, srcName, f, tmpName, copyUnicode=False)
+            tmpG.unicode = None # Avoid conflicts in FontGoggles
             g = self.copyGlyph(f, srcName, f, gName, copyUnicode=False)
             print(f'... Scalerpolating /{gName} from /{tmpName} + /{srcName} scOutline={md.scOutline} iScale={(iScaleX, iScaleY)} scFactor={(md.scIFactorX, md.scIFactorY)}')
             self.interpolateByFactor(g, tmpG, f2[srcName], ix=md.scIFactorX, iy=md.scIFactorY, doCopy=False, copyUnicode=False)
@@ -190,6 +191,7 @@ class AssistantPartInterpolate(BaseAssistantPart):
             srcName = gName.replace('superior', '')
             tmpName = 'TMP'
             tmpG = self.copyGlyph(f, srcName, f, tmpName, copyUnicode=False)
+            tmpG.unicode = None # Avoid conflicts in FontGoggles
             g = self.copyGlyph(f, srcName, f, gName, copyUnicode=False)
             print(f'... Scalerpolating /{gName} from /{tmpName} + /{srcName} scOutline={md.scOutline} iScale={(iScaleX, iScaleY)} scFactor={(md.scIFactorX, md.scIFactorY)}')
             self.interpolateByFactor(g, tmpG, f2[srcName], ix=md.superiorIFactorX, iy=md.superiorIFactorY, doCopy=False, copyUnicode=False)
