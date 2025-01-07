@@ -516,7 +516,7 @@ LATIN_S_SET = GDS = {
 
     # f
 
-    'f': GD(name='f', uni=0x0066, hex='0066', c='f', l='t', rightMin='-100', anchorTopX='TopX', isLower=True, fixAccents=False, anchors=['bottom', 'middle', 'top'], comment='f'),
+    'f': GD(name='f', uni=0x0066, hex='0066', c='f', l='t', rightMin='-100', anchorTopX='TopX', isLower=True, fixAccents=True, anchors=['bottom', 'middle', 'top'], comment='f'),
     'fi': GD(name='fi', uni=0xFB01, hex='FB01', c='ﬁ', l='f', r='i', base='f.salt_connect', accents=['idotless'], isLower=True, comment='ﬁ f_i'),
     'fl': GD(name='fl', uni=0xFB02, hex='FB02', c='ﬂ', l='f', r='l', isLower=True, base='f.salt_noconnect', accents=['l'], comment='ﬂ f_l'),
 
@@ -642,7 +642,8 @@ LATIN_S_SET = GDS = {
 
     # q
 
-    'q': GD(name='q', uni=0x0071, hex='0071', c='q', l='o', r='jdotless', isLower=True, anchors=['bottom', 'middle', 'top'], comment='q'),
+    'q': GD(name='q', uni=0x0071, hex='0071', c='q', l='o', r='off', # r='jdotless', # Only for Sans
+        isLower=True, anchors=['bottom', 'middle', 'top'], comment='q'),
 
     'quotedbl': GD(name='quotedbl', uni=0x0022, hex='0022', c='"', l='quotesingle', r='quotesingle', isLower=True, comment='" quotation mark, neutral'),
     'quotedblbase': GD(name='quotedblbase', uni=0x201E, hex='201E', c='„', l='quotesingle', r='quotesingle', isLower=True, comment='„ quotation mark, low double comma'),
