@@ -497,7 +497,7 @@ LATIN_S_SET = GDS = {
 
     # e
 
-    'e': GD(name='e', uni=0x0065, hex='0065', c='e', isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='e'),
+    'e': GD(name='e', uni=0x0065, hex='0065', c='e', isLower=True, anchorTopX='TopX', anchors=['bottom', 'middle', 'ogonek', 'top'], comment='e'),
     'eacute': GD(name='eacute', uni=0x00E9, hex='00E9', c='é', anchorTopY='TopY', base='e', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='é E WITH ACUTE, LATIN SMALL LETTER'),
     'ebreve': GD(name='ebreve', uni=0x0115, hex='0115', c='ĕ', anchorTopY='TopY', base='e', accents=['brevecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ĕ E WITH BREVE, LATIN SMALL LETTER'),
     'ecaron': GD(name='ecaron', uni=0x011B, hex='011B', c='ě', anchorTopY='TopY', base='e', accents=['caroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ě E WITH CARON, LATIN SMALL LETTER'),
@@ -544,7 +544,7 @@ LATIN_S_SET = GDS = {
 
     'grave': GD(name='grave', uni=0x0060, hex='0060', c='`', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='gravecmb', isLower=True, comment='` spacing grave accent'),
     'gravecmb': GD(name='gravecmb', uni=0x0300, hex='0300', c='̀', anchorTopY='TopY', w=0, isLower=True, anchors=['_top', 'top']),
-    'gravecmb.uc': GD(name='gravecmb.uc', w=0, isLower=True, anchorTopY='TopY', anchors=['_top', 'top']),
+    'gravecmb.uc': GD(name='gravecmb.uc', w=0, isLower=True, anchorTopY='TopY', srcName='gravecmb', anchors=['_top', 'top']),
 
     # h
 

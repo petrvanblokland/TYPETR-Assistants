@@ -92,7 +92,7 @@ class AssistantPartGuidelines(BaseAssistantPart):
             return False
 
         # Guideline label position angled for italics
-        tg = tan(radians(-f.info.italicAngle or 0))
+        tg = tan(radians(-(f.info.italicAngle or 0)))
 
         overshoot = md.getOvershoot(g.name) # Get the right kind of overshoot for this glyph cetegory
         baseline = md.getBaseline(g.name)

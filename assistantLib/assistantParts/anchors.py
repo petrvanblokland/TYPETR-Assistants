@@ -1098,7 +1098,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         for a in self.getAnchors(g): # Answers selected anchors or all
             if not a.name in AD.CENTERING_ANCHORS: # Does this anchor center?
                 continue # Otherwise ignore
-            x = int(round(g.width/2 + a.y * tan(radians(-g.font.info.italicAngle or 0))))
+            x = int(round(g.width/2 + a.y * tan(radians(-(g.font.info.italicAngle or 0)))))
             y = int(round(a.y))
             if abs(a.x - x) > 1 or abs(a.y - y) > 1:
                 print(f'... Centering anchor “{a.name} of /{g.name}')
@@ -1125,7 +1125,7 @@ class AssistantPartAnchors(BaseAssistantPart):
             anchors = self.getAnchorsDict(g) # Get a dictionary of anchors
             srcAnchors = self.getAnchorsDict(srcG)
             for aName, srcA in srcAnchors.items():
-                x = int(round(srcA.x + srcA.y * tan(radians(-f.info.italicAngle or 0))))
+                x = int(round(srcA.x + srcA.y * tan(radians(-(f.info.italicAngle or 0)))))
                 y = int(round(srcA.y))
                 if aName in anchors: # Only check on the existing anchors, don't make new ones, since roman and italic may not be compatible.
                     a = anchors[aName]

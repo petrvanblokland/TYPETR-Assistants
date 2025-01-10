@@ -671,7 +671,7 @@ class KernNetSpacingAssistant(Subscriber):
         
         y = f.info.capHeight + 200
         if g.angledLeftMargin is not None:
-            x = 0 + tan(radians(-f.info.italicAngle or 0)) * y
+            x = 0 + tan(radians(-(f.info.italicAngle or 0))) * y
             lm = str(int(round(g.angledLeftMargin)))
             self.leftMarginValue.setText(lm)
             self.leftMarginValue.setPosition((x, y))
@@ -679,7 +679,7 @@ class KernNetSpacingAssistant(Subscriber):
             self.leftMarginValue.setPosition((FAR, y))
                 
         if g.angledRightMargin is not None:
-            x = g.width + tan(radians(-f.info.italicAngle or 0)) * y
+            x = g.width + tan(radians(-(f.info.italicAngle or 0))) * y
             rm = str(int(round(g.angledRightMargin)))
             self.rightMarginValue.setText(rm)
             self.rightMarginValue.setPosition((x, y))

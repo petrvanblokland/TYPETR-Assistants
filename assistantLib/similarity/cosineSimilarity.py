@@ -204,12 +204,18 @@ def cosineSimilarity(first, second, side="left", zones=None, clip=200):
         firstLeftProfile = [b for a,b,c in firstProfile if a in zoned]
         secondLeftProfile = [b for a,b,c in secondProfile if a in zoned]
         if firstLeftProfile and secondLeftProfile:
-            result = float(dot(firstLeftProfile, secondLeftProfile)/(norm(firstLeftProfile)*norm(secondLeftProfile)))
+            try:
+                result = float(dot(firstLeftProfile, secondLeftProfile)/(norm(firstLeftProfile)*norm(secondLeftProfile)))
+            except ValueError:
+                return None
     elif side=="right":
         firstRightProfile = [c for a,b,c in firstProfile if a in zoned]
         secondRightProfile = [c for a,b,c in secondProfile if a in zoned]
         if firstRightProfile and secondRightProfile:
-            result = float(dot(firstRightProfile, secondRightProfile)/(norm(firstRightProfile)*norm(secondRightProfile)))
+            try:
+                result = float(dot(firstRightProfile, secondRightProfile)/(norm(firstRightProfile)*norm(secondRightProfile)))
+            except ValueError:
+                return None
     numpy.seterr(**old_settings)  # reset to default
     return result
 

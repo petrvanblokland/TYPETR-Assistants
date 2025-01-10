@@ -559,9 +559,10 @@ class BaseAssistant:
     
     def getAnchor(self, g, anchorName):
         """Answer the named anchor, if it exits. Answer None otherwise."""
-        for anchor in g.anchors:
-            if anchor.name == anchorName:
-                return anchor
+        if g is not None:
+            for anchor in g.anchors:
+                if anchor.name == anchorName:
+                    return anchor
         return None
 
     #   P O I N T S
@@ -584,7 +585,7 @@ class BaseAssistant:
         If baseY is defined, then first project x on the baseline."""
         if baseY is not None:
             x = self.italicX(g, x, -baseY)
-        return x + int(round(tan(radians(-g.font.info.italicAngle or 0)) * y))
+        return x + int(round(tan(radians(-(g.font.info.italicAngle or 0))) * y))
 
     def isQuadratic(self, g):
         for contour in g.contours:
