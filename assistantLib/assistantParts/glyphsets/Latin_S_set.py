@@ -303,7 +303,7 @@ LATIN_S_SET = GDS = {
     'Ncommaaccent': GD(name='Ncommaaccent', uni=0x0145, hex='0145', c='Ņ', l='H', r='H', base='N', accents=['cedillacmb.noconnect'], anchors=['bottom', 'middle', 'top'], comment='Ņ'),
     'Ndotaccent': GD(name='Ndotaccent', uni=0x1E44, hex='1E44', c='Ṅ', l='H', r='H', base='N', accents=['dotaccentcmb.uc'], srcName='uni1E44', anchors=['bottom', 'middle', 'top']),
     'Ndotbelow': GD(name='Ndotbelow', uni=0x1E46, hex='1E46', c='Ṇ', l='H', r='H', base='N', accents=['dotbelowcmb.uc'], srcName='uni1E46', anchors=['bottom', 'middle', 'top']),
-    'Nhookleft': GD(name='Nhookleft', uni=0x019D, hex='019D', c='Ɲ', l='N', r='N', srcName='N'),
+    'Nhookleft': GD(name='Nhookleft', uni=0x019D, hex='019D', c='Ɲ', l='off', r='N', srcName='N'),
     'Ntilde': GD(name='Ntilde', uni=0x00D1, hex='00D1', c='Ñ', l='H', r='H', base='N', accents=['tildecmb.uc'], anchors=['bottom', 'middle', 'top'], comment='Ñ N WITH TILDE, LATIN CAPITAL LETTER'),
 
     # O
@@ -517,8 +517,12 @@ LATIN_S_SET = GDS = {
     # f
 
     'f': GD(name='f', uni=0x0066, hex='0066', c='f', l='t', rightMin='-100', anchorTopX='TopX', isLower=True, fixAccents=True, anchors=['bottom', 'middle', 'top'], comment='f'),
-    'fi': GD(name='fi', uni=0xFB01, hex='FB01', c='ﬁ', l='f', r='i', base='f.salt_connect', accents=['idotless'], isLower=True, comment='ﬁ f_i'),
-    'fl': GD(name='fl', uni=0xFB02, hex='FB02', c='ﬂ', l='f', r='l', isLower=True, base='f.salt_noconnect', accents=['l'], comment='ﬂ f_l'),
+    'f.alt': GD(name='f.alt', l='f', rightMin='-100', anchorTopX='TopX', isLower=True, fixAccents=True, srcName='f', anchors=['bottom', 'middle', 'top'], comment='f.alt, allowing for serif-terminal alternative.'), 
+    'fi': GD(name='fi', uni=0xFB01, hex='FB01', c='ﬁ', l='f', r='i', base='f.alt_connect', accents=['idotless'], isLower=True, comment='ﬁ f_i'),
+    'fl': GD(name='fl', uni=0xFB02, hex='FB02', c='ﬂ', l='f', r='l', isLower=True, base='f.alt_noconnect', accents=['l'], comment='ﬂ f_l'),
+    # Minimal 2 alternatives for connecting (long flag) and not-connecting (short flag)
+    'f.alt_connect': GD(name='f.alt_connect', l='f', rightMin='-100', anchorTopX='TopX', isLower=True, fixAccents=True, srcName='f', anchors=['bottom', 'middle', 'top'], comment='f.alt, allowing for serif-terminal alternative.'), 
+    'f.alt_noconnect': GD(name='f.alt_noconnect', l='f', rightMin='-100', anchorTopX='TopX', isLower=True, fixAccents=True, srcName='f', anchors=['bottom', 'middle', 'top'], comment='f.alt, allowing for serif-terminal alternative.'), 
 
     # g
 

@@ -68,7 +68,7 @@ GREEK_SET = {
    'SigmaLunateSymbol': GD(name='SigmaLunateSymbol', uni=0x03F9, hex='03F9', c='Ϲ', l='C', r='C', gid=638),
    'Stigma': GD(name='Stigma', uni=0x03DA, hex='03DA', c='Ϛ', gid=607),
    'Tau': GD(name='Tau', uni=0x03A4, hex='03A4', c='Τ', l='T', r='T', base='T', anchors=['bottom', 'middle', 'top'], gid=553),
-   'Theta': GD(name='Theta', uni=0x0398, hex='0398', c='Θ', l='O', r='O', gid=542),
+   'Theta': GD(name='Theta', uni=0x0398, hex='0398', c='Θ', l='O', r='O', base='O', gid=542),
    'ThetaSymbol': GD(name='ThetaSymbol', uni=0x03F4, hex='03F4', c='ϴ', l='O', r='O', base='Obarred-cy', anchors=['top'], gid=633),
    'Upsilon': GD(name='Upsilon', uni=0x03A5, hex='03A5', c='Υ', l='Y', r='Y', base='Y', anchors=['bottom', 'middle', 'top'], gid=554),
    'UpsilonacutehookSymbol': GD(name='UpsilonacutehookSymbol', uni=0x03D3, hex='03D3', c='ϓ', l='Y', r='r', base='UpsilonhookSymbol', accents=['tonos-uc'], anchors=['top'], gid=600),
