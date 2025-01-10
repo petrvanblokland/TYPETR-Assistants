@@ -450,7 +450,7 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         gpPrev = gpCurr = gpNext = None # Set for reference of KerningGroupLines
 
-        offsetX = g.width/2/self.KERN_SCALE - (gpLast.x - gpFirst.x)/2 + y * tan(radians(-f.info.italicAngle or 0))
+        offsetX = g.width/2/self.KERN_SCALE - (gpLast.x - gpFirst.x)/2 + y * tan(radians(-(f.info.italicAngle or 0)))
 
         self.spacerWhiteBackground.setPosition((gpFirst.x + offsetX - 2*m, y + f.info.descender - m))
         self.spacerWhiteBackground.setSize((gpLast.x - gpFirst.x + gpLast.w + 4*m, h + 2*m))
@@ -549,11 +549,13 @@ class AssistantPartSpacer(BaseAssistantPart):
             k = f.kerning.get((prevGroup1, currGroup2), 0)
 
             y -= f.info.unitsPerEm * 2
-            xx = x + y * tan(radians(-f.info.italicAngle or 0)) - 30000
+            xx = x + y * tan(radians(-(f.info.italicAngle or 0))) - 30000
 
             for ggIndex1 in range(0, int(len(self.kerningGroupLine1)), 2):
                 gName1 = choice(group1)
                 gName2 = choice(group2)
+                if gName1 not in f or gName2 not in f:
+                    continue
                 g1 = f[gName1] 
                 g2 = f[gName2]
                 #print('[1]', gName1, gName2, k)
@@ -580,11 +582,13 @@ class AssistantPartSpacer(BaseAssistantPart):
             k = f.kerning.get((currGroup1, nextGroup2), 0)
 
             y -= f.info.unitsPerEm * 1.4
-            xx = x + y * tan(radians(-f.info.italicAngle or 0)) - 30000
+            xx = x + y * tan(radians(-(f.info.italicAngle or 0))) - 30000
 
             for ggIndex2 in range(0, int(len(self.kerningGroupLine2)), 2):
                 gName1 = choice(group1)
                 gName2 = choice(group2)
+                if gName1 not in f or gName2 not in f:
+                    continue
                 g1 = f[gName1] 
                 g2 = f[gName2]
                 #print('[2]', gName1, gName2, k)
@@ -626,7 +630,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             gpLast = glyphPositions[-1]
 
             sy = y/self.KERN_SCALE
-            offsetX = g.width/2/self.KERN_SCALE - (gpLast.x - gpFirst.x)/2 + sy * tan(radians(-g.font.info.italicAngle or 0))
+            offsetX = g.width/2/self.KERN_SCALE - (gpLast.x - gpFirst.x)/2 + sy * tan(radians(-(g.font.info.italicAngle or 0)))
             sx = x/self.KERN_SCALE - offsetX
 
 
@@ -660,7 +664,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         gpLast = self.spacerGlyphPositions[-1]
 
         sy = y/self.KERN_SCALE
-        offsetX = g.width/2/self.KERN_SCALE - (gpLast.x - gpFirst.x)/2 - sy * tan(radians(-g.font.info.italicAngle or 0))
+        offsetX = g.width/2/self.KERN_SCALE - (gpLast.x - gpFirst.x)/2 - sy * tan(radians(-(g.font.info.italicAngle or 0)))
         sx = x/self.KERN_SCALE - offsetX
 
         if self.selectedHoverGlyphName is not None: # Is there a current hover selected
@@ -697,8 +701,8 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         #print(f'--- ({knLeft}) {kLeft} {groupKLeft} {kerningTypeLeft} <--> ({knRight}) {kRight} {groupKRight} {kerningTypeRight}')
 
-        y1 = g.font.info.descender - 120
-        y2 = y1 - 120
+        y1 = g.font.info.descender - 60
+        y2 = y1 - 60
 
         if kLeft < 0:
             color = (1, 0, 0, 1)

@@ -83,6 +83,11 @@ class AssistantPartContours(BaseAssistantPart):
             if g.name in f:
                 self.contoursSetStartPoint(f[g.name])
 
+    def fixDirections(self, g):
+        if 'O' in g.font:
+            refG = g.font['O'] # Use this glyph as reference to check on the type of curves.
+            g.correctDirection(trueType=not self.isBezier(refG))
+
     def contoursSetStartPoint(self, g, c=None, event=None):
         """Set the start point to the selected points on [e]. Auto select the point on [E] key.
         If the [x] Do all fonts is checked, then do all fonts,"""
@@ -94,6 +99,11 @@ class AssistantPartContours(BaseAssistantPart):
         openContours = []
 
         g.prepareUndo()
+
+        # Correct the directions of the glyph to PostScript standard.
+        # Direction is counter-clockwise, the arrow is on the black area.
+        self.fixDirections(g)
+
         for cIndex, contour in enumerate(g.contours):
             selected = auto = x = y = None
             points = contour.points
@@ -129,7 +139,7 @@ class AssistantPartContours(BaseAssistantPart):
             for pIndex, contour in autoContours:
                 if pIndex:
                     # Make x show same as angled value in EditorWindow
-                    x = contour.points[pIndex].x - int(round((tan(radians(-g.font.info.italicAngle or 0)) * contour.points[pIndex].y)))
+                    x = contour.points[pIndex].x - int(round((tan(radians(-(g.font.info.italicAngle or 0))) * contour.points[pIndex].y)))
                     print(f'... Altering startpoint to {(x, contour.points[pIndex].y)}')
                     contour.naked().setStartPoint(pIndex)
                     changed = True

@@ -225,7 +225,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                     totalFamilyOverviewWidth += max(f.info.unitsPerEm/2, ufoG.width + f.info.unitsPerEm * self.FAMILY_LABEL_SPACING)
 
         totalFamilyOverviewSingleWidth = totalFamilyOverviewWidth/len(self.getUfoPaths(parentPath))
-        italicOffset = y * tan(radians(-g.font.info.italicAngle or 0))
+        italicOffset = y * tan(radians(-(g.font.info.italicAngle or 0)))
         startPos = (g.width/self.FAMILY_OVERVIEW_SCALE - totalFamilyOverviewWidth)/2 + italicOffset
         return startPos, totalFamilyOverviewSingleWidth
 
