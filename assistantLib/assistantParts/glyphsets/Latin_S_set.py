@@ -460,6 +460,7 @@ LATIN_S_SET = GDS = {
     'bullet': GD(name='bullet', uni=0x2022, hex='2022', c='•', isLower=True, l2r='self', comment='• small circle, black'),
     'bullet.uc': GD(name='bullet.uc', l='bullet', r='bullet', base='bullet', isLower=True, comment='• small circle, black'),
 
+    'breve': GD(l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, uni=0x02d8, c='˘', name='breve', base='brevecmb', comment='˘ Spacing Clones of Diacritics', anchors=[]),
     'brevecmb': GD(name='brevecmb', uni=0x0306, hex='0306', anchorTopY='TopY', c='̆', w=0, srcName='uni0306', isLower=True, anchors=['_top', 'top']),
     'brevecmb.uc': GD(name='brevecmb.uc', w=0, anchorTopY='TopY', srcName='brevecmb', isLower=True, anchors=['_top', 'top']),
 

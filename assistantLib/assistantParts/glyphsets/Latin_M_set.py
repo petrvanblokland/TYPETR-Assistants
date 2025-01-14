@@ -151,7 +151,7 @@ GDS['Ohm'] = GD(name='Ohm', uni=0x2126, hex='2126', c='Ω', l='O', l2r='self', 
 
 GDS['Rdotaccent'] = GD(name='Rdotaccent', uni=0x1E58, hex='1E58', c='Ṙ', l='H', r='R', base='R', accents=['dotaccentcmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1011)
 GDS['Rdotbelow'] = GD(name='Rdotbelow', uni=0x1E5A, hex='1E5A', c='Ṛ', l='H', r='R', base='R', accents=['dotbelowcmb'], anchors=['bottom', 'middle', 'top'], gid=1013)
-GDS['Rdotbelowmacron'] = GD(name='Rdotbelowmacron', uni=0x1E5C, hex='1E5C', c='Ṝ', l='H', r='R', base='Rmacron', accents=['dotbelowcmb'], anchors=['bottom', 'middle', 'top'], gid=1015)
+GDS['Rdotbelowmacron'] = GD(name='Rdotbelowmacron', uni=0x1E5C, hex='1E5C', c='Ṝ', l='H', r='R', base='Rdotbelow', accents=['macroncmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1015)
 GDS['Rlinebelow'] = GD(name='Rlinebelow', uni=0x1E5E, hex='1E5E', c='Ṟ', base='R', accents=['macronbelowcmb'], anchors=['bottom', 'middle', 'top'], gid=1017)
 
 # T
@@ -166,7 +166,7 @@ GDS['Udieresiscaron'] = GD(name='Udieresiscaron', uni=0x01D9, hex='01D9', c='Ǚ'
 GDS['Udieresisgrave'] = GD(name='Udieresisgrave', uni=0x01DB, hex='01DB', c='Ǜ', l='U', r='U', base='Udieresis', accents=['gravecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=412)
 GDS['Udieresismacron'] = GD(name='Udieresismacron', uni=0x01D5, hex='01D5', c='Ǖ', l='U', r='U', base='Udieresis', accents=['macroncmb.uc'], anchors=['bottom', 'middle', 'top'], gid=406)
 GDS['Uhookabove'] = GD(name='Uhookabove', uni=0x1EE6, hex='1EE6', c='Ủ', l='U', r='U', base='U', accents=['hookabovecmb.uc'], anchors=['bottom', 'middle', 'top'], comment='Ủ LATIN CAPITAL LETTER U WITH HOOK ABOVE')
-GDS['Uhorn'] = GD(name='Uhorn', uni=0x01AF, hex='01AF', c='Ư', l='U', rightMin='minRight', base='U', accents=['horncmb.uc'], anchors=['bottom', 'top'], gid=368, comment='Ư LATIN CAPITAL LETTER U WITH HORN')
+GDS['Uhorn'] = GD(name='Uhorn', uni=0x01AF, hex='01AF', c='Ư', l='U', anchorTopY='U', rightMin='minRight', base='U', accents=['horncmb.uc'], anchors=['bottom', 'top'], gid=368, comment='Ư LATIN CAPITAL LETTER U WITH HORN')
 GDS['Uhornacute'] = GD(name='Uhornacute', uni=0x1EE8, hex='1EE8', c='Ứ', l='U', r='Uhorn', rightMin='minRight', base='Uhorn', accents=['acutecmb.uc'], anchors=['bottom', 'top'], gid=1155, comment='Ứ LATIN CAPITAL LETTER U WITH HORN AND ACUTE')
 GDS['Uhorndotbelow'] = GD(name='Uhorndotbelow', uni=0x1EF0, hex='1EF0', c='Ự', l='U', r='Uhorn', rightMin='minRight', base='Uhorn', accents=['dotbelowcmb'], anchors=['bottom', 'top'], gid=1163, comment='Ự LATIN CAPITAL LETTER U WITH HORN AND DOT BELOW')
 GDS['Uhorngrave'] = GD(name='Uhorngrave', uni=0x1EEA, hex='1EEA', c='Ừ', l='U', r='Uhorn', rightMin='minRight', base='Uhorn', accents=['gravecmb.uc'], anchors=['bottom', 'top'], gid=1157, comment='Ừ LATIN CAPITAL LETTER U WITH HORN AND GRAVE')

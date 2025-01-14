@@ -195,7 +195,7 @@ class AnchorData:
                   'plusbelowcmb', 'ringbelowcmb', 'cedillacmb'),
         MIDDLE_: ('slashshortcomb', 'slashshortcmb'),
         OGONEK_: ('ogonekcomb', 'ogonekcmb'),
-        TONOS_: ('tonoscomb', 'tonoscmb', 'tonos-uc',),
+        TONOS_: ('tonoscomb', 'tonoscmb', 'tonos-uc', 'tonoscmb.uc'),
         VERT_: ('caronvert.component', 'caroncmb.vert',),
         DOT_: ('dotmiddle.component', 'dotmiddlecmb', ),
     }
@@ -848,7 +848,7 @@ class AnchorData:
     _DOT_ANCHORS = {'dotmiddle.component'}
 
     _TONOS_ANCHORS = {'dasia-uc', 'dasiaoxia-uc', 'dasiaperispomeni-uc', 'dasiavaria-uc', 'oxia-uc', 'psili-uc', 'psilioxia-uc', 
-    'psiliperispomeni-uc', 'psilivaria-uc', 'tonoscomb', 'tonoscmb', 'tonos-uc', 'varia-uc'}
+    'psiliperispomeni-uc', 'psilivaria-uc', 'tonoscomb', 'tonoscmb', 'tonos-uc', 'tonoscmb.uc', 'varia-uc'}
 
     _VERT_ANCHORS = {'caronvert.component'}
 

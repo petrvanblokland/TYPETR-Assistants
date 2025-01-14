@@ -150,7 +150,7 @@ GDS['Dafrican'] = GD(name='Dafrican', uni=0x0189, hex='0189', c='Ɖ', l='Eth', r
 GDS['Dcedilla'] = GD(name='Dcedilla', uni=0x1E10, hex='1E10', c='Ḑ', l='D', r='D', base='D', accents=['cedillacmb'], anchors=['bottom', 'middle', 'top'])
 GDS['Dcircumflexbelow'] = GD(name='Dcircumflexbelow', uni=0x1E12, hex='1E12', c='Ḓ', l='D', r='D', base='D', accents=['circumflexbelowcmb'], anchors=['bottom', 'middle', 'top'])
 GDS['Ddotaccent'] = GD(name='Ddotaccent', uni=0x1E0A, hex='1E0A', c='Ḋ', l='D', r='D', base='D', accents=['dotaccentcmb.uc'], anchors=['bottom', 'middle', 'top'])
-GDS['Dz'] = GD(name='Dz', uni=0x01F2, hex='01F2', c='ǲ', l='D', r='z', base='z', isLower=True, accents=['D']) # /z as base to make anchors go there. /D has negative position on left.
+GDS['Dz'] = GD(name='Dz', uni=0x01F2, hex='01F2', c='ǲ', l='D', r='z', base='z', anchorTopY='z', anchorTopX='z', isLower=True, accents=['D']) # /z as base to make anchors go there. /D has negative position on left.
 GDS['Dzcaron'] = GD(name='Dzcaron', uni=0x01C5, hex='01C5', c='ǅ', l='D', r='z', base='Dz', isLower=True, accents=['caroncmb.uc'], fixAccents=False)
 
 GDS['Dsuperior'] = GD(name='Dsuperior', l='Hsuperior', r='Osuperior', isMod=True)
@@ -279,7 +279,7 @@ GDS['Ninferior'] = GD(name='Ninferior', l='Nsuperior', r='Nsuperior', base='Nsup
 
 # O
 
-GDS['OU'] = GD(name='OU', uni=0x0222, hex='0222', c='Ȣ', l='o', r='o')
+GDS['OU'] = GD(name='OU', uni=0x0222, hex='0222', c='Ȣ', l='O', r='O')
 GDS['Ocenteredtilde'] = GD(name='Ocenteredtilde', uni=0x019F, hex='019F', c='Ɵ', l='O', r='O', base='O', srcName='asciitilde')
 GDS['Odblgrave'] = GD(name='Odblgrave', uni=0x020C, hex='020C', c='Ȍ', bl='O', base='O', accents=['dblgravecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'])
 GDS['Odieresismacron'] = GD(name='Odieresismacron', uni=0x022A, hex='022A', c='Ȫ', base='Odieresis', accents=['macroncmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'])
@@ -614,7 +614,7 @@ GDS['linferior'] = GD(name='linferior', uni=0x2097, hex='2097', c='ₗ', l='lsup
 GDS['macute'] = GD(name='macute', uni=0x1E3F, hex='1E3F', c='ḿ', base='m', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
 GDS['mhook'] = GD(name='mhook', uni=0x0271, hex='0271', c='ɱ', srcName='m', l='m', r='j', isLower=True)
 GDS['minussuperior'] = GD(name='minussuperio', uni=0x02D7, hex='02D7', c='˗', l=GD.CAT_MOD_MIN_MARGIN, r=GD.CAT_MOD_MIN_MARGIN, isLower=True, isMod=True)
-GDS['mturned'] = GD(name='mturned', uni=0x026F, hex='026F', c='ɯ', isLower=True)
+GDS['mturned'] = GD(name='mturned', uni=0x026F, hex='026F', srcName='m', l2r='m', r2l='m', c='ɯ', isLower=True)
 
 GDS['minusbelowcmb'] = GD(name='minusbelowcmb', uni=0x0320, hex='0320', c='̠', w=0, base='minussuperior', isLower=True, anchors=['_bottom', 'bottom'])
 
