@@ -167,7 +167,7 @@ GDS['Emacronacute'] = GD(name='Emacronacute', uni=0x1E16, hex='1E16', c='Ḗ', l
 GDS['Emacrongrave'] = GD(name='Emacrongrave', uni=0x1E14, hex='1E14', c='Ḕ', l='H', r='E', base='Emacron', accents=['gravecmb.uc'], anchors=['bottom', 'middle', 'top'])
 GDS['Emacrongrave'] = GD(name='Emacrongrave', uni=0x1E14, hex='1E14', c='Ḕ', l='H', r='E', base='Emacron', accents=['gravecmb.uc'], anchors=['bottom', 'middle', 'top'])
 GDS['Epsilon'] = GD(name='Epsilon', uni=0x0395, hex='0395', c='Ε', l='E', r='E', base='E', anchors=['bottom', 'middle', 'top'])
-GDS['Esh'] = GD(name='Esh', uni=0x01A9, hex='01A9', c='Ʃ')
+GDS['Esh'] = GD(name='Esh', uni=0x01A9, hex='01A9', c='Ʃ', l='summation', r='summation')
 GDS['Estroke'] = GD(name='Estroke', uni=0x0246, hex='0246', c='Ɇ', base='E', accents=['slashlongcmb.uc'], anchors=['bottom', 'middle', 'top'])
 GDS['Etildebelow'] = GD(name='Etildebelow', uni=0x1E1A, hex='1E1A', c='Ḛ', base='E', accents=['tildebelowcmb'], anchors=['bottom', 'middle', 'top'])
 GDS['Ezh'] = GD(name='Ezh', uni=0x01B7, hex='01B7', c='Ʒ', l='three', r='B', anchors=['top'], comment='Ʒ EZH, LATIN CAPITAL LETTER')
@@ -487,8 +487,6 @@ GDS['doublebrevecmb.uc'] = GD(name='doublebrevecmb.uc', w=0, srcName='doublebrev
 
 GDS['dsuperior'] = GD(name='dsuperior', l='osuperior', r='lsuperior', isLower=False, isMod=True)
 GDS['dinferior'] = GD(name='dinferior', l='dsuperior', r='dsuperior', base='dsuperior', isLower=True)
-GDS['dollar.altsuperior'] = GD(name='dollar.altsuperior', l='dollarsuperior', r='dollarsuperior', isLower=False, isMod=True)
-GDS['dollar.altinferior'] = GD(name='dollar.altinferior', l='dollarsuperior', r='dollarsuperior', base='dollar.altsuperior', isLower=True)
 
 GDS['dblquotesuperior'] = GD(name='dblquotesuperior', uni=0x02EE, hex='02EE', c='ˮ', base='quotedblright', isLower=True, isMod=True)
 
@@ -586,7 +584,7 @@ GDS['jinferior'] = GD(name='jsuperior', l='jsuperior', r='isuperior', base='jsup
 
 GDS['kacute'] = GD(name='kacute', uni=0x1E31, hex='1E31', c='ḱ', base='k', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
 GDS['kcaron'] = GD(name='kcaron', uni=0x01E9, hex='01E9', c='ǩ', base='k', accents=['caroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
-GDS['kgreenlandic'] = GD(name='kgreenlandic', uni=0x0138, hex='0138', c='ĸ', isLower=True, anchors=['top'], comment='ĸ LATIN SMALL LETTER KRA')
+GDS['kgreenlandic'] = GD(name='kgreenlandic', uni=0x0138, hex='0138', c='ĸ', l='K.sc', w='K.sc', isLower=True, anchors=['top'], comment='ĸ LATIN SMALL LETTER KRA')
 GDS['kstroke'] = GD(name='kstroke', uni=0xA741, hex='A741', c='ꝁ', l='hyphen', r='k', base='k', isLower=True, anchors=['bottom', 'middle', 'top'])
 GDS['koronis'] = GD(name='koronis', uni=0x1FBD, hex='1FBD', c='᾽', w=0, isLower=True, anchors=['top'])
 

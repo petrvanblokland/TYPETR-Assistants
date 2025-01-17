@@ -588,7 +588,8 @@ LATIN_S_SET = GDS = {
 
     'k': GD(name='k', uni=0x006B, hex='006B', c='k', l='h', r='x', anchorTopY='TopY', isLower=True, anchors=['bottom', 'middle', 'top'], comment='k'),
     'kcommaaccent': GD(name='kcommaaccent', uni=0x0137, hex='0137', c='ķ', anchorTopY='TopY', base='k', accents=['cedillacmb.noconnect'], isLower=True, anchors=['bottom', 'middle', 'top']),
-    'khook': GD(name='khook', uni=0x0199, hex='0199', c='ƙ', l='k', anchorTopY='TopY', srcName='uni0199', isLower=True, comment='ƙ K WITH HOOK, LATIN SMALL LETTER'),
+    # Manuall space from l='k', since the top serif of the /k makes leftmargin different.
+    'khook': GD(name='khook', uni=0x0199, hex='0199', c='ƙ', r='k', anchorTopY='TopY', srcName='uni0199', isLower=True, comment='ƙ K WITH HOOK, LATIN SMALL LETTER'),
 
     # l
 
@@ -786,6 +787,9 @@ LATIN_S_SET = GDS = {
     'circumflex': GD(name='circumflex', uni=0x02C6, hex='02C6', c='ˆ', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='circumflexcmb', isLower=True, comment='ˆ Legacy CIRCUMFLEX ACCENT, MODIFIER LETTER'),
     'circumflexcmb': GD(name='circumflexcmb', uni=0x0302, anchorTopY='TopY', hex='0302', c='̂', w=0, isLower=True, anchors=['_top', 'top']),
     'circumflexcmb.uc': GD(name='circumflexcmb.uc', w=0, anchorTopY='TopY', srcName='circumflexcmb', isLower=True, anchors=['_top', 'top']),
+
+    'ogonek': GD(name='ogonek', uni=0x02DB, hex='02DB', c='˛', l= GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='ogonekcmb', isLower=True, gid=482, comment='˛ OGONEK'),
+    'dotaccent': GD(name='dotaccent', uni=0x02D9, hex='02D9', c='˙', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='dotaccentcmb', isLower=True, gid=480, comment='˙ tone, mandarin chinese fifth or neutral'),
 }
 
 # Used by GlyphSet class to add small cap glyph data records. 
