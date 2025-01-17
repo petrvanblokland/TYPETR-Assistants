@@ -179,7 +179,7 @@ GDS['Einferior'] = GD(name='Einferior', l='Esuperior', r='Esuperior', base='Esup
 
 # F
 
-GDS['Fstroke'] = GD(name='FStroke', uni=0xA798, hex='A798', c='Ꞙ', l='0', r='F')
+GDS['Fstroke'] = GD(name='FStroke', uni=0xA798, hex='A798', c='Ꞙ', l='J', r='F', srcName='F')
 GDS['Fdotaccent'] = GD(name='Fdotaccent', uni=0x1E1E, hex='1E1E', c='Ḟ', base='F', accents=['dotaccentcmb.uc'], anchors=['bottom', 'middle', 'top'])
 GDS['Fhook'] = GD(name='Fhook', uni=0x0191, hex='0191', c='Ƒ', l='off', r='F', srcName='F', comment='Ƒ LATIN CAPITAL LETTER F WITH HOOK')
 
