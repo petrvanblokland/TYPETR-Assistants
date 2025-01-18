@@ -21,7 +21,7 @@ GREEK_SET = {
 
    'Alpha': GD(name='Alpha', uni=0x0391, hex='0391', c='Α', l='A', r='A', base='A', anchors=['bottom', 'middle', 'tonos', 'top'], gid=535),
    'Alphatonos': GD(name='Alphatonos', uni=0x0386, hex='0386', c='Ά', l='comma', r='A', base='A', accents=['tonoscmb.uc'], anchors=['bottom', 'middle', 'top'], gid=526),
-   'Archaicsampi': GD(name='Archaicsampi', uni=0x0372, hex='0372', c='Ͳ', l='U', r='U', gid=512),
+   'Archaicsampi': GD(name='Archaicsampi', uni=0x0372, hex='0372', c='Ͳ', l='T', r='T', srcName='T', gid=512),
    'Beta': GD(name='Beta', uni=0x0392, hex='0392', c='Β', l='H', r='B', base='B', anchors=['bottom', 'middle', 'top'], gid=536),
    'Chi': GD(name='Chi', uni=0x03A7, hex='03A7', c='Χ', l='X', r='X', base='X', anchors=['bottom', 'middle', 'top'], gid=556),
    'Dei-coptic': GD(name='Dei-coptic', uni=0x03EE, hex='03EE', c='Ϯ', l='Bhook', l2r='Bhook', base='I', gid=627),

@@ -214,7 +214,7 @@ GDS['dong'] = GD(name='dong', uni=0x20AB, hex='20AB', c='₫', isLower=True, gid
 # e
 
 GDS['ecircumflexacute'] = GD(name='ecircumflexacute', uni=0x1EBF, hex='1EBF', c='ế', w='e', base='ecircumflex', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1114, comment='ế LATIN SMALL LETTER E WITH CIRCUMFLEX AND ACUTE')
-GDS['ecircumflexdotbelow'] = GD(name='ecircumflexdotbelow', uni=0x1EC7, hex='1EC7', c='ệ', w='e', base='ecircumflex', accents=['circumflexcmb', 'dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1122, comment='ệ LATIN SMALL LETTER E WITH CIRCUMFLEX AND DOT BELOW')
+GDS['ecircumflexdotbelow'] = GD(name='ecircumflexdotbelow', uni=0x1EC7, hex='1EC7', c='ệ', w='e', base='ecircumflex', accents=['dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1122, comment='ệ LATIN SMALL LETTER E WITH CIRCUMFLEX AND DOT BELOW')
 GDS['ecircumflexgrave'] = GD(name='ecircumflexgrave', uni=0x1EC1, hex='1EC1', c='ề', w='e', bl='ecircumflex', base='e', accents=['gravecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1116, comment='ề LATIN SMALL LETTER E WITH CIRCUMFLEX AND GRAVE')
 GDS['ecircumflexhookabove'] = GD(name='ecircumflexhookabove', uni=0x1EC3, hex='1EC3', c='ể', w='e', base='ecircumflex', accents=['hookabovecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1118, comment='ể LATIN SMALL LETTER E WITH CIRCUMFLEX AND HOOK ABOVE')
 GDS['ecircumflextilde'] = GD(name='ecircumflextilde', uni=0x1EC5, hex='1EC5', c='ễ', w='e', base='ecircumflex', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1120, comment='ễ LATIN SMALL LETTER E WITH CIRCUMFLEX AND TILDE')
