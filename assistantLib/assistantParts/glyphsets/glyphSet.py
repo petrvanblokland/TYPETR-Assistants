@@ -89,6 +89,7 @@ class GlyphSet:
         """
         self.name = name
         self.verbose = verbose # Some additional remarks on exceptions and errors
+
         self.hasSc = sc
         self.hasSuperior = superior
         self.hasTab = tab
@@ -241,7 +242,8 @@ class GlyphSet:
             if gName in self.glyphs:
                 gNameExt = gName + tabExt
                 if gNameExt in self.glyphs: # Only if it does not exist already
-                    print(f'### _appendOnum: GlyphData /{gNameExt} already exists')
+                    if self.verbose:
+                        print(f'### _appendOnum: GlyphData /{gNameExt} already exists')
                 else:
                     self.glyphs[gNameExt] = gd = deepcopy(self.glyphs[gName])
                     gd.name = gNameExt
