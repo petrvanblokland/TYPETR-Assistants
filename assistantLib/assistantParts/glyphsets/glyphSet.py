@@ -89,6 +89,12 @@ class GlyphSet:
         """
         self.name = name
 
+        self.hasSc = sc
+        self.hasSuperior = superior
+        self.hasTab = tab
+        self.hasOnum = onum
+        self.hasAlt = alt
+
         if name in STANDARD_GLYPH_SETS:
             glyphData  = STANDARD_GLYPH_SETS[name]
         elif glyphData is None:
@@ -247,6 +253,16 @@ class GlyphSet:
     def appendGlyphSet(self, gs):
         for gdName, gd in gs.items():
             self.glyphs[gdName] = deepcopy(gd)
+        # Make sure to add the derivatives, such as .sc and .tab
+        if self.hasSc:
+            self._appendSmallCaps()            
+        if self.hasSuperior:
+            self._appendSuperiorInferior()
+            self._appendDnomNumrSupsSinf()
+        if self.hasTab:
+            self._appendTab()
+        if self.hasOnum: # Lowercase (oldstyle) figures
+            self._appendOnum()
 
     def __repr__(self):
         return(f'<{self.__class__.__name__} {len(self.glyphs)} glyphs>')
