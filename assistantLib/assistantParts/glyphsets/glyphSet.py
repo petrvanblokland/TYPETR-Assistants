@@ -84,11 +84,11 @@ class GlyphSet:
     # For doc-testing only. Redefine in inheriting classes.
     GLYPH_DATA = {} # Key is glyph name, value is GlyphData instance
 
-    def __init__(self, name=None, glyphData=None, sc=False, superior=False, tab=False, onum=False, alt=False):
+    def __init__(self, name=None, glyphData=None, sc=False, superior=False, tab=False, onum=False, alt=False, verbose=False):
         """Answer the request type of glyphset. 
         """
         self.name = name
-
+        self.verbose = verbose # Some additional remarks on exceptions and errors
         self.hasSc = sc
         self.hasSuperior = superior
         self.hasTab = tab
@@ -153,7 +153,8 @@ class GlyphSet:
             if gName in self.glyphs:
                 gNameSc = gName + ext
                 if gNameSc in self.glyphs: # Only if it does not already exist
-                    print(f'### _appendSmallCaps: GlyphData /{gNameSc} already exists')
+                    if self.verbose:
+                        print(f'### _appendSmallCaps: GlyphData /{gNameSc} already exists')
                 else:
                     self.glyphs[gNameSc] = gd = deepcopy(self.glyphs[gName])
                     gd.name = gNameSc
