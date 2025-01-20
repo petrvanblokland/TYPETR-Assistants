@@ -531,6 +531,7 @@ class AssistantPartAnchors(BaseAssistantPart):
                             ay = g.bounds[3] + md.capHeightAnchorOffsetY # Likely to ba a negative number
             
             elif gd.isSc and 'H.sc' in g.font:
+                # Make sure to set the H.sc vertical top anchor position as model for all other .sc
                 scAnchor = self.getAnchor(g.font['H.sc'], a.name)
                 if scAnchor:
                     ay = scAnchor.y + dy
