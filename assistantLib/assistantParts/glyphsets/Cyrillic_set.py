@@ -147,7 +147,7 @@ CYRILLIC_SET = {
    'Obarred-cy': GD(name='Obarred-cy', uni=0x04E8, hex='04E8', c='Ө', l='O', r='O', base='O', anchors=['top'], anchorTopX='TopX', gid=877),
    'Obarreddieresis-cy': GD(name='Obarreddieresis-cy', uni=0x04EA, hex='04EA', c='Ӫ', l='O', r='O', base='Obarred-cy', accents=['dieresiscmb.uc'], anchors=['top'], gid=879),
    'Odieresis-cy': GD(name='Odieresis-cy', uni=0x04E6, hex='04E6', c='Ӧ', l='O', r='O', base='O', accents=['dieresiscmb.uc'], anchors=['top', 'middle', 'bottom'], gid=875),
-   'Omega-cy': GD(name='Omega-cy', uni=0x0460, hex='0460', c='Ѡ', l='V', r='V', anchors=['top'], gid=741),
+   'Omega-cy': GD(name='Omega-cy', uni=0x0460, hex='0460', c='Ѡ', l='O', r='O', anchors=['top'], gid=741),
 
     #   P
 
