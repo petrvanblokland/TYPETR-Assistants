@@ -172,18 +172,24 @@ class GlyphSet:
                         gd.w += ext
                     if gd.base is not None and gd.base + '.sc' in self.glyphs:
                         gd.base += '.sc'
-                    accents = []
-                    for accent in gd.accents:
-                        if accent + 'sc' in self.glyphs:
-                            accents.append(accent + '.sc')
-                        else:
-                            accents.append(accent)
-                    gd.accents = []
-                    for accent in accents: # Make a copy, because we're going to change the .uc to lowercase diacritics
-                        gd.accents.append(accent.replace('.uc', ''))
+                    # Do accent alteration in another loop, since not all .sc may have been created yet.
                     gd.srcName = gName
                     gd.isLower = False
                     gd.overshoot = gd.CAT_SC_OVERSHOOT
+
+        for gName in SC_NAMES:
+            if gName in self.glyphs:
+                gNameSc = gName + ext
+                gd = self.glyphs[gNameSc] # We know here that is already must exist
+                accents = []
+                for accent in gd.accents:
+                    if accent + 'sc' in self.glyphs:
+                        accents.append(accent + '.sc')
+                    else:
+                        accents.append(accent)
+                gd.accents = []
+                for accent in accents: # Make a copy, because we're going to change the .uc to lowercase diacritics
+                    gd.accents.append(accent.replace('.uc', ''))
 
     def _appendTab(self):
         tabExt = '.tab'
