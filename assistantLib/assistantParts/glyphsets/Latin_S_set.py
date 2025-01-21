@@ -808,6 +808,7 @@ SC_NAMES = (
     'M', 
     'N', 'Nacute', 'Ncaron', 'Ncommaaccent', 'Ndotaccent', 'Ndotbelow', 'Nhookleft', 'Ntilde', 
     'O', 'OE', 'Oacute', 'Obreve', 'Ocaron', 'Ocircumflex', 'Odieresis', 'Odotbelow', 'Ograve', 'Ohungarumlaut', 'Omacron', 'Oopen', 'Oslash', 'Oslash.alt', 'Otilde', 'Oslashacute', 'Oslashacute.alt', 
+    'Ohorn', 'Ohornacute', 'Ohorndotbelow', 'Ohorngrave', 'Ohornhookabove', 'Ohorntilde', 
     'P', 'Pdotaccent', 
     'Q', 
     'R', 'Racute', 'Rcaron', 'Rcommaaccent', 
