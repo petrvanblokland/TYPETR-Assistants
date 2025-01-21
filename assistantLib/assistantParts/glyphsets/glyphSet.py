@@ -170,8 +170,6 @@ class GlyphSet:
                         gd.r2l += ext
                     if gd.w in SC_NAMES: 
                         gd.w += ext
-                    if gd.base is not None and gd.base + '.sc' in self.glyphs:
-                        gd.base += '.sc'
                     # Do accent alteration in another loop, since not all .sc may have been created yet.
                     # Also there is a problem for Cyrillic added before the Greek, since Gamma.sc does not exist yet.
                     gd.srcName = gName
@@ -183,7 +181,7 @@ class GlyphSet:
                 gNameSc = gName + ext
                 gd = self.glyphs[gNameSc] # We know here that is already must exist
                 if gd.base is not None and gd.base + ext in self.glyphs:
-                    gd.base += ext
+                    gd.base = (gd.base + ext).replace('.uc', '').replace('.case', '')
                 accents = []
                 for accent in gd.accents:
                     if accent + ext in self.glyphs:
@@ -192,7 +190,10 @@ class GlyphSet:
                         accents.append(accent)
                 gd.accents = []
                 for accent in accents: # Make a copy, because we're going to change the .uc to lowercase diacritics
-                    gd.accents.append(accent.replace('.uc', ''))
+                    # /tail.component-cy.case replaced to /tail.component-cy 
+                    gd.accents.append(accent.replace('.uc', '').replace('.case', ''))
+                if 'Eltail' in gName:
+                    print('adsdasadsdas', gNameSc, gd.accents)
 
     def _appendTab(self):
         tabExt = '.tab'
