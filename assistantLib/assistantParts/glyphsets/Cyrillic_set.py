@@ -225,7 +225,7 @@ CYRILLIC_SET = {
 
    'a-cy': GD(name='a-cy', uni=0x0430, hex='0430', c='а', bl='a', w='a', base='a', isLower=True, anchors=['top', 'middle', 'bottom'], gid=693),
    'abreve-cy': GD(name='abreve-cy', uni=0x04D1, hex='04D1', c='ӑ', bl='a', w='a', base='a', accents=['brevecmb-cy'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=854),
-   'adieresis-cy': GD(name='adieresis-cy', uni=0x04D3, hex='04D3', c='ӓ', bl='a', r='a', w='a', base='a', accents=['dieresiscmb.uc'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=856),
+   'adieresis-cy': GD(name='adieresis-cy', uni=0x04D3, hex='04D3', c='ӓ', bl='a', r='a', w='a', base='a', accents=['dieresiscmb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=856),
    'aie-cy': GD(name='aie-cy', uni=0x04D5, hex='04D5', c='ӕ', bl='a', r='e', base='ae', isLower=True, anchors=['top', 'middle', 'bottom'], gid=858),
 
     #   b
@@ -241,7 +241,7 @@ CYRILLIC_SET = {
    'chedescender-cy': GD(name='chedescender-cy', uni=0x04B7, hex='04B7', c='ҷ', l='che-cy', r='tse-cy', isLower=True, gid=828),
    'chedescenderabkhasian-cy': GD(name='chedescenderabkhasian-cy', uni=0x04BF, hex='04BF', c='ҿ', l='cheabkhasian-cy', r='e', base='cheabkhasian-cy', accents=['chedescenderabkhasian-cy.component'], isLower=True, gid=836),
    'chedescenderabkhasian-cy.component': GD(name='chedescenderabkhasian-cy.component', w=0, isLower=True, gid=1628),
-   'chedieresis-cy': GD(name='chedieresis-cy', uni=0x04F5, hex='04F5', c='ӵ', l='che-cy', r='en-cy', base='che-cy', accents=['dieresiscmb.uc'], isLower=True, anchors=['top'], gid=890),
+   'chedieresis-cy': GD(name='chedieresis-cy', uni=0x04F5, hex='04F5', c='ӵ', l='che-cy', r='en-cy', base='che-cy', accents=['dieresiscmb'], isLower=True, anchors=['top'], gid=890),
    'chekhakassian-cy': GD(name='chekhakassian-cy', uni=0x04CC, hex='04CC', c='ӌ', l='che-cy', r='en-cy', isLower=True, gid=849),
    'cheverticalstroke-cy': GD(name='cheverticalstroke-cy', uni=0x04B9, hex='04B9', c='ҹ', l='che-cy', r='en-cy', base='che-cy', isLower=True, anchors=['top'], gid=830),
 
@@ -257,7 +257,7 @@ CYRILLIC_SET = {
     #   e
 
    'e-cy': GD(name='e-cy', uni=0x0454, hex='0454', c='є', l='o', r='c', isLower=True, gid=729),
-   'edieresis-cy': GD(name='edieresis-cy', uni=0x04ED, hex='04ED', c='ӭ', l='ereversed-cy', r='o', base='ereversed-cy', accents=['dieresiscmb.uc'], isLower=True, anchors=['top'], gid=882),
+   'edieresis-cy': GD(name='edieresis-cy', uni=0x04ED, hex='04ED', c='ӭ', l='ereversed-cy', r='o', base='ereversed-cy', accents=['dieresiscmb'], isLower=True, anchors=['top'], gid=882),
    'ef-cy': GD(name='ef-cy', uni=0x0444, hex='0444', c='ф', l2r='ef-cy', isLower=True, gid=713),
    'eiotified-cy': GD(name='eiotified-cy', uni=0x0465, hex='0465', c='ѥ', l='en-cy', r='c', isLower=True, gid=746),
    'el-cy': GD(name='el-cy', uni=0x043B, hex='043B', c='л', r='en-cy', isLower=True, gid=704),
@@ -289,7 +289,7 @@ CYRILLIC_SET = {
    'ghemiddlehook-cy': GD(name='ghemiddlehook-cy', uni=0x0495, hex='0495', c='ҕ', l='en-cy', r='o', isLower=True, gid=794),
    'ghestroke-cy': GD(name='ghestroke-cy', uni=0x0493, hex='0493', c='ғ', l='hyphen', r='ge-cy', base='ge-cy', isLower=True, gid=792),
    'gheupturn-cy': GD(name='gheupturn-cy', uni=0x0491, hex='0491', c='ґ', l='en-cy', r='ge-cy', isLower=True, gid=790),
-   'gje-cy': GD(name='gje-cy', uni=0x0453, hex='0453', c='ѓ', base='ge-cy', accents=['acutecmb.uc'], isLower=True, anchors=['top'], gid=728),
+   'gje-cy': GD(name='gje-cy', uni=0x0453, hex='0453', c='ѓ', base='ge-cy', accents=['acutecmb'], isLower=True, anchors=['top'], gid=728),
    'gehookstroke-cy': GD(name='gehookstroke-cy', uni=0x04FB, hex='04FB', c='ӻ', isLower=True, anchors=['top']),
 
     #   h
@@ -306,22 +306,22 @@ CYRILLIC_SET = {
     
    'i-cy': GD(name='i-cy', uni=0x0456, hex='0456', c='і', l='i', w='idotless', base='i', anchorBottomX='BottomX', anchorMiddleX='TopX', anchorTopX='TopX', isLower=True, anchors=['top', 'middle', 'bottom'], gid=731),
    'ia-cy': GD(name='ia-cy', uni=0x044F, hex='044F', c='я', r='en-cy', isLower=True, gid=724),
-   'idieresis-cy': GD(name='idieresis-cy', uni=0x04E5, hex='04E5', c='ӥ', base='ii-cy', accents=['dieresiscmb.uc'], isLower=True, anchors=['top'], gid=874),
+   'idieresis-cy': GD(name='idieresis-cy', uni=0x04E5, hex='04E5', c='ӥ', base='ii-cy', accents=['dieresiscmb'], isLower=True, anchors=['top'], gid=874),
    'ie-cy': GD(name='ie-cy', uni=0x0435, hex='0435', c='е', l='o', w='e', base='e', isLower=True, anchors=['top', 'middle', 'bottom'], gid=698),
    'iebreve-cy': GD(name='iebreve-cy', uni=0x04D7, hex='04D7', c='ӗ', l='e', w='e', base='e', accents=['brevecmb-cy'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=860),
-   'iegrave-cy': GD(name='iegrave-cy', uni=0x0450, hex='0450', c='ѐ', bl='o', w='e', base='e', accents=['gravecmb.uc'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=725),
+   'iegrave-cy': GD(name='iegrave-cy', uni=0x0450, hex='0450', c='ѐ', bl='o', w='e', base='e', accents=['gravecmb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=725),
    'ii-cy': GD(name='ii-cy', uni=0x0438, hex='0438', c='и', l='en-cy', r='en-cy', bl='u', isLower=True, anchors=['top'], gid=701),
    'ii-cy.loclBGR': GD(name='ii-cy.loclBGR', base='u', isLower=True, anchors=['top']),
-   'iigrave-cy': GD(name='iigrave-cy', uni=0x045D, hex='045D', c='ѝ', l='en-cy', r='en-cy', base='ii-cy', accents=['gravecmb.uc'], isLower=True, anchors=['top'], gid=738),
+   'iigrave-cy': GD(name='iigrave-cy', uni=0x045D, hex='045D', c='ѝ', l='en-cy', r='en-cy', base='ii-cy', accents=['gravecmb'], isLower=True, anchors=['top'], gid=738),
    'iishort-cy': GD(name='iishort-cy', uni=0x0439, hex='0439', c='й', l='en-cy', r='en-cy', base='ii-cy', accents=['brevecmb-cy'], isLower=True, anchors=['top'], gid=702),
    'iishort-cy.loclBGR': GD(name='iishort-cy.loclBGR', base='u', accents=['brevecmb-cy'], isLower=True, anchors=['top']),
    'iishorttail-cy': GD(name='iishorttail-cy', uni=0x048B, hex='048B', c='ҋ', l='en-cy', base='iishort-cy', accents=['tail.component-cy'], isLower=True, anchors=['top'], gid=784),
-   'imacron-cy': GD(name='imacron-cy', uni=0x04E3, hex='04E3', c='ӣ', l='en-cy', r='en-cy', base='ii-cy', accents=['macroncmb.uc'], isLower=True, anchors=['top'], gid=872),
-   'io-cy': GD(name='io-cy', uni=0x0451, hex='0451', c='ё', l='o', r='e', base='e', accents=['dieresiscmb.uc'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=726),
+   'imacron-cy': GD(name='imacron-cy', uni=0x04E3, hex='04E3', c='ӣ', l='en-cy', r='en-cy', base='ii-cy', accents=['macroncmb'], isLower=True, anchors=['top'], gid=872),
+   'io-cy': GD(name='io-cy', uni=0x0451, hex='0451', c='ё', l='o', r='e', base='e', accents=['dieresiscmb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=726),
    'iu-cy': GD(name='iu-cy', uni=0x044E, hex='044E', c='ю', l='en-cy', r='o', isLower=True, gid=723),
    'iu-cy.loclBGR': GD(name='iu-cy.loclBGR', l='l', r='o', isLower=True),
    'izhitsa-cy': GD(name='izhitsa-cy', uni=0x0475, hex='0475', c='ѵ', l='v', isLower=True, anchorTopY='v', anchorTopX='v', anchors=['top'], gid=762),
-   'izhitsadblgrave-cy': GD(name='izhitsadblgrave-cy', uni=0x0477, hex='0477', c='ѷ', bl='v', w='izhitsa-cy', base='izhitsa-cy', accents=['dblgravecmb.uc'], isLower=True, anchors=['top'], gid=764),
+   'izhitsadblgrave-cy': GD(name='izhitsadblgrave-cy', uni=0x0477, hex='0477', c='ѷ', bl='v', w='izhitsa-cy', base='izhitsa-cy', accents=['dblgravecmb'], isLower=True, anchors=['top'], gid=764),
 
     #   j
 
@@ -336,7 +336,7 @@ CYRILLIC_SET = {
    'kahook-cy': GD(name='kahook-cy', uni=0x04C4, hex='04C4', c='ӄ', l='en-cy', isLower=True, gid=841),
    'kastroke-cy': GD(name='kastroke-cy', uni=0x049F, hex='049F', c='ҟ', r='k', l='hyphen', isLower=True, gid=804),
    'kaverticalstroke-cy': GD(name='kaverticalstroke-cy', uni=0x049D, hex='049D', c='ҝ', l='en-cy', r='k', isLower=True, gid=802),
-   'kje-cy': GD(name='kje-cy', uni=0x045C, hex='045C', c='ќ', l='en-cy', r='k', base='ka-cy', accents=['acutecmb.uc'], isLower=True, anchors=['top'], gid=737),
+   'kje-cy': GD(name='kje-cy', uni=0x045C, hex='045C', c='ќ', l='en-cy', r='k', base='ka-cy', accents=['acutecmb'], isLower=True, anchors=['top'], gid=737),
    'koppa-cy': GD(name='koppa-cy', uni=0x0481, hex='0481', c='ҁ', l='o', r='c', isLower=True, gid=774),
    'ksi-cy': GD(name='ksi-cy', uni=0x046F, hex='046F', c='ѯ', r='ze-cy', isLower=True, gid=756),
 
@@ -353,8 +353,8 @@ CYRILLIC_SET = {
 
    'o-cy': GD(name='o-cy', uni=0x043E, hex='043E', c='о', l2r='o', base='o', isLower=True, anchors=['top', 'middle', 'bottom'], gid=707),
    'obarred-cy': GD(name='obarred-cy', uni=0x04E9, hex='04E9', c='ө', l='o', r='o', base='o',isLower=True, anchors=['top'], gid=878),
-   'obarreddieresis-cy': GD(name='obarreddieresis-cy', uni=0x04EB, hex='04EB', c='ӫ', l='o', r='o', base='obarred-cy', accents=['dieresiscmb.uc'], isLower=True, anchors=['top'], gid=880),
-   'odieresis-cy': GD(name='odieresis-cy', uni=0x04E7, hex='04E7', c='ӧ', bl='o', w='o', base='o', accents=['dieresiscmb.uc'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=876),
+   'obarreddieresis-cy': GD(name='obarreddieresis-cy', uni=0x04EB, hex='04EB', c='ӫ', l='o', r='o', base='obarred-cy', accents=['dieresiscmb'], isLower=True, anchors=['top'], gid=880),
+   'odieresis-cy': GD(name='odieresis-cy', uni=0x04E7, hex='04E7', c='ӧ', bl='o', w='o', base='o', accents=['dieresiscmb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=876),
    'omega-cy': GD(name='omega-cy', uni=0x0461, hex='0461', c='ѡ', l='off', l2r='omega-cy', isLower=True, anchors=['top'], gid=742),
 
     #   p
@@ -376,7 +376,7 @@ CYRILLIC_SET = {
     #   s
 
    'schwa-cy': GD(name='schwa-cy', uni=0x04D9, hex='04D9', c='ә', r='o', isLower=True, anchors=['top'], gid=862),
-   'schwadieresis-cy': GD(name='schwadieresis-cy', uni=0x04DB, hex='04DB', c='ӛ', l='schwa-cy', r='o', base='schwa-cy', accents=['dieresiscmb.uc'], isLower=True, anchors=['top'], gid=864),
+   'schwadieresis-cy': GD(name='schwadieresis-cy', uni=0x04DB, hex='04DB', c='ӛ', l='schwa-cy', r='o', base='schwa-cy', accents=['dieresiscmb'], isLower=True, anchors=['top'], gid=864),
    'semisoftsign-cy': GD(name='semisoftsign-cy', uni=0x048D, hex='048D', c='ҍ', r='softsign-cy', base='yat-cy', isLower=True, gid=786),
    'sha-cy': GD(name='sha-cy', uni=0x0448, hex='0448', c='ш', l='en-cy', r='en-cy', isLower=True, gid=717),
    'sha-cy.loclBGR': GD(name='sha-cy.loclBGR', l='u', r='u', isLower=True), 
@@ -400,10 +400,10 @@ CYRILLIC_SET = {
     #   u
 
    'u-cy': GD(name='u-cy', uni=0x0443, hex='0443', c='у', l='y', r='y', base='y', isLower=True, anchors=['top', 'middle', 'bottom'], gid=712),
-   'udieresis-cy': GD(name='udieresis-cy', uni=0x04F1, hex='04F1', c='ӱ', l='y', r='y', base='y', accents=['dieresiscmb.uc'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=886),
-   'uhungarumlaut-cy': GD(name='uhungarumlaut-cy', uni=0x04F3, hex='04F3', c='ӳ', l='y', w='y', base='y', accents=['hungarumlautcmb.uc'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=888),
+   'udieresis-cy': GD(name='udieresis-cy', uni=0x04F1, hex='04F1', c='ӱ', l='y', r='y', base='y', accents=['dieresiscmb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=886),
+   'uhungarumlaut-cy': GD(name='uhungarumlaut-cy', uni=0x04F3, hex='04F3', c='ӳ', l='y', w='y', base='y', accents=['hungarumlautcmb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=888),
    'uk-cy': GD(name='uk-cy', uni=0x0479, hex='0479', c='ѹ', l='o', r='izhitsa-cy', base='o', accents=['y'], isLower=True, gid=766),
-   'umacron-cy': GD(name='umacron-cy', uni=0x04EF, hex='04EF', c='ӯ', l='y', r='y', base='y', accents=['macroncmb.uc'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=884),
+   'umacron-cy': GD(name='umacron-cy', uni=0x04EF, hex='04EF', c='ӯ', l='y', r='y', base='y', accents=['macroncmb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=884),
    'ushort-cy': GD(name='ushort-cy', uni=0x045E, hex='045E', c='ў', l='y', r='y', base='y', accents=['brevecmb-cy'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=739),
    'ustrait-cy': GD(name='ustrait-cy', uni=0x04AF, hex='04AF', c='ү', l='v', l2r='ustrait-cy', isLower=True, gid=820),
    'ustraitstroke-cy': GD(name='ustraitstroke-cy', uni=0x04B1, hex='04B1', c='ұ', l='ustrait-cy', r='ustrait-cy', base='ustrait-cy', isLower=True, gid=822),
@@ -421,8 +421,8 @@ CYRILLIC_SET = {
 
    'yat-cy': GD(name='yat-cy', uni=0x0463, hex='0463', c='ѣ', r='softsign-cy', isLower=True, gid=744),
    'yeru-cy': GD(name='yeru-cy', uni=0x044B, hex='044B', c='ы', l='en-cy', r='en-cy', isLower=True, anchors=['top'], gid=720),
-   'yerudieresis-cy': GD(name='yerudieresis-cy', uni=0x04F9, hex='04F9', c='ӹ', l='en-cy', r='en-cy', base='yeru-cy', accents=['dieresiscmb.uc'], isLower=True, anchors=['top'], gid=894),
-   'yi-cy': GD(name='yi-cy', uni=0x0457, hex='0457', c='ї', w='idotless', bl='idotless', base='idotless', accents=['dieresiscmb.uc'], isLower=True, anchors=['top'], gid=732),
+   'yerudieresis-cy': GD(name='yerudieresis-cy', uni=0x04F9, hex='04F9', c='ӹ', l='en-cy', r='en-cy', base='yeru-cy', accents=['dieresiscmb'], isLower=True, anchors=['top'], gid=894),
+   'yi-cy': GD(name='yi-cy', uni=0x0457, hex='0457', c='ї', w='idotless', bl='idotless', base='idotless', accents=['dieresiscmb'], isLower=True, anchors=['top'], gid=732),
    'yusbig-cy': GD(name='yusbig-cy', uni=0x046B, hex='046B', c='ѫ', l2r='yusbig-cy', isLower=True, gid=752),
    'yusbigiotified-cy': GD(name='yusbigiotified-cy', uni=0x046D, hex='046D', c='ѭ', l='en-cy', r='yusbig-cy', isLower=True, gid=754),
    'yuslittle-cy': GD(name='yuslittle-cy', uni=0x0467, hex='0467', c='ѧ', l2r='yuslittle-cy', isLower=True, gid=748),
@@ -433,12 +433,12 @@ CYRILLIC_SET = {
    'ze-cy': GD(name='ze-cy', uni=0x0437, hex='0437', c='з', r='ve-cy', isLower=True, anchors=['top'], gid=700),
    'ze-cy.loclBGR': GD(name='ze-cy.loclBGR', isLower=True),
    'zedescender-cy': GD(name='zedescender-cy', uni=0x0499, hex='0499', c='ҙ', l='ze-cy', r='ve-cy', base='ze-cy', isLower=True, gid=798),
-   'zedieresis-cy': GD(name='zedieresis-cy', uni=0x04DF, hex='04DF', c='ӟ', l='ze-cy', r='ve-cy', base='ze-cy', accents=['dieresiscmb.uc'], isLower=True, anchors=['top'], gid=868),
+   'zedieresis-cy': GD(name='zedieresis-cy', uni=0x04DF, hex='04DF', c='ӟ', l='ze-cy', r='ve-cy', base='ze-cy', accents=['dieresiscmb'], isLower=True, anchors=['top'], gid=868),
    'zhe-cy': GD(name='zhe-cy', uni=0x0436, hex='0436', c='ж', r='k', isLower=True, anchors=['top'], gid=699),
    'zhe-cy.loclBGR': GD(name='zhe-cy.loclBGR', l ='zhe-cy', r='zhe-cy', isLower=True),
    'zhebreve-cy': GD(name='zhebreve-cy', uni=0x04C2, hex='04C2', c='ӂ', l='zhe-cy', r='zhe-cy', base='zhe-cy', accents=['brevecmb-cy'], isLower=True, anchors=['top'], gid=839),
    'zhedescender-cy': GD(name='zhedescender-cy', uni=0x0497, hex='0497', c='җ', l='zhe-cy', isLower=True, gid=796),
-   'zhedieresis-cy': GD(name='zhedieresis-cy', uni=0x04DD, hex='04DD', c='ӝ', l='zhe-cy', r='zhe-cy', base='zhe-cy', accents=['dieresiscmb.uc'], isLower=True, anchors=['top'], gid=866),
+   'zhedieresis-cy': GD(name='zhedieresis-cy', uni=0x04DD, hex='04DD', c='ӝ', l='zhe-cy', r='zhe-cy', base='zhe-cy', accents=['dieresiscmb'], isLower=True, anchors=['top'], gid=866),
    
    
 }

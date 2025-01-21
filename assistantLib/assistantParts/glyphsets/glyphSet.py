@@ -182,10 +182,12 @@ class GlyphSet:
             if gName in self.glyphs:
                 gNameSc = gName + ext
                 gd = self.glyphs[gNameSc] # We know here that is already must exist
+                if gd.base is not None and gd.base + ext in self.glyphs:
+                    gd.base += ext
                 accents = []
                 for accent in gd.accents:
-                    if accent + 'sc' in self.glyphs:
-                        accents.append(accent + '.sc')
+                    if accent + ext in self.glyphs:
+                        accents.append(accent + ext)
                     else:
                         accents.append(accent)
                 gd.accents = []
