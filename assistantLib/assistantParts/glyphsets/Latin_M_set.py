@@ -139,12 +139,12 @@ GDS['Ocircumflexgrave'] = GD(name='Ocircumflexgrave', uni=0x1ED2, hex='1ED2', c=
 GDS['Ocircumflexhookabove'] = GD(name='Ocircumflexhookabove', uni=0x1ED4, hex='1ED4', c='Ổ', l='O', w='O', base='Ocircumflex', accents=['hookabovecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1135, comment='Ổ LATIN CAPITAL LETTER O WITH CIRCUMFLEX AND HOOK ABOVE')
 GDS['Ocircumflextilde'] = GD(name='Ocircumflextilde', uni=0x1ED6, hex='1ED6', c='Ỗ', l='O', r='O', base='O', accents=['tildecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1137, comment='Ỗ LATIN CAPITAL LETTER O WITH CIRCUMFLEX AND TILDE')
 GDS['Ohookabove'] = GD(name='Ohookabove', uni=0x1ECE, hex='1ECE', c='Ỏ', base='O', accents=['hookabovecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1129, comment='Ỏ LATIN CAPITAL LETTER O WITH HOOK ABOVE')
-GDS['Ohorn'] = GD(name='Ohorn', uni=0x01A0, hex='01A0', c='Ơ', l='O', w='O', base='O', accents=['horncmb.uc'], anchors=['bottom', 'middle', 'top'], gid=353, comment='Ơ')
-GDS['Ohornacute'] = GD(name='Ohornacute', uni=0x1EDA, hex='1EDA', c='Ớ', l='O', base='Ohorn', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1141, comment='Ớ LATIN CAPITAL LETTER O WITH HORN AND ACUTE')
-GDS['Ohorndotbelow'] = GD(name='Ohorndotbelow', uni=0x1EE2, hex='1EE2', c='Ợ', l='O', base='Ohorn', accents=['dotbelowcmb'], anchors=['bottom', 'middle', 'top'], gid=1149, comment='Ợ LATIN CAPITAL LETTER O WITH HORN AND DOT BELOW')
-GDS['Ohorngrave'] = GD(name='Ohorngrave', uni=0x1EDC, hex='1EDC', c='Ờ', l='O', base='Ohorn', accents=['gravecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1143, comment='Ờ LATIN CAPITAL LETTER O WITH HORN AND GRAVE')
-GDS['Ohornhookabove'] = GD(name='Ohornhookabove', uni=0x1EDE, hex='1EDE', c='Ở', l='O', base='Ohorn', accents=['hookabovecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1145, comment='Ở LATIN CAPITAL LETTER O WITH HORN AND HOOK ABOVE')
-GDS['Ohorntilde'] = GD(name='Ohorntilde', uni=0x1EE0, hex='1EE0', c='Ỡ', l='O', base='Ohorn', accents=['tildecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1147, comment='Ỡ LATIN CAPITAL LETTER O WITH HORN AND TILDE')
+GDS['Ohorn'] = GD(name='Ohorn', uni=0x01A0, hex='01A0', c='Ơ', l='O', w='O', anchorTopY='O', base='O', accents=['horncmb.uc'], anchors=['bottom', 'middle', 'top'], gid=353, comment='Ơ')
+GDS['Ohornacute'] = GD(name='Ohornacute', uni=0x1EDA, hex='1EDA', c='Ớ', l='O', anchorTopY='O', base='Ohorn', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1141, comment='Ớ LATIN CAPITAL LETTER O WITH HORN AND ACUTE')
+GDS['Ohorndotbelow'] = GD(name='Ohorndotbelow', uni=0x1EE2, hex='1EE2', c='Ợ', l='O', anchorTopY='O', base='Ohorn', accents=['dotbelowcmb'], anchors=['bottom', 'middle', 'top'], gid=1149, comment='Ợ LATIN CAPITAL LETTER O WITH HORN AND DOT BELOW')
+GDS['Ohorngrave'] = GD(name='Ohorngrave', uni=0x1EDC, hex='1EDC', c='Ờ', l='O', anchorTopY='O', base='Ohorn', accents=['gravecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1143, comment='Ờ LATIN CAPITAL LETTER O WITH HORN AND GRAVE')
+GDS['Ohornhookabove'] = GD(name='Ohornhookabove', uni=0x1EDE, hex='1EDE', c='Ở', l='O', anchorTopY='O', base='Ohorn', accents=['hookabovecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1145, comment='Ở LATIN CAPITAL LETTER O WITH HORN AND HOOK ABOVE')
+GDS['Ohorntilde'] = GD(name='Ohorntilde', uni=0x1EE0, hex='1EE0', c='Ỡ', l='O', anchorTopY='O', base='Ohorn', accents=['tildecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1147, comment='Ỡ LATIN CAPITAL LETTER O WITH HORN AND TILDE')
 GDS['Ohm'] = GD(name='Ohm', uni=0x2126, hex='2126', c='Ω', l='O', l2r='self', anchors=['top', 'bottom', 'tonos'])
 
 # R
