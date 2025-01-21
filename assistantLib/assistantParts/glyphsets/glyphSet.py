@@ -173,6 +173,7 @@ class GlyphSet:
                     if gd.base is not None and gd.base + '.sc' in self.glyphs:
                         gd.base += '.sc'
                     # Do accent alteration in another loop, since not all .sc may have been created yet.
+                    # Also there is a problem for Cyrillic added before the Greek, since Gamma.sc does not exist yet.
                     gd.srcName = gName
                     gd.isLower = False
                     gd.overshoot = gd.CAT_SC_OVERSHOOT
