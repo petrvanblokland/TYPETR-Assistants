@@ -699,7 +699,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         knLeft = km.getKernNetKerning(gLeft, g) or 0
         knRight = km.getKernNetKerning(g, gRight) or 0
 
-        #print(f'--- ({knLeft}) {kLeft} {groupKLeft} {kerningTypeLeft} <--> ({knRight}) {kRight} {groupKRight} {kerningTypeRight}')
+        print(f'--- ({knLeft}) {kLeft} {groupKLeft} {kerningTypeLeft} <--> ({knRight}) {kRight} {groupKRight} {kerningTypeRight}')
 
         y1 = g.font.info.descender - 60
         y2 = y1 - 60
