@@ -80,8 +80,7 @@ CYRILLIC_SET = {
 
    'Ge-cy': GD(name='Ge-cy', uni=0x0413, hex='0413', c='Г', l='H', base='Gamma', anchors=['top'], gid=664),
    'Gedescender-cy': GD(name='Gedescender-cy', uni=0x04F6, hex='04F6', c='Ӷ', l='H', r='Ge-cy', gid=891),
-   'Gestrokehook-cy': GD(name='Gestrokehook-cy', uni=0x04FA, hex='04FA', c='Ӻ', r='Ge-cy', base='Ghestroke-cy', accents=['Gestrokehook-cy.component'], gid=895),
-   'Gestrokehook-cy.component': GD(name='Gestrokehook-cy.component', w=0, gid=1600),
+   'Gestrokehook-cy': GD(name='Gestrokehook-cy', uni=0x04FA, hex='04FA', c='Ӻ', r='Ge-cy', base='Ghestroke-cy', gid=895),
    'Ghemiddlehook-cy': GD(name='Ghemiddlehook-cy', uni=0x0494, hex='0494', c='Ҕ', l='H', r='o', gid=793),
    'Ghestroke-cy': GD(name='Ghestroke-cy', uni=0x0492, hex='0492', c='Ғ', l='Eth', r='Ge-cy', base='Ge-cy', gid=791),
    'Gheupturn-cy': GD(name='Gheupturn-cy', uni=0x0490, hex='0490', c='Ґ', l='H', r='Ge-cy', gid=789),

@@ -192,8 +192,6 @@ class GlyphSet:
                 for accent in accents: # Make a copy, because we're going to change the .uc to lowercase diacritics
                     # /tail.component-cy.case replaced to /tail.component-cy 
                     gd.accents.append(accent.replace('.uc', '').replace('.case', ''))
-                if 'Eltail' in gName:
-                    print('adsdasadsdas', gNameSc, gd.accents)
 
     def _appendTab(self):
         tabExt = '.tab'

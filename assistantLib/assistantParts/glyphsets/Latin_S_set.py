@@ -509,10 +509,10 @@ LATIN_S_SET = GDS = {
     'emacron': GD(name='emacron', uni=0x0113, hex='0113', c='ē', base='e', accents=['macroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ē E WITH MACRON, LATIN SMALL LETTER'),
     'eng': GD(name='eng', uni=0x014B, hex='014B', c='ŋ', l='n', isLower=True, comment='ŋ LATIN SMALL LETTER ENG'),
     'eogonek': GD(name='eogonek', uni=0x0119, hex='0119', c='ę', base='e', accents=['ogonekcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ę E WITH OGONEK, LATIN SMALL LETTER'),
-    'eopen': GD(name='eopen', uni=0x025B, hex='025B', c='ɛ', isLower=True, anchors=['top']),
+    'eopen': GD(name='eopen', uni=0x025B, hex='025B', c='ɛ', isLower=True, r2l='B', l2r='three', anchors=['top']),
     'eth': GD(name='eth', uni=0x00F0, hex='00F0', c='ð', isLower=True, comment='ð LATIN SMALL LETTER ETH'),
     'etilde': GD(name='etilde', uni=0x1EBD, hex='1EBD', c='ẽ', l='e', r='e', base='e', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ẽ E WITH TILDE, LATIN SMALL LETTER'),
-    'eturned': GD(name='eturned', uni=0x01DD, hex='01DD', c='ǝ', l='e', r='e', srcName='uni01DD', isLower=True, anchors=['top'], comment='ǝ TURNED E, LATIN SMALL LETTER'),
+    'eturned': GD(name='eturned', uni=0x01DD, hex='01DD', c='ǝ', l2r='e', r2l='e', anchorTopX='TopX', srcName='e', isLower=True, anchors=['top'], comment='ǝ TURNED E, LATIN SMALL LETTER'),
 
     # f
 
@@ -686,7 +686,7 @@ LATIN_S_SET = GDS = {
 
     # t
 
-    't': GD(name='t', uni=0x0074, hex='0074', c='t', isLower=True, anchorTopY='TopY', anchors=['bottom', 'middle', 'top', 'vert'], comment='t'),
+    't': GD(name='t', uni=0x0074, hex='0074', c='t', l='off', r='off', isLower=True, anchorTopY='TopY', anchors=['bottom', 'middle', 'top', 'vert'], comment='t'),
     'tcaron': GD(name='tcaron', uni=0x0165, hex='0165', c='ť', anchorTopY='TopY', base='t', accents=['caroncmb.vert'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ť T WITH CARON, LATIN SMALL LETTER'),
     'tcedilla': GD(name='tcedilla', uni=0x0163, hex='0163', c='ţ', anchorTopY='TopY', base='t', accents=['cedillacmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ţ T WITH CEDILLA, LATIN SMALL LETTER'),
     'tcommaaccent': GD(name='tcommaaccent', uni=0x021B, hex='021B', c='ț', anchorTopY='TopY', base='t', accents=['cedillacmb.noconnect'], srcName='uni021B', isLower=True, anchors=['bottom', 'middle', 'top'], comment='ț T WITH COMMA BELOW, LATIN SMALL LETTER'),
