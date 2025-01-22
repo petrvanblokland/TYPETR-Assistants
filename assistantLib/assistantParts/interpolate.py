@@ -88,18 +88,19 @@ class AssistantPartInterpolate(BaseAssistantPart):
     def interpolateGlyphKey(self, g, c, event):
         gName = g.name
         f = g.font
-        if 0 and 'superior' in gName:
+        if 0 and 'superior' in gName: # @@@@
             f[gName] = f[gName.replace('superior', '')]
-        else:
-            print(f'... Interpolate glyph /{gName}')
-            changed = self.interpolateGlyph(g)
-            if changed:
-                f[gName].changed()
+        g.prepareUndo()
+        print(f'... Interpolate glyph /{gName}')
+        changed = self.interpolateGlyph(g)
+        if changed:
+            f[gName].changed()
 
     def interpolateGlyphCallback(self, sender):
         c = self.getController()
         g = self.getCurrentGlyph()
         if g is not None:
+            g.prepareUndo()
             if c.w.interpolateAllSelectedGlyphs.get():
                 for gg in g.font:
                     if gg.selected:
@@ -165,7 +166,7 @@ class AssistantPartInterpolate(BaseAssistantPart):
 
         # Change to glyphData.height, so scalerpolation will also work for small caps.
         if g.name.endswith('.sc'):
-            iScaleY = (md.scHeight - md.scOutline) / f.info.capHeight
+            iScaleY = (md.scHeight - 1.5*md.scOutline) / f.info.capHeight # Also correct for increased height from outline
             iScaleX = iScaleY * md.scWidthFactor
             gName = g.name
             srcName = gName.replace('.sc', '')
@@ -176,8 +177,8 @@ class AssistantPartInterpolate(BaseAssistantPart):
             print(f'... Scalerpolating /{gName} from /{tmpName} + /{srcName} scOutline={md.scOutline} iScale={(iScaleX, iScaleY)} scFactor={(md.scIFactorX, md.scIFactorY)}')
             self.interpolateByFactor(g, tmpG, f2[srcName], ix=md.scIFactorX, iy=md.scIFactorY, doCopy=False, copyUnicode=False)
             calculateOutline(g, thickness=md.scOutline, corner=OL_SQUARE, cap=OL_SQUARE, drawOuter=False)
+            self.offsetGlyph(g, dx=0, dy=md.scOutline)
             self.scaleGlyph(g, iScaleX, iScaleY)
-            self.offsetGlyph(g, dx=0, dy=md.scOutline/2)
             g.removeOverlap()
             g.angledLeftMargin = tmpG.angledLeftMargin  # * iScaleX
             g.angledRightMargin = tmpG.angledRightMargin    # * iScaleX
@@ -185,7 +186,7 @@ class AssistantPartInterpolate(BaseAssistantPart):
             changed = True
 
         elif g.name.endswith('superior'):
-            iScaleY = (md.superiorHeight - md.superiorOutline) / f.info.xHeight
+            iScaleY = (md.superiorHeight - 2*md.superiorOutline) / f.info.xHeight # Also correct for increased height from outline
             iScaleX = iScaleY * md.superiorWidthFactor
             gName = g.name
             srcName = gName.replace('superior', '')
@@ -196,8 +197,8 @@ class AssistantPartInterpolate(BaseAssistantPart):
             print(f'... Scalerpolating /{gName} from /{tmpName} + /{srcName} scOutline={md.scOutline} iScale={(iScaleX, iScaleY)} scFactor={(md.scIFactorX, md.scIFactorY)}')
             self.interpolateByFactor(g, tmpG, f2[srcName], ix=md.superiorIFactorX, iy=md.superiorIFactorY, doCopy=False, copyUnicode=False)
             calculateOutline(g, thickness=md.superiorOutline, corner=OL_SQUARE, cap=OL_SQUARE, drawOuter=False)
+            self.offsetGlyph(g, dx=0, dy=md.supsBaseline + md.superiorOutline)
             self.scaleGlyph(g, iScaleX, iScaleY)
-            self.offsetGlyph(g, dx=0, dy=md.supsBaseline + md.superiorOutline/2)
             g.removeOverlap()
             g.angledLeftMargin = tmpG.angledLeftMargin # * iScaleX
             g.angledRightMargin = tmpG.angledRightMargin # * iScaleX
