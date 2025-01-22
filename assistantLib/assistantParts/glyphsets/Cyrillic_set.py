@@ -333,7 +333,7 @@ CYRILLIC_SET = {
    'kabashkir-cy': GD(name='kabashkir-cy', uni=0x04A1, hex='04A1', c='ҡ', l='te-cy', r='k', isLower=True, gid=806),
    'kadescender-cy': GD(name='kadescender-cy', uni=0x049B, hex='049B', c='қ', l='en-cy', r='zhedescender-cy', isLower=True, gid=800),
    'kahook-cy': GD(name='kahook-cy', uni=0x04C4, hex='04C4', c='ӄ', l='en-cy', isLower=True, gid=841),
-   'kastroke-cy': GD(name='kastroke-cy', uni=0x049F, hex='049F', c='ҟ', r='k', l='hyphen', isLower=True, gid=804),
+   'kastroke-cy': GD(name='kastroke-cy', uni=0x049F, hex='049F', c='ҟ', r='k', l='hyphen', base='ka-cy', isLower=True, gid=804),
    'kaverticalstroke-cy': GD(name='kaverticalstroke-cy', uni=0x049D, hex='049D', c='ҝ', l='en-cy', r='k', isLower=True, gid=802),
    'kje-cy': GD(name='kje-cy', uni=0x045C, hex='045C', c='ќ', l='en-cy', r='k', base='ka-cy', accents=['acutecmb'], isLower=True, anchors=['top'], gid=737),
    'koppa-cy': GD(name='koppa-cy', uni=0x0481, hex='0481', c='ҁ', l='o', r='c', isLower=True, gid=774),
