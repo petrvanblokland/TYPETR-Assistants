@@ -2094,7 +2094,7 @@ class MS_GlyphSet(GlyphSet):
        'partialdiff': GD(name='partialdiff', uni=0x2202, hex='2202', c='∂', l='o', r='O', isLower=True, gid=1483, comment='∂ PARTIAL DIFFERENTIAL'),
        'pdotaccent': GD(name='pdotaccent', uni=0x1E57, hex='1E57', c='ṗ', base='p', accents=['dotaccentcomb'], srcName='uni1E57', isLower=True, anchors=['top', 'middle', 'bottom'], gid=1010),
        'pe-cy': GD(name='pe-cy', uni=0x043F, hex='043F', c='п', l='en-cy', r='en-cy', base='n', isLower=True, gid=708),
-       'pe-cy.loclSRB': GD(name='pe-cy.loclSRB', base='umacron', isLower=True),
+       'pe-cy.loclSRB': GD(name='pe-cy.loclSRB', base='umacron', l='umacron', r='umacron',isLower=True),
        'pedescender-cy': GD(name='pedescender-cy', uni=0x0525, hex='0525', c='ԥ', l='en-cy', r='tse-cy', isLower=True, gid=902),
        'pedescender-cy.component': GD(name='pedescender-cy.component', w=0, isLower=True, gid=1681),
        'pemiddlehook-cy': GD(name='pemiddlehook-cy', uni=0x04A7, hex='04A7', c='ҧ', l='en-cy', r='o', isLower=True, gid=812),

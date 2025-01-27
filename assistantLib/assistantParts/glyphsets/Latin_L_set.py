@@ -419,7 +419,7 @@ GDS['arighthalfring'] = GD(name='arighthalfring', uni=0x1E9A, hex='1E9A', c='ẚ
 GDS['aringacute'] = GD(name='aringacute', uni=0x01FB, hex='01FB', c='ǻ', base='aring', accents=['acutecmb'], isLower=True, fixAccents=False, anchors=['bottom', 'middle', 'top'], comment='ǻ')
 GDS['aringbelow'] = GD(name='aringbelow', uni=0x1E01, hex='1E01', c='ḁ', base='a', accents=['ringbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
 GDS['astroke'] = GD(name='astroke', uni=0x2C65, hex='2C65', c='ⱥ', base='a', accents=['strokecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
-GDS['aturned'] = GD(name='aturned', uni=0x0250, hex='0250', c='ɐ', l2r='a', r2l='a', isLower=True)
+GDS['aturned'] = GD(name='aturned', uni=0x0250, hex='0250', c='ɐ', l2r='a', r2l='a', srcName='a', isLower=True)
 
 GDS['acutemacroncmb'] = GD(name='acutemacroncmb', uni=0x1DC7, hex='1DC7', c='᷇', w=0, isLower=True, anchors=['_top', 'top'])
 GDS['acutemacroncmb.uc'] = GD(name='acutemacroncmb.uc', w=0, srcName='acutemacroncmb', isLower=True, anchors=['_top', 'top'])
@@ -436,11 +436,11 @@ GDS['bilabialclick'] = GD(name='bilabialclick', uni=0x0298, hex='0298', c='ʘ', 
 GDS['blinebelow'] = GD(name='blinebelow', uni=0x1E07, hex='1E07', c='ḇ', base='b', accents=['macronbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
 GDS['bstroke'] = GD(name='bstroke', uni=0x0180, hex='0180', c='ƀ', l='hyphen', r='b', isLower=True)
 
-GDS['invertedbrevebelowcmb'] = GD(name='invertedbrevebelowcmb', uni=0x032F, hex='032F', c='̯', w=0, base='invertedbrevecmb', isLower=True, anchors=['_bottom', 'bottom'])
-GDS['invertedbrevecmb'] = GD(name='invertedbrevecmb', uni=0x0311, hex='0311', c='̑', w=0, isLower=True, anchors=['_top', 'top'])
-GDS['invertedbrevecmb.uc'] = GD(name='invertedbrevecmb.uc', w=0, base='invertedbrevecmb', isLower=True, anchors=['_top', 'top'])
-GDS['invertedbrevedoublecmb'] = GD(name='invertedbrevedoublecmb', uni=0x0361, hex='0361', c='͡', w=0, isLower=True, anchors=['_top', 'top'])
-GDS['invertedbrevedoublecmb.uc'] = GD(name='invertedbrevedoublecmb.uc', w=0, isLower=True, anchors=['_top', 'top'])
+GDS['invertedbrevebelowcmb'] = GD(name='invertedbrevebelowcmb', uni=0x032F, hex='032F', c='̯', l=GD.CAT_CENTER, w=0, base='invertedbrevecmb', isLower=True, anchors=['_bottom', 'bottom'])
+GDS['invertedbrevecmb'] = GD(name='invertedbrevecmb', uni=0x0311, hex='0311', c='̑', l=GD.CAT_CENTER, w=0, isLower=True, anchors=['_top', 'top'])
+GDS['invertedbrevecmb.uc'] = GD(name='invertedbrevecmb.uc', l=GD.CAT_CENTER, w=0, base='invertedbrevecmb', isLower=True, anchors=['_top', 'top'])
+GDS['invertedbrevedoublecmb'] = GD(name='invertedbrevedoublecmb', uni=0x0361, hex='0361', c='͡', l=GD.CAT_CENTER, w=0, isLower=True, anchors=['_top', 'top'])
+GDS['invertedbrevedoublecmb.uc'] = GD(name='invertedbrevedoublecmb.uc', l=GD.CAT_CENTER, w=0, isLower=True, anchors=['_top', 'top'])
 
 GDS['bsuperior'] = GD(name='bsuperior', uni=0x1D47, hex='1D47', c='ᵇ', l='hsuperior', r='osuperior', isLower=False, isMod=True)
 GDS['binferior'] = GD(name='binferior', l='hsuperior', r='osuperior', base='bsuperior', isLower=False, isMod=True)
@@ -595,8 +595,8 @@ GDS['kinferior'] = GD(name='kinferior', uni=0x2096, hex='2096', c='ₖ', l='ksup
 
 GDS['lambda'] = GD(name='lambda', uni=0x03BB, hex='03BB', c='λ', l='v', r='v', isLower=True)
 GDS['lambdastroke'] = GD(name='lambdastroke', uni=0x019B, hex='019B', c='ƛ', l='lambda', w='lambda', base='lambda', isLower=True)
-GDS['lbar'] = GD(name='lbar', uni=0x019A, hex='019A', c='ƚ', l='t', r='t', base='l', isLower=True)
-GDS['lbelt'] = GD(name='lbelt', uni=0x026C, hex='026C', c='ɬ', l='osuperior', r='hyphen', srcName='l', isLower=True)
+GDS['lbar'] = GD(name='lbar', uni=0x019A, hex='019A', c='ƚ', l='hyphen', r='hyphen', base='l', isLower=True)
+GDS['lbelt'] = GD(name='lbelt', uni=0x026C, hex='026C', c='ɬ', l='osuperior', r='hyphen', base='l', isLower=True)
 GDS['lcircumflexbelow'] = GD(name='lcircumflexbelow', uni=0x1E3D, hex='1E3D', c='ḽ', w='l', bl='l', base='l', accents=['circumflexbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
 GDS['ldot'] = GD(name='ldot', uni=0x0140, hex='0140', c='ŀ', l='l', r='off', base='l', accents=['dotmiddlecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ŀ MIDDLE DOT, LATIN SMALL LETTER L WITH')
 GDS['ldoublebar'] = GD(name='ldoublebar', uni=0x2C61, hex='2C61', c='ⱡ', base='l', l='hyphen', r='hyphen', isLower=True)
