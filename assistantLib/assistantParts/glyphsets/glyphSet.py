@@ -182,6 +182,13 @@ class GlyphSet:
                 gd = self.glyphs[gNameSc] # We know here that is already must exist
                 if gd.base is not None and gd.base + ext in self.glyphs:
                     gd.base = (gd.base + ext).replace('.uc', '').replace('.case', '')
+
+                # Also convert these references, e.g. for /Ohorn glyphs
+                if gd.anchorTopX is not None and gd.anchorTopX + ext in self.glyphs:
+                    gd.anchorTopX += ext
+                if gd.anchorTopY is not None and gd.anchorTopY + ext in self.glyphs:
+                    gd.anchorTopY += ext
+
                 accents = []
                 for accent in gd.accents:
                     if accent + ext in self.glyphs:

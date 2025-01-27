@@ -400,7 +400,7 @@ LATIN_S_SET = GDS = {
     'Ycircumflex': GD(name='Ycircumflex', uni=0x0176, hex='0176', c='Ŷ', l='Y', r='Y', base='Y', accents=['circumflexcmb.uc'], anchors=['bottom', 'middle', 'top'], comment='Ŷ'),
     'Ydieresis': GD(name='Ydieresis', uni=0x0178, hex='0178', c='Ÿ', l='Y', r='Y', base='Y', accents=['dieresiscmb.uc'], anchors=['bottom', 'middle', 'top'], comment='Ÿ Y WITH DIAERESIS, LATIN CAPITAL LETTER'),
     'Ygrave': GD(name='Ygrave', uni=0x1EF2, hex='1EF2', c='Ỳ', l='Y', r='Y', base='Y', accents=['gravecmb.uc'], anchors=['bottom', 'middle', 'top'], comment='Ỳ'),
-    'Yhook': GD(name='Yhook', uni=0x01B3, hex='01B3', c='Ƴ', l='Y', r='Y', srcName='Y', anchors=['bottom', 'middle', 'top'], comment='Ƴ LATIN CAPITAL LETTER Y WITH HOOK'),
+    'Yhook': GD(name='Yhook', uni=0x01B3, hex='01B3', c='Ƴ', l='Y', r='Y', anchorBottomX='BottomX', srcName='Y', anchors=['bottom', 'middle', 'top'], comment='Ƴ LATIN CAPITAL LETTER Y WITH HOOK'),
     'Ymacron': GD(name='Ymacron', uni=0x0232, hex='0232', c='Ȳ', base='Y', accents=['macroncmb.uc'], anchors=['bottom', 'middle', 'top']),
     'Ytilde': GD(name='Ytilde', uni=0x1EF8, hex='1EF8', c='Ỹ', l='Y', r='Y', base='Y', accents=['tildecmb.uc'], anchors=['bottom', 'middle', 'top'], comment='Ỹ LATIN CAPITAL LETTER Y WITH TILDE'),
 
