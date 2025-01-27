@@ -507,7 +507,7 @@ LATIN_S_SET = GDS = {
     'edotbelow': GD(name='edotbelow', uni=0x1EB9, hex='1EB9', c='ẹ', w='e', anchorTopY='TopY', base='e', accents=['dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ẹ E WITH DOT BELOW, LATIN SMALL LETTER'),
     'egrave': GD(name='egrave', uni=0x00E8, hex='00E8', c='è', w='e', bl='e', anchorTopY='TopY', base='e', accents=['gravecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='è E WITH GRAVE, LATIN SMALL LETTER'),
     'emacron': GD(name='emacron', uni=0x0113, hex='0113', c='ē', base='e', accents=['macroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ē E WITH MACRON, LATIN SMALL LETTER'),
-    'eng': GD(name='eng', uni=0x014B, hex='014B', c='ŋ', l='n', isLower=True, comment='ŋ LATIN SMALL LETTER ENG'),
+    'eng': GD(name='eng', uni=0x014B, hex='014B', c='ŋ', l='n', r='j', isLower=True, comment='ŋ LATIN SMALL LETTER ENG'),
     'eogonek': GD(name='eogonek', uni=0x0119, hex='0119', c='ę', base='e', accents=['ogonekcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ę E WITH OGONEK, LATIN SMALL LETTER'),
     'eopen': GD(name='eopen', uni=0x025B, hex='025B', c='ɛ', isLower=True, r2l='B', l2r='three', anchors=['top']),
     'eth': GD(name='eth', uni=0x00F0, hex='00F0', c='ð', isLower=True, comment='ð LATIN SMALL LETTER ETH'),

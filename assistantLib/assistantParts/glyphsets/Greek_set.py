@@ -54,7 +54,7 @@ GREEK_SET = {
    'Pamphyliandigamma': GD(name='Pamphyliandigamma', uni=0x0376, hex='0376', c='Ͷ', base='Ii-cy', anchors=['top'], gid=516),
    'Phi': GD(name='Phi', uni=0x03A6, hex='03A6', l='O', r='O', base='I', c='Φ', gid=555),
    'Pi': GD(name='Pi', uni=0x03A0, hex='03A0', c='Π', l='H', r='H', srcName='H', gid=550),
-   'Psi': GD(name='Psi', uni=0x03A8, hex='03A8', c='Ψ', srcName='U', gid=557),
+   'Psi': GD(name='Psi', uni=0x03A8, hex='03A8', c='Ψ', l='U', r='U', srcName='U', gid=557),
    'Rho': GD(name='Rho', uni=0x03A1, hex='03A1', c='Ρ', l='H', r='P', base='P', anchors=['bottom', 'middle', 'top'], gid=551),
    'Sampi': GD(name='Sampi', uni=0x03E0, hex='03E0', c='Ϡ', r='O', r2l='C', gid=613),
    'San': GD(name='San', uni=0x03FA, hex='03FA', c='Ϻ', gid=639),

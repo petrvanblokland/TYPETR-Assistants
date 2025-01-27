@@ -561,6 +561,11 @@ class AssistantPartAnchors(BaseAssistantPart):
                 aa = self.getAnchor(g.font[gd.anchorTopX], a.name)
                 if aa is not None:
                     ax = aa.x
+                # Then add the offset of the referring component
+                for component in g.components:
+                    if component.baseGlyph == gd.anchorTopX:
+                        ax += component.transformation[-2]
+                        
             else: # If not an existing glyph name, then we can assume it is a valid method name that will calculate the ax
                 # Available: 
                 # Constructor methods are supposed to answer italic x-position
