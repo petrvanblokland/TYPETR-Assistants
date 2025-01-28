@@ -228,6 +228,10 @@ class AssistantPartInterpolate(BaseAssistantPart):
                     self.interpolateByFactor(g, f1[g.name], f2[g.name], iFactor)
                 changed = True
 
+        else: # Just do plain interpolation, e.g. between capitals
+            if iFactor is not None:
+                self.interpolateByFactor(g, f1[g.name], f2[g.name], iFactor)
+
         return changed
 
     def _interpolateValue(self, v1, v2, i, doRound=True):
