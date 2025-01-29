@@ -57,7 +57,7 @@ GREEK_SET = {
    'Psi': GD(name='Psi', uni=0x03A8, hex='03A8', c='Ψ', l='U', r='U', srcName='U', gid=557),
    'Rho': GD(name='Rho', uni=0x03A1, hex='03A1', c='Ρ', l='H', r='P', base='P', anchors=['bottom', 'middle', 'top'], gid=551),
    'Sampi': GD(name='Sampi', uni=0x03E0, hex='03E0', c='Ϡ', r='O', r2l='C', gid=613),
-   'San': GD(name='San', uni=0x03FA, hex='03FA', c='Ϻ', gid=639),
+   'San': GD(name='San', uni=0x03FA, hex='03FA', c='Ϻ', base='M', l='M', r='M', gid=639),
    'Shei-coptic': GD(name='Shei-coptic', uni=0x03E2, hex='03E2', c='Ϣ', l='H', r='H', gid=615),
    'Shima-coptic': GD(name='Shima-coptic', uni=0x03EC, hex='03EC', c='Ϭ', l='O', r='o', gid=625),
    'Sho': GD(name='Sho', uni=0x03F7, hex='03F7', c='Ϸ', base='Thorn', gid=636),
