@@ -672,7 +672,7 @@ GDS['pinferior'] = GD(name='pinferior', uni=0x209A, hex='209A', c='ₚ', l='psup
 
 # q
 
-GDS['qhooktail'] = GD(name='qhooktail', uni=0x024B, hex='024B', c='ɋ', l='o', w='q', isLower=True)
+GDS['qhooktail'] = GD(name='qhooktail', uni=0x024B, hex='024B', c='ɋ', l='o', w='q', srcName='q', isLower=True)
 GDS['qpdigraph'] = GD(name='qpdigraph', uni=0x0239, hex='0239', c='ȹ', l='q', r='p', isLower=True)
 GDS['quotesinglbase'] = GD(name='quotesinglbase', uni=0x201A, hex='201A', c='‚', l='quotesingle', r='quotesingle', isLower=True, base='comma', comment='‚ SINGLE LOW-9 QUOTATION MARK')
 
@@ -719,9 +719,9 @@ GDS['tcircumflexbelow'] = GD(name='tcircumflexbelow', uni=0x1E71, hex='1E71', c=
 GDS['tdiagonalstroke'] = GD(name='tdiagonalstroke', uni=0x2C66, hex='2C66', c='ⱦ', w='t', bl='t', base='t', accents=['slashlongcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
 GDS['tdieresis'] = GD(name='tdieresis', uni=0x1E97, hex='1E97', c='ẗ', w='t', bl='t', base='t', accents=['dieresiscmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
 GDS['tdotaccent'] = GD(name='tdotaccent', uni=0x1E6B, hex='1E6B', c='ṫ', base='t', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
-GDS['tesh'] = GD(name='tesh', uni=0x02A7, hex='02A7', c='ʧ', l='t', r='off', isLower=True)
+GDS['tesh'] = GD(name='tesh', uni=0x02A7, hex='02A7', c='ʧ', l='t', r='off', base='t', isLower=True)
 GDS['theta'] = GD(name='theta', uni=0x03B8, hex='03B8', c='θ')
-GDS['thook'] = GD(name='thook', uni=0x01AD, hex='01AD', c='ƭ', l='t', w='t', isLower=True)
+GDS['thook'] = GD(name='thook', uni=0x01AD, hex='01AD', c='ƭ', l='t', w='t', srcName='t', isLower=True)
 GDS['tildebelowcmb'] = GD(name='tildebelowcmb', uni=0x0330, hex='0330', c='̰', w=0, base='tildecmb', isLower=True, anchors=['_bottom', 'bottom'])
 GDS['tildebelow'] = GD(name='tildebelow', uni=0x0330, hex='0330', c='̰', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='tildebelowcmb', isLower=True, anchors=['bottom', '_bottom'], gid=1706)
 GDS['tildeoverlaycmb'] = GD(name='tildeoverlaycmb', uni=0x0334, hex='0334', c='̴', w=0, base='tildecmb', isLower=True, anchors=['_middle', 'middle'])
