@@ -793,6 +793,7 @@ class AssistantPartSpacer(BaseAssistantPart):
     KEY_INC_KERN1 = 'm'
     KEY_DEC_KERN1_CAP = 'N'
     KEY_DEC_KERN1 = 'n'
+    KEY_SET_KERNNET1 = '÷' # Option-/ for left kerning from KernNet
     KEY_SET_KERNNET2 = '/' # KernNet value by [/] is more default than clearing
     KEY_SET_KERN_0 = '?' # Reverse these from previous spacer version. [?] clears kerning pair
 
@@ -824,6 +825,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         personalKey_smaller = self.registerKeyStroke(self.KEY_DEC_KERN2_CAP, 'spacerDecKern2Cap')
         personalKey_comma = self.registerKeyStroke(self.KEY_DEC_KERN2, 'spacerDecKern2')
 
+        personalKey_division = self.registerKeyStroke(self.KEY_SET_KERNNET1, 'spacerSetKernNet1')
         personalKey_question = self.registerKeyStroke(self.KEY_SET_KERNNET2, 'spacerSetKernNet2')
         personalKey_slash = self.registerKeyStroke(self.KEY_SET_KERN_0, 'spacerSetKernClear2')
 
@@ -1282,6 +1284,13 @@ class AssistantPartSpacer(BaseAssistantPart):
         capLock = event['capLockDown'] # Used to determine the type of kerning to apply.
         self._adjustLeftKerning(g, 1, capLock=capLock)
     
+    def spacerSetKernNet1(self, g, c, event):
+        """Set the left kerning value to the calculated KernNet kerning value."""
+        km = self.getKerningManager(g.font)
+        kernGlyphName1 = km.kerningSample[km.sampleKerningIndex]
+        knLeft = km.getKernNetKerning(g, g.font[kernGlyphName1]) or 0 # Needs glyphs, not glyph names
+        self._adjustLeftKerning(g, newK=knLeft)
+
     def spacerSetKernNet2(self, g, c, event):
         """Set the right kerning value to the calculated KernNet kerning value."""
         km = self.getKerningManager(g.font)
