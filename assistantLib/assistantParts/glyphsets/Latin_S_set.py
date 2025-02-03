@@ -829,7 +829,7 @@ SC_NAMES = (
     'A-cy', 'Abreve-cy', 'Adieresis-cy', 'Aie-cy', 'Be-cy', 'Che-cy', 'Cheabkhasian-cy', 'Chedescender-cy', 'Chedescenderabkhasian-cy', 'Chedieresis-cy', 
     'Chekhakassian-cy', 'Cheverticalstroke-cy', 'De-cy', 'De-cy.loclBGR', 'Dje-cy', 'Dze-cy', 'Dzhe-cy', 'E-cy', 'Edieresis-cy', 'Ef-cy', 'Eiotified-cy', 
     'El-cy', 'El-cy.loclBGR', 'Eltail-cy', 'Em-cy', 'Emtail-cy', 'En-cy', 'Endescender-cy', 'Enghe-cy', 'Enhook-cy', 'Entail-cy', 'Er-cy', 'Ereversed-cy', 
-    'Ertick-cy', 'Es-cy', 'Esdescender-cy', 'Fita-cy', 'Ge-cy', 'Gedescender-cy', 'Gehookstroke-cy', 'Gestrokehook-cy', 'Gestrokehook-cy.component', 
+    'Ertick-cy', 'Es-cy', 'Esdescender-cy', 'Fita-cy', 'Ge-cy', 'Gedescender-cy', 'Gehookstroke-cy',
     'Ghemiddlehook-cy', 'Ghestroke-cy', 'Gheupturn-cy', 'Gje-cy', 'Ha-cy', 'Haabkhasian-cy', 'Hadescender-cy', 'Hahook-cy', 'Hardsign-cy', 'Hastroke-cy', 
     'I-cy', 'Ia-cy', 'Idieresis-cy', 'Ie-cy', 'Iebreve-cy', 'Iegrave-cy', 'Ii-cy', 'Iigrave-cy', 'Iishort-cy', 'Iishorttail-cy', 'Imacron-cy', 'Io-cy', 
     'Iu-cy', 'Izhitsa-cy', 'Izhitsadblgrave-cy', 'Je-cy', 'Ka-cy', 'Kabashkir-cy', 'Kadescender-cy', 'Kahook-cy', 'Kastroke-cy', 'Kaverticalstroke-cy', 

@@ -80,7 +80,6 @@ CYRILLIC_SET = {
 
    'Ge-cy': GD(name='Ge-cy', uni=0x0413, hex='0413', c='Г', l='H', base='Gamma', anchors=['top'], gid=664),
    'Gedescender-cy': GD(name='Gedescender-cy', uni=0x04F6, hex='04F6', c='Ӷ', l='H', r='Ge-cy', gid=891),
-   'Gestrokehook-cy': GD(name='Gestrokehook-cy', uni=0x04FA, hex='04FA', c='Ӻ', r='Ge-cy', base='Ghestroke-cy', gid=895),
    'Ghemiddlehook-cy': GD(name='Ghemiddlehook-cy', uni=0x0494, hex='0494', c='Ҕ', l='H', r='o', gid=793),
    'Ghestroke-cy': GD(name='Ghestroke-cy', uni=0x0492, hex='0492', c='Ғ', l='Eth', r='Ge-cy', base='Ge-cy', gid=791),
    'Gheupturn-cy': GD(name='Gheupturn-cy', uni=0x0490, hex='0490', c='Ґ', l='H', r='Ge-cy', gid=789),
@@ -284,12 +283,11 @@ CYRILLIC_SET = {
    'ge-cy': GD(name='ge-cy', uni=0x0433, hex='0433', c='г', l2r='s', r2l='s', isLower=True, anchors=['top', 'middle', 'bottom'], gid=696),
    'ge-cy.loclBGR': GD(name='ge-cy.loclBGR', isLower=True),
    'gedescender-cy': GD(name='gedescender-cy', uni=0x04F7, hex='04F7', c='ӷ', l='en-cy', r='ge-cy', isLower=True, gid=892),
-   'gestrokehook-cy': GD(name='gestrokehook-cy', uni=0x04FB, hex='04FB', c='ӻ', r='ge-cy', base='ghestroke-cy', accents=['Gestrokehook-cy.component'], isLower=True, gid=896),
    'ghemiddlehook-cy': GD(name='ghemiddlehook-cy', uni=0x0495, hex='0495', c='ҕ', l='en-cy', r='o', isLower=True, gid=794),
    'ghestroke-cy': GD(name='ghestroke-cy', uni=0x0493, hex='0493', c='ғ', l='hyphen', r='ge-cy', base='ge-cy', isLower=True, gid=792),
    'gheupturn-cy': GD(name='gheupturn-cy', uni=0x0491, hex='0491', c='ґ', l='en-cy', r='ge-cy', isLower=True, gid=790),
    'gje-cy': GD(name='gje-cy', uni=0x0453, hex='0453', c='ѓ', base='ge-cy', accents=['acutecmb'], isLower=True, anchors=['top'], gid=728),
-   'gehookstroke-cy': GD(name='gehookstroke-cy', uni=0x04FB, hex='04FB', c='ӻ', isLower=True, anchors=['top']),
+   'gehookstroke-cy': GD(name='gehookstroke-cy', uni=0x04FB, hex='04FB', c='ӻ', r='ge-cy', isLower=True, anchors=['top']),
 
     #   h
 
