@@ -516,7 +516,7 @@ LATIN_S_SET = GDS = {
 
     # f
 
-    'f': GD(name='f', uni=0x0066, hex='0066', c='f', l='t', rightMin='-100', anchorTopX='TopX', isLower=True, fixAccents=True, anchors=['bottom', 'middle', 'top'], comment='f'),
+    'f': GD(name='f', uni=0x0066, hex='0066', c='f', l='t', rightMin='-100', anchorTopX='TopX', anchorTopY='TopY', isLower=True, fixAccents=True, anchors=['bottom', 'middle', 'top'], comment='f'),
     'f.alt': GD(name='f.alt', l='f', rightMin='-100', anchorTopX='TopX', isLower=True, fixAccents=True, srcName='f', anchors=['bottom', 'middle', 'top'], comment='f.alt, allowing for serif-terminal alternative.'), 
     'fi': GD(name='fi', uni=0xFB01, hex='FB01', c='ﬁ', l='f', r='i', base='f.alt_connect', accents=['idotless'], isLower=True, comment='ﬁ f_i'),
     'fl': GD(name='fl', uni=0xFB02, hex='FB02', c='ﬂ', l='f', r='l', isLower=True, base='f.alt_noconnect', accents=['l'], comment='ﬂ f_l'),
@@ -674,7 +674,7 @@ LATIN_S_SET = GDS = {
 
     # s
 
-    's': GD(name='s', uni=0x0073, hex='0073', c='s', l2r='self', isLower=True, anchorTopX='TopX', anchorBottomX='BottomX', useSkewRotate=True, anchors=['bottom', 'middle', 'top'], comment='s'),
+    's': GD(name='s', uni=0x0073, hex='0073', c='s', l='off', l2r='self', isLower=True, anchorTopX='TopX', anchorBottomX='BottomX', useSkewRotate=True, anchors=['bottom', 'middle', 'top'], comment='s'),
     'sacute': GD(name='sacute', uni=0x015B, hex='015B', c='ś', l='s', r='s', base='s', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ś S WITH ACUTE, LATIN SMALL LETTER'),
     'scaron': GD(name='scaron', uni=0x0161, hex='0161', c='š', l='s', r='s', base='s', accents=['caroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='š S WITH CARON, LATIN SMALL LETTER'),
     'scedilla': GD(name='scedilla', uni=0x015F, hex='015F', c='ş', l='s', r='s', base='s', accents=['cedillacmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ş S WITH CEDILLA, LATIN SMALL LETTER'),
