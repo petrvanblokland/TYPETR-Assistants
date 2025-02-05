@@ -235,7 +235,7 @@ CYRILLIC_SET = {
 
    'che-cy': GD(name='che-cy', uni=0x0447, hex='0447', c='ч', r='en-cy', isLower=True, anchors=['top'], gid=716),
    'che-cy.loclBGR': GD(name='che-cy.loclBGR', l='che-cy', isLower=True),   
-   'cheabkhasian-cy': GD(name='cheabkhasian-cy', uni=0x04BD, hex='04BD', c='ҽ', l='omod', r='e', isLower=True, gid=834),
+   'cheabkhasian-cy': GD(name='cheabkhasian-cy', uni=0x04BD, hex='04BD', c='ҽ', l='o', r='e', isLower=True, gid=834),
    'chedescender-cy': GD(name='chedescender-cy', uni=0x04B7, hex='04B7', c='ҷ', l='che-cy', r='tse-cy', isLower=True, gid=828),
    'chedescenderabkhasian-cy': GD(name='chedescenderabkhasian-cy', uni=0x04BF, hex='04BF', c='ҿ', l='cheabkhasian-cy', r='e', base='cheabkhasian-cy', accents=['chedescenderabkhasian-cy.component'], isLower=True, gid=836),
    'chedescenderabkhasian-cy.component': GD(name='chedescenderabkhasian-cy.component', w=0, isLower=True, gid=1628),
@@ -245,7 +245,7 @@ CYRILLIC_SET = {
 
     #   d
 
-   'dasiapneumatacmb-cy': GD(name='dasiapneumatacmb-cy', uni=0x0485, hex='0485', c='҅', w=0, base='dasia', isLower=True, anchors=['top', '_top'], gid=778),
+   'dasiapneumatacmb-cy': GD(name='dasiapneumatacmb-cy', uni=0x0485, hex='0485', c='҅', w=0, isLower=True, anchors=['top', '_top'], gid=778),
    'de-cy': GD(name='de-cy', uni=0x0434, hex='0434', c='д', r='o', isLower=True, gid=697, anchors=['top', 'middle', 'bottom']), # Italic variant has different shape.
    'de-cy.loclBGR': GD(name='de-cy.loclBGR', isLower=True),
    'dje-cy': GD(name='dje-cy', uni=0x0452, hex='0452', c='ђ', l='hbar', isLower=True, gid=727),

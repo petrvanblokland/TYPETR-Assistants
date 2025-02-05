@@ -1602,7 +1602,7 @@ class MS_GlyphSet(GlyphSet):
        'heta': GD(name='heta', uni=0x0371, hex='0371', c='ͱ', isLower=True, r='hyphen', gid=511),
        'hhook': GD(name='hhook', uni=0x0266, hex='0266', c='ɦ', l='h', r='h', isLower=True),
        'hhookmod': GD(name='hhookmod', uni=0x02B1, hex='02B1', c='ʱ', l='nmod', r='nmod', isLower=False, isMod=True),
-       'hinferior': GD(name='hinferior', uni=0x2095, hex='2095', c='ₕ', l='hmod', r='hmod', isLower=True),
+       'hinferior': GD(name='hinferior', uni=0x2095, hex='2095', c='ₕ', l='nmod', r='nmod', isLower=True),
        'hlinebelow': GD(name='hlinebelow', uni=0x1E96, hex='1E96', c='ẖ', base='h', accents=['macronbelow'], srcName='uni1E96', isLower=True, anchors=['top', 'middle', 'bottom'], gid=1073),
        'hmod': GD(name='hmod', uni=0x02B0, hex='02B0', c='ʰ', l='nmod', r='nmod', isLower=False, isMod=True),
        'homotheticabovecomb': GD(name='homotheticabovecomb', uni=0x034B, hex='034B', c='͋', w=0, isLower=True, anchors=['top', '_top']),

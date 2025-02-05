@@ -47,7 +47,7 @@ GREEK_SET = {
    'Lambda': GD(name='Lambda', uni=0x039B, hex='039B', c='Λ', l='A', r='A', gid=545, comment='Λ'),
    'Mu': GD(name='Mu', uni=0x039C, hex='039C', c='Μ', l='H', r='H', base='M', anchors=['bottom', 'middle', 'top'], gid=546),
    'Nu': GD(name='Nu', uni=0x039D, hex='039D', c='Ν', l='H', r='H', base='N', anchors=['bottom', 'middle', 'top'], gid=547),
-   'Omega': GD(name='Omega', uni=0x03A9, hex='03A9', c='Ω', l='Ohm', r='Ohm', base='Ohm', anchors=['bottom', 'top'], gid=558),
+   'Omega': GD(name='Omega', uni=0x03A9, hex='03A9', c='Ω', l='O', r='O', base='Ohm', anchors=['bottom', 'top'], gid=558),
    'Omegatonos': GD(name='Omegatonos', uni=0x038F, hex='038F', c='Ώ', l='Y', r='Omega', base='Ohm', accents=['tonoscmb.uc'], anchors=['bottom', 'top'], gid=533),
    'Omicron': GD(name='Omicron', uni=0x039F, hex='039F', c='Ο', base='O', anchors=['bottom', 'middle', 'top'], gid=549),
    'Omicrontonos': GD(name='Omicrontonos', uni=0x038C, hex='038C', c='Ό', l='Y', r='O', base='O', accents=['tonoscmb.uc'], anchors=['bottom', 'middle', 'top'], gid=531),

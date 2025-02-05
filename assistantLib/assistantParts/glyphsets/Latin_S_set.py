@@ -864,6 +864,7 @@ SUPS_SINF_NAMES = (
 # Used by GlyphSet class to add sinf/dnom/numr/subs glyph data records. These combine with /fraction
 NUMR_DNOM_NAMES = (
     'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
+    'hyphen', 'degree', 'period', 'parenleft', 'parenright', 'plus', 'comma',
 )
 # Used by GlyphSet class to add tab glyph data records. 
 TAB_NAMES = (
@@ -872,9 +873,9 @@ TAB_NAMES = (
     'period', 'comma', 'colon', 'semicolon',
     'plus', 'minus', 'equal', 'notequal', 'less', 'greater', 'lessequal', 'greaterequal', 
     'multiply', 'divide', 'asterisk', 
-    'percent', 'perthousand', 'degree', 'approxequal', 'plusminus',  
+    'percent', 'perthousand', 'degree', 'approxequal', 'plusminus', 'approxequal',  
     'parenleft', 'parenright', 'bracketleft', 'bracketright', 'braceleft', 'braceright',
-    'quoteleft', 'quoteright', 'quotedblleft', 'quotedblright',
+    'quoteleft', 'quoteright', 'quotedblleft', 'quotedblright', 
     'hyphen', 'endash', 'minute', 'second', 'slash', 'backslash', 'numbersign',
 )
 # Used by GlyphSet class to add oldstyle figures glyph data records with .onum extension
