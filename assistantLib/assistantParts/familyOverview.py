@@ -115,6 +115,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                     ufo = self.getFont(pth)
                     if ufo is not None and g.name in ufo:
                         ufoG = ufo[g.name] # Show the foreground layer.
+                        print('SSAASASASAS', self.doesInterpolate(ufoG))
                         if not self.isCurrentGlyph(ufoG) or not c.w.showFamilyInterpolation.get() or self.doesInterpolate(ufoG):
                             fillColor = self.FAMILY_DEFAULT_FILL_COLOR
                         else:
