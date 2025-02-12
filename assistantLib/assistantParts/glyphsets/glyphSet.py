@@ -176,12 +176,12 @@ class GlyphSet:
                     gd.isLower = False
                     gd.overshoot = gd.CAT_SC_OVERSHOOT
 
-        for gName in SC_NAMES:
+        for gName in SC_NAMES: # Scmall cap component and anchor conversions
             if gName in self.glyphs:
                 gNameSc = gName + ext
                 gd = self.glyphs[gNameSc] # We know here that is already must exist
                 if gd.base is not None and gd.base + ext in self.glyphs:
-                    gd.base = (gd.base + ext).replace('.uc', '').replace('.case', '')
+                    gd.base = (gd.base + ext).replace('.uc', '')
 
                 # Also convert these references, e.g. for /Ohorn glyphs
                 if gd.anchorTopX is not None and gd.anchorTopX + ext in self.glyphs:
@@ -198,7 +198,7 @@ class GlyphSet:
                 gd.accents = []
                 for accent in accents: # Make a copy, because we're going to change the .uc to lowercase diacritics
                     # /tail.component-cy.case replaced to /tail.component-cy 
-                    gd.accents.append(accent.replace('.uc', '').replace('.case', ''))
+                    gd.accents.append(accent.replace('.uc', ''))
 
     def _appendTab(self):
         tabExt = '.tab'

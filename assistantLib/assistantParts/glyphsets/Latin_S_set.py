@@ -837,7 +837,7 @@ SC_NAMES = (
     'Pedescender-cy', 'Pedescender-cy.component', 'Pemiddlehook-cy', 'Psi-cy', 'Schwa-cy', 'Schwadieresis-cy', 'Semisoftsign-cy', 'Sha-cy', 'Shcha-cy', 
     'Shha-cy', 'Softsign-cy', 'Te-cy', 'Tedescender-cy', 'Tetse-cy', 'Tse-cy', 'Tshe-cy', 'U-cy', 'Udieresis-cy', 'Uhungarumlaut-cy', 'Uk-cy', 'Umacron-cy', 
     'Ushort-cy', 'Ustrait-cy', 'Ustraitstroke-cy', 'Ve-cy', 'Yat-cy', 'Yeru-cy', 'Yerudieresis-cy', 'Yi-cy', 'Yusbig-cy', 'Yusbigiotified-cy', 'Yuslittle-cy', 
-    'Yuslittleiotified-cy', 'Ze-cy', 'Zedescender-cy', 'Zedieresis-cy', 'Zhe-cy', 'Zhebreve-cy', 'Zhedescender-cy', 'Zhedieresis-cy', 'tail.component-cy.sc',
+    'Yuslittleiotified-cy', 'Ze-cy', 'Zedescender-cy', 'Zedieresis-cy', 'Zhe-cy', 'Zhebreve-cy', 'Zhedescender-cy', 'Zhedieresis-cy', 'tail.component-cy.case',
 
     # In case GREEK_SET is inlcuded, these need to be come smallcaps too
     'Alpha', 'Alphatonos', 'Archaicsampi', 'Beta', 'Chi', 'Dei-coptic', 'Delta', 'Digamma', 'Epsilon', 'Epsilontonos', 'Eta', 'Etatonos', 'Fei-coptic', 

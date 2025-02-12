@@ -394,6 +394,10 @@ CYRILLIC_SET = {
    'tse-cy.loclBGR': GD(name='tse-cy.loclBGR', l='u', r='tse-cy', isLower=True),
    'tshe-cy': GD(name='tshe-cy', uni=0x045B, hex='045B', c='ћ', l='hbar', r='hbar', base='h', isLower=True, gid=736),
 
+    'tail.component-cy.case': GD(name='tail.component-cy.case', w=0, isLower=False),
+    'tail.component-cy.case.sc': GD(name='tail.component-cy.case.sc', w=0, isLower=False),
+    'tail.component-cy': GD(name='tail.component-cy', w=0, isLower=True),
+
     #   u
 
    'u-cy': GD(name='u-cy', uni=0x0443, hex='0443', c='у', l='y', r='y', base='y', isLower=True, anchors=['top', 'middle', 'bottom'], gid=712),
