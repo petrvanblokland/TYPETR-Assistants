@@ -127,6 +127,7 @@ LATIN_S_SET = GDS = {
     'percent': GD(name='percent', uni=0x0025, hex='0025', c='%', l='zerosuperior', r='zerosuperior', isLower=True, comment='% PERCENT SIGN', baseline=GD.CAT_NUMR_BASELINE, height=GD.CAT_SUPERIOR_HEIGHT, overshoot=GD.CAT_SUPERIOR_OVERSHOOT),
     'percent.tab': GD(name='percent.tab', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, comment='% PERCENT SIGN TAB'),
     'perthousand': GD(l='zerosuperior', r='zerosuperior', uni=0x2030, c='‰', name='perthousand', comment='‰ per thousand', baseline=GD.CAT_NUMR_BASELINE, height=GD.CAT_SUPERIOR_HEIGHT, overshoot=GD.CAT_SUPERIOR_OVERSHOOT),
+    'perthousand.tab': GD(name='perthousand.tab', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH),
     'period': GD(name='period', uni=0x002E, hex='002E', c='.', l2r='self', isLower=True, fixSpacing=False, comment='. point, decimal'),
     'period.uc': GD(name='period.uc', l2r='self', isLower=True, fixSpacing=False, base='period', comment='. point, decimal'),
     'ellipsis': GD(name='ellipsis', uni=0x2026, hex='2026', c='…', l='period', r='period', isLower=True, comment='… three dot leader'),
@@ -156,6 +157,7 @@ LATIN_S_SET = GDS = {
     'underscore': GD(name='underscore', uni=0x005F, hex='005F', c='_', isLower=True, comment='_ underscore, spacing'),
 
     'yen': GD(name='yen', uni=0x00A5, hex='00A5', c='¥', isLower=True, l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='Y', comment='¥ yuan sign'),
+    'yen.tab': GD(name='yen.tab', isLower=True, l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, srcName='yen'),
 
     # Fixed fractions
 
@@ -517,9 +519,9 @@ LATIN_S_SET = GDS = {
     # f
 
     'f': GD(name='f', uni=0x0066, hex='0066', c='f', l='t', rightMin='-100', anchorTopX='TopX', anchorTopY='TopY', isLower=True, fixAccents=True, anchors=['bottom', 'middle', 'top'], comment='f'),
-    'f.alt': GD(name='f.alt', l='f', rightMin='-100', anchorTopX='TopX', isLower=True, fixAccents=True, srcName='f', anchors=['bottom', 'middle', 'top'], comment='f.alt, allowing for serif-terminal alternative.'), 
-    'fi': GD(name='fi', uni=0xFB01, hex='FB01', c='ﬁ', l='f', r='i', base='f.alt_connect', accents=['idotless'], isLower=True, comment='ﬁ f_i'),
-    'fl': GD(name='fl', uni=0xFB02, hex='FB02', c='ﬂ', l='f', r='l', isLower=True, base='f.alt_noconnect', accents=['l'], comment='ﬂ f_l'),
+    'f.alt': GD(name='f.alt', l='f', rightMin='-100', isLower=True, anchorTopX='TopX', anchorTopY='TopY', fixAccents=True, srcName='f', anchors=['bottom', 'middle', 'top'], comment='f.alt, allowing for serif-terminal alternative.'), 
+    'fi': GD(name='fi', uni=0xFB01, hex='FB01', c='ﬁ', l='f', r='i', anchorTopX='TopX', anchorTopY='TopY', base='f.alt_connect', accents=['idotless'], isLower=True, comment='ﬁ f_i'),
+    'fl': GD(name='fl', uni=0xFB02, hex='FB02', c='ﬂ', l='f', r='l', anchorTopX='TopX', anchorTopY='TopY', isLower=True, base='f.alt_noconnect', accents=['l'], comment='ﬂ f_l'),
     # Minimal 2 alternatives for connecting (long flag) and not-connecting (short flag)
     'f.alt_connect': GD(name='f.alt_connect', l='f', rightMin='-100', anchorTopX='TopX', isLower=True, fixAccents=True, srcName='f', anchors=['bottom', 'middle', 'top'], comment='f.alt, allowing for serif-terminal alternative.'), 
     'f.alt_noconnect': GD(name='f.alt_noconnect', l='f', rightMin='-100', anchorTopX='TopX', isLower=True, fixAccents=True, srcName='f', anchors=['bottom', 'middle', 'top'], comment='f.alt, allowing for serif-terminal alternative.'), 
