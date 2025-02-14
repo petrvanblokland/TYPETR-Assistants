@@ -750,8 +750,10 @@ LATIN_S_SET = GDS = {
 
     # Figures
 
-    'zero': GD(g2='zero', g1='zero', l2r='self', uni=0x0030, c='0', name='zero', isLower=False, comment='0 Digits, ASCII', useSkewRotate=True, addItalicExtremePoints=True),
-    'zeroslash': GD(g2='zero', g1='zero', l='zero', w='zero', name='zeroslash', base='zero', isLower=False, srcName='slash', comment='0 Digits, ASCII'),
+    'zero': GD(l2r='self', uni=0x0030, c='0', name='zero', isLower=False, comment='0 Digits, ASCII', useSkewRotate=True, addItalicExtremePoints=True),
+    'zeroslash': GD(l='zero', w='zero', name='zeroslash', base='zero', isLower=False, srcName='slash', comment='0 Digits, ASCII'),
+    'zero.tab': GD(l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, name='zero.tab', srcName='zero', isLower=False, comment='0 Digits, ASCII', useSkewRotate=True, addItalicExtremePoints=True),
+    'zeroslash.tab': GD(l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, name='zeroslash.tab', srcName='zeroslash', isLower=False, comment='0 Digits, ASCII', useSkewRotate=True, addItalicExtremePoints=True),
     'one': GD(g2='one', g1='one', l2r='self', uni=0x0031, c='1', name='one', isLower=False, comment='1'),
     'two': GD(g2='two', g1='two', l2r='self', uni=0x0032, c='2', name='two', isLower=False, comment='2'),
     'three': GD(g2='three', g1='three', l2r='self', uni=0x0033, c='3', name='three', isLower=False, comment='3'),
