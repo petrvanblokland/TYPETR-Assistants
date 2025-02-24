@@ -84,7 +84,9 @@ class MasterData:
             unitsPerEm=UNITS_PER_EM, 
             baseline=0, stemOvershoot=STEM_OVERSHOOT, baseOvershoot=None, capOvershoot=None, scOvershoot=None, onumOvershoot=None, superiorOvershoot=None,
             ascender=None, descender=None,
-            xHeight=None, capHeight=None, scHeight=None, onumHeight=None, superiorHeight=None, modHeight=None,
+            xHeight=None, capHeight=None, scHeight=None, onumHeight=None, 
+            superiorHeight=None, superiorCapHeight=None, superiorAscender=None, superiorDescender=None,
+            modHeight=None,
             numrBaseline=None, supsBaseline=None, sinfBaseline=None, dnomBaseline=None, modBaseline=None,
             middlexHeight=None, middleCapHeight=None,
             # Vertical anchor offsets to avoid collission with baseline, guidelines, etc. in mouse selection
@@ -286,6 +288,15 @@ class MasterData:
         if superiorHeight is None:
             superiorHeight = xHeight * 2/3
         self.superiorHeight = superiorHeight
+        if superiorCapHeight is None:
+            superiorCapHeight = capHeight * 2/3
+        self.superiorCapHeight = superiorCapHeight
+        if superiorAscender is None:
+            superiorAscender = ascender * 2/3
+        self.superiorAscender = superiorAscender
+        if superiorDescender is None:
+            superiorDescender = descender * 2/3
+        self.superiorDescender = superiorDescender
         self.modHeight = modHeight or self.superiorHeight
 
         if middlexHeight is None:

@@ -182,6 +182,18 @@ class AssistantPartGuidelines(BaseAssistantPart):
                 guidelines.append((xo + tg * (md.supsBaseline + md.superiorHeight), md.supsBaseline - overshoot, 0, f"{md.supsBaseline - overshoot} ({overshoot})"))
                 guidelines.append((xo + tg * (md.supsBaseline + md.superiorHeight), md.supsBaseline + md.superiorHeight + overshoot, 0, f"{md.supsBaseline + md.superiorHeight + overshoot} ({overshoot})"))
 
+            if md.superiorCapHeight is not None:
+                guidelines.append((xo + tg * (md.supsBaseline + md.superiorCapHeight), md.supsBaseline + md.superiorCapHeight, 0, f"CapHeight of superiors {md.supsBaseline + md.superiorCapHeight}"))
+                guidelines.append((xo + tg * (md.supsBaseline + md.superiorCapHeight), md.supsBaseline + md.superiorCapHeight + overshoot, 0, f"{md.supsBaseline + md.superiorCapHeight + overshoot} ({overshoot})"))
+
+            if md.superiorAscender is not None:
+                guidelines.append((xo + tg * (md.supsBaseline + md.superiorAscender), md.supsBaseline + md.superiorAscender, 0, f"Ascender of superiors {md.supsBaseline + md.superiorAscender}"))
+                guidelines.append((xo + tg * (md.supsBaseline + md.superiorAscender), md.supsBaseline + md.superiorAscender + overshoot, 0, f"{md.supsBaseline + md.superiorAscender + overshoot} ({overshoot})"))
+
+            if md.superiorDescender is not None:
+                guidelines.append((xo + tg * (md.supsBaseline + md.superiorDescender), md.supsBaseline + md.superiorDescender, 0, f"Descender of superiors {md.supsBaseline + md.superiorDescender}"))
+                guidelines.append((xo + tg * (md.supsBaseline + md.superiorDescender), md.supsBaseline + md.superiorDescender - overshoot, 0, f"{md.supsBaseline + md.superiorDescender - overshoot} ({overshoot})"))
+
         if md.sinfBaseline is not None and ('sinf' in g.name or 'inferior' in g.name or 'dnom' in g.name):            
             guidelines.append((xo + tg * (md.sinfBaseline), md.sinfBaseline, 0, f"Baseline of inferiors {md.sinfBaseline}"))
             # Make separation between superiorHeight and inferiorHeight?
@@ -190,6 +202,18 @@ class AssistantPartGuidelines(BaseAssistantPart):
 
                 guidelines.append((xo + tg * (md.sinfBaseline + md.superiorHeight), md.sinfBaseline - overshoot, 0, f"{md.sinfBaseline - overshoot} ({overshoot})"))
                 guidelines.append((xo + tg * (md.sinfBaseline + md.superiorHeight), md.sinfBaseline + md.superiorHeight + overshoot, 0, f"{md.sinfBaseline + md.superiorHeight + overshoot} ({overshoot})"))
+
+            if md.superiorCapHeight is not None:
+                guidelines.append((xo + tg * (md.sinfBaseline + md.superiorCapHeight), md.sinfBaseline + md.superiorCapHeight, 0, f"CapHeight of inferiors {md.sinfBaseline + md.superiorCapHeight}"))
+                guidelines.append((xo + tg * (md.sinfBaseline + md.superiorCapHeight), md.sinfBaseline + md.superiorCapHeight + overshoot, 0, f"{md.sinfBaseline + md.superiorCapHeight + overshoot} ({overshoot})"))
+
+            if md.superiorAscender is not None:
+                guidelines.append((xo + tg * (md.sinfBaseline + md.superiorAscender), md.sinfBaseline + md.superiorAscender, 0, f"Ascender of inferiors {md.sinfBaseline + md.superiorAscender}"))
+                guidelines.append((xo + tg * (md.sinfBaseline + md.superiorAscender), md.sinfBaseline + md.superiorAscender + overshoot, 0, f"{md.sinfBaseline + md.superiorAscender + overshoot} ({overshoot})"))
+
+            if md.superiorDescender is not None:
+                guidelines.append((xo + tg * (md.sinfBaseline + md.superiorDescender), md.sinfBaseline + md.superiorDescender, 0, f"CapHeight of inferiors {md.sinfBaseline + md.superiorDescender}"))
+                guidelines.append((xo + tg * (md.sinfBaseline + md.superiorDescender), md.sinfBaseline + md.superiorDescender - overshoot, 0, f"{md.sinfBaseline + md.superiorDescender - overshoot} ({overshoot})"))
 
         if forced or len(g.guidelines) != len(guidelines):
             # Amounts are different, too complex to compare. Just rebuild all guidelines.
