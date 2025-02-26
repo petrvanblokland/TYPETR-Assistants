@@ -488,7 +488,7 @@ GDS['doublebrevecmb.uc'] = GD(name='doublebrevecmb.uc', w=0, srcName='doublebrev
 GDS['dsuperior'] = GD(name='dsuperior', l='osuperior', r='lsuperior', isLower=False, isMod=True)
 GDS['dinferior'] = GD(name='dinferior', l='dsuperior', r='dsuperior', base='dsuperior', isLower=True)
 
-GDS['dblquotesuperior'] = GD(name='dblquotesuperior', uni=0x02EE, hex='02EE', c='ˮ', base='quotedblright', isLower=True, isMod=True)
+GDS['dblquotesuperior'] = GD(name='dblquotesuperior', uni=0x02EE, hex='02EE', c='ˮ', isLower=True, isMod=True)
 
 # e
 
