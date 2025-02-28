@@ -246,7 +246,7 @@ LATIN_S_SET = GDS = {
     'Gcircumflex': GD(name='Gcircumflex', uni=0x011C, hex='011C', c='Ĝ', l='G', r='G', base='G', accents=['circumflexcmb.uc'], anchors=['bottom', 'middle', 'top'], comment='Ĝ'),
     'Gcommaaccent': GD(name='Gcommaaccent', uni=0x0122, hex='0122', c='Ģ', l='G', r='G', base='G', accents=['cedillacmb'], anchors=['bottom', 'middle', 'top'], comment='Ģ'),
     'Gdotaccent': GD(name='Gdotaccent', uni=0x0120, hex='0120', c='Ġ', l='G', r='G', base='G', accents=['dotaccentcmb.uc'], anchors=['bottom', 'middle', 'top'], comment='Ġ'),
-    'Germandbls': GD(name='Germandbls', uni=0x1E9E, hex='1E9E', c='ẞ', srcName='uni1E9E'),
+    'Germandbls': GD(name='Germandbls', uni=0x1E9E, hex='1E9E', c='ẞ', l='f', r='s', srcName='uni1E9E'),
     'Gmacron': GD(name='Gmacron', uni=0x1E20, hex='1E20', c='Ḡ', l='G', r='G', base='G', accents=['macroncmb.uc'], srcName='uni1E20', anchors=['bottom', 'middle', 'top']),
 
     # H
@@ -534,7 +534,7 @@ LATIN_S_SET = GDS = {
     'gcircumflex': GD(name='gcircumflex', uni=0x011D, hex='011D', c='ĝ', anchorTopY='TopY', base='g', accents=['circumflexcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ĝ G WITH CIRCUMFLEX, LATIN SMALL LETTER'),
     'gcommaaccent': GD(name='gcommaaccent', uni=0x0123, hex='0123', c='ģ', anchorTopY='TopY', base='g', accents=['commaaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top']),
     'gdotaccent': GD(name='gdotaccent', uni=0x0121, hex='0121', c='ġ', anchorTopY='TopY', base='g', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top']),
-    'germandbls': GD(name='germandbls', uni=0x00DF, hex='00DF', c='ß', isLower=True, comment='ß SHARP S, LATIN SMALL LETTER'),
+    'germandbls': GD(name='germandbls', uni=0x00DF, hex='00DF', c='ß', l='f', r='s', isLower=True, comment='ß SHARP S, LATIN SMALL LETTER'),
     'gmacron': GD(name='gmacron', uni=0x1E21, hex='1E21', c='ḡ', anchorTopY='TopY', base='g', accents=['macroncmb'], srcName='uni1E21', isLower=True, anchors=['bottom', 'middle', 'top']),
     'guarani': GD(name='guarani', uni=0x20B2, hex='20B2', c='₲', isLower=True),
     'greater': GD(name='greater', uni=0x003E, hex='003E', c='>', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='> GREATER-THAN SIGN'),
@@ -618,7 +618,7 @@ LATIN_S_SET = GDS = {
     'ncommaaccent': GD(name='ncommaaccent', uni=0x0146, hex='0146', c='ņ', base='n', accents=['cedillacmb.noconnect'], isLower=True, anchors=['bottom', 'middle', 'top']),
     'ndotaccent': GD(name='ndotaccent', uni=0x1E45, hex='1E45', c='ṅ', base='n', accents=['dotaccentcmb'], srcName='uni1E45', isLower=True, anchors=['bottom', 'middle', 'top']),
     'ndotbelow': GD(name='ndotbelow', uni=0x1E47, hex='1E47', c='ṇ', base='n', accents=['dotbelowcmb'], srcName='uni1E47', isLower=True, anchors=['bottom', 'middle', 'top']),
-    'nhookleft': GD(name='nhookleft', uni=0x0272, hex='0272', c='ɲ', isLower=True),
+    'nhookleft': GD(name='nhookleft', uni=0x0272, hex='0272', c='ɲ', w='n', r='n', isLower=True),
     'ntilde': GD(name='ntilde', uni=0x00F1, hex='00F1', c='ñ', base='n', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ñ N WITH TILDE, LATIN SMALL LETTER'),
 
     # o
