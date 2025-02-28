@@ -135,7 +135,7 @@ GREEK_SET = {
    'shei-coptic': GD(name='shei-coptic', uni=0x03E3, hex='03E3', c='ϣ', l2r='m', r2l='m', isLower=True, gid=616),
    'shima-coptic': GD(name='shima-coptic', uni=0x03ED, hex='03ED', c='ϭ', l='O', r='o', gid=626),
    'sho': GD(name='sho', uni=0x03F8, hex='03F8', c='ϸ', base='thorn', isLower=True, gid=637),
-   'sigma': GD(name='sigma', uni=0x03C3, hex='03C3', c='σ', isLower=True, gid=584),
+   'sigma': GD(name='sigma', uni=0x03C3, hex='03C3', c='σ', l='s', r='s', isLower=True, gid=584),
    'sigmaLunateDottedReversedSymbol': GD(name='sigmaLunateDottedReversedSymbol', uni=0x037D, hex='037D', c='ͽ', l2r='sigmaLunateDottedSymbol', r2l='sigmaLunateDottedSymbol', base='oopen', accents=['dotmiddlecmb'], isLower=True, gid=521),
    'sigmaLunateDottedSymbol': GD(name='sigmaLunateDottedSymbol', uni=0x037C, hex='037C', c='ͼ', l='c', r='c', base='c', accents=['dotmiddlecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=520),
    'sigmaLunateReversedSymbol': GD(name='sigmaLunateReversedSymbol', uni=0x037B, hex='037B', c='ͻ', l2r='sigmaLunateDottedSymbol', r2l='sigmaLunateDottedSymbol', base='oopen', isLower=True, gid=519),

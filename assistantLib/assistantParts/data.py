@@ -522,7 +522,7 @@ class MasterData:
         # If there is a category defined in the glyphData for this glyph, then answer the referenced category value.
         # Not defined in the GlyphSet/GlyphData for this glyph. We need to do some quessing, based on the type of glyph or its name.
         if gd.isMod or gd.isSuperior or gd.isNumr or gd.isInferior or gd.isDnom:
-            return self.supsHeight
+            return self.superiorHeight
         if gd.isLower:
             return self.xHeight
         return self.capHeight

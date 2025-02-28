@@ -476,7 +476,7 @@ LATIN_S_SET = GDS = {
     'ccircumflex': GD(name='ccircumflex', uni=0x0109, hex='0109', c='ĉ', anchorTopY='TopY', base='c', accents=['circumflexcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ĉ C WITH CIRCUMFLEX, LATIN SMALL LETTER'),
     'cdotaccent': GD(name='cdotaccent', uni=0x010B, hex='010B', c='ċ', anchorTopY='TopY', base='c', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top']),
     'cedi': GD(name='cedi', uni=0x20B5, hex='20B5', c='₵', base='C', l='C', r='C', isLower=True),
-    'colonsign': GD(name='colonsign', uni=0x20A1, hex='20A1', c='₡', isLower=True),
+    'colonsign': GD(name='colonsign', uni=0x20A1, hex='20A1', c='₡', base='C', l='C', r='C', isLower=True),
     'caron': GD(name='caron', uni=0x02C7, hex='02C7', c='ˇ', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, isLower=True, base='caroncmb', comment='ˇ tone, mandarin chinese third'),
 
     'commaturnedsuperior': GD(name='commaturnedsuperior', uni=0x02BB, hex='02BB', c='ʻ', isMod=True),
