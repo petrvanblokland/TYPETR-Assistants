@@ -455,7 +455,7 @@ GDS['clickdental'] = GD(name='clickdental', uni=0x01C0, hex='01C0', c='ǀ', l='b
 GDS['clicklateral'] = GD(name='clicklateral', uni=0x01C1, hex='01C1', c='ǁ', l='bar', r='bar', base='bar', accents=['bar'], isLower=True)
 GDS['clickretroflex'] = GD(name='clickretroflex', uni=0x01C3, hex='01C3', c='ǃ', base='exclam', isLower=True)
 GDS['cstroke'] = GD(name='cstroke', uni=0x023C, hex='023C', c='ȼ', base='c', accents=['strokecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
-GDS['creversed'] = GD(name='creversed', uni=0x2184, hex='2184', c='ↄ')
+GDS['creversed'] = GD(name='creversed', uni=0x2184, hex='2184', c='ↄ', l2r='c', r2l='c')
 
 GDS['commaabovecmb'] = GD(name='commaabovecmb', uni=0x0313, hex='0313', c='̓', w=0, base='koronis', isLower=True, anchors=['_top', 'top'])
 GDS['commaabovecmb.uc'] = GD(name='commaabovecmb.uc', w=0, srcName='commaabovecmb', isLower=True, anchors=['_top', 'top'])
@@ -758,7 +758,7 @@ GDS['vtilde'] = GD(name='vtilde', uni=0x1E7D, hex='1E7D', c='ṽ', l='v', r='v',
 GDS['vsuperior'] = GD(name='vsuperior', uni=0x1D5B, hex='1D5B', c='ᵛ', l2r='vsuperior', isMod=True)
 GDS['vinferior'] = GD(name='vinferior', l='vsuperior', r='vsuperior', base='vsuperior', isMod=True)
 GDS['verticallinesuperior'] = GD(name='verticallinesuperior', uni=0x02C8, hex='02C8', c='ˈ', w=0, isMod=True)
-GDS['verticallineinferior'] = GD(name='verticallineinferior', w=0, isMod=True)
+GDS['verticallineinferior'] = GD(name='verticallineinferior', w=0, base='verticallinesuperior', isMod=True)
 
 # w
 

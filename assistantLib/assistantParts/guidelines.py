@@ -212,7 +212,7 @@ class AssistantPartGuidelines(BaseAssistantPart):
                 guidelines.append((xo + tg * (md.sinfBaseline + md.superiorAscender), md.sinfBaseline + md.superiorAscender + overshoot, 0, f"{md.sinfBaseline + md.superiorAscender + overshoot} ({overshoot})"))
 
             if md.superiorDescender is not None:
-                guidelines.append((xo + tg * (md.sinfBaseline + md.superiorDescender), md.sinfBaseline + md.superiorDescender, 0, f"CapHeight of inferiors {md.sinfBaseline + md.superiorDescender}"))
+                guidelines.append((xo + tg * (md.sinfBaseline + md.superiorDescender), md.sinfBaseline + md.superiorDescender, 0, f"Descender of inferiors {md.sinfBaseline + md.superiorDescender}"))
                 guidelines.append((xo + tg * (md.sinfBaseline + md.superiorDescender), md.sinfBaseline + md.superiorDescender - overshoot, 0, f"{md.sinfBaseline + md.superiorDescender - overshoot} ({overshoot})"))
 
         if forced or len(g.guidelines) != len(guidelines):

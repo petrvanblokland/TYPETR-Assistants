@@ -232,7 +232,8 @@ LATIN_S_SET = GDS = {
     'Ereversed': GD(name='Ereversed', uni=0x018E, hex='018E', c='Ǝ', r2l='E', l2r='E', srcName='E', comment='Ǝ turned e, latin capital letter'),
     'Eth': GD(name='Eth', uni=0x00D0, hex='00D0', c='Ð', r='D', base='D', comment='Ð ETH, LATIN CAPITAL LETTER'),
     'Etilde': GD(name='Etilde', uni=0x1EBC, hex='1EBC', c='Ẽ', l='E', r='E', base='E', accents=['tildecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ẽ LATIN CAPITAL LETTER E WITH TILDE'),
-    'Euro': GD(g1='C', g2='Euro', r='C', uni=0x20AC, c='€', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, src=['C', 'hyphen', 'hyphen'], name='Euro'),
+    'Euro': GD(g1='C', g2='Euro', uni=0x20AC, c='€', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, srcName='C', name='Euro'),
+    'Euro.tab': GD(l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, srcName='Euro', name='Euro.tab'),
 
     # F
 
@@ -613,7 +614,7 @@ LATIN_S_SET = GDS = {
 
     'n': GD(name='n', uni=0x006E, hex='006E', c='n', isLower=True, anchors=['bottom', 'middle', 'top'], comment='n'),
     'nacute': GD(name='nacute', uni=0x0144, hex='0144', c='ń', base='n', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ń N WITH ACUTE, LATIN SMALL LETTER'),
-    'naira': GD(name='naira', uni=0x20A6, hex='20A6', c='₦'),
+    'naira': GD(name='naira', uni=0x20A6, hex='20A6', c='₦', base='N', l='N', r='N'),
     'ncaron': GD(name='ncaron', uni=0x0148, hex='0148', c='ň', base='n', accents=['caroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ň N WITH CARON, LATIN SMALL LETTER'),
     'ncommaaccent': GD(name='ncommaaccent', uni=0x0146, hex='0146', c='ņ', base='n', accents=['cedillacmb.noconnect'], isLower=True, anchors=['bottom', 'middle', 'top']),
     'ndotaccent': GD(name='ndotaccent', uni=0x1E45, hex='1E45', c='ṅ', base='n', accents=['dotaccentcmb'], srcName='uni1E45', isLower=True, anchors=['bottom', 'middle', 'top']),
@@ -825,7 +826,7 @@ SC_NAMES = (
     'Y', 'Yacute', 'Ycircumflex', 'Ydieresis', 'Ygrave', 'Yhook', 'Ymacron', 'Ytilde', 
     'Z', 'Zacute', 'Zcaron', 'Zdotaccent', 'Zdotbelow',
     'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
-    'zeroslash', 'question', 
+    'zeroslash', 'question', 'section', 
     'slash', 'Euro', 'degree', 'germandbls', 'yen', 'ampersand', 'questiondown', 'backslash', 'sterling', 'dollar', 'dollar.alt', 'bitcoin', 'bitcoin.alt',
     'parenleft', 'parenright', 'bracketleft', 'bracketright', 'exclam', 'exclamdown', 'braceleft', 'braceright',
 
@@ -873,7 +874,7 @@ NUMR_DNOM_NAMES = (
 # Used by GlyphSet class to add tab glyph data records. 
 TAB_NAMES = (
     'zero', 'zeroslash', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
-    'cent', 'cent.alt', 'dollar', 'dollar.alt', 'Euro', 'yen', 'sterling', 'bitcoin', 'bitcoin.alt', 
+    'cent', 'cent.alt', 'dollar', 'dollar.alt', 'yen', 'sterling', 'bitcoin', 'bitcoin.alt', 
     'period', 'comma', 'colon', 'semicolon',
     'plus', 'minus', 'equal', 'notequal', 'less', 'greater', 'lessequal', 'greaterequal', 
     'multiply', 'divide', 'asterisk', 
