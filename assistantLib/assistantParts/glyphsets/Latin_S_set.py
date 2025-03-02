@@ -537,7 +537,7 @@ LATIN_S_SET = GDS = {
     'gdotaccent': GD(name='gdotaccent', uni=0x0121, hex='0121', c='ġ', anchorTopY='TopY', base='g', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top']),
     'germandbls': GD(name='germandbls', uni=0x00DF, hex='00DF', c='ß', l='f', r='s', isLower=True, comment='ß SHARP S, LATIN SMALL LETTER'),
     'gmacron': GD(name='gmacron', uni=0x1E21, hex='1E21', c='ḡ', anchorTopY='TopY', base='g', accents=['macroncmb'], srcName='uni1E21', isLower=True, anchors=['bottom', 'middle', 'top']),
-    'guarani': GD(name='guarani', uni=0x20B2, hex='20B2', c='₲', isLower=True),
+    'guarani': GD(name='guarani', uni=0x20B2, hex='20B2', c='₲', srcName='G', isLower=True),
     'greater': GD(name='greater', uni=0x003E, hex='003E', c='>', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='> GREATER-THAN SIGN'),
     'greaterequal': GD(name='greaterequal', uni=0x2265, hex='2265', c='≥', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='≥ GREATER-THAN OR EQUAL TO'),
     'guillemotleft': GD(name='guillemotleft', uni=0x00AB, hex='00AB', l2r='self', c='«', isLower=True),

@@ -69,8 +69,9 @@ class AssistantPartInterpolate(BaseAssistantPart):
         c.w.interpolateAllSelectedGlyphs = CheckBox((C1, y, CW, L), 'Interpolate selected', value=False, sizeStyle='small')
         c.w.interpolateButton = Button((C2, y, CW, L), f'Interpolate [{personalKey}]', callback=self.interpolateGlyphCallback)
         y += L + LL
-        c.w.decomposeCopiedInterpolatedGlyph = CheckBox((C1, y, CW, L), 'Decompose copy', value=False, sizeStyle='small')
-        c.w.copyFromRomanButton = Button((C2, y, CW, L), 'Copy from Roman', callback=self.copyFromRomanCallback)
+        c.w.decomposeCopiedInterpolatedGlyph = CheckBox((C0, y, CW, L), 'Decompose copy', value=False, sizeStyle='small')
+        c.w.copyFromRomanButton = Button((C1, y, CW, L), 'Copy from Roman', callback=self.copyFromRomanCallback)
+        c.w.copyFromSourceButton = Button((C2, y, CW, L), 'Copy from source', callback=self.copyFromSourceCallback)
         y += L + L/5
         c.w.interpolateEndLine = HorizontalLine((self.M, y, -self.M, 1))
         c.w.interpolateEndLine2 = HorizontalLine((self.M, y, -self.M, 1))
@@ -124,8 +125,24 @@ class AssistantPartInterpolate(BaseAssistantPart):
         if md.romanItalicUFOPath is not None:
             rf = self.getFont(md.romanItalicUFOPath)
             if g.name in rf:
+                g.prepareUndo()
                 if c.w.decomposeCopiedInterpolatedGlyph.get():
                     rf[g.name].decompose() # Make sure not to save this one.
+                f[g.name] = rf[g.name]
+                f[g.name].changed()
+
+    def copyFromSourceCallback(self, sender=None):
+        """Copy the glyph from roman to alter it manually, instead of interpolating or italicizing."""
+        c = self.getController()
+        g = self.getCurrentGlyph()
+        if g is None:
+            return
+        f = g.font
+        md = self.getMasterData(f)
+        if md.srcUFOPath is not None:
+            rf = self.getFont(md.srcUFOPath)
+            g.prepareUndo()
+            if g.name in rf:
                 f[g.name] = rf[g.name]
                 f[g.name].changed()
 

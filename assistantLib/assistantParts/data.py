@@ -60,6 +60,7 @@ class MasterData:
             dsPosition=None,
             m0=None, # Origin of the design space
             m1=None, m2=None, # Used for interpolating spacing, outlines, anchor positions, component positions
+            m3=None, # Rsource for interpolation "Copy" button"
             sm1=None, sm2=None, # Scalerpolate masters for condensed and extended making
             osm1=None, osm2=None, # Previous and next master on the same optical size level
             tripletData1=None, tripletData2=None, featurePath=None, 
