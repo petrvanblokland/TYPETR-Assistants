@@ -844,7 +844,7 @@ SC_NAMES = (
     'Ushort-cy', 'Ustrait-cy', 'Ustraitstroke-cy', 'Ve-cy', 'Yat-cy', 'Yeru-cy', 'Yerudieresis-cy', 'Yi-cy', 'Yusbig-cy', 'Yusbigiotified-cy', 'Yuslittle-cy', 
     'Yuslittleiotified-cy', 'Ze-cy', 'Zedescender-cy', 'Zedieresis-cy', 'Zhe-cy', 'Zhebreve-cy', 'Zhedescender-cy', 'Zhedieresis-cy', 'tail.component-cy.case',
 
-    # In case GREEK_SET is inlcuded, these need to be come smallcaps too
+    # In case GREEK_SET is included, these need to be come smallcaps too
     'Alpha', 'Alphatonos', 'Archaicsampi', 'Beta', 'Chi', 'Dei-coptic', 'Delta', 'Digamma', 'Epsilon', 'Epsilontonos', 'Eta', 'Etatonos', 'Fei-coptic', 
     'Gamma', 'Gangia-coptic', 'Heta', 'Hori-coptic', 'Iota', 'Iotadieresis', 'Iotatonos', 'KaiSymbol', 'Kappa', 'Khei-coptic', 'Koppa', 'KoppaArchaic', 
     'Lambda', 'Mu', 'Nu', 'Omega', 'Omegatonos', 'Omicron', 'Omicrontonos', 'Pamphyliandigamma', 'Phi', 'Pi', 'Psi', 'Rho', 'Sampi', 'San', 'Shei-coptic', 
