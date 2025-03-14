@@ -478,14 +478,6 @@ GDS['dtail'] = GD(name='dtail', uni=0x0256, hex='0256', c='ɖ', w='d', isLower=T
 GDS['dz'] = GD(name='dz', uni=0x01F3, hex='01F3', c='ǳ', l='d', r='z', anchorTopY='z', anchorTopX='z', base='z', accents=['d'], isLower=True)
 GDS['dzcaron'] = GD(name='dzcaron', uni=0x01C6, hex='01C6', c='ǆ', l='d', r='z', base='dz', accents=['caroncmb'], isLower=True)
 
-GDS['dblgravecmb'] = GD(name='dblgravecmb', uni=0x030F, hex='030F', c='̏', w=0, isLower=True, anchors=['_top', 'top'])
-GDS['dblgravecmb.uc'] = GD(name='dblgravecmb.uc',w=0, srcName='dblgravecmb', isLower=True, anchors=['_top', 'top'])
-GDS['dotaboverightcmb'] = GD(name='dotaboverightcmb', uni=0x0358, hex='0358', c='͘', w=0, base='dotaccentcmb', isLower=True, anchors=['_top', 'top'])
-GDS['dotaboverightcmb.uc'] = GD(name='dotaboverightcmb.uc', w=0, srcName='dotaboverightcmb', isLower=True, anchors=['_top', 'top'])
-GDS['doublebrevebelowcmb'] = GD(name='doublebrevebelowcmb', uni=0x035C, hex='035C', c='͜', w=0, base='doublebrevecmb', isLower=True, anchors=['_bottom', 'bottom'])
-GDS['doublebrevecmb'] = GD(name='doublebrevecmb', uni=0x035D, hex='035D', c='͝', w=0, isLower=True, anchors=['_top', 'top'])
-GDS['doublebrevecmb.uc'] = GD(name='doublebrevecmb.uc', w=0, srcName='doublebrevecmb', isLower=True, anchors=['_top', 'top'])
-
 GDS['dsuperior'] = GD(name='dsuperior', l='osuperior', r='lsuperior', isLower=False, isMod=True)
 GDS['dinferior'] = GD(name='dinferior', l='dsuperior', r='dsuperior', base='dsuperior', isLower=True)
 
@@ -519,6 +511,7 @@ GDS['egraveinferior'] = GD(name='egraveinferior', l='egravesuperior', r='egraves
 GDS['fStroke'] = GD(name='fStroke', uni=0xA799, hex='A799', c='ꞙ', base='f', isLower=True, anchors=['bottom', 'middle', 'top'])
 GDS['fdotaccent'] = GD(name='fdotaccent', uni=0x1E1F, hex='1E1F', c='ḟ', rightMin='-100', base='f', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
 GDS['florin'] = GD(name='florin', uni=0x0192, hex='0192', c='ƒ', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, comment='ƒ script f, latin small letter')
+GDS['florin.tab'] = GD(name='florin.tab', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='florin', comment='ƒ script f, latin small letter')
 GDS['fourthtonechinese'] = GD(name='fourthtonechinese', uni=0x02CB, hex='02CB', c='ˋ', w=0, base='gravecmb', anchors=['_top', 'top'])
 GDS['firsttonechinese'] = GD(name='firsttonechinese', uni=0x02C9, hex='02C9', w=0, c='ˉ', base='macroncmb', isLower=True, anchors=['_top', 'top'])
 
@@ -728,7 +721,7 @@ GDS['tildebelow'] = GD(name='tildebelow', uni=0x0330, hex='0330', c='̰', l=GD.C
 GDS['tildeoverlaycmb'] = GD(name='tildeoverlaycmb', uni=0x0334, hex='0334', c='̴', w=0, base='tildecmb', isLower=True, anchors=['_middle', 'middle'])
 GDS['tretroflexhook'] = GD(name='tretroflexhook', uni=0x0288, hex='0288', c='ʈ', l='t', r='t', srcName='t', isLower=True)
 
-GDS['tsuperior'] = GD(name='tsuperior', uni=0x0000, hex='0000', c='????', isLower=True, anchors=[])
+GDS['tsuperior'] = GD(name='tsuperior', isLower=True, anchors=[]) # No unicode for this one. uni=0x0000, hex='0000', c='????', 
 GDS['tinferior'] = GD(name='tinferior', uni=0x209C, hex='209C', c='ₜ', l='tsuperior', r='tsuperior', base='tsuperior', isLower=True)
 
 # u
@@ -831,13 +824,20 @@ GDS['dotmiddlecmb'] = GD(name='dotmiddlecmb', w=0, anchors=['_dot'], base='dotac
 GDS['strokecmb'] = GD(name='strokecmb', w=0, anchors=['_middle'])
 GDS['invertedbrevecmb'] = GD(name='invertedbrevecmb', l=GD.CAT_CENTER, w=0, anchors=['_top'], srcName='brevecmb')
 GDS['macronbelowcmb'] = GD(name='macronbelowcmb', uni=0x0331, hex='0331', c='̱', w=0, base='macroncmb', isLower=True, anchors=['bottom', '_bottom'], comment='COMBINING MACRON BELOW')
-GDS['dblgravecomb'] = GD(name='dblgravecmb', uni=0x030F, hex='030F', c='̏', w=0, isLower=True, base='gravecmb', accents=['gravecmb'], anchors=['top', '_top'])
 GDS['ringbelowcmb'] = GD(name='ringbelowcmb', uni=0x0325, hex='0325', c='̥', l='center', w=0, base='ringcmb', isLower=True, anchors=['_bottom', 'bottom'], comment='COMBINING RING BELOW')
+
+GDS['dblgravecmb'] = GD(name='dblgravecmb', uni=0x030F, hex='030F', c='̏', w=0, isLower=True, base='gravecmb', accents=['gravecmb'], anchors=['top', '_top'])
+GDS['dblgravecmb.uc'] = GD(name='dblgravecmb.uc',w=0, srcName='dblgravecmb', isLower=True, anchors=['_top', 'top'])
+GDS['dotaboverightcmb'] = GD(name='dotaboverightcmb', uni=0x0358, hex='0358', c='͘', w=0, base='dotaccentcmb', isLower=True, anchors=['_top', 'top'])
+GDS['dotaboverightcmb.uc'] = GD(name='dotaboverightcmb.uc', w=0, srcName='dotaboverightcmb', isLower=True, anchors=['_top', 'top'])
+GDS['doublebrevebelowcmb'] = GD(name='doublebrevebelowcmb', uni=0x035C, hex='035C', c='͜', w=0, base='doublebrevecmb', isLower=True, anchors=['_bottom', 'bottom'])
+GDS['doublebrevecmb'] = GD(name='doublebrevecmb', uni=0x035D, hex='035D', c='͝', w=0, isLower=True, anchors=['_top', 'top'])
+GDS['doublebrevecmb.uc'] = GD(name='doublebrevecmb.uc', w=0, srcName='doublebrevecmb', isLower=True, anchors=['_top', 'top'])
 
 GDS['slashlongcmb.uc'] = GD(name='slashlongcmb.uc', w=0, anchors=['_middle'])
 GDS['strokecmb.uc'] = GD(name='strokecmb.uc', w=0, srcName='strokecmb', anchors=['_middle'])
 GDS['invertedbrevecmb.uc'] = GD(name='invertedbrevecmb.uc', w=0, anchors=['_top'], srcName='brevecmb.uc')
-GDS['dblgravecomb.uc'] = GD(name='dblgravecmb.uc', w=0, isLower=True, base='gravecmb.uc', accents=['gravecmb.uc'], anchors=['top', '_top'])
+GDS['dblgravecmb.uc'] = GD(name='dblgravecmb.uc', w=0, isLower=True, base='gravecmb.uc', accents=['gravecmb.uc'], anchors=['top', '_top'])
 GDS['ringbelowcmb.uc'] = GD(name='ringbelowcmb.uc', l='center', w=0, base='ringcmb.uc', isLower=True, anchors=['_bottom', 'bottom'], comment='COMBINING RING BELOW')
 
 

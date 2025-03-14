@@ -69,6 +69,7 @@ LATIN_S_SET = GDS = {
     'hairspace': GD(name='hairspace', uni=0x200A, hex='200A', w=GD.CAT_HAIR_WIDTH, c=' ', isLower=False),
     'spacemarker': GD(name='spacemarker', w=0),
     'narrownbspace': GD(name='narrownbspace', uni=0x202F, w=GD.CAT_HAIR_WIDTH, hex='202F', c=' ', isLower=False),
+    'space.tab': GD(name='narrownbspace', w=GD.CAT_TAB_WIDTH, c=' ', isLower=False),
 
     # rest of ascii
 
@@ -109,6 +110,8 @@ LATIN_S_SET = GDS = {
     'lessequal': GD(name='lessequal', uni=0x2264, hex='2264', c='≤', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='≤ LESS-THAN OR EQUAL TO'),
     'logicalnot': GD(name='logicalnot', uni=0x00AC, hex='00AC', c='¬', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='¬ NOT SIGN'),
     'lozenge': GD(l2r='lozenge', uni=0x25ca, c='◊', name='lozenge', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, comment='◊ LOZENGE', anchors=[]),
+    'approxequal': GD(name='approxequal', uni=0x2248, hex='2248', c='≈', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='asciitilde', accents=['asciitilde'], isLower=True, gid=1496, comment='≈ EQUAL TO, ALMOST'),
+    'approxequal.tab': GD(name='approxequal.tab', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='approxequal', isLower=True, comment='≈ EQUAL TO, ALMOST'),
 
     'macron': GD(name='macron', uni=0x00AF, hex='00AF', c='¯', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='macroncmb', srcName='uni00AF', isLower=True, comment='¯ spacing macron'),
     'multiply': GD(name='multiply', uni=0x00D7, hex='00D7', c='×', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=True, comment='× product, cartesian'),
@@ -755,6 +758,8 @@ LATIN_S_SET = GDS = {
     'zeroslash': GD(l='zero', w='zero', name='zeroslash', base='zero', isLower=False, srcName='slash', comment='0 Digits, ASCII'),
     'zero.tab': GD(l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, name='zero.tab', srcName='zero', isLower=False, comment='0 Digits, ASCII', useSkewRotate=True, addItalicExtremePoints=True),
     'zeroslash.tab': GD(l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, name='zeroslash.tab', srcName='zeroslash', isLower=False, comment='0 Digits, ASCII', useSkewRotate=True, addItalicExtremePoints=True),
+    'zeroslash.sc': GD(l='zeroslash.onum', w='zeroslash.onum', name='zeroslash.sc', srcName='zeroslash.onum', isLower=False, comment='0 Digits, ASCII', useSkewRotate=True, addItalicExtremePoints=True),
+    'zeroslash.tab.sc': GD(l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, name='zeroslash.tab.sc', srcName='zeroslash.sc', isLower=False, comment='0 Digits, ASCII', useSkewRotate=True, addItalicExtremePoints=True),
     'one': GD(g2='one', g1='one', l2r='self', uni=0x0031, c='1', name='one', isLower=False, comment='1'),
     'two': GD(g2='two', g1='two', l2r='self', uni=0x0032, c='2', name='two', isLower=False, comment='2'),
     'three': GD(g2='three', g1='three', l2r='self', uni=0x0033, c='3', name='three', isLower=False, comment='3'),
@@ -826,7 +831,7 @@ SC_NAMES = (
     'Y', 'Yacute', 'Ycircumflex', 'Ydieresis', 'Ygrave', 'Yhook', 'Ymacron', 'Ytilde', 
     'Z', 'Zacute', 'Zcaron', 'Zdotaccent', 'Zdotbelow',
     'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
-    'zeroslash', 'question', 'section', 
+    'zeroslash', 'question', 'section', 'numbersign', 'cent', 'florin', 'zeroslash.tab', 
     'slash', 'Euro', 'degree', 'germandbls', 'yen', 'ampersand', 'questiondown', 'backslash', 'sterling', 'dollar', 'dollar.alt', 'bitcoin', 'bitcoin.alt',
     'parenleft', 'parenright', 'bracketleft', 'bracketright', 'exclam', 'exclamdown', 'braceleft', 'braceright',
 
@@ -865,7 +870,7 @@ TAB_NAMES = (
     'period', 'comma', 'colon', 'semicolon',
     'plus', 'minus', 'equal', 'notequal', 'less', 'greater', 'lessequal', 'greaterequal', 
     'multiply', 'divide', 'asterisk', 
-    'percent', 'perthousand', 'degree', 'approxequal', 'plusminus', 'approxequal',  
+    'percent', 'perthousand', 'degree', 'plusminus', 'approxequal',  
     'parenleft', 'parenright', 'bracketleft', 'bracketright', 'braceleft', 'braceright',
     'quoteleft', 'quoteright', 'quotedblleft', 'quotedblright', 
     'hyphen', 'endash', 'minute', 'second', 'slash', 'backslash', 'numbersign',
