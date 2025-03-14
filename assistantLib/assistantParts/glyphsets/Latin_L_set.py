@@ -464,6 +464,7 @@ GDS['commaaboverightcmb.uc'] = GD(name='commaaboverightcmb.uc', w=0, srcName='co
 GDS['circumflexbelowcmb'] = GD(name='circumflexbelowcmb', uni=0x032D, hex='032D', c='̭', w=0, base='circumflexcmb', isLower=True, anchors=['_bottom', 'bottom'])
 
 GDS['csuperior'] = GD(name='csuperior', uni=0x1D9C, hex='1D9C', c='ᶜ', l='osuperior', isLower=False, isMod=True)
+GDS['cinferior'] = GD(name='cinferior', l='csuperior', r='csuperior', base='csuperior', isLower=True)
 GDS['colonsuperior'] = GD(name='colonsuperior', uni=0xA789, hex='A789', c='꞉', l='period', r='period', isLower=True, isMod=True)
 
 # d
@@ -518,8 +519,8 @@ GDS['egraveinferior'] = GD(name='egraveinferior', l='egravesuperior', r='egraves
 GDS['fStroke'] = GD(name='fStroke', uni=0xA799, hex='A799', c='ꞙ', base='f', isLower=True, anchors=['bottom', 'middle', 'top'])
 GDS['fdotaccent'] = GD(name='fdotaccent', uni=0x1E1F, hex='1E1F', c='ḟ', rightMin='-100', base='f', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
 GDS['florin'] = GD(name='florin', uni=0x0192, hex='0192', c='ƒ', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, comment='ƒ script f, latin small letter')
-GDS['fourthtonechinese'] = GD(name='fourthtonechinese', uni=0x02CB, hex='02CB', c='ˋ', base='gravecmb', anchors=['top'])
-GDS['firsttonechinese'] = GD(name='firsttonechinese', uni=0x02C9, hex='02C9', w=0, c='ˉ', isLower=True, anchors=['_top', 'top'])
+GDS['fourthtonechinese'] = GD(name='fourthtonechinese', uni=0x02CB, hex='02CB', c='ˋ', w=0, base='gravecmb', anchors=['_top', 'top'])
+GDS['firsttonechinese'] = GD(name='firsttonechinese', uni=0x02C9, hex='02C9', w=0, c='ˉ', base='macroncmb', isLower=True, anchors=['_top', 'top'])
 
 GDS['fsuperior'] = GD(name='fsuperior', isLower=False, isMod=True)
 GDS['finferior'] = GD(name='finferior', l='fsuperior', r='fsuperior', base='fsuperior', isLower=True)

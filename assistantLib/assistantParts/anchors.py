@@ -475,12 +475,8 @@ class AssistantPartAnchors(BaseAssistantPart):
         elif a.name == AD.OGONEK_: # Try to guess bottom position
             ax, ay = self.constructAnchorOGONEK_XY(g, gd, a)
 
-        elif a.name == AD.TONOS_: # Try to guess tonos position only for capitals
-            ax, ay = self.constructAnchorTONOS_XY(g, gd, a)
-
-        elif a.name == AD._TONOS: # Try to guess _tonos position
-            ax = ay = None # Not for now
-            #ax, ay = self.constructAnchor_TONOSXY(g, a)
+        elif a.name == AD.TOPLEFT_: # Try to guess topleft position only for capitals
+            ax, ay = self.constructAnchorTOPLEFT_XY(g, gd, a)
 
         if ax is not None:
             ax = int(round(ax))
@@ -755,8 +751,8 @@ class AssistantPartAnchors(BaseAssistantPart):
 
         return ax, ay
 
-    def constructAnchorTONOS_XY(self, g, gd, a):
-        """Answer the constructed (x, y) position of the TONOS_ anchor for g, based on available rules and shape. The x and/or y can be None 
+    def constructAnchorTOPLEFT_XY(self, g, gd, a):
+        """Answer the constructed (x, y) position of the TOPLEFT_ anchor for g, based on available rules and shape. The x and/or y can be None 
         in case not valid value could be constructed. In that case the position needs to be set manually in the editor.
         @@@ No methods here yet.
         """
@@ -771,9 +767,9 @@ class AssistantPartAnchors(BaseAssistantPart):
             if baseAnchor is not None:
                 ax = baseAnchor.x + self.italicX(g, dx, ay - baseAnchor.y)
 
-        # @@@ Hack to correct tonos anchor on specific glyph shapes
+        # @@@ Hack to correct topleft anchor on specific glyph shapes
         elif g.name == 'A': # Special case, can't use the left margin. Find the top-left most corner point
-            bounds = self.getXBounds(g, y1=g.font.info.capHeight) # Test if there are bounds, not if tonos is not supported
+            bounds = self.getXBounds(g, y1=g.font.info.capHeight) # Test if there are bounds, not if topleft is not supported
             if bounds[0] is not None:
                 ax = bounds[0].x * 3/4
 
@@ -785,8 +781,8 @@ class AssistantPartAnchors(BaseAssistantPart):
 
         return ax, ay
 
-    #def constructAnchor_TONOSXY(self, g, a):
-    #    """Answer the constructed (x, y) position of the _TONOS anchor for g, based on available rules and shape. The x and/or y can be None 
+    #def constructAnchor_TOPLEFTXY(self, g, a):
+    #    """Answer the constructed (x, y) position of the _TOPLEFT anchor for g, based on available rules and shape. The x and/or y can be None 
     #    in case not valid value could be constructed. In that case the position needs to be set manually in the editor.
     #    @@@ No methods here yet.
     #    """

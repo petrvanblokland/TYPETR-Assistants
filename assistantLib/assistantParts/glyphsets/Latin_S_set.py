@@ -175,7 +175,7 @@ LATIN_S_SET = GDS = {
    
     # A
 
-    'A': GD(name='A', uni=0x0041, hex='0041', c='A', l2r='self', anchorTopX='TopX',anchorTopY='TopY', anchors=['bottom', 'middle', 'ogonek', 'tonos', 'top'], comment='A Uppercase Alphabet, Latin'),
+    'A': GD(name='A', uni=0x0041, hex='0041', c='A', l2r='self', anchorTopX='TopX',anchorTopY='TopY', anchors=['bottom', 'middle', 'ogonek', 'topleft', 'top'], comment='A Uppercase Alphabet, Latin'),
     'AE': GD(name='AE', uni=0x00C6, hex='00C6', c='Æ', l='A', r='E', anchorTopX='TopX', anchors=['bottom', 'middle', 'top'], comment='Æ ligature ae, latin capital'),
 
     'Aacute': GD(name='Aacute', uni=0x00C1, hex='00C1', c='Á', l='A', r='A', base='A', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'top', 'ogonek'], comment='Á A WITH ACUTE, LATIN CAPITAL LETTER'),
@@ -216,7 +216,7 @@ LATIN_S_SET = GDS = {
 
     # E
 
-    'E': GD(name='E', uni=0x0045, hex='0045', c='E', l='H', anchorBottomX='BottomX', anchors=['bottom', 'middle', 'ogonek', 'tonos', 'top'], comment='E'),
+    'E': GD(name='E', uni=0x0045, hex='0045', c='E', l='H', anchorBottomX='BottomX', anchors=['bottom', 'middle', 'ogonek', 'topleft', 'top'], comment='E'),
     'Eacute': GD(name='Eacute', uni=0x00C9, hex='00C9', c='É', l='H', r='E', base='E', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='É E WITH ACUTE, LATIN CAPITAL LETTER'),
     'Ebreve': GD(name='Ebreve', uni=0x0114, hex='0114', c='Ĕ', l='H', r='E', base='E', accents=['brevecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ĕ'),
     'Ecaron': GD(name='Ecaron', uni=0x011A, hex='011A', c='Ě', l='H', r='E', base='E', accents=['caroncmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ě'),
@@ -252,7 +252,7 @@ LATIN_S_SET = GDS = {
 
     # H
 
-    'H': GD(name='H', uni=0x0048, hex='0048', c='H', l2r='self', anchors=['bottom', 'middle', 'tonos', 'top'], comment='H'),
+    'H': GD(name='H', uni=0x0048, hex='0048', c='H', l2r='self', anchors=['bottom', 'middle', 'topleft', 'top'], comment='H'),
     'Hbar': GD(name='Hbar', uni=0x0126, hex='0126', c='Ħ', l='Eth', l2r='self', base='H', comment='Ħ'),
     'Hcircumflex': GD(name='Hcircumflex', uni=0x0124, hex='0124', c='Ĥ', l='H', r='H', base='H', accents=['circumflexcmb.uc'], anchors=['bottom', 'middle', 'top'], comment='Ĥ'),
     'Hdieresis': GD(name='Hdieresis', uni=0x1E26, hex='1E26', c='Ḧ', l='H', r='H', base='H', accents=['dieresiscmb.uc'], srcName='uni1E26', anchors=['bottom', 'middle', 'top']),
@@ -260,7 +260,7 @@ LATIN_S_SET = GDS = {
 
     # I
 
-    'I': GD(name='I', uni=0x0049, hex='0049', c='I', l='H', r='H', anchors=['bottom', 'middle', 'ogonek', 'tonos', 'top'], comment='I'),
+    'I': GD(name='I', uni=0x0049, hex='0049', c='I', l='H', r='H', anchors=['bottom', 'middle', 'ogonek', 'topleft', 'top'], comment='I'),
     'Iacute': GD(name='Iacute', uni=0x00CD, hex='00CD', c='Í', w='I', bl='I', base='I', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Í I WITH ACUTE, LATIN CAPITAL LETTER'),
     'Ibreve': GD(name='Ibreve', uni=0x012C, hex='012C', c='Ĭ', w='I', bl='I', base='I', accents=['brevecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ĭ'),
     'Icaron': GD(name='Icaron', uni=0x01CF, hex='01CF', c='Ǐ', w='I', bl='I', base='I', accents=['caroncmb.uc'], srcName='uni01CF', anchors=['bottom', 'middle', 'ogonek', 'top']),
@@ -311,7 +311,7 @@ LATIN_S_SET = GDS = {
 
     # O
 
-    'O': GD(name='O', uni=0x004F, hex='004F', c='O', l2r='self', anchors=['bottom', 'middle', 'ogonek', 'tonos', 'top'], comment='O'),
+    'O': GD(name='O', uni=0x004F, hex='004F', c='O', l2r='self', anchors=['bottom', 'middle', 'ogonek', 'topleft', 'top'], comment='O'),
     'OE': GD(name='OE', uni=0x0152, hex='0152', c='Œ', l='O', r='E', anchors=['bottom', 'middle', 'top'], comment='Œ'),
     'Oacute': GD(name='Oacute', uni=0x00D3, hex='00D3', c='Ó', l='O', r='O', base='O', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ó O WITH ACUTE, LATIN CAPITAL LETTER'),
     'Obreve': GD(name='Obreve', uni=0x014E, hex='014E', c='Ŏ', l='O', r='O', base='O', accents=['brevecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ŏ'),
@@ -329,7 +329,7 @@ LATIN_S_SET = GDS = {
 
     # P
 
-    'P': GD(name='P', uni=0x0050, hex='0050', c='P', l='H', anchors=['bottom', 'middle', 'tonos', 'top'], comment='P'),
+    'P': GD(name='P', uni=0x0050, hex='0050', c='P', l='H', anchors=['bottom', 'middle', 'topleft', 'top'], comment='P'),
     'Pdotaccent': GD(name='Pdotaccent', uni=0x1E56, hex='1E56', c='Ṗ', l='P', w='P', base='P', accents=['dotaccentcmb.uc'], srcName='uni1E56', anchors=['bottom', 'middle', 'top']),
 
     # Q
@@ -398,7 +398,7 @@ LATIN_S_SET = GDS = {
 
     # Y
 
-    'Y': GD(name='Y', uni=0x0059, hex='0059', c='Y', l2r='self', anchors=['bottom', 'middle', 'tonos', 'top'], comment='Y'),
+    'Y': GD(name='Y', uni=0x0059, hex='0059', c='Y', l2r='self', anchors=['bottom', 'middle', 'topleft', 'top'], comment='Y'),
     'Yacute': GD(name='Yacute', uni=0x00DD, hex='00DD', c='Ý', l='Y', r='Y', base='Y', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'top'], comment='Ý Y WITH ACUTE, LATIN CAPITAL LETTER'),
     'Ycircumflex': GD(name='Ycircumflex', uni=0x0176, hex='0176', c='Ŷ', l='Y', r='Y', base='Y', accents=['circumflexcmb.uc'], anchors=['bottom', 'middle', 'top'], comment='Ŷ'),
     'Ydieresis': GD(name='Ydieresis', uni=0x0178, hex='0178', c='Ÿ', l='Y', r='Y', base='Y', accents=['dieresiscmb.uc'], anchors=['bottom', 'middle', 'top'], comment='Ÿ Y WITH DIAERESIS, LATIN CAPITAL LETTER'),
@@ -845,26 +845,13 @@ SC_NAMES = (
     'Yuslittleiotified-cy', 'Ze-cy', 'Zedescender-cy', 'Zedieresis-cy', 'Zhe-cy', 'Zhebreve-cy', 'Zhedescender-cy', 'Zhedieresis-cy', 'tail.component-cy.case',
 
     # In case GREEK_SET is included, these need to be come smallcaps too
+    # c2sc OT-features
     'Alpha', 'Alphatonos', 'Archaicsampi', 'Beta', 'Chi', 'Dei-coptic', 'Delta', 'Digamma', 'Epsilon', 'Epsilontonos', 'Eta', 'Etatonos', 'Fei-coptic', 
     'Gamma', 'Gangia-coptic', 'Heta', 'Hori-coptic', 'Iota', 'Iotadieresis', 'Iotatonos', 'KaiSymbol', 'Kappa', 'Khei-coptic', 'Koppa', 'KoppaArchaic', 
     'Lambda', 'Mu', 'Nu', 'Omega', 'Omegatonos', 'Omicron', 'Omicrontonos', 'Pamphyliandigamma', 'Phi', 'Pi', 'Psi', 'Rho', 'Sampi', 'San', 'Shei-coptic', 
     'Shima-coptic', 'Sho', 'Sigma', 'SigmaLunateDottedReversedSymbol', 'SigmaLunateDottedSymbol', 'SigmaLunateReversedSymbol', 'SigmaLunateSymbol', 
     'Stigma', 'Tau', 'Theta', 'ThetaSymbol', 'Upsilon', 'UpsilonacutehookSymbol', 'Upsilondieresis', 'UpsilondieresishookSymbol', 'UpsilonhookSymbol', 
     'Upsilontonos', 'Xi', 'Yot', 'Zeta',
-
-)
-# Used by GlyphSet class to add sinf/dnom/numr/subs glyph data records. 
-# Alternative naming for letter glyphs: /amod and /ainferior
-SUPS_SINF_NAMES = (
-    'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
-    'cent', 'cent.alt', 'dollar', 'dollar.alt', 'Euro', 'yen', 'sterling',
-    'period', 'comma', 'colon', 'semicolon',
-    'plus', 'minus', 'equal', 'notequal', 'less', 'greater', 'lessequal', 'greaterequal', 
-    'multiply', 'divide', 'asterisk', 
-    'percent', 'degree',
-    'parenleft', 'parenright', 'bracketleft', 'bracketright',
-    'quoteleft', 'quoteright', 'quotedblleft', 'quotedblright',
-    'hyphen', 'endash'
 )
 # Used by GlyphSet class to add sinf/dnom/numr/subs glyph data records. These combine with /fraction
 NUMR_DNOM_NAMES = (

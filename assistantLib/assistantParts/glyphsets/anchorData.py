@@ -25,8 +25,8 @@ class AnchorData:
     DOT_ = 'dot'
     _TILDE = '_tilde'
     TILDE_ = 'tilde'
-    _TONOS = '_tonos'
-    TONOS_ = 'tonos'
+    _TOPLEFT = '_topleft'
+    TOPLEFT_ = 'topleft'
     _HORN = '_horn'
     HORN_ = 'horn'
     _MIDDLE = '_middle'
@@ -40,7 +40,7 @@ class AnchorData:
         _VERT: VERT_,
         _DOT: DOT_,
         _TILDE: TILDE_,
-        _TONOS: TONOS_, # Also anchor of the other -uc accents
+        _TOPLEFT: TOPLEFT_, # Also anchor of the other -uc accents
         _HORN: HORN_,
         _MIDDLE: MIDDLE_,
 
@@ -65,8 +65,8 @@ class AnchorData:
         _VERT:      (0.5, 0, 0.5, 1),
         OGONEK_:    (1, 0.5, 0, 1),
         _OGONEK:    (0.5, 0.25, 0, 1),
-        TONOS_:     (0, 0.5, 1, 1),
-        _TONOS:     (0, 0.25, 0.5, 1),
+        TOPLEFT_:     (0, 0.5, 1, 1),
+        _TOPLEFT:     (0, 0.25, 0.5, 1),
         HORN_:      (0, 0.5, 1, 1),
         _HORN:      (0, 0.25, 0.5, 1),
     }
@@ -78,7 +78,7 @@ class AnchorData:
     GUESS_ANCHOR_OGONEK_X = 'guessAnchorOgonekX'
     GUESS_ANCHOR_DOT_X = 'guessAnchorDotX'
     GUESS_ANCHOR_VERT_X = 'guessAnchorVertX'
-    GUESS_ANCHOR_TONOS_X = 'guessAnchorTonosX'
+    GUESS_ANCHOR_TOPLEFT_X = 'guessAnchorTopLeftX'
     GUESS_ANCHOR_X = 'guessAnchorX' # Default behavior is to answer the x position of the current anchor
 
     GUESS_ANCHOR_BASE_Y = 'guessAnchorBaseY'
@@ -146,10 +146,10 @@ class AnchorData:
         (GUESS_ANCHOR_VERT_X, GUESS_ANCHOR_BOX_TOP),
         (GUESS_ANCHOR_VERT_X, GUESS_ANCHOR_HEIGHT),
     )
-    GUESS_PAIRS_TONOS = (
-        (GUESS_ANCHOR_TONOS_X, GUESS_ANCHOR_ASCENDER),
-        (GUESS_ANCHOR_TONOS_X, GUESS_ANCHOR_BOX_TOP),
-        (GUESS_ANCHOR_TONOS_X, GUESS_ANCHOR_HEIGHT),
+    GUESS_PAIRS_TOPLEFT = (
+        (GUESS_ANCHOR_TOPLEFT_X, GUESS_ANCHOR_ASCENDER),
+        (GUESS_ANCHOR_TOPLEFT_X, GUESS_ANCHOR_BOX_TOP),
+        (GUESS_ANCHOR_TOPLEFT_X, GUESS_ANCHOR_HEIGHT),
     )
     GUESS_PAIRS_OGONEK = (
         (GUESS_ANCHOR_OGONEK_X, GUESS_ANCHOR_BOX_BOTTOM),
@@ -166,8 +166,8 @@ class AnchorData:
         _DOT: GUESS_PAIRS_DOT,
         VERT_: GUESS_PAIRS_VERT,
         _VERT: GUESS_PAIRS_VERT,
-        TONOS_: GUESS_PAIRS_TONOS,
-        _TONOS: GUESS_PAIRS_TONOS,
+        TOPLEFT_: GUESS_PAIRS_TOPLEFT,
+        _TOPLEFT: GUESS_PAIRS_TOPLEFT,
         OGONEK_: GUESS_PAIRS_OGONEK, 
         _OGONEK: GUESS_PAIRS_OGONEK,
     }
@@ -181,7 +181,7 @@ class AnchorData:
     ANCHOR_BOXBOTTOM_OFFSET = 64
     ANCHOR_DESCENDER_OFFSET = 64
 
-    CENTERING_ANCHORS = [ # List of anchors that do center on width. Ignore TONOS, HORN, OGONEK, VERT
+    CENTERING_ANCHORS = [ # List of anchors that do center on width. Ignore TOPLEFT, HORN, OGONEK, VERT
         TOP_, BOTTOM_, RING_, DOT_, TILDE_, MIDDLE_,
         _TOP, _BOTTOM, _RING, _DOT, _TILDE, _MIDDLE,
     ]
@@ -195,7 +195,7 @@ class AnchorData:
                   'plusbelowcmb', 'ringbelowcmb', 'cedillacmb'),
         MIDDLE_: ('slashshortcomb', 'slashshortcmb'),
         OGONEK_: ('ogonekcomb', 'ogonekcmb'),
-        TONOS_: ('tonoscomb', 'tonoscmb', 'tonos-uc', 'tonoscmb.uc'),
+        TOPLEFT_: ('tonoscomb', 'tonoscmb', 'tonos-uc', 'tonoscmb.uc'),
         VERT_: ('caronvert.component', 'caroncmb.vert',),
         DOT_: ('dotmiddle.component', 'dotmiddlecmb', ),
     }
@@ -403,17 +403,17 @@ class AnchorData:
         'downtackmod': _MIDDLE,
         'plusmod': _MIDDLE,
 
-        'dasiavaria-uc': _TONOS,
-        'oxia-uc': _TONOS,
-        'dasia-uc': _TONOS,
-        'dasiaperispomeni-uc': _TONOS,
-        'dasiavaria-uc': _TONOS,
-        'psili-uc': _TONOS,
-        'psilioxia-uc': _TONOS,
-        'psiliperispomeni-uc': _TONOS,
-        'psilivaria-uc': _TONOS,
-        'tonos-uc': _TONOS,
-        'varia-uc': _TONOS,
+        'dasiavaria-uc': _TOPLEFT,
+        'oxia-uc': _TOPLEFT,
+        'dasia-uc': _TOPLEFT,
+        'dasiaperispomeni-uc': _TOPLEFT,
+        'dasiavaria-uc': _TOPLEFT,
+        'psili-uc': _TOPLEFT,
+        'psilioxia-uc': _TOPLEFT,
+        'psiliperispomeni-uc': _TOPLEFT,
+        'psilivaria-uc': _TOPLEFT,
+        'tonos-uc': _TOPLEFT,
+        'varia-uc': _TOPLEFT,
     }
 
     # Tables below are mainly use to export _export/Exported_Glyphset.py, etc. or to initialize in GlyphData contruction.
@@ -777,7 +777,7 @@ class AnchorData:
 
     DOT_ANCHORS = {'C', 'L', 'SigmaLunateReversedSymbol', 'c', 'h', 'l', 'oopen'}
 
-    TONOS_ANCHORS = {'A', 'E', 'H', 'I', 'O', 'Ohm', 'P', 'UpsilonhookSymbol', 'Y', 'Alpha'}
+    TOPLEFT_ANCHORS = {'A', 'E', 'H', 'I', 'O', 'Ohm', 'P', 'UpsilonhookSymbol', 'Y', 'Alpha'}
 
     VERT_ANCHORS = {'L', 'd', 'l', 't'}
 
@@ -849,7 +849,7 @@ class AnchorData:
 
     _DOT_ANCHORS = {'dotmiddle.component'}
 
-    _TONOS_ANCHORS = {'dasia-uc', 'dasiaoxia-uc', 'dasiaperispomeni-uc', 'dasiavaria-uc', 'oxia-uc', 'psili-uc', 'psilioxia-uc', 
+    _TOPLEFT_ANCHORS = {'dasia-uc', 'dasiaoxia-uc', 'dasiaperispomeni-uc', 'dasiavaria-uc', 'oxia-uc', 'psili-uc', 'psilioxia-uc', 
     'psiliperispomeni-uc', 'psilivaria-uc', 'tonoscomb', 'tonoscmb', 'tonos-uc', 'tonoscmb.uc', 'varia-uc'}
 
     _VERT_ANCHORS = {'caronvert.component'}
@@ -860,14 +860,14 @@ class AnchorData:
         BOTTOM_: BOTTOM_ANCHORS,
         OGONEK_: OGONEK_ANCHORS, 
         DOT_: DOT_ANCHORS, 
-        TONOS_: TONOS_ANCHORS,
+        TOPLEFT_: TOPLEFT_ANCHORS,
         VERT_: VERT_ANCHORS,
         _TOP: _TOP_ANCHORS, 
         _MIDDLE: _MIDDLE_ANCHORS, 
         _BOTTOM: _BOTTOM_ANCHORS,
         _OGONEK: _OGONEK_ANCHORS, 
         _DOT: _DOT_ANCHORS, 
-        _TONOS: _TONOS_ANCHORS,
+        _TOPLEFT: _TOPLEFT_ANCHORS,
         _VERT: _VERT_ANCHORS,
     }
     GLYPH_ANCHORS = { # Anchor names --> glyphs that contain these anchors.
@@ -876,7 +876,7 @@ class AnchorData:
         BOTTOM_: BOTTOM_ANCHORS,
         OGONEK_: OGONEK_ANCHORS,
         DOT_: DOT_ANCHORS,
-        TONOS_: TONOS_ANCHORS,
+        TOPLEFT_: TOPLEFT_ANCHORS,
         VERT_: VERT_ANCHORS,
     }
 AD = AnchorData

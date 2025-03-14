@@ -145,7 +145,7 @@ GDS['Ohorndotbelow'] = GD(name='Ohorndotbelow', uni=0x1EE2, hex='1EE2', c='Ợ',
 GDS['Ohorngrave'] = GD(name='Ohorngrave', uni=0x1EDC, hex='1EDC', c='Ờ', l='O', anchorTopY='O', base='Ohorn', accents=['gravecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1143, comment='Ờ LATIN CAPITAL LETTER O WITH HORN AND GRAVE')
 GDS['Ohornhookabove'] = GD(name='Ohornhookabove', uni=0x1EDE, hex='1EDE', c='Ở', l='O', anchorTopY='O', base='Ohorn', accents=['hookabovecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1145, comment='Ở LATIN CAPITAL LETTER O WITH HORN AND HOOK ABOVE')
 GDS['Ohorntilde'] = GD(name='Ohorntilde', uni=0x1EE0, hex='1EE0', c='Ỡ', l='O', anchorTopY='O', base='Ohorn', accents=['tildecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1147, comment='Ỡ LATIN CAPITAL LETTER O WITH HORN AND TILDE')
-GDS['Ohm'] = GD(name='Ohm', uni=0x2126, hex='2126', c='Ω', l='O', l2r='self', anchors=['top', 'bottom', 'tonos'])
+GDS['Ohm'] = GD(name='Ohm', uni=0x2126, hex='2126', c='Ω', l='O', l2r='self', anchors=['top', 'bottom', 'topleft'])
 
 # R
 
