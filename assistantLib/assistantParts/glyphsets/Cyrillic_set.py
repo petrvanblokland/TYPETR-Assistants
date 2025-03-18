@@ -346,6 +346,7 @@ CYRILLIC_SET = {
     #   n
 
    'nje-cy': GD(name='nje-cy', uni=0x045A, hex='045A', c='њ', l='en-cy', r='softsign-cy', isLower=True, gid=735),
+   'numero': GD(name='numero', uni=0x2116, hex='2116', c='№', l='N', base='N', isLower=True),
 
     #   o
 
