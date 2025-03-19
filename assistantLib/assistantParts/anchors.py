@@ -1122,7 +1122,7 @@ class AssistantPartAnchors(BaseAssistantPart):
             return False
 
         src = self.getFont(md.romanItalicUFOPath)
-        if g.name in src:
+        if src is not None and g.name in src:
             srcG = src[g.name]
             anchors = self.getAnchorsDict(g) # Get a dictionary of anchors
             srcAnchors = self.getAnchorsDict(srcG)

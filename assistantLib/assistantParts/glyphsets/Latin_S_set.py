@@ -70,6 +70,7 @@ LATIN_S_SET = GDS = {
     'spacemarker': GD(name='spacemarker', w=0),
     'narrownbspace': GD(name='narrownbspace', uni=0x202F, w=GD.CAT_HAIR_WIDTH, hex='202F', c=' ', isLower=False),
     'space.tab': GD(name='narrownbspace', w=GD.CAT_TAB_WIDTH, c=' ', isLower=False),
+    'apple': GD(name='apple', l=0, r=0, hex='F8FF', uni=0xF8FF, c='', isLower=False), # Logo TYPETR
 
     # rest of ascii
 
@@ -863,6 +864,9 @@ NUMR_DNOM_NAMES = (
     'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
     'hyphen', 'degree', 'period', 'parenleft', 'parenright', 'plus', 'comma',
 )
+# Used by GlyphSet class to add sinf/dnom/numr/subs glyph data records. These combine with /fraction
+SUPS_SINF_NAMES = NUMR_DNOM_NAMES
+
 # Used by GlyphSet class to add tab glyph data records. 
 TAB_NAMES = (
     'zero', 'zeroslash', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',

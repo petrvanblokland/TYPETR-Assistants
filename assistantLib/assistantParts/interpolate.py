@@ -28,8 +28,46 @@ class AssistantPartInterpolate(BaseAssistantPart):
     """The Interpolate assistant part, checks on interpolation errors and
     interpolates glyphs is the UFO is defined as instance, instead of master.
     """
+
+    COLORSET = [
+        # Sequence of interpolation color lines.
+        (1, 0, 0, 1),
+        (0.75, 0.25, 0, 1),
+        (0.5, 0.5, 0, 1),
+        (0.25, 0.75, 0, 1),
+        (0, 1, 0, 1),
+        (0, 0.75, 0.25, 1),
+        (0, 0.5, 0.5, 1),
+        (0, 0.25, 0.75, 1),
+        (0, 0, 1, 1),
+        (0.25, 0, 0.75, 1),
+        (0.5, 0, 0.5, 1),
+        (0.75, 0, 0.25, 1),
+    ]
+    INTERPOLATION_MAX_POINT_MARKERS = 100 # Max amount of points for interpolation error lines.
+    INTERPOLATION_ERROR_COLOR = (0, 0.2, 0.6, 1)
+    INTERPOLATION_LINE_MARKERS_COLORS = COLORSET * int((INTERPOLATION_MAX_POINT_MARKERS + len(COLORSET)) / len(COLORSET))
+
     def initMerzInterpolate(self, container):
         """Update any Merz objects that exist in the EditWindow"""
+        # Interpolation lines
+        # Triggered by w.interpolationPathOverlay
+        self.interpolationPath = container.appendPathSublayer(
+            position=(0, 0),
+            fillColor=None,
+            strokeColor=self.INTERPOLATION_ERROR_COLOR,
+            strokeWidth=1,
+            visible=False,
+        )
+        self.interpolationLineMarkers = []
+        for pIndex in range(self.INTERPOLATION_MAX_POINT_MARKERS): # Max number of points to display in a glyph from the background glyph layer
+            self.interpolationLineMarkers.append(container.appendPathSublayer(name=f"interpolationError{pIndex:03d}",
+                fillColor=None,
+                strokeColor=self.INTERPOLATION_LINE_MARKERS_COLORS[-pIndex],
+                strokeWidth=3,
+                visible=False,
+            ))
+
 
     def setGlyphInterpolation(self, g):
         """Setup the glyph.lib-->isLower flag if it not already exists, copied from the GlyphData.isLower.
@@ -51,10 +89,64 @@ class AssistantPartInterpolate(BaseAssistantPart):
         if c is None: # Assistant window may just have been closed.
             return False
         g = info['glyph']
+        g = self.getCurrentGlyph()
         if g is None:
             return False # Nothing changed to the glyph
+
         md = self.getMasterData(g.font)
         c.w.interpolateButton.enable(None not in (md.m1, md.m2))
+                        
+        ref = self.getFont(md.m0)
+        D = 300
+        epIndex = 0 # Index of interpolation error lines
+
+        # Show the interpolation reference glyph on the right side of the current glyph
+        if g.name in ref:
+            refG = ref[g.name]
+            self.interpolationPath.setPath(refG.getRepresentation("merz.CGPath"))
+            self.interpolationPath.setPosition((g.width*2, 0))
+            self.interpolationPath.setVisible(True)
+
+            points = []
+            for contour in refG.contours:
+                points += contour.points
+            refPoints = []
+            for contour in g.contours:
+                refPoints += contour.points
+
+            for n in range(min(self.MAX_POINT_MARKERS, len(points), len(refPoints))):
+                #print(points[n].x, points[n].y, refPoints[n].x + g.width*2, refPoints[n].y)
+                p0 = points[n]
+                p1 = refPoints[n]
+                if p0.type != p1.type:
+                    self.interpolationLineMarkers[epIndex].setVisible(True)
+                    self.interpolationLineMarkers[epIndex].setStrokeColor(self.INTERPOLATION_LINE_MARKERS_COLORS[epIndex])
+                    pen = self.interpolationLineMarkers[epIndex].getPen()
+                    px0, py0 = p0.x + g.width*2, p0.y
+                    px1, py1 = p1.x, p1.y
+                    pen.moveTo((px0, py0))
+                    #pen.lineTo((refPoints[n].x + g.width*2, refPoints[n].y+300))
+                    pen.curveTo(
+                        (px0 + (px1 - px0)/2, py0 + (py1 - py0)/2 + D),
+                        (px0 + (px1 - px0)/2, py0 + (py1 - py0)/2 - D),
+                        (px1, py1)
+                    )
+                    pen.curveTo(
+                        (px0 + (px1 - px0)/2, py0 + (py1 - py0)/2 - D),
+                        (px0 + (px1 - px0)/2, py0 + (py1 - py0)/2 + D),
+                        (px0, py0)
+                    )
+                    pen.closePath()
+                    epIndex += 1
+        else:
+            self.familyOverviewInterpolationPath.setVisible(False)
+
+
+        # Hide the remaining interpolation lines.
+        for n in range(epIndex, len(self.interpolationLineMarkers)):
+            self.interpolationLineMarkers[n].setVisible(False)
+
+
         return changed
 
     KEY_INTERPOLATE = '§'
@@ -68,7 +160,9 @@ class AssistantPartInterpolate(BaseAssistantPart):
         c.w.glyphIsLower = CheckBox((C0, y, CW, L), 'Glyph is lowercase', value=False, sizeStyle='small', callback=self.glyphIsLowerCallback) # Stored in glyph.lib, overwrites the GlyphData.isLower flag.
         c.w.interpolateAllSelectedGlyphs = CheckBox((C1, y, CW, L), 'Interpolate selected', value=False, sizeStyle='small')
         c.w.interpolateButton = Button((C2, y, CW, L), f'Interpolate [{personalKey}]', callback=self.interpolateGlyphCallback)
-        y += L + LL
+        y += L
+        c.w.showInterpolationLines = CheckBox((C0, y, CW, L), f'Show interpolation lines', callback=self.showInterpolationLinesCallback, sizeStyle='small')
+        y += L
         c.w.decomposeCopiedInterpolatedGlyph = CheckBox((C0, y, CW, L), 'Decompose copy', value=False, sizeStyle='small')
         c.w.copyFromRomanButton = Button((C1, y, CW, L), 'Copy from Roman', callback=self.copyFromRomanCallback)
         c.w.copyFromSourceButton = Button((C2, y, CW, L), 'Copy from source', callback=self.copyFromSourceCallback)
@@ -85,6 +179,13 @@ class AssistantPartInterpolate(BaseAssistantPart):
             if g.name in f:
                 gg = f[g.name]
                 self.setLib(gg, 'glyphIsLower', sender.get()) # Just make sure it exists, using the flag in GlyphData.isLower as default
+
+    def showInterpolationLinesCallback(self, sender):
+        """Toggle the checkbox flag to show/hide interpolation lined"""
+        print('sdaasadsdsdas')
+        g = self.getCurrentGlyph()
+        if g is not None:
+            g.changed()
 
     def interpolateGlyphKey(self, g, c, event):
         gName = g.name

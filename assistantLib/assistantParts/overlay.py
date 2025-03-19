@@ -35,6 +35,7 @@ class AssistantPartOverlay(BaseAssistantPart):
     OVERLAY_FILL_SRC_COLOR = 0, 0, 0, 0.6
     OVERLAY_FILL_KERNING_COLOR = 0, 0.5, 0, 0.6
     OVERLAY_STROKE_ROMANITALIC_COLOR = 1, 0, 0, 0.7
+    OVERLAY_INTERPOLATION_ERROR_COLOR = OVERLAY_FILL_SRC_COLOR
 
     POINT_MARKER_R = 7
 
@@ -114,6 +115,23 @@ class AssistantPartOverlay(BaseAssistantPart):
             strokeWidth=1,
             visible=False,
         )
+        # Interpolation lines
+        # Triggered by w.interpolationPathOverlay
+        self.interpolationUFOPathOverlay = container.appendPathSublayer(
+            position=(0, 0),
+            fillColor=None,
+            strokeColor=self.OVERLAY_INTERPOLATION_ERROR_COLOR,
+            strokeWidth=1,
+            visible=False,
+        )
+        self.interpolationsLineMarkers = []
+        for pIndex in range(self.MAX_POINT_MARKERS): # Max number of points to display in a glyph from the background glyph layer
+            self.interpolationsLineMarkers.append(container.appendPathSublayer(name=f"interpolationError{pIndex:03d}",
+                fillColor=None,
+                strokeColor=self.OVERLAY_STROKE_POINTMARKERS_COLOR,
+                strokeWidth=1,
+                visible=False,
+            ))
 
     def updateMerzOverlay(self, info):
         c = self.getController()

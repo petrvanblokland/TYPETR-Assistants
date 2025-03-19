@@ -44,6 +44,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
     FAMILY_LABEL_SIZE = 12
     FAMILY_LABEL_SPACING = 0.5 # Factor to unitsPerEm distance between the styles, leave space for the style names
 
+
     def initMerzFamilyOverview(self, container):    
         """Previewing current glyph for all master styles, with the style name of each master"""       
 
@@ -92,6 +93,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
             )
             subLayer.addScaleTransformation(self.FAMILY_OVERVIEW_SCALE)
             self.familyOverviewAnchors.append(subLayer)            
+
         
     def updateMerzFamilyOverview(self, info):
         """Position the overview Merz elements on x = 0 and y = g.font.info.unitsPerEm""" 
@@ -118,7 +120,9 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                         if not self.isCurrentGlyph(ufoG) or not c.w.showFamilyInterpolation.get() or self.doesInterpolate(ufoG):
                             fillColor = self.FAMILY_DEFAULT_FILL_COLOR
                         else:
+                            # This glyph does not interpolation well, mark the color and show the 
                             fillColor = self.FAMILY_INTERPOLATION_ERROR_FILL_COLOR
+
                         x = startPos + totalFamilyOverviewSingleWidth*nIndex
                         glyphPath = ufoG.getRepresentation("merz.CGPath")
                         #print('Updating family glyph path', pth, g.name)
