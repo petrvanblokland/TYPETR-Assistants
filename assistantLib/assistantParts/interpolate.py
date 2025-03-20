@@ -64,7 +64,7 @@ class AssistantPartInterpolate(BaseAssistantPart):
             self.interpolationLineMarkers.append(container.appendPathSublayer(name=f"interpolationError{pIndex:03d}",
                 fillColor=None,
                 strokeColor=self.INTERPOLATION_LINE_MARKERS_COLORS[-pIndex],
-                strokeWidth=3,
+                strokeWidth=1,
                 visible=False,
             ))
 
