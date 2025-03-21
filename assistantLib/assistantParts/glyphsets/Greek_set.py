@@ -3,6 +3,7 @@
 #     Copyright (c) 2023+ TYPETR
 #     Usage by MIT License
 # ..............................................................................
+
 from copy import deepcopy
 
 if __name__ == '__main__': # Used for doc tests to find assistantLib
@@ -14,6 +15,7 @@ if __name__ == '__main__': # Used for doc tests to find assistantLib
 from assistantLib.assistantParts.glyphsets.glyphData import * #GD, TOP, TOP_, _BOTTOM, BOTTOM_ etc.
 
 GREEK_SET_NAME = 'Greek'
+GREEK_SET_NAME_ITALIC = 'Greek Italic'
 
 # The "c" attribtes are redundant, if the @uni or @hex are defined, but they offer easy searching in the source by char.
 
@@ -164,3 +166,7 @@ GREEK_SET = {
    'tonoscmb': GD(name='tonoscmb', w=0, anchors=['_top'], srcName='gravecmb', isLower=True), # Lower case tonos just behaves as other diacritics
 
 }
+
+GREEK_SET_ITALIC = deepcopy(GREEK_SET)
+
+# Exceptions on the Greek italic set go here.

@@ -1,4 +1,4 @@
-# -*- coding: UTF-8 -*-
+    # -*- coding: UTF-8 -*-
 # ------------------------------------------------------------------------------
 #     Copyright (c) 2023+ TYPETR
 #     Usage by MIT License
@@ -31,6 +31,8 @@
 #
 #    See README.md for list of supported languages and recommendations for the OpenType code.
 #
+from copy import deepcopy
+
 if __name__ == '__main__': # Used for doc tests to find assistantLib
     import os, sys
     PATH = '/'.join(__file__.split('/')[:-4]) # Relative path to this respository that holds AssistantLib
@@ -51,7 +53,8 @@ from assistantLib.assistantParts.glyphsets.anchorData import AD
 #HAIR_WIDTH = int(EM_WIDTH/8)
 #MOD_MIN = 48 # Constant margin for some superior and unferiot glyphs
 
-LATIN_S_SET_NAME = 'LatinS'
+LATIN_S_SET_NAME = 'Latin S'
+LATIN_S_SET_NAME_ITALIC = 'Latin S Italic'
 
 # The "c" attribtes are redundant, if the @uni or @hex are defined, but they are offer easy searching in the source by char.
 LATIN_S_SET = GDS = {
@@ -885,6 +888,10 @@ ONUM_NAMES = (
     'zero.tab', 'zeroslash.tab', 'one.tab', 'two.tab', 'three.tab', 'four.tab', 'five.tab', 'six.tab', 'seven.tab', 'eight.tab', 'nine.tab',
 
 )
+
+# Make exceptions for Italic glyphs and spacing rules
+LATIN_S_SET_ITALIC = GDSI = deepcopy(LATIN_S_SET)
+GDSI['g'] = GD(name='g', uni=0x0067, hex='0067', c='g', isLower=True, anchors=['bottom', 'middle', 'top'], comment='g'),
 
 if __name__ == '__main__':
     for gName, gd in GDS.items():
