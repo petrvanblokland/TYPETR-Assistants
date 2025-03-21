@@ -14,20 +14,24 @@ from assistantLib.assistantParts.glyphsets.glyphData import *
 from assistantLib.assistantParts.glyphsets.anchorData import AD 
 
 # Different sizes of standard glyph set
-from assistantLib.assistantParts.glyphsets.Latin_S_set import (LATIN_S_SET_NAME, LATIN_S_SET, SC_NAMES, 
-    SUPS_SINF_NAMES, NUMR_DNOM_NAMES, TAB_NAMES, ONUM_NAMES)
-from assistantLib.assistantParts.glyphsets.Latin_M_set import LATIN_M_SET_NAME, LATIN_M_SET
-from assistantLib.assistantParts.glyphsets.Latin_L_set import LATIN_L_SET_NAME, LATIN_L_SET
-from assistantLib.assistantParts.glyphsets.Latin_XL_set import LATIN_XL_SET_NAME, LATIN_XL_SET
-from assistantLib.assistantParts.glyphsets.Cyrillic_set import CYRILLIC_SET_NAME, CYRILLIC_SET
+from assistantLib.assistantParts.glyphsets.Latin_S_set import (LATIN_S_SET_NAME, LATIN_S_SET, LATIN_S_SET_NAME_ITALIC, LATIN_S_SET_ITALIC, 
+    SC_NAMES, SUPS_SINF_NAMES, NUMR_DNOM_NAMES, TAB_NAMES, ONUM_NAMES)
+from assistantLib.assistantParts.glyphsets.Latin_M_set import LATIN_M_SET_NAME, LATIN_M_SET, LATIN_M_SET_NAME_ITALIC, LATIN_M_SET_ITALIC
+from assistantLib.assistantParts.glyphsets.Latin_L_set import LATIN_L_SET_NAME, LATIN_L_SET, LATIN_L_SET_NAME_ITALIC, LATIN_L_SET_ITALIC
+from assistantLib.assistantParts.glyphsets.Latin_XL_set import LATIN_XL_SET_NAME, LATIN_XL_SET, LATIN_XL_SET_NAME_ITALIC, LATIN_XL_SET_ITALIC
+from assistantLib.assistantParts.glyphsets.Cyrillic_set import CYRILLIC_SET_NAME, CYRILLIC_SET, CYRILLIC_SET_NAME_ITALIC, CYRILLIC_SET_ITALIC
 # Deprecated
 #from assistantLib.assistantParts.glyphsets.TYPETR_full_set import TYPETR_FULL_SET_NAME, TYPETR_FULL_SET
 
 STANDARD_GLYPH_SETS = {
     LATIN_S_SET_NAME: LATIN_S_SET,
+    LATIN_S_SET_NAME_ITALIC: LATIN_S_SET_ITALIC,
     LATIN_M_SET_NAME: LATIN_M_SET,
+    LATIN_M_SET_NAME_ITALIC: LATIN_M_SET_ITALIC,
     LATIN_L_SET_NAME: LATIN_L_SET,
+    LATIN_L_SET_NAME_ITALIC: LATIN_L_SET_ITALIC,
     LATIN_XL_SET_NAME: LATIN_XL_SET,
+    LATIN_XL_SET_NAME_ITALIC: LATIN_XL_SET_ITALIC,
     #CYRILLIC_SET_NAME: CYRILLIC_SET, # Add this "manually" in the Assistant as: GS.appendGlyphSet(CYRILLIC_SET)
 }
 
