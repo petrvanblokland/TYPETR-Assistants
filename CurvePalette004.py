@@ -455,7 +455,7 @@ class CurvePaletteController(WindowController):
 
         self.w.defaultCirclePopup = PopUpButton((ML + W/2, y, W/3, POPUP_HEIGHT),
                               [str(v) for v in range(5, 17)])
-        self.w.defaultCirclePopup.set(5)
+        self.w.defaultCirclePopup.set(1)
 
         #self.w.makeCircleButton = Button((W/2, y, W/3, BUTTON_HEIGHT), 'Make circle', callback=self.makeCircleCallback)
         

@@ -264,8 +264,8 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     # M
 
     GDS['Macute'] = GD(name='Macute', uni=0x1E3E, hex='1E3E', c='Ḿ', l='H', r='H', base='M', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'top'])
-    GDS['Mhook'] = GD(name='Mhook', uni=0x2C6E, hex='2C6E', c='Ɱ', r='J')
-    GDS['Mturned'] = GD(name='Mturned', uni=0x019C, hex='019C', c='Ɯ', l='H', r='H')
+    GDS['Mhook'] = GD(name='Mhook', uni=0x2C6E, hex='2C6E', c='Ɱ', l='M', r='J')
+    GDS['Mturned'] = GD(name='Mturned', uni=0x019C, hex='019C', c='Ɯ', l2r='M', r2l='M')
 
     GDS['Msuperior'] = GD(name='Msuperior', l='M.sc', r='M.sc', isMod=True)
     GDS['Minferior'] = GD(name='Minferior', l='Msuperior', r='Msuperior', base='Msuperior', isLower=True)
