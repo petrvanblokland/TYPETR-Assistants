@@ -39,7 +39,7 @@ GREEK_SET = {
    #'Heta': GD(name='Heta', uni=0x0370, hex='0370', c='Ͱ', r='hyphen', gid=510),
    #'Hori-coptic': GD(name='Hori-coptic', uni=0x03E8, hex='03E8', c='Ϩ', l='S', r='S', gid=621),
    'Iota': GD(name='Iota', uni=0x0399, hex='0399', c='Ι', bl='I', base='I', anchors=['bottom', 'topleft', 'top'], gid=543),
-   'Iotadieresis': GD(name='Iotadieresis', uni=0x03AA, hex='03AA', c='Ϊ', w='I', bl='I', base='I', accents=['bottom', 'top'], anchors=['bottom', 'top'], gid=559),
+   'Iotadieresis': GD(name='Iotadieresis', uni=0x03AA, hex='03AA', c='Ϊ', w='I', bl='I', base='I', accents=['dieresiscmb.uc'], anchors=['bottom', 'top'], gid=559),
    'Iotatonos': GD(name='Iotatonos', uni=0x038A, hex='038A', c='Ί', l='Y', r='I', base='I', accents=['tonoscmb.uc'], anchors=['bottom', 'top'], gid=530),
    'KaiSymbol': GD(name='KaiSymbol', uni=0x03CF, hex='03CF', c='Ϗ', l='H', r='K', srcName='K', gid=596),
    'Kappa': GD(name='Kappa', uni=0x039A, hex='039A', c='Κ', l='H', r='K', base='K', anchors=['bottom', 'top'], gid=544),

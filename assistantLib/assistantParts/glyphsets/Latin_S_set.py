@@ -907,3 +907,22 @@ for gName, gd in GDS.items():
     if len(gd.accents) >= 2:
         print(gName, gd.accents)
 
+if 0:
+    # Build simple example source with onlt margins as attributes.
+
+    for gName, gd in sorted(LATIN_S_SET.items()):
+        s = f"\t'{gName}': GD(name='{gName}'"
+        if gd.l is not None:
+            s += f", l='{gd.l}'"
+        if gd.r is not None:
+            s += f", r='{gd.r}'"
+        if gd.w is not None:
+            s += f", w='{gd.w}'"
+        if gd.l2r is not None:
+            s += f", l2r='{gd.l2r}'"
+        if gd.r2l is not None:
+            s += f", r2l='{gd.r2l}'"
+        s += '),'
+        print(s)
+
+
