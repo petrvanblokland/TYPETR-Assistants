@@ -542,7 +542,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     # h
 
-    GDS['hcaron'] = GD(name='hcaron', uni=0x021F, hex='021F', c='ȟ', base='h', accents=['caroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
+    GDS['hcaron'] = GD(name='hcaron', uni=0x021F, hex='021F', c='ȟ', base='h', accents=['caroncmb.uc'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['hdotaccent'] = GD(name='hdotaccent', uni=0x1E23, hex='1E23', c='ḣ', base='h', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['heng'] = GD(name='heng', uni=0xA727, hex='A727', c='ꜧ', l='h', r='j', srcName='h', isLower=True)
     GDS['henghook'] = GD(name='henghook', uni=0x0267, hex='0267', c='ɧ', l='h', r='h', isLower=True)
