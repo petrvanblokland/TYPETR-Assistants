@@ -402,6 +402,7 @@ class BaseAssistant:
         mostly on the amount of points for each contour."""
         f = g.font
         md = self.getMasterData(f)
+        gd = self.getGlyphData(g)
         ref = self.getFont(md.m0)
         changed = False
         if ref is not None and g.name in ref:
@@ -411,16 +412,19 @@ class BaseAssistant:
                 if verbose:
                     print(f'### {md.name} /{g.name} Incompatible amount of components {len(g.components)} -- {len(refG.components)}')
                 return False
-            for cIndex, refComponent in enumerate(refG.components):
-                component = g.components[cIndex]
-                if component.baseGlyph != refComponent.baseGlyph:
-                    if verbose:
-                        print(f'### {md.name} /{g.name} Incompatible baseGlyph in component {cIndex} /{component.baseGlyph} -- /{refComponent.baseGlyph}')
-                    if fix: # We can do this simple fix here, if allowed
-                        component.baseGlyph = refComponent.baseGlyph
-                        changed = True
-                    else:
-                        return False
+            # We no longer do this from the reference glyph per 2025-03-28
+            # Component module will take care of this, using the GlyphData of the glyph instead.
+            # for cIndex, refComponent in enumerate(refG.components):
+            #     component = g.components[cIndex]
+            #     if component.baseGlyph != refComponent.baseGlyph:
+            #         if verbose:
+            #             print(f'### {md.name} /{g.name} Incompatible baseGlyph in component {cIndex} /{component.baseGlyph} -- /{refComponent.baseGlyph}')
+            #         if fix: # We can do this simple fix here, if allowed
+            #             print('SAASASASSASSAASAS', component.baseGlyph, refComponent.baseGlyph)
+            #             component.baseGlyph = refComponent.baseGlyph
+            #             changed = True
+            #         else:
+            #             return False
             # Test contours
             if len(refG.contours) != len(g.contours):
                 print(f'### {md.name} /{g.name} Incompatible amount of contours {len(g.contours)} -- {len(refG.contours)})')

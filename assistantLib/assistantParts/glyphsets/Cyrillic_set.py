@@ -225,7 +225,7 @@ CYRILLIC_SET = {
 
    'a-cy': GD(name='a-cy', uni=0x0430, hex='0430', c='а', bl='a', w='a', base='a', isLower=True, anchors=['top', 'middle', 'bottom'], gid=693),
    'abreve-cy': GD(name='abreve-cy', uni=0x04D1, hex='04D1', c='ӑ', bl='a', w='a', base='a', accents=['brevecmb-cy'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=854),
-   'adieresis-cy': GD(name='adieresis-cy', uni=0x04D3, hex='04D3', c='ӓ', bl='a', r='a', w='a', base='a', accents=['dieresiscmb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=856),
+   'adieresis-cy': GD(name='adieresis-cy', uni=0x04D3, hex='04D3', c='ӓ', l='a', r='a', base='a', accents=['dieresiscmb'], isLower=True, anchors=['top', 'middle', 'bottom'], gid=856),
    'aie-cy': GD(name='aie-cy', uni=0x04D5, hex='04D5', c='ӕ', bl='a', r='e', base='ae', isLower=True, anchors=['top', 'middle', 'bottom'], gid=858),
 
     #   b
@@ -362,7 +362,7 @@ CYRILLIC_SET = {
 
    #'palatalizationcmb-cy': GD(name='palatalizationcmb-cy', uni=0x0484, hex='0484', c='҄', w=0, isLower=True, anchors=['top', '_top'], gid=777),
    'palochka-cy': GD(name='palochka-cy', uni=0x04CF, hex='04CF', c='ӏ', l='h', l2r='h', isLower=True, anchors=['top', 'middle', 'bottom'], gid=852),
-   'pe-cy': GD(name='pe-cy', uni=0x043F, hex='043F', c='п', l='p', r='o', isLower=True, gid=708),
+   'pe-cy': GD(name='pe-cy', uni=0x043F, hex='043F', c='п', l='en-cu', r='en-cy', isLower=True, gid=708),
    'pe-cy.loclBGR': GD(name='pe-cy.loclBGR', l='n', r='n', base='n', isLower=True),
    'pedescender-cy': GD(name='pedescender-cy', uni=0x0525, hex='0525', c='ԥ', l='en-cy', r='tse-cy', isLower=True, gid=902),
    #'pedescender-cy.component': GD(name='pedescender-cy.component', w=0, isLower=True, gid=1681),
@@ -449,7 +449,6 @@ CYRILLIC_SET = {
 }
 
 CYRILLIC_SET_ITALIC = deepcopy(CYRILLIC_SET)
-
 # Exceptions to the Cyrillic Italic set go here.
 
 
