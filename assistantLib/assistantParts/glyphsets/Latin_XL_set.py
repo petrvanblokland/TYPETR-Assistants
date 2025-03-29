@@ -412,7 +412,8 @@ for GDS in (LATIN_XL_SET, LATIN_XL_SET_ITALIC):
 
     GDS['palatalhookcmb'] = GD(name='palatalhookcmb', uni=0x0321, hex='0321', c='̡', w=0, srcName='uni0321', isLower=True, anchors=['_bottom', 'bottom'], gid=502)
     GDS['phisuperior-latin'] = GD(name='phisuperior-latin', uni=0x1DB2, hex='1DB2', c='ᶲ', isLower=True)
-    GDS['plussuperior'] = GD(name='plussuperior', uni=0x02D6, hex='02D6', c='˖', l='48', r='48')
+    # Move to "S" table"
+    #GDS['plussuperior'] = GD(name='plussuperior', uni=0x02D6, hex='02D6', c='˖', l='48', r='48')
     GDS['pmiddletilde'] = GD(name='pmiddletilde', uni=0x1D71, hex='1D71', c='ᵱ', bl='p', base='p', isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['ppalatalhook'] = GD(name='ppalatalhook', uni=0x1D88, hex='1D88', c='ᶈ', r='p', bl='p', base='p', accents=['bpalatalhookcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['prosgegrammeni'] = GD(name='prosgegrammeni', uni=0x1FBE, hex='1FBE', c='ι', w=0, isLower=True, anchors=['bottom', '_bottom'], gid=1348)

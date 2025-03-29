@@ -182,7 +182,6 @@ class AssistantPartInterpolate(BaseAssistantPart):
 
     def showInterpolationLinesCallback(self, sender):
         """Toggle the checkbox flag to show/hide interpolation lined"""
-        print('sdaasadsdsdas')
         g = self.getCurrentGlyph()
         if g is not None:
             g.changed()

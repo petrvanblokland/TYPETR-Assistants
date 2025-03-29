@@ -17,7 +17,7 @@ from assistantLib.assistantParts.glyphsets.glyphData import * #GD, TOP, TOP_, _B
 GREEK_SET_NAME = 'Greek'
 GREEK_SET_NAME_ITALIC = 'Greek Italic'
 
-# The "c" attribtes are redundant, if the @uni or @hex are defined, but they offer easy searching in the source by char.
+# The "c" attributes are redundant, if the @uni or @hex are defined, but they offer easy searching in the source by char.
 
 GREEK_SET = {
 

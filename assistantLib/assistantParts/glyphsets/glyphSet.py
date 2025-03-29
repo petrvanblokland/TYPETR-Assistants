@@ -15,7 +15,10 @@ from assistantLib.assistantParts.glyphsets.anchorData import AD
 
 # Different sizes of standard glyph set
 from assistantLib.assistantParts.glyphsets.Latin_S_set import (LATIN_S_SET_NAME, LATIN_S_SET, LATIN_S_SET_NAME_ITALIC, LATIN_S_SET_ITALIC, 
-    SC_NAMES, SUPS_SINF_NAMES, NUMR_DNOM_NAMES, TAB_NAMES, ONUM_NAMES)
+    SC_NAMES, 
+    # SUPS_SINF_NAMES, Deprecated, these are in the GlyphSet tables now. 
+    # NUMR_DNOM_NAMES, Deprecated
+    TAB_NAMES, ONUM_NAMES)
 from assistantLib.assistantParts.glyphsets.Latin_M_set import LATIN_M_SET_NAME, LATIN_M_SET, LATIN_M_SET_NAME_ITALIC, LATIN_M_SET_ITALIC
 from assistantLib.assistantParts.glyphsets.Latin_L_set import LATIN_L_SET_NAME, LATIN_L_SET, LATIN_L_SET_NAME_ITALIC, LATIN_L_SET_ITALIC
 from assistantLib.assistantParts.glyphsets.Latin_XL_set import LATIN_XL_SET_NAME, LATIN_XL_SET, LATIN_XL_SET_NAME_ITALIC, LATIN_XL_SET_ITALIC
@@ -112,9 +115,10 @@ class GlyphSet:
         if tab:
             self._appendTab()
 
-        if superior:
-            self._appendSuperiorInferior()
-            self._appendDnomNumrSupsSinf()
+        # Deprecated, these are hard-coded in the "S" glyphset table now
+        #if superior:
+        #    self._appendSuperiorInferior()
+        #    self._appendDnomNumrSupsSinf()
 
         if onum: # Lowercase (oldstyle) figures
             self._appendOnum()
@@ -277,10 +281,11 @@ class GlyphSet:
             self.glyphs[gdName] = deepcopy(gd)
         # Make sure to add the derivatives, such as .sc and .tab
         if self.hasSc:
-            self._appendSmallCaps()            
-        if self.hasSuperior:
-            self._appendSuperiorInferior()
-            self._appendDnomNumrSupsSinf()
+            self._appendSmallCaps()      
+        # Deprecated, these are hard-coded in the "S" table now      
+        #if self.hasSuperior:
+        #    self._appendSuperiorInferior()
+        #    self._appendDnomNumrSupsSinf()
         if self.hasTab:
             self._appendTab()
         if self.hasOnum: # Lowercase (oldstyle) figures

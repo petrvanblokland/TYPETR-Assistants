@@ -104,7 +104,7 @@ class BaseAssistant:
     for path, color, keys in VISITED_MARKERS:
         if __file__.startswith(path):
             VISITED_MARKER = color
-            print('User color for',  path, color)
+            print(f'User color for {path}, {color}')
             TRANSLATE_KEYS = keys
             break
     if VISITED_MARKER is None:

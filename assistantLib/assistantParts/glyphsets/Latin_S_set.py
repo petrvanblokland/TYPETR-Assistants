@@ -136,7 +136,7 @@ LATIN_S_SET = GDS = {
     'perthousand': GD(l='zerosuperior', r='zerosuperior', uni=0x2030, c='‰', name='perthousand', comment='‰ per thousand', baseline=GD.CAT_NUMR_BASELINE, height=GD.CAT_SUPERIOR_HEIGHT, overshoot=GD.CAT_SUPERIOR_OVERSHOOT),
     'perthousand.tab': GD(name='perthousand.tab', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH),
     'period': GD(name='period', uni=0x002E, hex='002E', c='.', l2r='self', isLower=True, fixSpacing=False, comment='. point, decimal'),
-    'period.uc': GD(name='period.uc', l2r='self', isLower=True, fixSpacing=False, base='period', comment='. point, decimal'),
+    #'period.uc': GD(name='period.uc', l2r='self', isLower=True, fixSpacing=False, base='period', comment='. point, decimal'),
     'ellipsis': GD(name='ellipsis', uni=0x2026, hex='2026', c='…', l='period', r='period', isLower=True, comment='… three dot leader'),
     'periodcentered': GD(name='periodcentered', uni=0x00B7, hex='00B7', c='·', l='period', r='period', isLower=True),
     'periodcentered.uc': GD(name='periodcentered.uc', base='periodcentered', l='period', r='period', isLower=True),
@@ -166,19 +166,90 @@ LATIN_S_SET = GDS = {
     'yen': GD(name='yen', uni=0x00A5, hex='00A5', c='¥', isLower=True, l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='Y', comment='¥ yuan sign'),
     'yen.tab': GD(name='yen.tab', isLower=True, l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, srcName='yen'),
 
+    # Standard superiors and inferiors
+
+    'zerosuperior': GD(name='zerosuperior', uni=0x2070, hex='2070', c='⁰', isLower=True, comment='¹ SUPERSCRIPT ZERO'),
+    'onesuperior': GD(name='onesuperior', uni=0x00B9, hex='00B9', c='¹', l='zerosuperior', r='zerosuperior', isLower=True, comment='¹ SUPERSCRIPT ONE'),
+    'twosuperior': GD(name='twosuperior', uni=0x00B2, hex='00B2', c='²', l='zerosuperior', r='zerosuperior', isLower=False, comment='² TWO, SUPERSCRIPT'),
+    'threesuperior': GD(name='threesuperior', uni=0x00B3, hex='00B3', c='³', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ THREE, SUPERSCRIPT'),
+    'foursuperior': GD(name='foursuperior', uni=0x2074, hex='2074', c='⁴', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ FOUR, SUPERSCRIPT'),
+    'fivesuperior': GD(name='fivesuperior', uni=0x2075, hex='2075', c='⁵', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ FIVE, SUPERSCRIPT'),
+    'sixsuperior': GD(name='sixsuperior', uni=0x2076, hex='2076', c='⁶', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ SIX, SUPERSCRIPT'),
+    'sevensuperior': GD(name='sevensuperior', uni=0x2077, hex='2077', c='⁷', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ SEVEN, SUPERSCRIPT'),
+    'eightsuperior': GD(name='eightsuperior', uni=0x2078, hex='2078', c='⁸', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ EIGHT, SUPERSCRIPT'),
+    'ninesuperior': GD(name='ninesuperior', uni=0x2079, hex='2079', c='⁹', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ NINE, SUPERSCRIPT'),
+
+    'periodsuperior': GD(name='periodsuperior', base='periodsuperior', l='48', r='48'),
+    'commasuperior': GD(name='commasuperior', base='commasuperior', l='48', r='48'),
+    'plussuperior': GD(name='plussuperior', uni=0x207A, hex='207A', c='⁺', l='48', r='48'),
+    'minussuperior': GD(name='minussuperior', uni=0x207B, hex='207B', c='⁻', l='48', r='48'),
+    'equalsuperior': GD(name='equalsuperior', uni=0x207C, hex='207C', c='⁼', l='48', r='48'),
+    'parenleftsuperior': GD(name='parenleftsuperior', uni=0x207D, hex='207D', c='⁽', l='48', r='48'),
+    'parenrightsuperior': GD(name='parenrightsuperior', uni=0x207E, hex='207E', c='⁾', l='48', r='48'),
+    
+    'zeroinferior': GD(name='zeroinferior', uni=0x2080, hex='2080', c='₀', l='zerosuperior', r='zerosuperior', base='zerosuperior', isLower=True, comment='¹ SUPERSCRIPT ZERO'),
+    'oneinferior': GD(name='oneinferior', uni=0x0089, hex='0089', c='₁', l='zerosuperior', r='zerosuperior', base='onesuperior', isLower=True, comment='¹ SUPERSCRIPT ONE'),
+    'twoinferior': GD(name='twoinferior', uni=0x0082, hex='0082', c='₂', l='zerosuperior', r='zerosuperior', base='twosuperior', isLower=False, comment='² TWO, SUPERSCRIPT'),
+    'threeinferior': GD(name='threeinferior', uni=0x0083, hex='0083', c='₃', l='zerosuperior', r='zerosuperior', base='threesuperior', isLower=False, comment='³ THREE, SUPERSCRIPT'),
+    'fourinferior': GD(name='fourinferior', uni=0x2084, hex='2084', c='₄', l='zerosuperior', r='zerosuperior', base='foursuperior', isLower=False, comment='³ FOUR, SUPERSCRIPT'),
+    'fiveinferior': GD(name='fiveinferior', uni=0x2085, hex='2085', c='₅', l='zerosuperior', r='zerosuperior', base='fivesuperior', isLower=False, comment='³ FIVE, SUPERSCRIPT'),
+    'sixinferior': GD(name='sixinferior', uni=0x2086, hex='2086', c='₆', l='zerosuperior', r='zerosuperior', base='sixsuperior', isLower=False, comment='³ SIX, SUPERSCRIPT'),
+    'seveninferior': GD(name='seveninferior', uni=0x2087, hex='2087', c='₇', l='zerosuperior', r='zerosuperior', base='sevensuperior', isLower=False, comment='³ SEVEN, SUPERSCRIPT'),
+    'eightinferior': GD(name='eightinferior', uni=0x2088, hex='2088', c='₈', l='zerosuperior', r='zerosuperior', base='eightsuperior', isLower=False, comment='³ EIGHT, SUPERSCRIPT'),
+    'nineinferior': GD(name='nineinferior', uni=0x2089, hex='2089', c='₉', l='zerosuperior', r='zerosuperior', base='ninesuperior', isLower=False, comment='³ NINE, SUPERSCRIPT'),
+
+    'periodinferior': GD(name='periodinferior', base='periodsuperior', l='48', r='48'),
+    'commainferior': GD(name='commainferior', base='commasuperior', l='48', r='48'),
+    'plusinferior': GD(name='plusinferior', uni=0x208A, hex='208A', c='₊', base='plussuperior', l='48', r='48'),
+    'minusinferior': GD(name='minusinferior', uni=0x208B, hex='208B', c='₋', base='minussuperior', l='48', r='48'),
+    'equalinferior': GD(name='equalinferior', uni=0x208C, hex='208C', c='₌', base='equalsuperior', l='48', r='48'),
+    'parenleftinferior': GD(name='parenleftinferior', uni=0x208D, hex='208D', c='₍', base='parenleftsuperior', l='48', r='48'),
+    'parenrightinferior': GD(name='parenrightinferior', uni=0x208E, hex='208E', c='₎', base='parenrightsuperior', l='48', r='48'),
+
+    'zero.numr': GD(name='zero.numr', base='zerosuperior', l='zerosuperior', r='zerosuperior', isLower=True, comment='⁰ SUPERSCRIPT ZERO'),
+    'one.numr': GD(name='one.numr', base='onesuperior', l='zerosuperior', r='zerosuperior', isLower=True, comment='¹ SUPERSCRIPT ONE'),
+    'two.numr': GD(name='two.numr', base='twosuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='² TWO, SUPERSCRIPT'),
+    'three.numr': GD(name='three.numr', base='threesuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ THREE, SUPERSCRIPT'),
+    'four.numr': GD(name='four.numr', base='foursuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='⁴ FOUR, SUPERSCRIPT'),
+    'five.numr': GD(name='five.numr', base='fivesuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='⁵ FIVE, SUPERSCRIPT'),
+    'six.numr': GD(name='six.numr', base='sixsuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='⁶ SIX, SUPERSCRIPT'),
+    'seven.numr': GD(name='seven.numr', base='sevensuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='⁷ SEVEN, SUPERSCRIPT'),
+    'eight.numr': GD(name='eight.numr', base='eightsuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='⁸ EIGHT, SUPERSCRIPT'),
+    'nine.numr': GD(name='nine.numr', base='ninesuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='⁹ NINE, SUPERSCRIPT'),
+
+    'zero.dnom': GD(name='zero.dnom', base='zerosuperior', l='zerosuperior', r='zerosuperior', isLower=True, comment='¹ SUBSCRIPT ZERO'),
+    'one.dnom': GD(name='one.dnom', base='onesuperior', l='zerosuperior', r='zerosuperior', isLower=True, comment='¹ SUBSCRIPT ONE'),
+    'two.dnom': GD(name='two.dnom', base='twosuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='² TWO, SUBSCRIPT'),
+    'three.dnom': GD(name='three.dnom', base='threesuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ THREE, SUBSCRIPT'),
+    'four.dnom': GD(name='four.dnom', base='foursuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ FOUR, SUBSCRIPT'),
+    'five.dnom': GD(name='five.dnom', base='fivesuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ FIVE, SUBSCRIPT'),
+    'six.dnom': GD(name='six.dnom', base='sixsuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ SIX, SUBSCRIPT'),
+    'seven.dnom': GD(name='seven.dnom', base='sevensuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ SEVEN, SUBSCRIPT'),
+    'eight.dnom': GD(name='eight.dnom', base='eightsuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ EIGHT, SUBSCRIPT'),
+    'nine.dnom': GD(name='nine.dnom', base='ninesuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ NINE, SUBSCRIPT'),
+
+    # Superior currency
+
+    'semicolonsuperior': GD(name='semicolonsuperior', l='zerosuperior', r='zerosuperior', isLower=False),
+    'dollarsuperior': GD(name='dollarsuperior', l='zerosuperior', r='zerosuperior', isLower=False),
+    'centsuperior': GD(name='centsuperior', l='zerosuperior', r='zerosuperior', isLower=False),
+    'quotedblrightsuperior': GD(name='quotedblrightsuperior', l='zerosuperior', r='zerosuperior', isLower=False),
+    'quoteleftsuperior': GD(name='quoteleftsuperior', l='zerosuperior', r='zerosuperior', isLower=False),
+    'quoterightsuperior': GD(name='quoterightsuperior', l='zerosuperior', r='zerosuperior', isLower=False),
+    'sterlingsuperior': GD(name='sterlingsuperior', l='zerosuperior', r='zerosuperior', isLower=False),
+    'yensuperior': GD(name='yensuperior', l='zerosuperior', r='zerosuperior', isLower=False),
+    'eurosuperior': GD(name='eurosuperior', l='zerosuperior', r='zerosuperior', isLower=False),
+    'quotedblleftsuperior': GD(name='quotedblleftsuperior', l='zerosuperior', r='zerosuperior', isLower=False),
+
     # Fixed fractions
 
-    'onesuperior': GD(name='onesuperior', uni=0x00B9, hex='00B9', c='¹', isLower=True, comment='¹ SUPERSCRIPT ONE'),
-    'twosuperior': GD(name='twosuperior', uni=0x00B2, hex='00B2', c='²', isLower=False, comment='² TWO, SUPERSCRIPT'),
-    'threesuperior': GD(name='threesuperior', uni=0x00B3, hex='00B3', c='³', isLower=False, comment='³ THREE, SUPERSCRIPT'),
+    'fraction': GD(l=GD.CAT_CENTER, w=GD.CAT_FRACTION_WIDTH, name='fraction', uni=0x2044, c='⁄', isLower=False, comment='⁄ solidus'),
 
     'onehalf': GD(name='onehalf', uni=0x00BD, hex='00BD', c='½', base='one.numr', accents=['fraction', 'two.dnom'], isLower=False, comment='½ VULGAR FRACTION ONE HALF'),
     'onequarter': GD(name='onequarter', uni=0x00BC, hex='00BC', c='¼', base='one.numr', accents=['fraction', 'four.dnom'], isLower=True, comment='¼ VULGAR FRACTION ONE QUARTER'),
     'oneseventh': GD(name='oneseventh', uni=0x2150, hex='2150', c='⅐', l='one.numr', r='seven.dnom', base='one.numr', accents=['fraction', 'seven.dnom'], isLower=False),
     'onesixth': GD(name='onesixth', uni=0x2159, hex='2159', c='⅙', l='one.numr', r='six.dnom', base='one.numr', accents=['fraction', 'six.dnom'], isLower=False),
     'threequarters': GD(name='threequarters', uni=0x00BE, hex='00BE', c='¾', base='three.numr', accents=['fraction', 'four.dnom'], isLower=False, comment='¾ VULGAR FRACTION THREE QUARTERS'),
-
-    'fraction': GD(l=GD.CAT_CENTER, w=GD.CAT_FRACTION_WIDTH, name='fraction', uni=0x2044, c='⁄', isLower=False, comment='⁄ solidus'),
    
     # A
 
@@ -486,7 +557,7 @@ LATIN_S_SET = GDS = {
     'colonsign': GD(name='colonsign', uni=0x20A1, hex='20A1', c='₡', base='C', l='C', r='C', isLower=True),
     'caron': GD(name='caron', uni=0x02C7, hex='02C7', c='ˇ', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, isLower=True, base='caroncmb', comment='ˇ tone, mandarin chinese third'),
 
-    'commaturnedsuperior': GD(name='commaturnedsuperior', uni=0x02BB, hex='02BB', c='ʻ', isMod=True),
+    #'commaturnedsuperior': GD(name='commaturnedsuperior', uni=0x02BB, hex='02BB', c='ʻ', isMod=True),
 
     # d
 
@@ -780,7 +851,7 @@ LATIN_S_SET = GDS = {
     'ringcmb.uc': GD(name='ringcmb.uc', w=0, anchorTopY='TopY', srcName='ringcmb', isLower=True, anchors=['_top', 'top']),
 
     'hungarumlautcmb': GD(name='hungarumlautcmb', anchorTopY='TopY', uni=0x030B, hex='030B', c='̋', w=0, isLower=True, anchors=['top', '_top']),
-    'hungarumlautcmb,uc': GD(name='hungarumlautcmb', anchorTopY='TopY', w=0, isLower=True, anchors=['top', '_top']),
+    'hungarumlautcmb.uc': GD(name='hungarumlautcmb.uc', anchorTopY='TopY', w=0, isLower=True, anchors=['top', '_top']),
 
     'tildecmb': GD(name='tildecmb', uni=0x0303, anchorTopY='TopY', hex='0303', c='̃', w=0, srcName='tilde', isLower=True, anchors=['_top', 'top']),
     'tildecmb.uc': GD(name='tildecmb.uc', w=0, anchorTopY='TopY', srcName='tildecmb', isLower=True, anchors=['_top', 'top']),
@@ -796,7 +867,7 @@ LATIN_S_SET = GDS = {
     'commaaccentcmb': GD(name='commaaccentcmb', uni=0x0326, anchorTopY='TopY', hex='0326', c='̦', w=0, isLower=True, anchors=['_bottom', 'bottom']),
     'commaaccentcmb.uc': GD(name='commaaccentcmb.uc', w=0, anchorTopY='TopY', srcName='commaaccentcmb', isLower=True, anchors=['_bottom', 'bottom']),
     'commaturnedabovecmb': GD(name='commaturnedabovecmb', anchorTopY='TopY', uni=0x0312, hex='0312', c='̒', w=0, isLower=True, anchors=['_top', 'top']),
-    'commaturnedayi-cybovecmb.uc': GD(name='commaturnedabovecmb.uc', anchorTopY='TopY', w=0, srcName='commaturnedabovecmb', isLower=True, anchors=['_top', 'top']),
+    #'commaturnedayi-cybovecmb.uc': GD(name='commaturnedabovecmb.uc', anchorTopY='TopY', w=0, srcName='commaturnedabovecmb', isLower=True, anchors=['_top', 'top']),
     'circumflex': GD(name='circumflex', uni=0x02C6, hex='02C6', c='ˆ', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='circumflexcmb', isLower=True, comment='ˆ Legacy CIRCUMFLEX ACCENT, MODIFIER LETTER'),
     'circumflexcmb': GD(name='circumflexcmb', uni=0x0302, anchorTopY='TopY', hex='0302', c='̂', w=0, isLower=True, anchors=['_top', 'top']),
     'circumflexcmb.uc': GD(name='circumflexcmb.uc', w=0, anchorTopY='TopY', srcName='circumflexcmb', isLower=True, anchors=['_top', 'top']),
@@ -863,12 +934,14 @@ SC_NAMES = (
     'Upsilontonos', 'Xi', 'Yot', 'Zeta',
 )
 # Used by GlyphSet class to add sinf/dnom/numr/subs glyph data records. These combine with /fraction
-NUMR_DNOM_NAMES = (
-    'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
-    'hyphen', 'degree', 'period', 'parenleft', 'parenright', 'plus', 'comma',
-)
+# No longer used, better to ad them as separate entries in the GlyhpData tables.
+#NUMR_DNOM_NAMES = (
+#    'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
+#    'parenleft', 'parenright', 'plus', 'minus', 'equal', 
+#    #'comma', 'hyphen', 'degree', 'period',  
+#)
 # Used by GlyphSet class to add sinf/dnom/numr/subs glyph data records. These combine with /fraction
-SUPS_SINF_NAMES = NUMR_DNOM_NAMES
+#SUPS_SINF_NAMES = NUMR_DNOM_NAMES
 
 # Used by GlyphSet class to add tab glyph data records. 
 TAB_NAMES = (
