@@ -427,7 +427,8 @@ class BaseAssistant:
             #             return False
             # Test contours
             if len(refG.contours) != len(g.contours):
-                print(f'### {md.name} /{g.name} Incompatible amount of contours {len(g.contours)} -- {len(refG.contours)})')
+                if verbose:
+                    print(f'### {md.name} /{g.name} Incompatible amount of contours {len(g.contours)} -- {len(refG.contours)})')
                 return False
             for cIndex, refContour in enumerate(refG.contours):
                 contour = g.contours[cIndex]

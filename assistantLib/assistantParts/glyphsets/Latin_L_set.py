@@ -575,7 +575,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['jdotlessstrokehook'] = GD(name='jdotlessstrokehook', uni=0x0284, hex='0284', c='ʄ', l='jdotless',  base='jdotless', accents=['hookabovecmb'], isLower=True)
     GDS['jstroke'] = GD(name='jstroke', uni=0x0249, hex='0249', c='ɉ', l='j', r='hyphen', base='j', isLower=True, anchors=['bottom', 'middle'])
 
-    GDS['jsuperior'] = GD(name='jsuperior', uni=0x02B2, hex='02B2', c='ʲ', r='isuperior', isMod=True)
+    GDS['jsuperior'] = GD(name='jsuperior', uni=0x02B2, hex='02B2', c='ʲ', isMod=True)
     GDS['jinferior'] = GD(name='jsuperior', l='jsuperior', r='isuperior', base='jsuperior', isMod=True)
 
     # k
@@ -755,8 +755,9 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     GDS['vsuperior'] = GD(name='vsuperior', uni=0x1D5B, hex='1D5B', c='ᵛ', l2r='vsuperior', isMod=True)
     GDS['vinferior'] = GD(name='vinferior', l='vsuperior', r='vsuperior', base='vsuperior', isMod=True)
-    GDS['verticallinesuperior'] = GD(name='verticallinesuperior', uni=0x02C8, hex='02C8', c='ˈ', w=0, isMod=True)
-    GDS['verticallineinferior'] = GD(name='verticallineinferior', w=0, base='verticallinesuperior', isMod=True)
+ 
+    GDS['verticallinesuperior'] = GD(name='verticallinesuperior', uni=0x02C8, hex='02C8', r2l='jsuperior', r='jsuperior', c='ˈ', isMod=True)
+    GDS['verticallineinferior'] = GD(name='verticallineinferior', base='verticallinesuperior', l='verticallinesuperior', r='verticallinesuperior', isMod=True)
 
     # w
 
