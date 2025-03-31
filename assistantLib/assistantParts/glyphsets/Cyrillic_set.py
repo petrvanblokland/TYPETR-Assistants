@@ -445,7 +445,11 @@ CYRILLIC_SET = {
    'zhebreve-cy': GD(name='zhebreve-cy', uni=0x04C2, hex='04C2', c='ӂ', l='zhe-cy', r='zhe-cy', base='zhe-cy', accents=['brevecmb-cy'], isLower=True, anchors=['top'], gid=839),
    'zhedescender-cy': GD(name='zhedescender-cy', uni=0x0497, hex='0497', c='җ', l='zhe-cy', isLower=True, gid=796),
    'zhedieresis-cy': GD(name='zhedieresis-cy', uni=0x04DD, hex='04DD', c='ӝ', l='zhe-cy', r='zhe-cy', base='zhe-cy', accents=['dieresiscmb'], isLower=True, anchors=['top'], gid=866),
-    
+  
+    'breve-cy': GD(name='breve-cy', base='brevecmb-cy', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, ),
+    'brevecmb-cy': GD(name='breve-cy', w=0, srcName='brevecmb', anchors=['_top', 'top_'], ),
+    'brevecmb-cy.uc': GD(name='breve-cy.uc', w=0, srcName='brevecmb.uc', anchors=['_top', 'top_'], ),
+
 }
 
 CYRILLIC_SET_ITALIC = deepcopy(CYRILLIC_SET)
