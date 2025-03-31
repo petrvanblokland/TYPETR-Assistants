@@ -425,8 +425,13 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['astroke'] = GD(name='astroke', uni=0x2C65, hex='2C65', c='ⱥ', base='a', accents=['strokecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['aturned'] = GD(name='aturned', uni=0x0250, hex='0250', c='ɐ', l2r='a', r2l='a', srcName='a', isLower=True)
 
+<<<<<<< Updated upstream
     GDS['acutemacroncmb'] = GD(name='acutemacroncmb', uni=0x1DC7, hex='1DC7', c='᷇', w=0, base='macroncmb', accents=['acutecmb'], isLower=True, anchors=['_top', 'top'])
     GDS['acutemacroncmb.uc'] = GD(name='acutemacroncmb.uc', w=0, srcName='acutemacroncmb', isLower=True, anchors=['_top', 'top'])
+=======
+    GDS['acutemacroncmb'] = GD(name='acutemacroncmb', uni=0x1DC7, hex='1DC7', c='᷇', w=0, base='acutecmb', accents=['macroncmb'], isLower=True, anchors=['_top', 'top'])
+    GDS['acutemacroncmb.uc'] = GD(name='acutemacroncmb.uc', w=0, srcName='acutemacroncmb', base='acutecmb.uc', accents=['macroncmb.uc'], isLower=True, anchors=['_top', 'top'])
+>>>>>>> Stashed changes
 
     GDS['asuperior'] = GD(name='asuperior', uni=0x1D43, hex='1D43', c='ᵃ', l='osuperior', r='nsuperior', isLower=False, isMod=True)
     GDS['ainferior'] = GD(name='ainferior', uni=0x2090, hex='2090', c='ₐ', l='asuperior', r='asuperior', base='asuperior', isLower=True)
@@ -748,8 +753,8 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     # v
 
     GDS['vdotbelow'] = GD(name='vdotbelow', uni=0x1E7F, hex='1E7F', c='ṿ', base='v', accents=['dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
-    GDS['verticallineabovecmb'] = GD(name='verticallineabovecmb', uni=0x030D, hex='030D', c='̍', w=0, srcName='verticallinesuperior', isLower=True, anchors=['_top', 'top'])
-    GDS['verticallinebelowcmb'] = GD(name='verticallinebelowcmb', uni=0x0329, hex='0329', c='̩', w=0, srcName='verticallinesuperior', isLower=True, anchors=['_bottom', 'bottom'])
+    GDS['verticallineabovecmb'] = GD(name='verticallineabovecmb', uni=0x030D, hex='030D', c='̍', w=0, isLower=True, anchors=['_top', 'top'])
+    GDS['verticallinebelowcmb'] = GD(name='verticallinebelowcmb', uni=0x0329, hex='0329', c='̩', w=0, isLower=True, anchors=['_bottom', 'bottom'])
     GDS['vhook'] = GD(name='vhook', uni=0x028B, hex='028B', c='ʋ', isLower=True)
     GDS['vtilde'] = GD(name='vtilde', uni=0x1E7D, hex='1E7D', c='ṽ', l='v', r='v', base='v', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
 
