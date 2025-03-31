@@ -2785,4 +2785,6 @@ class MS_GlyphSet(GlyphSet):
         044C
         044A
     """
-
+for gName, gd in GLYPH_DATA.items():
+    if 'fraction' in gd.accents:
+        print(gName)

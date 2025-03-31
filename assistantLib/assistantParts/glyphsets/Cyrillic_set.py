@@ -55,7 +55,7 @@ CYRILLIC_SET = {
     #   E
 
    'E-cy': GD(name='E-cy', uni=0x0404, hex='0404', c='Є', l='O', r='C', gid=649),
-   'Edieresis-cy': GD(name='Edieresis-cy', uni=0x04EC, hex='04EC', c='Ӭ', l='Ereversed-cy', r='O', base='Ereversed-cy', accents=['dieresiscmb.uc'], anchors=['top'], gid=881),
+   'Edieresis-cy': GD(name='Edieresis-cy', uni=0x04EC, hex='04EC', c='Ӭ', l='Ereversed-cy', r='O', anchorTopX='TopX', anchorTopY='TopY', base='Ereversed-cy', accents=['dieresiscmb.uc'], anchors=['top'], gid=881),
    'Ef-cy': GD(name='Ef-cy', uni=0x0424, hex='0424', c='Ф', l2r='Ef-cy', gid=681),
    #'Eiotified-cy': GD(name='Eiotified-cy', uni=0x0464, hex='0464', c='Ѥ', l='H', r='C', gid=745),
    'El-cy': GD(name='El-cy', uni=0x041B, hex='041B', c='Л', r='H', gid=672),
@@ -69,7 +69,7 @@ CYRILLIC_SET = {
    'Enhook-cy': GD(name='Enhook-cy', uni=0x04C7, hex='04C7', c='Ӈ', l='H', r='J', gid=844),
    'Entail-cy': GD(name='Entail-cy', uni=0x04C9, hex='04C9', c='Ӊ', l='H', r='Iishorttail-cy', base='H', anchorBottomY='H', accents=['tail.component-cy.case'], anchors=['top', 'middle', 'bottom'], gid=846),
    'Er-cy': GD(name='Er-cy', uni=0x0420, hex='0420', c='Р', l='H', r='P', base='P', anchors=['top', 'middle', 'bottom'], gid=677),
-   'Ereversed-cy': GD(name='Ereversed-cy', uni=0x042D, hex='042D', c='Э', r='O', anchors=['top'], gid=690),
+   'Ereversed-cy': GD(name='Ereversed-cy', uni=0x042D, hex='042D', c='Э', r='O', anchorTopX='TopX', anchorTopY='TopY', anchors=['top'], gid=690),
    'Ertick-cy': GD(name='Ertick-cy', uni=0x048E, hex='048E', c='Ҏ', l='H', r='P', base='P', gid=787),
    'Es-cy': GD(name='Es-cy', uni=0x0421, hex='0421', c='С', l='C', r='C', base='C', anchors=['top', 'middle', 'bottom'], gid=678),
    'Esdescender-cy': GD(name='Esdescender-cy', uni=0x04AA, hex='04AA', c='Ҫ', l='O', r='C', base='C', gid=815),
