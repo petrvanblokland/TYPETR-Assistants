@@ -1801,19 +1801,19 @@ class KerningManager:
     def getSimilarNames1(self, g):
         """Answer a simple list of similar glyphs to g."""
         simNames = [g.name]
-        for confidence, simGroup in self.getSimilar1(g).items():
+        for confidence, simGroup in sorted(self.getSimilar1(g).items()):
             simNames += simGroup
         return sorted(set(simNames))
 
     def getSimilarGroupsNames1(self, g):
         """Answer a sorted list of group names that are similar to g."""
-        simGroups = set()
-        for confidence, simGroup in self.getSimilar1(g).items():
+        simGroups = []
+        for confidence, simGroup in sself.getSimilar1(g).items():
             for gName in simGroup:
                 groupName = self.glyphName2GroupName1.get(gName) # If a group exists for this glyph
                 if groupName is not None:
                     simGroups.add(groupName)
-        return sorted(simGroups)
+        return sorted(set(simGroups))
 
     def getSimilarMargins1(self, g):
         """Answer a dictionary of glyphs with similar right margins. Key is glyph name, value is angled right margin"""
@@ -1856,13 +1856,13 @@ class KerningManager:
         
     def getSimilarGroupsNames2(self, g):
         """Answer a list of group names that are similar to g."""
-        simGroups = set()
+        simGroups = []
         for confidence, simGroup in self.getSimilar2(g).items():
             for gName in simGroup:
                 groupName = self.glyphName2GroupName2.get(gName) # If a group exists for this glyph
                 if groupName is not None:
                     simGroups.add(groupName)
-        return sorted(simGroups)
+        return sorted(set(simGroups))
 
     def getSimilarMargins2(self, g):
         """Answer a dictionary of glyphs with similar left margins. Key is glyph name, value if angled left margin"""
