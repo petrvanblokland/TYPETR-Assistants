@@ -155,7 +155,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['Dcircumflexbelow'] = GD(name='Dcircumflexbelow', uni=0x1E12, hex='1E12', c='Ḓ', l='D', r='D', base='D', accents=['circumflexbelowcmb'], anchors=['bottom', 'middle', 'top'])
     GDS['Ddotaccent'] = GD(name='Ddotaccent', uni=0x1E0A, hex='1E0A', c='Ḋ', l='D', r='D', base='D', accents=['dotaccentcmb.uc'], anchors=['bottom', 'middle', 'top'])
     GDS['Dz'] = GD(name='Dz', uni=0x01F2, hex='01F2', c='ǲ', l='D', r='z', base='z', anchorTopY='z', anchorTopX='z', isLower=True, accents=['D']) # /z as base to make anchors go there. /D has negative position on left.
-    GDS['Dzcaron'] = GD(name='Dzcaron', uni=0x01C5, hex='01C5', c='ǅ', l='D', r='z', base='Dz', isLower=True, accents=['caroncmb.uc'], fixAccents=False)
+    GDS['Dzcaron'] = GD(name='Dzcaron', uni=0x01C5, hex='01C5', c='ǅ', l='D', r='z', base='Dz', isLower=True, accents=['caroncmb'], fixAccents=False)
 
     GDS['Dsuperior'] = GD(name='Dsuperior', l='Hsuperior', r='Osuperior', isMod=True)
     GDS['Dinferior'] = GD(name='Dinferior', l='Dsuperior', r='Dsuperior', base='Dsuperior', isLower=True)
@@ -601,7 +601,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['ldoublebar'] = GD(name='ldoublebar', uni=0x2C61, hex='2C61', c='ⱡ', base='l', l='hyphen', r='hyphen', isLower=True)
     GDS['lj'] = GD(name='lj', uni=0x01C9, hex='01C9', c='ǉ', l='l', r='j', base='l', accents=['j'], isLower=True)
     GDS['lmiddletilde'] = GD(name='lmiddletilde', uni=0x026B, hex='026B', c='ɫ', l='asciitilde', r='asciitilde', base='l', isLower=True)
-    GDS['longs'] = GD(name='longs', uni=0x017F, hex='017F', c='ſ', w='f', r2l='j', isLower=True, fixAccents=False, anchors=['top'], comment='ſ S, LATIN SMALL LETTER LONG')
+    GDS['longs'] = GD(name='longs', uni=0x017F, hex='017F', c='ſ', w='f', r2l='j',  anchorTopX='TopX', anchorTopY='TopY', isLower=True, fixAccents=False, anchors=['top'], comment='ſ S, LATIN SMALL LETTER LONG')
     GDS['longsdotaccent'] = GD(name='longsdotaccent', uni=0x1E9B, hex='1E9B', c='ẛ', w='longs', bl='longs', base='longs', accents=['dotaccentcmb'], isLower=True, anchors=['top'])
     GDS['lowlinecmb'] = GD(name='lowlinecmb', uni=0x0332, hex='0332', c='̲', w=0, isLower=True, anchors=['_bottom', 'bottom'])
 
@@ -818,6 +818,9 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['eight.numr'] = GD(name='eight.numr', base='eightsuperior', isLower=False)
     GDS['nine.numr'] = GD(name='nine.numr', base='ninesuperior', isLower=False)
     GDS['zero.numr'] = GD(name='zero.numr', base='zerosuperior', isLower=False)
+    
+    GDS['zeroslash.onum'] = GD(name='zeroslash.onum', isLower=False)
+
 
     # Accents
 
