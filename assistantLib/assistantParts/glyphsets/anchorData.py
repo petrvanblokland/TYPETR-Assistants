@@ -219,10 +219,15 @@ class AnchorData:
         'tildecmb': _TOP,
         'dotmiddlecmb': _MIDDLE,
         'commabelowcmb': _BOTTOM,
+        'commaaccentcmb': _BOTTOM,
         'commaturnedabovecmb': _TOP,
         #'commaaccenttopcmb': TOP,
 
         'gravemacroncmb': _TOP, 
+        'gravemacroncmb.uc': _TOP, 
+
+        'acutemacroncmb': _TOP,
+        'acutemacroncmb.uc': _TOP,
         
         'acutecmb.uc': _TOP,
         'brevecmb.uc': _TOP,
