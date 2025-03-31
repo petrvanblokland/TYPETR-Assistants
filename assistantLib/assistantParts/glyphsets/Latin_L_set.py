@@ -424,15 +424,8 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['aringbelow'] = GD(name='aringbelow', uni=0x1E01, hex='1E01', c='ḁ', base='a', accents=['ringbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['astroke'] = GD(name='astroke', uni=0x2C65, hex='2C65', c='ⱥ', base='a', accents=['strokecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['aturned'] = GD(name='aturned', uni=0x0250, hex='0250', c='ɐ', l2r='a', r2l='a', srcName='a', isLower=True)
-
-<<<<<<< Updated upstream
-    GDS['acutemacroncmb'] = GD(name='acutemacroncmb', uni=0x1DC7, hex='1DC7', c='᷇', w=0, base='macroncmb', accents=['acutecmb'], isLower=True, anchors=['_top', 'top'])
-    GDS['acutemacroncmb.uc'] = GD(name='acutemacroncmb.uc', w=0, srcName='acutemacroncmb', isLower=True, anchors=['_top', 'top'])
-=======
     GDS['acutemacroncmb'] = GD(name='acutemacroncmb', uni=0x1DC7, hex='1DC7', c='᷇', w=0, base='acutecmb', accents=['macroncmb'], isLower=True, anchors=['_top', 'top'])
     GDS['acutemacroncmb.uc'] = GD(name='acutemacroncmb.uc', w=0, srcName='acutemacroncmb', base='acutecmb.uc', accents=['macroncmb.uc'], isLower=True, anchors=['_top', 'top'])
->>>>>>> Stashed changes
-
     GDS['asuperior'] = GD(name='asuperior', uni=0x1D43, hex='1D43', c='ᵃ', l='osuperior', r='nsuperior', isLower=False, isMod=True)
     GDS['ainferior'] = GD(name='ainferior', uni=0x2090, hex='2090', c='ₐ', l='asuperior', r='asuperior', base='asuperior', isLower=True)
 
