@@ -846,7 +846,6 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['slashlongcmb.uc'] = GD(name='slashlongcmb.uc', w=0, anchors=['_middle'])
     GDS['strokecmb.uc'] = GD(name='strokecmb.uc', w=0, srcName='strokecmb', anchors=['_middle'])
     GDS['invertedbrevecmb.uc'] = GD(name='invertedbrevecmb.uc', w=0, anchors=['_top'], srcName='brevecmb.uc')
-    GDS['dblgravecmb.uc'] = GD(name='dblgravecmb.uc', w=0, isLower=True, base='gravecmb.uc', accents=['gravecmb.uc'], anchors=['top', '_top'])
     GDS['ringbelowcmb.uc'] = GD(name='ringbelowcmb.uc', l='center', w=0, base='ringcmb.uc', isLower=True, anchors=['_bottom', 'bottom'], comment='COMBINING RING BELOW')
 
     # Fractions
