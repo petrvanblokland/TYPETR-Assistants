@@ -581,7 +581,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     # k
 
-    GDS['kacute'] = GD(name='kacute', uni=0x1E31, hex='1E31', c='ḱ', base='k', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
+    GDS['kacute'] = GD(name='kacute', uni=0x1E31, hex='1E31', c='ḱ', base='k', accents=['acutecmb.uc'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['kcaron'] = GD(name='kcaron', uni=0x01E9, hex='01E9', c='ǩ', base='k', accents=['caroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['kgreenlandic'] = GD(name='kgreenlandic', uni=0x0138, hex='0138', c='ĸ', l='K.sc', w='K.sc', base='ka-cy', isLower=True, anchors=['top'], comment='ĸ LATIN SMALL LETTER KRA')
     GDS['kstroke'] = GD(name='kstroke', uni=0xA741, hex='A741', c='ꝁ', l='hyphen', r='k', base='k', isLower=True, anchors=['bottom', 'middle', 'top'])
