@@ -203,6 +203,7 @@ class AnchorData:
     ACCENT_DATA = {
         'acutecmb': _TOP,
         'brevecmb': _TOP,
+        'brevecmb-cy': _TOP,
         'caroncmb': _TOP,
         'caroncmb.vert': _VERT,
         'cedillacmb': _BOTTOM,
@@ -231,6 +232,7 @@ class AnchorData:
         
         'acutecmb.uc': _TOP,
         'brevecmb.uc': _TOP,
+        'brevecmb-cy.uc': _TOP,
         'caroncmb.uc': _TOP,
         'circumflexcmb.uc': _TOP,
         'macroncmb.uc': _TOP,
@@ -483,7 +485,7 @@ class AnchorData:
         'alphapsiliperispomeni', 'alphapsiliperispomeniypogegrammeni', 'alphapsilivaria', 'alphapsilivariaypogegrammeni', 'alphapsiliypogegrammeni', 'alphatonos', 
         'alphavaria', 'alphavariaypogegrammeni', 'alphavrachy', 'alphaypogegrammeni', 'amacron', 'aogonek', 'aretroflexhook',  
         'arighthalfring', 'aring', 'aringacute', 'aringbelow', 'arrowheadleftabovecomb', 'arrowheadrightabovecomb', 'asteriskabovecomb', 'astroke', 'atilde', 'b', 
-        'bdotaccent', 'bdotbelow', 'blinebelow', 'bmiddletilde', 'bpalatalhook', 'brevecomb', 'brevecomb.component', 
+        'bdotaccent', 'bdotbelow', 'blinebelow', 'bmiddletilde', 'bpalatalhook', 'brevecomb', 'brevecomb-cy', 'brevecomb-cy.uc', 'brevecomb.component', 
         'breveinvertedcomb', 'breveinverteddoublecomb', 'c', 'cPalatalhook', 'cacute', 'candrabinducomb', 'caroncomb', 'cbar', 'ccaron', 'ccedilla', 
         'ccedillaacute', 'ccircumflex', 'ccomb', 'cdotaccent', 'che-cy', 'chedieresis-cy', 'cheverticalstroke-cy', 'circumflexcomb', 'commaabovecomb', 
         'commaaboverightcomb', 'commareversedabovecomb', 'commaturnedabovecomb', 'cstroke', 'd', 'dasia', 'dasiaoxia', 'dasiaperispomeni', 'dasiapneumatacomb-cy', 'dasiavaria', 
