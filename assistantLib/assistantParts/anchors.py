@@ -846,7 +846,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         return (self.constructAnchorTopX(g, gd, a, ax, ay) + self.constructAnchorBottomX(g, gd, a, ax, ay))/2
 
     def constructAnchorBottomX(self, g, gd, a, ax, ay):
-        """Answer the X position of the lowest point(s). If there is not point (e.g. just contours), then answer the middle of the bounaries."""
+        """Answer the X position of the lowest point(s). If there is no point (e.g. just contours), then answer the middle of the boundaries."""
         xx = []
         y = None
         for contour in g.contours:

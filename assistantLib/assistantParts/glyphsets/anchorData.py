@@ -223,6 +223,7 @@ class AnchorData:
         'commaaccentcmb': _BOTTOM,
         'commaturnedabovecmb': _TOP,
         #'commaaccenttopcmb': TOP,
+        'dblgravecmb': _TOP,
 
         'gravemacroncmb': _TOP, 
         'gravemacroncmb.uc': _TOP, 
@@ -244,6 +245,7 @@ class AnchorData:
         'ringacutecmb.uc': _TOP,
         'tildecmb.uc': _TOP,
         'commaturnedabovecmb.uc': _TOP,
+        'dblgravecmb.uc': _TOP,
 
         # Segoe naming
         'ogonekcomb': _OGONEK,
@@ -793,7 +795,9 @@ class AnchorData:
     #    'uhorntilde', 'Etilde', 'Ohorntilde', 'otilde', 'ntilde', 'vtilde', 'Atilde', 'tildeoverlaycomb', 'perispomenicomb', 
     #    'Vtilde', 'Itilde', 'etilde', 'itilde']
 
-    _TOP_ANCHORS = {'Abreve.component', 'Abreve.component1', 'Abreve.component2', 'Abreve.component3', 'Idieresis.component', 'Otilde.component', 
+    _TOP_ANCHORS = {
+        'dblgravecmb', 'dblgravecmb.uc', 
+        'Abreve.component', 'Abreve.component1', 'Abreve.component2', 'Abreve.component3', 'Idieresis.component', 'Otilde.component', 
         'Otilde.component1', 'Sacute.component', 'Scaron.component', 'Udieresis.component', 'Umacron.component', 'abreve.component', 
         'abreve.component1', 'abreve.component2', 'abreve.component3', 'acomb', 'acutecomb', 'acutecomb.component', 'acutecomb.component1', 
         'acutecomb.component3', 'acutecomb.component5', 'acutedottedcomb', 'acutegraveacutecomb', 'acutemacroncomb', 'acutetonecomb', 'almostequaltoabovecomb', 

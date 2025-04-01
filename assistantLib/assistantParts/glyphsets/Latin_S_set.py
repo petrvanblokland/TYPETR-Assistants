@@ -265,7 +265,7 @@ LATIN_S_SET = GDS = {
     'Agrave': GD(name='Agrave', uni=0x00C0, hex='00C0', c='À', l='A', r='A', base='A', accents=['gravecmb.uc'], anchors=['bottom', 'middle', 'top', 'ogonek'], comment='À A WITH GRAVE, LATIN CAPITAL LETTER'),
     'Amacron': GD(name='Amacron', uni=0x0100, hex='0100', c='Ā', l='A', r='A', base='A', accents=['macroncmb.uc'], anchors=['bottom', 'middle', 'top', 'ogonek'], comment='Ā Latin, European'),
     'Aogonek': GD(name='Aogonek', uni=0x0104, hex='0104', c='Ą', l='A', r='A', base='A', accents=['ogonekcmb'], anchors=['bottom', 'middle', 'top'], comment='Ą LATIN CAPITAL LETTER A WITH OGONEK'),
-    'Aring': GD(name='Aring', uni=0x00C5, hex='00C5', c='Å', l='A', r='A', anchorTopY='TopY', base='A', accents=['ringcmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Å RING ABOVE, LATIN CAPITAL LETTER A WITH'),
+    'Aring': GD(name='Aring', uni=0x00C5, hex='00C5', c='Å', l='A', r='A', base='A', accents=['ringcmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Å RING ABOVE, LATIN CAPITAL LETTER A WITH'),
     'Atilde': GD(name='Atilde', uni=0x00C3, hex='00C3', c='Ã', l='A', r='A', base='A', accents=['tildecmb.uc'], anchors=['bottom', 'middle', 'top', 'ogonek'], comment='Ã A WITH TILDE, LATIN CAPITAL LETTER'),
 
     # B
