@@ -245,13 +245,6 @@ class GlyphData:
         return self.name.endswith(self.ONUM) # This must be an old-style figure
     isOnum = property(_get_isOnum)
 
-    def _get_isSc(self):
-        """Answer the boolean flag if this glyph is a small cap."""
-        if self._isSc is not None: # Has a forced setting?
-            return bool(self._isSc)
-        return self.name.endswith(self.SC) # This must be a smallcap
-    isSc = property(_get_isSc)
-
     def _get_isLower(self):
         """Answer the boolean flag if this glyph is lowercase. If the flag is undefined in self._isLower
         then take a guess.
@@ -303,14 +296,14 @@ class GlyphData:
         """Answer the boolean flag if this glyph is superior (has "dnom" in its name). Used for fractions"""
         return self.name.endswith(self.MOD_DNOM)
     isDnom = property(_get_isDnom)
-            
+           
     def _get_isSc(self):
         """Answer the boolean flag if this glyph is a smallcap. If the flag is undefined in self._isSc
         then take a guess.
         """
         if self._isSc is not None:
-            return self._isSc
-        for ext in ('.sc', 'small'):
+            return bool(self._isSc)
+        for ext in (self.SC, 'small'):
             if self.name.endswith(ext):
                 return True
         return False

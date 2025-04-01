@@ -507,11 +507,18 @@ class AssistantPartAnchors(BaseAssistantPart):
                 aa = self.getAnchor(g.font[gd.anchorTopY], a.name)
                 if aa is not None:
                     ay = aa.y
+
+            elif gd.isSc and 'H.sc' in g.font:
+                # Make sure to set the H.sc vertical top anchor position as model for all other .sc
+                scAnchor = self.getAnchor(g.font['H.sc'], a.name)
+                if scAnchor:
+                    ay = scAnchor.y + dy
+
             else: # If not an existing glyph name, then we can assume it is a valid method name that will calculate the ay
                 # Available: 
                 ay = getattr(self, 'constructAnchor'+gd.anchorTopY)(g, gd, a.name, a.x, ay or a.y) # @@@ Various methods still to be implemented
 
-        else: # No construction glyph or method defined, then try to figure out from this glyph shape
+        if ay is None: # Still None, no construction glyph or method defined, then try to figure out from this glyph shape
             # Trying to guess vertical from anchor in base glyph + its offset
             if gd.accents: 
                 # This is a glyph, probably with diacritics. If these are on top, then the anchor position needs
@@ -796,7 +803,7 @@ class AssistantPartAnchors(BaseAssistantPart):
 
     def constructAnchorBoundsX2(self, g, gd, a, ax, ay):
         """Constructor method for half bounds width. Because of italic shapes, we cannot use g.bounds here. Use angled margins instead."""
-        print('... Anchor position by constructAnchorBoundsX2')
+        #print('... Anchor position by constructAnchorBoundsX2')
         ml = g.angledLeftMargin
         mr = g.angledRightMargin
         if not None in (ml, mr):

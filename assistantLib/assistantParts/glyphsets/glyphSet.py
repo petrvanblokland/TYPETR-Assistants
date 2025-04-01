@@ -178,6 +178,12 @@ class GlyphSet:
                         gd.r2l += ext
                     if gd.w in SC_NAMES: 
                         gd.w += ext
+                    # Do anchors, slip exception for smallcaps tonos
+                    anchorNames = []
+                    for anchorName in gd.anchors:
+                        if not (anchorName == 'topleft' and gd.isSc):
+                            anchorNames.append(anchorName)
+                    gd.anchors = anchorNames 
                     # Do accent alteration in another loop, since not all .sc may have been created yet.
                     # Also there is a problem for Cyrillic added before the Greek, since Gamma.sc does not exist yet.
                     gd.srcName = gName
