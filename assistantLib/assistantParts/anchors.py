@@ -670,8 +670,13 @@ class AssistantPartAnchors(BaseAssistantPart):
                     ax = baseAnchor.x + self.italicX(g, dx, ay - baseAnchor.y)
             else: # Center on width by default, otherwise use the gd.anchorTopX="Bounds" method
                 ax = self.italicX(g, g.width/2, ay)
+
+        if ax is not None:
+            ax += offsetX
+        if ay is not None:
+            ay += offsetY
         
-        return ax + offsetX, ay + offsetY
+        return ax, ay
 
     def constructAnchor_TOPXY(self, g, gd, a):
         """Answer the constructed (x, y) position of the _TOP anchor for g, based on available rules and shape. The x and/or y can be None 
@@ -807,7 +812,12 @@ class AssistantPartAnchors(BaseAssistantPart):
             else: # Center in width by default
                 ax = self.italicX(g, g.width/2, ay)
 
-        return ax + offsetX, ay + offsetY
+        if ax is not None:
+            ax += offsetX
+        if ay is not None:
+            ay += offsetY
+
+        return ax, ay
 
     def constructAnchor_BOTTOMXY(self, g, gd, a):
         """Answer the constructed (x, y) position of the BOTTOM_ anchor for g, based on available rules and shape. The x and/or y can be None 

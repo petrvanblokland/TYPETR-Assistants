@@ -52,6 +52,8 @@ class AssistantPartComponents(BaseAssistantPart):
         c.w.checkFixAllMasterComponents = CheckBox((C0, y, CW, L), f'Fix all masters [{personalKey_C}]', value=True, sizeStyle='small')
         c.w.autoFixComponentPositions = CheckBox((C1, y, CW, L), 'Auto fix components', value=True, sizeStyle='small')
         c.w.autoFixComponentButton = Button((C2, y, CW, L), 'Auto fix all', callback=self.autoFixComponentsButtonCallback)
+        y += L
+        c.w.checkFixAllGlyphsComponents = CheckBox((C0, y, CW, L), f'Fix all glyphs [{personalKey_C}]', value=False, sizeStyle='small')
         y += L + L/5
         c.w.componentsEndLine = HorizontalLine((self.M, y, -self.M, 1))
         c.w.componentsEndLine2 = HorizontalLine((self.M, y, -self.M, 1)) # Double for slightly darker line
@@ -67,7 +69,8 @@ class AssistantPartComponents(BaseAssistantPart):
     
     def componentFixGlyphAllMasters(self, g):
         """Fix the components for the current glyph in all masters in ufo/"""
-        if self.getController().w.checkFixAllMasterComponents.get():
+        c = self.getController()
+        if c.w.checkFixAllMasterComponents.get():
             fonts = []
             parentPath = self.filePath2ParentPath(g.font.path)
             for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
@@ -77,13 +80,22 @@ class AssistantPartComponents(BaseAssistantPart):
         else:
             fonts = [g.font]
 
+        if c.w.checkFixAllGlyphsComponents.get():
+            glyphNames = set()
+            for f in fonts:
+                for gName in f.keys():
+                    glyphNames.add(gName)
+        else:
+            glyphNames = [g.name]
+
         for f in fonts:
-            if g.name in f:
-                #print(f"... Check/fix components for /{g.name} in {f.path.split('/')[-1]}")
-                gg = f[g.name]
-                changed = self.checkFixComponentsExist(gg)
-                changed |= self.checkFixComponentsPosition(gg)
-                gg.changed()
+            for fName in glyphNames:
+                if g.name in f:
+                    #print(f"... Check/fix components for /{g.name} in {f.path.split('/')[-1]}")
+                    gg = f[g.name]
+                    changed = self.checkFixComponentsExist(gg)
+                    changed |= self.checkFixComponentsPosition(gg)
+                    gg.changed()
 
     def componentFixAllKey(self, g, c=None, event=None):
         """Fix the components for all glyphs in the current font."""
@@ -251,7 +263,7 @@ class AssistantPartComponents(BaseAssistantPart):
                                 dy = baseAnchor.y - a.y + ty
                                 t = list(component.transformation)
                                 if abs(t[-2] - dx) > 1 or abs(t[-1] - dy) > 1: # Is moving needed?
-                                    print(f'... Move component /{component.baseGlyph} in /{g.name} to ({dx}, {dy})')
+                                    print(f'... Move component /{component.baseGlyph} in /{g.name} to ({dx}, {dy}) {g.font.path.split('/')[-1]}')
                                     t[-2] = dx
                                     t[-1] = dy 
                                     component.transformation = t
