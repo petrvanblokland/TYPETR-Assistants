@@ -452,14 +452,10 @@ CYRILLIC_SET = {
 
 }
 
-CYRILLIC_SET_NAME_ITALIC = {
+CYRILLIC_ITALIC_SET = CSI = deepcopy(CYRILLIC_SET)
+
 # Exceptions to the Cyrillic Italic set go here.
+CSI['te-cy'] = GD(name='te-cy', uni=0x0442, hex='0442', c='т', l='m', r='m', base='m', isLower=True, gid=711)
+CSI['pe-cy'] = GD(name='pe-cy', uni=0x043F, hex='043F', c='п', l='n', r='n', base='n', isLower=True, gid=708)
+CSI['ii-cy'] = GD(name='ii-cy', uni=0x0438, hex='0438', c='и', l='u', r='u', base='u', isLower=True, anchors=['top'], gid=701)
 
-
-    'te-cy': GD(name='te-cy', uni=0x0442, hex='0442', c='т', l='m', r='m', base='m', isLower=True, gid=711),
-    'pe-cy': GD(name='pe-cy', uni=0x043F, hex='043F', c='п', l='n', r='n', base='n', isLower=True, gid=708),
-    'ii-cy': GD(name='ii-cy', uni=0x0438, hex='0438', c='и', l='u', r='u', base='u', isLower=True, anchors=['top'], gid=701),
-    
-
-
-}
