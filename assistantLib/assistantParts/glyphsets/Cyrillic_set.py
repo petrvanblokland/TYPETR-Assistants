@@ -452,7 +452,7 @@ CYRILLIC_SET = {
 
 }
 
-CYRILLIC_ITALIC_SET = CSI = deepcopy(CYRILLIC_SET)
+CYRILLIC_SET_ITALIC = CSI = deepcopy(CYRILLIC_SET)
 
 # Exceptions to the Cyrillic Italic set go here.
 CSI['te-cy'] = GD(name='te-cy', uni=0x0442, hex='0442', c='т', l='m', r='m', base='m', isLower=True, gid=711)
