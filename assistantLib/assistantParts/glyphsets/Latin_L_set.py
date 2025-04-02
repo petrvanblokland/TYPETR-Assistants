@@ -835,8 +835,8 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['macronbelowcmb'] = GD(name='macronbelowcmb', uni=0x0331, hex='0331', c='̱', w=0, base='macroncmb', isLower=True, anchors=['bottom', '_bottom'], comment='COMBINING MACRON BELOW')
     GDS['ringbelowcmb'] = GD(name='ringbelowcmb', uni=0x0325, hex='0325', c='̥', l='center', w=0, base='ringcmb', isLower=True, anchors=['_bottom', 'bottom'], comment='COMBINING RING BELOW')
 
-    GDS['dblgravecmb'] = GD(name='dblgravecmb', uni=0x030F, hex='030F', c='̏', w=0, isLower=True, base='gravecmb', accents=['gravecmb'], anchors=['top', '_top'])
-    GDS['dblgravecmb.uc'] = GD(name='dblgravecmb.uc',w=0, srcName='dblgravecmb', isLower=True, anchors=['_top', 'top'])
+    GDS['dblgravecmb'] = GD(name='dblgravecmb', uni=0x030F, hex='030F', c='̏', l=GD.CAT_CENTER, w=0, isLower=True, base='gravecmb', accents=['gravecmb'], anchors=['top', '_top'])
+    GDS['dblgravecmb.uc'] = GD(name='dblgravecmb.uc', l=GD.CAT_CENTER, w=0, srcName='dblgravecmb', isLower=True, anchors=['_top', 'top'])
     GDS['dotaboverightcmb'] = GD(name='dotaboverightcmb', uni=0x0358, hex='0358', c='͘', w=0, base='dotaccentcmb', isLower=True, anchors=['_top', 'top'])
     GDS['dotaboverightcmb.uc'] = GD(name='dotaboverightcmb.uc', w=0, srcName='dotaboverightcmb', isLower=True, anchors=['_top', 'top'])
     GDS['doublebrevebelowcmb'] = GD(name='doublebrevebelowcmb', uni=0x035C, hex='035C', c='͜', w=0, base='doublebrevecmb', isLower=True, anchors=['_bottom', 'bottom'])
@@ -851,29 +851,29 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     # Fractions
 
     GDS['onefraction'] = GD(name='onefraction', uni=0x215F, hex='215F', c='⅟', base='one.numr', accents=['fraction'], isLower=False)
-    GDS['onehalf'] = GD(name='onehalf', uni=0x00BD, hex='00BD', c='½', base='one.numr', accents=['fraction', 'two.numr'], isLower=False, gid=126, comment='½ VULGAR FRACTION ONE HALF')
-    GDS['onethird'] = GD(name='onethird', uni=0x2153, hex='2153', c='⅓', l='one.numr', r='three.dnom', base='one.numr', accents=['fraction', 'three.numr'], isLower=False)
-    GDS['onequarter'] = GD(name='onequarter', uni=0x00BC, hex='00BC', c='¼', base='one.numr', accents=['fraction', 'four.numr'], isLower=True, gid=125, comment='¼ VULGAR FRACTION ONE QUARTER')
+    GDS['onehalf'] = GD(name='onehalf', uni=0x00BD, hex='00BD', c='½', base='one.numr', accents=['fraction', 'two.dnom'], isLower=False, gid=126, comment='½ VULGAR FRACTION ONE HALF')
+    GDS['onethird'] = GD(name='onethird', uni=0x2153, hex='2153', c='⅓', l='one.numr', r='three.dnom', base='one.numr', accents=['fraction', 'three.dnom'], isLower=False)
+    GDS['onequarter'] = GD(name='onequarter', uni=0x00BC, hex='00BC', c='¼', l='one.numr', r='four.dnom', base='one.numr', accents=['fraction', 'four.dnom'], isLower=True, gid=125, comment='¼ VULGAR FRACTION ONE QUARTER')
     GDS['onefifth'] = GD(name='onefifth', uni=0x2155, hex='2155', c='⅕', l='one.numr', r='five.dnom', base='one.numr', accents=['fraction', 'five.dnom'], isLower=False)
     GDS['onesixth'] = GD(name='onesixth', uni=0x2159, hex='2159', c='⅙', l='one.numr', r='six.dnom', base='one.numr', accents=['fraction', 'six.dnom'], isLower=False)
-    GDS['oneseventh'] = GD(name='oneseventh', uni=0x2150, hex='2150', c='⅐', l='one.numr', r='seven.dnom', base='one.numr', accents=['fraction', 'seven.numr'], isLower=False)
-    GDS['oneeighth'] = GD(name='oneeighth', uni=0x215B, hex='215B', c='⅛', base='one.numr', accents=['fraction', 'eight.numr'], isLower=False, gid=1472, comment='⅛ Fractions Eighths')
-    GDS['oneninth'] = GD(name='oneninth', uni=0x2151, hex='2151', c='⅑', l='one.numr', r='nine.dnom', base='nine.dnom', accents=['fraction', 'one.numr'], isLower=False)
+    GDS['oneseventh'] = GD(name='oneseventh', uni=0x2150, hex='2150', c='⅐', l='one.numr', r='seven.dnom', base='one.numr', accents=['fraction', 'seven.dnom'], isLower=False)
+    GDS['oneeighth'] = GD(name='oneeighth', uni=0x215B, hex='215B', c='⅛', l='one.numr', r='eight.dnom', base='one.numr', accents=['fraction', 'eight.dnom'], isLower=False, gid=1472, comment='⅛ Fractions Eighths')
+    GDS['oneninth'] = GD(name='oneninth', uni=0x2151, hex='2151', c='⅑', l='one.numr', r='nine.dnom', base='one.numr', accents=['fraction', 'nine.dnom'], isLower=False)
     GDS['onetenth'] = GD(name='onetenth', uni=0x2152, hex='2152', c='⅒', l='one.numr', r='zero.dnom', base='one.numr', accents=['fraction', 'one.dnom', 'zero.dnom'], isLower=False)
 
     GDS['twothirds'] = GD(name='twothirds', uni=0x2154, hex='2154', c='⅔', base='two.numr', accents=['fraction', 'three.dnom'], isLower=False)
     GDS['twofifths'] = GD(name='twofifths', uni=0x2156, hex='2156', c='⅖', base='two.numr', accents=['fraction', 'five.dnom'], isLower=False)
 
-    GDS['threequarters'] = GD(name='threequarters', uni=0x00BE, hex='00BE', c='¾', base='three.numr', accents=['fraction', 'four.numr'], isLower=False, gid=127, comment='¾ VULGAR FRACTION THREE QUARTERS')
+    GDS['threequarters'] = GD(name='threequarters', uni=0x00BE, hex='00BE', c='¾', base='three.numr', accents=['fraction', 'four.dnom'], isLower=False, gid=127, comment='¾ VULGAR FRACTION THREE QUARTERS')
     GDS['threefifths'] = GD(name='threefifths', uni=0x2157, hex='2157', c='⅗', base='three.numr', accents=['fraction', 'five.dnom'], isLower=False)
-    GDS['threeeighths'] = GD(name='threeeighths', uni=0x215C, hex='215C', c='⅜', base='three.numr', accents=['fraction', 'eight.numr'], isLower=False, gid=1473, comment='⅜')
+    GDS['threeeighths'] = GD(name='threeeighths', uni=0x215C, hex='215C', c='⅜', base='three.numr', accents=['fraction', 'eight.dnom'], isLower=False, gid=1473, comment='⅜')
 
     GDS['fourfifths'] = GD(name='fourfifths', uni=0x2158, hex='2158', c='⅘', base='four.numr', accents=['fraction', 'five.dnom'], isLower=False)
 
-    GDS['fiveeighths'] = GD(name='fiveeighths', uni=0x215D, hex='215D', c='⅝', base='five.numr', accents=['fraction', 'eight.numr'], isLower=False, gid=1474, comment='⅝')
+    GDS['fiveeighths'] = GD(name='fiveeighths', uni=0x215D, hex='215D', c='⅝', base='five.numr', accents=['fraction', 'eight.dnom'], isLower=False, gid=1474, comment='⅝')
     GDS['fivesixths'] = GD(name='fivesixths', uni=0x215A, hex='215A', c='⅚', base='five.numr', accents=['fraction', 'six.dnom'], isLower=False)
 
-    GDS['seveneighths'] = GD(name='seveneighths', uni=0x215E, hex='215E', c='⅞', base='seven.numr', accents=['fraction', 'eight.numr'], isLower=False, gid=1475, comment='⅞')
+    GDS['seveneighths'] = GD(name='seveneighths', uni=0x215E, hex='215E', c='⅞', base='seven.numr', accents=['fraction', 'eight.dnom'], isLower=False, gid=1475, comment='⅞')
 
 # Make exceptions here for Italic glyphs and spacing rules in LATIN_L_SET_ITALIC
 
