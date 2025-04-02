@@ -167,6 +167,21 @@ class AssistantPartAnchors(BaseAssistantPart):
         #y += L # Closing line for the part UI
         #c.w.anchorsLine = HorizontalLine((self.M, y+4, -self.M, 0))
         #y += 8
+
+        # Sliders for manual overwriting of anchor positions. These values are glyph specific and get stored in glyph.lib
+        c.w.anchorTopReset = Button((C0, y-5, CW, L), 'Reset Top', sizeStyle='small', callback=self.anchorsTopResetCallback)
+        c.w.topAnchorXOffsetSlider = Slider((C1, y-5, CW, L), minValue=-self.MAX_OVERLAY_OFFSET_SLIDER, maxValue=self.MAX_OVERLAY_OFFSET_SLIDER, value=0, 
+            sizeStyle='small', continuous=True, callback=self.updateTopAnchorSliderCallback)
+        c.w.topAnchorYOffsetSlider = Slider((C2, y-5, CW, L), minValue=-self.MAX_OVERLAY_OFFSET_SLIDER, maxValue=self.MAX_OVERLAY_OFFSET_SLIDER, value=0, 
+            sizeStyle='small', continuous=True, callback=self.updateTopAnchorSliderCallback)
+        y += L
+        c.w.anchorBottomReset = Button((C0, y-5, CW, L), 'Reset Bottom', sizeStyle='small', callback=self.anchorsBottomResetCallback)
+        c.w.bottomAnchorXOffsetSlider = Slider((C1, y-5, CW, L), minValue=-self.MAX_OVERLAY_OFFSET_SLIDER, maxValue=self.MAX_OVERLAY_OFFSET_SLIDER, value=0, 
+            sizeStyle='small', continuous=True, callback=self.updateBottomAnchorSliderCallback)
+        c.w.bottomAnchorYOffsetSlider = Slider((C2, y-5, CW, L), minValue=-self.MAX_OVERLAY_OFFSET_SLIDER, maxValue=self.MAX_OVERLAY_OFFSET_SLIDER, value=0, 
+            sizeStyle='small', continuous=True, callback=self.updateBottomAnchorSliderCallback)
+        y += L
+
         c.w.anchorEndLine = HorizontalLine((self.M, y, -self.M, 1))
         c.w.anchorEndLine2 = HorizontalLine((self.M, y, -self.M, 1)) # Double for slightly darker line
         #c.w.anchorEndLine.setBorderWidth(.5)
@@ -174,6 +189,61 @@ class AssistantPartAnchors(BaseAssistantPart):
 
         return y
 
+    # Labels for (x, y) offset for anchors, stored in glyph.lib
+    ANCHOR_TOP_OFFSET = 'anchorTopOffset'
+    ANCHOR_BOTTOM_OFFSET = 'anchorBottomOffset'
+    MAX_OVERLAY_OFFSET_SLIDER = 200
+
+    def anchorsTopResetCallback(self, sender):
+        g = self.getCurrentGlyph()
+        self.setLib(g, self.ANCHOR_TOP_OFFSET, (0, 0))
+        c = self.getController()
+        c.w.topAnchorXOffsetSlider.set(0)
+        c.w.topAnchorYOffsetSlider.set(0)
+        g.changed()
+
+    def updateTopAnchorSliderCallback(self, sender):
+        """Update the position of the anchors, with the setting of the offset sliders and store the value in glyph.lib"""
+        g = self.getCurrentGlyph()
+        x, y = self.getLib(g, self.ANCHOR_TOP_OFFSET, (0, 0))
+        ox, oy = int(round(self.w.topAnchorXOffsetSlider.get())), int(round(self.w.topAnchorYOffsetSlider.get()))
+        changed = False
+        if x != ox:
+            x = ox
+            changed = True
+        if y != oy:
+            y = oy
+            changed = True
+        if changed:
+            #print('Top', x, y, ox, oy)
+            self.setLib(g, self.ANCHOR_TOP_OFFSET, (x, y))
+            g.changed()
+
+    def anchorsBottomResetCallback(self, sender):
+        g = self.getCurrentGlyph()
+        self.setLib(g, self.ANCHOR_BOTTOM_OFFSET, (0, 0))
+        c = self.getController()
+        c.w.bottomAnchorXOffsetSlider.set(0)
+        c.w.bottomAnchorYOffsetSlider.set(0)
+        g.changed()
+        
+    def updateBottomAnchorSliderCallback(self, sender):
+        """Update the position of the anchors, with the setting of the offset sliders and store the value in glyph.lib"""
+        g = self.getCurrentGlyph()
+        x, y = self.getLib(g, self.ANCHOR_BOTTOM_OFFSET, (0, 0))
+        ox, oy = int(round(self.w.bottomAnchorXOffsetSlider.get())), int(round(self.w.bottomAnchorYOffsetSlider.get()))
+        changed = False
+        if x != ox:
+            x = ox
+            changed = True
+        if y != oy:
+            y = oy
+            changed = True
+        if changed:
+            #print('Bottom', x, y, ox, oy)
+            self.setLib(g, self.ANCHOR_BOTTOM_OFFSET, (x, y))
+            g.changed()
+        
     def closingAnchors(self):
         """Called when the main assistant window is about to close. We can close our anchors window here."""
         c = self.getController()
@@ -429,7 +499,18 @@ class AssistantPartAnchors(BaseAssistantPart):
             print(f'### setGlyphAnchors: Cannot find GlyphData for /{g.name}')
 
         elif gd.autoFixAnchorPositions:
+            c = self.getController()
             for a in g.anchors:
+                # Set the offset sliders from the current values in glyph.lib
+                if a.name == AD.TOP_:
+                    ox, oy = self.getLib(g, self.ANCHOR_TOP_OFFSET, (0, 0))
+                    c.w.topAnchorXOffsetSlider.set(ox)
+                    c.w.topAnchorYOffsetSlider.set(oy)
+                elif a.name == AD.BOTTOM_:
+                    ox, oy = self.getLib(g, self.ANCHOR_BOTTOM_OFFSET, (0, 0))
+                    c.w.bottomAnchorXOffsetSlider.set(ox)
+                    c.w.bottomAnchorYOffsetSlider.set(oy)
+
                 self.autoCheckFixAnchorPosition(g, gd, a)
 
     def _getAnchorTypeGlyph(self, g):
@@ -497,6 +578,8 @@ class AssistantPartAnchors(BaseAssistantPart):
         in case not valid value could be constructed. In that case the position needs to be set manually in the editor.
         """
         md = self.getMasterData(g.font)
+
+        offsetX, offsetY = self.getLib(g, self.ANCHOR_TOP_OFFSET, (0, 0))
 
         ax = ay = None
         baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g) # In case there is a base, just copy the vertical and hotizontal anchor positions, with the component offset
@@ -588,7 +671,7 @@ class AssistantPartAnchors(BaseAssistantPart):
             else: # Center on width by default, otherwise use the gd.anchorTopX="Bounds" method
                 ax = self.italicX(g, g.width/2, ay)
         
-        return ax, ay
+        return ax + offsetX, ay + offsetY
 
     def constructAnchor_TOPXY(self, g, gd, a):
         """Answer the constructed (x, y) position of the _TOP anchor for g, based on available rules and shape. The x and/or y can be None 
@@ -678,6 +761,8 @@ class AssistantPartAnchors(BaseAssistantPart):
         md = self.getMasterData(g.font)
         gd = self.getGlyphData(g)
 
+        offsetX, offsetY = self.getLib(g, self.ANCHOR_BOTTOM_OFFSET, (0, 0))
+
         baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g) # In case there is a base, just copy the vertical and hotizontal anchor positions, with the component offset
 
         # BOTTOM_ Construct vertical position
@@ -722,7 +807,7 @@ class AssistantPartAnchors(BaseAssistantPart):
             else: # Center in width by default
                 ax = self.italicX(g, g.width/2, ay)
 
-        return ax, ay
+        return ax + offsetX, ay + offsetY
 
     def constructAnchor_BOTTOMXY(self, g, gd, a):
         """Answer the constructed (x, y) position of the BOTTOM_ anchor for g, based on available rules and shape. The x and/or y can be None 
