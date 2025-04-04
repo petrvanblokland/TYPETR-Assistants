@@ -81,16 +81,16 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
     # A
 
     GDS['AEmacron'] = GD(name='AEmacron', uni=0x01E2, hex='01E2', c='Ǣ', l='A', r='E', base='AE', accents=['macroncmb.uc'], anchors=['bottom', 'middle', 'top'], gid=419)
-    GDS['Abreveacute'] = GD(name='Abreveacute', uni=0x1EAE, hex='1EAE', c='Ắ', l='A', r='A', base='Abreve', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1097, comment='Ắ LATIN CAPITAL LETTER A WITH BREVE AND ACUTE')
+    GDS['Abreveacute'] = GD(name='Abreveacute', uni=0x1EAE, hex='1EAE', c='Ắ', l='A', r='A', base='A', accents=['breveacutecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1097, comment='Ắ LATIN CAPITAL LETTER A WITH BREVE AND ACUTE')
     GDS['Abrevedotbelow'] = GD(name='Abrevedotbelow', uni=0x1EB6, hex='1EB6', c='Ặ', l='A', r='A', base='Abreve', accents=['dotbelowcmb'], anchors=['bottom', 'middle', 'top'], gid=1105, comment='Ặ LATIN CAPITAL LETTER A WITH BREVE AND DOT BELOW')
-    GDS['Abrevegrave'] = GD(name='Abrevegrave', uni=0x1EB0, hex='1EB0', c='Ằ', l='A', r='A', base='Abreve', accents=['gravecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1099, comment='Ằ LATIN CAPITAL LETTER A WITH BREVE AND GRAVE')
-    GDS['Abrevehookabove'] = GD(name='Abrevehookabove', uni=0x1EB2, hex='1EB2', c='Ẳ', l='A', r='A', base='Abreve', accents=['hookabovecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1101, comment='Ẳ LATIN CAPITAL LETTER A WITH BREVE AND HOOK ABOVE')
-    GDS['Abrevetilde'] = GD(name='Abrevetilde', uni=0x1EB4, hex='1EB4', c='Ẵ', l='A', r='A', base='Abreve', accents=['tildecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1103, comment='Ẵ LATIN CAPITAL LETTER A WITH BREVE AND TILDE')
-    GDS['Acircumflexacute'] = GD(name='Acircumflexacute', uni=0x1EA4, hex='1EA4', c='Ấ', l='A', w='A', base='Acircumflex', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1087, comment='Ấ LATIN CAPITAL LETTER A WITH CIRCUMFLEX AND ACUTE')
+    GDS['Abrevegrave'] = GD(name='Abrevegrave', uni=0x1EB0, hex='1EB0', c='Ằ', l='A', r='A', base='A', accents=['brevegravecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1099, comment='Ằ LATIN CAPITAL LETTER A WITH BREVE AND GRAVE')
+    GDS['Abrevehookabove'] = GD(name='Abrevehookabove', uni=0x1EB2, hex='1EB2', c='Ẳ', l='A', r='A', base='A', accents=['brevehookabovecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1101, comment='Ẳ LATIN CAPITAL LETTER A WITH BREVE AND HOOK ABOVE')
+    GDS['Abrevetilde'] = GD(name='Abrevetilde', uni=0x1EB4, hex='1EB4', c='Ẵ', l='A', r='A', base='A', accents=['brevetildecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1103, comment='Ẵ LATIN CAPITAL LETTER A WITH BREVE AND TILDE')
+    GDS['Acircumflexacute'] = GD(name='Acircumflexacute', uni=0x1EA4, hex='1EA4', c='Ấ', l='A', w='A', base='A', accents=['circumflexacutecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1087, comment='Ấ LATIN CAPITAL LETTER A WITH CIRCUMFLEX AND ACUTE')
     GDS['Acircumflexdotbelow'] = GD(name='Acircumflexdotbelow', uni=0x1EAC, hex='1EAC', c='Ậ', l='A', r='A', base='Acircumflex', accents=['dotbelowcmb'], anchors=['bottom', 'middle', 'top'], gid=1095, comment='Ậ LATIN CAPITAL LETTER A WITH CIRCUMFLEX AND DOT BELOW')
     GDS['Acircumflexgrave'] = GD(name='Acircumflexgrave', uni=0x1EA6, hex='1EA6', c='Ầ', w='A', bl='A', base='Acircumflex', accents=['gravecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1089, comment='Ầ LATIN CAPITAL LETTER A WITH CIRCUMFLEX AND GRAVE')
-    GDS['Acircumflexhookabove'] = GD(name='Acircumflexhookabove', uni=0x1EA8, hex='1EA8', c='Ẩ', l='A', r='A', base='Acircumflex', accents=['hookabovecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1091, comment='Ẩ LATIN CAPITAL LETTER A WITH CIRCUMFLEX AND HOOK ABOVE')
-    GDS['Acircumflextilde'] = GD(name='Acircumflextilde', uni=0x1EAA, hex='1EAA', c='Ẫ', l='A', r='A', base='Acircumflex', accents=['tildecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1093, comment='Ẫ LATIN CAPITAL LETTER A WITH CIRCUMFLEX AND TILDE')
+    GDS['Acircumflexhookabove'] = GD(name='Acircumflexhookabove', uni=0x1EA8, hex='1EA8', c='Ẩ', l='A', r='A', base='A', accents=['circumflexhookabovecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1091, comment='Ẩ LATIN CAPITAL LETTER A WITH CIRCUMFLEX AND HOOK ABOVE')
+    GDS['Acircumflextilde'] = GD(name='Acircumflextilde', uni=0x1EAA, hex='1EAA', c='Ẫ', l='A', r='A', base='A', accents=['circumflextildecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1093, comment='Ẫ LATIN CAPITAL LETTER A WITH CIRCUMFLEX AND TILDE')
     GDS['Ahookabove'] = GD(name='Ahookabove', uni=0x1EA2, hex='1EA2', c='Ả', l='A', r='A', base='A', accents=['hookabovecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1085, comment='Ả LATIN CAPITAL LETTER A WITH HOOK ABOVE')
 
     # D
@@ -99,11 +99,11 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
 
     # E
 
-    GDS['Ecircumflexacute'] = GD(name='Ecircumflexacute', uni=0x1EBE, hex='1EBE', c='Ế', l='H', w='E', base='Ecircumflex', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1113, comment='Ế LATIN CAPITAL LETTER E WITH CIRCUMFLEX AND ACUTE')
+    GDS['Ecircumflexacute'] = GD(name='Ecircumflexacute', uni=0x1EBE, hex='1EBE', c='Ế', l='H', w='E', base='E', accents=['circumflexacutecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1113, comment='Ế LATIN CAPITAL LETTER E WITH CIRCUMFLEX AND ACUTE')
     GDS['Ecircumflexdotbelow'] = GD(name='Ecircumflexdotbelow', uni=0x1EC6, hex='1EC6', c='Ệ', w='E', bl='H', base='Ecircumflex', accents=['dotbelowcmb'], anchors=['bottom', 'middle', 'top'], gid=1121, comment='Ệ LATIN CAPITAL LETTER E WITH CIRCUMFLEX AND DOT BELOW')
     GDS['Ecircumflexgrave'] = GD(name='Ecircumflexgrave', uni=0x1EC0, hex='1EC0', c='Ề', w='E', bl='Ecircumflex', base='E', accents=['gravecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1115, comment='Ề LATIN CAPITAL LETTER E WITH CIRCUMFLEX AND GRAVE')
-    GDS['Ecircumflexhookabove'] = GD(name='Ecircumflexhookabove', uni=0x1EC2, hex='1EC2', c='Ể', w='E', bl='H', base='Ecircumflex', accents=['hookabovecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1117, comment='Ể LATIN CAPITAL LETTER E WITH CIRCUMFLEX AND HOOK ABOVE')
-    GDS['Ecircumflextilde'] = GD(name='Ecircumflextilde', uni=0x1EC4, hex='1EC4', c='Ễ', l='H', r='E', base='Ecircumflex', accents=['tildecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1119, comment='Ễ LATIN CAPITAL LETTER E WITH CIRCUMFLEX AND TILDE')
+    GDS['Ecircumflexhookabove'] = GD(name='Ecircumflexhookabove', uni=0x1EC2, hex='1EC2', c='Ể', w='E', bl='H', base='E', accents=['circumflexhookabovecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1117, comment='Ể LATIN CAPITAL LETTER E WITH CIRCUMFLEX AND HOOK ABOVE')
+    GDS['Ecircumflextilde'] = GD(name='Ecircumflextilde', uni=0x1EC4, hex='1EC4', c='Ễ', l='H', r='E', base='E', accents=['circumflextildecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1119, comment='Ễ LATIN CAPITAL LETTER E WITH CIRCUMFLEX AND TILDE')
     GDS['Ehookabove'] = GD(name='Ehookabove', uni=0x1EBA, hex='1EBA', c='Ẻ', l='H', r='E', base='E', accents=['hookabovecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1109, comment='Ẻ LATIN CAPITAL LETTER E WITH HOOK ABOVE')
 
     # H
@@ -137,11 +137,11 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
 
     # O
 
-    GDS['Ocircumflexacute'] = GD(name='Ocircumflexacute', uni=0x1ED0, hex='1ED0', c='Ố', l='O', w='O', base='O', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1131, comment='Ố LATIN CAPITAL LETTER O WITH CIRCUMFLEX AND ACUTE')
+    GDS['Ocircumflexacute'] = GD(name='Ocircumflexacute', uni=0x1ED0, hex='1ED0', c='Ố', l='O', w='O', base='O', accents=['circumflexacutecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1131, comment='Ố LATIN CAPITAL LETTER O WITH CIRCUMFLEX AND ACUTE')
     GDS['Ocircumflexdotbelow'] = GD(name='Ocircumflexdotbelow', uni=0x1ED8, hex='1ED8', c='Ộ', l='O', r='O', base='Ocircumflex', accents=['dotbelowcmb'], anchors=['bottom', 'middle', 'top'], gid=1139, comment='Ộ LATIN CAPITAL LETTER O WITH CIRCUMFLEX AND DOT BELOW')
     GDS['Ocircumflexgrave'] = GD(name='Ocircumflexgrave', uni=0x1ED2, hex='1ED2', c='Ồ', w='O', bl='O', base='O', accents=['gravecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1133, comment='Ồ LATIN CAPITAL LETTER O WITH CIRCUMFLEX AND GRAVE')
-    GDS['Ocircumflexhookabove'] = GD(name='Ocircumflexhookabove', uni=0x1ED4, hex='1ED4', c='Ổ', l='O', w='O', base='Ocircumflex', accents=['hookabovecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1135, comment='Ổ LATIN CAPITAL LETTER O WITH CIRCUMFLEX AND HOOK ABOVE')
-    GDS['Ocircumflextilde'] = GD(name='Ocircumflextilde', uni=0x1ED6, hex='1ED6', c='Ỗ', l='O', r='O', base='O', accents=['tildecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1137, comment='Ỗ LATIN CAPITAL LETTER O WITH CIRCUMFLEX AND TILDE')
+    GDS['Ocircumflexhookabove'] = GD(name='Ocircumflexhookabove', uni=0x1ED4, hex='1ED4', c='Ổ', l='O', w='O', base='O', accents=['circumflexhookabovecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1135, comment='Ổ LATIN CAPITAL LETTER O WITH CIRCUMFLEX AND HOOK ABOVE')
+    GDS['Ocircumflextilde'] = GD(name='Ocircumflextilde', uni=0x1ED6, hex='1ED6', c='Ỗ', l='O', r='O', base='O', accents=['circumflextildecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1137, comment='Ỗ LATIN CAPITAL LETTER O WITH CIRCUMFLEX AND TILDE')
     GDS['Ohookabove'] = GD(name='Ohookabove', uni=0x1ECE, hex='1ECE', c='Ỏ', base='O', accents=['hookabovecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1129, comment='Ỏ LATIN CAPITAL LETTER O WITH HOOK ABOVE')
     GDS['Ohorn'] = GD(name='Ohorn', uni=0x01A0, hex='01A0', c='Ơ', l='O', w='O', anchorTopY='O', base='O', accents=['horncmb.uc'], anchors=['bottom', 'middle', 'top'], gid=353, comment='Ơ')
     GDS['Ohornacute'] = GD(name='Ohornacute', uni=0x1EDA, hex='1EDA', c='Ớ', l='O', anchorTopY='O', base='Ohorn', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1141, comment='Ớ LATIN CAPITAL LETTER O WITH HORN AND ACUTE')
@@ -165,10 +165,10 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
 
     # U
 
-    GDS['Udieresisacute'] = GD(name='Udieresisacute', uni=0x01D7, hex='01D7', c='Ǘ', l='U', r='U', base='Udieresis', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=408)
-    GDS['Udieresiscaron'] = GD(name='Udieresiscaron', uni=0x01D9, hex='01D9', c='Ǚ', l='U', r='U', base='Udieresis', accents=['caroncmb.uc'], anchors=['bottom', 'middle', 'top'], gid=410)
-    GDS['Udieresisgrave'] = GD(name='Udieresisgrave', uni=0x01DB, hex='01DB', c='Ǜ', l='U', r='U', base='Udieresis', accents=['gravecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=412)
-    GDS['Udieresismacron'] = GD(name='Udieresismacron', uni=0x01D5, hex='01D5', c='Ǖ', l='U', r='U', base='Udieresis', accents=['macroncmb.uc'], anchors=['bottom', 'middle', 'top'], gid=406)
+    GDS['Udieresisacute'] = GD(name='Udieresisacute', uni=0x01D7, hex='01D7', c='Ǘ', l='U', r='U', base='U', accents=['dieresisacutecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=408)
+    GDS['Udieresiscaron'] = GD(name='Udieresiscaron', uni=0x01D9, hex='01D9', c='Ǚ', l='U', r='U', base='U', accents=['dieresiscaroncmb.uc'], anchors=['bottom', 'middle', 'top'], gid=410)
+    GDS['Udieresisgrave'] = GD(name='Udieresisgrave', uni=0x01DB, hex='01DB', c='Ǜ', l='U', r='U', base='U', accents=['dieresisgravecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=412)
+    GDS['Udieresismacron'] = GD(name='Udieresismacron', uni=0x01D5, hex='01D5', c='Ǖ', l='U', r='U', base='U', accents=['dieresismacroncmb.uc'], anchors=['bottom', 'middle', 'top'], gid=406)
     GDS['Uhookabove'] = GD(name='Uhookabove', uni=0x1EE6, hex='1EE6', c='Ủ', l='U', r='U', base='U', accents=['hookabovecmb.uc'], anchors=['bottom', 'middle', 'top'], comment='Ủ LATIN CAPITAL LETTER U WITH HOOK ABOVE')
     GDS['Uhorn'] = GD(name='Uhorn', uni=0x01AF, hex='01AF', c='Ư', l='U', anchorTopY='U', rightMin='minRight', base='U', accents=['horncmb.uc'], anchors=['bottom', 'top'], gid=368, comment='Ư LATIN CAPITAL LETTER U WITH HORN')
     GDS['Uhornacute'] = GD(name='Uhornacute', uni=0x1EE8, hex='1EE8', c='Ứ', l='U', r='Uhorn', anchorTopY='U', rightMin='minRight', base='Uhorn', accents=['acutecmb.uc'], anchors=['bottom', 'top'], gid=1155, comment='Ứ LATIN CAPITAL LETTER U WITH HORN AND ACUTE')
@@ -193,16 +193,16 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
 
     # a
 
-    GDS['abreveacute'] = GD(name='abreveacute', uni=0x1EAF, hex='1EAF', c='ắ', l='a', w='a', base='abreve', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1098, comment='ắ LATIN SMALL LETTER A WITH BREVE AND ACUTE')
+    GDS['abreveacute'] = GD(name='abreveacute', uni=0x1EAF, hex='1EAF', c='ắ', l='a', w='a', base='a', accents=['breveacutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1098, comment='ắ LATIN SMALL LETTER A WITH BREVE AND ACUTE')
     GDS['abrevedotbelow'] = GD(name='abrevedotbelow', uni=0x1EB7, hex='1EB7', c='ặ', l='a', w='a', base='a', accents=['brevecmb', 'dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1106, comment='ặ LATIN SMALL LETTER A WITH BREVE AND DOT BELOW')
-    GDS['abrevegrave'] = GD(name='abrevegrave', uni=0x1EB1, hex='1EB1', c='ằ', l='a', w='a', base='abreve', accents=['gravecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1100, comment='ằ LATIN SMALL LETTER A WITH BREVE AND GRAVE')
-    GDS['abrevehookabove'] = GD(name='abrevehookabove', uni=0x1EB3, hex='1EB3', c='ẳ', l='a', w='a', base='abreve', accents=['hookabovecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1102, comment='ẳ LATIN SMALL LETTER A WITH BREVE AND HOOK ABOVE')
-    GDS['abrevetilde'] = GD(name='abrevetilde', uni=0x1EB5, hex='1EB5', c='ẵ', l='a', w='a', base='abreve', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1104, comment='ẵ LATIN SMALL LETTER A WITH BREVE AND TILDE')
-    GDS['acircumflexacute'] = GD(name='acircumflexacute', uni=0x1EA5, hex='1EA5', c='ấ', w='a', bl='a', base='acircumflex', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1088, comment='ấ LATIN SMALL LETTER A WITH CIRCUMFLEX AND ACUTE')
+    GDS['abrevegrave'] = GD(name='abrevegrave', uni=0x1EB1, hex='1EB1', c='ằ', l='a', w='a', base='a', accents=['brevegravecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1100, comment='ằ LATIN SMALL LETTER A WITH BREVE AND GRAVE')
+    GDS['abrevehookabove'] = GD(name='abrevehookabove', uni=0x1EB3, hex='1EB3', c='ẳ', l='a', w='a', base='a', accents=['brevehookabovecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1102, comment='ẳ LATIN SMALL LETTER A WITH BREVE AND HOOK ABOVE')
+    GDS['abrevetilde'] = GD(name='abrevetilde', uni=0x1EB5, hex='1EB5', c='ẵ', l='a', w='a', base='a', accents=['brevetildecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1104, comment='ẵ LATIN SMALL LETTER A WITH BREVE AND TILDE')
+    GDS['acircumflexacute'] = GD(name='acircumflexacute', uni=0x1EA5, hex='1EA5', c='ấ', w='a', bl='a', base='a', accents=['circumflexacutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1088, comment='ấ LATIN SMALL LETTER A WITH CIRCUMFLEX AND ACUTE')
     GDS['acircumflexdotbelow'] = GD(name='acircumflexdotbelow', uni=0x1EAD, hex='1EAD', c='ậ', w='a', bl='a', base='acircumflex', accents=['dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1096, comment='ậ LATIN SMALL LETTER A WITH CIRCUMFLEX AND DOT BELOW')
     GDS['acircumflexgrave'] = GD(name='acircumflexgrave', uni=0x1EA7, hex='1EA7', c='ầ', w='a', bl='a', base='acircumflex', accents=['gravecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1090, comment='ầ LATIN SMALL LETTER A WITH CIRCUMFLEX AND GRAVE')
-    GDS['acircumflexhookabove'] = GD(name='acircumflexhookabove', uni=0x1EA9, hex='1EA9', c='ẩ', w='a', bl='a', base='acircumflex', accents=['hookabovecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1092, comment='ẩ LATIN SMALL LETTER A WITH CIRCUMFLEX AND HOOK ABOVE')
-    GDS['acircumflextilde'] = GD(name='acircumflextilde', uni=0x1EAB, hex='1EAB', c='ẫ', w='a', bl='a', base='acircumflex', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1094, comment='ẫ LATIN SMALL LETTER A WITH CIRCUMFLEX AND TILDE')
+    GDS['acircumflexhookabove'] = GD(name='acircumflexhookabove', uni=0x1EA9, hex='1EA9', c='ẩ', w='a', bl='a', base='a', accents=['circumflexhookabovecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1092, comment='ẩ LATIN SMALL LETTER A WITH CIRCUMFLEX AND HOOK ABOVE')
+    GDS['acircumflextilde'] = GD(name='acircumflextilde', uni=0x1EAB, hex='1EAB', c='ẫ', w='a', bl='a', base='a', accents=['circumflextildecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1094, comment='ẫ LATIN SMALL LETTER A WITH CIRCUMFLEX AND TILDE')
     GDS['aemacron'] = GD(name='aemacron', uni=0x01E3, hex='01E3', c='ǣ', r='e', bl='a', base='ae', accents=['macroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=420)
     GDS['ahookabove'] = GD(name='ahookabove', uni=0x1EA3, hex='1EA3', c='ả', w='a', bl='a', base='a', accents=['hookabovecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1086, comment='ả A WITH HOOK ABOVE, LATIN SMALL LETTER')
 
@@ -217,11 +217,11 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
 
     # e
 
-    GDS['ecircumflexacute'] = GD(name='ecircumflexacute', uni=0x1EBF, hex='1EBF', c='ế', w='e', base='ecircumflex', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1114, comment='ế LATIN SMALL LETTER E WITH CIRCUMFLEX AND ACUTE')
+    GDS['ecircumflexacute'] = GD(name='ecircumflexacute', uni=0x1EBF, hex='1EBF', c='ế', w='e', base='e', accents=['circumflexacutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1114, comment='ế LATIN SMALL LETTER E WITH CIRCUMFLEX AND ACUTE')
     GDS['ecircumflexdotbelow'] = GD(name='ecircumflexdotbelow', uni=0x1EC7, hex='1EC7', c='ệ', w='e', base='ecircumflex', accents=['dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1122, comment='ệ LATIN SMALL LETTER E WITH CIRCUMFLEX AND DOT BELOW')
     GDS['ecircumflexgrave'] = GD(name='ecircumflexgrave', uni=0x1EC1, hex='1EC1', c='ề', w='e', bl='ecircumflex', base='e', accents=['gravecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1116, comment='ề LATIN SMALL LETTER E WITH CIRCUMFLEX AND GRAVE')
-    GDS['ecircumflexhookabove'] = GD(name='ecircumflexhookabove', uni=0x1EC3, hex='1EC3', c='ể', w='e', base='ecircumflex', accents=['hookabovecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1118, comment='ể LATIN SMALL LETTER E WITH CIRCUMFLEX AND HOOK ABOVE')
-    GDS['ecircumflextilde'] = GD(name='ecircumflextilde', uni=0x1EC5, hex='1EC5', c='ễ', w='e', base='ecircumflex', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1120, comment='ễ LATIN SMALL LETTER E WITH CIRCUMFLEX AND TILDE')
+    GDS['ecircumflexhookabove'] = GD(name='ecircumflexhookabove', uni=0x1EC3, hex='1EC3', c='ể', w='e', base='e', accents=['circumflexhookabovecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1118, comment='ể LATIN SMALL LETTER E WITH CIRCUMFLEX AND HOOK ABOVE')
+    GDS['ecircumflextilde'] = GD(name='ecircumflextilde', uni=0x1EC5, hex='1EC5', c='ễ', w='e', base='e', accents=['circumflextildecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1120, comment='ễ LATIN SMALL LETTER E WITH CIRCUMFLEX AND TILDE')
     GDS['ehookabove'] = GD(name='ehookabove', uni=0x1EBB, hex='1EBB', c='ẻ', w='e', base='e', accents=['hookabovecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1110, comment='ẻ E WITH HOOK ABOVE, LATIN SMALL LETTER')
 
     # h
@@ -259,11 +259,11 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
 
     # o
 
-    GDS['ocircumflexacute'] = GD(name='ocircumflexacute', uni=0x1ED1, hex='1ED1', c='ố', w='o', bl='o', base='ocircumflex', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1132, comment='ố LATIN SMALL LETTER O WITH CIRCUMFLEX AND ACUTE')
+    GDS['ocircumflexacute'] = GD(name='ocircumflexacute', uni=0x1ED1, hex='1ED1', c='ố', w='o', bl='o', base='o', accents=['circumflexacutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1132, comment='ố LATIN SMALL LETTER O WITH CIRCUMFLEX AND ACUTE')
     GDS['ocircumflexdotbelow'] = GD(name='ocircumflexdotbelow', uni=0x1ED9, hex='1ED9', c='ộ', r='o', bl='o', base='o', accents=['circumflexcmb', 'dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1140, comment='ộ LATIN SMALL LETTER O WITH CIRCUMFLEX AND DOT BELOW')
     GDS['ocircumflexgrave'] = GD(name='ocircumflexgrave', uni=0x1ED3, hex='1ED3', c='ồ', w='o', bl='o', base='ocircumflex', accents=['gravecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1134, comment='ồ LATIN SMALL LETTER O WITH CIRCUMFLEX AND GRAVE')
-    GDS['ocircumflexhookabove'] = GD(name='ocircumflexhookabove', uni=0x1ED5, hex='1ED5', c='ổ', w='o', bl='o', base='ocircumflex', accents=['hookabovecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1136, comment='ổ LATIN SMALL LETTER O WITH CIRCUMFLEX AND HOOK ABOVE')
-    GDS['ocircumflextilde'] = GD(name='ocircumflextilde', uni=0x1ED7, hex='1ED7', c='ỗ', w='o', bl='o', base='ocircumflex', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1138, comment='ỗ LATIN SMALL LETTER O WITH CIRCUMFLEX AND TILDE')
+    GDS['ocircumflexhookabove'] = GD(name='ocircumflexhookabove', uni=0x1ED5, hex='1ED5', c='ổ', w='o', bl='o', base='o', accents=['circumflexhookabovecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1136, comment='ổ LATIN SMALL LETTER O WITH CIRCUMFLEX AND HOOK ABOVE')
+    GDS['ocircumflextilde'] = GD(name='ocircumflextilde', uni=0x1ED7, hex='1ED7', c='ỗ', w='o', bl='o', base='o', accents=['circumflextildecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1138, comment='ỗ LATIN SMALL LETTER O WITH CIRCUMFLEX AND TILDE')
     GDS['ohookabove'] = GD(name='ohookabove', uni=0x1ECF, hex='1ECF', c='ỏ', l='o', r='o', base='o', accents=['hookabovecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1130, comment='ỏ O WITH HOOK ABOVE, LATIN SMALL LETTER')
     GDS['ohorn'] = GD(name='ohorn', uni=0x01A1, hex='01A1', c='ơ', l='o', r='o', anchorTopY='o', anchorTopX='o', isLower=True, base='o', accents=['horncmb'], anchors=['bottom', 'top'], gid=354, comment='ơ O WITH HORN, LATIN SMALL LETTER')
     GDS['ohornacute'] = GD(name='ohornacute', uni=0x1EDB, hex='1EDB', c='ớ', rightMin='minRight', base='ohorn', accents=['acutecmb'], isLower=True, anchors=['bottom', 'top'], gid=1142, comment='ớ LATIN SMALL LETTER O WITH HORN AND ACUTE')
@@ -289,10 +289,10 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
 
     # u
 
-    GDS['udieresisacute'] = GD(name='udieresisacute', uni=0x01D8, hex='01D8', c='ǘ', l='u', r='u', base='udieresis', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=409)
-    GDS['udieresiscaron'] = GD(name='udieresiscaron', uni=0x01DA, hex='01DA', c='ǚ', l='u', r='u', base='udieresis', accents=['caroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=411)
-    GDS['udieresisgrave'] = GD(name='udieresisgrave', uni=0x01DC, hex='01DC', c='ǜ', l='u', r='u', base='udieresis', accents=['gravecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=413)
-    GDS['udieresismacron'] = GD(name='udieresismacron', uni=0x01D6, hex='01D6', c='ǖ', l='u', r='u', base='udieresis', accents=['macroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=407)
+    GDS['udieresisacute'] = GD(name='udieresisacute', uni=0x01D8, hex='01D8', c='ǘ', l='u', r='u', base='u', accents=['dieresisacutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=409)
+    GDS['udieresiscaron'] = GD(name='udieresiscaron', uni=0x01DA, hex='01DA', c='ǚ', l='u', r='u', base='u', accents=['dieresiscaroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=411)
+    GDS['udieresisgrave'] = GD(name='udieresisgrave', uni=0x01DC, hex='01DC', c='ǜ', l='u', r='u', base='u', accents=['dieresisgravecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=413)
+    GDS['udieresismacron'] = GD(name='udieresismacron', uni=0x01D6, hex='01D6', c='ǖ', l='u', r='u', base='u', accents=['dieresismacroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=407)
     GDS['uhookabove'] = GD(name='uhookabove', uni=0x1EE7, hex='1EE7', c='ủ', l='u', r='u', base='u', accents=['hookabovecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1154, comment='ủ U WITH HOOK ABOVE, LATIN SMALL LETTER')
     GDS['uhorn'] = GD(name='uhorn', uni=0x01B0, hex='01B0', c='ư', l='u', anchorTopY='u', anchorTopX='u', isLower=True, base='u', accents=['horncmb'], anchors=['bottom', 'top'], gid=369, comment='ư U WITH HORN, LATIN SMALL LETTER')
     GDS['uhornacute'] = GD(name='uhornacute', uni=0x1EE9, hex='1EE9', c='ứ', l='uhorn', r='uhorn', rightMin='minRight', base='uhorn', accents=['acutecmb'], isLower=True, anchors=['bottom', 'top'], gid=1156, comment='ứ LATIN SMALL LETTER U WITH HORN AND ACUTE')

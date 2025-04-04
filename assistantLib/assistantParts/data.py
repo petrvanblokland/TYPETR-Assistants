@@ -83,7 +83,9 @@ class MasterData:
             modMinMargin=None,
             # Vertical metrics
             unitsPerEm=UNITS_PER_EM, 
-            baseline=0, stemOvershoot=STEM_OVERSHOOT, baseOvershoot=None, capOvershoot=None, scOvershoot=None, onumOvershoot=None, superiorOvershoot=None,
+            baseline=0, stemOvershoot=STEM_OVERSHOOT, baseOvershoot=None, capOvershoot=None, 
+                scOvershoot=None, onumOvershoot=None, superiorOvershoot=None,
+                diacriticsOvershoot=None,
             ascender=None, descender=None,
             xHeight=None, capHeight=None, scHeight=None, onumHeight=None, 
             superiorHeight=None, superiorCapHeight=None, superiorAscender=None, superiorDescender=None,
@@ -243,6 +245,9 @@ class MasterData:
         if superiorOvershoot is None: # Overshoot value for superior, inferior, .sups, .numr, .sinf and .dnom
             superiorOvershoot = baseOvershoot
         self.superiorOvershoot = superiorOvershoot
+        if diacriticsOvershoot is None:
+            diacriticsOvershoot = superiorOvershoot
+        self.diacriticsOvershoot = diacriticsOvershoot
         
         self.cat2Overshoot = { # Category --> overshoot
             GD.CAT_OVERSHOOT: baseOvershoot,
@@ -250,6 +255,7 @@ class MasterData:
             GD.CAT_SUPERIOR_OVERSHOOT: superiorOvershoot,
             GD.CAT_SC_OVERSHOOT: scOvershoot,
             GD.CAT_ONUM_OVERSHOOT: onumOvershoot,
+            GD.CAT_DIACRITICS_OVERSHOOT: diacriticsOvershoot,
         }
 
         # Vertical anchor offsets
@@ -321,6 +327,7 @@ class MasterData:
         if capDiacriticsTop is None:
             capDiacriticsTop = int(round(capHeight * 1.1))
         self.capDiacriticsTop = capDiacriticsTop
+        self.scDiacriticsTop = scDiacriticsTop
         if baseDiacriticsBottom is None: # Top of bottom diacritis
             baseDiacriticsBottom = int(round(-4 * baseOvershoot))
         self.baseDiacriticsBottom = baseDiacriticsBottom
