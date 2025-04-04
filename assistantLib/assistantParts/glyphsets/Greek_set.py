@@ -162,8 +162,8 @@ GREEK_SET = {
    'zeta': GD(name='zeta', uni=0x03B6, hex='03B6', c='ζ', isLower=True, anchors=['bottom', 'top'], gid=571),
 
    'tonos': GD(name='tonos', uni=0x0384, hex='0384', c='΄', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='tonoscmb', anchors=[], isLower=True, gid=524),
-   'tonoscmb.uc': GD(name='tonoscmb.uc', w=0, isLower=True, srcName='acutecmb.uc', anchors=['_topleft'], gid=1709), # Capital tonos is right aligned on the tonos anchor.
-   'tonoscmb': GD(name='tonoscmb', w=0, anchors=['_top'], srcName='gravecmb', isLower=True), # Lower case tonos just behaves as other diacritics
+   'tonoscmb': GD(name='tonoscmb', w=0, anchors=['_top'], srcName='gravecmb', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True), # Lower case tonos just behaves as other diacritics
+   'tonoscmb.uc': GD(name='tonoscmb.uc', w=0, isLower=True, srcName='acutecmb.uc', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, anchors=['_topleft'], gid=1709), # Capital tonos is right aligned on the tonos anchor.
 
 }
 

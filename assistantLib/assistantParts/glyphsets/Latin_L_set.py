@@ -424,8 +424,8 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['astroke'] = GD(name='astroke', uni=0x2C65, hex='2C65', c='ⱥ', base='a', accents=['strokecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['aturned'] = GD(name='aturned', uni=0x0250, hex='0250', c='ɐ', l2r='a', r2l='a', srcName='a', isLower=True)
 
-    GDS['acutemacroncmb'] = GD(name='acutemacroncmb', uni=0x1DC7, hex='1DC7', c='᷇', w=0, srcName='acutecmb', isLower=True, anchors=['_top', 'top'])
-    GDS['acutemacroncmb.uc'] = GD(name='acutemacroncmb.uc', w=0, srcName='acutemacroncmb', isLower=True, anchors=['_top', 'top'])
+    GDS['acutemacroncmb'] = GD(name='acutemacroncmb', uni=0x1DC7, hex='1DC7', c='᷇', w=0, srcName='acutecmb', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top'])
+    GDS['acutemacroncmb.uc'] = GD(name='acutemacroncmb.uc', w=0, srcName='acutemacroncmb', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top'])
 
     GDS['asuperior'] = GD(name='asuperior', uni=0x1D43, hex='1D43', c='ᵃ', l='osuperior', r='nsuperior', isLower=False, isMod=True)
     GDS['ainferior'] = GD(name='ainferior', uni=0x2090, hex='2090', c='ₐ', l='asuperior', r='asuperior', base='asuperior', isLower=True)
@@ -649,7 +649,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['oslashacute.alt'] = GD(name='oslashacute.alt', base='oslash.alt', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ǿ')
     GDS['otildeacute'] = GD(name='otildeacute', uni=0x1E4D, hex='1E4D', c='ṍ', base='o', accents=['tildeacutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['otildedieresis'] = GD(name='otildedieresis', uni=0x1E4F, hex='1E4F', c='ṏ', base='otilde', accents=['dieresiscmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
-    GDS['otildemacron'] = GD(name='otildemacron', uni=0x022D, hex='022D', c='ȭ', base='otilde', accents=['macroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
+    GDS['otildemacron'] = GD(name='otildemacron', uni=0x022D, hex='022D', c='ȭ', base='o', accents=['tildemacroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['ou'] = GD(name='ou', uni=0x0223, hex='0223', c='ȣ', l='o', r='o')
 
     GDS['osuperior'] = GD(name='osuperior', uni=0x1D52, hex='1D52', c='ᵒ', l2r='osuperior', isLower=False, isMod=True)

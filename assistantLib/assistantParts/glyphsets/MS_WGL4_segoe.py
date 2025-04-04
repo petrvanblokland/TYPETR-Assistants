@@ -1214,7 +1214,7 @@ class MS_GlyphSet(GlyphSet):
 
         #   d
 
-       'd': GD(name='d', uni=0x0064, hex='0064', c='d', isLower=True, anchors=['top', 'middle', 'bottom', 'vert'], autoFixAnchorPositions=False, gid=70, comment='d'),
+       'd': GD(name='d', uni=0x0064, hex='0064', c='d', isLower=True, anchors=['top', 'middle', 'bottom', 'vert'], autoFixAnchorPositionX=False, autoFixAnchorPositionY=False, gid=70, comment='d'),
        'dagesh-hb': GD(name='dagesh-hb', uni=0x05BC, hex='05BC', c='ּ', w=0, isLower=True, anchors=['_middle'], gid=903),
        'dagger': GD(name='dagger', uni=0x2020, hex='2020', c='†', l2r='dagger', isLower=True, gid=1418, comment='† DAGGER'),
        'daggerdbl': GD(name='daggerdbl', uni=0x2021, hex='2021', c='‡', l='dagger', r='dagger', isLower=True, gid=1419, comment='‡ DOUBLE DAGGER'),

@@ -102,7 +102,7 @@ class GlyphData:
             comment=None, spacing=None, fixAccents=True, fixSpacing=True, fixAnchors=False, 
             rightMin=None, top_y=None, 
             # Anchor
-            autoFixAnchorPositions=True,
+            autoFixAnchorPositionX=True, autoFixAnchorPositionY=True,
             # Force list of anchor names. Otherwise try to compose the list from the anchors that this glyph is associated with in AD.ANCHORS. 
             anchors=None, 
             anchorSrc=None, # Master name to copy anchors from
@@ -113,6 +113,7 @@ class GlyphData:
             anchorBottomX=None, 
             anchorBottomY=None, 
             # Force spacing dependencies
+            autoFixMargins=True, 
             l=None, r=None, w=None, 
             bl=None, br=None, # Based glyph references
             l2r=None, r2l=None, bl2r=None, br2l=None, l2br=None, r2bl=None, bl2br=None, br2bl=None, # Switch margins
@@ -155,7 +156,8 @@ class GlyphData:
         self.composites = set() # Glyph names that refer to self as component. Collected by GlyphSet
 
         # If anchors is not defined (overwriting legacy data), then compose the anchor list from AD.ANCHORS
-        self.autoFixAnchorPositions = autoFixAnchorPositions
+        self.autoFixAnchorPositionX = autoFixAnchorPositionX
+        self.autoFixAnchorPositionY = autoFixAnchorPositionY
         if anchors is None:
             anchors = []
             for anchorName, glyphNames in AD.GLYPH_ANCHORS.items():
@@ -187,6 +189,7 @@ class GlyphData:
         self.comment = comment or ''
         self.spacing = spacing # Obsolete?
 
+        self.autoFixMargins = autoFixMargins
         self.l = l # Overall angled left margin of referenced glyph
         self.r = r # Overall angled right margin of referenced glyph
         self.w = w # Width of referenced glyph

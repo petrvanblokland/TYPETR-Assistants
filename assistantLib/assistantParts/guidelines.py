@@ -125,6 +125,7 @@ class AssistantPartGuidelines(BaseAssistantPart):
             if md.baseDiacriticsTop is not None: # Baseline of top diacritics
                 guidelines.append((xo + tg * md.baseDiacriticsTop, md.baseDiacriticsTop, 0, f'Bottom of top diacritics ({md.baseDiacriticsTop})'))
                 self.setLib(f, 'baseDiacriticsTop', md.baseDiacriticsTop) # Save value, so an independent proofing script can find it.
+                guidelines.append((xo + tg * md.baseDiacriticsTop, md.baseDiacriticsTop - overshoot, 0, f"{md.baseDiacriticsTop - overshoot} ({overshoot})"))
         
         elif gd.isSc and md.scDiacriticsTop is not None:
             guidelines.append((xo + tg * md.scDiacriticsTop, md.scDiacriticsTop, 0, f'Bottom of top diacritics ({md.scDiacriticsTop})'))
@@ -134,6 +135,7 @@ class AssistantPartGuidelines(BaseAssistantPart):
         elif md.capDiacriticsTop is not None: # Baseline of top diacritics
             guidelines.append((xo + tg * md.capDiacriticsTop, md.capDiacriticsTop, 0, f'Bottom of top diacritics ({md.capDiacriticsTop})'))
             self.setLib(f, 'capDiacriticsTop', md.capDiacriticsTop) # Save value, so an independent proofing script can find it.
+            guidelines.append((xo + tg * md.capDiacriticsTop, md.capDiacriticsTop - overshoot, 0, f"{md.capDiacriticsTop - overshoot} ({overshoot})"))
 
         if md.baseDiacriticsBottom is not None:
             guidelines.append((xo + tg * md.baseDiacriticsBottom, md.baseDiacriticsBottom, 0, f'Top of bottom diacritics ({md.baseDiacriticsBottom})'))

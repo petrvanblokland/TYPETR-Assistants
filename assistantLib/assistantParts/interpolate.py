@@ -139,7 +139,7 @@ class AssistantPartInterpolate(BaseAssistantPart):
                     pen.closePath()
                     epIndex += 1
         else:
-            self.familyOverviewInterpolationPath.setVisible(False)
+            self.interpolationPath.setVisible(False)
 
 
         # Hide the remaining interpolation lines.
