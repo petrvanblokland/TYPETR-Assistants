@@ -91,7 +91,7 @@ GREEK_SET = {
    #'dei-coptic': GD(name='dei-coptic', uni=0x03EF, hex='03EF', c='ϯ', l='i', r='hyphen', isLower=True, gid=628),
    'delta': GD(name='delta', uni=0x03B4, hex='03B4', c='δ', l='o', r='o', isLower=True, anchors=['bottom', 'top'], gid=569),
    'dieresistonos': GD(name='dieresistonos', uni=0x0385, hex='0385', c='΅', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='dieresistonoscmb', isLower=True, anchors=[], gid=525),
-   'dieresistonoscmb': GD(name='dieresistonoscmb', w=0, anchors=['_top', 'top'], isLower=True),
+   'dieresistonoscmb': GD(name='dieresistonoscmb', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, anchors=['_top', 'top'], isLower=True),
    #'digamma': GD(name='digamma', uni=0x03DD, hex='03DD', c='ϝ', r='Fsmall', isLower=True, gid=610),
    'epsilon': GD(name='epsilon', uni=0x03B5, hex='03B5', c='ε', isLower=True, anchors=['bottom', 'top'], gid=570, comment='ε'),
    #'epsilonLunateReversedSymbol': GD(name='epsilonLunateReversedSymbol', uni=0x03F6, hex='03F6', c='϶', l2r='c', r2l='c', isLower=True, gid=635),

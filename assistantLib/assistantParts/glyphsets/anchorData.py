@@ -815,7 +815,8 @@ class AnchorData:
         'ringcomb', 'ringacutecomb', 'ringhalfright', 'ringhalfleft', 'sacute.component', 'scaron.component', 'softsigncomb-cy', 'suspensioncomb', 'tcomb', 
         'tildecomb', 'tildecomb.component', 'tildedoublecomb', 'tildeverticalcomb', 'titlocomb-cy', 'ucomb', 'udieresis.component', 
         'umacron.component', 'uni047E.component', 'vcomb', 'verticallineabovecomb', 'xabovecomb', 'xcomb', 'zigzagabovecomb', 'varia', 
-        
+        'invertedbrevecmb', 'invertedbrevecmb.uc', 'invertedbrevedoublecmb', 'invertedbrevedoublecmb.uc',
+
         #'six.pnum_enclosingkeycapcomb',
         #'three.pnum_enclosingkeycapcomb',
         #'five.pnum_enclosingkeycapcomb',
@@ -841,7 +842,7 @@ class AnchorData:
     'macronbelowcomb', 'minusbelowcomb', 'ogonekcomb', 'palatalhookcomb', 'plusbelowcomb', 'prosgegrammeni', 'rbelowcomb', 'retroflexhookcomb', 'righttackbelowcomb', 
     'ringbelowcomb', 'ringhalfleftbelowcomb', 'ringhalfrightbelowcomb', 'seagullbelowcomb', 'snakebelowcomb', 'squarebelowcomb', 'tildebelow', 
     'uptackbelowcomb', 'verticallinebelowcomb', 'xbelowcomb', 'ypogegrammenicomb', 'dblmacronbelowcomb', 'voicingmod', 'lowringmod', 'gravebelowcomb', 'acutebelowcomb',
-    'arrowheadrightheaddownbelow',
+    'arrowheadrightheaddownbelow', 'invertedbrevebelowcmb', 
         #'six.pnum_enclosingkeycapcomb',
         #'three.pnum_enclosingkeycapcomb',
         #'five.pnum_enclosingkeycapcomb',

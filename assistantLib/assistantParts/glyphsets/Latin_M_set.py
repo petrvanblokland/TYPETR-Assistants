@@ -229,7 +229,8 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
     GDS['hbrevebelow'] = GD(name='hbrevebelow', uni=0x1E2B, hex='1E2B', c='ḫ', base='h', accents=['brevebelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=966)
     GDS['hcedilla'] = GD(name='hcedilla', uni=0x1E29, hex='1E29', c='ḩ', base='h', accents=['cedillacmb.noconnect'], isLower=True, fixAccents=False, anchors=['bottom', 'middle', 'top'], gid=964)
     GDS['hlinebelow'] = GD(name='hlinebelow', uni=0x1E96, hex='1E96', c='ẖ', base='h', accents=['macronbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1073)
-    GDS['hookabovecmb'] = GD(name='hookabovecmb', uni=0x0309, hex='0309', c='̉', w=0, isLower=True, anchors=['_top', 'top'], gid=495, comment='̉ HOOK ABOVE, COMBINING')
+
+    GDS['hookabovecmb'] = GD(name='hookabovecmb', uni=0x0309, hex='0309', c='̉', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top'], gid=495, comment='̉ HOOK ABOVE, COMBINING')
 
     # i
 
@@ -249,7 +250,7 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
 
     # m
 
-    GDS['macronbelowcmb'] = GD(name='macronbelowcmb', uni=0x0331, hex='0331', c='̱', w=0, isLower=True, anchors=['_bottom', 'bottom'], comment='COMBINING MACRON BELOW')
+    GDS['macronbelowcmb'] = GD(name='macronbelowcmb', uni=0x0331, hex='0331', c='̱', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_bottom', 'bottom'], comment='COMBINING MACRON BELOW')
     GDS['mdotaccent'] = GD(name='mdotaccent', uni=0x1E41, hex='1E41', c='ṁ', base='m', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=988)
     GDS['mdotbelow'] = GD(name='mdotbelow', uni=0x1E43, hex='1E43', c='ṃ', base='m', accents=['dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=990)
 
@@ -277,8 +278,8 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
     GDS['rdotaccent'] = GD(name='rdotaccent', uni=0x1E59, hex='1E59', c='ṙ', l='r', r='r', rightMin='-100', base='r', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1012)
     GDS['rdotbelow'] = GD(name='rdotbelow', uni=0x1E5B, hex='1E5B', c='ṛ', w='r', rightMin='-100', base='r', accents=['dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1014)
     GDS['rdotbelowmacron'] = GD(name='rdotbelowmacron', uni=0x1E5D, hex='1E5D', c='ṝ', w='r', bl='r', base='r', accents=['macroncmb', 'dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1016)
-    GDS['ringhalfleftcmb'] = GD(name='ringhalfleftcmb', uni=0x02BF, hex='02BF', c='ʿ', l='center', w=0, srcName='ringcmb', isLower=True, anchors=['_top', 'top'], gid=473)
-    GDS['ringhalfrightcmb'] = GD(name='ringhalfrightcmb', uni=0x02BE, hex='02BE', c='ʾ', l='center', w=0, srcName='ringcmb', isLower=True, anchors=['_top', 'top'], gid=472)
+    GDS['ringhalfleftcmb'] = GD(name='ringhalfleftcmb', uni=0x02BF, hex='02BF', c='ʿ', l='center', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, srcName='ringcmb', isLower=True, anchors=['_top', 'top'], gid=473)
+    GDS['ringhalfrightcmb'] = GD(name='ringhalfrightcmb', uni=0x02BE, hex='02BE', c='ʾ', l='center', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, srcName='ringcmb', isLower=True, anchors=['_top', 'top'], gid=472)
     GDS['rlinebelow'] = GD(name='rlinebelow', uni=0x1E5F, hex='1E5F', c='ṟ', w='r', bl='r', base='r', accents=['macronbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1018)
     GDS['ruble'] = GD(name='ruble', uni=0x20BD, hex='20BD', c='₽', w='zero.tnum', isLower=True, gid=1462)
 
@@ -317,12 +318,12 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
 
     # Accents
 
-    GDS['brevebelowcmb'] = GD(name='brevebelowcmb', base='brevecmb', l=GD.CAT_CENTER, w=0, anchors=['bottom', '_bottom'])
-    GDS['horncmb'] = GD(name='horncmb', uni=0x031B, hex='031B', c='̛', w=0, isLower=True)
-    GDS['horncmb.uc'] = GD(name='horncmb.uc', w=0, isLower=True, srcName='horncmb') # No anchors
+    GDS['brevebelowcmb'] = GD(name='brevebelowcmb', base='brevecmb', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, anchors=['bottom', '_bottom'])
+    GDS['horncmb'] = GD(name='horncmb', uni=0x031B, hex='031B', c='̛', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True)
+    GDS['horncmb.uc'] = GD(name='horncmb.uc', w=0, isLower=True, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, srcName='horncmb') # No anchors
 
-    GDS['hookabovecmb'] = GD(name='hookabovecmb', w=0, isLower=True, anchors=['top', '_top'])
-    GDS['hookabovecmb.uc'] = GD(name='hookabovecmb.uc', srcName='hookabovecmb', w=0, isLower=False, anchors=['top', '_top'])
+    GDS['hookabovecmb'] = GD(name='hookabovecmb', w=0, isLower=True, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, anchors=['top', '_top'])
+    GDS['hookabovecmb.uc'] = GD(name='hookabovecmb.uc', srcName='hookabovecmb', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['top', '_top'])
 
 # Make exceptions here for Italic glyphs and spacing rules in LATIN_M_SET_ITALIC
 

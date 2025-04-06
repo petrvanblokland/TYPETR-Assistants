@@ -71,12 +71,13 @@ class AssistantPartComponents(BaseAssistantPart):
         """Fix the components for the current glyph in all masters in ufo/"""
         c = self.getController()
         if c.w.checkFixAllMasterComponents.get():
-            fonts = []
-            parentPath = self.filePath2ParentPath(g.font.path)
-            for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
-                fullPath = self.path2FullPath(pth)
-                f = self.getFont(fullPath, showInterface=g.font.path == fullPath) # Make sure RoboFont opens the current font.
-                fonts.append(f)
+            fonts = self.getAllOpenFonts()
+            #fonts = []
+            #parentPath = self.filePath2ParentPath(g.font.path)
+            #for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
+            #    fullPath = self.path2FullPath(pth)
+            #    f = self.getFont(fullPath, showInterface=g.font.path == fullPath) # Make sure RoboFont opens the current font.
+            #    fonts.append(f)
         else:
             fonts = [g.font]
 
@@ -89,13 +90,14 @@ class AssistantPartComponents(BaseAssistantPart):
             glyphNames = [g.name]
 
         for f in fonts:
-            for fName in glyphNames:
-                if g.name in f:
+            for gName in glyphNames:
+                if gName in f:
                     #print(f"... Check/fix components for /{g.name} in {f.path.split('/')[-1]}")
-                    gg = f[g.name]
+                    gg = f[gName]
                     changed = self.checkFixComponentsExist(gg)
                     changed |= self.checkFixComponentsPosition(gg)
-                    gg.changed()
+                    if changed:
+                        gg.changed()
 
     def componentFixAllKey(self, g, c=None, event=None):
         """Fix the components for all glyphs in the current font."""

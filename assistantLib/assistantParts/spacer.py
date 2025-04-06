@@ -1732,7 +1732,6 @@ class AssistantPartSpacer(BaseAssistantPart):
         lm = g.angledLeftMargin
         rm = g.angledRightMargin
         w = g.width
-        print('SSAASASSA', lm, rm, w)
         if lm is not None:
             g.angledLeftMargin = (lm + rm)/2
             g.width = w
