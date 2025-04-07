@@ -673,10 +673,11 @@ class AssistantPartAnchors(BaseAssistantPart):
                 else: # Center on width by default, otherwise use the gd.anchorTopX="Bounds" method
                     ax = self.italicX(g, g.width/2, ay)
 
+        print('ASASASASASASAS', md.topAnchorYSelectionOffset)
         if ax is not None:
             ax += offsetX
         if ay is not None:
-            ay += offsetY
+            ay += offsetY + md.topAnchorYSelectionOffset # Add topAnchorYSelectionOffset as extra offset below height for better manual selection of the anchor
         
         return ax, ay
 
@@ -692,6 +693,10 @@ class AssistantPartAnchors(BaseAssistantPart):
         if gd.autoFixAnchorPositionX and ay is not None:
             ax = self.italicX(g, 0, ay) # All glyph that contain _top are supposed to have width = 0
         
+        print('EWWEWEEWWEEWWE', md.topAnchorYSelectionOffset)
+        if ay is not None:
+            ay += md.topAnchorYSelectionOffset # Add topAnchorYSelectionOffset as extra offset below height for better manual selection of the anchor
+
         return ax, ay
 
     def constructAnchorMIDDLE_XY(self, g, gd, a):
@@ -827,7 +832,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         if ax is not None:
             ax += offsetX
         if ay is not None:
-            ay += offsetY
+            ay += offsetY + md.bottomAnchorYSelectionOffset # Add bottomAnchorYSelectionOffset as extra offset above baseline for better manual selection of the anchor
 
         return ax, ay
 
@@ -842,6 +847,9 @@ class AssistantPartAnchors(BaseAssistantPart):
             ay = md.baselineAnchorOffsetY
         if gd.autoFixAnchorPositionX:
             ax = self.italicX(g, 0, ay) # All glyph that contain _bottom are supposed to have width = 0
+
+        if ay is not None:
+            ay += md.bottomAnchorYSelectionOffset # Add bottomAnchorYSelectionOffset as extra offset above baseline for better manual selection of the anchor
 
         return ax, ay
 

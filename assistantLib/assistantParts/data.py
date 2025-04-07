@@ -86,6 +86,7 @@ class MasterData:
             baseline=0, stemOvershoot=STEM_OVERSHOOT, baseOvershoot=None, capOvershoot=None, 
                 scOvershoot=None, onumOvershoot=None, superiorOvershoot=None,
                 diacriticsOvershoot=None,
+                topAnchorYSelectionOffset=0, bottomAnchorYSelectionOffset=0, # Offset placement of top/bottom anchors, for better manual selection
             ascender=None, descender=None,
             xHeight=None, capHeight=None, scHeight=None, onumHeight=None, 
             superiorHeight=None, superiorCapHeight=None, superiorAscender=None, superiorDescender=None,
@@ -224,8 +225,10 @@ class MasterData:
         # Vertical metrics. Do some guessing for missing values. 
         # This may not be matching the current font, as we don't have it available as open RFont here.
 
-        self.capStackedDiacriticsVKerning = capStackedDiacriticsVKerning or 0 # Offset for stacked diacritics on capitals
-        self.stackedDiacriticsVKerning = stackedDiacriticsVKerning or 0 # Offset for stacked diacritics
+        self.capStackedDiacriticsVKerning = capStackedDiacriticsVKerning or 0 # Optional offset for stacked diacritics on capitals
+        self.stackedDiacriticsVKerning = stackedDiacriticsVKerning or 0 # Optional offset for stacked diacritics
+        self.topAnchorYSelectionOffset = topAnchorYSelectionOffset # Offset placement of top anchors below heigjt, for better manual selection
+        self.bottomAnchorYSelectionOffset = bottomAnchorYSelectionOffset # Offset placement of bottom aobve baseline, for better manual selection
 
         if baseOvershoot is None: # Generic overshoot value, specifically for lower case
             baseOvershoot = self.BASE_OVERSHOOT
