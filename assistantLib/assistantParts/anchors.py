@@ -673,7 +673,6 @@ class AssistantPartAnchors(BaseAssistantPart):
                 else: # Center on width by default, otherwise use the gd.anchorTopX="Bounds" method
                     ax = self.italicX(g, g.width/2, ay)
 
-        print('ASASASASASASAS', md.topAnchorYSelectionOffset)
         if ax is not None:
             ax += offsetX
         if ay is not None:
@@ -693,7 +692,6 @@ class AssistantPartAnchors(BaseAssistantPart):
         if gd.autoFixAnchorPositionX and ay is not None:
             ax = self.italicX(g, 0, ay) # All glyph that contain _top are supposed to have width = 0
         
-        print('EWWEWEEWWEEWWE', md.topAnchorYSelectionOffset)
         if ay is not None:
             ay += md.topAnchorYSelectionOffset # Add topAnchorYSelectionOffset as extra offset below height for better manual selection of the anchor
 
