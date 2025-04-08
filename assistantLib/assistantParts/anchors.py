@@ -545,7 +545,7 @@ class AssistantPartAnchors(BaseAssistantPart):
             ax, ay = self.constructAnchorMIDDLE_XY(g, gd, a)
 
         elif a.name == AD._MIDDLE:
-            ax, ay = self.constructAnchorMIDDLE_XY(g, gd, a)
+            ax, ay = self.constructAnchor_MIDDLEXY(g, gd, a)
         
         elif a.name == AD.BOTTOM_: # Try to guess bottom position
             ax, ay = self.constructAnchorBOTTOM_XY(g, gd, a)
@@ -702,8 +702,14 @@ class AssistantPartAnchors(BaseAssistantPart):
         in case not valid value could be constructed. In that case the position needs to be set manually in the editor.
         @@@ No methods here yet.
         """
+        md = self.getMasterData(g.font)
         ax = g.width/2
-        ay = g.font.info.capHeight/2
+        if gd.isSc:
+            ay = md.scHeight/2
+        elif gd.isLower:
+            ay = md.xHeight/2
+        else:
+            ay = md.capHeight/2
 
         # MIDDLE_ Construct vertical position
         if gd.autoFixAnchorPositionY:
@@ -718,11 +724,9 @@ class AssistantPartAnchors(BaseAssistantPart):
 
             else: # No construction glyph or method defined, then try to figure out from this glyph shape
                 # Trying to guess vertical
-                if gd.isSc and 'H.sc' in g.font:
-                    scAnchor = self.getAnchor(g.font['H.sc'], a.name)
-                    if scAnchor:
-                        ay = scAnchor.y
-
+                if gd.isSc:
+                    md = self.getMasterData(g.font)
+                    ay = md.scHeight/2
                 elif gd.isLower: # Default position below xHeight or capHeight
                     ay = g.font.info.xHeight/2
                 else:
@@ -765,7 +769,10 @@ class AssistantPartAnchors(BaseAssistantPart):
         """
         ax = ay = None
         if gd.autoFixAnchorPositionY:
-            ay = gd.height/2
+            if gd.isSc:
+                ay = gd.scHeight/2
+            else:
+                ay = gd.height/2
         if gd.autoFixAnchorPositionX:
             ax = self.italicX(g, 0, ay) # All glyph that contain _middle are supposed to have width = 0
 

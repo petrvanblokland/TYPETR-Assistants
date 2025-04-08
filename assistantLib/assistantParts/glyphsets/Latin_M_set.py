@@ -111,6 +111,9 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
     GDS['Hbrevebelow'] = GD(name='Hbrevebelow', uni=0x1E2A, hex='1E2A', c='Ḫ', l='H', r='H', base='H', accents=['brevebelowcmb'], anchors=['bottom', 'middle', 'top'], gid=965)
     GDS['Hcedilla'] = GD(name='Hcedilla', uni=0x1E28, hex='1E28', c='Ḩ', w='H', base='H', accents=['cedillacmb.noconnect'], fixAccents=False, anchors=['bottom', 'middle', 'top'], gid=963)
 
+    # Separate, because it's sourcefor all other .sc
+    GDS['H.sc'] = GD(name='H.sc', fixAccents=False, autoFixAnchorPositionY=False, anchors=['bottom', 'middle', 'top'])
+
     # I
 
     GDS['Ihookabove'] = GD(name='Ihookabove', uni=0x1EC8, hex='1EC8', c='Ỉ', w='I', bl='I', base='I', accents=['hookabovecmb.uc'], anchors=['bottom', 'middle', 'top'], gid=1123, comment='Ỉ LATIN CAPITAL LETTER I WITH HOOK ABOVE')

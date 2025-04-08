@@ -113,7 +113,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['Adblgrave'] = GD(name='Adblgrave', uni=0x0200, hex='0200', c='Ȁ', l='A', r='A', base='A', accents=['dblgravecmb.uc'], anchors=['bottom', 'middle', 'top'])
     GDS['Adieresismacron'] = GD(name='Adieresismacron', uni=0x01DE, hex='01DE', c='Ǟ', l='A', r='A', base='A', accents=['dieresismacroncmb.uc'], anchors=['bottom', 'middle', 'top'])
     GDS['Adotaccent'] = GD(name='Adotaccent', uni=0x0226, hex='0226', c='Ȧ', l='A', r='A', base='A', accents=['dotaccentcmb.uc'], anchors=['bottom', 'middle', 'top'])
-    GDS['Adotaccentmacron'] = GD(name='Adotaccentmacron', uni=0x01E0, hex='01E0', c='Ǡ', l='A', r='A', base='A', accents=['dotmacroncmb.uc'], anchors=['bottom', 'middle', 'top'])
+    GDS['Adotaccentmacron'] = GD(name='Adotaccentmacron', uni=0x01E0, hex='01E0', c='Ǡ', l='A', r='A', base='A', accents=['dotaccentmacroncmb.uc'], anchors=['bottom', 'middle', 'top'])
     GDS['Ainvertedbreve'] = GD(name='Ainvertedbreve', uni=0x0202, hex='0202', c='Ȃ', l='A', r='A', base='A', accents=['invertedbrevecmb.uc'], anchors=['bottom', 'middle', 'top'])
     GDS['Alpha-latin'] = GD(name='Alpha-latin', uni=0x2C6D, hex='2C6D', c='Ɑ', l='O')
     GDS['Aringacute'] = GD(name='Aringacute', uni=0x01FA, hex='01FA', c='Ǻ', l='A', r='A', base='A', accents=['ringacutecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ǻ LATIN CAPITAL LETTER A WITH RING ABOVE AND ACUTE')
