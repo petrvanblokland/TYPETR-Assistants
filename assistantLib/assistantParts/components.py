@@ -265,7 +265,7 @@ class AssistantPartComponents(BaseAssistantPart):
                                 dy = baseAnchor.y - a.y + ty
                                 t = list(component.transformation)
                                 if abs(t[-2] - dx) > 1 or abs(t[-1] - dy) > 1: # Is moving needed?
-                                    print(f'... Move component /{component.baseGlyph} in /{g.name} to ({dx}, {dy}) {g.font.path.split('/')[-1]}')
+                                    #print(f'... Move component /{component.baseGlyph} in /{g.name} to ({dx}, {dy}) {g.font.path.split('/')[-1]}')
                                     t[-2] = dx
                                     t[-1] = dy 
                                     component.transformation = t
