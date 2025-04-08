@@ -26,6 +26,7 @@ try:
 except ImportError: # In case not running inside RoboFont
     pass
 
+VERBOSE = False
 #
 # Add paths to libs in sibling repositories
 # It implices that the TYPETR-Assistants repository should live in the same directory as the project repositories.
@@ -175,6 +176,12 @@ class AssistantPartAnchors(BaseAssistantPart):
         c.w.topAnchorYOffsetSlider = Slider((C2, y-5, CW, L), minValue=-self.MAX_OVERLAY_OFFSET_SLIDER, maxValue=self.MAX_OVERLAY_OFFSET_SLIDER, value=0, 
             sizeStyle='small', continuous=True, callback=self.updateTopAnchorSliderCallback)
         y += L
+        c.w.anchorMiddleReset = Button((C0, y-5, CW, L), 'Reset Middle', sizeStyle='small', callback=self.anchorsMiddleResetCallback)
+        c.w.middleAnchorXOffsetSlider = Slider((C1, y-5, CW, L), minValue=-self.MAX_OVERLAY_OFFSET_SLIDER, maxValue=self.MAX_OVERLAY_OFFSET_SLIDER, value=0, 
+            sizeStyle='small', continuous=True, callback=self.updateMiddleAnchorSliderCallback)
+        c.w.middleAnchorYOffsetSlider = Slider((C2, y-5, CW, L), minValue=-self.MAX_OVERLAY_OFFSET_SLIDER, maxValue=self.MAX_OVERLAY_OFFSET_SLIDER, value=0, 
+            sizeStyle='small', continuous=True, callback=self.updateMiddleAnchorSliderCallback)
+        y += L
         c.w.anchorBottomReset = Button((C0, y-5, CW, L), 'Reset Bottom', sizeStyle='small', callback=self.anchorsBottomResetCallback)
         c.w.bottomAnchorXOffsetSlider = Slider((C1, y-5, CW, L), minValue=-self.MAX_OVERLAY_OFFSET_SLIDER, maxValue=self.MAX_OVERLAY_OFFSET_SLIDER, value=0, 
             sizeStyle='small', continuous=True, callback=self.updateBottomAnchorSliderCallback)
@@ -191,6 +198,7 @@ class AssistantPartAnchors(BaseAssistantPart):
 
     # Labels for (x, y) offset for anchors, stored in glyph.lib
     ANCHOR_TOP_OFFSET = 'anchorTopOffset'
+    ANCHOR_MIDDLE_OFFSET = 'anchorMiddleOffset'
     ANCHOR_BOTTOM_OFFSET = 'anchorBottomOffset'
     MAX_OVERLAY_OFFSET_SLIDER = 200
 
@@ -217,6 +225,31 @@ class AssistantPartAnchors(BaseAssistantPart):
         if changed:
             #print('Top', x, y, ox, oy)
             self.setLib(g, self.ANCHOR_TOP_OFFSET, (x, y))
+            g.changed()
+
+    def anchorsMiddleResetCallback(self, sender):
+        g = self.getCurrentGlyph()
+        self.setLib(g, self.ANCHOR_MIDDLE_OFFSET, (0, 0))
+        c = self.getController()
+        c.w.middleAnchorXOffsetSlider.set(0)
+        c.w.middleAnchorYOffsetSlider.set(0)
+        g.changed()
+
+    def updateMiddleAnchorSliderCallback(self, sender):
+        """Update the position of the anchors, with the setting of the offset sliders and store the value in glyph.lib"""
+        g = self.getCurrentGlyph()
+        x, y = self.getLib(g, self.ANCHOR_MIDDLE_OFFSET, (0, 0))
+        ox, oy = int(round(self.w.middleAnchorXOffsetSlider.get())), int(round(self.w.middleAnchorYOffsetSlider.get()))
+        changed = False
+        if x != ox:
+            x = ox
+            changed = True
+        if y != oy:
+            y = oy
+            changed = True
+        if changed:
+            #print('Middle', x, y, ox, oy)
+            self.setLib(g, self.ANCHOR_MIDDLE_OFFSET, (x, y))
             g.changed()
 
     def anchorsBottomResetCallback(self, sender):
@@ -506,6 +539,10 @@ class AssistantPartAnchors(BaseAssistantPart):
                     ox, oy = self.getLib(g, self.ANCHOR_TOP_OFFSET, (0, 0))
                     c.w.topAnchorXOffsetSlider.set(ox)
                     c.w.topAnchorYOffsetSlider.set(oy)
+                elif a.name == AD.MIDDLE_:
+                    ox, oy = self.getLib(g, self.ANCHOR_MIDDLE_OFFSET, (0, 0))
+                    c.w.middleAnchorXOffsetSlider.set(ox)
+                    c.w.middleAnchorYOffsetSlider.set(oy)
                 elif a.name == AD.BOTTOM_:
                     ox, oy = self.getLib(g, self.ANCHOR_BOTTOM_OFFSET, (0, 0))
                     c.w.bottomAnchorXOffsetSlider.set(ox)
@@ -562,18 +599,19 @@ class AssistantPartAnchors(BaseAssistantPart):
         if ax is not None:
             ax = int(round(ax))
             if ax != a.x:
-                print(f'... Fix /{g.name} anchor {a.name}.x {ax} --> {a.x}')
+                print(f'... Fix /{g.name} anchor {a.name}.x {ax} --> {a.x} sc={gd.isSc} lower={gd.isLower}')
                 a.x = ax
                 changed = True
         if ay is not None:
             ay = int(round(ay))
             if ay != a.y:
-                print(f'... Fix /{g.name} anchor {a.name}.y {ay} --> {a.y}')
+                print(f'... Fix /{g.name} anchor {a.name}.y {ay} --> {a.y} sc={gd.isSc} lower={gd.isLower}')
                 a.y = ay
                 changed = True
         return changed
 
-    def constructAnchorTOP_XY(self, g, gd, a):
+    # Deprecated, let's rewrite this one.
+    def XXXconstructAnchorTOP_XY(self, g, gd, a):
         """Answer the constructed (x, y) position of the TOP_ anchor for g, based on available rules and shape. The x and/or y can be None 
         in case not valid value could be constructed. In that case the position needs to be set manually in the editor.
         """
@@ -613,9 +651,11 @@ class AssistantPartAnchors(BaseAssistantPart):
                         ay = baseAnchor.y + dy # Vertical position of the base anchor + component offset.
                         if g.bounds is not None: # Probably bounding box extended from diacritics
                             if gd.isLower: # Default position below xHeight or capHeight
-                                ay = g.bounds[3] + md.xHeightAnchorOffsetY # Likely to ba a negative number
+                                ay = g.bounds[3] + md.xHeightDiacriticsAnchorOffsetY # Likely to ba a negative number
+                            elif gd.isSc:
+                                ay = g.bounds[3] + md.scHeightDiacriticsAnchorOffsetY # Likely to ba a negative number                                
                             else:
-                                ay = g.bounds[3] + md.capHeightAnchorOffsetY # Likely to ba a negative number
+                                ay = g.bounds[3] + md.capHeightDiacriticsAnchorOffsetY # Likely to ba a negative number
                 
                 elif gd.isSc and 'H.sc' in g.font:
                     # Make sure to set the H.sc vertical top anchor position as model for all other .sc
@@ -630,15 +670,20 @@ class AssistantPartAnchors(BaseAssistantPart):
                 
                 if ay is None: # No base component, get the height from xHeight or capHeight
                     if gd.isLower: # Default position below xHeight or capHeight
-                        ay = g.font.info.xHeight + md.xHeightAnchorOffsetY # Likely to ba a negative number
+                        ay = md.xHeight + md.xHeightAnchorOffsetY # Likely to ba a negative number
+                    elif gs.isSc:
+                        ay = md.scHeight + md.scAnchorOffsetY # Likely to ba a negative number
                     else:
-                        ay = g.font.info.capHeight + md.capHeightAnchorOffsetY # Likely to ba a negative number
+                        ay = md.capHeight + md.capHeightAnchorOffsetY # Likely to ba a negative number
                 
                 # In case the a.y now is below the bounding box, then lift the anchor to fit the top of the bounding box
                 if gd.isLower: # Default position below xHeight or capHeight
                     if g.bounds is not None and md.baseDiacriticsTop < g.bounds[3]: # Probably bounding box extended from diacritics
                         ay = g.bounds[3] + md.boxTopAnchorOffsetY
-                else:
+                elif gd.isSc:
+                    if g.bounds is not None and md.baseDiacriticsTop < g.bounds[3]: # Probably bounding box extended from diacritics
+                        ay = g.bounds[3] + md.boxTopAnchorOffsetY                    
+                else: 
                     if g.bounds is not None and md.capDiacriticsTop < g.bounds[3]: # Probably bounding box extended from diacritics
                         ay = g.bounds[3] + md.boxTopAnchorOffsetY
 
@@ -680,6 +725,141 @@ class AssistantPartAnchors(BaseAssistantPart):
         
         return ax, ay
 
+    def constructAnchorTOP_XY(self, g, gd, a):
+        """Answer the constructed (x, y) position of the TOP_ anchor for g, based on available rules and shape. 
+        The x and/or y can be None in case not a valid value could be constructed. 
+        In that case the position needs to be set manually in the editor.
+
+        Order of rules for Y
+        * if gd.anchorTypeY is pointing to an existing glyph, then copy the Y position of the equivalent anchor
+
+        """
+        md = self.getMasterData(g.font)
+        gd.fixBaseAnchors = True
+
+        # In case there is a manually adjusted offset in the g.lib, then add it to the automatic result.
+        offsetX, offsetY = self.getLib(g, self.ANCHOR_TOP_OFFSET, (0, 0))
+
+        # Start with a black anchor positions. If they remain None, then we could not construct a value
+        ax = ay = None
+        # In case there is a base, just copy the vertical and horizontal anchor positions, with the component offset
+        baseGlyph, (dx, dy) = self.getBaseGlyphOffset(g) 
+        if gd.fixBaseAnchors and baseGlyph is not None:
+            # Make sure that this is recursively fixed
+            self.constructAnchorTOP_XY(baseGlyph, self.getGlyphData(baseGlyph), a)
+
+        # TOP_ Construct vertical position
+        if gd.autoFixAnchorPositionY: # Only if the auto-fix flag is on.
+            if VERBOSE:
+                print(f'[00] /{g.name} {gd.anchorTopY} {g.bounds} {gd.isLower} {gd.isSc}')
+            if gd.anchorTopY is not None: 
+                # In case it is an existing glyph name, then take the vertical position from the corresponding anchor
+                if gd.anchorTopY in g.font: 
+                    aa = self.getAnchor(g.font[gd.anchorTopY], a.name)
+                    if aa is not None:
+                        ay = aa.y
+
+                else: # If not an existing glyph name, then we can assume it is a valid method name that will calculate the ay
+                    methodName = 'constructAnchor' + gd.anchorTopY
+                    if hasattr(self, methodName):
+                        # Available: 
+                        ay = getattr(self, methodName)(g, gd, a.name, a.x, ay or a.y) # @@@ Various methods still to be implemented
+                    elif VERBOSE:
+                        print(f'### (constructAnchorTOP_XY) Warning: Unknown gd.anchorTopY={gd.anchorTopY} for /{g.name}')
+
+            if ay is None: # Still None, no construction glyph or method defined, then try to figure out from this glyph shape
+                # Trying to guess vertical from anchor in base glyph + its offset
+                if gd.accents: # Just test on diacritic components, not for the base glyph
+                    # This is a glyph, probably with diacritics. If these are on top, then the anchor position needs
+                    # to be lifted to accommodate the higher bounding box. Since there are accents, we can safely
+                    # assume that the base glyph is also defined. So let's start there.
+                    baseAnchor = self.getAnchor(baseGlyph, a.name)
+                    if baseAnchor is not None:
+                        ay = baseAnchor.y + dy # Vertical position of the base anchor + component offset.
+                        if g.bounds is not None: # Probably bounding box extended from diacritics
+                            if gd.isLower: # Default position below xHeight or capHeight
+                                offsetFromBounds = -30#md.xHeightDiacriticsAnchorOffsetY # Likely to ba a negative number
+                            elif gd.isSc:
+                                offsetFromBounds = -30 #md.scHeightDiacriticsAnchorOffsetY # Likely to ba a negative number                                
+                            else:
+                                offsetFromBounds = -48 #md.capHeightDiacriticsAnchorOffsetY # Likely to ba a negative number
+                            if VERBOSE:
+                                print(f'[10] /{g.name} {offsetFromBounds} {ay} {gd.isLower} {gd.isSc}')
+                            ay = g.bounds[3] + offsetFromBounds
+                
+                # elif gd.isSc and 'H.sc' in g.font:
+                #     # Make sure to set the H.sc vertical top anchor position as model for all other .sc
+                #     scAnchor = self.getAnchor(g.font['H.sc'], a.name)
+                #     if scAnchor:
+                #         ay = scAnchor.y + dy
+
+                # There is a baseGlyph and not accents: then do a plain copy from the baseGlyph anchor position
+                elif baseGlyph is not None:
+                    baseAnchor = self.getAnchor(baseGlyph, a.name)
+                    if VERBOSE:
+                        print(f'[20] /{g.name} baseGlyph:/{baseGlyph.name} baseAnchor.y {baseAnchor.y}')
+                    if baseAnchor is not None:
+                        ay = baseAnchor.y + dy # Vertical position of the base anchor + component offset.
+                
+                if ay is None: # No base component, get the height from xHeight or capHeight
+                    if gd.isLower: # Default position below xHeight or capHeight
+                        ay = md.xHeight + -30 #md.xHeightAnchorOffsetY # Likely to ba a negative number
+                    elif gd.isSc:
+                        ay = md.scHeight + -30 #md.scAnchorOffsetY # Likely to ba a negative number
+                    else:
+                        ay = md.capHeight + -48 #md.capHeightAnchorOffsetY # Likely to ba a negative number
+                    if VERBOSE:
+                        print(f'[30] /{g.name} ay={ay}')
+                
+                # # In case the a.y now is below the bounding box, then lift the anchor to fit the top of the bounding box
+                # if gd.isLower: # Default position below xHeight or capHeight
+                #     if g.bounds is not None and md.baseDiacriticsTop < g.bounds[3]: # Probably bounding box extended from diacritics
+                #         ay = g.bounds[3] + md.boxTopAnchorOffsetY
+                # elif gd.isSc:
+                #     if g.bounds is not None and md.baseDiacriticsTop < g.bounds[3]: # Probably bounding box extended from diacritics
+                #         ay = g.bounds[3] + md.boxTopAnchorOffsetY                    
+                # else: 
+                #     if g.bounds is not None and md.capDiacriticsTop < g.bounds[3]: # Probably bounding box extended from diacritics
+                #         ay = g.bounds[3] + md.boxTopAnchorOffsetY
+
+        # TOP_ Construct horizontal position
+        if gd.autoFixAnchorPositionX:
+            if gd.anchorTopX is not None:
+                if gd.anchorTopX in g.font: # In case it is an existing glyph name, then take the horizontal position from the corresponding anchor
+                    aa = self.getAnchor(g.font[gd.anchorTopX], a.name)
+                    if aa is not None:
+                        ax = aa.x
+                    # Then add the offset of the referring component
+                    for component in g.components:
+                        if component.baseGlyph == gd.anchorTopX:
+                            ax += component.transformation[-2]
+                            
+                else: # If not an existing glyph name, then we can assume it is a valid method name that will calculate the ax
+                    # Available: 
+                    # Constructor methods are supposed to answer italic x-position
+                    ax = getattr(self, 'constructAnchor' + gd.anchorTopX)(g, gd, a.name, a.x, ay or a.y) # Use new ay here. Various methods still to be implemented
+
+            # Hack, this should become an optioncal construction method
+            elif g.name == 'J': # Special case, can't use the width. Find the top-left most corner point
+                p1, p2 = self.getXBounds(g, y1=g.font.info.capHeight)
+                ax = self.italicX(g, p1.x + (p2.x - p1.x)/2, ay, baseY=g.font.info.capHeight) # Half stem of /J
+
+            elif ay is not None: # No construction glyph or method name defined, then try to figure out from the glyph shape
+                # Try to guess horizontal from anchor in base glyph + its offset
+                if baseGlyph is not None: # In case there is a base
+                    baseAnchor = self.getAnchor(baseGlyph, a.name)
+                    if baseAnchor is not None:
+                        ax = baseAnchor.x + self.italicX(g, dx, ay - baseAnchor.y)
+                else: # Center on width by default, otherwise use the gd.anchorTopX="Bounds" method
+                    ax = self.italicX(g, g.width/2, ay)
+
+        if ax is not None:
+            ax += offsetX
+        if ay is not None:
+            ay += offsetY # Add topAnchorYSelectionOffset as extra offset below height for better manual selection of the anchor
+        
+        return ax, ay
+
     def constructAnchor_TOPXY(self, g, gd, a):
         """Answer the constructed (x, y) position of the _TOP anchor for g, based on available rules and shape. The x and/or y can be None 
         in case not valid value could be constructed. In that case the position needs to be set manually in the editor.
@@ -710,6 +890,9 @@ class AssistantPartAnchors(BaseAssistantPart):
             ay = md.xHeight/2
         else:
             ay = md.capHeight/2
+
+        # In case there is a manually adjusted offset in the g.lib, then add it to the automatic result.
+        offsetX, offsetY = self.getLib(g, self.ANCHOR_MIDDLE_OFFSET, (0, 0))
 
         # MIDDLE_ Construct vertical position
         if gd.autoFixAnchorPositionY:
@@ -759,6 +942,11 @@ class AssistantPartAnchors(BaseAssistantPart):
                         ax = baseAnchor.x + dx
                 else: # Center on width by default
                     ax = self.italicX(g, g.width/2, ay)
+
+        if ax is not None:
+            ax += offsetX
+        if ay is not None:
+            ay += offsetY
 
         return ax, ay
 
