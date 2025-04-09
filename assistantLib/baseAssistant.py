@@ -95,6 +95,7 @@ class BaseAssistant:
         ('/Users/annakhorash/Documents/GitHub', (57/255, 163/255, 160/255, 1), {}),
         ('/Users/lenalepommelet/Documents', (138/255, 43/255,  226/255, 1), {}),
         ('/Users/Marte/Documents', (255/255, 222/255,  0/255, .8), {}),
+        ('/Users/Irene/Documents', (0/255, 130/255,  100/255, 1), {}),
     ]
     
     # Key translations from personalized key strokes are handled by the BaseAssistant.glyphEditorDidKeyDown
