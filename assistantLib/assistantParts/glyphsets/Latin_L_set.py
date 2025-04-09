@@ -637,7 +637,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['odblgrave'] = GD(name='odblgrave', uni=0x020D, hex='020D', c='ȍ', bl='o', base='o', accents=['dblgravecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['odieresismacron'] = GD(name='odieresismacron', uni=0x022B, hex='022B', c='ȫ', w='o', bl='o', base='o', accents=['dieresismacroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['odotaccent'] = GD(name='odotaccent', uni=0x022F, hex='022F', c='ȯ', w='o', bl='o', base='o', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
-    GDS['odotaccentmacron'] = GD(name='odotaccentmacron', uni=0x0231, hex='0231', c='ȱ', w='o', bl='o', base='odotaccent', accents=['macroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
+    GDS['odotaccentmacron'] = GD(name='odotaccentmacron', uni=0x0231, hex='0231', c='ȱ', w='o', bl='o', base='o', accents=['dotaccentmacroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['oinvertedbreve'] = GD(name='oinvertedbreve', uni=0x020F, hex='020F', c='ȏ', base='o', accents=['invertedbrevecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['omacronacute'] = GD(name='omacronacute', uni=0x1E53, hex='1E53', c='ṓ', l='o', r='o', base='o', accents=['macronacutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['omacrongrave'] = GD(name='omacrongrave', uni=0x1E51, hex='1E51', c='ṑ', l='o', r='o', base='o', accents=['macrongravecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])

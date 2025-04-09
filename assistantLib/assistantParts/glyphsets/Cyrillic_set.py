@@ -458,4 +458,12 @@ CYRILLIC_SET_ITALIC = CSI = deepcopy(CYRILLIC_SET)
 CSI['te-cy'] = GD(name='te-cy', uni=0x0442, hex='0442', c='т', l='m', r='m', base='m', isLower=True, gid=711)
 CSI['pe-cy'] = GD(name='pe-cy', uni=0x043F, hex='043F', c='п', l='n', r='n', base='n', isLower=True, gid=708)
 CSI['ii-cy'] = GD(name='ii-cy', uni=0x0438, hex='0438', c='и', l='u', r='u', base='u', isLower=True, anchors=['top'], gid=701)
+# Remove these glyphs from the Cyrillic italic set, because the glyphs are the identical to the defailt glyphs
+for gName in [
+    'ge-cy.loclBGR', 'ii-cy.loclBGR', 'iishort-cy.loclBGR', 'en-cy.loclBGR', 'tse-cy.loclBGR', 
+    'che-cy.loclBGR', 'sha-cy.loclBGR', 'shcha-cy.loclBGR', 'hardsign-cy.loclBGR', 'softsign-cy.loclBGR']:
+    if gName in CYRILLIC_SET_ITALIC:
+        del CYRILLIC_SET_ITALIC[gName]
+
+
 
