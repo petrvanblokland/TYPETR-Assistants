@@ -54,7 +54,7 @@ GREEK_SET = {
    'Omicron': GD(name='Omicron', uni=0x039F, hex='039F', c='Ο', base='O', anchors=['bottom', 'topleft', 'top'], gid=549),
    'Omicrontonos': GD(name='Omicrontonos', uni=0x038C, hex='038C', c='Ό', l='Y', r='O', base='O', accents=['tonoscmb.uc'], anchors=['bottom', 'top'], gid=531),
    #'Pamphyliandigamma': GD(name='Pamphyliandigamma', uni=0x0376, hex='0376', c='Ͷ', base='Ii-cy', anchors=['top'], gid=516),
-   'Phi': GD(name='Phi', uni=0x03A6, hex='03A6', l='O', r='O', base='I', c='Φ',anchors=['bottom', 'top'], gid=555),
+   'Phi': GD(name='Phi', uni=0x03A6, hex='03A6', l='O', r='O', c='Φ',anchors=['bottom', 'top'], gid=555),
    'Pi': GD(name='Pi', uni=0x03A0, hex='03A0', c='Π', l='H', r='H', srcName='H', anchors=['bottom', 'top'], gid=550),
    'Psi': GD(name='Psi', uni=0x03A8, hex='03A8', c='Ψ', l='U', r='U', srcName='U', anchors=['bottom', 'top'], gid=557),
    'Rho': GD(name='Rho', uni=0x03A1, hex='03A1', c='Ρ', l='H', r='P', base='P', anchors=['bottom', 'middle', 'top'], gid=551),
