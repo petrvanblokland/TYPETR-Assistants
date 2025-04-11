@@ -287,7 +287,7 @@ CYRILLIC_SET = {
    'ge-cy.loclBGR': GD(name='ge-cy.loclBGR', isLower=True),
    'gedescender-cy': GD(name='gedescender-cy', uni=0x04F7, hex='04F7', c='ӷ', l='en-cy', r='ge-cy', isLower=True, gid=892),
    'ghemiddlehook-cy': GD(name='ghemiddlehook-cy', uni=0x0495, hex='0495', c='ҕ', l='en-cy', r='o', isLower=True, gid=794),
-   'ghestroke-cy': GD(name='ghestroke-cy', uni=0x0493, hex='0493', c='ғ', l='hyphen', r='ge-cy', base='ge-cy', isLower=True, gid=792),
+   'ghestroke-cy': GD(name='ghestroke-cy', uni=0x0493, hex='0493', c='ғ',  r='ge-cy', base='ge-cy', isLower=True, gid=792),
    'gheupturn-cy': GD(name='gheupturn-cy', uni=0x0491, hex='0491', c='ґ', l='en-cy', r='ge-cy', isLower=True, gid=790),
    'gje-cy': GD(name='gje-cy', uni=0x0453, hex='0453', c='ѓ', base='ge-cy', accents=['acutecmb'], isLower=True, anchors=['top'], gid=728),
    'gehookstroke-cy': GD(name='gehookstroke-cy', uni=0x04FB, hex='04FB', c='ӻ', r='ge-cy', isLower=True, anchors=['top']),
@@ -458,6 +458,7 @@ CYRILLIC_SET_ITALIC = CSI = deepcopy(CYRILLIC_SET)
 CSI['te-cy'] = GD(name='te-cy', uni=0x0442, hex='0442', c='т', l='m', r='m', base='m', isLower=True, gid=711)
 CSI['pe-cy'] = GD(name='pe-cy', uni=0x043F, hex='043F', c='п', l='n', r='n', base='n', isLower=True, gid=708)
 CSI['ii-cy'] = GD(name='ii-cy', uni=0x0438, hex='0438', c='и', l='u', r='u', base='u', isLower=True, anchors=['top'], gid=701)
+<<<<<<< Updated upstream
 # Remove these glyphs from the Cyrillic italic set, because the glyphs are the identical to the defailt glyphs
 for gName in [
     'ge-cy.loclBGR', 'ii-cy.loclBGR', 'iishort-cy.loclBGR', 'en-cy.loclBGR', 'tse-cy.loclBGR', 
@@ -465,5 +466,10 @@ for gName in [
     if gName in CYRILLIC_SET_ITALIC:
         del CYRILLIC_SET_ITALIC[gName]
 
+=======
+CSI['dzhe-cy'] = GD(name='dzhe-cy', uni=0x045F, hex='045F', c='џ', l='en-cy', r='en-cy', base='u', isLower=True, gid=740)
+CSI['de-cy.loclBGR'] = GD(name='de-cy.loclBGR', base='g', isLower=True)
+CSI['ghestroke-cy'] = GD(name='ghestroke-cy', uni=0x0493, hex='0493', c='ғ', isLower=True, gid=792)
+>>>>>>> Stashed changes
 
 
