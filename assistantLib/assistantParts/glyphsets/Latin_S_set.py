@@ -100,13 +100,13 @@ LATIN_S_SET = GDS = {
     'equal': GD(name='equal', uni=0x003D, hex='003D', c='=', isLower=True, comment='= EQUALS SIGN'),
 
     'hyphen': GD(name='hyphen', uni=0x002D, hex='002D', c='-', l2r='self', unicodes=(45, 8208), isLower=True, comment='- minus sign, hyphen'),
-    'hyphen.uc': GD(name='hyphen.uc', l='hyphen', r='hyphen', base='hyphen', comment='- minus sign, hyphen'),
+    'hyphen.uc': GD(name='hyphen.uc', l='hyphen', r='hyphen', base='hyphen', isLower=False, comment='- minus sign, hyphen'),
     'endash': GD(name='endash', uni=0x2013, hex='2013', c='–', isLower=True, comment='– EN DASH'),
-    'endash.uc': GD(name='endash.uc', isLower=True, base='endash', comment='– EN DASH'),
+    'endash.uc': GD(name='endash.uc', isLower=False, base='endash', comment='– EN DASH'),
     'emdash': GD(g2='hyphen', g1='hyphen', w=GD.CAT_EM, uni=0x2014, c='—', name='emdash', comment='— EM DASH', anchors=[]),
-    'emdash.uc': GD(g2='hyphen', g1='hyphen', l='emdash', r='emdash', name='emdash.uc', base='emdash', comment='— EM DASH Uppercase', anchors=[]),
+    'emdash.uc': GD(g2='hyphen', g1='hyphen', l='emdash', r='emdash', name='emdash.uc', base='emdash', isLower=False, comment='— EM DASH Uppercase', anchors=[]),
     'horizontalbar': GD(g2='hyphen', g1='hyphen', l='emdash', r='emdash', uni=0x2015, c='―', name='horizontalbar', base='emdash', anchors=[]),
-    'horizontalbar.uc': GD(g2='hyphen', g1='hyphen', l='horizontalbar', r='horizontalbar', name='horizontalbar.uc', comment='Horizontal base Uppercase', anchors=[]),
+    'horizontalbar.uc': GD(g2='hyphen', g1='hyphen', l='horizontalbar', r='horizontalbar', name='horizontalbar.uc', isLower=False, comment='Horizontal base Uppercase', anchors=[]),
 
     'hungarumlaut': GD(name='hungarumlaut', uni=0x02DD, hex='02DD', c='˝', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='hungarumlautcmb', isLower=True, comment='˝ DOUBLE ACUTE ACCENT'),
 
@@ -128,18 +128,18 @@ LATIN_S_SET = GDS = {
 
     'paragraph': GD(name='paragraph', uni=0x00B6, hex='00B6', c='¶', l='zerosuperior', r='H', isLower=True, comment='¶ section sign, european'),
     'parenleft': GD(name='parenleft', uni=0x0028, hex='0028', c='(', isLower=True, comment='( parenthesis, opening'),
-    'parenleft.uc': GD(name='parenleft.uc', srcName='parenleft', comment='( parenthesis, opening for capitals'),
+    'parenleft.uc': GD(name='parenleft.uc', srcName='parenleft', isLower=False, comment='( parenthesis, opening for capitals'),
     'parenright': GD(name='parenright', uni=0x0029, hex='0029', c=')', l2r='parenleft', r2l='parenleft', isLower=True, comment=') RIGHT PARENTHESIS'),
-    'parenright.uc': GD(name='parenright.uc', srcName='parenright', l2r='parenleft', r2l='parenleft', comment='( parenthesis, for capitals'),
+    'parenright.uc': GD(name='parenright.uc', srcName='parenright', l2r='parenleft', r2l='parenleft', isLower=False, comment='( parenthesis, for capitals'),
     'percent': GD(name='percent', uni=0x0025, hex='0025', c='%', l='zerosuperior', r='zerosuperior', isLower=True, comment='% PERCENT SIGN', baseline=GD.CAT_NUMR_BASELINE, height=GD.CAT_SUPERIOR_HEIGHT, overshoot=GD.CAT_SUPERIOR_OVERSHOOT),
     'percent.tab': GD(name='percent.tab', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, comment='% PERCENT SIGN TAB'),
     'perthousand': GD(l='zerosuperior', r='zerosuperior', uni=0x2030, c='‰', name='perthousand', comment='‰ per thousand', baseline=GD.CAT_NUMR_BASELINE, height=GD.CAT_SUPERIOR_HEIGHT, overshoot=GD.CAT_SUPERIOR_OVERSHOOT),
     'perthousand.tab': GD(name='perthousand.tab', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH),
     'period': GD(name='period', uni=0x002E, hex='002E', c='.', l2r='self', isLower=True, fixSpacing=False, comment='. point, decimal'),
-    #'period.uc': GD(name='period.uc', l2r='self', isLower=True, fixSpacing=False, base='period', comment='. point, decimal'),
+    #'period.uc': GD(name='period.uc', l2r='self', isLower=False, fixSpacing=False, base='period', comment='. point, decimal'),
     'ellipsis': GD(name='ellipsis', uni=0x2026, hex='2026', c='…', l='period', r='period', isLower=True, comment='… three dot leader'),
     'periodcentered': GD(name='periodcentered', uni=0x00B7, hex='00B7', c='·', l='period', r='period', isLower=True),
-    'periodcentered.uc': GD(name='periodcentered.uc', base='periodcentered', l='period', r='period', isLower=True),
+    'periodcentered.uc': GD(name='periodcentered.uc', base='periodcentered', l='period', r='period', isLower=False),
     'partialdiff': GD(name='partialdiff', uni=0x2202, hex='2202', c='∂', l='o', r='O', isLower=True, comment='∂ PARTIAL DIFFERENTIAL'),
 
     'plusminus': GD(name='plusminus', uni=0x00B1, hex='00B1', c='±', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=True, comment='± PLUS-MINUS SIGN'),
@@ -517,8 +517,8 @@ LATIN_S_SET = GDS = {
 
     'acute': GD(name='acute', uni=0x00B4, hex='00B4', c='´', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='acutecmb', isLower=True, comment='´ spacing acute accent'),
 
-    'acutecmb': GD(name='acutecmb', uni=0x0301, anchorTopY='TopY', hex='0301', c='́', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'acutecmb.uc': GD(name='acutecmb.uc', w=0, anchorTopY='TopY', isLower=True, srcName='acutecmb', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, anchors=['_top', 'top']),
+    'acutecmb': GD(name='acutecmb', uni=0x0301, anchorTopY='TopY', hex='0301', c='́', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'acutecmb.uc': GD(name='acutecmb.uc', w=0, anchorTopY='TopY', isLower=False, srcName='acutecmb', autoFixComponentPositions=False, autoFixMargins=False, anchors=['_top', 'top']),
 
     'quotesuperior': GD(name='quotesuperior', uni=0x02BC, hex='02BC', c='ʼ', isLower=True, isMod=True),
 
@@ -530,20 +530,20 @@ LATIN_S_SET = GDS = {
     'backslash': GD(name='backslash', uni=0x005C, hex='005C', c="\\" , l2r='self', isLower=True, comment='\\ SOLIDUS, REVERSE'),
     'bar': GD(name='bar', uni=0x007C, hex='007C', c='|', l='H', r='H', isLower=True, comment='| VERTICAL LINE'),
     'braceleft': GD(name='braceleft', uni=0x007B, hex='007B', c='{', isLower=True, comment='{ opening curly bracket'),
-    'braceleft.uc': GD(name='bracelef.uct', srcName='braceleft', comment='{ opening curly bracket'),
+    'braceleft.uc': GD(name='bracelef.uct', srcName='braceleft', isLower=False, comment='{ opening curly bracket'),
     'braceright': GD(name='braceright', uni=0x007D, hex='007D', c='}', l2r='braceleft', r2l='braceleft', isLower=True, comment='} RIGHT CURLY BRACKET'),
-    'braceright.uc': GD(name='braceright.uc', l2r='braceleft', r2l='braceleft', srcName='braceright', isLower=True, comment='} RIGHT CURLY BRACKET'),
+    'braceright.uc': GD(name='braceright.uc', l2r='braceleft', r2l='braceleft', srcName='braceright', isLower=False, comment='} RIGHT CURLY BRACKET'),
     'bracketleft': GD(name='bracketleft', uni=0x005B, hex='005B', c='[', isLower=True, comment='[ square bracket, opening'),
-    'bracketleft.uc': GD(name='bracketleft.uc', srcName='bracketleft', comment='[ square bracket, opening'),
+    'bracketleft.uc': GD(name='bracketleft.uc', srcName='bracketleft', isLower=False, comment='[ square bracket, opening'),
     'bracketright': GD(name='bracketright', uni=0x005D, hex='005D', c=']', l2r='bracketleft', r2l='bracketleft', isLower=True, comment='] SQUARE BRACKET, RIGHT'),
-    'bracketright.uc': GD(name='bracketright.uc', l2r='bracketleft', r2l='bracketleft', srcName='bracketright', comment='] SQUARE BRACKET, RIGHT'),
+    'bracketright.uc': GD(name='bracketright.uc', l2r='bracketleft', r2l='bracketleft', srcName='bracketright', isLower=False, comment='] SQUARE BRACKET, RIGHT'),
     'brokenbar': GD(name='brokenbar', uni=0x00A6, hex='00A6', c='¦', isLower=True, comment='¦ vertical bar, broken'),
     'bullet': GD(name='bullet', uni=0x2022, hex='2022', c='•', isLower=True, l2r='self', comment='• small circle, black'),
-    'bullet.uc': GD(name='bullet.uc', l='bullet', r='bullet', base='bullet', isLower=True, comment='• small circle, black'),
+    'bullet.uc': GD(name='bullet.uc', l='bullet', r='bullet', base='bullet', isLower=False, comment='• small circle, black'),
 
     'breve': GD(l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, uni=0x02d8, c='˘', name='breve', base='brevecmb', comment='˘ Spacing Clones of Diacritics', anchors=[]),
-    'brevecmb': GD(name='brevecmb', uni=0x0306, hex='0306', anchorTopY='TopY', c='̆', w=0, srcName='uni0306', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'brevecmb.uc': GD(name='brevecmb.uc', w=0, anchorTopY='TopY', srcName='brevecmb', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
+    'brevecmb': GD(name='brevecmb', uni=0x0306, hex='0306', anchorTopY='TopY', c='̆', w=0, srcName='uni0306', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'brevecmb.uc': GD(name='brevecmb.uc', w=0, anchorTopY='TopY', srcName='brevecmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
 
     # c
 
@@ -570,11 +570,11 @@ LATIN_S_SET = GDS = {
     'daggerdbl': GD(name='daggerdbl', uni=0x2021, hex='2021', c='‡', l='dagger', r='dagger', isLower=True, comment='‡ DOUBLE DAGGER'),
 
     'dieresis': GD(name='dieresis', uni=0x00A8, hex='00A8', c='¨', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='dieresiscmb', isLower=True, comment='¨ spacing diaeresis'),
-    'dieresiscmb': GD(name='dieresiscmb', uni=0x0308, hex='0308', anchorTopY='TopY', c='̈', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'dieresiscmb.uc': GD(name='dieresiscmb.uc', w=0, anchorTopY='TopY', srcName='dieresiscmb', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
-    'dotaccentcmb': GD(name='dotaccentcmb', uni=0x0307, anchorTopY='TopY', hex='0307', c='̇', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'dotaccentcmb.uc': GD(name='dotaccentcmb.uc', w=0, anchorTopY='TopY', srcName='dotaccentcmb', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
-    'dotbelowcmb': GD(name='dotbelowcmb', uni=0x0323, hex='0323', c='̣', w=0, base='dotaccentcmb', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_bottom', 'bottom']),
+    'dieresiscmb': GD(name='dieresiscmb', uni=0x0308, hex='0308', anchorTopY='TopY', c='̈', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'dieresiscmb.uc': GD(name='dieresiscmb.uc', w=0, anchorTopY='TopY', srcName='dieresiscmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
+    'dotaccentcmb': GD(name='dotaccentcmb', uni=0x0307, anchorTopY='TopY', hex='0307', c='̇', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'dotaccentcmb.uc': GD(name='dotaccentcmb.uc', w=0, anchorTopY='TopY', srcName='dotaccentcmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
+    'dotbelowcmb': GD(name='dotbelowcmb', uni=0x0323, hex='0323', c='̣', w=0, base='dotaccentcmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_bottom', 'bottom']),
 
     # e
 
@@ -619,17 +619,17 @@ LATIN_S_SET = GDS = {
     'greater': GD(name='greater', uni=0x003E, hex='003E', c='>', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='> GREATER-THAN SIGN'),
     'greaterequal': GD(name='greaterequal', uni=0x2265, hex='2265', c='≥', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='≥ GREATER-THAN OR EQUAL TO'),
     'guillemotleft': GD(name='guillemotleft', uni=0x00AB, hex='00AB', l2r='self', c='«', isLower=True),
-    'guillemotleft.uc': GD(name='guillemotleft.uc', l2r='self', base='guillemotleft', isLower=True),
-    'guillemotright': GD(name='guillemotright', uni=0x00BB, hex='00BB', l='guillemotleft', r='guillemotleft', c='»', isLower=False),
-    'guillemotright.uc': GD(name='guillemotright.uc',  l='guillemotleft', r='guillemotleft',  base='guillemotright', isLower=True),
-    'guilsinglleft': GD(name='guilsinglleft', uni=0x2039, hex='2039', l='guillemotleft', r='guillemotleft', c='‹', isLower=False, comment='‹ SINGLE LEFT-POINTING ANGLE QUOTATION MARK'),
+    'guillemotleft.uc': GD(name='guillemotleft.uc', l2r='self', base='guillemotleft', isLower=False),
+    'guillemotright': GD(name='guillemotright', uni=0x00BB, hex='00BB', l='guillemotleft', r='guillemotleft', c='»', isLower=True),
+    'guillemotright.uc': GD(name='guillemotright.uc',  l='guillemotleft', r='guillemotleft',  base='guillemotright', isLower=False),
+    'guilsinglleft': GD(name='guilsinglleft', uni=0x2039, hex='2039', l='guillemotleft', r='guillemotleft', c='‹', isLower=True, comment='‹ SINGLE LEFT-POINTING ANGLE QUOTATION MARK'),
     'guilsinglleft.uc': GD(name='guilsinglleft.uc', l='guilsinglleft', r='guilsinglleft', base='guilsinglleft', isLower=False, comment='‹ SINGLE LEFT-POINTING ANGLE QUOTATION MARK'),
     'guilsinglright': GD(name='guilsinglright', uni=0x203A, hex='203A', l='guillemotleft', r='guillemotleft', c='›', isLower=True, comment='› SINGLE RIGHT-POINTING ANGLE QUOTATION MARK'),
     'guilsinglright.uc': GD(name='guilsinglright.uc', l='guilsinglright', r='guilsinglright', base='guilsinglright', isLower=False, comment='› SINGLE RIGHT-POINTING ANGLE QUOTATION MARK'),
 
     'grave': GD(name='grave', uni=0x0060, hex='0060', c='`', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='gravecmb', isLower=True, comment='` spacing grave accent'),
-    'gravecmb': GD(name='gravecmb', uni=0x0300, hex='0300', c='̀', anchorTopY='TopY', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'gravecmb.uc': GD(name='gravecmb.uc', w=0, anchorTopY='TopY', srcName='gravecmb', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
+    'gravecmb': GD(name='gravecmb', uni=0x0300, hex='0300', c='̀', anchorTopY='TopY', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'gravecmb.uc': GD(name='gravecmb.uc', w=0, anchorTopY='TopY', srcName='gravecmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
 
     # h
 
@@ -639,8 +639,8 @@ LATIN_S_SET = GDS = {
     'hdieresis': GD(name='hdieresis', uni=0x1E27, hex='1E27', c='ḧ', anchorTopY='TopY', base='h', accents=['dieresiscmb.uc'], srcName='uni1E27', isLower=True, anchors=['bottom', 'middle', 'top']),
     'hdotbelow': GD(name='hdotbelow', uni=0x1E25, hex='1E25', c='ḥ', anchorTopY='TopY', base='h', accents=['dotbelowcmb'], srcName='uni1E25', isLower=True, anchors=['bottom', 'middle', 'top']),
     
-    'hungarumlautcmb': GD(name='hungarumlautcmb', uni=0x030B, anchorTopY='TopY', hex='030B', c='̋', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'hungarumlautcmb.uc': GD(name='hungarumlautcmb.uc', w=0, anchorTopY='TopY', srcName='hungarumlautcmb', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
+    'hungarumlautcmb': GD(name='hungarumlautcmb', uni=0x030B, anchorTopY='TopY', hex='030B', c='̋', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'hungarumlautcmb.uc': GD(name='hungarumlautcmb.uc', w=0, anchorTopY='TopY', srcName='hungarumlautcmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
 
     # i
 
@@ -685,8 +685,8 @@ LATIN_S_SET = GDS = {
     'm': GD(name='m', uni=0x006D, hex='006D', c='m', l='n', r='n', isLower=True, anchors=['bottom', 'middle', 'top'], comment='m'),
     'manat': GD(name='manat', uni=0x20BC, hex='20BC', c='₼', l='O', r='O', srcName='O', isLower=True),
 
-    'macroncmb': GD(name='macroncmb', uni=0x0304, anchorTopY='TopY', hex='0304', c='̄', w=0, srcName='uni0304', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'macroncmb.uc': GD(name='macroncmb.uc', w=0, anchorTopY='TopY', srcName='macroncmb', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
+    'macroncmb': GD(name='macroncmb', uni=0x0304, anchorTopY='TopY', hex='0304', c='̄', w=0, srcName='uni0304', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'macroncmb.uc': GD(name='macroncmb.uc', w=0, anchorTopY='TopY', srcName='macroncmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
 
     # n
 
@@ -719,7 +719,7 @@ LATIN_S_SET = GDS = {
     'otilde': GD(name='otilde', uni=0x00F5, hex='00F5', c='õ', base='o', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='õ O WITH TILDE, LATIN SMALL LETTER'),
     'oogonek': GD(name='oogonek', uni=0x01EB, hex='01EB', c='ǫ', base='o', accents=['ogonekcmb'],  isLower=True, anchors=['top', 'middle', 'bottom']),
 
-    'ogonekcmb': GD(name='ogonekcmb', uni=0x0328, hex='0328', c='̨', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_ogonek', 'bottom']),
+    'ogonekcmb': GD(name='ogonekcmb', uni=0x0328, hex='0328', c='̨', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_ogonek', 'bottom']),
 
     # p
 
@@ -764,7 +764,7 @@ LATIN_S_SET = GDS = {
     'scommaaccent': GD(name='scommaaccent', uni=0x0219, hex='0219', c='ș', l='s', r='s', base='s', accents=['cedillacmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ș S WITH COMMA BELOW, LATIN SMALL LETTER'),
     'sdotbelow': GD(name='sdotbelow', uni=0x1E63, hex='1E63', c='ṣ', l='s', r='s', base='s', accents=['dotbelowcmb'], srcName='uni1E63', isLower=True, anchors=['bottom', 'middle', 'top'], comment='ṣ S WITH DOT BELOW, LATIN SMALL LETTER'),
     
-    'strokeshortcmb': GD(name='strokeshortcmb', uni=0x0335, hex='0335', c='̵', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_middle', 'middle']),
+    'strokeshortcmb': GD(name='strokeshortcmb', uni=0x0335, hex='0335', c='̵', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_middle', 'middle']),
 
     # t
 
@@ -848,90 +848,94 @@ LATIN_S_SET = GDS = {
 
     # Diacritics
 
-    'ringcmb': GD(name='ringcmb', uni=0x030A, hex='030A', anchorTopY='TopY', c='̊', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'ringcmb.uc': GD(name='ringcmb.uc', w=0, anchorTopY='TopY', srcName='ringcmb', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
+    'ringcmb': GD(name='ringcmb', uni=0x030A, hex='030A', anchorTopY='TopY', c='̊', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'ringcmb.uc': GD(name='ringcmb.uc', w=0, anchorTopY='TopY', srcName='ringcmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
 
-    'hungarumlautcmb': GD(name='hungarumlautcmb', anchorTopY='TopY', uni=0x030B, hex='030B', c='̋', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['top', '_top']),
-    'hungarumlautcmb.uc': GD(name='hungarumlautcmb.uc', anchorTopY='TopY', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['top', '_top']),
+    'hungarumlautcmb': GD(name='hungarumlautcmb', anchorTopY='TopY', uni=0x030B, hex='030B', c='̋', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['top', '_top']),
+    'hungarumlautcmb.uc': GD(name='hungarumlautcmb.uc', anchorTopY='TopY', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['top', '_top']),
 
-    'tildecmb': GD(name='tildecmb', uni=0x0303, anchorTopY='TopY', hex='0303', c='̃', w=0, srcName='tilde', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'tildecmb.uc': GD(name='tildecmb.uc', w=0, anchorTopY='TopY', srcName='tildecmb', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
+    'tildecmb': GD(name='tildecmb', uni=0x0303, anchorTopY='TopY', hex='0303', c='̃', w=0, srcName='tilde', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'tildecmb.uc': GD(name='tildecmb.uc', w=0, anchorTopY='TopY', srcName='tildecmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
 
-    'quoteleftcmb': GD(name='quoteright', srcName='quoteleft', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, w=0, anchors=['_top', 'top']),
-    'quoterightcmb': GD(name='quoterightcmb', srcName='quoteright', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, w=0, anchors=['_top', 'top']),
+    'quoteleftcmb': GD(name='quoteright', srcName='quoteleft', autoFixComponentPositions=False, autoFixMargins=False, w=0, anchors=['_top', 'top']),
+    'quoterightcmb': GD(name='quoterightcmb', srcName='quoteright', autoFixComponentPositions=False, autoFixMargins=False, w=0, anchors=['_top', 'top']),
 
-    'cedillacmb': GD(name='cedillacmb', uni=0x0327, hex='0327', c='̧', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_bottom', 'bottom']),
-    'cedillacmb.noconnect': GD(name='cedillacmb.noconnect', w=0, srcName='cedillacmb', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_bottom', 'bottom']),
-    'caroncmb': GD(name='caroncmb', uni=0x030C, hex='030C', anchorTopY='TopY', c='̌', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'caroncmb.uc': GD(name='caroncmb.uc', w=0, anchorTopY='TopY', srcName='caroncmb', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
+    'cedillacmb': GD(name='cedillacmb', uni=0x0327, hex='0327', c='̧', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_bottom', 'bottom']),
+    'cedillacmb.noconnect': GD(name='cedillacmb.noconnect', w=0, srcName='cedillacmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_bottom', 'bottom']),
+    'caroncmb': GD(name='caroncmb', uni=0x030C, hex='030C', anchorTopY='TopY', c='̌', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'caroncmb.uc': GD(name='caroncmb.uc', w=0, anchorTopY='TopY', srcName='caroncmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
     'caroncmb.vert': GD(name='caroncmb.vert', l=GD.CAT_CENTER, w=0, base='commaaccentcmb', anchors=[AD._VERT]),
-    'commaaccentcmb': GD(name='commaaccentcmb', uni=0x0326, anchorTopY='TopY', hex='0326', c='̦', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_bottom', 'bottom']),
-    'commaturnedabovecmb': GD(name='commaturnedabovecmb', anchorTopY='TopY', uni=0x0312, hex='0312', c='̒', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
+    'commaaccentcmb': GD(name='commaaccentcmb', uni=0x0326, anchorTopY='TopY', hex='0326', c='̦', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_bottom', 'bottom']),
+    'commaturnedabovecmb': GD(name='commaturnedabovecmb', anchorTopY='TopY', uni=0x0312, hex='0312', c='̒', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
     #'commaturnedayi-cybovecmb.uc': GD(name='commaturnedabovecmb.uc', anchorTopY='TopY', w=0, srcName='commaturnedabovecmb', isLower=False, anchors=['_top', 'top']),
     'circumflex': GD(name='circumflex', uni=0x02C6, hex='02C6', c='ˆ', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='circumflexcmb', isLower=True, comment='ˆ Legacy CIRCUMFLEX ACCENT, MODIFIER LETTER'),
-    'circumflexcmb': GD(name='circumflexcmb', uni=0x0302, anchorTopY='TopY', hex='0302', c='̂', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'circumflexcmb.uc': GD(name='circumflexcmb.uc', w=0, anchorTopY='TopY', srcName='circumflexcmb', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
+    'circumflexcmb': GD(name='circumflexcmb', uni=0x0302, anchorTopY='TopY', hex='0302', c='̂', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'circumflexcmb.uc': GD(name='circumflexcmb.uc', w=0, anchorTopY='TopY', srcName='circumflexcmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
 
-    'ogonek': GD(name='ogonek', uni=0x02DB, hex='02DB', c='˛', l= GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='ogonekcmb', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, gid=482, comment='˛ OGONEK'),
-    'dotaccent': GD(name='dotaccent', uni=0x02D9, hex='02D9', c='˙', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='dotaccentcmb', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, gid=480, comment='˙ tone, mandarin chinese fifth or neutral'),
+    'ogonek': GD(name='ogonek', uni=0x02DB, hex='02DB', c='˛', l= GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='ogonekcmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, gid=482, comment='˛ OGONEK'),
+    'dotaccent': GD(name='dotaccent', uni=0x02D9, hex='02D9', c='˙', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='dotaccentcmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, gid=480, comment='˙ tone, mandarin chinese fifth or neutral'),
 
     # Stacked diacritics
     #
     # Avoiding the problem of vertical kerning, needed for stacked diacritics, we'll create them as separate combined components
     # Using the .uc diacritics everywhere to reduce vertical space
     #
-    'acutedotaccentcmb': GD(name='acutedotaccentcmb', l='off', w=0, base='acutecmb.uc', accents=['dotaccentcmb.uc'], autoFixComponentPositions=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'acutedotaccentcmb.uc': GD(name='acutedotaccentcmb.uc', l='off', w=0, base='acutecmb.uc', accents=['dotaccentcmb.uc'], autoFixComponentPositions=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
-
-    'brevetildecmb': GD(name='brevetildecmb', l='off', w=0, base='brevecmb.uc', accents=['tildecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'brevetildecmb.uc': GD(name='brevetildecmb.uc', l='off', w=0, base='brevecmb.uc', accents=['tildecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
-    'breveacutecmb': GD(name='breveacutecmb', l='off', w=0, base='brevecmb.uc', accents=['acutecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'breveacutecmb.uc': GD(name='breveacutecmb.uc', l='off', w=0, base='brevecmb.uc', accents=['acutecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
-    'brevegravecmb': GD(name='brevegravecmb', l='off', w=0, base='brevecmb.uc', accents=['gravecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'brevegravecmb.uc': GD(name='brevegravecmb.uc', l='off', w=0, base='brevecmb.uc', accents=['gravecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
-    'brevehookabovecmb': GD(name='brevehookabovecmb', l='off', w=0, base='brevecmb.uc', accents=['hookabovecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'brevehookabovecmb.uc': GD(name='brevehookabovecmb.uc', l='off', w=0, base='brevecmb.uc', accents=['hookabovecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
-
-    'carondotaccentcmb': GD(name='carondotaccentcmb', l='off', w=0, base='caroncmb.uc', accents=['dotaccentcmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'carondotaccentcmb.uc': GD(name='carondotaccentcmb.uc', l='off', w=0, base='caroncmb.uc', accents=['dotaccentcmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
-
-    'circumflextildecmb': GD(name='circumflextildecmb', l='off', w=0, base='circumflexcmb.uc', accents=['tildecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'circumflextildecmb.uc': GD(name='circumflextildecmb.uc', l='off', w=0, base='circumflexcmb.uc', accents=['tildecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
-    'circumflexacutecmb': GD(name='circumflexacutecmb', l='off', w=0, base='circumflexcmb.uc', accents=['acutecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'circumflexacutecmb.uc': GD(name='circumflexacutecmb.uc', l='off', w=0, base='circumflexcmb.uc', accents=['acutecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
-    'circumflexgravecmb': GD(name='circumflexgravecmb', l='off', w=0, base='circumflexcmb.uc', accents=['gravecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'circumflexgravecmb.uc': GD(name='circumflexgravecmb.uc', l='off', w=0, base='circumflexcmb.uc', accents=['gravecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
-    'circumflexhookabovecmb': GD(name='circumflexhookabovecmb', l='off', w=0, base='circumflexcmb.uc', accents=['hookabovecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'circumflexhookabovecmb.uc': GD(name='circumflexhookabovecmb.uc', l='off', w=0, base='circumflexcmb.uc', accents=['hookabovecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
-
-    'dotaccentmacroncmb': GD(name='dotaccentmacroncmb', l='off', w=0, base='dotaccentcmb.uc', accents=['macroncmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'dotaccentmacroncmb.uc': GD(name='dotaccentmacroncmb.uc', l='off', w=0, base='dotaccentcmb.uc', accents=['macroncmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
+    'testcmb': GD(name='testcmb', l='off', w=0, isLower=True, anchors=['_top', 'top', ]),
+    'testcmb.uc': GD(name='testcmb.uc', l='off', w=0, isLower=False, anchors=['_top', 'top']),
+    'testbelowcmb': GD(name='testbelowcmb', l='off', w=0, isLower=True, anchors=['_bottom', 'bottom']),
     
-    'dieresiscaroncmb': GD(name='dieresiscaroncmb', l='off', w=0, base='dieresiscmb.uc', accents=['caroncmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'dieresiscaroncmb.uc': GD(name='dieresiscaroncmb.uc', l='off', w=0, base='dieresiscmb.uc', accents=['caroncmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
-    'dieresismacroncmb': GD(name='dieresismacroncmb', l='off', w=0, base='dieresiscmb.uc', accents=['macroncmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'dieresismacroncmb.uc': GD(name='dieresismacroncmb.uc', l='off', w=0, base='dieresiscmb.uc', accents=['macroncmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
-    'dieresisacutecmb': GD(name='dieresisacutecmb', l='off', w=0, base='dieresiscmb.uc', accents=['acutecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'dieresisacutecmb.uc': GD(name='dieresisacutecmb.uc', l='off', w=0, base='dieresiscmb.uc', accents=['acutecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
-    'dieresisgravecmb': GD(name='dieresisgravecmb', l='off', w=0, base='dieresiscmb.uc', accents=['gravecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'dieresisgravecmb.uc': GD(name='dieresisgravecmb.uc', l='off', w=0, base='dieresiscmb.uc', accents=['gravecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
+    'acutedotaccentcmb': GD(name='acutedotaccentcmb', l='off', w=0, base='acutedotaccentcmb.uc', autoFixComponentPositions=False, isLower=True, anchors=['_top', 'top']),
+    'acutedotaccentcmb.uc': GD(name='acutedotaccentcmb.uc', l='off', w=0, base='acutecmb.uc', accents=['dotaccentcmb.uc'], autoFixComponentPositions=False, isLower=False, anchors=['_top', 'top']),
+
+    'brevetildecmb': GD(name='brevetildecmb', l='off', w=0, base='brevetildecmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'brevetildecmb.uc': GD(name='brevetildecmb.uc', l='off', w=0, base='brevecmb.uc', accents=['tildecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
+    'breveacutecmb': GD(name='breveacutecmb', l='off', w=0, base='breveacutecmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'breveacutecmb.uc': GD(name='breveacutecmb.uc', l='off', w=0, base='brevecmb.uc', accents=['acutecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
+    'brevegravecmb': GD(name='brevegravecmb', l='off', w=0, base='brevegravecmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'brevegravecmb.uc': GD(name='brevegravecmb.uc', l='off', w=0, base='brevecmb.uc', accents=['gravecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
+    'brevehookabovecmb': GD(name='brevehookabovecmb', l='off', w=0, base='brevehookabovecmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'brevehookabovecmb.uc': GD(name='brevehookabovecmb.uc', l='off', w=0, base='brevecmb.uc', accents=['hookabovecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
+
+    'carondotaccentcmb': GD(name='carondotaccentcmb', l='off', w=0, base='carondotaccentcmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'carondotaccentcmb.uc': GD(name='carondotaccentcmb.uc', l='off', w=0, base='caroncmb.uc', accents=['dotaccentcmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
+
+    'circumflextildecmb': GD(name='circumflextildecmb', l='off', w=0, base='circumflextildecmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'circumflextildecmb.uc': GD(name='circumflextildecmb.uc', l='off', w=0, base='circumflexcmb.uc', accents=['tildecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
+    'circumflexacutecmb': GD(name='circumflexacutecmb', l='off', w=0, base='circumflexacutecmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'circumflexacutecmb.uc': GD(name='circumflexacutecmb.uc', l='off', w=0, base='circumflexcmb.uc', accents=['acutecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
+    'circumflexgravecmb': GD(name='circumflexgravecmb', l='off', w=0, base='circumflexgravecmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'circumflexgravecmb.uc': GD(name='circumflexgravecmb.uc', l='off', w=0, base='circumflexcmb.uc', accents=['gravecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
+    'circumflexhookabovecmb': GD(name='circumflexhookabovecmb', l='off', w=0, base='circumflexhookabovecmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'circumflexhookabovecmb.uc': GD(name='circumflexhookabovecmb.uc', l='off', w=0, base='circumflexcmb.uc', accents=['hookabovecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
+
+    'dotaccentmacroncmb': GD(name='dotaccentmacroncmb', l='off', w=0, base='dotaccentmacroncmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'dotaccentmacroncmb.uc': GD(name='dotaccentmacroncmb.uc', l='off', w=0, base='dotaccentcmb.uc', accents=['macroncmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
     
-    'macrondieresiscmb': GD(name='macrondieresiscmb', l='off', w=0, base='macroncmb.uc', accents=['dieresiscmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'macrondieresiscmb.uc': GD(name='macrondieresiscmb.uc', l='off', w=0, base='macroncmb.uc', accents=['dieresiscmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
-    'macronacutecmb': GD(name='macronacutecmb', uni=0x1DC4, hex='1DC4', c='᷄', l='off', w=0, base='macroncmb.uc', accents=['acutecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'macronacutecmb.uc': GD(name='macronacutecmb.uc', l='off', w=0, base='macroncmb.uc', accents=['acutecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
-    'macrongravecmb': GD(name='macrongravecmb', uni=0x1DC6, hex='1DC6', c='᷆', l='off', w=0, base='macroncmb.uc', accents=['gravecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'macrongravecmb.uc': GD(name='macrongravecmb.uc', l='off', w=0, base='macroncmb.uc', accents=['gravecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
+    'dieresiscaroncmb': GD(name='dieresiscaroncmb', l='off', w=0, base='dieresiscaroncmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'dieresiscaroncmb.uc': GD(name='dieresiscaroncmb.uc', l='off', w=0, base='dieresiscmb.uc', accents=['caroncmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
+    'dieresismacroncmb': GD(name='dieresismacroncmb', l='off', w=0, base='dieresismacroncmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'dieresismacroncmb.uc': GD(name='dieresismacroncmb.uc', l='off', w=0, base='dieresiscmb.uc', accents=['macroncmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
+    'dieresisacutecmb': GD(name='dieresisacutecmb', l='off', w=0, base='dieresisacutecmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'dieresisacutecmb.uc': GD(name='dieresisacutecmb.uc', l='off', w=0, base='dieresiscmb.uc', accents=['acutecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
+    'dieresisgravecmb': GD(name='dieresisgravecmb', l='off', w=0, base='dieresisgravecmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'dieresisgravecmb.uc': GD(name='dieresisgravecmb.uc', l='off', w=0, base='dieresiscmb.uc', accents=['gravecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
+    
+    'macrondieresiscmb': GD(name='macrondieresiscmb', l='off', w=0, base='macrondieresiscmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'macrondieresiscmb.uc': GD(name='macrondieresiscmb.uc', l='off', w=0, base='macroncmb.uc', accents=['dieresiscmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
+    'macronacutecmb': GD(name='macronacutecmb', uni=0x1DC4, hex='1DC4', c='᷄', l='off', w=0, base='macronacutecmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'macronacutecmb.uc': GD(name='macronacutecmb.uc', l='off', w=0, base='macroncmb.uc', accents=['acutecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
+    'macrongravecmb': GD(name='macrongravecmb', uni=0x1DC6, hex='1DC6', c='᷆', l='off', w=0, base='macrongravecmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'macrongravecmb.uc': GD(name='macrongravecmb.uc', l='off', w=0, base='macroncmb.uc', accents=['gravecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
 
-    'ringacutecmb': GD(name='ringacutecmb', l='off', w=0, base='ringcmb.uc', accents=['acutecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'ringacutecmb.uc': GD(name='ringacutecmb.uc', l='off', w=0, base='ringcmb.uc', accents=['acutecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
+    'ringacutecmb': GD(name='ringacutecmb', l='off', w=0, base='ringacutecmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'ringacutecmb.uc': GD(name='ringacutecmb.uc', l='off', w=0, base='ringcmb.uc', accents=['acutecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
 
-    'tildeacutecmb': GD(name='tildeacutecmb', l='off', w=0, base='tildecmb.uc', accents=['acutecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'tildeacutecmb.uc': GD(name='tildeacutecmb.uc', l='off', w=0, base='tildecmb.uc', accents=['acutecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
-    'tildedieresiscmb': GD(name='tildedieresiscmb', l='off', w=0, base='tildecmb.uc', accents=['dieresiscmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'tildedieresiscmb.uc': GD(name='tildedieresiscmb.uc', l='off', w=0, base='tildecmb.uc', accents=['dieresiscmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
-    'tildemacroncmb': GD(name='tildemacroncmb', l='off', w=0, base='tildecmb.uc', accents=['macroncmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top']),
-    'tildemacroncmb.uc': GD(name='tildemacroncmb.uc', l='off', w=0, base='tildecmb.uc', accents=['macroncmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top']),
+    'tildeacutecmb': GD(name='tildeacutecmb', l='off', w=0, base='tildeacutecmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'tildeacutecmb.uc': GD(name='tildeacutecmb.uc', l='off', w=0, base='tildecmb.uc', accents=['acutecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
+    'tildedieresiscmb': GD(name='tildedieresiscmb', l='off', w=0, base='tildedieresiscmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'tildedieresiscmb.uc': GD(name='tildedieresiscmb.uc', l='off', w=0, base='tildecmb.uc', accents=['dieresiscmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
+    'tildemacroncmb': GD(name='tildemacroncmb', l='off', w=0, base='tildemacroncmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'tildemacroncmb.uc': GD(name='tildemacroncmb.uc', l='off', w=0, base='tildecmb.uc', accents=['macroncmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
 }
 
 # Used by GlyphSet class to add small cap glyph data records. 

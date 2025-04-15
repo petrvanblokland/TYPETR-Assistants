@@ -86,16 +86,17 @@ class MasterData:
             baseline=0, stemOvershoot=STEM_OVERSHOOT, baseOvershoot=None, capOvershoot=None, 
                 scOvershoot=None, onumOvershoot=None, superiorOvershoot=None,
                 diacriticsOvershoot=None,
-                topAnchorYSelectionOffset=0, bottomAnchorYSelectionOffset=0, # Offset placement of top/bottom anchors, for better manual selection
             ascender=None, descender=None,
             xHeight=None, capHeight=None, scHeight=None, onumHeight=None, 
             superiorHeight=None, superiorCapHeight=None, superiorAscender=None, superiorDescender=None,
             modHeight=None,
             numrBaseline=None, supsBaseline=None, sinfBaseline=None, dnomBaseline=None, modBaseline=None,
             middlexHeight=None, middleCapHeight=None,
+            
             # Vertical anchor offsets to avoid collission with baseline, guidelines, etc. in mouse selection
-            capStackedDiacriticsVKerning=None, # Offset for stacked diacritics on capitals
-            stackedDiacriticsVKerning=None, # Offset for stacked diacritics
+            #topAnchorYSelectionOffset=0, bottomAnchorYSelectionOffset=0, # Offset placement of top/bottom anchors, for better manual selection
+            #capStackedDiacriticsVKerning=None, # Offset for stacked diacritics on capitals
+            #stackedDiacriticsVKerning=None, # Offset for stacked diacritics
             baseDiacriticsTop=None, capDiacriticsTop=None, scDiacriticsTop=None, # Baseline of top diacritics
             baseDiacriticsBottom=None, # Top of bottom diacritis
             ascenderAnchorOffsetY= -AD.ANCHOR_ASCENDER_OFFSET,
@@ -106,6 +107,7 @@ class MasterData:
             ogonekAnchorOffsetY=AD.ANCHOR_OGONEK_OFFSET,
             boxBottomAnchorOffsetY= AD.ANCHOR_BOXBOTTOM_OFFSET,
             descenderAnchorOffsetY=AD.ANCHOR_DESCENDER_OFFSET,
+            
             # Horizontal metrics
             diagonalTolerance=0, # ± Tolerance for italic diagonals to be marked as off-limit
             HStem=None, HThin=None, OStem=None, OThin=None,
@@ -225,10 +227,10 @@ class MasterData:
         # Vertical metrics. Do some guessing for missing values. 
         # This may not be matching the current font, as we don't have it available as open RFont here.
 
-        self.capStackedDiacriticsVKerning = capStackedDiacriticsVKerning or 0 # Optional offset for stacked diacritics on capitals
-        self.stackedDiacriticsVKerning = stackedDiacriticsVKerning or 0 # Optional offset for stacked diacritics
-        self.topAnchorYSelectionOffset = topAnchorYSelectionOffset # Offset placement of top anchors below heigjt, for better manual selection
-        self.bottomAnchorYSelectionOffset = bottomAnchorYSelectionOffset # Offset placement of bottom aobve baseline, for better manual selection
+        #self.capStackedDiacriticsVKerning = capStackedDiacriticsVKerning or 0 # Optional offset for stacked diacritics on capitals
+        #self.stackedDiacriticsVKerning = stackedDiacriticsVKerning or 0 # Optional offset for stacked diacritics
+        #self.topAnchorYSelectionOffset = topAnchorYSelectionOffset # Offset placement of top anchors below heigjt, for better manual selection
+        #self.bottomAnchorYSelectionOffset = bottomAnchorYSelectionOffset # Offset placement of bottom aobve baseline, for better manual selection
 
         if baseOvershoot is None: # Generic overshoot value, specifically for lower case
             baseOvershoot = self.BASE_OVERSHOOT

@@ -115,7 +115,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['Adotaccent'] = GD(name='Adotaccent', uni=0x0226, hex='0226', c='Ȧ', l='A', r='A', base='A', accents=['dotaccentcmb.uc'], anchors=['bottom', 'middle', 'top'])
     GDS['Adotaccentmacron'] = GD(name='Adotaccentmacron', uni=0x01E0, hex='01E0', c='Ǡ', l='A', r='A', base='A', accents=['dotaccentmacroncmb.uc'], anchors=['bottom', 'middle', 'top'])
     GDS['Ainvertedbreve'] = GD(name='Ainvertedbreve', uni=0x0202, hex='0202', c='Ȃ', l='A', r='A', base='A', accents=['invertedbrevecmb.uc'], anchors=['bottom', 'middle', 'top'])
-    GDS['Alpha-latin'] = GD(name='Alpha-latin', uni=0x2C6D, hex='2C6D', c='Ɑ', l='O')
+    GDS['Alpha-latin'] = GD(name='Alpha-latin', uni=0x2C6D, hex='2C6D', c='Ɑ', l='O', r='off')
     GDS['Aringacute'] = GD(name='Aringacute', uni=0x01FA, hex='01FA', c='Ǻ', l='A', r='A', base='A', accents=['ringacutecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ǻ LATIN CAPITAL LETTER A WITH RING ABOVE AND ACUTE')
     GDS['Aringbelow'] = GD(name='Aringbelow', uni=0x1E00, hex='1E00', c='Ḁ', l='A', r='A', base='A', accents=['ringbelowcmb'], anchors=['bottom', 'middle', 'top'])
     GDS['Astroke'] = GD(name='Astroke', uni=0x023A, hex='023A', c='Ⱥ', l='A', w='A', base='A', accents=['strokecmb.uc'], anchors=['bottom', 'middle', 'top'])
@@ -424,8 +424,8 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['astroke'] = GD(name='astroke', uni=0x2C65, hex='2C65', c='ⱥ', base='a', accents=['strokecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['aturned'] = GD(name='aturned', uni=0x0250, hex='0250', c='ɐ', l2r='a', r2l='a', srcName='a', isLower=True)
 
-    GDS['acutemacroncmb'] = GD(name='acutemacroncmb', uni=0x1DC7, hex='1DC7', c='᷇', w=0, srcName='acutecmb', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top'])
-    GDS['acutemacroncmb.uc'] = GD(name='acutemacroncmb.uc', w=0, srcName='acutemacroncmb', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top'])
+    GDS['acutemacroncmb'] = GD(name='acutemacroncmb', uni=0x1DC7, hex='1DC7', c='᷇', w=0, srcName='acutecmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top'])
+    GDS['acutemacroncmb.uc'] = GD(name='acutemacroncmb.uc', w=0, srcName='acutemacroncmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top'])
 
     GDS['asuperior'] = GD(name='asuperior', uni=0x1D43, hex='1D43', c='ᵃ', l='osuperior', r='nsuperior', isLower=False, isMod=True)
     GDS['ainferior'] = GD(name='ainferior', uni=0x2090, hex='2090', c='ₐ', l='asuperior', r='asuperior', base='asuperior', isLower=True)
@@ -439,11 +439,11 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['blinebelow'] = GD(name='blinebelow', uni=0x1E07, hex='1E07', c='ḇ', base='b', accents=['macronbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['bstroke'] = GD(name='bstroke', uni=0x0180, hex='0180', c='ƀ', l='hyphen', r='b', base='b', isLower=True)
 
-    GDS['invertedbrevebelowcmb'] = GD(name='invertedbrevebelowcmb', uni=0x032F, hex='032F', c='̯', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, base='invertedbrevecmb', isLower=True, anchors=['_bottom', 'bottom'])
-    GDS['invertedbrevecmb'] = GD(name='invertedbrevecmb', uni=0x0311, hex='0311', c='̑', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top'])
-    GDS['invertedbrevecmb.uc'] = GD(name='invertedbrevecmb.uc', l=GD.CAT_CENTER, w=0, base='invertedbrevecmb', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top'])
-    GDS['invertedbrevedoublecmb'] = GD(name='invertedbrevedoublecmb', uni=0x0361, hex='0361', c='͡', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top'])
-    GDS['invertedbrevedoublecmb.uc'] = GD(name='invertedbrevedoublecmb.uc', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, anchors=['_top', 'top'])
+    GDS['invertedbrevebelowcmb'] = GD(name='invertedbrevebelowcmb', uni=0x032F, hex='032F', c='̯', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, base='invertedbrevecmb', isLower=True, anchors=['_bottom', 'bottom'])
+    GDS['invertedbrevecmb'] = GD(name='invertedbrevecmb', uni=0x0311, hex='0311', c='̑', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top'])
+    GDS['invertedbrevecmb.uc'] = GD(name='invertedbrevecmb.uc', l=GD.CAT_CENTER, w=0, base='invertedbrevecmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top'])
+    GDS['invertedbrevedoublecmb'] = GD(name='invertedbrevedoublecmb', uni=0x0361, hex='0361', c='͡', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top'])
+    GDS['invertedbrevedoublecmb.uc'] = GD(name='invertedbrevedoublecmb.uc', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top'])
 
     GDS['bsuperior'] = GD(name='bsuperior', uni=0x1D47, hex='1D47', c='ᵇ', l='hsuperior', r='osuperior', isLower=False, isMod=True)
     GDS['binferior'] = GD(name='binferior', l='hsuperior', r='osuperior', base='bsuperior', isLower=False, isMod=True)
@@ -460,11 +460,11 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['cstroke'] = GD(name='cstroke', uni=0x023C, hex='023C', c='ȼ', base='c', accents=['strokecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['creversed'] = GD(name='creversed', uni=0x2184, hex='2184', c='ↄ', l2r='c', r2l='c')
 
-    GDS['commaabovecmb'] = GD(name='commaabovecmb', uni=0x0313, hex='0313', c='̓', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, base='koronis', isLower=True, anchors=['_top', 'top'])
-    GDS['commaabovecmb.uc'] = GD(name='commaabovecmb.uc', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, srcName='commaabovecmb', isLower=True, anchors=['_top', 'top'])
+    GDS['commaabovecmb'] = GD(name='commaabovecmb', uni=0x0313, hex='0313', c='̓', w=0, autoFixComponentPositions=False, autoFixMargins=False, base='koronis', isLower=True, anchors=['_top', 'top'])
+    GDS['commaabovecmb.uc'] = GD(name='commaabovecmb.uc', w=0, autoFixComponentPositions=False, autoFixMargins=False, srcName='commaabovecmb', isLower=False, anchors=['_top', 'top'])
     GDS['commaaboverightcmb'] = GD(name='commaaboverightcmb', uni=0x0315, hex='0315', c='̕', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, base='psili', isLower=True, anchors=['_top', 'top'])
-    GDS['commaaboverightcmb.uc'] = GD(name='commaaboverightcmb.uc', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, srcName='commaaboverightcmb', isLower=True, anchors=['_top', 'top'])
-    GDS['circumflexbelowcmb'] = GD(name='circumflexbelowcmb', uni=0x032D, hex='032D', c='̭', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, base='circumflexcmb', isLower=True, anchors=['_bottom', 'bottom'])
+    GDS['commaaboverightcmb.uc'] = GD(name='commaaboverightcmb.uc', w=0, autoFixComponentPositions=False, autoFixMargins=False, srcName='commaaboverightcmb', isLower=False, anchors=['_top', 'top'])
+    GDS['circumflexbelowcmb'] = GD(name='circumflexbelowcmb', uni=0x032D, hex='032D', c='̭', w=0, autoFixComponentPositions=False, autoFixMargins=False, base='circumflexcmb', isLower=True, anchors=['_bottom', 'bottom'])
 
     GDS['csuperior'] = GD(name='csuperior', uni=0x1D9C, hex='1D9C', c='ᶜ', l='osuperior', isLower=False, isMod=True)
     GDS['cinferior'] = GD(name='cinferior', l='csuperior', r='csuperior', base='csuperior', isLower=True)
@@ -476,7 +476,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['dcedilla'] = GD(name='dcedilla', uni=0x1E11, hex='1E11', c='ḑ', base='d', accents=['cedillacmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['dcircumflexbelow'] = GD(name='dcircumflexbelow', uni=0x1E13, hex='1E13', c='ḓ', base='d', accents=['circumflexbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['ddotaccent'] = GD(name='ddotaccent', uni=0x1E0B, hex='1E0B', c='ḋ', base='d', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
-    GDS['dieresisbelowcmb'] = GD(name='dieresisbelowcmb', uni=0x0324, hex='0324', c='̤', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, base='dieresiscmb',isLower=True, anchors=['_bottom', 'bottom'])
+    GDS['dieresisbelowcmb'] = GD(name='dieresisbelowcmb', uni=0x0324, hex='0324', c='̤', w=0, autoFixComponentPositions=False, autoFixMargins=False, base='dieresiscmb',isLower=True, anchors=['_bottom', 'bottom'])
     GDS['dtail'] = GD(name='dtail', uni=0x0256, hex='0256', c='ɖ', w='d', isLower=True, comment='Glyph unicode 0256 is the lowercase letter "ɖ" in the International Phonetic Alphabet (IPA). It is used to represent a voiced retroflex plosive sound in various languages, including African languages such as Igbo, Yoruba, and Ewe. It is also used in some Native American languages such as Navajo and Tlingit. In linguistics, the IPA is commonly used to transcribe the sounds of human speech, and the glyph unicode 0256 helps to accurately represent this specific sound.')
     GDS['dz'] = GD(name='dz', uni=0x01F3, hex='01F3', c='ǳ', l='d', r='z', anchorTopY='z', anchorTopX='z', base='z', accents=['d'], isLower=True)
     GDS['dzcaron'] = GD(name='dzcaron', uni=0x01C6, hex='01C6', c='ǆ', l='d', r='z', base='dz', accents=['caroncmb'], isLower=True)
@@ -529,8 +529,8 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['glottalstop'] = GD(name='glottalstop', uni=0x0294, hex='0294', c='ʔ', l='question', r='question', isLower=True)
     GDS['glottalstopreversed'] = GD(name='glottalstopreversed', uni=0x0295, hex='0295', c='ʕ', l2r='question', r2l='question', srcName='question')
     GDS['glottalstopsmall'] = GD(name='glottalstopsmall', uni=0x0242, hex='0242', c='ɂ', l='question', r='question', isSc=True)
-    GDS['gravemacroncmb'] = GD(name='gravemacroncmb', uni=0x1DC5, hex='1DC5', c='᷅', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, srcName='gravecmb', isLower=True, anchors=['_top', 'top'])
-    GDS['gravemacroncmb.uc'] = GD(name='gravemacroncmb.uc', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, srcName='gravemacroncmb', isLower=True, anchors=['_top', 'top'])
+    GDS['gravemacroncmb'] = GD(name='gravemacroncmb', uni=0x1DC5, hex='1DC5', c='᷅', w=0, autoFixComponentPositions=False, autoFixMargins=False, srcName='gravecmb', isLower=True, anchors=['_top', 'top'])
+    GDS['gravemacroncmb.uc'] = GD(name='gravemacroncmb.uc', w=0, autoFixComponentPositions=False, autoFixMargins=False, srcName='gravemacroncmb', isLower=False, anchors=['_top', 'top'])
     GDS['gsingle'] = GD(name='gsingle', uni=0x0261, hex='0261', c='ɡ', base='g', isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['gstroke'] = GD(name='gstroke', uni=0x01E5, hex='01E5', c='ǥ', l='g', r='hyphen', base='g', accents=['slashlongcmb'], isLower=True)
 
@@ -602,7 +602,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['lmiddletilde'] = GD(name='lmiddletilde', uni=0x026B, hex='026B', c='ɫ', l='asciitilde', r='asciitilde', base='l', isLower=True)
     GDS['longs'] = GD(name='longs', uni=0x017F, hex='017F', c='ſ', w='f', r2l='j',  anchorTopX='TopX', anchorTopY='TopY', isLower=True, fixAccents=False, anchors=['top'], comment='ſ S, LATIN SMALL LETTER LONG')
     GDS['longsdotaccent'] = GD(name='longsdotaccent', uni=0x1E9B, hex='1E9B', c='ẛ', w='longs', bl='longs', base='longs', accents=['dotaccentcmb'], isLower=True, anchors=['top'])
-    GDS['lowlinecmb'] = GD(name='lowlinecmb', uni=0x0332, hex='0332', c='̲', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_bottom', 'bottom'])
+    GDS['lowlinecmb'] = GD(name='lowlinecmb', uni=0x0332, hex='0332', c='̲', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_bottom', 'bottom'])
 
     GDS['lsuperior'] = GD(name='lsuperior', uni=0x02E1, hex='02E1', c='ˡ', l='hsuperior', r='nsuperior', isMod=True)
     GDS['linferior'] = GD(name='linferior', uni=0x2097, hex='2097', c='ₗ', l='lsuperior', r='lsuperior', base='lsuperior', isLower=True)
@@ -614,7 +614,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['minussuperior'] = GD(name='minussuperio', uni=0x02D7, hex='02D7', c='˗', l=GD.CAT_MOD_MIN_MARGIN, r=GD.CAT_MOD_MIN_MARGIN, isLower=True, isMod=True)
     GDS['mturned'] = GD(name='mturned', uni=0x026F, hex='026F', srcName='m', l2r='m', r2l='m', c='ɯ', isLower=True)
 
-    GDS['minusbelowcmb'] = GD(name='minusbelowcmb', uni=0x0320, hex='0320', c='̠', w=0, base='minussuperior', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_bottom', 'bottom'])
+    GDS['minusbelowcmb'] = GD(name='minusbelowcmb', uni=0x0320, hex='0320', c='̠', w=0, base='minussuperior', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_bottom', 'bottom'])
 
     GDS['msuperior'] = GD(name='msuperior', uni=0x1D50, hex='1D50', c='ᵐ', l='nsuperior', r='nsuperior', isLower=False, isMod=True)
     GDS['minferior'] = GD(name='minferior', uni=0x2098, hex='2098', c='ₘ', l='msuperior', r='msuperior', base='msuperior', isLower=True)
@@ -720,9 +720,9 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['tesh'] = GD(name='tesh', uni=0x02A7, hex='02A7', c='ʧ', l='t', r='off', base='t', isLower=True)
     GDS['theta'] = GD(name='theta', uni=0x03B8, hex='03B8', c='θ')
     GDS['thook'] = GD(name='thook', uni=0x01AD, hex='01AD', c='ƭ', l='t', w='t', srcName='t', isLower=True)
-    GDS['tildebelowcmb'] = GD(name='tildebelowcmb', uni=0x0330, hex='0330', c='̰', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, base='tildecmb', isLower=True, anchors=['_bottom', 'bottom'])
+    GDS['tildebelowcmb'] = GD(name='tildebelowcmb', uni=0x0330, hex='0330', c='̰', w=0, autoFixComponentPositions=False, autoFixMargins=False, base='tildecmb', isLower=True, anchors=['_bottom', 'bottom'])
     GDS['tildebelow'] = GD(name='tildebelow', uni=0x0330, hex='0330', c='̰', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='tildebelowcmb', isLower=True, anchors=['bottom', '_bottom'], gid=1706)
-    GDS['tildeoverlaycmb'] = GD(name='tildeoverlaycmb', uni=0x0334, hex='0334', c='̴', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, w=0, base='tildecmb', isLower=True, anchors=['_middle', 'middle'])
+    GDS['tildeoverlaycmb'] = GD(name='tildeoverlaycmb', uni=0x0334, hex='0334', c='̴', autoFixComponentPositions=False, autoFixMargins=False, w=0, base='tildecmb', isLower=True, anchors=['_middle', 'middle'])
     GDS['tretroflexhook'] = GD(name='tretroflexhook', uni=0x0288, hex='0288', c='ʈ', l='t', r='t', srcName='t', isLower=True)
 
     GDS['tsuperior'] = GD(name='tsuperior', isLower=True, anchors=[]) # No unicode for this one. uni=0x0000, hex='0000', c='????', 
@@ -757,8 +757,8 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['verticallinesuperior'] = GD(name='verticallinesuperior', uni=0x02C8, hex='02C8', r2l='jsuperior', r='jsuperior', c='ˈ', isMod=True)
     GDS['verticallineinferior'] = GD(name='verticallineinferior', base='verticallinesuperior', l='verticallinesuperior', r='verticallinesuperior', isMod=True)
 
-    GDS['verticallineabovecmb'] = GD(name='verticallineabovecmb', uni=0x030D, hex='030D', c='̍', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top'])
-    GDS['verticallinebelowcmb'] = GD(name='verticallinebelowcmb', uni=0x0329, hex='0329', c='̩', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_bottom', 'bottom'])
+    GDS['verticallineabovecmb'] = GD(name='verticallineabovecmb', uni=0x030D, hex='030D', c='̍', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top'])
+    GDS['verticallinebelowcmb'] = GD(name='verticallinebelowcmb', uni=0x0329, hex='0329', c='̩', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_bottom', 'bottom'])
 
     # w
 
@@ -824,25 +824,25 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     # Accents
 
-    GDS['tildebelowcmb'] = GD(name='tildebelowcmb', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, base='tildecmb', anchors=['bottom', '_bottom'])
-    GDS['slashlongcmb'] = GD(name='slashlongcmb', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, anchors=['_middle'])
-    GDS['dotmiddlecmb'] = GD(name='dotmiddlecmb', w=0, anchors=['_dot'], autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, base='dotaccentcmb')
-    GDS['strokecmb'] = GD(name='strokecmb', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, anchors=['_middle'])
-    GDS['invertedbrevecmb'] = GD(name='invertedbrevecmb', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, anchors=['_top'], srcName='brevecmb')
-    GDS['macronbelowcmb'] = GD(name='macronbelowcmb', uni=0x0331, hex='0331', c='̱', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, base='macroncmb', isLower=True, anchors=['bottom', '_bottom'], comment='COMBINING MACRON BELOW')
-    GDS['ringbelowcmb'] = GD(name='ringbelowcmb', uni=0x0325, hex='0325', c='̥', l='center', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, base='ringcmb', isLower=True, anchors=['_bottom', 'bottom'], comment='COMBINING RING BELOW')
+    GDS['tildebelowcmb'] = GD(name='tildebelowcmb', w=0, autoFixComponentPositions=False, autoFixMargins=False, base='tildecmb', isLower=True, anchors=['bottom', '_bottom'])
+    GDS['slashlongcmb'] = GD(name='slashlongcmb', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_middle'])
+    GDS['dotmiddlecmb'] = GD(name='dotmiddlecmb', w=0, anchors=['_dot'], autoFixComponentPositions=False, autoFixMargins=False, isLower=True, base='dotaccentcmb')
+    GDS['strokecmb'] = GD(name='strokecmb', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_middle'])
+    GDS['invertedbrevecmb'] = GD(name='invertedbrevecmb', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, anchors=['_top', 'top'], srcName='brevecmb')
+    GDS['macronbelowcmb'] = GD(name='macronbelowcmb', uni=0x0331, hex='0331', c='̱', w=0, autoFixComponentPositions=False, autoFixMargins=False, base='macroncmb', isLower=True, anchors=['bottom', '_bottom'], comment='COMBINING MACRON BELOW')
+    GDS['ringbelowcmb'] = GD(name='ringbelowcmb', uni=0x0325, hex='0325', c='̥', l='center', w=0, autoFixComponentPositions=False, autoFixMargins=False, base='ringcmb', isLower=True, anchors=['_bottom', 'bottom'], comment='COMBINING RING BELOW')
 
-    GDS['dblgravecmb'] = GD(name='dblgravecmb', uni=0x030F, hex='030F', c='̏', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, base='gravecmb', accents=['gravecmb'], anchors=['top', '_top'])
-    GDS['dblgravecmb.uc'] = GD(name='dblgravecmb.uc', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, srcName='dblgravecmb', isLower=True, anchors=['_top', 'top'])
-    GDS['dotaboverightcmb'] = GD(name='dotaboverightcmb', uni=0x0358, hex='0358', c='͘', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, base='dotaccentcmb', isLower=True, anchors=['_top', 'top'])
-    GDS['dotaboverightcmb.uc'] = GD(name='dotaboverightcmb.uc', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, srcName='dotaboverightcmb', isLower=True, anchors=['_top', 'top'])
-    GDS['doublebrevebelowcmb'] = GD(name='doublebrevebelowcmb', uni=0x035C, hex='035C', c='͜', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, base='doublebrevecmb', isLower=True, anchors=['_bottom', 'bottom'])
-    GDS['doublebrevecmb'] = GD(name='doublebrevecmb', uni=0x035D, hex='035D', c='͝', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top'])
-    GDS['doublebrevecmb.uc'] = GD(name='doublebrevecmb.uc', w=0, srcName='doublebrevecmb', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=True, anchors=['_top', 'top'])
+    GDS['dblgravecmb'] = GD(name='dblgravecmb', uni=0x030F, hex='030F', c='̏', l=GD.CAT_CENTER, w=0, anchorTopX=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, base='gravecmb', accents=['gravecmb'], anchors=['top', '_top'])
+    GDS['dblgravecmb.uc'] = GD(name='dblgravecmb.uc', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, srcName='dblgravecmb', isLower=False, anchors=['_top', 'top'])
+    GDS['dotaboverightcmb'] = GD(name='dotaboverightcmb', uni=0x0358, hex='0358', c='͘', w=0, autoFixComponentPositions=False, autoFixMargins=False, base='dotaccentcmb', isLower=True, anchors=['_top', 'top'])
+    GDS['dotaboverightcmb.uc'] = GD(name='dotaboverightcmb.uc', w=0, autoFixComponentPositions=False, autoFixMargins=False, srcName='dotaboverightcmb', isLower=False, anchors=['_top', 'top'])
+    GDS['doublebrevebelowcmb'] = GD(name='doublebrevebelowcmb', uni=0x035C, hex='035C', c='͜', w=0 , autoFixComponentPositions=False, autoFixMargins=False, base='doublebrevecmb', isLower=True, anchors=['_bottom', 'bottom'])
+    GDS['doublebrevecmb'] = GD(name='doublebrevecmb', uni=0x035D, hex='035D', c='͝', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top'])
+    GDS['doublebrevecmb.uc'] = GD(name='doublebrevecmb.uc', w=0, srcName='doublebrevecmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top'])
 
-    GDS['slashlongcmb.uc'] = GD(name='slashlongcmb.uc', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, anchors=['_middle'])
-    GDS['strokecmb.uc'] = GD(name='strokecmb.uc', w=0, srcName='strokecmb', autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, anchors=['_middle'])
-    GDS['invertedbrevecmb.uc'] = GD(name='invertedbrevecmb.uc', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, anchors=['_top'], srcName='brevecmb.uc')
+    GDS['slashlongcmb.uc'] = GD(name='slashlongcmb.uc', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_middle'])
+    GDS['strokecmb.uc'] = GD(name='strokecmb.uc', w=0, srcName='strokecmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_middle'])
+    GDS['invertedbrevecmb.uc'] = GD(name='invertedbrevecmb.uc', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top'], srcName='brevecmb.uc')
 
     # Fractions
 

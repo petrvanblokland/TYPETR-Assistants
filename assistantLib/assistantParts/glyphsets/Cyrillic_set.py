@@ -447,8 +447,8 @@ CYRILLIC_SET = {
     'zhedieresis-cy': GD(name='zhedieresis-cy', uni=0x04DD, hex='04DD', c='ӝ', l='zhe-cy', r='zhe-cy', base='zhe-cy', accents=['dieresiscmb'], isLower=True, anchors=['top'], gid=866),
   
     'breve-cy': GD(name='breve-cy', base='brevecmb-cy', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, ),
-    'brevecmb-cy': GD(name='breve-cy', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, srcName='brevecmb', anchors=['_top', 'top'], ),
-    'brevecmb-cy.uc': GD(name='breve-cy.uc', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, srcName='brevecmb.uc', anchors=['_top', 'top'], ),
+    'brevecmb-cy': GD(name='breve-cy', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, srcName='brevecmb', isLower=True, anchors=['_top', 'top'], ),
+    'brevecmb-cy.uc': GD(name='breve-cy.uc', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, isLower=False, srcName='brevecmb.uc', anchors=['_top', 'top'], ),
 
 }
 

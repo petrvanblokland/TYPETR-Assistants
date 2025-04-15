@@ -180,6 +180,7 @@ class GlyphData:
         self._isSc = isSc # Is smallcap
         self._isOnum = isOnum # Is old-style figure
         self._isMod = isMod # Glyph is a modifier.
+        # Flag indicating that the glyphs in accents are diacritics or not (makes difference in positioning the anchors)
         self._hasDiacritics = hasDiacritics # Glyph contains one or more diacritics
         self._isDiacritic = isDiacritic
 

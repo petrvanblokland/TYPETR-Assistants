@@ -121,8 +121,8 @@ class AssistantPartGuidelines(BaseAssistantPart):
         guidelines.append((x + tg * capHeight, capHeight, 0, f'capHeight {capHeight}'))
  
 
-        if gd.isLower or 'comb' in g.name or 'cmb' in g.name:
-            if md.baseDiacriticsTop is not None: # Baseline of top diacritics
+        if gd.isLower:
+            if md.baseDiacriticsTop is not None and ('comb' in g.name or 'cmb' in g.name): # Baseline of lower case top diacritics
                 guidelines.append((xo + tg * md.baseDiacriticsTop, md.baseDiacriticsTop, 0, f'Bottom of top diacritics ({md.baseDiacriticsTop})'))
                 self.setLib(f, 'baseDiacriticsTop', md.baseDiacriticsTop) # Save value, so an independent proofing script can find it.
                 guidelines.append((xo + tg * md.baseDiacriticsTop, md.baseDiacriticsTop - overshoot, 0, f"{md.baseDiacriticsTop - overshoot} ({overshoot})"))

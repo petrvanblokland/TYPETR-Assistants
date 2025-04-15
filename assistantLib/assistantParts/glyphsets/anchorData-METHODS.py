@@ -219,6 +219,11 @@ class AnchorData:
         'commaturnedabovecmb': _TOP,
         #'commaaccenttopcmb': TOP,
 
+        'testcmb': _TOP,
+        'testcmb.uc': _TOP,
+        'testbelowcmb': _BOTTOM,
+        'testbelowcmb.uc': _BOTTOM,
+        
         'acutecmb.uc': _TOP,
         'brevecmb.uc': _TOP,
         'caroncmb.uc': _TOP,

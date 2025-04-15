@@ -173,9 +173,9 @@ class AnchorData:
     }
 
     # Default offset positions for guessed anchor positions. Can be redefined in the MasterData for each master UFO.
-    ANCHOR_ASCENDER_OFFSET = 120 # Offset down, will be made negative.
-    ANCHOR_BOXTOP_OFFSET = 120 # Offset down, will be made negative.
-    ANCHOR_CAP_OFFSET = 78 # Offset down, will be made negative.
+    ANCHOR_ASCENDER_OFFSET = 120 # Offset down from box top, will be made negative.
+    ANCHOR_BOXTOP_OFFSET = 120 # Offset down from box top, will be made negative.
+    ANCHOR_CAP_OFFSET = 78 # Offset down, will be made negative, used in case .uc are on xHeight
     ANCHOR_OFFSET = 16 # Default amount for vertical anchor offset, avoiding them to collide with baseline, xHeight, etc.
     ANCHOR_OGONEK_OFFSET = ANCHOR_OFFSET
     ANCHOR_BOXBOTTOM_OFFSET = 64
@@ -187,12 +187,14 @@ class AnchorData:
     ]
     # Diacritics to show a subset-cloud by the contours part.
     EXAMPLE_DIACRITICS = {
-        TOP_: ('gravecomb', 'acutecomb', 'circumflexcomb', 'macroncomb', 'dotaccentcomb', 'dieresiscomb', 'tildecomb',
-               'gravecmb', 'acutecmb', 'circumflexcmb', 'macroncmb', 'dotaccentcmb', 'dieresiscmb', 'tildecmb', 'ringcmb',
-                'gravecomb.uc', 'acutecomb.uc', 'circumflexcomb.uc', 'macroncomb.uc', 'dotaccentcomb.uc', 'dieresiscomb.uc', 'tildecomb.uc',
-               'gravecmb.uc', 'acutecmb.uc', 'circumflexcmb.uc', 'macroncmb.uc', 'dotaccentcmb.uc', 'dieresiscmb.uc', 'tildecmb.uc', 'ringcmb.uc'),
-        BOTTOM_: ('plusbelowcomb', 'ringbelowcomb', 'cedillacomb', 
-                  'plusbelowcmb', 'ringbelowcmb', 'cedillacmb'),
+        #TOP_: ('gravecomb', 'acutecomb', 'circumflexcomb', 'macroncomb', 'dotaccentcomb', 'dieresiscomb', 'tildecomb',
+        #       'gravecmb', 'acutecmb', 'circumflexcmb', 'macroncmb', 'dotaccentcmb', 'dieresiscmb', 'tildecmb', 'ringcmb',
+        #        'gravecomb.uc', 'acutecomb.uc', 'circumflexcomb.uc', 'macroncomb.uc', 'dotaccentcomb.uc', 'dieresiscomb.uc', 'tildecomb.uc',
+        #       'gravecmb.uc', 'acutecmb.uc', 'circumflexcmb.uc', 'macroncmb.uc', 'dotaccentcmb.uc', 'dieresiscmb.uc', 'tildecmb.uc', 'ringcmb.uc'),
+        TOP_: ('testcmb',), # 'testcmb.uc' is replaced automatic
+        #BOTTOM_: ('plusbelowcomb', 'ringbelowcomb', 'cedillacomb', 
+        #          'plusbelowcmb', 'ringbelowcmb', 'cedillacmb'),
+        BOTTOM_: ('testbelowcmb',),
         MIDDLE_: ('slashshortcomb', 'slashshortcmb'),
         OGONEK_: ('ogonekcomb', 'ogonekcmb'),
         TOPLEFT_: ('tonoscomb', 'tonoscmb', 'tonos-uc', 'tonoscmb.uc'),
@@ -201,6 +203,10 @@ class AnchorData:
     }
 
     ACCENT_DATA = {
+        'testcmb': _TOP, # Triangle for testing automatic positions of anchors
+        'testcmb.uc': _TOP,
+        'testbelowcmb': _BOTTOM,
+
         'acutecmb': _TOP,
         'brevecmb': _TOP,
         'brevecmb-cy': _TOP,
@@ -427,7 +433,9 @@ class AnchorData:
 
     # Tables below are mainly use to export _export/Exported_Glyphset.py, etc. or to initialize in GlyphData contruction.
 
-    TOP_ANCHORS = {'A', 'A-cy', 'AE', 'AEacute', 'AEmacron', 'Aacute', 'Abreve', 'Abreve-cy', 'Abreve.component', 'Abreve.component1', 'Abreve.component2', 
+    TOP_ANCHORS = {
+        'testcmb', 'testcmb.uc',
+        'A', 'A-cy', 'AE', 'AEacute', 'AEmacron', 'Aacute', 'Abreve', 'Abreve-cy', 'Abreve.component', 'Abreve.component1', 'Abreve.component2', 
         'Abreve.component3', 'Abreveacute', 'Abrevedotbelow', 'Abrevegrave', 'Abrevehookabove', 'Abrevetilde', 'Acaron', 'Acircumflex', 'Acircumflexacute', 
         'Acircumflexdotbelow', 'Acircumflexgrave', 'Acircumflexhookabove', 'Acircumflextilde', 'Adblgrave', 'Adieresis', 'Adieresis-cy', 'Adieresismacron', 
         'Adotaccent', 'Adotbelow', 'Adotmacron', 'Agrave', 'Ahookabove', 'Aie-cy', 'Ainvertedbreve', 'Alpha', 'Alphadasia', 'Alphadasiaoxia', 
@@ -550,7 +558,8 @@ class AnchorData:
         'dottedCircle', 'ringhalfleft',
     }
 
-    MIDDLE_ANCHORS = {'A', 'Aring', 'Aringacute', 'A-cy', 'AE', 'AEacute', 'AEmacron', 'Aacute', 'Abreve', 'Abreve-cy', 'Abreveacute', 'Abrevedotbelow', 
+    MIDDLE_ANCHORS = {
+        'A', 'Aring', 'Aringacute', 'A-cy', 'AE', 'AEacute', 'AEmacron', 'Aacute', 'Abreve', 'Abreve-cy', 'Abreveacute', 'Abrevedotbelow', 
         'Abrevegrave', 'Abrevehookabove', 'Abrevetilde', 'Acaron', 'Acircumflex', 'Acircumflexacute', 'Acircumflexdotbelow', 
         'Acircumflexgrave', 'Acircumflexhookabove', 'Acircumflextilde', 'Adblgrave', 'Adieresis', 'Adieresis-cy', 'Adieresismacron', 
         'Adotaccent', 'Adotbelow', 'Adotmacron', 'Agrave', 'Ahookabove', 'Aie-cy', 'Ainvertedbreve', 'Alpha', 'Alphadasia', 
@@ -642,7 +651,9 @@ class AnchorData:
         'ringhalfleftcentered', 'ringhalfrightcentered', 
         }
 
-    BOTTOM_ANCHORS = {'A', 'Aring', 'Aringacute', 'A-cy', 'AE', 'AEacute', 'AEmacron', 'Aacute', 'Abreve', 'Abreve-cy', 'Abreveacute', 'Abrevedotbelow', 
+    BOTTOM_ANCHORS = {
+        'testbelowcmb',
+        'A', 'Aring', 'Aringacute', 'A-cy', 'AE', 'AEacute', 'AEmacron', 'Aacute', 'Abreve', 'Abreve-cy', 'Abreveacute', 'Abrevedotbelow', 
         'Abrevegrave', 'Abrevehookabove', 'Abrevetilde', 'Acaron', 'Acircumflex', 'Acircumflexacute', 'Acircumflexdotbelow', 
         'Acircumflexgrave', 'Acircumflexhookabove', 'Acircumflextilde', 'Adblgrave', 'Adieresis', 'Adieresis-cy', 'Adieresismacron', 
         'Adotaccent', 'Adotbelow', 'Adotmacron', 'Agrave', 'Ahookabove', 'Aie-cy', 'Ainvertedbreve', 'Alpha', 'Alphadasia', 
@@ -746,7 +757,8 @@ class AnchorData:
          'arrowheadrightheaddownbelow', 'igrave', 'iacute', 'icircumflex', 'idieresis',  
     }
 
-    OGONEK_ANCHORS = {'A', 'Aring', 'Aringacute', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u',
+    OGONEK_ANCHORS = {
+        'A', 'Aring', 'Aringacute', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u',
         'A-cy', 'Aacute', 'Abreve', 'Abreve-cy', 'Abreveacute', 'Abrevedotbelow', 'Abrevegrave', 'Abrevehookabove', 'Abrevetilde', 'Acaron', 'Acircumflex', 
         'Acircumflexacute', 'Acircumflexdotbelow', 'Acircumflexgrave', 'Acircumflexhookabove', 'Acircumflextilde', 'Adblgrave', 'Adieresis', 'Adieresis-cy', 
         'Adieresismacron', 'Adotaccent', 'Adotbelow', 'Adotmacron', 'Agrave', 'Ahookabove', 'Ainvertedbreve', 'Alpha', 'Alphadasia', 'Alphadasiaoxia', 
@@ -784,11 +796,17 @@ class AnchorData:
         'uogonek', 'uretroflexhook', 'uring', 'utilde', 'utildeacute', 'utildebelow'
     }
 
-    DOT_ANCHORS = {'C', 'L', 'SigmaLunateReversedSymbol', 'c', 'h', 'l', 'oopen'}
+    DOT_ANCHORS = {
+        'C', 'L', 'SigmaLunateReversedSymbol', 'c', 'h', 'l', 'oopen',
+    }
 
-    TOPLEFT_ANCHORS = {'A', 'E', 'H', 'I', 'O', 'Ohm', 'P', 'UpsilonhookSymbol', 'Y', 'Alpha'}
+    TOPLEFT_ANCHORS = {
+        'A', 'E', 'H', 'I', 'O', 'Ohm', 'P', 'UpsilonhookSymbol', 'Y', 'Alpha',
+    }
 
-    VERT_ANCHORS = {'L', 'd', 'l', 't'}
+    VERT_ANCHORS = {
+        'L', 'd', 'l', 't'
+    }
 
     # Tilde anchors changed into top anchor.
     #TILDE_ANCHORS = ['Utilde', 'ytilde', 'lowtildemod', 'atilde', 'ohorntilde', 'utilde', 'Uhorntilde', 'Ntilde', 'Ytilde', 'Otilde', 
@@ -796,6 +814,7 @@ class AnchorData:
     #    'Vtilde', 'Itilde', 'etilde', 'itilde']
 
     _TOP_ANCHORS = {
+        'testcmb', 'testcmb.uc',
         'dblgravecmb', 'dblgravecmb.uc', 
         'Abreve.component', 'Abreve.component1', 'Abreve.component2', 'Abreve.component3', 'Idieresis.component', 'Otilde.component', 
         'Otilde.component1', 'Sacute.component', 'Scaron.component', 'Udieresis.component', 'Umacron.component', 'abreve.component', 
@@ -834,7 +853,9 @@ class AnchorData:
     _MIDDLE_ANCHORS = ['slashlongcomb', 'strokelongcomb', 'strokeshortcomb', 'slashshortcomb', 'tildeoverlaycomb', 'ringhalfleftcentered', 'ringhalfrightcentered', 
         'middlegraveaccentmod', 'dagesh-hb', ', ']
 
-    _BOTTOM_ANCHORS = {'acutebelowcomb', 'arrowdoublerightbelowcomb', 'arrowheadleftbelowcomb', 'arrowheadrightbelowcomb', 'arrowheadrightheadupbelowcomb', 
+    _BOTTOM_ANCHORS = {
+    'testbelowcmb.uc',
+    'acutebelowcomb', 'arrowdoublerightbelowcomb', 'arrowheadleftbelowcomb', 'arrowheadrightbelowcomb', 'arrowheadrightheadupbelowcomb', 
     'arrowleftrightbelowcomb', 'arrowupbelowcomb', 'asteriskbelowcomb', 'brevebelow', 'breveinvertedbelowcomb', 'bridgebelowcomb', 'bridgeinvertedbelowcomb', 
     'caronbelowcomb', 'cedillacomb', 'cedillacomb.component', 'circumflexbelow', 'circumflexbelowcomb', 'commaaccentcomb', 
     'dblarchinvertedbelowcomb', 'dbllowlinecomb', 'dieresisbelow', 'dotbelowcomb', 'doublebrevebelowcomb', 'doubleringbelowcomb', 'doubleverticallinebelowcomb', 
