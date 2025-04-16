@@ -112,7 +112,7 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
     GDS['Hcedilla'] = GD(name='Hcedilla', uni=0x1E28, hex='1E28', c='Ḩ', w='H', base='H', accents=['cedillacmb.noconnect'], fixAccents=False, anchors=['bottom', 'middle', 'top'], gid=963)
 
     # Separate, because it's sourcefor all other .sc
-    GDS['H.sc'] = GD(name='H.sc', fixAccents=False, autoFixAnchorPositionY=False, anchors=['bottom', 'middle', 'top'])
+    GDS['H.sc'] = GD(name='H.sc', fixAccents=False, anchors=['bottom', 'middle', 'top'])
 
     # I
 
@@ -282,7 +282,7 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
     GDS['rdotbelow'] = GD(name='rdotbelow', uni=0x1E5B, hex='1E5B', c='ṛ', w='r', rightMin='-100', base='r', accents=['dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1014)
     GDS['rdotbelowmacron'] = GD(name='rdotbelowmacron', uni=0x1E5D, hex='1E5D', c='ṝ', w='r', bl='r', base='r', accents=['macroncmb', 'dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1016)
     GDS['ringhalfleftcmb'] = GD(name='ringhalfleftcmb', uni=0x02BF, hex='02BF', c='ʿ', l='center', w=0, autoFixComponentPositions=False, autoFixMargins=False, srcName='ringcmb', isLower=True, anchors=['_top', 'top'], gid=473)
-    GDS['ringhalfrightcmb'] = GD(name='ringhalfrightcmb', uni=0x02BE, hex='02BE', c='ʾ', l='center', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, srcName='ringcmb', isLower=True, anchors=['_top', 'top'], gid=472)
+    GDS['ringhalfrightcmb'] = GD(name='ringhalfrightcmb', uni=0x02BE, hex='02BE', c='ʾ', l='center', w=0, autoFixComponentPositions=False, autoFixMargins=False, srcName='ringcmb', isLower=True, anchors=['_top', 'top'], gid=472)
     GDS['rlinebelow'] = GD(name='rlinebelow', uni=0x1E5F, hex='1E5F', c='ṟ', w='r', bl='r', base='r', accents=['macronbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1018)
     GDS['ruble'] = GD(name='ruble', uni=0x20BD, hex='20BD', c='₽', w='zero.tnum', isLower=True, gid=1462)
 

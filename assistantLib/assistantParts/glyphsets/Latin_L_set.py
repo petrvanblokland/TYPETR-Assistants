@@ -462,7 +462,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     GDS['commaabovecmb'] = GD(name='commaabovecmb', uni=0x0313, hex='0313', c='̓', w=0, autoFixComponentPositions=False, autoFixMargins=False, base='koronis', isLower=True, anchors=['_top', 'top'])
     GDS['commaabovecmb.uc'] = GD(name='commaabovecmb.uc', w=0, autoFixComponentPositions=False, autoFixMargins=False, srcName='commaabovecmb', isLower=False, anchors=['_top', 'top'])
-    GDS['commaaboverightcmb'] = GD(name='commaaboverightcmb', uni=0x0315, hex='0315', c='̕', w=0, autoFixComponentPositions=False, autoFixMargins=False, autoFixAnchorPositionY=False, base='psili', isLower=True, anchors=['_top', 'top'])
+    GDS['commaaboverightcmb'] = GD(name='commaaboverightcmb', uni=0x0315, hex='0315', c='̕', w=0, autoFixComponentPositions=False, autoFixMargins=False, base='psili', isLower=True, anchors=['_top', 'top'])
     GDS['commaaboverightcmb.uc'] = GD(name='commaaboverightcmb.uc', w=0, autoFixComponentPositions=False, autoFixMargins=False, srcName='commaaboverightcmb', isLower=False, anchors=['_top', 'top'])
     GDS['circumflexbelowcmb'] = GD(name='circumflexbelowcmb', uni=0x032D, hex='032D', c='̭', w=0, autoFixComponentPositions=False, autoFixMargins=False, base='circumflexcmb', isLower=True, anchors=['_bottom', 'bottom'])
 
