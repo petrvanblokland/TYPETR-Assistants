@@ -102,13 +102,14 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
         if g is None:
             return
         nIndex = spIndex = 0
+        spIndex = 0 # Index of start point Merz 
+        aIndex = 0 # Index of anchor point Merz
+
         if g is not None and c.w.showFamilyOverview.get():
             f = g.font
             y = f.info.unitsPerEm / self.FAMILY_OVERVIEW_SCALE
 
             parentPath = self.filePath2ParentPath(f.path)
-            spIndex = 0 # Index of start point Merz 
-            aIndex = 0 # Index of anchor point Merz
 
             startPos, totalFamilyOverviewSingleWidth = self.getStartPointAndSingleWidthFamilyOverview(g)
                         

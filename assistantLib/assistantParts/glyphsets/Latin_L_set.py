@@ -584,7 +584,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['kcaron'] = GD(name='kcaron', uni=0x01E9, hex='01E9', c='ǩ', base='k', accents=['caroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['kgreenlandic'] = GD(name='kgreenlandic', uni=0x0138, hex='0138', c='ĸ', l='K.sc', w='K.sc', base='ka-cy', isLower=True, anchors=['top'], comment='ĸ LATIN SMALL LETTER KRA')
     GDS['kstroke'] = GD(name='kstroke', uni=0xA741, hex='A741', c='ꝁ', l='hyphen', r='k', base='k', isLower=True, anchors=['bottom', 'middle', 'top'])
-    GDS['koronis'] = GD(name='koronis', uni=0x1FBD, hex='1FBD', c='᾽', w=0, isLower=True, anchors=['top'])
+    GDS['koronis'] = GD(name='koronis', uni=0x1FBD, hex='1FBD', c='᾽', w=0, isLower=True, anchors=['top', '_top'])
 
     GDS['ksuperior'] = GD(name='ksuperior', uni=0x1D4F, hex='1D4F', c='ᵏ', l='hsuperior', isLower=False, isMod=True)
     GDS['kinferior'] = GD(name='kinferior', uni=0x2096, hex='2096', c='ₖ', l='ksuperior', r='ksuperior', base='ksuperior')

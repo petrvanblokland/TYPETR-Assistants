@@ -84,7 +84,7 @@ class AssistantPartOverlay(BaseAssistantPart):
         self.srcUFOPathOverlay = container.appendPathSublayer(
             position=(0, 0),
             fillColor=self.OVERLAY_FILL_SRC_COLOR,
-                visible=False,
+            visible=False,
         )
         # Triggered by w.someUFOPathOverlay
         self.someUFOPathOverlay = container.appendPathSublayer(
@@ -396,7 +396,7 @@ class AssistantPartOverlay(BaseAssistantPart):
         c.w.overlayPositionSlider = Slider((C1, y, CW, L), minValue=0, maxValue=self.MAX_OVERLAY_SLIDER, value=0, 
             sizeStyle='small', continuous=True, callback=self.updateOverlayPositionSliderCallback)
         y += L
-        c.w.srcUFOPathOverlay = CheckBox((C0, y, CW, L), 'Source UFO overlay', value=True, sizeStyle='small', callback=self.updateEditor)
+        c.w.srcUFOPathOverlay = CheckBox((C0, y, CW, L), 'Source UFO overlay', value=False, sizeStyle='small', callback=self.updateEditor)
         c.w.someUFOPathOverlay = CheckBox((C1, y, CW, L), 'Some UFO overlay', value=False, sizeStyle='small', callback=self.updateEditor)
         c.w.orgUFOPathOverlay = CheckBox((C2, y, CW, L), 'Original UFO overlay', value=False, sizeStyle='small', callback=self.updateEditor)
         y += L

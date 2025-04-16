@@ -121,35 +121,36 @@ class AssistantPartGuidelines(BaseAssistantPart):
         guidelines.append((x + tg * capHeight, capHeight, 0, f'capHeight {capHeight}'))
  
 
-        if gd.isLower:
-            if md.baseDiacriticsTop is not None and ('comb' in g.name or 'cmb' in g.name): # Baseline of lower case top diacritics
-                guidelines.append((xo + tg * md.baseDiacriticsTop, md.baseDiacriticsTop, 0, f'Bottom of top diacritics ({md.baseDiacriticsTop})'))
-                self.setLib(f, 'baseDiacriticsTop', md.baseDiacriticsTop) # Save value, so an independent proofing script can find it.
-                guidelines.append((xo + tg * md.baseDiacriticsTop, md.baseDiacriticsTop - overshoot, 0, f"{md.baseDiacriticsTop - overshoot} ({overshoot})"))
-        
-        elif gd.isSc and md.scDiacriticsTop is not None:
-            guidelines.append((xo + tg * md.scDiacriticsTop, md.scDiacriticsTop, 0, f'Bottom of top diacritics ({md.scDiacriticsTop})'))
-            self.setLib(f, 'scDiacriticsTop', md.scDiacriticsTop) # Save value, so an independent proofing script can find it.
-            guidelines.append((xo + tg * md.scDiacriticsTop, md.scDiacriticsTop - overshoot, 0, f"{md.scDiacriticsTop - overshoot} ({overshoot})"))
-
-        elif md.capDiacriticsTop is not None: # Baseline of top diacritics
-            guidelines.append((xo + tg * md.capDiacriticsTop, md.capDiacriticsTop, 0, f'Bottom of top diacritics ({md.capDiacriticsTop})'))
-            self.setLib(f, 'capDiacriticsTop', md.capDiacriticsTop) # Save value, so an independent proofing script can find it.
-            guidelines.append((xo + tg * md.capDiacriticsTop, md.capDiacriticsTop - overshoot, 0, f"{md.capDiacriticsTop - overshoot} ({overshoot})"))
-
-        if md.baseDiacriticsBottom is not None:
-            guidelines.append((xo + tg * md.baseDiacriticsBottom, md.baseDiacriticsBottom, 0, f'Top of bottom diacritics ({md.baseDiacriticsBottom})'))
-            self.setLib(f, 'baseDiacriticsBottom', md.baseDiacriticsBottom) # Save value, so an independent proofing script can find it.
-            guidelines.append((xo + tg * md.baseDiacriticsBottom, md.baseDiacriticsBottom + overshoot, 0, f"{md.baseDiacriticsBottom + overshoot} ({overshoot})"))
-
         if gd is None:
             print(f'### Cannot find /{g.name} in GlyphData {md.glyphSet.__class__.__name__}')
 
-        elif gd.isLower:
-            guidelines.append((xo + tg * (md.ascender + overshoot), md.ascender + overshoot, 0, f"{md.ascender + overshoot} ({overshoot})"))
-            guidelines.append((x + tg * md.ascender, md.ascender, 0, f'Ascender {md.ascender}'))
-            guidelines.append((xo + tg * (md.descender - overshoot), md.descender - overshoot, 0, f'{md.descender - overshoot} ({overshoot})'))
-            guidelines.append((x + tg * md.descender, md.descender, 0, f'Descender {md.descender}'))
+        else:
+            if gd.isLower:
+                guidelines.append((xo + tg * (md.ascender + overshoot), md.ascender + overshoot, 0, f"{md.ascender + overshoot} ({overshoot})"))
+                guidelines.append((x + tg * md.ascender, md.ascender, 0, f'Ascender {md.ascender}'))
+                guidelines.append((xo + tg * (md.descender - overshoot), md.descender - overshoot, 0, f'{md.descender - overshoot} ({overshoot})'))
+                guidelines.append((x + tg * md.descender, md.descender, 0, f'Descender {md.descender}'))
+
+                # Guidelines for vertical diacritics positions
+                if md.baseDiacriticsTop is not None and ('comb' in g.name or 'cmb' in g.name): # Baseline of lower case top diacritics
+                    guidelines.append((xo + tg * md.baseDiacriticsTop, md.baseDiacriticsTop, 0, f'Bottom of top diacritics ({md.baseDiacriticsTop})'))
+                    self.setLib(f, 'baseDiacriticsTop', md.baseDiacriticsTop) # Save value, so an independent proofing script can find it.
+                    guidelines.append((xo + tg * md.baseDiacriticsTop, md.baseDiacriticsTop - md.diacriticsOvershoot, 0, f"{md.baseDiacriticsTop - md.diacriticsOvershoot} ({md.diacriticsOvershoot})"))
+            
+            elif gd.isSc and md.scDiacriticsTop is not None:
+                guidelines.append((xo + tg * md.scDiacriticsTop, md.scDiacriticsTop, 0, f'Bottom of top diacritics ({md.scDiacriticsTop})'))
+                self.setLib(f, 'scDiacriticsTop', md.scDiacriticsTop) # Save value, so an independent proofing script can find it.
+                guidelines.append((xo + tg * md.scDiacriticsTop, md.scDiacriticsTop - md.diacriticsOvershoot, 0, f"{md.scDiacriticsTop - md.diacriticsOvershoot} ({md.diacriticsOvershoot})"))
+
+            elif md.capDiacriticsTop is not None: # Baseline of top diacritics
+                guidelines.append((xo + tg * md.capDiacriticsTop, md.capDiacriticsTop, 0, f'Bottom of top diacritics ({md.capDiacriticsTop})'))
+                self.setLib(f, 'capDiacriticsTop', md.capDiacriticsTop) # Save value, so an independent proofing script can find it.
+                guidelines.append((xo + tg * md.capDiacriticsTop, md.capDiacriticsTop - md.diacriticsOvershoot, 0, f"{md.capDiacriticsTop - md.diacriticsOvershoot} ({md.diacriticsOvershoot})"))
+
+            if md.baseDiacriticsBottom is not None:
+                guidelines.append((xo + tg * md.baseDiacriticsBottom, md.baseDiacriticsBottom, 0, f'Top of bottom diacritics ({md.baseDiacriticsBottom})'))
+                self.setLib(f, 'baseDiacriticsBottom', md.baseDiacriticsBottom) # Save value, so an independent proofing script can find it.
+                guidelines.append((xo + tg * md.baseDiacriticsBottom, md.baseDiacriticsBottom + md.diacriticsOvershoot, 0, f"{md.baseDiacriticsBottom + md.diacriticsOvershoot} ({md.diacriticsOvershoot})"))
 
         if md.stemOvershoot is not None: # Font is using single stem overshoots, e.g. with rounded stems as in Upgrade Neon
             guidelines.append((xo + tg * (height + md.stemOvershoot), height + md.stemOvershoot, 0, f"{height + md.stemOvershoot} ({md.stemOvershoot})"))
