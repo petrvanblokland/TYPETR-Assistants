@@ -21,6 +21,8 @@ import sys, copy
 from math import *
 from vanilla import *
 
+GGGG = 'Abreveacute'
+
 try:
     from mojo.roboFont import AllFonts #
 except ImportError: # In case not running inside RoboFont
@@ -165,7 +167,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         c.w.fixAnchorsButton = Button((C2, y, CW, L), f'Fix anchors [{personalKey_A}{personalKey_a}]', callback=self.anchorsCallback)
         y += L
         c.w.showGuessedNames = CheckBox((C0, y, CW, L), 'Show guessed names', value=False, sizeStyle='small') # Show names+info of guessed positions.
-        c.w.checkFixAllMasterAnchors = CheckBox((C1, y, CW, L), 'Fix all masters', value=True, sizeStyle='small')
+        c.w.checkFixAllMasterAnchors = CheckBox((C1, y, CW, L), 'Fix all open masters', value=True, sizeStyle='small')
         y += L + L/5
         # Line color is crashing RoboFont
         #y += L # Closing line for the part UI
@@ -304,8 +306,8 @@ class AssistantPartAnchors(BaseAssistantPart):
         if gd.autoFixAnchorPositionX or gd.autoFixAnchorPositionY:
             for a in g.anchors:
                 changed |= self.autoCheckFixAnchorPosition(g, gd, a)
-            #return self._fixGlyphAnchorsY(g)
-            #print(f'... Check-fix anchor positions of {g.name}')
+            if changed:
+                print(f'... Check-fix anchor positions of {g.name} in {g.font.path.split('/')[-1]}')
         return changed
 
     def _setAnchorXY(self, g, a, x, y, italicize=True):
@@ -329,6 +331,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         then only check on these glyphs instead of the whole font.
         First check on all glyphs that have no components. Then check on the glyphs that do have component, to avoid shifts in based glyphs.
         """
+        print(f'... Check-fixing master {f.path.split('/')[-1]}')
         fontChanged = False
         if glyphNames is not None:
             if not isinstance(glyphNames, (list, tuple)):
@@ -342,6 +345,7 @@ class AssistantPartAnchors(BaseAssistantPart):
             if g.contours and not g.components:
                 changed = self.checkFixAnchors(g)
                 if changed:
+                    g.changed()
                     fontChanged = True
 
         # Then check on glyphs with components.
@@ -350,6 +354,7 @@ class AssistantPartAnchors(BaseAssistantPart):
             if g.components and not g.contours:
                 changed = self.checkFixAnchors(g)
                 if changed:
+                    g.changed()
                     fontChanged = True
 
         # Then check on hybrid glyphs with components and contours.
@@ -359,8 +364,8 @@ class AssistantPartAnchors(BaseAssistantPart):
                 changed = self.checkFixAnchors(g)
                 if changed:
                     fontChanged = True
-        
-        g.changed()
+                    g.changed()
+
         return fontChanged
 
     ANCHORS_LIB_KEY = 'anchorsLib'
@@ -485,11 +490,14 @@ class AssistantPartAnchors(BaseAssistantPart):
         2 ways (based on legacy data) to find the anchors that this glyph needs: as defined in the glyphData if named 
         anchors are part of the tables. But GlyphData already includes GLYPH_ANCHORS if no anchor attribute is defined.
         So, looking into G;lyphData is enough."""
+        if g.name == GGGG:
+            print('checkFixAnchors', g, id(g.font))
+        return self.setGlyphAnchors(g)
+
         changed = False
         changed |= self.checkFixRequiredAnchors(g) # First make sure that they all exist.
         changed |= self.checkFixAnchorPositions(g) # Fix anchor position depending on the selected method.
         changed |= self.checkFixRomanItalicAnchors(g)
-        changed != self.checkFixComponentsPosition(g) # Borrowed from components.py module
         return changed
 
     def checkFixRequiredAnchors(self, g):
@@ -527,16 +535,24 @@ class AssistantPartAnchors(BaseAssistantPart):
 
         return changed
 
-    def setGlyphAnchors(self, g):
+    def setGlyphAnchors(self, g, loop=True):
         """Called when the EditWindow selected a new glyph. Try to find previous anchor info in g.lib,
         about mode by which the current anchors are set and if they were manually moved."""
-        self.checkFixRequiredAnchors(g) # First make sure that they all exist.
+        if g.name == GGGG:
+            print('setGlyphAnchors', g, g.font.path.split('/')[-1], id(g.font))
+        if loop:
+            for gg in g.font:
+                f = self.getCurrentFont()
+                self.setGlyphAnchors(f[gg.name], False)
+
+        changed = self.checkFixRequiredAnchors(g) # First make sure that they all exist.
         gd = self.getGlyphData(g)
         if gd is None:
             print(f'### setGlyphAnchors: Cannot find GlyphData for /{g.name}')
 
         elif gd.autoFixAnchorPositionX or gd.autoFixAnchorPositionY:
             c = self.getController()
+
             for a in g.anchors:
                 # Set the offset sliders from the current values in glyph.lib
                 if a.name == AD.TOP_:
@@ -552,7 +568,8 @@ class AssistantPartAnchors(BaseAssistantPart):
                     c.w.bottomAnchorXOffsetSlider.set(ox)
                     c.w.bottomAnchorYOffsetSlider.set(oy)
 
-                self.autoCheckFixAnchorPosition(g, gd, a)
+                changed |= self.autoCheckFixAnchorPosition(g, gd, a)
+        return changed
 
     def _getAnchorTypeGlyph(self, g):
         """Answer the glyph that is model for the anchors of g. If glyphData.anchorGlyphSrc is defined then use that glyph,
@@ -573,6 +590,9 @@ class AssistantPartAnchors(BaseAssistantPart):
     #   A N C H O R  P O S I T I O N  C O N S T R U C T I O N S
 
     def autoCheckFixAnchorPosition(self, g, gd, a):
+        if g.name == GGGG:
+            print('@@@ autoCheckFixAnchorPosition', g.name, g.font.path.split('/')[-1], id(g.font))
+
         changed = False
 
         ax = ay = None
@@ -603,13 +623,17 @@ class AssistantPartAnchors(BaseAssistantPart):
         if ax is not None:
             ax = int(round(ax))
             if ax != a.x:
-                print(f'... Fix /{g.name} anchor {a.name}.x {ax} --> {a.x} sc={gd.isSc} lower={gd.isLower}')
+                print(f'... Fix /{g.name} anchor {a.name}.x {ax} --> {a.x} sc={gd.isSc} lower={gd.isLower} in {g.font.path.split('/')[-1]}')
+                print('ddd', g)
+                #zzz = ddd
                 a.x = ax
                 changed = True
         if ay is not None:
             ay = int(round(ay))
             if ay != a.y:
-                print(f'... Fix /{g.name} anchor {a.name}.y {ay} --> {a.y} sc={gd.isSc} lower={gd.isLower}')
+                print(f'... Fix /{g.name} anchor {a.name}.y {ay} --> {a.y} sc={gd.isSc} lower={gd.isLower} in {g.font.path.split('/')[-1]}')
+                print('ddd', g)
+                #fff = ddd
                 a.y = ay
                 changed = True
         return changed
@@ -973,9 +997,9 @@ class AssistantPartAnchors(BaseAssistantPart):
                     if aa is not None:
                         ax = aa.x
                     # Then add the offset of the referring component
-                    for component in g.components:
-                        if component.baseGlyph == gd.anchorTopX:
-                            ax += component.transformation[-2]
+                    #for component in g.components:
+                    #    if component.baseGlyph == gd.anchorTopX:
+                    #        ax += component.transformation[-2]
                         
                 else: # If not an existing glyph name, then we can assume it is a valid method name that will calculate the ax
                     # Available: 
@@ -1532,26 +1556,17 @@ class AssistantPartAnchors(BaseAssistantPart):
         # optionDown = event['optionDown']
         # capLock = event['capLockDown']
 
-        # If checkbox is set, then check/fix the anchors in all masters.
-        if self.getController().w.checkFixAllMasterAnchors.get():
-            fonts = AllFonts()
-            #parentPath = self.filePath2ParentPath(g.font.path)
-            #for fIndex, pth in enumerate(self.getUfoPaths(parentPath)):
-            #    fullPath = self.path2FullPath(pth)
-            #    f = self.getFont(fullPath, showInterface=g.font.path == fullPath) # Make sure RoboFont opens the current font.
-            #    fonts.append(f)
-        else:
-            fonts = [g.font]
+        # If checkbox is set, then check/fix the anchors in glyphs of the current master.
 
-        for f in fonts:
-            if g.name in f:
-                if c.lower() == c: # Just the current glyph
-                    glyphs = [f[g.name]]
-                else:
-                    glyphs = f
-                for gg in glyphs:
-                    if self.checkFixAnchors(gg):
-                        gg.changed()
+        if c.lower() == c: # Just the current glyph as [a] key
+            pass # Nothing for now on [a]
+        else: # All glyphs in all open masters as [A] key
+            if g.name == GGGG:
+                print(g, self.getCurrentGlyph(), id(g.font), id(self.getCurrentGlyph().font))
+            f = self.getCurrentGlyph().font # @@@ Hack
+            for gg in f:
+                #self.checkFixAllAnchors(g.font)
+                self.setGlyphAnchors(gg)
 
     def anchorsCenterOnWidth(self, g, c, event):
         """If there are anchors selected, then center them on the width. If no anchors are selected,

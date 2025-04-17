@@ -436,6 +436,7 @@ class AnchorData:
 
     TOP_ANCHORS = {
         'testcmb', 'testcmb.uc',
+        'Adieresismacroncmb',
         'A', 'A-cy', 'AE', 'AEacute', 'AEmacron', 'Aacute', 'Abreve', 'Abreve-cy', 'Abreve.component', 'Abreve.component1', 'Abreve.component2', 
         'Abreve.component3', 'Abreveacute', 'Abrevedotbelow', 'Abrevegrave', 'Abrevehookabove', 'Abrevetilde', 'Acaron', 'Acircumflex', 'Acircumflexacute', 
         'Acircumflexdotbelow', 'Acircumflexgrave', 'Acircumflexhookabove', 'Acircumflextilde', 'Adblgrave', 'Adieresis', 'Adieresis-cy', 'Adieresismacron', 
@@ -557,6 +558,7 @@ class AnchorData:
         'yeru-cy', 'yerudieresis-cy', 'ygrave', 'yhookabove', 'yi-cy', 'ymacron', 'yring', 'ystroke', 'ytilde', 'z', 'zacute', 'zcaron', 'zcircumflex', 'zdotaccent', 
         'zdotbelow', 'ze-cy', 'zedieresis-cy', 'zhe-cy', 'zhebreve-cy', 'zhedieresis-cy', 'zigzagabovecomb', 'zlinebelow', 'zmiddletilde', 'zpalatalhook',
         'dottedCircle', 'ringhalfleft',
+        'dieresismacroncmb', 'dieresismacroncmb.uc',
     }
 
     MIDDLE_ANCHORS = {
@@ -836,6 +838,7 @@ class AnchorData:
         'tildecomb', 'tildecomb.component', 'tildedoublecomb', 'tildeverticalcomb', 'titlocomb-cy', 'ucomb', 'udieresis.component', 
         'umacron.component', 'uni047E.component', 'vcomb', 'verticallineabovecomb', 'xabovecomb', 'xcomb', 'zigzagabovecomb', 'varia', 
         'invertedbrevecmb', 'invertedbrevecmb.uc', 'invertedbrevedoublecmb', 'invertedbrevedoublecmb.uc',
+        'dieresismacroncmb', 'dieresismacroncmb.uc',
 
         #'six.pnum_enclosingkeycapcomb',
         #'three.pnum_enclosingkeycapcomb',

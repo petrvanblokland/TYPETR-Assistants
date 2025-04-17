@@ -313,7 +313,15 @@ class GlyphData:
                 return True
         return False
     isSc = property(_get_isSc)
-    
+
+    #def _get_hasDiacritics(self):
+    #    """Answer the boolean flag is this glyph has diacritics components."""
+    #    for componentName in self.accents:
+    #        if componentName in AD.ACCENT_DATA:
+    #            return True
+    #    return False
+    #hasDiacritics = property(_get_hasDiacritics)
+        
     def _get_hasDiacritics(self):
         """Answer the boolean flag if this glyphs contains one or more diacritics."""
         if self._hasDiacritics is not None: # Overwriting flag
@@ -331,14 +339,6 @@ class GlyphData:
         return self.name in AD.ACCENT_DATA # Otherwise use this table
     isDiacritic = property(_get_isDiacritic)
 
-    def _get_hasDiacritics(self):
-        """Answer the boolean flag is this glyph has diacritics components."""
-        for componentName in self.accents:
-            if componentName in AD.ACCENT_DATA:
-                return True
-        return False
-    hasDiacritics = property(_get_hasDiacritics)
-    
     def _get_diacriticNames(self):
         """Answer the list of diacritic components, ignoring the base. An empty list if there are no diacritic components in the glyph."""
         diacriticNames = []

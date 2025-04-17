@@ -55,7 +55,7 @@ CYRILLIC_SET = {
     #   E
 
    'E-cy': GD(name='E-cy', uni=0x0404, hex='0404', c='Є', l='O', r='C', gid=649),
-   'Edieresis-cy': GD(name='Edieresis-cy', uni=0x04EC, hex='04EC', c='Ӭ', l='Ereversed-cy', r='O', anchorTopX='TopX', anchorTopY='TopY', base='Ereversed-cy', accents=['dieresiscmb.uc'], anchors=['top'], gid=881),
+   'Edieresis-cy': GD(name='Edieresis-cy', uni=0x04EC, hex='04EC', c='Ӭ', l='Ereversed-cy', r='O', anchorTopX='Ereversed-cy', anchorTopY='TopY', base='Ereversed-cy', accents=['dieresiscmb.uc'], anchors=['top'], gid=881),
    'Ef-cy': GD(name='Ef-cy', uni=0x0424, hex='0424', c='Ф', l2r='Ef-cy', gid=681),
    #'Eiotified-cy': GD(name='Eiotified-cy', uni=0x0464, hex='0464', c='Ѥ', l='H', r='C', gid=745),
    'El-cy': GD(name='El-cy', uni=0x041B, hex='041B', c='Л', r='H', gid=672),
