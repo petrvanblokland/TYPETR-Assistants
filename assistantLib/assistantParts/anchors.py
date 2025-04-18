@@ -922,7 +922,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         if gd.autoFixAnchorPositionY: # Only if the auto-fix flag is on.
 
             # There is a baseGlyph and not accents: then do a plain copy from the baseGlyph anchor position
-            if ay is None and baseAnchor is not None:
+            if ay is None and baseAnchor is not None and not gd.hasDiacritics:
                 ay = baseAnchor.y + dy # Vertical position of the base anchor + component offset.
 
             if ay is None: # Still None, no construction glyph or method defined, then try to figure out from this glyph shape
