@@ -144,7 +144,7 @@ CYRILLIC_SET = {
     #   O
 
    'O-cy': GD(name='O-cy', uni=0x041E, hex='041E', c='О', l='O', r='O', base='O', anchors=['top', 'middle', 'bottom'], gid=675),
-   'Obarred-cy': GD(name='Obarred-cy', uni=0x04E8, hex='04E8', c='Ө', l='O', r='O', base='O', anchors=['top'], anchorTopX='TopX', gid=877),
+   'Obarred-cy': GD(name='Obarred-cy', uni=0x04E8, hex='04E8', c='Ө', l='O', r='O', base='O', anchors=['top'], gid=877),
    'Obarreddieresis-cy': GD(name='Obarreddieresis-cy', uni=0x04EA, hex='04EA', c='Ӫ', l='O', r='O', base='Obarred-cy', accents=['dieresiscmb.uc'], anchors=['top'], gid=879),
    'Odieresis-cy': GD(name='Odieresis-cy', uni=0x04E6, hex='04E6', c='Ӧ', l='O', r='O', base='O', accents=['dieresiscmb.uc'], anchors=['top', 'middle', 'bottom'], gid=875),
    #'Omega-cy': GD(name='Omega-cy', uni=0x0460, hex='0460', c='Ѡ', l='O', r='O', anchors=['top'], gid=741),
@@ -377,7 +377,7 @@ CYRILLIC_SET = {
     #   s
 
    'schwa-cy': GD(name='schwa-cy', uni=0x04D9, hex='04D9', c='ә', r='o', isLower=True, anchors=['top'], gid=862),
-   'schwadieresis-cy': GD(name='schwadieresis-cy', uni=0x04DB, hex='04DB', c='ӛ', l='schwa-cy', r='o', base='schwa-cy', accents=['dieresiscmb'], isLower=True, anchors=['top'], gid=864),
+   'schwadieresis-cy': GD(name='schwadieresis-cy', uni=0x04DB, hex='04DB', c='ӛ', l='schwa-cy', r='o', base='schwa-cy', accents=['dieresiscmb'], isLower=True, gid=864),
    'semisoftsign-cy': GD(name='semisoftsign-cy', uni=0x048D, hex='048D', c='ҍ', r='softsign-cy', srcName='softsign-cy', isLower=True, gid=786),
    'sha-cy': GD(name='sha-cy', uni=0x0448, hex='0448', c='ш', l='en-cy', r='en-cy', isLower=True, gid=717),
    'sha-cy.loclBGR': GD(name='sha-cy.loclBGR', l='u', r='u', isLower=True), 
