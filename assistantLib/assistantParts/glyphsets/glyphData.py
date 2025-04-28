@@ -119,6 +119,7 @@ class GlyphData:
             l2r=None, r2l=None, bl2r=None, br2l=None, l2br=None, r2bl=None, bl2br=None, br2bl=None, # Switch margins
             # Type of glyph. Guess if undefined as None.
             isLower=None, isMod=None, isSc=None, isOnum=None, hasDiacritics=None, isDiacritic=None,
+            isSups=None, isSinf=None, isNumr=None, isDnom=None,
             # Italicize forcing conversion behavior
             useSkewRotate=False, addItalicExtremePoints=True, 
             # Glyphs to copy from, initially before editing starts
@@ -180,6 +181,10 @@ class GlyphData:
         self._isSc = isSc # Is smallcap
         self._isOnum = isOnum # Is old-style figure
         self._isMod = isMod # Glyph is a modifier.
+        self._isNumr = isNumr # The glyph is a numr or it contains a numr component
+        self._isDnom = isDnom # The glyph is a dnom or it contains a dnom component
+        self._isSups = isSups # The glyph is a sups or it contains a sups component
+        self._isSinf = isSinf # The glyph is a sinf or it contains a sinf component
         # Flag indicating that the glyphs in accents are diacritics or not (makes difference in positioning the anchors)
         self._hasDiacritics = hasDiacritics # Glyph contains one or more diacritics
         self._isDiacritic = isDiacritic
@@ -272,34 +277,62 @@ class GlyphData:
 
     def _get_isSuperior(self):
         """Answer the boolean flag if this glyph is superior (has "superior" in its name)"""
-        return self.name.endswith(self.MOD_SUPERIOR)
+        if self._isSups is not None:
+            return self._isSups
+        if self.name.endswith(self.MOD_SINF) or self.name.endswith(self.MOD_SUPERIOR):
+            return True
+        for gName in [self.base] + self.accents:
+            if gName is not None and gName.endswith(self.MOD_SINF) or self.name.endswith(self.MOD_SUPERIOR):
+                return True
+        return False
     isSuperior = property(_get_isSuperior)
             
     def _get_isInferior(self):
         """Answer the boolean flag if this glyph is superior (has "inferior" in its name)"""
-        return self.name.endswith(self.MOD_INFERIOR)
+        if self._isSinf is not None:
+            return self._isSinf
+        if self.name.endswith(self.MOD_SINF) or self.name.endswith(self.MOD_INFERIOR):
+            return True
+        for gName in [self.base] + self.accents:
+            if gName is not None and gName.endswith(self.MOD_SINF) or self.name.endswith(self.MOD_INFERIOR):
+                return True
+        return False
     isInferior = property(_get_isInferior)
             
     def _get_isSups(self):
         """DEPRECATED. Answer the boolean flag if this glyph is superior (has "sups" in its name)"""
         print('### DEPRECATED: isSups. Use gd.isSuperior instead.')
-        return self.name.endswith(self.MOD_SUPS)
+        return self.isSuperior
     isSups = property(_get_isSups)
             
     def _get_isSinf(self):
         """DEPRECATED. Answer the boolean flag if this glyph is superior (has "sinf" in its name)"""
         print('### DEPRECATED: isSups.  Use gd.isInferior instead')
-        return self.name.endswith(self.MOD_SINF)
+        return self.isInferior
     isSinf = property(_get_isSinf)
             
     def _get_isNumr(self):
         """Answer the boolean flag if this glyph is superior (has "numr" in its name). Used for fractions"""
-        return self.name.endswith(self.MOD_NUMR)
+        if self._isNumr is not None:
+            return self._isNumr
+        if self.name.endswith(self.MOD_NUMR):
+            return True
+        for gName in [self.base] + self.accents:
+            if gName is not None and gName.endswith(self.MOD_NUMR):
+                return True
+        return False
     isNumr = property(_get_isNumr)
             
     def _get_isDnom(self):
         """Answer the boolean flag if this glyph is superior (has "dnom" in its name). Used for fractions"""
-        return self.name.endswith(self.MOD_DNOM)
+        if self._isDnom is not None:
+            return self.isDnom
+        if self.name.endswith(self.MOD_DNOM):
+            return True
+        for gName in [self.base] + self.accents:
+            if gName is not None and gName.endswith(self.MOD_DNOM):
+                return True
+        return False
     isDnom = property(_get_isDnom)
            
     def _get_isSc(self):

@@ -158,7 +158,7 @@ class AssistantPartGuidelines(BaseAssistantPart):
 
         # Numr/Dnom fractions (@@@ Replace main main xHeight)
         
-        if md.numrBaseline is not None and 'numr' in g.name:            
+        if md.numrBaseline is not None and gd.isNumr:            
             guidelines.append((xo + tg * (md.numrBaseline), md.numrBaseline, 0, f"Baseline of fraction numr {md.numrBaseline}"))
             if md.superiorHeight is not None:
                 guidelines.append((xo + tg * (md.numrBaseline + md.superiorHeight), md.numrBaseline + md.superiorHeight, 0, f"Height of numr {md.numrBaseline + md.superiorHeight}"))
@@ -166,7 +166,7 @@ class AssistantPartGuidelines(BaseAssistantPart):
                 guidelines.append((xo + tg * (md.numrBaseline + md.superiorHeight), md.numrBaseline - overshoot, 0, f"{md.numrBaseline - overshoot} ({overshoot})"))
                 guidelines.append((xo + tg * (md.numrBaseline + md.superiorHeight), md.numrBaseline + md.superiorHeight + overshoot, 0, f"{md.numrBaseline + md.superiorHeight + overshoot} ({overshoot})"))
 
-        if md.dnomBaseline is not None and 'dnom' in g.name:            
+        if md.dnomBaseline is not None and gd.isDnom:            
             guidelines.append((xo + tg * (md.dnomBaseline), md.dnomBaseline, 0, f"Baseline of fraction numr {md.dnomBaseline}"))
             if md.superiorHeight is not None:
                 guidelines.append((xo + tg * (md.dnomBaseline + md.superiorHeight), md.dnomBaseline + md.superiorHeight, 0, f"Height of numr {md.numrBaseline + md.superiorHeight}"))
@@ -183,7 +183,7 @@ class AssistantPartGuidelines(BaseAssistantPart):
 
         # Superior/inferior
 
-        if md.supsBaseline is not None and ('sups' in g.name or 'superior' in g.name):            
+        if md.supsBaseline is not None and gd.isSuperior:            
             guidelines.append((xo + tg * (md.supsBaseline), md.supsBaseline, 0, f"Baseline of superiors {md.supsBaseline}"))
             if md.superiorHeight is not None:
                 guidelines.append((xo + tg * (md.supsBaseline + md.superiorHeight), md.supsBaseline + md.superiorHeight, 0, f"Height of superiors {md.supsBaseline + md.superiorHeight}"))
@@ -203,7 +203,7 @@ class AssistantPartGuidelines(BaseAssistantPart):
                 guidelines.append((xo + tg * (md.supsBaseline + md.superiorDescender), md.supsBaseline + md.superiorDescender, 0, f"Descender of superiors {md.supsBaseline + md.superiorDescender}"))
                 guidelines.append((xo + tg * (md.supsBaseline + md.superiorDescender), md.supsBaseline + md.superiorDescender - overshoot, 0, f"{md.supsBaseline + md.superiorDescender - overshoot} ({overshoot})"))
 
-        if md.sinfBaseline is not None and ('sinf' in g.name or 'inferior' in g.name or 'dnom' in g.name):            
+        if md.sinfBaseline is not None and (gd.isInferior or gd.isDnom):            
             guidelines.append((xo + tg * (md.sinfBaseline), md.sinfBaseline, 0, f"Baseline of inferiors {md.sinfBaseline}"))
             # Make separation between superiorHeight and inferiorHeight?
             if md.superiorHeight is not None:
