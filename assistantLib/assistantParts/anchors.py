@@ -921,6 +921,12 @@ class AssistantPartAnchors(BaseAssistantPart):
         # TOP_ Construct vertical position
         if gd.autoFixAnchorPositionY: # Only if the auto-fix flag is on.
 
+            # In case it is an existing glyph name, then force the vertical position from the corresponding anchor
+            if gd.anchorTopY is not None and gd.anchorTopY in g.font: 
+                aa = self.getAnchor(g.font[gd.anchorTopY], a.name)
+                if aa is not None:
+                    ay = aa.y
+
             # There is a baseGlyph and not accents: then do a plain copy from the baseGlyph anchor position
             if ay is None and baseAnchor is not None and not gd.hasDiacritics:
                 ay = baseAnchor.y + dy # Vertical position of the base anchor + component offset.
