@@ -395,7 +395,7 @@ CYRILLIC_SET = {
    'tetse-cy': GD(name='tetse-cy', uni=0x04B5, hex='04B5', c='ҵ', l='te-cy', r='tse-cy', isLower=True, gid=826),
    #'thousand-cy': GD(name='thousand-cy', uni=0x0482, hex='0482', c='҂', isLower=True, gid=775),
    #'titlocmb-cy': GD(name='titlocmb-cy', uni=0x0483, hex='0483', c='҃', w=0, isLower=True, anchors=['top', '_top'], gid=776),
-   'tse-cy': GD(name='tse-cy', uni=0x0446, hex='0446', c='ц', l='en-cy', isLower=True, gid=715),
+   'tse-cy': GD(name='tse-cy', uni=0x0446, hex='0446', c='ц', l='en-cy', anchors=['top'], isLower=True, gid=715),
    'tse-cy.loclBGR': GD(name='tse-cy.loclBGR', l='u', r='tse-cy', isLower=True),
    'tshe-cy': GD(name='tshe-cy', uni=0x045B, hex='045B', c='ћ', l='hbar', r='hbar', base='h', isLower=True, gid=736),
 
@@ -456,11 +456,14 @@ CYRILLIC_SET_ITALIC = CSI = deepcopy(CYRILLIC_SET)
 
 # Exceptions to the Cyrillic Italic set go here.
 CSI['te-cy'] = GD(name='te-cy', uni=0x0442, hex='0442', c='т', l='m', r='m', base='m', isLower=True, gid=711)
+CSI['tedescender-cy'] = GD(name='tedescender-cy', uni=0x04AD, hex='04AD', c='ҭ', l='m', r='m', base='m', isLower=True, gid=711)
+CSI['tetse-cy'] = GD(name='tetse-cy', uni=0x04B5, hex='04B5', c='ҵ', l='u', r='tse-cy', base='tse-cy', accents=['macroncmb'], isLower=True, gid=826)
 CSI['pe-cy'] = GD(name='pe-cy', uni=0x043F, hex='043F', c='п', l='n', r='n', base='n', isLower=True, gid=708)
 CSI['ii-cy'] = GD(name='ii-cy', uni=0x0438, hex='0438', c='и', l='u', r='u', base='u', isLower=True, anchors=['top'], gid=701)
 CSI['dzhe-cy'] = GD(name='dzhe-cy', uni=0x045F, hex='045F', c='џ', l='en-cy', r='en-cy', base='u', isLower=True, gid=740)
 CSI['de-cy.loclBGR'] = GD(name='de-cy.loclBGR', base='g', isLower=True)
 CSI['ghestroke-cy'] = GD(name='ghestroke-cy', uni=0x0493, hex='0493', c='ғ', isLower=True, gid=792)
+CSI['pedescender-cy'] = GD(name='pedescender-cy', uni=0x0525, hex='0525', c='ԥ', l='en-cy', r='tse-cy', base='n', isLower=True, gid=902)
 
 
 # Remove these glyphs from the Cyrillic italic set, because the glyphs are the identical to the defailt glyphs
