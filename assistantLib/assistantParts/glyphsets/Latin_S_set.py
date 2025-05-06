@@ -338,7 +338,7 @@ LATIN_S_SET = GDS = {
 
     # I
 
-    'I': GD(name='I', uni=0x0049, hex='0049', c='I', l='H', r='H', anchors=['bottom', 'middle', 'ogonek', 'topleft', 'top'], comment='I'),
+    'I': GD(name='I', uni=0x0049, hex='0049', c='I', l='H', r='H', srcName='H', anchors=['bottom', 'middle', 'ogonek', 'topleft', 'top'], comment='I'),
     'Iacute': GD(name='Iacute', uni=0x00CD, hex='00CD', c='Í', w='I', bl='I', base='I', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Í I WITH ACUTE, LATIN CAPITAL LETTER'),
     'Ibreve': GD(name='Ibreve', uni=0x012C, hex='012C', c='Ĭ', w='I', bl='I', base='I', accents=['brevecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ĭ'),
     'Icaron': GD(name='Icaron', uni=0x01CF, hex='01CF', c='Ǐ', w='I', bl='I', base='I', accents=['caroncmb.uc'], srcName='uni01CF', anchors=['bottom', 'middle', 'ogonek', 'top']),

@@ -1550,7 +1550,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         md = self.getMasterData(g.font)
         gd = md.glyphSet[g.name]
 
-        if c.w.autoSpace.get() and gd.autoFixMargins:
+        if c.w.autoSpace.get() and gd is not None and gd.autoFixMargins:
             if km is None:
                 km = self.getKerningManager(g.font)
 

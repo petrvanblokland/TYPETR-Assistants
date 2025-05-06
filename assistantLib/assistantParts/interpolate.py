@@ -101,7 +101,7 @@ class AssistantPartInterpolate(BaseAssistantPart):
         epIndex = 0 # Index of interpolation error lines
 
         # Show the interpolation reference glyph on the right side of the current glyph
-        if g.name in ref:
+        if ref is not None and g.name in ref:
             refG = ref[g.name]
             self.interpolationPath.setPath(refG.getRepresentation("merz.CGPath"))
             self.interpolationPath.setPosition((g.width*2, 0))

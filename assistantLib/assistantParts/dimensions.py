@@ -219,7 +219,7 @@ class AssistantPartDimensions(BaseAssistantPart):
             barsDone = set()
             for sy, bars in sorted(ga.bars.items()):
                 for bar in bars:
-                    if bar.height == 0 or bar.height > md.HThin * 1.5: # Probably not a diagonal stem, ignore.
+                    if md.HThin is None or bar.height in (None, 0) or bar.height > md.HThin * 1.5: # Probably not a diagonal stem, ignore.
                         continue
 
                     dx = (bar.h2.x - bar.h1.x) * r / bar.height
@@ -269,7 +269,7 @@ class AssistantPartDimensions(BaseAssistantPart):
             stemsDone = set()
             for sx, stems in sorted(ga.stems.items()):
                 for stem in stems:
-                    if stem.width == 0 or stem.width > md.HStem * 1.5: # Probably not a diagonal stem, ignore.
+                    if md.HStem is None or stem.width == 0 or stem.width > md.HStem * 1.5: # Probably not a diagonal stem, ignore.
                         continue
 
                     dx = (stem.v2.x - stem.v1.x) * r / stem.width

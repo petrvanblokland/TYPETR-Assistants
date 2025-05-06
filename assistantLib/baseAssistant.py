@@ -988,7 +988,7 @@ class AssistantController(BaseAssistant, WindowController):
         c = self.getController()
         md = self.getMasterData(f)
         # Find missing glyphs
-        for gName in sorted(md.glyphSet.keys()):
+        for gName, gd in sorted(md.glyphSet.items()):
             if not gName in f:
                 if c.w.fixGlyphSetSafety.get():
                     print(f'... checkFixGlyphSet: Create missing glyph /{gName}')
@@ -996,10 +996,13 @@ class AssistantController(BaseAssistant, WindowController):
                     changed = True
                 else:
                     print(f'### checkFixGlyphSet: Missing glyph /{gName}')
+            if gd.uni and f[gName].unicode != gd.uni:
+                print(f'... checkFixGlyphSet: Set /{gName}.unicode {hex(gd.uni or 0)} --> {hex(f[gName].unicode or 0)}')
+                f[gName].unicode = gd.uni
 
         # Find obsolete glyphs to delete
         for gName in sorted(f.keys()):
-            if not gName in md.glyphSet.keys():
+            if gName not in md.glyphSet.keys():
                 if c.w.fixGlyphSetSafety.get():
                     print(f'... checkFixGlyphSet: Delete obsolete glyph /{gName}')
                     del f[gName]
