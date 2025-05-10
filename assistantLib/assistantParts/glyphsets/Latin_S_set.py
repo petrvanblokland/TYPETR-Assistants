@@ -591,7 +591,7 @@ LATIN_S_SET = GDS = {
     'eng': GD(name='eng', uni=0x014B, hex='014B', c='ŋ', l='n', r='j', isLower=True, comment='ŋ LATIN SMALL LETTER ENG'),
     'eogonek': GD(name='eogonek', uni=0x0119, hex='0119', c='ę', base='e', accents=['ogonekcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ę E WITH OGONEK, LATIN SMALL LETTER'),
     'eopen': GD(name='eopen', uni=0x025B, hex='025B', c='ɛ', isLower=True, r2l='B', l2r='three', anchors=['top']),
-    'eth': GD(name='eth', uni=0x00F0, hex='00F0', c='ð', isLower=True, comment='ð LATIN SMALL LETTER ETH'),
+    'eth': GD(name='eth', uni=0x00F0, hex='00F0', c='ð', l='o', r='o', isLower=True, comment='ð LATIN SMALL LETTER ETH'),
     'etilde': GD(name='etilde', uni=0x1EBD, hex='1EBD', c='ẽ', l='e', r='e', base='e', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ẽ E WITH TILDE, LATIN SMALL LETTER'),
     'eturned': GD(name='eturned', uni=0x01DD, hex='01DD', c='ǝ', l2r='e', r2l='e', anchorTopX='TopX', srcName='e', isLower=True, anchors=['top'], comment='ǝ TURNED E, LATIN SMALL LETTER'),
 

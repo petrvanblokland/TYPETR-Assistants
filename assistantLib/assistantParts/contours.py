@@ -58,6 +58,7 @@ class AssistantPartContours(BaseAssistantPart):
     def buildContours(self, y):
         personalKey_e = self.registerKeyStroke('e', 'contoursSetStartPoint')
         personalKey_E = self.registerKeyStroke('E', 'contoursSetAllStartPoints')
+        personalKey_plusminus = self.registerKeyStroke('±', 'contoursAddCorners')
 
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
 
@@ -82,6 +83,83 @@ class AssistantPartContours(BaseAssistantPart):
         for f in self.getAllOpenFonts():
             if g.name in f:
                 self.contoursSetStartPoint(f[g.name])
+
+    def contoursAddCorners(self, g, c=None, even=None):
+        g.prepareUndo("Insert corners")
+
+        contours = []
+        for contour in g.contours:
+            c = []
+            contours.append(c)
+            for p in contour.points:
+                c.append((round(p.x), round(p.y), p.type, p.smooth))
+
+        if 'Hairline' in g.font.path:
+            t = 1
+        else:
+            t = 4
+            
+        g.clearContours()
+        pen = g.getPen()
+        for contour in contours:
+            offCurve1 = None
+            offCurve2 = None
+            prevCurvex = prevCurvey = None
+            for pIndex in range(len(contour)):
+                p_1x, p_1y, _, _ = contour[pIndex-2]
+                p0x, p0y, type, smooth = contour[pIndex-1]
+                p1x, p1y, _, _ = contour[pIndex]
+
+                print(pIndex, offCurve1, offCurve2, (p0x, p0y), prevCurvex, prevCurvey)
+                
+                if pIndex == 0:
+                     pen.moveTo((p0x, p0y))
+                elif type == 'line':
+                    if p_1x == p0x and p_1y > p0y and p0y == p1y and p0x < p1x:
+                        # Bottom up left
+                        pen.lineTo((p0x, p0y + t))
+                        pen.lineTo((p0x + t, p0y))
+                    elif p_1x > p0x and p_1y == p0y and p0y > p1y and p0x == p1x:
+                        # Top down left
+                        print(pIndex)
+                        pen.lineTo((p0x + t, p0y))
+                        pen.lineTo((p0x, p0y - t))
+                    elif p_1x == p0x and p_1y < p0y and p1x < p0x and p1y == p0y:
+                        # Top down right
+                        pen.lineTo((p0x, p0y - t))
+                        pen.lineTo((p0x - t, p0y))
+                    elif p_1x < p0x and p_1y == p0y and p0x == p1x and p0y < p1y:
+                        # Bottom up right
+                        pen.lineTo((p0x - t, p0y))
+                        pen.lineTo((p0x, p0y + t))
+                    else:
+                        pen.lineTo((p0x, p0y))
+                    
+                elif type == 'offcurve':
+                    if offCurve1 is None:
+                        offCurve1 = (p0x, p0y)
+                        prevCurvex = p_1x
+                        prevCurvey = p_1y
+                    elif offCurve2 is None:
+                        offCurve2 = (p0x, p0y)
+                    
+                elif type == 'curve':
+                    if abs(prevCurvex - p0x) <= 4 and abs(prevCurvey - p0y) <= 4:
+                        pen.lineTo((prevCurvex, prevCurvey))
+                        pen.lineTo((p0x, p0y))
+                    else:
+                        if offCurve1 is None:
+                            continue
+                        if offCurve2 is None:
+                            continue
+                        pen.curveTo(offCurve1, offCurve2, (p0x, p0y))
+                    offCurve1 = offCurve2 = prevCurvex = prevCurvey = None
+                
+            pen.closePath()
+            
+
+        self.contoursSetStartPoint(g) # Always reset start points
+        g.changed()
 
     def fixDirections(self, g):
         if 'O' in g.font:
