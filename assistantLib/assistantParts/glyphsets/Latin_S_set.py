@@ -416,7 +416,7 @@ LATIN_S_SET = GDS = {
 
     # R
 
-    'R': GD(name='R', uni=0x0052, hex='0052', c='R', l='H', anchors=['bottom', 'middle', 'top'], comment='R'),
+    'R': GD(name='R', uni=0x0052, hex='0052', c='R', bl='H', anchors=['bottom', 'middle', 'top'], comment='R'),
     'Racute': GD(name='Racute', uni=0x0154, hex='0154', c='Ŕ', bl='H', r='R', base='R', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'top'], comment='Ŕ'),
     'Rcaron': GD(name='Rcaron', uni=0x0158, hex='0158', c='Ř', bl='H', r='R', base='R', accents=['caroncmb.uc'], anchors=['bottom', 'middle', 'top'], comment='Ř'),
     'Rcommaaccent': GD(name='Rcommaaccent', uni=0x0156, hex='0156', c='Ŗ', bl='H', r='R', base='R', accents=['cedillacmb.noconnect'], anchors=['bottom', 'middle', 'top'], comment='Ŗ'),
