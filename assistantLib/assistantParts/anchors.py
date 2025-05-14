@@ -629,7 +629,9 @@ class AssistantPartAnchors(BaseAssistantPart):
         # TOP_ Construct vertical position
         if gd.autoFixAnchorPositionY:
             if gd.anchorTopY is not None:
-                if gd.anchorTopY in g.font: # In case it is an existing glyph name, then take the vertical position from the corresponding anchor
+                if gd.anchorTopY == 'off': # Do nothing
+                    pass
+                elif gd.anchorTopY in g.font: # In case it is an existing glyph name, then take the vertical position from the corresponding anchor
                     aa = self.getAnchor(g.font[gd.anchorTopY], a.name)
                     if aa is not None:
                         ay = aa.y
@@ -646,7 +648,9 @@ class AssistantPartAnchors(BaseAssistantPart):
 
             if ay is None: # Still None, no construction glyph or method defined, then try to figure out from this glyph shape
                 # Trying to guess vertical from anchor in base glyph + its offset
-                if gd.hasDiacritics: 
+                if gd.anchorTopY == 'off': # Do nothing
+                    pass
+                elif gd.hasDiacritics: 
                     # This is a glyph, probably with diacritics. If these are on top, then the anchor position needs
                     # to be lifted to accommodate the higher bounding box. Since there are accents, we can safely
                     # assume that the base glyph is also defined. So let's start there.
@@ -693,7 +697,7 @@ class AssistantPartAnchors(BaseAssistantPart):
 
         # TOP_ Construct horizontal position
         if gd.autoFixAnchorPositionX:
-            if gd.anchorTopX is not None:
+            if gd.anchorTopX is not None: 
                 if gd.anchorTopX in g.font: # In case it is an existing glyph name, then take the horizontal position from the corresponding anchor
                     aa = self.getAnchor(g.font[gd.anchorTopX], a.name)
                     if aa is not None:
@@ -919,7 +923,7 @@ class AssistantPartAnchors(BaseAssistantPart):
             baseAnchor = self.getAnchor(baseGlyph, a.name)
 
         # TOP_ Construct vertical position
-        if gd.autoFixAnchorPositionY: # Only if the auto-fix flag is on.
+        if gd.autoFixAnchorPositionY and gd.anchorTopY != 'off': # Only if the auto-fix flag is on.
 
             # In case it is an existing glyph name, then force the vertical position from the corresponding anchor
             if gd.anchorTopY is not None and gd.anchorTopY in g.font: 
@@ -966,7 +970,7 @@ class AssistantPartAnchors(BaseAssistantPart):
             if ay is not None:
                 ay += offsetY 
 
-        if gd.autoFixAnchorPositionX: # Only if the auto-fix flag is on.
+        if gd.autoFixAnchorPositionX and gd.anchorTopX != 'off': # Only if the auto-fix flag is on.
 
             if gd.anchorTopX is not None:
                 # In case it is an existing glyph name, then take the horizontal position from the corresponding anchor

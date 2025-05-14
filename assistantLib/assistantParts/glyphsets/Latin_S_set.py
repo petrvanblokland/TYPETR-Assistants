@@ -121,6 +121,7 @@ LATIN_S_SET = GDS = {
     'multiply': GD(name='multiply', uni=0x00D7, hex='00D7', c='×', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=True, comment='× product, cartesian'),
     
     'numbersign': GD(name='numbersign', uni=0x0023, hex='0023', c='#', l2r='self', isLower=True, comment='# pound sign'),
+    'numbersign.tab': GD(name='numbersign.tab', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, base='numbersign', isLower=True, comment='# pound sign tabular'),
     'notequal': GD(name='notequal', uni=0x2260, hex='2260', c='≠', base='equal', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='≠ NOT EQUAL TO'),
 
     'ordfeminine': GD(name='ordfeminine', uni=0x00AA, hex='00AA', c='ª', isLower=True, comment='ª ORDINAL INDICATOR, FEMININE'),
@@ -556,6 +557,7 @@ LATIN_S_SET = GDS = {
     'cedi': GD(name='cedi', uni=0x20B5, hex='20B5', c='₵', base='C', l='C', r='C', isLower=True),
     'colonsign': GD(name='colonsign', uni=0x20A1, hex='20A1', c='₡', base='C', l='C', r='C', isLower=True),
     'caron': GD(name='caron', uni=0x02C7, hex='02C7', c='ˇ', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, isLower=True, base='caroncmb', comment='ˇ tone, mandarin chinese third'),
+    'cedilla': GD(name='cedilla', uni=0x00B8, hex='00B8', c='¸', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, isLower=True, base='cedillacmb'),
 
     #'commaturnedsuperior': GD(name='commaturnedsuperior', uni=0x02BB, hex='02BB', c='ʻ', isMod=True),
 
@@ -697,7 +699,7 @@ LATIN_S_SET = GDS = {
     'ncommaaccent': GD(name='ncommaaccent', uni=0x0146, hex='0146', c='ņ', base='n', accents=['cedillacmb.noconnect'], isLower=True, anchors=['bottom', 'middle', 'top']),
     'ndotaccent': GD(name='ndotaccent', uni=0x1E45, hex='1E45', c='ṅ', base='n', accents=['dotaccentcmb'], srcName='uni1E45', isLower=True, anchors=['bottom', 'middle', 'top']),
     'ndotbelow': GD(name='ndotbelow', uni=0x1E47, hex='1E47', c='ṇ', base='n', accents=['dotbelowcmb'], srcName='uni1E47', isLower=True, anchors=['bottom', 'middle', 'top']),
-    'nhookleft': GD(name='nhookleft', uni=0x0272, hex='0272', c='ɲ', w='n', r='n', isLower=True),
+    'nhookleft': GD(name='nhookleft', uni=0x0272, hex='0272', c='ɲ', l='j', r='n', isLower=True),
     'ntilde': GD(name='ntilde', uni=0x00F1, hex='00F1', c='ñ', base='n', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ñ N WITH TILDE, LATIN SMALL LETTER'),
 
     # o
@@ -752,6 +754,7 @@ LATIN_S_SET = GDS = {
     'rcaron': GD(name='rcaron', uni=0x0159, hex='0159', c='ř', r='r', bl='r', rightMin='-100', base='r', accents=['caroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ř R WITH CARON, LATIN SMALL LETTER'),
     'rcommaaccent': GD(name='rcommaaccent', uni=0x0157, hex='0157', c='ŗ', w='r', rightMin='-100', base='r', accents=['cedillacmb.noconnect'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ŗ R WITH CEDILLA, LATIN SMALL LETTER'),
     'rupeeIndian': GD(name='rupeeIndian', uni=0x20B9, hex='20B9', c='₹', srcName='Rupee'),
+    'ringabove': GD(name='ringabove', uni=0x02DA, hex='02DA', c='˚', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='ringcmb'),
 
     # s
 

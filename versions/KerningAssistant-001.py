@@ -1270,7 +1270,7 @@ class KerningAssistant(Subscriber):
 
             # Interpret width specification
             if w == TAB:
-                w = md.tab # md.metrics[TAB] @ Dofferent for Condensed and Extended
+                w = md.tab # md.metrics[TAB] @ Different for Condensed and Extended
             elif w == ACCENT_WIDTH:
                 w = md.accentWidth #metrics[ACCENT_WIDTH] Different for Condensed and Extended
             elif w == EM:

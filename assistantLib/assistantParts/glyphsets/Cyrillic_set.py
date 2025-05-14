@@ -383,7 +383,7 @@ CYRILLIC_SET = {
    'sha-cy.loclBGR': GD(name='sha-cy.loclBGR', l='u', r='u', isLower=True), 
    'shcha-cy': GD(name='shcha-cy', uni=0x0449, hex='0449', c='щ', l='en-cy', r='tse-cy', isLower=True, gid=718),
    'shcha-cy.loclBGR': GD(name='shcha-cy.loclBGR', l='u', r='tse-cy', isLower=True),
-   'shha-cy': GD(name='shha-cy', uni=0x04BB, hex='04BB', c='һ', l='h', r='h', isLower=True, anchors=['top', 'middle', 'bottom'], gid=832),
+   'shha-cy': GD(name='shha-cy', uni=0x04BB, hex='04BB', c='һ', l='h', r='h', base='h', isLower=True, anchors=['top', 'middle', 'bottom'], gid=832),
    'softsign-cy': GD(name='softsign-cy', uni=0x044C, hex='044C', c='ь', l='en-cy', isLower=True, gid=721),
    'softsign-cy.loclBGR': GD(name='softsign-cy.loclBGR', l='u', r='softsign-cy', isLower=True),
 
