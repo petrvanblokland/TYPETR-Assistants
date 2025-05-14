@@ -376,6 +376,7 @@ CYRILLIC_SET = {
 
     #   s
 
+<<<<<<< Updated upstream
    'schwa_cy': GD(name='schwa_cy', uni=0x04D9, hex='04D9', c='ә', r='o', isLower=True, anchors=['top'], gid=862),
    'schwadieresis_cy': GD(name='schwadieresis_cy', uni=0x04DB, hex='04DB', c='ӛ', l='schwa_cy', r='o', base='schwa_cy', accents=['dieresiscmb'], isLower=True, gid=864),
    'semisoftsign_cy': GD(name='semisoftsign_cy', uni=0x048D, hex='048D', c='ҍ', r='softsign_cy', srcName='softsign_cy', isLower=True, gid=786),
@@ -386,6 +387,18 @@ CYRILLIC_SET = {
    'shha_cy': GD(name='shha_cy', uni=0x04BB, hex='04BB', c='һ', l='h', r='h', base='h', isLower=True, anchors=['top', 'middle', 'bottom'], gid=832),
    'softsign_cy': GD(name='softsign_cy', uni=0x044C, hex='044C', c='ь', l='en_cy', isLower=True, gid=721),
    'softsign_cy.loclBGR': GD(name='softsign_cy.loclBGR', l='u', r='softsign_cy', isLower=True),
+=======
+   'schwa-cy': GD(name='schwa-cy', uni=0x04D9, hex='04D9', c='ә', r='o', base='eturned', isLower=True, anchors=['top'], gid=862),
+   'schwadieresis-cy': GD(name='schwadieresis-cy', uni=0x04DB, hex='04DB', c='ӛ', l='schwa-cy', r='o', base='schwa-cy', accents=['dieresiscmb'], isLower=True, gid=864),
+   'semisoftsign-cy': GD(name='semisoftsign-cy', uni=0x048D, hex='048D', c='ҍ', r='softsign-cy', srcName='softsign-cy', isLower=True, gid=786),
+   'sha-cy': GD(name='sha-cy', uni=0x0448, hex='0448', c='ш', l='en-cy', r='en-cy', isLower=True, gid=717),
+   'sha-cy.loclBGR': GD(name='sha-cy.loclBGR', l='u', r='u', isLower=True), 
+   'shcha-cy': GD(name='shcha-cy', uni=0x0449, hex='0449', c='щ', l='en-cy', r='tse-cy', isLower=True, gid=718),
+   'shcha-cy.loclBGR': GD(name='shcha-cy.loclBGR', l='u', r='tse-cy', isLower=True),
+   'shha-cy': GD(name='shha-cy', uni=0x04BB, hex='04BB', c='һ', l='h', r='h', base='h', isLower=True, anchors=['top', 'middle', 'bottom'], gid=832),
+   'softsign-cy': GD(name='softsign-cy', uni=0x044C, hex='044C', c='ь', l='en-cy', isLower=True, gid=721),
+   'softsign-cy.loclBGR': GD(name='softsign-cy.loclBGR', l='u', r='softsign-cy', isLower=True),
+>>>>>>> Stashed changes
 
     #   t
 
