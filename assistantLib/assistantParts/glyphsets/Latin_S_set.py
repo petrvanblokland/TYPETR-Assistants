@@ -153,7 +153,6 @@ LATIN_S_SET = GDS = {
     'questiondown.uc': GD(name='questiondown.uc', l='questiondown', r='questiondown', base='questiondown', isLower=False, comment='¿ turned question mark'),
 
     'registered': GD(name='registered', uni=0x00AE, hex='00AE', c='®', l='copyright', r='copyright', base='largecircle', isLower=True, comment='® trade mark sign, registered'),
-    'ring': GD(name='ring', base='ringcmb', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, isLower=True, comment='˚ RING'),
 
     'section': GD(name='section', uni=0x00A7, hex='00A7', c='§', l='s', r='s', isLower=True, comment='§ SECTION SIGN'),
     'semicolon': GD(name='semicolon', uni=0x003B, hex='003B', c=';', l='comma', r='comma', isLower=True, comment='; SEMICOLON'),
