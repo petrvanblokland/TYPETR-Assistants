@@ -111,7 +111,7 @@ for GDS in (LATIN_XL_SET, LATIN_XL_SET_ITALIC):
 
     #   A
 
-    GDS['Alphaturned-latin'] = GD(name='Alphaturned-latin', uni=0x2C70, hex='2C70', c='Ɒ', r='O')
+    GDS['Alphaturned_latin'] = GD(name='Alphaturned_latin', uni=0x2C70, hex='2C70', c='Ɒ', r='O')
 
     # B
 
@@ -188,10 +188,10 @@ for GDS in (LATIN_XL_SET, LATIN_XL_SET_ITALIC):
     GDS['acutetonecmb'] = GD(name='acutetonecmb', uni=0x0341, hex='0341', c='́', w=0, base='acutecmb', isLower=True, anchors=['_top', 'top'])
     GDS['aeTurnedsuperior'] = GD(name='aeTurnedsuperior', uni=0x1D46, hex='1D46', c='ᵆ', l2r='asuperior', r2l='esuperior')
     GDS['almostequaltoabovecmb'] = GD(name='almostequaltoabovecmb', uni=0x034C, hex='034C', c='͌', w=0, isLower=True, anchors=['_top', 'top'])
-    GDS['alphasuperior-latin'] = GD(name='alphasuperior-latin', uni=0x1D45, hex='1D45', c='ᵅ', l='osuperior', l2r='nsuperior')
-    GDS['alpharetroflexhook'] = GD(name='alpharetroflexhook', uni=0x1D90, hex='1D90', c='ᶐ', r='off', base='alpha-latin', isLower=True)
-    GDS['alphaturned-latin'] = GD(name='alphaturned-latin', uni=0x0252, hex='0252', c='ɒ', l2r='alpha-latin', r2l='alpha-latin', isLower=True)
-    GDS['alphaturnedsuperior-latin'] = GD(name='alphaturnedsuperior-latin', uni=0x1D9B, hex='1D9B', c='ᶛ', l2r='alphasuperior-latin', r2l='alphasuperior-latin')
+    GDS['alphasuperior_latin'] = GD(name='alphasuperior_latin', uni=0x1D45, hex='1D45', c='ᵅ', l='osuperior', l2r='nsuperior')
+    GDS['alpharetroflexhook'] = GD(name='alpharetroflexhook', uni=0x1D90, hex='1D90', c='ᶐ', r='off', base='alpha_latin', isLower=True)
+    GDS['alphaturned_latin'] = GD(name='alphaturned_latin', uni=0x0252, hex='0252', c='ɒ', l2r='alpha_latin', r2l='alpha_latin', isLower=True)
+    GDS['alphaturnedsuperior_latin'] = GD(name='alphaturnedsuperior_latin', uni=0x1D9B, hex='1D9B', c='ᶛ', l2r='alphasuperior_latin', r2l='alphasuperior_latin')
     GDS['aretroflexhook'] = GD(name='aretroflexhook', uni=0x1D8F, hex='1D8F', c='ᶏ', l='a', w='a', isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['asteriskbelowcmb'] = GD(name='asteriskbelowcmb', uni=0x0359, hex='0359', c='͙', w=0, isLower=True, anchors=['_bottom', 'bottom'])
 
@@ -398,7 +398,7 @@ for GDS in (LATIN_XL_SET, LATIN_XL_SET_ITALIC):
     # o
 
     GDS['ocmb'] = GD(name='ocmb', uni=0x0366, hex='0366', c='ͦ', w=0, isLower=True, anchors=['_top', 'top'])
-    GDS['omegaclosed-latin'] = GD(name='omegaclosed-latin', uni=0x0277, hex='0277', c='ɷ', l='o', r='o', isLower=True)
+    GDS['omegaclosed_latin'] = GD(name='omegaclosed_latin', uni=0x0277, hex='0277', c='ɷ', l='o', r='o', isLower=True)
     GDS['oopenretroflexhook'] = GD(name='oopenretroflexhook', uni=0x1D97, hex='1D97', c='ᶗ', base='oopen', isLower=True, anchors=['top'])
     GDS['overline'] = GD(name='overline', uni=0x203E, hex='203E', c='‾', srcName='radicalex', isLower=True, gid=1428, comment='‾ spacing overscore')
 
@@ -411,7 +411,7 @@ for GDS in (LATIN_XL_SET, LATIN_XL_SET_ITALIC):
     # p
 
     GDS['palatalhookcmb'] = GD(name='palatalhookcmb', uni=0x0321, hex='0321', c='̡', w=0, srcName='uni0321', isLower=True, anchors=['_bottom', 'bottom'], gid=502)
-    GDS['phisuperior-latin'] = GD(name='phisuperior-latin', uni=0x1DB2, hex='1DB2', c='ᶲ', isLower=True)
+    GDS['phisuperior_latin'] = GD(name='phisuperior_latin', uni=0x1DB2, hex='1DB2', c='ᶲ', isLower=True)
     # Move to "S" table"
     #GDS['plussuperior'] = GD(name='plussuperior', uni=0x02D6, hex='02D6', c='˖', l='48', r='48')
     GDS['pmiddletilde'] = GD(name='pmiddletilde', uni=0x1D71, hex='1D71', c='ᵱ', bl='p', base='p', isLower=True, anchors=['bottom', 'middle', 'top'])

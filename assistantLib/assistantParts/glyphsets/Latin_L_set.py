@@ -115,7 +115,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['Adotaccent'] = GD(name='Adotaccent', uni=0x0226, hex='0226', c='Ȧ', l='A', r='A', base='A', accents=['dotaccentcmb.uc'], anchors=['bottom', 'middle', 'top'])
     GDS['Adotaccentmacron'] = GD(name='Adotaccentmacron', uni=0x01E0, hex='01E0', c='Ǡ', l='A', r='A', base='A', accents=['dotaccentmacroncmb.uc'], anchors=['bottom', 'middle', 'top'])
     GDS['Ainvertedbreve'] = GD(name='Ainvertedbreve', uni=0x0202, hex='0202', c='Ȃ', l='A', r='A', base='A', accents=['invertedbrevecmb.uc'], anchors=['bottom', 'middle', 'top'])
-    GDS['Alpha-latin'] = GD(name='Alpha-latin', uni=0x2C6D, hex='2C6D', c='Ɑ', l='O', r='off')
+    GDS['Alpha_latin'] = GD(name='Alpha_latin', uni=0x2C6D, hex='2C6D', c='Ɑ', l='O', r='off')
     GDS['Aringacute'] = GD(name='Aringacute', uni=0x01FA, hex='01FA', c='Ǻ', l='A', r='A', base='A', accents=['ringacutecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ǻ LATIN CAPITAL LETTER A WITH RING ABOVE AND ACUTE')
     GDS['Aringbelow'] = GD(name='Aringbelow', uni=0x1E00, hex='1E00', c='Ḁ', l='A', r='A', base='A', accents=['ringbelowcmb'], anchors=['bottom', 'middle', 'top'])
     GDS['Astroke'] = GD(name='Astroke', uni=0x023A, hex='023A', c='Ⱥ', l='A', w='A', base='A', accents=['strokecmb.uc'], anchors=['bottom', 'middle', 'top'])
@@ -129,7 +129,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     GDS['Bdotaccent'] = GD(name='Bdotaccent', uni=0x1E02, hex='1E02', c='Ḃ', l='H', r='B', base='B', accents=['dotaccentcmb.uc'], anchors=['bottom', 'middle', 'top'])
     GDS['Beta'] = GD(name='Beta', uni=0x0392, hex='0392', c='Β', l='H', r='B', base='B', anchors=['bottom', 'middle', 'top'])
-    GDS['Beta-latin'] = GD(name='Beta-latin', uni=0xA7B4, hex='A7B4', c='Ꞵ', l='B', r='B', srcName='B')
+    GDS['Beta_latin'] = GD(name='Beta_latin', uni=0xA7B4, hex='A7B4', c='Ꞵ', l='B', r='B', srcName='B')
     GDS['Blinebelow'] = GD(name='Blinebelow', uni=0x1E06, hex='1E06', c='Ḇ', l='H', r='B', base='B', accents=['macronbelowcmb'], anchors=['bottom', 'middle', 'top'])
     GDS['Bstroke'] = GD(name='Bstroke', uni=0x0243, hex='0243', c='Ƀ', l='Eth', base='B', anchors=['bottom', 'middle', 'top'])
 
@@ -139,7 +139,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     # C
 
     GDS['Ccedillaacute'] = GD(name='Ccedillaacute', uni=0x1E08, hex='1E08', c='Ḉ', l='O', r='C', base='Ccedilla', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'top'])
-    GDS['Chi-latin'] = GD(name='Chi-latin', uni=0xA7B3, hex='A7B3', c='Ꭓ', base='X', anchors=['bottom', 'middle', 'top'])
+    GDS['Chi_latin'] = GD(name='Chi_latin', uni=0xA7B3, hex='A7B3', c='Ꭓ', base='X', anchors=['bottom', 'middle', 'top'])
     GDS['Chook'] = GD(name='Chook', uni=0x0187, hex='0187', w='C', l='O', srcName='C')
     GDS['Cstroke'] = GD(name='Cstroke', uni=0x023B, hex='023B', c='Ȼ', l='C', w='C', base='C', accents=['strokecmb.uc'], anchors=['bottom', 'middle', 'top'])
 
@@ -292,7 +292,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['Omacronacute'] = GD(name='Omacronacute', uni=0x1E52, hex='1E52', c='Ṓ', l='O', r='O', base='O', accents=['macronacutecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'])
     GDS['Omacrongrave'] = GD(name='Omacrongrave', uni=0x1E50, hex='1E50', c='Ṑ', l='O', r='O', base='O', accents=['macrongravecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'])
     GDS['Omega'] = GD(name='Omega', uni=0x03A9, hex='03A9', c='Ω', anchors=['bottom', 'top'])
-    GDS['Omega-latin'] = GD(name='Omega-latin', uni=0xA7B6, hex='A7B6', c='Ꞷ', base='Omega')
+    GDS['Omega_latin'] = GD(name='Omega_latin', uni=0xA7B6, hex='A7B6', c='Ꞷ', base='Omega')
     GDS['Oogonek'] = GD(name='Oogonek', uni=0x01EA, hex='01EA', c='Ǫ', l='O', r='O', base='O', accents=['ogonekcmb'], anchors=['bottom', 'middle', 'top'])
     GDS['Oogonekmacron'] = GD(name='Oogonekmacron', uni=0x01EC, hex='01EC', c='Ǭ', l='O', r='O', base='Oogonek', accents=['macroncmb.uc'], anchors=['bottom', 'middle', 'top'])
     GDS['Oslashacute'] = GD(name='Oslashacute', uni=0x01FE, hex='01FE', c='Ǿ', l='Oslash', r='Oslash', base='Oslash', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ǿ')
@@ -417,7 +417,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['adotaccentmacron'] = GD(name='adotmacron', uni=0x01E1, hex='01E1', c='ǡ', w='a', bl='a', base='a', accents=['dotaccentmacroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['aeacute'] = GD(name='aeacute', uni=0x01FD, hex='01FD', c='ǽ', r='e', bl='a', base='ae', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ǽ')
     GDS['ainvertedbreve'] = GD(name='ainvertedbreve', uni=0x0203, hex='0203', c='ȃ', base='a', accents=['invertedbrevecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
-    GDS['alpha-latin'] = GD(name='alpha-latin', uni=0x0251, hex='0251', c='ɑ', isLower=True)
+    GDS['alpha_latin'] = GD(name='alpha_latin', uni=0x0251, hex='0251', c='ɑ', isLower=True)
     GDS['arighthalfring'] = GD(name='arighthalfring', uni=0x1E9A, hex='1E9A', c='ẚ', base='a', accents=['ringhalfrightcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['aringacute'] = GD(name='aringacute', uni=0x01FB, hex='01FB', c='ǻ', base='a', accents=['ringacutecmb'], isLower=True, fixAccents=False, anchors=['bottom', 'middle', 'top'], comment='ǻ')
     GDS['aringbelow'] = GD(name='aringbelow', uni=0x1E01, hex='1E01', c='ḁ', base='a', accents=['ringbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
@@ -434,7 +434,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     GDS['bdotaccent'] = GD(name='bdotaccent', uni=0x1E03, hex='1E03', c='ḃ', base='b', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['beta'] = GD(name='beta', uni=0x03B2, hex='03B2', c='β', isLower=True)
-    GDS['beta-latin'] = GD(name='beta-latin', uni=0xA7B5, hex='A7B5', c='ꞵ', base='beta', isLower=True)
+    GDS['beta_latin'] = GD(name='beta_latin', uni=0xA7B5, hex='A7B5', c='ꞵ', base='beta', isLower=True)
     GDS['bilabialclick'] = GD(name='bilabialclick', uni=0x0298, hex='0298', c='ʘ', l='zero', r='zero')
     GDS['blinebelow'] = GD(name='blinebelow', uni=0x1E07, hex='1E07', c='ḇ', base='b', accents=['macronbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['bstroke'] = GD(name='bstroke', uni=0x0180, hex='0180', c='ƀ', l='hyphen', r='b', base='b', isLower=True)
@@ -451,7 +451,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     # c
 
     GDS['ccedillaacute'] = GD(name='ccedillaacute', uni=0x1E09, hex='1E09', c='ḉ', base='ccedilla', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
-    GDS['chi-latin'] = GD(name='chi-latin', uni=0xAB53, hex='AB53', c='ꭓ', isLower=True, comment='Based on Greek /chi')
+    GDS['chi_latin'] = GD(name='chi_latin', uni=0xAB53, hex='AB53', c='ꭓ', isLower=True, comment='Based on Greek /chi')
     GDS['chook'] = GD(name='chook', uni=0x0188, hex='0188', c='ƈ', l='c', w='c', srcName='c', isLower=True)
     GDS['clickalveolar'] = GD(name='clickalveolar', uni=0x01C2, hex='01C2', c='ǂ', isLower=True)
     GDS['clickdental'] = GD(name='clickdental', uni=0x01C0, hex='01C0', c='ǀ', l='bar', r='bar', base='bar', isLower=True)
@@ -524,7 +524,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     # g
 
     GDS['gacute'] = GD(name='gacute', uni=0x01F5, hex='01F5', c='ǵ', base='g', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
-    GDS['gamma-latin'] = GD(name='gamma-latin', uni=0x0263, hex='0263', c='ɣ', isLower=True)
+    GDS['gamma_latin'] = GD(name='gamma_latin', uni=0x0263, hex='0263', c='ɣ', isLower=True)
     GDS['ghook'] = GD(name='ghook', uni=0x0260, hex='0260', c='ɠ', l='g', w='g', isLower=True)
     GDS['glottalstop'] = GD(name='glottalstop', uni=0x0294, hex='0294', c='ʔ', l='question', r='question', isLower=True)
     GDS['glottalstopreversed'] = GD(name='glottalstopreversed', uni=0x0295, hex='0295', c='ʕ', l2r='question', r2l='question', srcName='question')
@@ -560,7 +560,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['idieresisacute'] = GD(name='idieresisacute', uni=0x1E2F, hex='1E2F', c='ḯ', w='idotless', bl='idotless', base='idieresis', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['iinvertedbreve'] = GD(name='iinvertedbreve', uni=0x020B, hex='020B', c='ȋ', w='idotless', bl='idotless', base='idotless', accents=['invertedbrevecmb'], isLower=True, anchors=['top'])
     GDS['ij'] = GD(name='ij', uni=0x0133, hex='0133', c='ĳ', l='i', r='j', base='i', accents=['j'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ĳ SMALL LIGATURE IJ, LATIN')
-    GDS['iota-latin'] = GD(name='iota-latin', uni=0x0269, hex='0269', c='ɩ', r2l='j', r='t', isLower=True)
+    GDS['iota_latin'] = GD(name='iota_latin', uni=0x0269, hex='0269', c='ɩ', r2l='j', r='t', isLower=True)
     GDS['itildebelow'] = GD(name='itildebelow', uni=0x1E2D, hex='1E2D', c='ḭ', w='idotless', bl='i', base='i', accents=['tildebelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['integral'] = GD(l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, uni=0x222b, c='∫', name='integral', src='f', anchors=[], comment='∫ Integral Signs')
 
@@ -642,7 +642,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['omacronacute'] = GD(name='omacronacute', uni=0x1E53, hex='1E53', c='ṓ', l='o', r='o', base='o', accents=['macronacutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['omacrongrave'] = GD(name='omacrongrave', uni=0x1E51, hex='1E51', c='ṑ', l='o', r='o', base='o', accents=['macrongravecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['omega'] = GD(name='omega', uni=0x03C9, hex='03C9', c='ω', isLower=True, fixSpacing=False, anchors=['bottom', 'top'], comment='ω')
-    GDS['omega-latin'] = GD(name='omega-latin', uni=0xA7B7, hex='A7B7', c='ꞷ', base='omega', isLower=True, anchors=['bottom', 'top'])
+    GDS['omega_latin'] = GD(name='omega_latin', uni=0xA7B7, hex='A7B7', c='ꞷ', base='omega', isLower=True, anchors=['bottom', 'top'])
     GDS['oogonek'] = GD(name='oogonek', uni=0x01EB, hex='01EB', c='ǫ', base='o', accents=['ogonekcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['oogonekmacron'] = GD(name='oogonekmacron', uni=0x01ED, hex='01ED', c='ǭ', base='oogonek', accents=['macroncmb'], isLower=True, anchors=['top'])
     GDS['oslashacute'] = GD(name='oslashacute', uni=0x01FF, hex='01FF', c='ǿ', base='oslash', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ǿ')
@@ -658,7 +658,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     # p
 
     GDS['pacute'] = GD(name='pacute', uni=0x1E55, hex='1E55', c='ṕ', l='p', w='p', base='p', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
-    GDS['phi-latin'] = GD(name='phi-latin', uni=0x0278, hex='0278', c='ɸ', l='phi', r='phi', isLower=True)
+    GDS['phi_latin'] = GD(name='phi_latin', uni=0x0278, hex='0278', c='ɸ', l='phi', r='phi', isLower=True)
     GDS['phook'] = GD(name='phook', uni=0x01A5, hex='01A5', c='ƥ', l='p', r='p', isLower=True)
     GDS['pstroke'] = GD(name='pstroke', uni=0x1D7D, hex='1D7D', c='ᵽ', l='hyphen', r='hyphen', base='p', isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['psili'] = GD(name='psili', uni=0x1FBF, hex='1FBF', c='᾿', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, isLower=True)
@@ -737,7 +737,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['uinvertedbreve'] = GD(name='uinvertedbreve', uni=0x0217, hex='0217', c='ȗ', base='u', accents=['invertedbrevecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['umacrondieresis'] = GD(name='umacrondieresis', uni=0x1E7B, hex='1E7B', c='ṻ', l='u', r='u', base='u', accents=['macrondieresiscmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['uniA7AE'] = GD(name='uniA7AE', uni=0xA7AE, hex='A7AE', c='Ɪ', r='I.sc', l2r='I.sc', base='I.sc', isLower=True)
-    GDS['upsilon-latin'] = GD(name='upsilon-latin', uni=0x028A, hex='028A', c='ʊ', l='o', r='o', isLower=True)
+    GDS['upsilon_latin'] = GD(name='upsilon_latin', uni=0x028A, hex='028A', c='ʊ', l='o', r='o', isLower=True)
     GDS['utildeacute'] = GD(name='utildeacute', uni=0x1E79, hex='1E79', c='ṹ', base='u', accents=['tildeacutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['utildebelow'] = GD(name='utildebelow', uni=0x1E75, hex='1E75', c='ṵ', base='u', accents=['tildebelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['ustroke'] = GD(name='ustroke', uni=0x1D7E, hex='1D7E', c='ᵾ', l='hyphen', r='hyphen', isLower=True)
