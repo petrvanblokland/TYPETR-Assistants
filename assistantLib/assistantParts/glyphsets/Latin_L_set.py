@@ -425,6 +425,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['aturned'] = GD(name='aturned', uni=0x0250, hex='0250', c='ɐ', l2r='a', r2l='a', srcName='a', isLower=True)
 
     GDS['acutemacroncmb'] = GD(name='acutemacroncmb', uni=0x1DC7, hex='1DC7', c='᷇', w=0, srcName='acutecmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top'])
+    GDS['acutemacroncmb.uc'] = GD(name='acutemacroncmb.uc', w=0, srcName='acutemacroncmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top'])
 
     GDS['asuperior'] = GD(name='asuperior', uni=0x1D43, hex='1D43', c='ᵃ', l='osuperior', r='nsuperior', isLower=False, isMod=True)
     GDS['ainferior'] = GD(name='ainferior', uni=0x2090, hex='2090', c='ₐ', l='asuperior', r='asuperior', base='asuperior', isLower=True)
@@ -529,6 +530,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['glottalstopreversed'] = GD(name='glottalstopreversed', uni=0x0295, hex='0295', c='ʕ', l2r='question', r2l='question', srcName='question')
     GDS['glottalstopsmall'] = GD(name='glottalstopsmall', uni=0x0242, hex='0242', c='ɂ', l='question', r='question', isSc=True)
     GDS['gravemacroncmb'] = GD(name='gravemacroncmb', uni=0x1DC5, hex='1DC5', c='᷅', w=0, autoFixComponentPositions=False, autoFixMargins=False, srcName='gravecmb', isLower=True, anchors=['_top', 'top'])
+    GDS['gravemacroncmb.uc'] = GD(name='gravemacroncmb.uc', w=0, autoFixComponentPositions=False, autoFixMargins=False, srcName='gravemacroncmb', isLower=False, anchors=['_top', 'top'])
     GDS['gsingle'] = GD(name='gsingle', uni=0x0261, hex='0261', c='ɡ', base='g', isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['gstroke'] = GD(name='gstroke', uni=0x01E5, hex='01E5', c='ǥ', l='g', r='hyphen', base='g', accents=['slashlongcmb'], isLower=True)
 
