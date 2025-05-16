@@ -313,6 +313,7 @@ CYRILLIC_SET = {
    'ii_cy': GD(name='ii_cy', uni=0x0438, hex='0438', c='и', l='en_cy', r='en_cy', bl='u', isLower=True, anchors=['top'], gid=701),
    'ii_cy.loclBGR': GD(name='ii_cy.loclBGR', base='u', isLower=True, anchors=['top']),
    'iigrave_cy': GD(name='iigrave_cy', uni=0x045D, hex='045D', c='ѝ', l='en_cy', r='en_cy', base='ii_cy', accents=['gravecmb'], isLower=True, anchors=['top'], gid=738),
+   'iigrave_cy.loclBGR': GD(name='iigrave_cy.loclBGR', base='u', accents=['gravecmb'], isLower=True, anchors=['top']),
    'iishort_cy': GD(name='iishort_cy', uni=0x0439, hex='0439', c='й', l='en_cy', r='en_cy', base='ii_cy', accents=['brevecmb_cy'], isLower=True, anchors=['top'], gid=702),
    'iishort_cy.loclBGR': GD(name='iishort_cy.loclBGR', base='u', accents=['brevecmb_cy'], isLower=True, anchors=['top']),
    'iishorttail_cy': GD(name='iishorttail_cy', uni=0x048B, hex='048B', c='ҋ', l='en_cy', base='iishort_cy', accents=['tail.component_cy'], isLower=True, anchors=['top'], gid=784),
@@ -468,7 +469,7 @@ CSI['pedescender_cy'] = GD(name='pedescender_cy', uni=0x0525, hex='0525', c='ԥ'
 
 # Remove these glyphs from the Cyrillic italic set, because the glyphs are the identical to the defailt glyphs
 for gName in [
-    'ge_cy.loclBGR', 'ii_cy.loclBGR', 'iishort_cy.loclBGR', 'en_cy.loclBGR', 'tse_cy.loclBGR', 
+    'ge_cy.loclBGR', 'ii_cy.loclBGR', 'iishort_cy.loclBGR', 'iigrave_cy.loclBGR', 'en_cy.loclBGR', 'tse_cy.loclBGR', 
     'che_cy.loclBGR', 'sha_cy.loclBGR', 'shcha_cy.loclBGR', 'hardsign_cy.loclBGR', 'softsign_cy.loclBGR']:
     if gName in CYRILLIC_SET_ITALIC:
         del CYRILLIC_SET_ITALIC[gName]
