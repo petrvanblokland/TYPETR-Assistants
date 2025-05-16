@@ -429,8 +429,8 @@ CYRILLIC_SET = {
 
     #   v
 
-   've_cy': GD(name='ve_cy', uni=0x0432, hex='0432', c='в', l='n', isLower=True, gid=695),
-   've_cy.loclBGR': GD(name='ve_cy.loclBGR', isLower=True),
+   've_cy': GD(name='ve_cy', uni=0x0432, hex='0432', c='в', l='n', r='three', isLower=True, gid=695),
+   've_cy.loclBGR': GD(name='ve_cy.loclBGR', l='n', r='three', isLower=True),
 
     #   w
 
