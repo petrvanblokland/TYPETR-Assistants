@@ -976,7 +976,7 @@ SC_NAMES = (
 
     # In case CYRILLIC_SET is included, these need to become smallcaps too
     'A_cy', 'Abreve_cy', 'Adieresis_cy', 'Aie_cy', 'Be_cy', 'Che_cy', 'Cheabkhasian_cy', 'Chedescender_cy', 'Chedescenderabkhasian_cy', 'Chedieresis_cy', 
-    'Chekhakassian_cy', 'Cheverticalstroke_cy', 'De_cy', 'De_cy.loclBGR', 'Dje_cy', 'Dze_cy', 'Dzhe_cy', 'E_cy', 'Edieresis_cy', 'Ef_cy', 
+    'Chekhakassian_cy', 'Cheverticalstroke_cy', 'De_cy', 'De_cy.loclBGR', 'Dje_cy', 'Dze_cy', 'Dzhe_cy', 'Dzeabkh_cy', 'E_cy', 'Edieresis_cy', 'Ef_cy', 
     'El_cy', 'El_cy.loclBGR', 'Eltail_cy', 'Em_cy', 'Emtail_cy', 'En_cy', 'Endescender_cy', 'Enghe_cy', 'Enhook_cy', 'Entail_cy', 'Er_cy', 'Ereversed_cy', 
     'Ertick_cy', 'Es_cy', 'Esdescender_cy', 'Ge_cy', 'Gedescender_cy', 'Gehookstroke_cy',
     'Ghemiddlehook_cy', 'Ghestroke_cy', 'Gheupturn_cy', 'Gje_cy', 'Ha_cy', 'Haabkhasian_cy', 'Hadescender_cy', 'Hahook_cy', 'Hardsign_cy', 'Hastroke_cy', 
