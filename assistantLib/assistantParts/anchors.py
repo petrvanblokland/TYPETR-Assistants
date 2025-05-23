@@ -996,7 +996,6 @@ class AssistantPartAnchors(BaseAssistantPart):
                 # Try to guess horizontal from anchor in base glyph + its offset
                 if baseAnchor is not None:
                     ax = self.italicX(g, baseAnchor.x, ay - baseAnchor.y) # baseAnchor.x + self.italicX(g, dx, ay - baseAnchor.y)
-                    print('addsdsdas', ax)
                 else: # Center on width by default, otherwise use the gd.anchorTopX="Bounds" method
                     ax = self.italicX(g, g.width/2, ay)
 
