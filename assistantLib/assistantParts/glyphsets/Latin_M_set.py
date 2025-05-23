@@ -282,7 +282,8 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
     GDS['rdotbelow'] = GD(name='rdotbelow', uni=0x1E5B, hex='1E5B', c='ṛ', w='r', rightMin='-100', base='r', accents=['dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1014)
     GDS['rdotbelowmacron'] = GD(name='rdotbelowmacron', uni=0x1E5D, hex='1E5D', c='ṝ', w='r', bl='r', base='r', accents=['macroncmb', 'dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1016)
     GDS['ringhalfleft'] = GD(name='ringhalfleft', uni=0x02BF, hex='02BF', c='ʿ', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, srcName='ringcmb', isLower=True, gid=473)
-    GDS['ringhalfright'] = GD(name='ringhalfright', uni=0x02BE, hex='02BE', c='ʾ', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, srcName='ringcmb', isLower=True, gid=472)
+    GDS['ringhalfright'] = GD(name='ringhalfright', uni=0x02BE, hex='02BE', c='ʾ', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='ringhalfrightcmb', isLower=True, gid=472)
+    GDS['ringhalfrightcmb'] = GD(name='ringhalfrightcmb', l=GD.CAT_CENTER, w=0, isLower=True, anchors=['top', '_top'], gid=472)
     GDS['rlinebelow'] = GD(name='rlinebelow', uni=0x1E5F, hex='1E5F', c='ṟ', w='r', bl='r', base='r', accents=['macronbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1018)
     GDS['ruble'] = GD(name='ruble', uni=0x20BD, hex='20BD', c='₽', w='zero.tnum', isLower=True, gid=1462)
 

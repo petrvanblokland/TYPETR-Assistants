@@ -340,7 +340,7 @@ for GDS in (LATIN_XL_SET, LATIN_XL_SET_ITALIC):
 
     # k
 
-    GDS['koroniscmb'] = GD(name='koroniscmb', uni=0x0343, hex='0343', c='̓', w=0, base='koronis', isLower=True, anchors=['_top', 'top'])
+    GDS['koroniscmb'] = GD(name='koroniscmb', uni=0x0343, hex='0343', c='̓', w=0, srcName='comma', isLower=True, anchors=['_top', 'top'])
     GDS['kpalatalhook'] = GD(name='kpalatalhook', uni=0x1D84, hex='1D84', c='ᶄ', r='jdotless', bl='k', base='k', accents=['dpalatalhookcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['kturned'] = GD(name='kturned', uni=0x029E, hex='029E', c='ʞ', l2r='k', r2l='k', isLower=True)
 

@@ -265,7 +265,7 @@ class AnchorData:
         'dblgravecomb': _TOP,
         'candrabinducomb': _TOP,
         'commaabovecomb': _TOP,
-        'koronis': _TOP,
+        #'koronis': _TOP,
         'dasia': _TOP,
         'commareversedabovecomb': _TOP,
         'commaaboverightcomb': _TOP,
