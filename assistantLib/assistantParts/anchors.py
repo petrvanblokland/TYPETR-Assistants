@@ -981,7 +981,7 @@ class AssistantPartAnchors(BaseAssistantPart):
                 elif gd.anchorTopX in g.font: 
                     aa = self.getAnchor(g.font[gd.anchorTopX], a.name)
                     if aa is not None:
-                        ax = aa.x
+                        ax = aa.x #self.italicX(g, aa.x, ay or 0)
                         # Then add the offset of the referring component
                         for component in g.components:
                             if component.baseGlyph == gd.anchorTopX:
@@ -995,7 +995,8 @@ class AssistantPartAnchors(BaseAssistantPart):
             if ax is None and ay is not None: # No construction glyph or method name defined, then try to figure out from the glyph shape
                 # Try to guess horizontal from anchor in base glyph + its offset
                 if baseAnchor is not None:
-                    ax = baseAnchor.x + self.italicX(g, dx, ay - baseAnchor.y)
+                    ax = self.italicX(g, baseAnchor.x, ay - baseAnchor.y) # baseAnchor.x + self.italicX(g, dx, ay - baseAnchor.y)
+                    print('addsdsdas', ax)
                 else: # Center on width by default, otherwise use the gd.anchorTopX="Bounds" method
                     ax = self.italicX(g, g.width/2, ay)
 
