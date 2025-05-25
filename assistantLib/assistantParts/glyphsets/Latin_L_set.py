@@ -551,8 +551,8 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     GDS['hsuperior'] = GD(name='hsuperior', uni=0x02B0, hex='02B0', c='ʰ', l='nsuperior', r='nsuperior', isMod=True)
     GDS['hinferior'] = GD(name='hinferior', uni=0x2095, hex='2095', c='ₕ', l='hinferior', r='hinferior', base='hsuperior', isLower=True)
-    GDS['hhooksuperior'] = GD(name='hhooksuperior', uni=0x02B1, hex='02B1', c='ʱ', l='nsuperior', r='nsuperior', isMod=True)
-    GDS['hhookinferior'] = GD(name='hhookinferior', base='hhooksuperior', l='nsuperior', r='nsuperior', isMod=True)
+    #GDS['hhooksuperior'] = GD(name='hhooksuperior', uni=0x02B1, hex='02B1', c='ʱ', l='nsuperior', r='nsuperior', isMod=True)
+    #GDS['hhookinferior'] = GD(name='hhookinferior', base='hhooksuperior', l='nsuperior', r='nsuperior', isMod=True)
 
     # i
 
@@ -706,8 +706,8 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     GDS['ssuperior'] = GD(name='ssuperior', uni=0x02E2, hex='02E2', c='ˢ', l2r='ssuperior', isMod=True)
     GDS['sinferior'] = GD(name='sinferior', uni=0x209B, hex='209B', c='ₛ', l='ssuperior', r='ssuperior', base='ssuperior', isLower=True)
-    GDS['schwasuperior'] = GD(name='schwasuperior', uni=0x1D4A, hex='1D4A', c='ᵊ', l2r='esuperior', r2l='esuperior', isLower=False, isMod=True)
-    GDS['schwainferior'] = GD(name='schwainferior', uni=0x2094, hex='2094', c='ₔ', l='schwasuperior', r='schwasuperior', base='schwasuperior', isLower=True)
+    #GDS['schwasuperior'] = GD(name='schwasuperior', uni=0x1D4A, hex='1D4A', c='ᵊ', l2r='esuperior', r2l='esuperior', isLower=False, isMod=True)
+    #GDS['schwainferior'] = GD(name='schwainferior', uni=0x2094, hex='2094', c='ₔ', l='schwasuperior', r='schwasuperior', base='schwasuperior', isLower=True)
     #GDS['shortequalsuperior'] = GD(name='shortequalsuperior', uni=0xA78A, srcName='equal', hex='A78A', c='꞊', l=GD.CAT_MOD_MIN_MARGIN, r=GD.CAT_MOD_MIN_MARGIN, isLower=True, isMod=True)
 
     # t
