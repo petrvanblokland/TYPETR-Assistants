@@ -1635,8 +1635,11 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         md = self.getMasterData(g.font)
         gd = md.glyphSet[g.name]
+        if gd is None:
+            print(f'### checkFixGlyphRightMargin: Cannot find GlyphData for /{g.name}')
+            label = ''
 
-        if c.w.autoSpace.get() and gd.autoFixMargins:
+        elif c.w.autoSpace.get() and gd.autoFixMargins:
 
             if km is None:
                 km = self.getKerningManager(g.font)

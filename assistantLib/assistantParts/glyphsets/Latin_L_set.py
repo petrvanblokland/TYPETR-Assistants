@@ -550,7 +550,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['hturned'] = GD(name='hturned', uni=0x0265, hex='0265', c='ɥ', l2r='h', r2l='h', srcName='h', isLower=True)
 
     GDS['hsuperior'] = GD(name='hsuperior', uni=0x02B0, hex='02B0', c='ʰ', l='nsuperior', r='nsuperior', isMod=True)
-    GDS['hinferior'] = GD(name='hinferior', uni=0x2095, hex='2095', c='ₕ', l='hinferior', r='hinferior', base='hsuperior', isLower=True)
+    GDS['hinferior'] = GD(name='hinferior', uni=0x2095, hex='2095', c='ₕ', l='hsuperior', r='hsuperior', base='hsuperior', isLower=True)
     #GDS['hhooksuperior'] = GD(name='hhooksuperior', uni=0x02B1, hex='02B1', c='ʱ', l='nsuperior', r='nsuperior', isMod=True)
     #GDS['hhookinferior'] = GD(name='hhookinferior', base='hhooksuperior', l='nsuperior', r='nsuperior', isMod=True)
 
@@ -686,7 +686,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['rstroke'] = GD(name='rstroke', uni=0x024D, hex='024D', c='ɍ', base='r', isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['radical'] = GD(name='radical', uni=0x221A, hex='221A', c='√', l='r', r='r', rightMin=-100, isLower=True, comment='√ SQUARE ROOT')
 
-    GDS['rsuperior'] = GD(name='rsuperior', uni=0x02B3, hex='02B3', c='ʳ', l='nsuperior', r=GD.CAT_MOD_MIN_MARGIN, isMod=True)
+    GDS['rsuperior'] = GD(name='rsuperior', uni=0x02B3, hex='02B3', c='ʳ', l='nsuperior', r='r', isMod=True)
     GDS['rinferior'] = GD(name='rinferior', l='rsuperior', r='rsuperior', base='rsuperior', isMod=True)
 
     #GDS['rbelowcmb'] = GD(name='rbelowcmb', uni=0x1DCA, hex='1DCA', c='᷊', w=0, base='rsuperior', anchors=['_bottom', 'bottom'])
