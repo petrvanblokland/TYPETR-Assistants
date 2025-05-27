@@ -285,13 +285,13 @@ CYRILLIC_SET = {
 
     #   g
 
-   'ge_cy': GD(name='ge_cy', uni=0x0433, hex='0433', c='г', l='en_cy', r='te_cy', isLower=True, anchors=['top', 'middle', 'bottom'], gid=696),
-   'ge_cy.loclBGR': GD(name='ge_cy.loclBGR', isLower=True),
+   'ge_cy': GD(name='ge_cy', uni=0x0433, hex='0433', c='г', l='en_cy', r='te_cy', isLower=True, anchors=['top', 'middle', 'bottom'], gid=696), # Change spacing rule to /s for italic
+   'ge_cy.loclBGR': GD(name='ge_cy.loclBGR', isLower=True), # Change spacing rule to /s for italic
    'gedescender_cy': GD(name='gedescender_cy', uni=0x04F7, hex='04F7', c='ӷ', l='en_cy', r='ge_cy', isLower=True, gid=892),
    'ghemiddlehook_cy': GD(name='ghemiddlehook_cy', uni=0x0495, hex='0495', c='ҕ', l='en_cy', r='o', isLower=True, gid=794),
    'ghestroke_cy': GD(name='ghestroke_cy', uni=0x0493, hex='0493', c='ғ',  r='ge_cy', base='ge_cy', isLower=True, gid=792),
    'gheupturn_cy': GD(name='gheupturn_cy', uni=0x0491, hex='0491', c='ґ', l='en_cy', r='ge_cy', isLower=True, gid=790),
-   'gje_cy': GD(name='gje_cy', uni=0x0453, hex='0453', c='ѓ', base='ge_cy', accents=['acutecmb'], isLower=True, anchors=['top'], gid=728),
+   'gje_cy': GD(name='gje_cy', uni=0x0453, hex='0453', c='ѓ', base='ge_cy', accents=['acutecmb'], isLower=True, anchors=['top'], gid=728), # Change spacing rule to /s for italic
    'gehookstroke_cy': GD(name='gehookstroke_cy', uni=0x04FB, hex='04FB', c='ӻ', r='ge_cy', isLower=True, anchors=['top']),
 
     #   h
