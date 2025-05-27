@@ -285,7 +285,7 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
     GDS['ringhalfright'] = GD(name='ringhalfright', uni=0x02BE, hex='02BE', c='ʾ', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='ringhalfrightcmb', isLower=True, gid=472)
     GDS['ringhalfrightcmb'] = GD(name='ringhalfrightcmb', l=GD.CAT_CENTER, w=0, isLower=True, anchors=['top', '_top'], gid=472)
     GDS['rlinebelow'] = GD(name='rlinebelow', uni=0x1E5F, hex='1E5F', c='ṟ', w='r', bl='r', base='r', accents=['macronbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1018)
-    GDS['ruble'] = GD(name='ruble', uni=0x20BD, hex='20BD', c='₽', w='zero.tnum', isLower=True, gid=1462)
+    GDS['ruble'] = GD(name='ruble', uni=0x20BD, hex='20BD', c='₽', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, isLower=True, gid=1462)
 
     # t
 

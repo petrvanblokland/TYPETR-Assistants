@@ -1166,7 +1166,7 @@ class KerningManager:
         changed = False
         blm = self.getBasedLeftMargin(g)
         if None not in (lm, blm) and abs(lm - blm) >= 1:
-            print(f'Set based left margin of /{g.name} from {lm:0.2f} to {blm:0.2f} {label}')
+            print(f'... Set based left margin of /{g.name} from {lm:0.2f} to {blm:0.2f} {label}')
             g.angledLeftMargin += lm - blm
             changed = True
         return changed
@@ -1177,7 +1177,7 @@ class KerningManager:
         changed = False
         brm = self.getBasedRightMargin(g)
         if None not in (rm, brm)  and abs(rm - brm) >= 1:
-            print(f'Set based right margin of /{g.name} from {rm:0.2f} to {brm:0.2f} {label}')
+            print(f'... Set based right margin of /{g.name} from {rm:0.2f} to {brm:0.2f} {label}')
             g.angledRightMargin += rm - brm
             changed = True
         return changed

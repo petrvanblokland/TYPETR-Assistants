@@ -103,7 +103,7 @@ LATIN_S_SET = GDS = {
     'hyphen.uc': GD(name='hyphen.uc', l='hyphen', r='hyphen', base='hyphen', isLower=False, comment='- minus sign, hyphen'),
     'endash': GD(name='endash', uni=0x2013, hex='2013', c='–', isLower=True, comment='– EN DASH'),
     'endash.uc': GD(name='endash.uc', isLower=False, base='endash', comment='– EN DASH'),
-    'emdash': GD(g2='hyphen', g1='hyphen', w=GD.CAT_EM, uni=0x2014, c='—', name='emdash', comment='— EM DASH', anchors=[]),
+    'emdash': GD(g2='hyphen', g1='hyphen', l=GD.CAT_CENTER, w=GD.CAT_EM_WIDTH, uni=0x2014, c='—', name='emdash', comment='— EM DASH', anchors=[]),
     'emdash.uc': GD(g2='hyphen', g1='hyphen', l='emdash', r='emdash', name='emdash.uc', base='emdash', isLower=False, comment='— EM DASH Uppercase', anchors=[]),
     'horizontalbar': GD(g2='hyphen', g1='hyphen', l='emdash', r='emdash', uni=0x2015, c='―', name='horizontalbar', base='emdash', anchors=[]),
     'horizontalbar.uc': GD(g2='hyphen', g1='hyphen', l='horizontalbar', r='horizontalbar', name='horizontalbar.uc', isLower=False, comment='Horizontal base Uppercase', anchors=[]),
@@ -847,6 +847,17 @@ LATIN_S_SET = GDS = {
     'seven': GD(g2='seven', g1='seven', uni=0x0037, c='7', name='seven', isLower=False, comment='7'),
     'eight': GD(g2='eight', g1='eight', l2r='self', uni=0x0038, c='8', name='eight', isLower=False, comment='8'),
     'nine': GD(g2='nine', g1='nine', l2r='six', r2l='six', uni=0x0039, c='9', name='nine', isLower=False, comment='9'),
+
+    # Special tabs
+
+    'minute.tab': GD(name='minute.tab', base='minute', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, isLower=True),
+    'colon.tab': GD(name='colon.tab', base='colon', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, isLower=True),
+    'semicolon.tab': GD(name='semicolon.tab', base='semicolon', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, isLower=True),
+    'second.tab': GD(name='second.tab', base='second', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, isLower=True),
+    'quotedblright.tab': GD(name='quotedblright.tab', base='quotedblright', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, isLower=True),
+    'quotedblleft.tab': GD(name='quotedblleft.tab', base='quotedblleft', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, isLower=True),
+    'quoteright.tab': GD(name='quoteright.tab', base='quoteright', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, isLower=True),
+    'quoteleft.tab': GD(name='quoteleft.tab', base='quoteleft', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, isLower=True),
 
     # Diacritics
 
