@@ -75,7 +75,7 @@ class AssistantPartSpacer(BaseAssistantPart):
     SPACER_FILL_COLOR = 0, 0, 0, 1 # All black for final kerning check round
     #SPACER_SIDE_OVERLAY_FILL_COLOR = 0.5, 0.5, 0.5, 0.5 # Default color for sides overlay kerning. Set to SPACER_FILL_COLOR if working on kerning.
     SPACER_SIDE_OVERLAY_FILL_COLOR = 0, 0, 0, 1 # Default color for sides overlay kerning. Set to SPACER_FILL_COLOR if working on kerning.
-    SPACER_SELECTED_COLOR = 0.2, 0.2, 0.5, 1 # Current glyph
+    SPACER_SELECTED_COLOR = SPACER_FILL_COLOR #0.2, 0.2, 0.5, 1 # Current glyph
     SPACER_HOVER_COLOR = 1, 0, 0, 1 # Mouse goes over the element
     SPACER_LINE_BOX_COLOR = 0, 0, 0, 0.5 # Stroke color of space box
 
