@@ -26,10 +26,10 @@ LC_CHARS = CAP_CHARS.lower()
 DIACRITICS = """Tīri çağ, Fu-ťien or Ærø krikľúň fésű? Įjungti trionfò příď! Işçi literatūrinė »gefäß« fået vadībā reîntâlni. ÞÝÐA GROẞBUCH GRÜN BRØD MOĦĦ?! IJmuiden krągły ĉeĥe bæði ģīmis “īkšķi Třešť” veľko stýfður fīča „SDĽ“ lijst.
 Înjurând pițigăiat, zoofobul comandă vexat whisky și tequila. Luís argüia à Júlia que «brações, fé, chá, óxido, pôr, zângão» eram palavras do português. Dość gróźb fuzją, klnę, pych i małżeństw! Pójdź w loch zbić małżeńską gęś futryn! Vår sære Zulu fra badeøya spilte jo whist og quickstep i min taxi. Įlinkdama fechtuotojo špaga sublykčiojusi pragręžė apvalų arbūzą. Muļķa hipiji mēģina brīvi nogaršot celofāna žņaudzējčūsku. Kæmi ný öxi hér, ykist þjófum nú bæði víl og ádrepa. Jó foxim és don Quijote húszwattos lámpánál ülve egy pár bűvös cipőt készít. Victor jagt zwölf Boxkämpfer quer über den großen Sylter Deich. Voix ambiguë d’un cœur qui au zéphyr préfère les jattes de kiwi. Bâchez la queue du wagon-taxi avec les pyjamas du fakir. Hyvän lorun sangen pieneksi hyödyksi jäi suomen kirjaimet. See väike mölder jõuab rongile hüpata. Eble ĉiu kvazaŭ-deca fuŝĥoraĵo ĝojigos homtipon. Høj bly gom vandt fræk sexquiz på wc. Příliš žluťoučký kůň úpěl ďábelské ódy. Hleď, toť přízračný kůň v mátožné póze šíleně úpí. Kŕdeľ ďatľov učí koňa žrať kôru. Hišničin bratec vzgaja polže pod fikusom. Això, il·lús company geniüt, ja és un lluït rètol blavís d’onze kWh. Gojazni đačić s biciklom drži hmelj i finu vatu u džepu nošnje. El veloz murciélago hindú comía feliz cardillo y kiwi. La cigüeña tocaba el saxofón detrás del palenque de paja. Zəfər, jaketini də papağını da götür, bu axşam hava çox soyuq olacaq. Byxfjärmat föl gick på duvshowen. Öküz ajan hapse düştü yavrum, ocağı felç gibi.\n\n"""
 
-SAMPLES = PRE + LC + LC_ACCENTS + LC_PUNCTUATIONS + CAPS + CAPS_LC_ACCENTS + CAPS_LC + CAPS_ACCENTS + CAPS_PUNCTUATIONS + FIGURES + FIGURES_FRACTIONS + FIGURE_WORDS
-
 from .cyrillic import *
 from .dutch import *
 from .jills import *
 from .spacing import *
 from .ulcwords import *
+
+SAMPLES = PRE + LC + LC_ACCENTS + LC_PUNCTUATIONS + CAPS + CAPS_LC_ACCENTS + CAPS_LC + CAPS_ACCENTS + CAPS_PUNCTUATIONS + FIGURES + FIGURES_FRACTIONS + FIGURE_WORDS

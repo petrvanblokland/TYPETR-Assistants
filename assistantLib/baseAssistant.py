@@ -59,6 +59,8 @@ from assistantLib.toolbox.glyphAnalyzer import GlyphAnalyzer
 
 from assistantLib.assistantParts.glyphsets.anchorData import AD
 
+from assistantLib.kerningSamples import SAMPLES, CYRILLIC_KERNING, GREEK_KERNING # These are character sames, not glyph name lists
+
 # Add paths to libs in sibling repositories
 PATHS = ('../TYPETR-Assistants/',)
 for path in PATHS:
@@ -299,7 +301,8 @@ class BaseAssistant:
         if not f.path in self.kerningManagers:
             md = self.getMasterData(f)
             simClip = self.SIM_CLIP * f.info.unitsPerEm / 1000 # Correct for other em-squares.
-            self.kerningManagers[f.path] = KerningManager(f, md, simClip=simClip)
+            kerningGlyphSample = (SAMPLES + CYRILLIC_KERNING + GREEK_KERNING).replace(' ', '')
+            self.kerningManagers[f.path] = KerningManager(f, md, simClip=simClip, kerningCharSample=kerningGlyphSample)
         return self.kerningManagers[f.path]
 
     #   L I B

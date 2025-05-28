@@ -18,7 +18,7 @@ import drawBot as db # Used to generate KernNet sample kerning image test.png
 import assistantLib.similarity.cosineSimilarity
 from assistantLib.similarity.cosineSimilarity import cosineSimilarity, SimilarGlyphsKey
 
-from assistantLib.kerningSamples import SAMPLES, CYRILLIC_KERNING, GREEK_KERNING
+from assistantLib.kerningSamples import SAMPLES, CYRILLIC_KERNING, GREEK_KERNING 
 # Seed relation between glyphs as start for similarity groups
 from assistantLib.assistantParts.glyphsets.groupBaseGlyphs import *
 
@@ -198,6 +198,8 @@ class KerningManager:
             automaticGroups=True, verbose=True,
             fixedLeftMarginPatterns=None, fixedRightMarginPatterns=None, fixedWidthPatterns=None,
             groupBaseGlyphs=None,
+            kerningSample=None, # Can be initialized as permutated list of glyph names
+            kerningCharSample=None, # If defined, then assume a string that will get transformed into a list of glyph names
             ):
         """Calculate all values, patterns and similarity caching to guess margins for individual glyphs.
         For reasons of validity, the font itself is not stored in the spacer instance.
@@ -296,7 +298,17 @@ class KerningManager:
         self._sampleSpacingIndex = 0
 
         # Cashed sample for kerning. If None, it will be initialize upon usage.
-        self._kerningSample = None
+        if kerningCharSample is not None:
+            uni2GlyphName = {}
+            for g in f:
+                if g.unicode:
+                    uni2GlyphName[g.unicode] = g.name
+            kerningSample = []
+            for c in kerningCharSample:
+                if ord(c) in uni2GlyphName:
+                    kerningSample.append(uni2GlyphName[ord(c)])
+
+        self._kerningSample = kerningSample
         self._sampleKerningIndex = 0 # Current index in the sample to show
 
         # Kerning filters
@@ -2013,7 +2025,7 @@ class KerningManager:
             index = self.sampleKerningIndex
         self.sampleKerningIndex = index # Store this new index
         if initialize:
-            self._kerningSample = None # Force initiazation
+            self._kerningSample = None # Force initialization
         # Property will initialize the cached kerning sample if required, then slice it.
         return self.kerningSample[index - int(length / 2) : max(len(self.kerningSample), index + int(length / 2))]
 

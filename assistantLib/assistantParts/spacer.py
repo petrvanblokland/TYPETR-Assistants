@@ -852,7 +852,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         c.w.decRightMarginButton = Button((C2+2*CW/4, y, CW/4, L), f'<[{personalKey_o}]', callback=self.spacerDecRightMarginCallback)
         c.w.incRightMarginButton = Button((C2+3*CW/4, y, CW/4, L), f'[{personalKey_p}]>', callback=self.spacerIncRightMarginCallback)
         y += L
-        c.w.spacerMode = RadioGroup((C0, y, 2*CW, L), ('Glyphs', 'Similar', 'Group', 'Space', 'Kern'), isVertical=False, sizeStyle='small', callback=self.updateEditor)
+        c.w.spacerMode = RadioGroup((C0, y, 2*CW+12, L), ('Glyf', 'Sim', 'Group', 'Space', 'Kern'), isVertical=False, sizeStyle='small', callback=self.updateEditor)
         c.w.spacerMode.set(1)
         c.w.kerningSamplePattern1 = EditText((C2, y, CW/2-18, L), callback=self.makeKerningSampleCallback) # Pattern for selecting kerning sample group 1
         c.w.kerningSampleValue = EditText((C2+CW/2-18, y, 36, L), callback=self.makeKerningSampleCallback) # Pattern for selecting kerning value range sample group 1
