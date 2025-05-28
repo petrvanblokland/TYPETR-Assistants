@@ -526,7 +526,7 @@ LATIN_S_SET = GDS = {
 
     'b': GD(name='b', uni=0x0062, hex='0062', c='b', l='h', r='o', anchorTopY='TopY', isLower=True, anchors=['bottom', 'middle', 'top'], comment='b'),
     'bdotbelow': GD(name='bdotbelow', uni=0x1E05, hex='1E05', c='ḅ', base='b', accents=['dotbelowcmb'], srcName='uni1E05', isLower=True, anchors=['bottom', 'middle', 'top']),
-    'bhook': GD(name='bhook', uni=0x0253, hex='0253', c='ɓ', l='b', r='b', isLower=True),
+    'bhook': GD(name='bhook', uni=0x0253, hex='0253', c='ɓ', r='b', isLower=True),
     'backslash': GD(name='backslash', uni=0x005C, hex='005C', c="\\" , l2r='self', isLower=True, comment='\\ SOLIDUS, REVERSE'),
     'bar': GD(name='bar', uni=0x007C, hex='007C', c='|', l='H', r='H', isLower=True, comment='| VERTICAL LINE'),
     'braceleft': GD(name='braceleft', uni=0x007B, hex='007B', c='{', isLower=True, comment='{ opening curly bracket'),
@@ -670,7 +670,7 @@ LATIN_S_SET = GDS = {
     'k': GD(name='k', uni=0x006B, hex='006B', c='k', l='h', r='x', anchorTopY='TopY', isLower=True, anchors=['bottom', 'middle', 'top'], comment='k'),
     'kcommaaccent': GD(name='kcommaaccent', uni=0x0137, hex='0137', c='ķ', anchorTopY='TopY', base='k', accents=['cedillacmb.noconnect'], isLower=True, anchors=['bottom', 'middle', 'top']),
     # Manuall space from l='k', since the top serif of the /k makes leftmargin different.
-    'khook': GD(name='khook', uni=0x0199, hex='0199', c='ƙ', r='k', anchorTopY='TopY', srcName='uni0199', isLower=True, comment='ƙ K WITH HOOK, LATIN SMALL LETTER'),
+    'khook': GD(name='khook', uni=0x0199, hex='0199', c='ƙ', l='bhook', r='k', anchorTopY='TopY', srcName='uni0199', isLower=True, comment='ƙ K WITH HOOK, LATIN SMALL LETTER'),
 
     # l
 
