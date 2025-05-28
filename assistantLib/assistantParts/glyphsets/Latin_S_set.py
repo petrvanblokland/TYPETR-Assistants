@@ -859,13 +859,6 @@ LATIN_S_SET = GDS = {
     'quoteright.tab': GD(name='quoteright.tab', base='quoteright', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, isLower=True),
     'quoteleft.tab': GD(name='quoteleft.tab', base='quoteleft', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, isLower=True),
 
-    # Special dependencies, overwriting the dynamic created GlyphData records.
-
-    'zero.tab.onum': GD(name='zero.tab.onum', base='zero.onum', l='zero.onum', r='zero.onum', isLower=True),
-    'zeroslash.tab.onum': GD(name='zeroslash.tab.onum', base='zeroslash.onum', l='zeroslash.onum', r='zeroslash.onum', isLower=True),
-    'zero.tab': GD(name='zero.tab', base='zero', l='zero', r='zero', isLower=True),
-    'zeroslash.tab': GD(name='zeroslash.tab', base='zeroslash', l='zeroslash', r='zeroslash', isLower=True),
-
     # Diacritics
 
     'ringcmb': GD(name='ringcmb', uni=0x030A, hex='030A', anchorTopY='TopY', c='̊', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
