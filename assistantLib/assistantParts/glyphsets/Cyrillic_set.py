@@ -459,7 +459,7 @@ CYRILLIC_SET_ITALIC = CSI = deepcopy(CYRILLIC_SET)
 
 # Exceptions to the Cyrillic Italic set go here.
 CSI['te_cy'] = GD(name='te_cy', uni=0x0442, hex='0442', c='т', l='m', r='m', base='m', isLower=True, gid=711)
-CSI['tedescender_cy'] = GD(name='tedescender_cy', uni=0x04AD, hex='04AD', c='ҭ', l='m', r='m', base='m', isLower=True, gid=711)
+CSI['tedescender_cy'] = GD(name='tedescender_cy', uni=0x04AD, hex='04AD', c='ҭ', l='m', r='m', isLower=True, gid=711)
 CSI['tetse_cy'] = GD(name='tetse_cy', uni=0x04B5, hex='04B5', c='ҵ', l='u', r='tse_cy', base='tse_cy', accents=['macroncmb'], isLower=True, gid=826)
 CSI['pe_cy'] = GD(name='pe_cy', uni=0x043F, hex='043F', c='п', l='n', r='n', base='n', isLower=True, gid=708)
 CSI['ii_cy'] = GD(name='ii_cy', uni=0x0438, hex='0438', c='и', l='u', r='u', base='u', isLower=True, anchors=['top'], gid=701)
@@ -467,6 +467,10 @@ CSI['dzhe_cy'] = GD(name='dzhe_cy', uni=0x045F, hex='045F', c='џ', l='en_cy', r
 CSI['de_cy.loclBGR'] = GD(name='de_cy.loclBGR', base='g', isLower=True)
 CSI['ghestroke_cy'] = GD(name='ghestroke_cy', uni=0x0493, hex='0493', c='ғ', isLower=True, gid=792)
 
+CYRILLIC_SET_ITALIC = GDSI = deepcopy(CYRILLIC_SET)
+GDSI['chekhakassian_cy'].r = 'off'
+
+#GDSI['f'].l = GDSI['f'].r ='off',
 
 # Remove these glyphs from the Cyrillic italic set, because the glyphs are the identical to the defailt glyphs
 for gName in [
