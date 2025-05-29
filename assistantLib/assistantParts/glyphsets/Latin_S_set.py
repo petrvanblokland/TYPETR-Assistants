@@ -608,7 +608,7 @@ LATIN_S_SET = GDS = {
 
     # g
 
-    'g': GD(name='g', uni=0x0067, hex='0067', c='g', l2r='l', isLower=True, anchors=['bottom', 'middle', 'top'], comment='g'),
+    'g': GD(name='g', uni=0x0067, hex='0067', c='g', isLower=True, anchors=['bottom', 'middle', 'top'], comment='g'),
     'gbreve': GD(name='gbreve', uni=0x011F, hex='011F', c='ğ', anchorTopY='TopY', base='g', accents=['brevecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ğ G WITH BREVE, LATIN SMALL LETTER'),
     'gcaron': GD(name='gcaron', uni=0x01E7, hex='01E7', c='ǧ', anchorTopY='TopY', base='g', accents=['caroncmb'], srcName='uni01E7', isLower=True, anchors=['bottom', 'middle', 'top']),
     'gcircumflex': GD(name='gcircumflex', uni=0x011D, hex='011D', c='ĝ', anchorTopY='TopY', base='g', accents=['circumflexcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ĝ G WITH CIRCUMFLEX, LATIN SMALL LETTER'),
@@ -1041,8 +1041,19 @@ ONUM_NAMES = (
 LATIN_S_SET_ITALIC = GDSI = deepcopy(LATIN_S_SET)
 GDSI['g'] = GD(name='g', uni=0x0067, hex='0067', c='g', isLower=True, anchors=['bottom', 'middle', 'top'], comment='g')
 # Left spacing different from /t in italic. Manual spacing instead.
+
+GDSI['Schwa'].l = 'off'
+GDSI['b'].r = 'off'
 GDSI['d'].l = 'a'
-GDSI['f'].l = GDSI['f'].r ='off',
+GDSI['e'].l = 'c'
+GDSI['f'].l = GDSI['f'].r ='off'
+GDSI['g'].l = 'a'
+GDSI['i'].l = 'n' 
+GDSI['i'].r = 'u'
+GDSI['p'].l = 'b'
+GDSI['q'].l = 'a',
+
+
 
 if __name__ == '__main__':
     for gName, gd in GDS.items():
