@@ -467,10 +467,9 @@ CSI['dzhe_cy'] = GD(name='dzhe_cy', uni=0x045F, hex='045F', c='џ', l='en_cy', r
 CSI['de_cy.loclBGR'] = GD(name='de_cy.loclBGR', base='g', isLower=True)
 CSI['ghestroke_cy'] = GD(name='ghestroke_cy', uni=0x0493, hex='0493', c='ғ', isLower=True, gid=792)
 
-CYRILLIC_SET_ITALIC = GDSI = deepcopy(CYRILLIC_SET)
-GDSI['chekhakassian_cy'].r = 'off'
+#CYRILLIC_SET_ITALIC = GDSI = deepcopy(CYRILLIC_SET)
+#GDSI['chekhakassian_cy'].r = 'off'
 
-#GDSI['f'].l = GDSI['f'].r ='off',
 
 # Remove these glyphs from the Cyrillic italic set, because the glyphs are the identical to the defailt glyphs
 for gName in [
@@ -478,5 +477,4 @@ for gName in [
     'che_cy.loclBGR', 'sha_cy.loclBGR', 'shcha_cy.loclBGR', 'hardsign_cy.loclBGR', 'softsign_cy.loclBGR']:
     if gName in CYRILLIC_SET_ITALIC:
         del CYRILLIC_SET_ITALIC[gName]
-
 
