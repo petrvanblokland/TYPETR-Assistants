@@ -129,7 +129,7 @@ GREEK_SET = {
    #'phiSymbol': GD(name='phiSymbol', uni=0x03D5, hex='03D5', c='ϕ', l='o', r='o', isLower=True, gid=602),
    'pi': GD(name='pi', uni=0x03C0, hex='03C0', c='π', isLower=True, anchors=['bottom', 'top'], gid=581),
    #'piSymbol': GD(name='piSymbol', uni=0x03D6, hex='03D6', c='ϖ', l='hyphen', l2r='piSymbol', isLower=True, gid=603),
-   'psi': GD(name='psi', uni=0x03C8, hex='03C8', c='ψ', l='off', l2r='psi', anchorTopX='TopX', anchorTopY='TopY', isLower=True, anchors=['bottom', 'top'], gid=589),
+   'psi': GD(name='psi', uni=0x03C8, hex='03C8', c='ψ', l='v', r='o', anchorTopX='TopX', anchorTopY='TopY', isLower=True, anchors=['bottom', 'top'], gid=589),
    'questiongreek': GD(name='questiongreek', uni=0x037E, hex='037E', c=';', base='semicolon', isLower=True, gid=522),
    'rho': GD(name='rho', uni=0x03C1, hex='03C1', c='ρ', l='p', r='o', isLower=True, anchors=['bottom', 'top'], gid=582),
    #'rhoStrokeSymbol': GD(name='rhoStrokeSymbol', uni=0x03FC, hex='03FC', c='ϼ', r='o', bl='rho', base='rho', isLower=True, anchors=['top'], gid=641),
