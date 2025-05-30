@@ -446,7 +446,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['invertedbrevedoublecmb.uc'] = GD(name='invertedbrevedoublecmb.uc', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top'])
 
     GDS['bsuperior'] = GD(name='bsuperior', uni=0x1D47, hex='1D47', c='ᵇ', l='hsuperior', r='osuperior', isLower=False, isMod=True)
-    GDS['binferior'] = GD(name='binferior', l='hsuperior', r='osuperior', base='bsuperior', isLower=False, isMod=True)
+    GDS['binferior'] = GD(name='binferior', l='hsuperior', r='asuperior', base='bsuperior', isLower=False, isMod=True)
 
     # c
 
@@ -477,7 +477,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['dcircumflexbelow'] = GD(name='dcircumflexbelow', uni=0x1E13, hex='1E13', c='ḓ', base='d', accents=['circumflexbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['ddotaccent'] = GD(name='ddotaccent', uni=0x1E0B, hex='1E0B', c='ḋ', base='d', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['dieresisbelowcmb'] = GD(name='dieresisbelowcmb', uni=0x0324, hex='0324', c='̤', w=0, autoFixComponentPositions=False, autoFixMargins=False, base='dieresiscmb',isLower=True, anchors=['_bottom', 'bottom'])
-    GDS['dtail'] = GD(name='dtail', uni=0x0256, hex='0256', c='ɖ', w='d', isLower=True, comment='Glyph unicode 0256 is the lowercase letter "ɖ" in the International Phonetic Alphabet (IPA). It is used to represent a voiced retroflex plosive sound in various languages, including African languages such as Igbo, Yoruba, and Ewe. It is also used in some Native American languages such as Navajo and Tlingit. In linguistics, the IPA is commonly used to transcribe the sounds of human speech, and the glyph unicode 0256 helps to accurately represent this specific sound.')
+    GDS['dtail'] = GD(name='dtail', uni=0x0256, hex='0256', c='ɖ', l='d', w='d', isLower=True, comment='Glyph unicode 0256 is the lowercase letter "ɖ" in the International Phonetic Alphabet (IPA). It is used to represent a voiced retroflex plosive sound in various languages, including African languages such as Igbo, Yoruba, and Ewe. It is also used in some Native American languages such as Navajo and Tlingit. In linguistics, the IPA is commonly used to transcribe the sounds of human speech, and the glyph unicode 0256 helps to accurately represent this specific sound.')
     GDS['dz'] = GD(name='dz', uni=0x01F3, hex='01F3', c='ǳ', l='d', r='z', anchorTopY='z', anchorTopX='z', base='z', accents=['d'], isLower=True)
     GDS['dzcaron'] = GD(name='dzcaron', uni=0x01C6, hex='01C6', c='ǆ', l='d', r='z', base='dz', accents=['caroncmb'], isLower=True)
 
@@ -511,7 +511,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     # f
 
-    GDS['fStroke'] = GD(name='fStroke', uni=0xA799, hex='A799', c='ꞙ', base='f', isLower=True, anchors=['bottom', 'middle', 'top'])
+    GDS['fStroke'] = GD(name='fStroke', uni=0xA799, hex='A799', c='ꞙ', base='f', l= 'f', r= 'f', isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['fdotaccent'] = GD(name='fdotaccent', uni=0x1E1F, hex='1E1F', c='ḟ', rightMin='-100', base='f', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['florin'] = GD(name='florin', uni=0x0192, hex='0192', c='ƒ', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, comment='ƒ script f, latin small letter')
     GDS['florin.tab'] = GD(name='florin.tab', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='florin', comment='ƒ script f, latin small letter')
@@ -545,7 +545,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['hcaron'] = GD(name='hcaron', uni=0x021F, hex='021F', c='ȟ', base='h', accents=['caroncmb.uc'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['hdotaccent'] = GD(name='hdotaccent', uni=0x1E23, hex='1E23', c='ḣ', base='h', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['heng'] = GD(name='heng', uni=0xA727, hex='A727', c='ꜧ', l='h', r='j', srcName='h', isLower=True)
-    GDS['henghook'] = GD(name='henghook', uni=0x0267, hex='0267', c='ɧ', l='bhook', isLower=True) # Not left of /h because missing top serif
+    GDS['henghook'] = GD(name='henghook', uni=0x0267, hex='0267', c='ɧ', l='bhook', w='h', isLower=True) # Not left of /h because missing top serif
     GDS['hhook'] = GD(name='hhook', uni=0x0266, hex='0266', c='ɦ', l='bhook', r='h', srcName='h', isLower=True) # Not left of /h because missing top serif
     GDS['hturned'] = GD(name='hturned', uni=0x0265, hex='0265', c='ɥ', l2r='h', r2l='h', srcName='h', isLower=True)
 
@@ -763,7 +763,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     # w
 
     GDS['wdotaccent'] = GD(name='wdotaccent', uni=0x1E87, hex='1E87', c='ẇ', l='w', r='w', base='w', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
-    GDS['whook'] = GD(name='whook', uni=0x2C73, hex='2C73', c='ⱳ', isLower=True)
+    GDS['whook'] = GD(name='whook', uni=0x2C73, hex='2C73', c='ⱳ', l='w', isLower=True)
     GDS['wring'] = GD(name='wring', uni=0x1E98, hex='1E98', c='ẘ', l='w', r='w', base='w', accents=['ringcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['won'] = GD(name='won', uni=0x20A9, hex='20A9', c='₩', l='W', l2r='W', srcName='W', isLower=False)
 
@@ -872,6 +872,13 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['seveneighths'] = GD(name='seveneighths', uni=0x215E, hex='215E', c='⅞', base='seven.numr', accents=['fraction', 'eight.dnom'], isLower=False, gid=1475, comment='⅞')
 
 # Make exceptions here for Italic glyphs and spacing rules in LATIN_L_SET_ITALIC
+
+LATIN_L_SET_ITALIC = GDSI = deepcopy(LATIN_L_SET)
+GDSI['qhooktail'].l = 'a'
+GDSI['hturned'].l = 'u'
+GDSI['hturned'].r = 'q'
+GDSI['vhook'].l = GDSI['vhook'].r = 'v',
+
 
 if __name__ == '__main__':
     for gName, gd in LATIN_L_SET.items():

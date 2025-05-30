@@ -566,7 +566,7 @@ LATIN_S_SET = GDS = {
     'dcaron': GD(name='dcaron', uni=0x010F, hex='010F', c='ď', l='d', r='comma', anchorTopY='TopY', base='d', accents=['caroncmb.vert'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ď D WITH CARON, LATIN SMALL LETTER'),
     'dcroat': GD(name='dcroat', uni=0x0111, hex='0111', c='đ', l='d', r='hyphen', isLower=True, anchorTopY='TopY', base='d', comment='đ D WITH STROKE, LATIN SMALL LETTER'),
     'ddotbelow': GD(name='ddotbelow', uni=0x1E0D, hex='1E0D', c='ḍ', base='d', accents=['dotbelowcmb'], srcName='uni1E0D', isLower=True, anchors=['bottom', 'middle', 'top']),
-    'dhook': GD(name='dhook', uni=0x0257, hex='0257', c='ɗ', w='d', anchorTopY='TopY', isLower=True),
+    'dhook': GD(name='dhook', uni=0x0257, hex='0257', c='ɗ', l='d', w='d', anchorTopY='TopY', isLower=True),
     'dagger': GD(name='dagger', uni=0x2020, hex='2020', c='†', l2r='self', isLower=True, comment='† DAGGER'),
     'daggerdbl': GD(name='daggerdbl', uni=0x2021, hex='2021', c='‡', l='dagger', r='dagger', isLower=True, comment='‡ DOUBLE DAGGER'),
 
@@ -715,7 +715,7 @@ LATIN_S_SET = GDS = {
     'ohungarumlaut': GD(name='ohungarumlaut', uni=0x0151, hex='0151', c='ő', w='o', base='o', accents=['hungarumlautcmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top']),
     'omacron': GD(name='omacron', uni=0x014D, hex='014D', c='ō', l='o', r='o', base='o', accents=['macroncmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ō O WITH MACRON, LATIN SMALL LETTER'),
     'oopen': GD(name='oopen', uni=0x0254, hex='0254', c='ɔ', r2l='c', srcName='o', isLower=True, anchors=['dot'], comment='ɔ OPEN O, LATIN SMALL LETTER'),
-    'oslash': GD(name='oslash', uni=0x00F8, hex='00F8', c='ø', base='o', isLower=True, anchors=['bottom', 'middle', 'top'], comment='ø STROKE, LATIN SMALL LETTER O WITH'),
+    'oslash': GD(name='oslash', uni=0x00F8, hex='00F8', c='ø', l2r='self', base='o', isLower=True, anchors=['bottom', 'middle', 'top'], comment='ø STROKE, LATIN SMALL LETTER O WITH'),
     'oslash.alt': GD(name='oslash.alt', base='o', isLower=True, anchors=['bottom', 'middle', 'top'], comment='ø STROKE, LATIN SMALL LETTER O WITH'),
     'otilde': GD(name='otilde', uni=0x00F5, hex='00F5', c='õ', base='o', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='õ O WITH TILDE, LATIN SMALL LETTER'),
     'oogonek': GD(name='oogonek', uni=0x01EB, hex='01EB', c='ǫ', base='o', accents=['ogonekcmb'],  isLower=True, anchors=['top', 'middle', 'bottom']),
@@ -774,7 +774,7 @@ LATIN_S_SET = GDS = {
     'tcaron': GD(name='tcaron', uni=0x0165, hex='0165', c='ť', anchorTopY='TopY', base='t', accents=['caroncmb.vert'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ť T WITH CARON, LATIN SMALL LETTER'),
     'tcedilla': GD(name='tcedilla', uni=0x0163, hex='0163', c='ţ', anchorTopY='TopY', base='t', accents=['cedillacmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ţ T WITH CEDILLA, LATIN SMALL LETTER'),
     'tcommaaccent': GD(name='tcommaaccent', uni=0x021B, hex='021B', c='ț', anchorTopY='TopY', base='t', accents=['cedillacmb.noconnect'], srcName='uni021B', isLower=True, anchors=['bottom', 'middle', 'top'], comment='ț T WITH COMMA BELOW, LATIN SMALL LETTER'),
-    'thorn': GD(name='thorn', uni=0x00FE, hex='00FE', c='þ', anchorTopY='TopY', isLower=True, comment='þ THORN, LATIN SMALL LETTER'),
+    'thorn': GD(name='thorn', uni=0x00FE, hex='00FE', c='þ', r='o', anchorTopY='TopY', isLower=True, comment='þ THORN, LATIN SMALL LETTER'),
     'tilde': GD(name='tilde', uni=0x02DC, hex='02DC', c='˜', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='tildecmb', isLower=True),
 
     # u
@@ -818,7 +818,7 @@ LATIN_S_SET = GDS = {
     'ycircumflex': GD(name='ycircumflex', uni=0x0177, hex='0177', c='ŷ', l='y', r='y', base='y', accents=['circumflexcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ŷ Y WITH CIRCUMFLEX, LATIN SMALL LETTER'),
     'ydieresis': GD(name='ydieresis', uni=0x00FF, hex='00FF', c='ÿ', l='y', r='y', base='y', accents=['dieresiscmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ÿ Y WITH DIAERESIS, LATIN SMALL LETTER'),
     'ygrave': GD(name='ygrave', uni=0x1EF3, hex='1EF3', c='ỳ', l='y', r='y', base='y', accents=['gravecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ỳ Y WITH GRAVE, LATIN SMALL LETTER'),
-    'yhook': GD(name='yhook', uni=0x01B4, hex='01B4', c='ƴ', l='y', r='y', srcName='uni01B4', isLower=True, comment='ƴ Y WITH HOOK, LATIN SMALL LETTER'),
+    'yhook': GD(name='yhook', uni=0x01B4, hex='01B4', c='ƴ', l='y', srcName='uni01B4', isLower=True, comment='ƴ Y WITH HOOK, LATIN SMALL LETTER'),
     'ymacron': GD(name='ymacron', uni=0x0233, hex='0233', c='ȳ', base='y', accents=['macroncmb'], isLower=True, anchors=['bottom', 'middle', 'top']),
     'ytilde': GD(name='ytilde', uni=0x1EF9, hex='1EF9', c='ỹ', l='y', r='y', base='y', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ỹ Y WITH TILDE, LATIN SMALL LETTER'),
 
@@ -1050,9 +1050,13 @@ GDSI['f'].l = GDSI['f'].r ='off'
 GDSI['g'].l = 'a'
 GDSI['i'].l = 'n' 
 GDSI['i'].r = 'u'
-GDSI['p'].l = 'b'
-GDSI['q'].l = 'a',
-
+GDSI['p'].r = 'b'
+GDSI['q'].l = 'a'
+GDSI['v'].l = GDSI['v'].r = 'off'
+GDSI['y'].l = GDSI['y'].r = 'v'
+GDSI['germandbls'].l = 'off'
+GDSI['thorn'].r = 'b'
+GDSI['ampersand'].r = 'off',
 
 
 if __name__ == '__main__':
