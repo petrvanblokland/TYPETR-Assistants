@@ -873,11 +873,11 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
 # Make exceptions here for Italic glyphs and spacing rules in LATIN_L_SET_ITALIC
 
-LATIN_L_SET_ITALIC = GDSI = deepcopy(LATIN_L_SET)
+GDSI = LATIN_L_SET_ITALIC
 GDSI['qhooktail'].l = 'a'
 GDSI['hturned'].l = 'u'
 GDSI['hturned'].r = 'q'
-GDSI['vhook'].l = GDSI['vhook'].r = 'v',
+GDSI['vhook'].l = GDSI['vhook'].r = 'v'
 
 
 if __name__ == '__main__':

@@ -395,6 +395,9 @@ class MasterData:
         if hairWidth is None:
             hairWidth = int(round(unitsPerEm/24))
         self.hairWidth = hairWidth
+        if spaceWidth is None:
+            spaceWidth = int(round(unitsPerEm/5))
+        self.spaceWidth = spaceWidth
 
         # Margin
         if minMargin is None:

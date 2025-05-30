@@ -46,7 +46,7 @@ CYRILLIC_SET = {
     #   D
 
    'De_cy': GD(name='De_cy', uni=0x0414, hex='0414', c='Д', l='off', r='Tse_cy', gid=665),
-   'De_cy.loclBGR': GD(name='De_cy.loclBGR'), 
+   'De_cy.loclBGR': GD(name='De_cy.loclBGR', l2r='self'), 
 
    'Dje_cy': GD(name='Dje_cy', uni=0x0402, hex='0402', c='Ђ', l='T', gid=647),
    'Dze_cy': GD(name='Dze_cy', uni=0x0405, hex='0405', c='Ѕ', l='S', r='S', base='S', anchors=['top', 'middle', 'bottom'], gid=650),
@@ -475,14 +475,13 @@ CSI['tse_cy'].l = 'u'
 CSI['sha_cy'].l = CSI['sha_cy'].r = 'u'
 CSI['shcha_cy'].l = 'u'
 CSI['hardsign_cy'].l = 'off'
-CSI['ereversed_cy'].l2r='c' 
-CSI['ereversed_cy'].r2l='c'
+CSI['ereversed_cy'].l2r = CSI['ereversed_cy'].r2l='c'
 CSI['gheupturn_cy'].r = 'off'
 CSI['ghestroke_cy'].r = 'off'
 CSI['kabashkir_cy'].l = 'hardsign_cy'
 CSI['enghe_cy'].r = 'ghestroke_cy'
 CSI['gedescender_cy'].r = 'ghestroke_cy'
-CSI['gehookstroke_cy'].r = 'ghestroke_cy',
+CSI['gehookstroke_cy'].r = 'ghestroke_cy'
 
 
 # Remove these glyphs from the Cyrillic italic set, because the glyphs are the identical to the defailt glyphs

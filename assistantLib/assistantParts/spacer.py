@@ -443,7 +443,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             if not sw: # In case of diacritics on width == 0, add wordspace in front and behind.
                 x += dw
 
-            prevName = spaceG.name # Rembmer for next kerning pair
+            prevName = spaceG.name # Remember for next kerning pair
 
         gpFirst = self.spacerGlyphPositions[0]
         gpLast = self.spacerGlyphPositions[-1]

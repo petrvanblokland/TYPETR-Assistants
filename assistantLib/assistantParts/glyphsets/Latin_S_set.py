@@ -1056,7 +1056,7 @@ GDSI['v'].l = GDSI['v'].r = 'off'
 GDSI['y'].l = GDSI['y'].r = 'v'
 GDSI['germandbls'].l = 'off'
 GDSI['thorn'].r = 'b'
-GDSI['ampersand'].r = 'off',
+GDSI['ampersand'].r = 'off'
 
 
 if __name__ == '__main__':

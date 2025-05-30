@@ -331,9 +331,8 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
 
 # Make exceptions here for Italic glyphs and spacing rules in LATIN_M_SET_ITALIC
 
-LATIN_M_SET_ITALIC = GDSI = deepcopy(LATIN_M_SET)
-GDSI['uhorn'] = GD(name='uhorn', uni=0x01B0, hex='01B0', c='ư', l='u', anchorTopY='u', anchorTopX='u', isLower=True, accents=['horncmb'], anchors=['bottom', 'top'], gid=369, comment='ư U WITH HORN, LATIN SMALL LETTER')
-   
+GDSI = LATIN_M_SET_ITALIC
+GDSI['uhorn'] = GD(name='uhorn', uni=0x01B0, hex='01B0', c='ư', l='u', r='off', anchorTopY='u', anchorTopX='u', isLower=True, base='horncmb', anchors=['bottom', 'top'], gid=369, comment='ư U WITH HORN, LATIN SMALL LETTER')   
 
 if __name__ == '__main__':
     for gName, gd in LATIN_M_SET.items():
