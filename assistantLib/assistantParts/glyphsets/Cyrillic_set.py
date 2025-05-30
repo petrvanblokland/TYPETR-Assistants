@@ -292,7 +292,7 @@ CYRILLIC_SET = {
    'ghestroke_cy': GD(name='ghestroke_cy', uni=0x0493, hex='0493', c='ғ',  r='ge_cy', base='ge_cy', isLower=True, gid=792),
    'gheupturn_cy': GD(name='gheupturn_cy', uni=0x0491, hex='0491', c='ґ', l='en_cy', r='ge_cy', isLower=True, gid=790),
    'gje_cy': GD(name='gje_cy', uni=0x0453, hex='0453', c='ѓ', base='ge_cy', accents=['acutecmb'], isLower=True, anchors=['top'], gid=728), # Change spacing rule to /s for italic
-   'gehookstroke_cy': GD(name='gehookstroke_cy', uni=0x04FB, hex='04FB', c='ӻ', r='ge_cy', isLower=True, anchors=['top']),
+   'gehookstroke_cy': GD(name='gehookstroke_cy', uni=0x04FB, hex='04FB', c='ӻ', l='j', r='ge_cy', isLower=True, anchors=['top']),
 
     #   h
 
@@ -369,7 +369,7 @@ CYRILLIC_SET = {
    'pe_cy.loclBGR': GD(name='pe_cy.loclBGR', l='n', r='n', base='n', isLower=True),
    'pedescender_cy': GD(name='pedescender_cy', uni=0x0525, hex='0525', c='ԥ', l='en_cy', r='tse_cy', isLower=True, gid=902),
    #'pedescender_cy.component': GD(name='pedescender_cy.component', w=0, isLower=True, gid=1681),
-   'pemiddlehook_cy': GD(name='pemiddlehook_cy', uni=0x04A7, hex='04A7', c='ҧ', l='en_cy', r='o', isLower=True, gid=812),
+   'pemiddlehook_cy': GD(name='pemiddlehook_cy', uni=0x04A7, hex='04A7', c='ҧ', l='en_cy', isLower=True, gid=812),
    #'psi_cy': GD(name='psi_cy', uni=0x0471, hex='0471', c='ѱ', r='n', base='psi',isLower=True, gid=758),
    #'psilipneumatacmb_cy': GD(name='psilipneumatacmb_cy', uni=0x0486, hex='0486', c='҆', w=0, base='psili', isLower=True, anchors=['top', '_top'], gid=779),
 
@@ -440,7 +440,7 @@ CYRILLIC_SET = {
     #   z
 
     'ze_cy': GD(name='ze_cy', uni=0x0437, hex='0437', c='з', r='ve_cy', isLower=True, anchors=['top'], gid=700),
-    'ze_cy.loclBGR': GD(name='ze_cy.loclBGR', isLower=True),
+    'ze_cy.loclBGR': GD(name='ze_cy.loclBGR', r='ve_cy.loclBGR', isLower=True),
     'zedescender_cy': GD(name='zedescender_cy', uni=0x0499, hex='0499', c='ҙ', l='ze_cy', r='ve_cy', base='ze_cy', isLower=True, gid=798),
     'zedieresis_cy': GD(name='zedieresis_cy', uni=0x04DF, hex='04DF', c='ӟ', l='ze_cy', r='ve_cy', base='ze_cy', accents=['dieresiscmb'], isLower=True, anchors=['top'], gid=868),
     'zhe_cy': GD(name='zhe_cy', uni=0x0436, hex='0436', c='ж', l2r='k',  r='k', isLower=True, anchors=['top'], gid=699),
@@ -459,14 +459,14 @@ CYRILLIC_SET_ITALIC = CSI = deepcopy(CYRILLIC_SET)
 
 # Exceptions to the Cyrillic Italic set go here.
 CSI['te_cy'] = GD(name='te_cy', uni=0x0442, hex='0442', c='т', l='m', r='m', base='m', isLower=True, gid=711)
-CSI['tedescender_cy'] = GD(name='tedescender_cy', uni=0x04AD, hex='04AD', c='ҭ', l='m', r='m', isLower=True, gid=711)
+CSI['tedescender_cy'] = GD(name='tedescender_cy', uni=0x04AD, hex='04AD', c='ҭ', l='m', r='tse_cy', isLower=True, gid=711)
 CSI['tetse_cy'] = GD(name='tetse_cy', uni=0x04B5, hex='04B5', c='ҵ', l='u', r='tse_cy', base='tse_cy', accents=['macroncmb'], isLower=True, gid=826)
 CSI['pe_cy'] = GD(name='pe_cy', uni=0x043F, hex='043F', c='п', l='n', r='n', base='n', isLower=True, gid=708)
 CSI['ii_cy'] = GD(name='ii_cy', uni=0x0438, hex='0438', c='и', l='u', r='u', base='u', isLower=True, anchors=['top'], gid=701)
 CSI['dzhe_cy'] = GD(name='dzhe_cy', uni=0x045F, hex='045F', c='џ', l='u', r='u', base='u', isLower=True, gid=740)
 CSI['de_cy.loclBGR'] = GD(name='de_cy.loclBGR', base='g', isLower=True)
 CSI['ghestroke_cy'] = GD(name='ghestroke_cy', uni=0x0493, hex='0493', c='ғ', isLower=True, gid=792)
-CSI['chekhakassian_cy'].r = 'off'
+CSI['chekhakassian_cy'].r = 'j'
 CSI['ve_cy'].l = 'off'
 CSI['ge_cy'].l = CSI['ge_cy'].r = 's'
 CSI['de_cy'].l = 'o'
@@ -478,7 +478,11 @@ CSI['hardsign_cy'].l = 'off'
 CSI['ereversed_cy'].l2r='c' 
 CSI['ereversed_cy'].r2l='c'
 CSI['gheupturn_cy'].r = 'off'
-CSI['ghestroke_cy'].r = 'off',
+CSI['ghestroke_cy'].r = 'off'
+CSI['kabashkir_cy'].l = 'hardsign_cy'
+CSI['enghe_cy'].r = 'ghestroke_cy'
+CSI['gedescender_cy'].r = 'ghestroke_cy'
+CSI['gehookstroke_cy'].r = 'ghestroke_cy',
 
 
 # Remove these glyphs from the Cyrillic italic set, because the glyphs are the identical to the defailt glyphs
