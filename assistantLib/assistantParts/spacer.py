@@ -678,6 +678,13 @@ class AssistantPartSpacer(BaseAssistantPart):
             return False # Nothing changed.
         return self.updateSpacerKerningGlyphs(g)
 
+    KERNING_TYPE_LABELS = {
+        0: ('', (0, 0, 0, 1)), # Group-Group kerning
+        1: (' (G-g)', (0.5, 0, 0.5, 1)), # Group-glyph kerning
+        2: (' (G-g)', (0.5, 0.5, 0, 1)), # glyph-Group kerning
+        3: (' (g-g)', (0, 0.5, 0.5, 1)), # glyph-glyph kerning
+    }
+    
     def updateSpacerKerningGlyphs(self, g):
 
         c = self.getController()
@@ -718,14 +725,18 @@ class AssistantPartSpacer(BaseAssistantPart):
         else: # kLeft > 0
             knColor = (0, 0.5, 0, 1)
 
+        kLeftTypeLabel, ktLeftColor = self.KERNING_TYPE_LABELS[kerningTypeLeft]
+        kRightTypeLabel, ktRightColor = self.KERNING_TYPE_LABELS[kerningTypeRight]
+
         showOverlays = c.w.showKerningOverlays.get()
 
         self.spacerGlyphLeft.setPath(gLeft.getRepresentation("merz.CGPath"))
+        self.spacerGlyphLeft.setFillColor(ktLeftColor)
         self.spacerGlyphLeft.setPosition((-gLeft.width - kLeft, 0))
         self.spacerGlyphLeft.setVisible(showOverlays)
 
         # Actual kerning value
-        self.spacerGlyphKerningLeft.setText(str(kLeft))
+        self.spacerGlyphKerningLeft.setText(str(kLeft) + kLeftTypeLabel)
         self.spacerGlyphKerningLeft.setPosition((self.italicX(g, kLeft/2, y1), y1))
         self.spacerGlyphKerningLeft.setFillColor(color)
         self.spacerGlyphKerningLeft.setVisible(showOverlays)
@@ -751,11 +762,12 @@ class AssistantPartSpacer(BaseAssistantPart):
             knColor = (0, 0.5, 0, 1)
 
         self.spacerGlyphRight.setPath(gRight.getRepresentation("merz.CGPath"))
+        self.spacerGlyphRight.setFillColor(ktRightColor)
         self.spacerGlyphRight.setPosition((g.width + kRight, 0))
         self.spacerGlyphRight.setVisible(showOverlays)
 
         # Actual kerning value
-        self.spacerGlyphKerningRight.setText(str(kRight))
+        self.spacerGlyphKerningRight.setText(str(kRight) + kRightTypeLabel)
         self.spacerGlyphKerningRight.setPosition((self.italicX(g, g.width + kRight/2, y1), y1))
         self.spacerGlyphKerningRight.setFillColor(color)
         self.spacerGlyphKerningRight.setVisible(showOverlays)
@@ -1292,9 +1304,11 @@ class AssistantPartSpacer(BaseAssistantPart):
         self._adjustLeftKerning(g, newK=knLeft)
 
     def spacerSetKernNet2(self, g, c, event):
-        """Set the right kerning value to the calculated KernNet kerning value."""
+        """Set the right kerning value to the calculated KernNet kerning value.
+        Clear any non Group-Group kerning that may exist"""
         km = self.getKerningManager(g.font)
         kernGlyphName2 = km.kerningSample[km.sampleKerningIndex + 1]
+        km.clearOtherKerningTypes(g.name, kernGlyphName2)
         knRight = km.getKernNetKerning(g, g.font[kernGlyphName2]) or 0 # Needs glyphs, not glyph names
         self._adjustRightKerning(g, newK=knRight)
 

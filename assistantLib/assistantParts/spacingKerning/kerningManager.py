@@ -1554,6 +1554,30 @@ class KerningManager:
                 print(f'... Clear glyph-Group kerning ({k}) for /{p1} -- {p2} ')
                 del self.f.kerning[(p1, p2)]
 
+    def clearOtherKerningTypes(self, gName1, gName2):
+        """Clear any existing kerning for these glyphs, other than Group-Group
+        """ 
+        assert self.f is not None
+        assert isinstance(gName1, str) and isinstance(gName2, str) # Common mistake to supply glyph here, instead of glyph names.
+
+        groupName1 = self.glyphName2GroupName1.get(gName1)
+        groupName2 = self.glyphName2GroupName2.get(gName2)
+        if None in (groupName1, groupName2):
+            return False
+
+        changed = False
+        groupK = self.f.kerning.get((groupName1, groupName2), 0) # Get the default group-group kerning for this pair
+        if (gName1, gName2) in self.f.kerning: # Test on glyph<-->glyph kerning first
+            del self.f.kerning[(gName1, gName2)]
+            changed = True
+        if (groupName1, gName2) in self.f.kerning: # Test on group<-->glyph kerning
+            del self.f.kerning[(groupName1, gName2)]
+            changed = True
+        if (gName1, groupName2) in self.f.kerning: # Test on glyph<-->group kerning
+            del self.f.kerning[gName1, groupName2]
+            changed = True
+        return changed
+
     #   K E R N N E T  A I 
 
     KERNNET_UNIT = 4
@@ -2217,7 +2241,7 @@ class KerningManager:
         groupName1 = self.glyphName2GroupName1.get(gName1)
         groupName2 = self.glyphName2GroupName2.get(gName2)
         if None in (groupName1, groupName2):
-            return 0, 0, None
+            return 0, 0, 0
 
         groupK = self.f.kerning.get((groupName1, groupName2), 0) # Get the default group-group kerning for this pair
         if (gName1, gName2) in self.f.kerning: # Test on glyph<-->glyph kerning first
@@ -2319,6 +2343,7 @@ class KerningManager:
             else:
                 bad[(name1, name2)] = k
         return GG, Gg, gG, gg, bad
+
 
 def makeSpecimenPdf(glyphData, UNI2GLYPH_DATA):
     specimen = KerningSample(GLYPH_DATA,)
