@@ -75,7 +75,7 @@ GREEK_SET = {
    'Upsilon': GD(name='Upsilon', uni=0x03A5, hex='03A5', c='Υ', l='Y', r='Y', base='Y', anchors=['bottom', 'topleft', 'top'], gid=554),
    #'UpsilonacutehookSymbol': GD(name='UpsilonacutehookSymbol', uni=0x03D3, hex='03D3', c='ϓ', l='Y', r='r', base='UpsilonhookSymbol', accents=['tonoscmb.uc'], anchors=['top'], gid=600),
    'Upsilondieresis': GD(name='Upsilondieresis', uni=0x03AB, hex='03AB', c='Ϋ', l='Upsilon', r='Upsilon', base='Y', accents=['dieresiscmb.uc'], anchors=['bottom', 'top'], gid=560),
-   'Upsilondieresistonos.sc': GD(name='Upsilondieresistonos.sc', l='Upsilon', r='Upsilon', base='Upsilon', accents=['dieresistonoscmb'], anchors=['bottom', 'top'], gid=560),
+   'Upsilondieresistonos.sc': GD(name='Upsilondieresistonos.sc', l='Upsilon.sc', r='Upsilon.sc', base='Upsilon.sc', accents=['dieresistonoscmb'], anchors=['bottom', 'top'], gid=560),
    #'UpsilondieresishookSymbol': GD(name='UpsilondieresishookSymbol', uni=0x03D4, hex='03D4', c='ϔ', l='Upsilon', r='Upsilon', base='UpsilonhookSymbol', accents=['dieresiscmb.uc'], anchors=['top'], gid=601),
    #'UpsilonhookSymbol': GD(name='UpsilonhookSymbol', uni=0x03D2, hex='03D2', c='ϒ', l='Upsilon', r='Upsilon', anchors=['tonos', 'top'], gid=599),
    'Upsilontonos': GD(name='Upsilontonos', uni=0x038E, hex='038E', c='Ύ', l='comma', r='Y', base='Y', accents=['tonoscmb.uc'], anchors=['bottom', 'top'], gid=532),
