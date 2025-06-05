@@ -465,7 +465,7 @@ CSI['pe_cy'] = GD(name='pe_cy', uni=0x043F, hex='043F', c='п', l='n', r='n', ba
 CSI['ii_cy'] = GD(name='ii_cy', uni=0x0438, hex='0438', c='и', l='u', r='u', base='u', isLower=True, anchors=['top'], gid=701)
 CSI['dzhe_cy'] = GD(name='dzhe_cy', uni=0x045F, hex='045F', c='џ', l='u', r='u', base='u', isLower=True, gid=740)
 CSI['de_cy.loclBGR'] = GD(name='de_cy.loclBGR', base='g', isLower=True)
-CSI['ghestroke_cy'] = GD(name='ghestroke_cy', uni=0x0493, hex='0493', c='ғ', l='ge_cy', r='ge_cy', isLower=True, gid=792),
+CSI['ghestroke_cy'] = GD(name='ghestroke_cy', uni=0x0493, hex='0493', c='ғ', l='ge_cy', r='ge_cy', isLower=True, gid=792)
 
 CSI['chekhakassian_cy'].r = 'j'
 CSI['ve_cy'].l = 'off'
