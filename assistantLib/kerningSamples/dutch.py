@@ -61,7 +61,7 @@ wenselijk? Misschien is het een idee als de ideeën-hebbers, de brain-stormers
 en de concept-vormgevers gewoon eens aan het werk gaan. Mocht je het daar niet
 mee eens zijn: dit verhaal is nog maar een concept."""
 
-IJij_COMBINATIONS = ''.join(['/A', '/I', '/A', '/Iacute', '/A', '/Igrave',
+DUTCH_COMBINATIONS = ['/A', '/I', '/A', '/Iacute', '/A', '/Igrave',
     '/A', '/Imacron', '/A', '/Itilde', '/A', '/Ibreve', '/A', '/Iogonek', '/A',
     '/Icircumflex', '/A', '/Idieresis', '/A', '/Idotaccent', '/A', '/J', '/A',
     '/Jcircumflex', '/B', '/I', '/B', '/Iacute', '/B', '/Igrave', '/B',
@@ -282,4 +282,6 @@ IJij_COMBINATIONS = ''.join(['/A', '/I', '/A', '/Iacute', '/A', '/Igrave',
     '/icircumflex', '/y', '/idieresis', '/y', '/idotaccent', '/y', '/j', '/y',
     '/jcircumflex', '/z', '/i', '/z', '/iacute', '/z', '/igrave', '/z', '/imacron',
     '/z', '/itilde', '/z', '/ibreve', '/z', '/iogonek', '/z', '/icircumflex', '/z',
-    '/idieresis', '/z', '/idotaccent', '/z', '/j', '/z', '/jcircumflex'])
+    '/idieresis', '/z', '/idotaccent', '/z', '/j', '/z', '/jcircumflex']
+
+IJij_COMBINATIONS = ''.join(DUTCH_COMBINATIONS)
