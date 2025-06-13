@@ -48,7 +48,7 @@ CYRILLIC_SET = {
    'De_cy': GD(name='De_cy', uni=0x0414, hex='0414', c='Д', l='off', r='Tse_cy', gid=665),
    'De_cy.loclBGR': GD(name='De_cy.loclBGR', l2r='self'), 
 
-   'Dje_cy': GD(name='Dje_cy', uni=0x0402, hex='0402', c='Ђ', l='T', gid=647),
+   'Dje_cy': GD(name='Dje_cy', uni=0x0402, hex='0402', c='Ђ', l='T', r='Ghemiddlehook_cy', gid=647),
    'Dze_cy': GD(name='Dze_cy', uni=0x0405, hex='0405', c='Ѕ', l='S', r='S', base='S', anchors=['top', 'middle', 'bottom'], gid=650),
    'Dzhe_cy': GD(name='Dzhe_cy', uni=0x040F, hex='040F', c='Џ', l='H', r='H', gid=660),
    'Dzeabkh_cy': GD(name='Dzeabkh_cy', uni=0x04E0, hex='04E0', c='Ӡ', l='Ezh', r='Ezh', base='Ezh', anchors=['top']),
@@ -83,7 +83,7 @@ CYRILLIC_SET = {
 
    'Ge_cy': GD(name='Ge_cy', uni=0x0413, hex='0413', c='Г', l='H', base='Gamma', anchors=['top'], gid=664),
    'Gedescender_cy': GD(name='Gedescender_cy', uni=0x04F6, hex='04F6', c='Ӷ', l='H', r='Ge_cy', gid=891),
-   'Ghemiddlehook_cy': GD(name='Ghemiddlehook_cy', uni=0x0494, hex='0494', c='Ҕ', l='H', r='o', gid=793),
+   'Ghemiddlehook_cy': GD(name='Ghemiddlehook_cy', uni=0x0494, hex='0494', c='Ҕ', l='H', gid=793),
    'Ghestroke_cy': GD(name='Ghestroke_cy', uni=0x0492, hex='0492', c='Ғ', l='Eth', r='Ge_cy', base='Ge_cy', gid=791),
    'Gheupturn_cy': GD(name='Gheupturn_cy', uni=0x0490, hex='0490', c='Ґ', l='H', r='Ge_cy', gid=789),
    'Gje_cy': GD(name='Gje_cy', uni=0x0403, hex='0403', c='Ѓ', l='H', r='Ge_cy', base='Ge_cy', accents=['acutecmb.uc'], anchors=['top'], gid=648),
@@ -156,7 +156,7 @@ CYRILLIC_SET = {
    'Pe_cy': GD(name='Pe_cy', uni=0x041F, hex='041F', c='П', l='H', r='H', base='Pi', gid=676),
    'Pedescender_cy': GD(name='Pedescender_cy', uni=0x0524, hex='0524', c='Ԥ', l='H', r='Tse_cy', gid=901),
    #'Pedescender_cy.component': GD(name='Pedescender_cy.component', w=0, gid=1605),
-   'Pemiddlehook_cy': GD(name='Pemiddlehook_cy', uni=0x04A6, hex='04A6', c='Ҧ', l='H', r='o', gid=811),
+   'Pemiddlehook_cy': GD(name='Pemiddlehook_cy', uni=0x04A6, hex='04A6', c='Ҧ', l='H', r='Ghemiddlehook_cy', gid=811),
    #'Psi_cy': GD(name='Psi_cy', uni=0x0470, hex='0470', c='Ѱ', l='V', r='U', base='Psi', gid=757),
 
     #   Q
@@ -271,7 +271,7 @@ CYRILLIC_SET = {
    'en_cy.loclBGR': GD(name='en_cy.loclBGR', isLower=True),
    'endescender_cy': GD(name='endescender_cy', uni=0x04A3, hex='04A3', c='ң', l='en_cy', r='tse_cy', isLower=True, gid=808),
    'enghe_cy': GD(name='enghe_cy', uni=0x04A5, hex='04A5', c='ҥ', l='en_cy', r='ge_cy', isLower=True, gid=810),
-   'enhook_cy': GD(name='enhook_cy', uni=0x04C8, hex='04C8', c='ӈ', l='en_cy', r='j', isLower=True, gid=845),
+   'enhook_cy': GD(name='enhook_cy', uni=0x04C8, hex='04C8', c='ӈ', l='en_cy', r='en_cy', isLower=True, gid=845),
    'entail_cy': GD(name='entail_cy', uni=0x04CA, hex='04CA', c='ӊ', l='en_cy', r='iishorttail_cy', base='en_cy', accents=['tail.component_cy'], isLower=True, gid=847),
    'er_cy': GD(name='er_cy', uni=0x0440, hex='0440', c='р', l='p', r='p', base='p', isLower=True, anchors=['top', 'middle', 'bottom'], gid=709),
    'ereversed_cy': GD(name='ereversed_cy', uni=0x044D, hex='044D', c='э', r='o', anchorTopX='TopX', isLower=True, anchors=['top'], gid=722),
@@ -288,7 +288,7 @@ CYRILLIC_SET = {
    'ge_cy': GD(name='ge_cy', uni=0x0433, hex='0433', c='г', l='en_cy', r='te_cy', isLower=True, anchors=['top', 'middle', 'bottom'], gid=696), # Change spacing rule to /s for italic
    'ge_cy.loclBGR': GD(name='ge_cy.loclBGR', isLower=True), # Change spacing rule to /s for italic
    'gedescender_cy': GD(name='gedescender_cy', uni=0x04F7, hex='04F7', c='ӷ', l='en_cy', r='ge_cy', isLower=True, gid=892),
-   'ghemiddlehook_cy': GD(name='ghemiddlehook_cy', uni=0x0495, hex='0495', c='ҕ', l='en_cy', r='j', isLower=True, gid=794),
+   'ghemiddlehook_cy': GD(name='ghemiddlehook_cy', uni=0x0495, hex='0495', c='ҕ', l='en_cy', isLower=True, gid=794),
    'ghestroke_cy': GD(name='ghestroke_cy', uni=0x0493, hex='0493', c='ғ',  r='ge_cy', base='ge_cy', isLower=True, gid=792),
    'gheupturn_cy': GD(name='gheupturn_cy', uni=0x0491, hex='0491', c='ґ', l='en_cy', r='ge_cy', isLower=True, gid=790),
    'gje_cy': GD(name='gje_cy', uni=0x0453, hex='0453', c='ѓ', base='ge_cy', accents=['acutecmb'], isLower=True, anchors=['top'], gid=728), # Change spacing rule to /s for italic
@@ -369,7 +369,7 @@ CYRILLIC_SET = {
    'pe_cy.loclBGR': GD(name='pe_cy.loclBGR', l='n', r='n', base='n', isLower=True),
    'pedescender_cy': GD(name='pedescender_cy', uni=0x0525, hex='0525', c='ԥ', l='en_cy', r='tse_cy', isLower=True, gid=902),
    #'pedescender_cy.component': GD(name='pedescender_cy.component', w=0, isLower=True, gid=1681),
-   'pemiddlehook_cy': GD(name='pemiddlehook_cy', uni=0x04A7, hex='04A7', c='ҧ', l='en_cy', isLower=True, gid=812),
+   'pemiddlehook_cy': GD(name='pemiddlehook_cy', uni=0x04A7, hex='04A7', c='ҧ', l='en_cy', r='ghemiddlehook_cy', isLower=True, gid=812),
    #'psi_cy': GD(name='psi_cy', uni=0x0471, hex='0471', c='ѱ', r='n', base='psi',isLower=True, gid=758),
    #'psilipneumatacmb_cy': GD(name='psilipneumatacmb_cy', uni=0x0486, hex='0486', c='҆', w=0, base='psili', isLower=True, anchors=['top', '_top'], gid=779),
 
@@ -484,6 +484,8 @@ CSI['gedescender_cy'].l = 'ge_cy'
 CSI['gedescender_cy'].r = 'ge_cy'
 CSI['gehookstroke_cy'].l ='ge_cy'
 CSI['gehookstroke_cy'].r ='ge_cy'
+CSI['enhook_cy'].r ='j'
+
 
 # Remove these glyphs from the Cyrillic italic set, because the glyphs are the identical to the defailt glyphs
 for gName in [
