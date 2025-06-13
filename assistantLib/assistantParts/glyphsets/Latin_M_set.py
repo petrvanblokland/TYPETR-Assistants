@@ -299,7 +299,7 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
     GDS['udieresisgrave'] = GD(name='udieresisgrave', uni=0x01DC, hex='01DC', c='ǜ', l='u', r='u', base='u', accents=['dieresisgravecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=413)
     GDS['udieresismacron'] = GD(name='udieresismacron', uni=0x01D6, hex='01D6', c='ǖ', l='u', r='u', base='u', accents=['dieresismacroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=407)
     GDS['uhookabove'] = GD(name='uhookabove', uni=0x1EE7, hex='1EE7', c='ủ', l='u', r='u', base='u', accents=['hookabovecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1154, comment='ủ U WITH HOOK ABOVE, LATIN SMALL LETTER')
-    GDS['uhorn'] = GD(name='uhorn', uni=0x01B0, hex='01B0', c='ư', l='u', anchorTopY='u', anchorTopX='u', isLower=True, base='u', accents=['horncmb'], anchors=['bottom', 'top'], gid=369, comment='ư U WITH HORN, LATIN SMALL LETTER')
+    GDS['uhorn'] = GD(name='uhorn', uni=0x01B0, hex='01B0', c='ư', l='u', anchorTopY='u', anchorTopX='u', isLower=True, srcName='u', anchors=['bottom', 'top'], gid=369, comment='ư U WITH HORN, LATIN SMALL LETTER. Best not to do the /horn as separate component.')
     GDS['uhornacute'] = GD(name='uhornacute', uni=0x1EE9, hex='1EE9', c='ứ', l='uhorn', r='uhorn', anchorTopY='u', anchorTopX='u', rightMin='minRight', base='uhorn', accents=['acutecmb'], isLower=True, anchors=['bottom', 'top'], gid=1156, comment='ứ LATIN SMALL LETTER U WITH HORN AND ACUTE')
     GDS['uhorndotbelow'] = GD(name='uhorndotbelow', uni=0x1EF1, hex='1EF1', c='ự', l='uhorn', r='uhorn', anchorTopY='u', anchorTopX='u', rightMin='minRight', base='uhorn', accents=['dotbelowcmb'], isLower=True, anchors=['bottom', 'top'], gid=1164, comment='ự LATIN SMALL LETTER U WITH HORN AND DOT BELOW')
     GDS['uhorngrave'] = GD(name='uhorngrave', uni=0x1EEB, hex='1EEB', c='ừ', l='uhorn', r='uhorn', anchorTopY='u', anchorTopX='u', rightMin='minRight', base='uhorn', accents=['gravecmb'], isLower=True, anchors=['bottom', 'top'], gid=1158, comment='ừ LATIN SMALL LETTER U WITH HORN AND GRAVE')
@@ -332,7 +332,6 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
 # Make exceptions here for Italic glyphs and spacing rules in LATIN_M_SET_ITALIC
 
 GDSI = LATIN_M_SET_ITALIC
-GDSI['uhorn'] = GD(name='uhorn', uni=0x01B0, hex='01B0', c='ư', l='u', r='off', anchorTopY='u', anchorTopX='u', isLower=True, base='horncmb', anchors=['bottom', 'top'], gid=369, comment='ư U WITH HORN, LATIN SMALL LETTER')   
 
 if __name__ == '__main__':
     for gName, gd in LATIN_M_SET.items():

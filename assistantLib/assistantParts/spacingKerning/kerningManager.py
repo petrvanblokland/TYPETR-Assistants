@@ -334,10 +334,11 @@ class KerningManager:
         if fixedWidthPatterns is None:
             # @@@ TODO: these are specific for Segoe, make these into tables of GlyphSet
             fixedWidthPatterns = { # Key is right margin, value is list of glyph names. Adding | vertical bar means that the patterns is at the end of the name.
-            0: ('cmb|', 'comb|', 'comb-cy|', '-uc|', 'mod|', '.component', 'zerowidthspace', 'zerowidthjoiner', 
+            0: ('cmb|', 'comb|', 'comb-cy|', '-uc|', '.component', 'zerowidthspace', 'zerowidthjoiner', 
                 'zerowidthnonjoiner', 'righttoleftmark', 'Otilde.component1', 'middledoublegraveaccentmod', 
                 'perispomeni', 'cedillacomb.component', 'psili', 'dblgravecomb', 
                 'dasiavaria-uc', 'ringhalfright', ), # "|" matches pattern on end of name"
+                #'mod|', # Segoe only 
         }
         self.fixedWidthPatterns = fixedWidthPatterns # Key is margin, value is list of glyph names
 

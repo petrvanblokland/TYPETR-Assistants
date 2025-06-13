@@ -390,7 +390,7 @@ class MasterData:
             fractionWidth = int(round(unitsPerEm/10))
         self.fractionWidth = fractionWidth
         if tabWidth is None:
-            tabWidth = figureWidth
+            tabWidth = figureWidth# By default same as mathWidth
         self.tabWidth = tabWidth
         if hairWidth is None:
             hairWidth = int(round(unitsPerEm/24))
@@ -401,7 +401,7 @@ class MasterData:
 
         # Margin
         if minMargin is None:
-            minMargin = int(round(unitsPerEm/10))
+            minMargin = int(round(unitsPerEm/20))
         self.minMargin = minMargin 
         if modMinMargin is None:
             modMinMargin = int(round(unitsPerEm/12))

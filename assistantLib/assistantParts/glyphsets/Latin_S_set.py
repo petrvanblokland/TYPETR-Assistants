@@ -85,19 +85,10 @@ LATIN_S_SET = GDS = {
     'copyright': GD(name='copyright', uni=0x00A9, hex='00A9', c='©', l='O', r='O', isLower=True, base='largecircle', comment='© COPYRIGHT SIGN'),
     'copyrightsound': GD(l='copyright', r='copyright', uni=0x2117, base='largecircle', name='copyrightsound'),
     'largecircle': GD(l='O', r='O', uni=0x25ef, c='◯', name='largecircle', comment='circle for ® trade mark sign, registered', useSkewRotate=True, addItalicExtremePoints=True),
-    'currency': GD(name='currency', uni=0x00A4, hex='00A4', c='¤', isLower=True, l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, comment='¤ CURRENCY SIGN'),
-
-    'degree': GD(name='degree', uni=0x00B0, hex='00B0', c='°', isLower=True, comment='° DEGREE SIGN'),
-    'divide': GD(name='divide', uni=0x00F7, hex='00F7', c='÷', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=True, comment='÷ obelus'),
-    'dollar': GD(name='dollar', uni=0x0024, hex='0024', c='$', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='S', isLower=False, comment='$ milreis'),
-    'dollar.alt': GD(name='dollar.alt', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='S', isLower=False, comment='$ milreis'),
-    'bitcoin': GD(uni=0x20bf, c='₿', name='bitcoin', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='B', height=GD.CAT_CAP_HEIGHT, overshoot=GD.CAT_CAP_OVERSHOOT),
-    'bitcoin.alt': GD(l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, name='bitcoin.alt', base='B', height=GD.CAT_CAP_HEIGHT, overshoot=GD.CAT_CAP_OVERSHOOT),
 
     'exclam': GD(name='exclam', uni=0x0021, hex='0021', c='!', l2r='self', isLower=True, comment='! factorial'),
     'exclamdown': GD(name='exclamdown', uni=0x00A1, hex='00A1', c='¡', l2r='exclam', r2l='exclam', isLower=True, comment='¡ INVERTED EXCLAMATION MARK'),
     'exclamdown.uc': GD(name='exclamdown.uc', c='¡', l='exclamdown', r='exclamdown', base='exclamdown', isLower=False, comment='¡ INVERTED EXCLAMATION MARK'),
-    'equal': GD(name='equal', uni=0x003D, hex='003D', c='=', isLower=True, comment='= EQUALS SIGN'),
 
     'hyphen': GD(name='hyphen', uni=0x002D, hex='002D', c='-', l2r='self', unicodes=(45, 8208), isLower=True, comment='- minus sign, hyphen'),
     'hyphen.uc': GD(name='hyphen.uc', l='hyphen', r='hyphen', base='hyphen', isLower=False, comment='- minus sign, hyphen'),
@@ -110,22 +101,7 @@ LATIN_S_SET = GDS = {
 
     'hungarumlaut': GD(name='hungarumlaut', uni=0x02DD, hex='02DD', c='˝', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='hungarumlautcmb', isLower=True, comment='˝ DOUBLE ACUTE ACCENT'),
 
-    'less': GD(name='less', uni=0x003C, hex='003C', c='<', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='< LESS-THAN SIGN'),
-    'lessequal': GD(name='lessequal', uni=0x2264, hex='2264', c='≤', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='≤ LESS-THAN OR EQUAL TO'),
-    'logicalnot': GD(name='logicalnot', uni=0x00AC, hex='00AC', c='¬', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='¬ NOT SIGN'),
-    'lozenge': GD(l2r='lozenge', uni=0x25ca, c='◊', name='lozenge', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, comment='◊ LOZENGE', anchors=[]),
-    'approxequal': GD(name='approxequal', uni=0x2248, hex='2248', c='≈', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='asciitilde', accents=['asciitilde'], isLower=True, gid=1496, comment='≈ EQUAL TO, ALMOST'),
-    'approxequal.tab': GD(name='approxequal.tab', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='approxequal', isLower=True, comment='≈ EQUAL TO, ALMOST'),
-
     'macron': GD(name='macron', uni=0x00AF, hex='00AF', c='¯', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='macroncmb', srcName='uni00AF', isLower=True, comment='¯ spacing macron'),
-    'multiply': GD(name='multiply', uni=0x00D7, hex='00D7', c='×', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=True, comment='× product, cartesian'),
-    
-    'numbersign': GD(name='numbersign', uni=0x0023, hex='0023', c='#', l2r='self', isLower=True, comment='# pound sign'),
-    'numbersign.tab': GD(name='numbersign.tab', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, base='numbersign', isLower=True, comment='# pound sign tabular'),
-    'notequal': GD(name='notequal', uni=0x2260, hex='2260', c='≠', base='equal', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='≠ NOT EQUAL TO'),
-
-    'ordfeminine': GD(name='ordfeminine', uni=0x00AA, hex='00AA', c='ª', isLower=True, comment='ª ORDINAL INDICATOR, FEMININE'),
-    'ordmasculine': GD(name='ordmasculine', uni=0x00BA, hex='00BA', c='º', isLower=True, comment='º ORDINAL INDICATOR, MASCULINE'),
 
     'paragraph': GD(name='paragraph', uni=0x00B6, hex='00B6', c='¶', l='zerosuperior', r='H', isLower=True, comment='¶ section sign, european'),
     'parenleft': GD(name='parenleft', uni=0x0028, hex='0028', c='(', isLower=True, comment='( parenthesis, opening'),
@@ -143,9 +119,6 @@ LATIN_S_SET = GDS = {
     'periodcentered.uc': GD(name='periodcentered.uc', base='periodcentered', l='period', r='period', isLower=False),
     'partialdiff': GD(name='partialdiff', uni=0x2202, hex='2202', c='∂', l='o', r='O', isLower=True, comment='∂ PARTIAL DIFFERENTIAL'),
 
-    'plusminus': GD(name='plusminus', uni=0x00B1, hex='00B1', c='±', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=True, comment='± PLUS-MINUS SIGN'),
-    'plus': GD(name='plus', uni=0x002B, hex='002B', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, c='+', isLower=True, comment='+ PLUS SIGN'),
-    'minus': GD(name='minus', uni=0x2212, hex='2212', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, c='−', isLower=True, comment='− MINUS SIGN'),
     'pi': GD(name='pi', uni=0x03C0, hex='03C0', c='π', isLower=True),
 
     'question': GD(name='question', uni=0x003F, hex='003F', c='?', isLower=True, comment='? QUESTION MARK'),
@@ -163,83 +136,120 @@ LATIN_S_SET = GDS = {
 
     'underscore': GD(name='underscore', uni=0x005F, hex='005F', c='_', isLower=True, comment='_ underscore, spacing'),
 
-    'yen': GD(name='yen', uni=0x00A5, hex='00A5', c='¥', isLower=True, l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='Y', comment='¥ yuan sign'),
-    'yen.tab': GD(name='yen.tab', isLower=True, l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, srcName='yen'),
+    # Standard superiors and inferiors, spaced by margins of /plussuperior and /periodsuperior
 
-    # Standard superiors and inferiors
+    'plussuperior': GD(name='plussuperior', uni=0x207A, hex='207A', c='⁺', l2r='self', ), # Source of margins
+    'minussuperior': GD(name='minussuperior', uni=0x207B, hex='207B', c='⁻', l='plussuperior', r='plussuperior', srcName='plussuperior'),
+    'equalsuperior': GD(name='equalsuperior', uni=0x207C, hex='207C', c='⁼', l='plussuperior', r='plussuperior', ),
 
-    'zerosuperior': GD(name='zerosuperior', uni=0x2070, hex='2070', c='⁰', isLower=True, comment='¹ SUPERSCRIPT ZERO'),
-    'onesuperior': GD(name='onesuperior', uni=0x00B9, hex='00B9', c='¹', l='zerosuperior', r='zerosuperior', isLower=True, comment='¹ SUPERSCRIPT ONE'),
-    'twosuperior': GD(name='twosuperior', uni=0x00B2, hex='00B2', c='²', l='zerosuperior', r='zerosuperior', isLower=False, comment='² TWO, SUPERSCRIPT'),
-    'threesuperior': GD(name='threesuperior', uni=0x00B3, hex='00B3', c='³', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ THREE, SUPERSCRIPT'),
-    'foursuperior': GD(name='foursuperior', uni=0x2074, hex='2074', c='⁴', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ FOUR, SUPERSCRIPT'),
-    'fivesuperior': GD(name='fivesuperior', uni=0x2075, hex='2075', c='⁵', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ FIVE, SUPERSCRIPT'),
-    'sixsuperior': GD(name='sixsuperior', uni=0x2076, hex='2076', c='⁶', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ SIX, SUPERSCRIPT'),
-    'sevensuperior': GD(name='sevensuperior', uni=0x2077, hex='2077', c='⁷', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ SEVEN, SUPERSCRIPT'),
-    'eightsuperior': GD(name='eightsuperior', uni=0x2078, hex='2078', c='⁸', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ EIGHT, SUPERSCRIPT'),
-    'ninesuperior': GD(name='ninesuperior', uni=0x2079, hex='2079', c='⁹', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ NINE, SUPERSCRIPT'),
+    'plusinferior': GD(name='plusinferior', uni=0x208A, hex='208A', c='₊', base='plussuperior', l='plussuperior', r='zerosuperior', ),
+    'minusinferior': GD(name='minusinferior', uni=0x208B, hex='208B', c='₋', base='minussuperior', l='minussuperior', r='zerosuperior', ),
+    'equalinferior': GD(name='equalinferior', uni=0x208C, hex='208C', c='₌', base='equalsuperior', l='equalsuperior', r='zerosuperior', ),
 
-    'periodsuperior': GD(name='periodsuperior', l='zerosuperior', r='zerosuperior', ),
-    'commasuperior': GD(name='commasuperior', l='zerosuperior', r='zerosuperior', ),
-    'plussuperior': GD(name='plussuperior', uni=0x207A, hex='207A', c='⁺', l='zerosuperior', r='zerosuperior', ),
-    'minussuperior': GD(name='minussuperior', uni=0x207B, hex='207B', c='⁻', l='zerosuperior', r='zerosuperior', ),
-    'equalsuperior': GD(name='equalsuperior', uni=0x207C, hex='207C', c='⁼', l='zerosuperior', r='zerosuperior', ),
-    'parenleftsuperior': GD(name='parenleftsuperior', uni=0x207D, hex='207D', c='⁽', l='zerosuperior', r='zerosuperior', ),
-    'parenrightsuperior': GD(name='parenrightsuperior', uni=0x207E, hex='207E', c='⁾', l='zerosuperior', r='zerosuperior', ),
-    
+    'periodsuperior': GD(name='periodsuperior', l2r='self', ),
+    'commasuperior': GD(name='commasuperior', l='periodsuperior', r='periodsuperior', ),
+    'parenleftsuperior': GD(name='parenleftsuperior', uni=0x207D, hex='207D', c='⁽', l='plussuperior', r='plussuperior', ),
+    'parenrightsuperior': GD(name='parenrightsuperior', uni=0x207E, hex='207E', c='⁾', l='plussuperior', r='plussuperior', ),
+
+    'periodinferior': GD(name='periodinferior', base='periodsuperior', l='periodsuperior', r='periodsuperior', ),
+    'commainferior': GD(name='commainferior', base='commasuperior', l='commasuperior', r='commasuperior', ),
+    'parenleftinferior': GD(name='parenleftinferior', uni=0x208D, hex='208D', c='₍', base='parenleftsuperior', l='parenleftsuperior', r='parenleftsuperior', ),
+    'parenrightinferior': GD(name='parenrightinferior', uni=0x208E, hex='208E', c='₎', base='parenrightsuperior', l='parenrightsuperior', r='parenrightsuperior', ),
+
+    'semicolonsuperior': GD(name='semicolonsuperior', l='periodsuperior', r='periodsuperior'),
+    'quotedblrightsuperior': GD(name='quotedblrightsuperior', l='periodsuperior', r='periodsuperior', isLower=False),
+    'quoteleftsuperior': GD(name='quoteleftsuperior', l='periodsuperior', r='periodsuperior', isLower=False),
+    'quoterightsuperior': GD(name='quoterightsuperior', l='periodsuperior', r='periodsuperior', isLower=False),
+    'quotedblleftsuperior': GD(name='quotedblleftsuperior', l='periodsuperior', r='periodsuperior', isLower=False),
+
+    'zerosuperior': GD(name='zerosuperior', uni=0x2070, hex='2070', c='⁰', l='plussuperior', r='plussuperior', isLower=True, comment='¹ SUPERSCRIPT ZERO'),
+    'onesuperior': GD(name='onesuperior', uni=0x00B9, hex='00B9', c='¹', l='plussuperior', r='plussuperior', isLower=True, comment='¹ SUPERSCRIPT ONE'),
+    'twosuperior': GD(name='twosuperior', uni=0x00B2, hex='00B2', c='²', l='plussuperior', r='plussuperior', isLower=False, comment='² TWO, SUPERSCRIPT'),
+    'threesuperior': GD(name='threesuperior', uni=0x00B3, hex='00B3', c='³', l='plussuperior', r='plussuperior', isLower=False, comment='³ THREE, SUPERSCRIPT'),
+    'foursuperior': GD(name='foursuperior', uni=0x2074, hex='2074', c='⁴', l='plussuperior', r='plussuperior', isLower=False, comment='³ FOUR, SUPERSCRIPT'),
+    'fivesuperior': GD(name='fivesuperior', uni=0x2075, hex='2075', c='⁵', l='plussuperior', r='plussuperior', isLower=False, comment='³ FIVE, SUPERSCRIPT'),
+    'sixsuperior': GD(name='sixsuperior', uni=0x2076, hex='2076', c='⁶', l='plussuperior', r='plussuperior', isLower=False, comment='³ SIX, SUPERSCRIPT'),
+    'sevensuperior': GD(name='sevensuperior', uni=0x2077, hex='2077', c='⁷', l='plussuperior', r='plussuperior', isLower=False, comment='³ SEVEN, SUPERSCRIPT'),
+    'eightsuperior': GD(name='eightsuperior', uni=0x2078, hex='2078', c='⁸', l='plussuperior', r='plussuperior', isLower=False, comment='³ EIGHT, SUPERSCRIPT'),
+    'ninesuperior': GD(name='ninesuperior', uni=0x2079, hex='2079', c='⁹', l='plussuperior', r='plussuperior', isLower=False, comment='³ NINE, SUPERSCRIPT'),
+
     'zeroinferior': GD(name='zeroinferior', uni=0x2080, hex='2080', c='₀', l='zerosuperior', r='zerosuperior', base='zerosuperior', isLower=True, comment='¹ SUPERSCRIPT ZERO'),
-    'oneinferior': GD(name='oneinferior', uni=0x0089, hex='0089', c='₁', l='zerosuperior', r='zerosuperior', base='onesuperior', isLower=True, comment='¹ SUPERSCRIPT ONE'),
-    'twoinferior': GD(name='twoinferior', uni=0x0082, hex='0082', c='₂', l='zerosuperior', r='zerosuperior', base='twosuperior', isLower=False, comment='² TWO, SUPERSCRIPT'),
-    'threeinferior': GD(name='threeinferior', uni=0x0083, hex='0083', c='₃', l='zerosuperior', r='zerosuperior', base='threesuperior', isLower=False, comment='³ THREE, SUPERSCRIPT'),
-    'fourinferior': GD(name='fourinferior', uni=0x2084, hex='2084', c='₄', l='zerosuperior', r='zerosuperior', base='foursuperior', isLower=False, comment='³ FOUR, SUPERSCRIPT'),
-    'fiveinferior': GD(name='fiveinferior', uni=0x2085, hex='2085', c='₅', l='zerosuperior', r='zerosuperior', base='fivesuperior', isLower=False, comment='³ FIVE, SUPERSCRIPT'),
-    'sixinferior': GD(name='sixinferior', uni=0x2086, hex='2086', c='₆', l='zerosuperior', r='zerosuperior', base='sixsuperior', isLower=False, comment='³ SIX, SUPERSCRIPT'),
-    'seveninferior': GD(name='seveninferior', uni=0x2087, hex='2087', c='₇', l='zerosuperior', r='zerosuperior', base='sevensuperior', isLower=False, comment='³ SEVEN, SUPERSCRIPT'),
-    'eightinferior': GD(name='eightinferior', uni=0x2088, hex='2088', c='₈', l='zerosuperior', r='zerosuperior', base='eightsuperior', isLower=False, comment='³ EIGHT, SUPERSCRIPT'),
-    'nineinferior': GD(name='nineinferior', uni=0x2089, hex='2089', c='₉', l='zerosuperior', r='zerosuperior', base='ninesuperior', isLower=False, comment='³ NINE, SUPERSCRIPT'),
-
-    'periodinferior': GD(name='periodinferior', base='periodsuperior', l='zerosuperior', r='zerosuperior', ),
-    'commainferior': GD(name='commainferior', base='commasuperior', l='zerosuperior', r='zerosuperior', ),
-    'plusinferior': GD(name='plusinferior', uni=0x208A, hex='208A', c='₊', base='plussuperior', l='zerosuperior', r='zerosuperior', ),
-    'minusinferior': GD(name='minusinferior', uni=0x208B, hex='208B', c='₋', base='minussuperior', l='zerosuperior', r='zerosuperior', ),
-    'equalinferior': GD(name='equalinferior', uni=0x208C, hex='208C', c='₌', base='equalsuperior', l='zerosuperior', r='zerosuperior', ),
-    'parenleftinferior': GD(name='parenleftinferior', uni=0x208D, hex='208D', c='₍', base='parenleftsuperior', l='zerosuperior', r='zerosuperior', ),
-    'parenrightinferior': GD(name='parenrightinferior', uni=0x208E, hex='208E', c='₎', base='parenrightsuperior', l='zerosuperior', r='zerosuperior', ),
+    'oneinferior': GD(name='oneinferior', uni=0x0089, hex='0089', c='₁', l='onesuperior', r='onesuperior', base='onesuperior', isLower=True, comment='¹ SUPERSCRIPT ONE'),
+    'twoinferior': GD(name='twoinferior', uni=0x0082, hex='0082', c='₂', l='twosuperior', r='twosuperior', base='twosuperior', isLower=False, comment='² TWO, SUPERSCRIPT'),
+    'threeinferior': GD(name='threeinferior', uni=0x0083, hex='0083', c='₃', l='threesuperior', r='threesuperior', base='threesuperior', isLower=False, comment='³ THREE, SUPERSCRIPT'),
+    'fourinferior': GD(name='fourinferior', uni=0x2084, hex='2084', c='₄', l='foursuperior', r='foursuperior', base='foursuperior', isLower=False, comment='³ FOUR, SUPERSCRIPT'),
+    'fiveinferior': GD(name='fiveinferior', uni=0x2085, hex='2085', c='₅', l='fivesuperior', r='fivesuperior', base='fivesuperior', isLower=False, comment='³ FIVE, SUPERSCRIPT'),
+    'sixinferior': GD(name='sixinferior', uni=0x2086, hex='2086', c='₆', l='sixsuperior', r='sixsuperior', base='sixsuperior', isLower=False, comment='³ SIX, SUPERSCRIPT'),
+    'seveninferior': GD(name='seveninferior', uni=0x2087, hex='2087', c='₇', l='sevensuperior', r='sevensuperior', base='sevensuperior', isLower=False, comment='³ SEVEN, SUPERSCRIPT'),
+    'eightinferior': GD(name='eightinferior', uni=0x2088, hex='2088', c='₈', l='eightsuperior', r='eightsuperior', base='eightsuperior', isLower=False, comment='³ EIGHT, SUPERSCRIPT'),
+    'nineinferior': GD(name='nineinferior', uni=0x2089, hex='2089', c='₉', l='ninesuperior', r='ninesuperior', base='ninesuperior', isLower=False, comment='³ NINE, SUPERSCRIPT'),
 
     'zero.numr': GD(name='zero.numr', base='zerosuperior', l='zerosuperior', r='zerosuperior', isLower=True, comment='⁰ SUPERSCRIPT ZERO'),
-    'one.numr': GD(name='one.numr', base='onesuperior', l='zerosuperior', r='zerosuperior', isLower=True, comment='¹ SUPERSCRIPT ONE'),
-    'two.numr': GD(name='two.numr', base='twosuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='² TWO, SUPERSCRIPT'),
-    'three.numr': GD(name='three.numr', base='threesuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ THREE, SUPERSCRIPT'),
-    'four.numr': GD(name='four.numr', base='foursuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='⁴ FOUR, SUPERSCRIPT'),
-    'five.numr': GD(name='five.numr', base='fivesuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='⁵ FIVE, SUPERSCRIPT'),
-    'six.numr': GD(name='six.numr', base='sixsuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='⁶ SIX, SUPERSCRIPT'),
-    'seven.numr': GD(name='seven.numr', base='sevensuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='⁷ SEVEN, SUPERSCRIPT'),
-    'eight.numr': GD(name='eight.numr', base='eightsuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='⁸ EIGHT, SUPERSCRIPT'),
-    'nine.numr': GD(name='nine.numr', base='ninesuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='⁹ NINE, SUPERSCRIPT'),
+    'one.numr': GD(name='one.numr', base='onesuperior', l='onesuperior', r='onesuperior', isLower=True, comment='¹ SUPERSCRIPT ONE'),
+    'two.numr': GD(name='two.numr', base='twosuperior', l='twosuperior', r='twosuperior', isLower=False, comment='² TWO, SUPERSCRIPT'),
+    'three.numr': GD(name='three.numr', base='threesuperior', l='threesuperior', r='threesuperior', isLower=False, comment='³ THREE, SUPERSCRIPT'),
+    'four.numr': GD(name='four.numr', base='foursuperior', l='foursuperior', r='foursuperior', isLower=False, comment='⁴ FOUR, SUPERSCRIPT'),
+    'five.numr': GD(name='five.numr', base='fivesuperior', l='fivesuperior', r='fivesuperior', isLower=False, comment='⁵ FIVE, SUPERSCRIPT'),
+    'six.numr': GD(name='six.numr', base='sixsuperior', l='sixsuperior', r='sixsuperior', isLower=False, comment='⁶ SIX, SUPERSCRIPT'),
+    'seven.numr': GD(name='seven.numr', base='sevensuperior', l='sevensuperior', r='sevensuperior', isLower=False, comment='⁷ SEVEN, SUPERSCRIPT'),
+    'eight.numr': GD(name='eight.numr', base='eightsuperior', l='eightsuperior', r='eightsuperior', isLower=False, comment='⁸ EIGHT, SUPERSCRIPT'),
+    'nine.numr': GD(name='nine.numr', base='ninesuperior', l='ninesuperior', r='ninesuperior', isLower=False, comment='⁹ NINE, SUPERSCRIPT'),
 
     'zero.dnom': GD(name='zero.dnom', base='zerosuperior', l='zerosuperior', r='zerosuperior', isLower=True, comment='¹ SUBSCRIPT ZERO'),
-    'one.dnom': GD(name='one.dnom', base='onesuperior', l='zerosuperior', r='zerosuperior', isLower=True, comment='¹ SUBSCRIPT ONE'),
-    'two.dnom': GD(name='two.dnom', base='twosuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='² TWO, SUBSCRIPT'),
-    'three.dnom': GD(name='three.dnom', base='threesuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ THREE, SUBSCRIPT'),
-    'four.dnom': GD(name='four.dnom', base='foursuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ FOUR, SUBSCRIPT'),
-    'five.dnom': GD(name='five.dnom', base='fivesuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ FIVE, SUBSCRIPT'),
-    'six.dnom': GD(name='six.dnom', base='sixsuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ SIX, SUBSCRIPT'),
-    'seven.dnom': GD(name='seven.dnom', base='sevensuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ SEVEN, SUBSCRIPT'),
-    'eight.dnom': GD(name='eight.dnom', base='eightsuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ EIGHT, SUBSCRIPT'),
-    'nine.dnom': GD(name='nine.dnom', base='ninesuperior', l='zerosuperior', r='zerosuperior', isLower=False, comment='³ NINE, SUBSCRIPT'),
+    'one.dnom': GD(name='one.dnom', base='onesuperior', l='onesuperior', r='onesuperior', isLower=True, comment='¹ SUBSCRIPT ONE'),
+    'two.dnom': GD(name='two.dnom', base='twosuperior', l='twosuperior', r='twosuperior', isLower=False, comment='² TWO, SUBSCRIPT'),
+    'three.dnom': GD(name='three.dnom', base='threesuperior', l='threesuperior', r='threesuperior', isLower=False, comment='³ THREE, SUBSCRIPT'),
+    'four.dnom': GD(name='four.dnom', base='foursuperior', l='foursuperior', r='foursuperior', isLower=False, comment='³ FOUR, SUBSCRIPT'),
+    'five.dnom': GD(name='five.dnom', base='fivesuperior', l='fivesuperior', r='fivesuperior', isLower=False, comment='³ FIVE, SUBSCRIPT'),
+    'six.dnom': GD(name='six.dnom', base='sixsuperior', l='sixsuperior', r='sixsuperior', isLower=False, comment='³ SIX, SUBSCRIPT'),
+    'seven.dnom': GD(name='seven.dnom', base='sevensuperior', l='sevensuperior', r='sevensuperior', isLower=False, comment='³ SEVEN, SUBSCRIPT'),
+    'eight.dnom': GD(name='eight.dnom', base='eightsuperior', l='eightsuperior', r='eightsuperior', isLower=False, comment='³ EIGHT, SUBSCRIPT'),
+    'nine.dnom': GD(name='nine.dnom', base='ninesuperior', l='ninesuperior', r='ninesuperior', isLower=False, comment='³ NINE, SUBSCRIPT'),
+
+    # Math not on math-width
+        
+    'numbersign': GD(name='numbersign', uni=0x0023, hex='0023', c='#', l2r='self', isLower=True, comment='# pound sign'),
+    'degree': GD(name='degree', uni=0x00B0, hex='00B0', c='°', isLower=True, comment='° DEGREE SIGN'),
+    'ordfeminine': GD(name='ordfeminine', uni=0x00AA, hex='00AA', c='ª', isLower=True, comment='ª ORDINAL INDICATOR, FEMININE'),
+    'ordmasculine': GD(name='ordmasculine', uni=0x00BA, hex='00BA', c='º', isLower=True, comment='º ORDINAL INDICATOR, MASCULINE'),
+
+    # Math on math-width ( == tab-width)
+
+    'plusminus': GD(name='plusminus', uni=0x00B1, hex='00B1', c='±', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=True, comment='± PLUS-MINUS SIGN'),
+    'plus': GD(name='plus', uni=0x002B, hex='002B', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, c='+', isLower=True, comment='+ PLUS SIGN'),
+    'minus': GD(name='minus', uni=0x2212, hex='2212', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, c='−', isLower=True, srcName='plus', comment='− MINUS SIGN'),
+    'multiply': GD(name='multiply', uni=0x00D7, hex='00D7', c='×', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=True, comment='× product, cartesian'),
+    'divide': GD(name='divide', uni=0x00F7, hex='00F7', c='÷', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=True, comment='÷ obelus'),
+    'numbersign.tab': GD(name='numbersign.tab', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, base='numbersign', isLower=True, comment='# pound sign tabular'),
+    'equal': GD(name='equal', uni=0x003D, hex='003D', c='=', isLower=True, comment='= EQUALS SIGN'),
+    'notequal': GD(name='notequal', uni=0x2260, hex='2260', c='≠', base='equal', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='≠ NOT EQUAL TO'),
+    'greater': GD(name='greater', uni=0x003E, hex='003E', c='>', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='> GREATER-THAN SIGN'),
+    'greaterequal': GD(name='greaterequal', uni=0x2265, hex='2265', c='≥', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='≥ GREATER-THAN OR EQUAL TO'),
+    'less': GD(name='less', uni=0x003C, hex='003C', c='<', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='< LESS-THAN SIGN'),
+    'lessequal': GD(name='lessequal', uni=0x2264, hex='2264', c='≤', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='≤ LESS-THAN OR EQUAL TO'),
+    'logicalnot': GD(name='logicalnot', uni=0x00AC, hex='00AC', c='¬', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='¬ NOT SIGN'),
+    'lozenge': GD(l2r='lozenge', uni=0x25ca, c='◊', name='lozenge', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, comment='◊ LOZENGE', anchors=[]),
+    'approxequal': GD(name='approxequal', uni=0x2248, hex='2248', c='≈', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='asciitilde', accents=['asciitilde'], isLower=True, gid=1496, comment='≈ EQUAL TO, ALMOST'),
+
+    # Currencies: By default all are centered on math-width == figure-width
+
+    'dollar': GD(name='dollar', uni=0x0024, hex='0024', c='$', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='S', isLower=False, comment='$ milreis'),
+    'dollar.alt': GD(name='dollar.alt', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='S', isLower=False, comment='$ milreis'),
+    'bitcoin': GD(uni=0x20bf, c='₿', name='bitcoin', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='B', height=GD.CAT_CAP_HEIGHT, overshoot=GD.CAT_CAP_OVERSHOOT),
+    'bitcoin.alt': GD(l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, name='bitcoin.alt', base='B', height=GD.CAT_CAP_HEIGHT, overshoot=GD.CAT_CAP_OVERSHOOT),
+    'won': GD(name='won', uni=0x20A9, hex='20A9', c='₩', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, srcName='W', comment="South Korean Won"),
+    'yen': GD(name='yen', uni=0x00A5, hex='00A5', c='¥', isLower=True, l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='Y', comment='¥ yuan sign'),
+    'florin': GD(name='florin', uni=0x0192, hex='0192', c='ƒ', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, comment='ƒ script f, latin small letter'),
+    'rupeeIndian': GD(name='rupeeIndian', uni=0x20B9, hex='20B9', c='₹', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, srcName='Rupee'),
+    'currency': GD(name='currency', uni=0x00A4, hex='00A4', c='¤', isLower=True, l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, comment='¤ CURRENCY SIGN'),
 
     # Superior currency
 
-    'semicolonsuperior': GD(name='semicolonsuperior', l='zerosuperior', r='zerosuperior', isLower=False),
-    'dollarsuperior': GD(name='dollarsuperior', l='zerosuperior', r='zerosuperior', isLower=False),
-    'centsuperior': GD(name='centsuperior', l='zerosuperior', r='zerosuperior', isLower=False),
-    'quotedblrightsuperior': GD(name='quotedblrightsuperior', l='zerosuperior', r='zerosuperior', isLower=False),
-    'quoteleftsuperior': GD(name='quoteleftsuperior', l='zerosuperior', r='zerosuperior', isLower=False),
-    'quoterightsuperior': GD(name='quoterightsuperior', l='zerosuperior', r='zerosuperior', isLower=False),
-    'sterlingsuperior': GD(name='sterlingsuperior', l='zerosuperior', r='zerosuperior', isLower=False),
     'yensuperior': GD(name='yensuperior', l='zerosuperior', r='zerosuperior', isLower=False),
     'eurosuperior': GD(name='eurosuperior', l='zerosuperior', r='zerosuperior', isLower=False),
-    'quotedblleftsuperior': GD(name='quotedblleftsuperior', l='zerosuperior', r='zerosuperior', isLower=False),
+    'dollarsuperior': GD(name='dollarsuperior', l='zerosuperior', r='zerosuperior', isLower=False),
+    'centsuperior': GD(name='centsuperior', l='zerosuperior', r='zerosuperior', isLower=False),
+    'sterlingsuperior': GD(name='sterlingsuperior', l='zerosuperior', r='zerosuperior', isLower=False),
 
     # Fixed fractions
 
@@ -617,8 +627,6 @@ LATIN_S_SET = GDS = {
     'germandbls': GD(name='germandbls', uni=0x00DF, hex='00DF', c='ß', l='f', r='s', isLower=True, comment='ß SHARP S, LATIN SMALL LETTER'),
     'gmacron': GD(name='gmacron', uni=0x1E21, hex='1E21', c='ḡ', anchorTopY='TopY', base='g', accents=['macroncmb'], srcName='uni1E21', isLower=True, anchors=['bottom', 'middle', 'top']),
     'guarani': GD(name='guarani', uni=0x20B2, hex='20B2', c='₲', srcName='G', isLower=True),
-    'greater': GD(name='greater', uni=0x003E, hex='003E', c='>', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='> GREATER-THAN SIGN'),
-    'greaterequal': GD(name='greaterequal', uni=0x2265, hex='2265', c='≥', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='≥ GREATER-THAN OR EQUAL TO'),
     'guillemotleft': GD(name='guillemotleft', uni=0x00AB, hex='00AB', l2r='self', c='«', isLower=True),
     'guillemotleft.uc': GD(name='guillemotleft.uc', l2r='self', base='guillemotleft', isLower=False),
     'guillemotright': GD(name='guillemotright', uni=0x00BB, hex='00BB', l='guillemotleft', r='guillemotleft', c='»', isLower=True),
@@ -686,9 +694,6 @@ LATIN_S_SET = GDS = {
     'm': GD(name='m', uni=0x006D, hex='006D', c='m', l='n', r='n', isLower=True, anchors=['bottom', 'middle', 'top'], comment='m'),
     'manat': GD(name='manat', uni=0x20BC, hex='20BC', c='₼', l='O', r='O', srcName='O', isLower=True),
 
-    'macroncmb': GD(name='macroncmb', uni=0x0304, anchorTopY='TopY', hex='0304', c='̄', w=0, srcName='uni0304', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
-    'macroncmb.uc': GD(name='macroncmb.uc', w=0, anchorTopY='TopY', srcName='macroncmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
-
     # n
 
     'n': GD(name='n', uni=0x006E, hex='006E', c='n', isLower=True, anchors=['bottom', 'middle', 'top'], comment='n'),
@@ -752,7 +757,6 @@ LATIN_S_SET = GDS = {
     'racute': GD(name='racute', uni=0x0155, hex='0155', c='ŕ', l='r', r='r', rightMin='-100', base='r', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ŕ R WITH ACUTE, LATIN SMALL LETTER'),
     'rcaron': GD(name='rcaron', uni=0x0159, hex='0159', c='ř', r='r', bl='r', rightMin='-100', base='r', accents=['caroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ř R WITH CARON, LATIN SMALL LETTER'),
     'rcommaaccent': GD(name='rcommaaccent', uni=0x0157, hex='0157', c='ŗ', w='r', rightMin='-100', base='r', accents=['cedillacmb.noconnect'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ŗ R WITH CEDILLA, LATIN SMALL LETTER'),
-    'rupeeIndian': GD(name='rupeeIndian', uni=0x20B9, hex='20B9', c='₹', srcName='Rupee'),
     'ringabove': GD(name='ringabove', uni=0x02DA, hex='02DA', c='˚', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='ringcmb'),
 
     # s
@@ -867,7 +871,7 @@ LATIN_S_SET = GDS = {
     'hungarumlautcmb': GD(name='hungarumlautcmb', anchorTopY='TopY', uni=0x030B, hex='030B', c='̋', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['top', '_top']),
     'hungarumlautcmb.uc': GD(name='hungarumlautcmb.uc', anchorTopY='TopY', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['top', '_top']),
 
-    'tildecmb': GD(name='tildecmb', uni=0x0303, anchorTopY='TopY', hex='0303', c='̃', w=0, srcName='tilde', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    ''tildecmb':' GD(name='tildecmb', uni=0x0303, anchorTopY='TopY', hex='0303', c='̃', w=0, srcName='tilde', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
     'tildecmb.uc': GD(name='tildecmb.uc', w=0, anchorTopY='TopY', srcName='tildecmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
 
     'quoteleftcmb': GD(name='quoteright', srcName='quoteleft', autoFixComponentPositions=False, autoFixMargins=False, w=0, anchors=['_top', 'top']),
@@ -933,6 +937,8 @@ LATIN_S_SET = GDS = {
     'dieresisgravecmb': GD(name='dieresisgravecmb', l='off', w=0, base='dieresisgravecmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
     'dieresisgravecmb.uc': GD(name='dieresisgravecmb.uc', l='off', w=0, base='dieresiscmb.uc', accents=['gravecmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
     
+    'macroncmb': GD(name='macroncmb', uni=0x0304, anchorTopY='TopY', hex='0304', c='̄', w=0, srcName='uni0304', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'macroncmb.uc': GD(name='macroncmb.uc', w=0, anchorTopY='TopY', srcName='macroncmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
     'macrondieresiscmb': GD(name='macrondieresiscmb', l='off', w=0, base='macrondieresiscmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
     'macrondieresiscmb.uc': GD(name='macrondieresiscmb.uc', l='off', w=0, base='macroncmb.uc', accents=['dieresiscmb.uc'], autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
     'macronacutecmb': GD(name='macronacutecmb', uni=0x1DC4, hex='1DC4', c='᷄', l='off', w=0, base='macronacutecmb.uc', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
@@ -953,36 +959,54 @@ LATIN_S_SET = GDS = {
 
 # Used by GlyphSet class to add small cap glyph data records. 
 SC_NAMES = (
-    'A', 'AE', 'AEacute', 'Aacute', 'Abreve', 'Acaron', 'Acircumflex', 'Adieresis', 'Adotbelow', 'Agrave', 'Amacron', 'Aogonek', 'Aring', 'Aringacute', 'Atilde', 
-    'B', 'Bdotbelow', 'Bhook', 
-    'C', 'Cacute', 'Ccaron', 'Ccedilla', 'Ccircumflex', 'Cdotaccent', 
-    'D', 'Dcaron', 'Dcroat', 'Ddotbelow', 'Dhook', 
-    'E', 'Eacute', 'Ebreve', 'Ecaron', 'Ecircumflex', 'Edieresis', 'Edotaccent', 'Edotbelow', 'Egrave', 'Emacron', 'Eng', 'Eogonek', 'Eopen', 'Ereversed', 'Eth', 'Etilde', 
-    'F', 
-    'G', 'Gbreve', 'Gcaron', 'Gcircumflex', 'Gcommaaccent', 'Gdotaccent', 'Germandbls', 'Gmacron', 
-    'H', 'Hbar', 'Hcircumflex', 'Hdieresis', 'Hdotbelow', 
-    'I', 'Iacute', 'Ibreve', 'Icaron', 'Icircumflex', 'Idieresis', 'Idotaccent', 'Idotbelow', 'Igrave', 'Imacron', 'Iogonek', 'Istroke', 'Itilde', 
-    'J', 'Jcircumflex', 'IJ', 'J.base', 'Jcircumflex.base',
-    'K', 'Kcommaaccent', 'Khook', 
-    'L', 'Lacute', 'Lcaron', 'Lcommaaccent', 'Lslash', 'Ldot', 
-    'M', 
-    'N', 'Nacute', 'Ncaron', 'Ncommaaccent', 'Ndotaccent', 'Ndotbelow', 'Nhookleft', 'Ntilde', 
-    'O', 'OE', 'Oacute', 'Obreve', 'Ocaron', 'Ocircumflex', 'Odieresis', 'Odotbelow', 'Ograve', 'Ohungarumlaut', 'Omacron', 'Oopen', 'Oslash', 'Oslash.alt', 'Otilde', 'Oslashacute', 'Oslashacute.alt', 
-    'Ohorn', 'Ohornacute', 'Ohorndotbelow', 'Ohorngrave', 'Ohornhookabove', 'Ohorntilde', 
-    'P', 'Pdotaccent', 
+    'A', 'AE', 'AEacute', 'Aacute', 'Abreve', 'Acaron', 'Acircumflex', 'Adieresis', 'Adotbelow', 'Agrave', 
+        'Amacron', 'Aogonek', 'Aring', 'Aringacute', 'Atilde', 'Adotaccent', 'Adblgrave', 'Ainvertedbreve',
+        'Aringbelow', 'AEmacron', 'Abreveacute', 'Abrevedotbelow', 'Abrevegrave', 'Abrevehookabove', 
+        'Abrevetilde', 'Acircumflexacute', 'Acircumflexdotbelow', 'Acircumflexgrave', 'Acircumflexhookabove', 
+        'Acircumflextilde', 'Adieresismacron', 'Adotaccentmacron', 'Ahookabove', 'Astroke', 
+    'B', 'Bdotbelow', 'Bhook', 'Bdotaccent', 'Blinebelow', 'Bstroke', 
+    'C', 'Cacute', 'Ccaron', 'Ccedilla', 'Ccircumflex', 'Cdotaccent', 'Ccedillaacute', 'Chi_latin',  
+    'D', 'Dcaron', 'Dcroat', 'Ddotbelow', 'Dhook', 'DZcaron', 'Dafrican', 'Dcedilla', 'Dcircumflexbelow', 'Ddotaccent', 'Dlinebelow', 'Dzcaron',  
+    'E', 'Eacute', 'Ebreve', 'Ecaron', 'Ecircumflex', 'Edieresis', 'Edotaccent', 'Edotbelow', 'Egrave', 'Emacron', 'Eng', 
+        'Eogonek', 'Eopen', 'Ereversed', 'Eth', 'Etilde', 'Ecedilla', 'Ecedillabreve', 'Ecircumflexacute', 'Ecircumflexbelow', 
+        'Ecircumflexdotbelow', 'Ecircumflexgrave', 'Ecircumflexhookabove', 'Ecircumflextilde', 'Edblgrave', 'Ehookabove', 
+        'Einvertedbreve', 'Emacronacute', 'Emacrongrave', 'Estroke', 'Etildebelow', 'Fdotaccent', 
+    'F', 'Fhook', 
+    'G', 'Gbreve', 'Gcaron', 'Gcircumflex', 'Gcommaaccent', 'Gdotaccent', 'Germandbls', 'Gmacron', 'Gacute', 'Gstroke', 
+    'H', 'Hbar', 'Hcircumflex', 'Hdieresis', 'Hdotbelow', 'Hbrevebelow', 'Hcaron', 'Hcedilla', 'Hdotaccent', 'Heng', 'Hturned', 
+    'I', 'Iacute', 'Ibreve', 'Icaron', 'Icircumflex', 'Idieresis', 'Idotaccent', 'Idotbelow', 'Igrave', 'Imacron', 'Iogonek', 
+        'Istroke', 'Itilde', 'Idblgrave', 'Idieresisacute', 'Ihookabove', 'Iinvertedbreve', 'Itildebelow', 
+    'J', 'Jcircumflex', 'IJ', 'J.base', 'Jcircumflex.base', 'Jcrossedtail', 
+    'K', 'Kcommaaccent', 'Khook', 'Kacute', 'Kcaron', 'Kdotbelow', 'Klinebelow', 'Kstroke', 
+    'L', 'Lacute', 'Lcaron', 'Lcommaaccent', 'Lslash', 'Ldot', 'LJ', 'Lbar', 'Lbelt', 'Lcircumflexbelow', 'Ldotbelow', 
+        'Ldotbelowmacron', 'Ldoublebar', 'Lj', 'Llinebelow', 'Lmiddletilde', 
+    'M', 'Macute', 'Mdotaccent', 'Mdotbelow', 'Mhook', 
+    'N', 'Nacute', 'Ncaron', 'Ncommaaccent', 'Ndotaccent', 'Ndotbelow', 'Nhookleft', 'Ntilde', 'Ncircumflexbelow', 'Ngrave', 'Nlinebelow', 
+    'O', 'OE', 'Oacute', 'Obreve', 'Ocaron', 'Ocircumflex', 'Odieresis', 'Odotbelow', 'Ograve', 'Ohungarumlaut', 
+        'Omacron', 'Oopen', 'Oslash', 'Oslash.alt', 'Otilde', 'Oslashacute', 'Oslashacute.alt', 
+        'Ohorn', 'Ohornacute', 'Ohorndotbelow', 'Ohorngrave', 'Ohornhookabove', 'Ohorntilde', 
+        'Ocircumflexacute', 'Ocircumflexdotbelow', 'Ocircumflexgrave', 'Ocircumflexhookabove', 'Ocircumflextilde', 'Odblgrave', 
+        'Odieresismacron', 'Odotaccentmacron', 'Ohookabove', 'Oinvertedbreve', 'Omacronacute', 'Omacrongrave', 
+        'Oogonek', 'Oogonekmacron', 'Otildeacute', 'Otildedieresis', 
+    'P', 'Pdotaccent', 'Pacute', 'Pstroke', 
     'Q', 
-    'R', 'Racute', 'Rcaron', 'Rcommaaccent', 
+    'R', 'Racute', 'Rcaron', 'Rcommaaccent', 'Rdblgrave', 'Rdotaccent', 'Rdotbelow', 'Rdotbelowmacron', 'Rinvertedbreve', 'Rlinebelow', 'Rtail',  
     'S', 'Sacute', 'Scaron', 'Scedilla', 'Schwa', 'Scircumflex', 'Scommaaccent', 'Sdotbelow', 
-    'T', 'Tcaron', 'Tcedilla', 'Tcommaaccent', 'Thorn', 'Tbar',
-    'U', 'Uacute', 'Ubreve', 'Ucaron', 'Ucircumflex', 'Udieresis', 'Udotbelow', 'Ugrave', 'Uhungarumlaut', 'Umacron', 'Uogonek', 'Uring', 'Utilde', 
-    'V', 'Vturned', 
-    'W', 'Wacute', 'Wcircumflex', 'Wdieresis', 'Wgrave', 
-    'X', 'Xdieresis', 
-    'Y', 'Yacute', 'Ycircumflex', 'Ydieresis', 'Ygrave', 'Yhook', 'Ymacron', 'Ytilde', 
-    'Z', 'Zacute', 'Zcaron', 'Zdotaccent', 'Zdotbelow',
+         'Sacutedotaccent', 'Scarondotaccent', 'Sdotaccent', 'Sdotbelowdotaccent', 'Sobliquestroke', 
+    'T', 'Tcaron', 'Tcedilla', 'Tcommaaccent', 'Thorn', 'Tbar', 'Tcircumflexbelow', 'Tdiagonalstroke', 'Tdotaccent', 'Tdotbelow', 'Tlinebelow', 
+    'U', 'Uacute', 'Ubreve', 'Ucaron', 'Ucircumflex', 'Udieresis', 'Udotbelow', 'Ugrave', 'Uhungarumlaut', 'Umacron', 'Uogonek', 
+        'Uring', 'Utilde', 'Ucircumflexbelow', 'Udblgrave', 'Udieresisacute', 'Udieresisbelow', 'Udieresiscaron', 'Udieresisgrave', 
+        'Udieresismacron', 'Uhookabove', 'Uhorn', 'Uhornacute', 'Uhorndotbelow', 'Uhorngrave', 'Uhornhookabove', 'Uhorntilde', 
+        'Uinvertedbreve', 'Umacrondieresis', 'Utildeacute', 'Utildebelow',  
+    'V', 'Vturned', 'Vdotbelow', 'Vtilde', 
+    'W', 'Wacute', 'Wcircumflex', 'Wdieresis', 'Wgrave', 'Wdotaccent', 'Wdotbelow', 'Whook', 
+    'X', 'Xdieresis', 'Xdotaccent',  
+    'Y', 'Yacute', 'Ycircumflex', 'Ydieresis', 'Ygrave', 'Yhook', 'Ymacron', 'Ytilde', 'Ydotaccent', 'Ydotbelow', 'Yhookabove', 'Ystroke', 
+    'Z', 'Zacute', 'Zcaron', 'Zdotaccent', 'Zdotbelow', 'Zcircumflex', 'Zlinebelow', 'Zstroke',
+    'Ezh', 'Ezhcaron', 'Ezhreversed',
     'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
-    'zeroslash', 'question', 'section', 'numbersign', 'cent', 'florin', 'zeroslash.tab', 
-    'slash', 'Euro', 'degree', 'germandbls', 'yen', 'ampersand', 'questiondown', 'backslash', 'sterling', 'dollar', 'dollar.alt', 'bitcoin', 'bitcoin.alt',
+    'zeroslash', 'question', 'section', 'numbersign', 'zeroslash.tab', 
+    'slash', 'degree', 'germandbls', 'ampersand', 'questiondown', 'backslash', 
     'parenleft', 'parenright', 'bracketleft', 'bracketright', 'exclam', 'exclamdown', 'braceleft', 'braceright',
 
     # In case CYRILLIC_SET is included, these need to become smallcaps too
@@ -998,6 +1022,7 @@ SC_NAMES = (
     'Shha_cy', 'Softsign_cy', 'Te_cy', 'Tedescender_cy', 'Tetse_cy', 'Tse_cy', 'Tshe_cy', 'U_cy', 'Udieresis_cy', 'Uhungarumlaut_cy', 'Umacron_cy', 
     'Ushort_cy', 'Ustrait_cy', 'Ustraitstroke_cy', 'Ve_cy', 'Yeru_cy', 'Yerudieresis_cy', 'Yi_cy',
     'Ze_cy', 'Zedescender_cy', 'Zedieresis_cy', 'Zhe_cy', 'Zhebreve_cy', 'Zhedescender_cy', 'Zhedieresis_cy', 'tail.component_cy.case',
+    'Dzeabkh_cy', 
 
     # In case GREEK_SET is included, these need to be come smallcaps too
     # c2sc OT-features
@@ -1020,12 +1045,13 @@ SC_NAMES = (
 
 # Used by GlyphSet class to add tab glyph data records. 
 TAB_NAMES = (
+    # These glyphs don't need a separate tab-width version, since the width is already on math-width
+    # 'plusminus', 'plus', 'minus', 'multiply', 'divide', 'numbersign', 'equal', 'notequal', 
+    # 'greater', 'greaterequal', 'less', 'lessequal', 'logicalnot', 'lozenge', 'approxequal'
+    # 'cent', 'cent.alt', 'dollar', 'dollar.alt', 'yen', 'sterling', 'bitcoin', 'bitcoin.alt'
+    #
     'zero', 'zeroslash', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
-    'cent', 'cent.alt', 'dollar', 'dollar.alt', 'yen', 'sterling', 'bitcoin', 'bitcoin.alt', 
-    'period', 'comma', 'colon', 'semicolon',
-    'plus', 'minus', 'equal', 'notequal', 'less', 'greater', 'lessequal', 'greaterequal', 
-    'multiply', 'divide', 'asterisk', 
-    'percent', 'perthousand', 'degree', 'plusminus', 'approxequal',  
+    'asterisk',  'percent', 'perthousand', 'degree', 'period', 'comma', 'colon', 'semicolon',
     'parenleft', 'parenright', 'bracketleft', 'bracketright', 'braceleft', 'braceright',
     'quoteleft', 'quoteright', 'quotedblleft', 'quotedblright', 
     'hyphen', 'endash', 'minute', 'second', 'slash', 'backslash', 'numbersign',
