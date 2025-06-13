@@ -871,7 +871,7 @@ LATIN_S_SET = GDS = {
     'hungarumlautcmb': GD(name='hungarumlautcmb', anchorTopY='TopY', uni=0x030B, hex='030B', c='̋', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['top', '_top']),
     'hungarumlautcmb.uc': GD(name='hungarumlautcmb.uc', anchorTopY='TopY', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['top', '_top']),
 
-    ''tildecmb':' GD(name='tildecmb', uni=0x0303, anchorTopY='TopY', hex='0303', c='̃', w=0, srcName='tilde', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
+    'tildecmb': GD(name='tildecmb', uni=0x0303, anchorTopY='TopY', hex='0303', c='̃', w=0, srcName='tilde', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top']),
     'tildecmb.uc': GD(name='tildecmb.uc', w=0, anchorTopY='TopY', srcName='tildecmb', autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top']),
 
     'quoteleftcmb': GD(name='quoteright', srcName='quoteleft', autoFixComponentPositions=False, autoFixMargins=False, w=0, anchors=['_top', 'top']),
