@@ -211,7 +211,7 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
 
     # b
 
-    GDS['brevebelow'] = GD(name='brevebelow', uni=0x032E, hex='032E', c='̮', w=0, base='brevebelowcmb', isLower=True, anchors=['_bottom', 'bottom'], gid=1623)
+    GDS['brevebelow'] = GD(name='brevebelow', uni=0x032E, hex='032E', c='̮', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='brevebelowcmb', isLower=True, anchors=['_bottom', 'bottom'], gid=1623)
 
     # d
 
