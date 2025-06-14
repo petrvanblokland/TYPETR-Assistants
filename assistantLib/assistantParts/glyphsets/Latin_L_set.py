@@ -383,7 +383,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     # W
 
     GDS['Wdotaccent'] = GD(name='Wdotaccent', uni=0x1E86, hex='1E86', c='Ẇ', l='W', r='W', base='W', accents=['dotaccentcmb.uc'], anchors=['bottom', 'middle', 'top'])
-    GDS['Whook'] = GD(name='Whook', uni=0x2C72, hex='2C72', srcName='W', c='Ⱳ')
+    GDS['Whook'] = GD(name='Whook', uni=0x2C72, hex='2C72', l='W', srcName='W', c='Ⱳ')
 
     GDS['Wsuperior'] = GD(name='Wsuperior', l='W.sc', r='W.sc', isMod=True)
     GDS['Winferior'] = GD(name='Winferior', l='Wsuperior', r='Wsuperior', base='Wsuperior', isLower=True)
