@@ -242,8 +242,8 @@ LATIN_S_SET = GDS = {
     'florin': GD(name='florin', uni=0x0192, hex='0192', c='ƒ', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, comment='ƒ script f, latin small letter'),
     'rupeeIndian': GD(name='rupeeIndian', uni=0x20B9, hex='20B9', c='₹', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, srcName='Rupee'),
     'newsheqel': GD(name='newsheqel', uni=0x20AA, hex='20AA', c='₪', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH),
-    'peso': GD(name='peso', uni=0x20B1, hex='20B1', c='₱', base='P',l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH),
-    'hryvnia': GD(name='hryvnia', uni=0x20B4, hex='20B4', c='₴', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH),
+    'peso': GD(name='peso', uni=0x20B1, hex='20B1', c='₱', base='P',l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False),
+    'hryvnia': GD(name='hryvnia', uni=0x20B4, hex='20B4', c='₴', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False),
     'currency': GD(name='currency', uni=0x00A4, hex='00A4', c='¤', isLower=True, l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, comment='¤ CURRENCY SIGN'),
 
     # Superior currency
