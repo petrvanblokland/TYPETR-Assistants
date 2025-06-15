@@ -631,6 +631,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     # n
 
     GDS['napostrophe'] = GD(name='napostrophe', uni=0x0149, hex='0149', c='ŉ', base='quoteright', l='quoteright', r='n', accents=['n'], isLower=True, comment='ŉ')
+    GDS['Napostrophe.sc'] = GD(name='Napostrophe.sc', base='quoteright', l='quoteright', r='N.sc', accents=['N.sc'], isLower=True, comment='Smallcap version of ŉ')
     GDS['ncircumflexbelow'] = GD(name='ncircumflexbelow', uni=0x1E4B, hex='1E4B', c='ṋ', base='n', accents=['circumflexbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['ngrave'] = GD(name='ngrave', uni=0x01F9, hex='01F9', c='ǹ', w='n', bl='n', base='n', accents=['gravecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['nj'] = GD(name='nj', uni=0x01CC, hex='01CC', c='ǌ', base='n', l='n', r='j', accents=['j'], isLower=True)
