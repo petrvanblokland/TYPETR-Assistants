@@ -42,7 +42,7 @@ GREEK_SET = {
    'Iotadieresis': GD(name='Iotadieresis', uni=0x03AA, hex='03AA', c='Ϊ', l='Idieresis', w='I', base='I', accents=['dieresiscmb.uc'], anchors=['bottom', 'top'], gid=559),
    'Iotatonos': GD(name='Iotatonos', uni=0x038A, hex='038A', c='Ί', l='comma', r='I', base='I', accents=['tonoscmb.uc'], anchors=['bottom', 'top'], gid=530),
    'Iotadieresistonos.sc': GD(name='Iotadieresistonos.sc', l='Idieresis.sc', r='Idieresis.sc', base='Iota.sc', accents=['dieresistonoscmb'], isLower=True,),
-   'KaiSymbol': GD(name='KaiSymbol', uni=0x03CF, hex='03CF', c='Ϗ', l='H', r='K', base='K', gid=596),
+   'KaiSymbol': GD(name='KaiSymbol', uni=0x03CF, hex='03CF', c='Ϗ', l='H', r='K', srcName='K', gid=596),
    'Kappa': GD(name='Kappa', uni=0x039A, hex='039A', c='Κ', l='H', r='K', base='K', anchors=['bottom', 'top'], gid=544),
    #'Khei_coptic': GD(name='Khei_coptic', uni=0x03E6, hex='03E6', c='Ϧ', l='off', r='n', gid=619),
    #'Koppa': GD(name='Koppa', uni=0x03DE, hex='03DE', c='Ϟ', l='off', l2r='Koppa', gid=611),
@@ -76,6 +76,9 @@ GREEK_SET = {
    'Upsilon': GD(name='Upsilon', uni=0x03A5, hex='03A5', c='Υ', l='Y', r='Y', base='Y', anchors=['bottom', 'topleft', 'top'], gid=554),
    #'UpsilonacutehookSymbol': GD(name='UpsilonacutehookSymbol', uni=0x03D3, hex='03D3', c='ϓ', l='Y', r='r', base='UpsilonhookSymbol', accents=['tonoscmb.uc'], anchors=['top'], gid=600),
    'Upsilondieresis': GD(name='Upsilondieresis', uni=0x03AB, hex='03AB', c='Ϋ', l='Upsilon', r='Upsilon', base='Y', accents=['dieresiscmb.uc'], anchors=['bottom', 'top'], gid=560),
+   # Tdieresis does exist as unicode. Capital T: U+0054 → T + Combining Diaeresis: U+0308 → ** ̈** = T̈
+   # Included here as placeholder for smallcap [c2sc] conversion
+   'Upsilondieresistonos': GD(name='Upsilondieresistonos', hex='03AB + 0301', c='Ϋ́', l='Upsilon', r='Upsilon', base='Upsilon', accents=['dieresistonoscmb'], anchors=['bottom', 'middle', 'top'], comment='Ϋ́'),
    'Upsilondieresistonos.sc': GD(name='Upsilondieresistonos.sc', l='Upsilon.sc', r='Upsilon.sc', base='Upsilon.sc', accents=['dieresistonoscmb'], anchors=['bottom', 'top'], gid=560),
    #'UpsilondieresishookSymbol': GD(name='UpsilondieresishookSymbol', uni=0x03D4, hex='03D4', c='ϔ', l='Upsilon', r='Upsilon', base='UpsilonhookSymbol', accents=['dieresiscmb.uc'], anchors=['top'], gid=601),
    #'UpsilonhookSymbol': GD(name='UpsilonhookSymbol', uni=0x03D2, hex='03D2', c='ϒ', l='Upsilon', r='Upsilon', anchors=['tonos', 'top'], gid=599),

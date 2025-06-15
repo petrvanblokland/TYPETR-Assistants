@@ -352,6 +352,9 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['Theta'] = GD(name='Theta', uni=0x0398, hex='0398', c='Θ', base='O', l='O', r='O')
     GDS['Thook'] = GD(name='Thook', uni=0x01AC, hex='01AC', c='Ƭ', srcName='T', l='Bhook', r='T')
     GDS['Tretroflexhook'] = GD(name='Tretroflexhook', uni=0x01AE, hex='01AE', c='Ʈ', l='T', w='T', srcName='T')
+    # Tdieresis does exist as unicode. Capital T: U+0054 → T + Combining Diaeresis: U+0308 → ** ̈** = T̈
+    # Included here as placeholder for smallcap [c2sc] conversion
+    GDS['Tdieresis'] = GD(name='Tdieresis', hex='0054 + 0308', c='T̈', l='T', r='T', base='T', accents=['dieresiscmb.uc'], anchors=['bottom', 'middle', 'top'], comment='T̈')
 
     GDS['Tsuperior'] = GD(name='Tsuperior', l='T.sc', r='T.sc', isMod=True)
     GDS['Tinferior'] = GD(name='Tinferior', l='Tsuperior', r='Tsuperior', base='Tsuperior', isLower=True)
@@ -384,6 +387,10 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     GDS['Wdotaccent'] = GD(name='Wdotaccent', uni=0x1E86, hex='1E86', c='Ẇ', l='W', r='W', base='W', accents=['dotaccentcmb.uc'], anchors=['bottom', 'middle', 'top'])
     GDS['Whook'] = GD(name='Whook', uni=0x2C72, hex='2C72', l='W', srcName='W', c='Ⱳ')
+    # Wring does exist as unicode. W (U+0057) followed by ◌̊ (U+030A combining ring above), i.e., W̊
+    # Included here as placeholder for smallcap [c2sc] conversion
+    # Ring is ringcmb version, otherwise too low on the /W 
+    GDS['Wring'] = GD(name='Wring', c='W̊', l='W', r='W', base='W', accents=['ringcmb'], anchors=['bottom', 'middle', 'top'], comment='W̊')
 
     GDS['Wsuperior'] = GD(name='Wsuperior', l='W.sc', r='W.sc', isMod=True)
     GDS['Winferior'] = GD(name='Winferior', l='Wsuperior', r='Wsuperior', base='Wsuperior', isLower=True)
@@ -420,6 +427,8 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['ainvertedbreve'] = GD(name='ainvertedbreve', uni=0x0203, hex='0203', c='ȃ', base='a', accents=['invertedbrevecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['alpha_latin'] = GD(name='alpha_latin', uni=0x0251, hex='0251', c='ɑ', isLower=True)
     GDS['arighthalfring'] = GD(name='arighthalfring', uni=0x1E9A, hex='1E9A', c='ẚ', base='a', accents=['ringhalfrightcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
+    # Seperate definition, since Arighthalfring does not exist as unicode. Used for [smcp] only.
+    GDS['Arighthalfring.sc'] = GD(name='Arighthalfring.sc', base='A.sc', accents=['ringhalfrightcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['aringacute'] = GD(name='aringacute', uni=0x01FB, hex='01FB', c='ǻ', base='a', accents=['ringacutecmb'], isLower=True, fixAccents=False, anchors=['bottom', 'middle', 'top'], comment='ǻ')
     GDS['aringbelow'] = GD(name='aringbelow', uni=0x1E01, hex='1E01', c='ḁ', base='a', accents=['ringbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['astroke'] = GD(name='astroke', uni=0x2C65, hex='2C65', c='ⱥ', base='a', accents=['strokecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
@@ -781,6 +790,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     GDS['yogh'] = GD(name='yogh', uni=0x021D, hex='021D', c='ȝ', l='three', r='three', base='three', isLower=True)
     GDS['yring'] = GD(name='yring', uni=0x1E99, hex='1E99', c='ẙ', l='y', r='y', base='y', accents=['ringcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
+    GDS['Yring.sc'] = GD(name='Yring.sc', l='Y.sc', r='Y.sc', base='Y.sc', accents=['ringcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['ystroke'] = GD(name='ystroke', uni=0x024F, hex='024F', c='ɏ', l='hyphen', r='hyphen', base='y', isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['yturned'] = GD(name='yturned', uni=0x028E, hex='028E', c='ʎ', w='y', r2l='y', isLower=True)
 

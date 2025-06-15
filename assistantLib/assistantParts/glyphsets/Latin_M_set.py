@@ -216,7 +216,6 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
     # d
 
     GDS['dlinebelow'] = GD(name='dlinebelow', uni=0x1E0F, hex='1E0F', c='ḏ', base='d', rightMin='-100', anchorTopX='TopX', anchorTopY='TopY', accents=['macronbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=938)
-    GDS['dong'] = GD(name='dong', uni=0x20AB, hex='20AB', c='₫', base='d', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=True, gid=1444, comment='₫ vietnamese currency')
 
     # e
 
