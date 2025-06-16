@@ -191,6 +191,12 @@ class AssistantPartAnchors(BaseAssistantPart):
         c.w.bottomAnchorYOffsetSlider = Slider((C2, y-5, CW, L), minValue=-self.MAX_OVERLAY_OFFSET_SLIDER, maxValue=self.MAX_OVERLAY_OFFSET_SLIDER, value=0, 
             sizeStyle='small', continuous=True, callback=self.updateBottomAnchorSliderCallback)
         y += L
+        c.w.anchorTopLeftReset = Button((C0, y-5, CW, L), 'Reset TopLeft', sizeStyle='small', callback=self.anchorsTopLeftResetCallback)
+        c.w.topLeftAnchorXOffsetSlider = Slider((C1, y-5, CW, L), minValue=-self.MAX_OVERLAY_OFFSET_SLIDER, maxValue=self.MAX_OVERLAY_OFFSET_SLIDER, value=0, 
+            sizeStyle='small', continuous=True, callback=self.updateTopLeftAnchorSliderCallback)
+        c.w.topLeftAnchorYOffsetSlider = Slider((C2, y-5, CW, L), minValue=-self.MAX_OVERLAY_OFFSET_SLIDER, maxValue=self.MAX_OVERLAY_OFFSET_SLIDER, value=0, 
+            sizeStyle='small', continuous=True, callback=self.updateTopLeftAnchorSliderCallback)
+        y += L
 
         c.w.anchorEndLine = HorizontalLine((self.M, y, -self.M, 1))
         c.w.anchorEndLine2 = HorizontalLine((self.M, y, -self.M, 1)) # Double for slightly darker line
@@ -203,6 +209,7 @@ class AssistantPartAnchors(BaseAssistantPart):
     ANCHOR_TOP_OFFSET = 'anchorTopOffset'
     ANCHOR_MIDDLE_OFFSET = 'anchorMiddleOffset'
     ANCHOR_BOTTOM_OFFSET = 'anchorBottomOffset'
+    ANCHOR_TOPLEFT_OFFSET = 'anchorTopLeftOffset'
     MAX_OVERLAY_OFFSET_SLIDER = 200
 
     def anchorsTopResetCallback(self, sender):
@@ -278,6 +285,31 @@ class AssistantPartAnchors(BaseAssistantPart):
         if changed:
             #print('Bottom', x, y, ox, oy)
             self.setLib(g, self.ANCHOR_BOTTOM_OFFSET, (x, y))
+            g.changed()
+        
+    def anchorsTopLeftResetCallback(self, sender):
+        g = self.getCurrentGlyph()
+        self.setLib(g, self.ANCHOR_TOPLEFT_OFFSET, (0, 0))
+        c = self.getController()
+        c.w.topLeftAnchorXOffsetSlider.set(0)
+        c.w.topLeftAnchorYOffsetSlider.set(0)
+        g.changed()
+        
+    def updateTopLeftAnchorSliderCallback(self, sender):
+        """Update the position of the anchors, with the setting of the offset sliders and store the value in glyph.lib"""
+        g = self.getCurrentGlyph()
+        x, y = self.getLib(g, self.ANCHOR_TOPLEFT_OFFSET, (0, 0))
+        ox, oy = int(round(self.w.topLeftAnchorXOffsetSlider.get())), int(round(self.w.topLeftAnchorYOffsetSlider.get()))
+        changed = False
+        if x != ox:
+            x = ox
+            changed = True
+        if y != oy:
+            y = oy
+            changed = True
+        if changed:
+            #print('Tonos/TopLeft', x, y, ox, oy)
+            self.setLib(g, self.ANCHOR_TOPLEFT_OFFSET, (x, y))
             g.changed()
         
     def closingAnchors(self):
@@ -551,6 +583,10 @@ class AssistantPartAnchors(BaseAssistantPart):
                     ox, oy = self.getLib(g, self.ANCHOR_BOTTOM_OFFSET, (0, 0))
                     c.w.bottomAnchorXOffsetSlider.set(ox)
                     c.w.bottomAnchorYOffsetSlider.set(oy)
+                elif a.name == AD.TOPLEFT_:
+                    ox, oy = self.getLib(g, self.ANCHOR_TOPLEFT_OFFSET, (0, 0))
+                    c.w.topLeftAnchorXOffsetSlider.set(ox)
+                    c.w.topLeftAnchorYOffsetSlider.set(oy)
 
                 self.autoCheckFixAnchorPosition(g, gd, a)
 
@@ -597,7 +633,7 @@ class AssistantPartAnchors(BaseAssistantPart):
         elif a.name == AD.OGONEK_: # Try to guess bottom position
             ax, ay = self.constructAnchorOGONEK_XY(g, gd, a)
 
-        elif a.name == AD.TOPLEFT_: # Try to guess topleft position only for capitals
+        elif a.name == AD.TOPLEFT_: # Try to guess topleft position only for capitals tonos
             ax, ay = self.constructAnchorTOPLEFT_XY(g, gd, a)
 
         if ax is not None:
@@ -1226,6 +1262,8 @@ class AssistantPartAnchors(BaseAssistantPart):
         # Trying to guess vertical
         ax = ay = None
 
+        offsetX, offsetY = self.getLib(g, self.ANCHOR_TOPLEFT_OFFSET, (0, 0))
+
         if gd.autoFixAnchorPositionY:
             ay = g.font.info.capHeight # Likely to ba a negative number
 
@@ -1248,6 +1286,11 @@ class AssistantPartAnchors(BaseAssistantPart):
 
             else: # Center in width by default
                 ax = self.italicX(g, g.angledLeftMargin/2, ay) # Right aligned, halfway left margin
+
+        if ax is not None:
+            ax += offsetX
+        if ay is not None:
+            ay += offsetY
 
         return ax, ay
 
