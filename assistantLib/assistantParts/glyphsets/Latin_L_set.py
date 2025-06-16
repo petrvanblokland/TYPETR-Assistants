@@ -876,8 +876,8 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     GDS['fourfifths'] = GD(name='fourfifths', uni=0x2158, hex='2158', c='⅘', l='four.numr', r='five.dnom', base='four.numr', accents=['fraction', 'five.dnom'], isLower=False)
 
-    GDS['fiveeighths'] = GD(name='fiveeighths', uni=0x215D, hex='215D', c='⅝', l='five.numr', r='eight.dnom', base='five.numr', accents=['fraction', 'eight.dnom'], isLower=False, gid=1474, comment='⅝')
     GDS['fivesixths'] = GD(name='fivesixths', uni=0x215A, hex='215A', c='⅚', l='five.numr', r='six.dnom', base='five.numr', accents=['fraction', 'six.dnom'], isLower=False)
+    GDS['fiveeighths'] = GD(name='fiveeighths', uni=0x215D, hex='215D', c='⅝', l='five.numr', r='eight.dnom', base='five.numr', accents=['fraction', 'eight.dnom'], isLower=False, gid=1474, comment='⅝')
 
     GDS['seveneighths'] = GD(name='seveneighths', uni=0x215E, hex='215E', c='⅞', l='seven.numr', r='eight.dnom', base='seven.numr', accents=['fraction', 'eight.dnom'], isLower=False, gid=1475, comment='⅞')
 
