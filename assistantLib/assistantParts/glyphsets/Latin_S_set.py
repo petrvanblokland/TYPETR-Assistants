@@ -92,11 +92,11 @@ LATIN_S_SET = GDS = {
 
     'hyphen': GD(name='hyphen', uni=0x002D, hex='002D', c='-', l2r='self', unicodes=(45, 8208), isLower=True, comment='- minus sign, hyphen'),
     'hyphen.uc': GD(name='hyphen.uc', l='hyphen', r='hyphen', base='hyphen', isLower=False, comment='- minus sign, hyphen'),
-    'endash': GD(name='endash', uni=0x2013, hex='2013', c='–', isLower=True, comment='– EN DASH'),
-    'endash.uc': GD(name='endash.uc', isLower=False, l='endash', w='endash', base='endash', comment='– EN DASH'),
+    'endash': GD(name='endash', uni=0x2013, hex='2013', c='–', l=GD.CAT_CENTER, w=GD.CAT_EM_WIDTH2, isLower=True, comment='– EN DASH'),
+    'endash.uc': GD(name='endash.uc', isLower=False, l=GD.CAT_CENTER, w=GD.CAT_EM_WIDTH2, base='endash', comment='– EN DASH'),
     'emdash': GD(g2='hyphen', g1='hyphen', l=GD.CAT_CENTER, w=GD.CAT_EM_WIDTH, uni=0x2014, c='—', name='emdash', comment='— EM DASH', anchors=[]),
-    'emdash.uc': GD(g2='hyphen', g1='hyphen', l='emdash', w='emdash', name='emdash.uc', base='emdash', isLower=False, comment='— EM DASH Uppercase', anchors=[]),
-    'horizontalbar': GD(g2='hyphen', g1='hyphen', l='emdash', r='emdash', uni=0x2015, c='―', name='horizontalbar', base='emdash', anchors=[]),
+    'emdash.uc': GD(g2='hyphen', g1='hyphen', l=GD.CAT_CENTER, w=GD.CAT_EM_WIDTH, name='emdash.uc', base='emdash', isLower=False, comment='— EM DASH Uppercase', anchors=[]),
+    'horizontalbar': GD(g2='hyphen', g1='hyphen', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, uni=0x2015, c='―', name='horizontalbar', srcName='emdash', anchors=[]),
     'horizontalbar.uc': GD(g2='hyphen', g1='hyphen', l='horizontalbar', r='horizontalbar', name='horizontalbar.uc', isLower=False, comment='Horizontal base Uppercase', anchors=[]),
 
     'hungarumlaut': GD(name='hungarumlaut', uni=0x02DD, hex='02DD', c='˝', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='hungarumlautcmb', isLower=True, comment='˝ DOUBLE ACUTE ACCENT'),
@@ -105,9 +105,9 @@ LATIN_S_SET = GDS = {
 
     'paragraph': GD(name='paragraph', uni=0x00B6, hex='00B6', c='¶', l='zerosuperior', r='H', isLower=True, comment='¶ section sign, european'),
     'parenleft': GD(name='parenleft', uni=0x0028, hex='0028', c='(', isLower=True, comment='( parenthesis, opening'),
-    'parenleft.uc': GD(name='parenleft.uc', srcName='parenleft', isLower=False, comment='( parenthesis, opening for capitals'),
+    #'parenleft.uc': GD(name='parenleft.uc', srcName='parenleft', l='parenleft', r='parenleft', isLower=False, comment='( parenthesis, opening for capitals'),
     'parenright': GD(name='parenright', uni=0x0029, hex='0029', c=')', l2r='parenleft', r2l='parenleft', isLower=True, comment=') RIGHT PARENTHESIS'),
-    'parenright.uc': GD(name='parenright.uc', srcName='parenright', l2r='parenleft', r2l='parenleft', isLower=False, comment='( parenthesis, for capitals'),
+    #'parenright.uc': GD(name='parenright.uc', srcName='parenright', l2r='parenleft', r2l='parenleft', isLower=False, comment='( parenthesis, for capitals'),
     'percent': GD(name='percent', uni=0x0025, hex='0025', c='%', l='zerosuperior', r='zerosuperior', isLower=True, comment='% PERCENT SIGN', baseline=GD.CAT_NUMR_BASELINE, height=GD.CAT_SUPERIOR_HEIGHT, overshoot=GD.CAT_SUPERIOR_OVERSHOOT),
     'percent.tab': GD(name='percent.tab', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, comment='% PERCENT SIGN TAB'),
     'perthousand': GD(l='zerosuperior', r='zerosuperior', uni=0x2030, c='‰', name='perthousand', comment='‰ per thousand', baseline=GD.CAT_NUMR_BASELINE, height=GD.CAT_SUPERIOR_HEIGHT, overshoot=GD.CAT_SUPERIOR_OVERSHOOT),
@@ -205,6 +205,9 @@ LATIN_S_SET = GDS = {
     'seven.dnom': GD(name='seven.dnom', base='sevensuperior', l='sevensuperior', r='sevensuperior', isLower=False, comment='³ SEVEN, SUBSCRIPT'),
     'eight.dnom': GD(name='eight.dnom', base='eightsuperior', l='eightsuperior', r='eightsuperior', isLower=False, comment='³ EIGHT, SUBSCRIPT'),
     'nine.dnom': GD(name='nine.dnom', base='ninesuperior', l='ninesuperior', r='ninesuperior', isLower=False, comment='³ NINE, SUBSCRIPT'),
+
+    # Old-style figures (exception)
+    'one.onum': GD(name='one.onum', l='off', l2r='self', srcName='I.sc', isLower=True, comment='¹Old-style one'),
 
     # Math not on math-width
         
@@ -544,14 +547,14 @@ LATIN_S_SET = GDS = {
     'backslash': GD(name='backslash', uni=0x005C, hex='005C', c="\\" , l2r='self', isLower=True, comment='\\ SOLIDUS, REVERSE'),
     'bar': GD(name='bar', uni=0x007C, hex='007C', c='|', l='H', r='H', isLower=True, comment='| VERTICAL LINE'),
     'braceleft': GD(name='braceleft', uni=0x007B, hex='007B', c='{', isLower=True, comment='{ opening curly bracket'),
-    'braceleft.uc': GD(name='bracelef.uct', srcName='braceleft', isLower=False, comment='{ opening curly bracket'),
+    #'braceleft.uc': GD(name='bracelef.uct', srcName='braceleft', l='braceleft', r='braceleft', isLower=False, comment='{ opening curly bracket'),
     'braceright': GD(name='braceright', uni=0x007D, hex='007D', c='}', l2r='braceleft', r2l='braceleft', isLower=True, comment='} RIGHT CURLY BRACKET'),
-    'braceright.uc': GD(name='braceright.uc', l2r='braceleft', r2l='braceleft', srcName='braceright', isLower=False, comment='} RIGHT CURLY BRACKET'),
+    #'braceright.uc': GD(name='braceright.uc', l2r='braceleft', r2l='braceleft', srcName='braceright', isLower=False, comment='} RIGHT CURLY BRACKET'),
     'bracketleft': GD(name='bracketleft', uni=0x005B, hex='005B', c='[', isLower=True, comment='[ square bracket, opening'),
-    'bracketleft.uc': GD(name='bracketleft.uc', srcName='bracketleft', isLower=False, comment='[ square bracket, opening'),
+    #'bracketleft.uc': GD(name='bracketleft.uc', l='bracketleft', r='bracketleft', srcName='bracketleft', isLower=False, comment='[ square bracket, opening'),
     'bracketright': GD(name='bracketright', uni=0x005D, hex='005D', c=']', l2r='bracketleft', r2l='bracketleft', isLower=True, comment='] SQUARE BRACKET, RIGHT'),
-    'bracketright.uc': GD(name='bracketright.uc', l2r='bracketleft', r2l='bracketleft', srcName='bracketright', isLower=False, comment='] SQUARE BRACKET, RIGHT'),
-    'brokenbar': GD(name='brokenbar', uni=0x00A6, hex='00A6', c='¦', isLower=True, comment='¦ vertical bar, broken'),
+    #'bracketright.uc': GD(name='bracketright.uc', l2r='bracketleft', r2l='bracketleft', srcName='bracketright', isLower=False, comment='] SQUARE BRACKET, RIGHT'),
+    'brokenbar': GD(name='brokenbar', uni=0x00A6, hex='00A6', c='¦', l='H', r='H', isLower=True, comment='¦ vertical bar, broken'),
     'bullet': GD(name='bullet', uni=0x2022, hex='2022', c='•', isLower=True, l2r='self', comment='• small circle, black'),
     'bullet.uc': GD(name='bullet.uc', l='bullet', r='bullet', base='bullet', isLower=False, comment='• small circle, black'),
 
