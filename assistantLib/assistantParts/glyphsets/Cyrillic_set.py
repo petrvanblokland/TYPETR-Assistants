@@ -489,7 +489,7 @@ CSI['enhook_cy'].r ='j'
 
 # Remove these glyphs from the Cyrillic italic set, because the glyphs are the identical to the defailt glyphs
 for gName in [
-    'ge_cy.loclBGR', 'ii_cy.loclBGR', 'iishort_cy.loclBGR', 'iigrave_cy.loclBGR', 'en_cy.loclBGR', 'tse_cy.loclBGR', 
+    'ii_cy.loclBGR', 'iishort_cy.loclBGR', 'iigrave_cy.loclBGR', 'en_cy.loclBGR', 'tse_cy.loclBGR', 
     'che_cy.loclBGR', 'sha_cy.loclBGR', 'shcha_cy.loclBGR', 'hardsign_cy.loclBGR', 'softsign_cy.loclBGR']:
     if gName in CYRILLIC_SET_ITALIC:
         del CYRILLIC_SET_ITALIC[gName]

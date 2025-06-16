@@ -173,7 +173,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['Esh'] = GD(name='Esh', uni=0x01A9, hex='01A9', c='Ʃ', l='summation', r='summation')
     GDS['Estroke'] = GD(name='Estroke', uni=0x0246, hex='0246', c='Ɇ', base='E', accents=['strokecmb.uc'], anchors=['bottom', 'middle', 'top'])
     GDS['Etildebelow'] = GD(name='Etildebelow', uni=0x1E1A, hex='1E1A', c='Ḛ', base='E', accents=['tildebelowcmb'], anchors=['bottom', 'middle', 'top'])
-    GDS['Ezh'] = GD(name='Ezh', uni=0x01B7, hex='01B7', c='Ʒ', r='B', anchors=['top'], comment='Ʒ EZH, LATIN CAPITAL LETTER')
+    GDS['Ezh'] = GD(name='Ezh', uni=0x01B7, hex='01B7', c='Ʒ', l='', r='B', anchors=['top'], comment='Ʒ EZH, LATIN CAPITAL LETTER')
     GDS['Ezhcaron'] = GD(name='Ezhcaron', uni=0x01EE, hex='01EE', c='Ǯ', l='Ezh', r='Ezh', base='Ezh', accents=['caroncmb.uc'], anchors=['top'])
     GDS['Ezhreversed'] = GD(name='Ezhreversed', uni=0x01B8, hex='01B8', c='Ƹ', l2r='Ezh', r2l='Ezh')
 
