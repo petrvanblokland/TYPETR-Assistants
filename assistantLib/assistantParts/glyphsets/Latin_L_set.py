@@ -141,7 +141,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['Ccedillaacute'] = GD(name='Ccedillaacute', uni=0x1E08, hex='1E08', c='Ḉ', l='O', r='C', base='Ccedilla', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'top'])
     GDS['Chi_latin'] = GD(name='Chi_latin', uni=0xA7B3, hex='A7B3', c='Ꭓ', base='X', anchors=['bottom', 'middle', 'top'])
     GDS['Chook'] = GD(name='Chook', uni=0x0187, hex='0187', w='C', l='O', srcName='C')
-    GDS['Cstroke'] = GD(name='Cstroke', uni=0x023B, hex='023B', c='Ȼ', l='C', w='C', base='C', accents=['strokecmb.uc'], anchors=['bottom', 'middle', 'top'])
+    GDS['Cstroke'] = GD(name='Cstroke', uni=0x023B, hex='023B', c='Ȼ', l='C', w='C', autoFixComponentPositions=False, base='C', accents=['strokecmb.uc'], anchors=['bottom', 'middle', 'top'])
 
     GDS['Csuperior'] = GD(name='Csuperior', l='Osuperior', r='C.sc', isMod=True)
     GDS['Cinferior'] = GD(name='Cinferior', l='Csuperior', r='Csuperior', base='Csuperior', isLower=True)
@@ -467,7 +467,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['clickdental'] = GD(name='clickdental', uni=0x01C0, hex='01C0', c='ǀ', l='bar', r='bar', base='bar', isLower=True)
     GDS['clicklateral'] = GD(name='clicklateral', uni=0x01C1, hex='01C1', c='ǁ', l='bar', r='bar', base='bar', accents=['bar'], isLower=True)
     GDS['clickretroflex'] = GD(name='clickretroflex', uni=0x01C3, hex='01C3', c='ǃ', base='exclam', isLower=True)
-    GDS['cstroke'] = GD(name='cstroke', uni=0x023C, hex='023C', c='ȼ', base='c', accents=['strokecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
+    GDS['cstroke'] = GD(name='cstroke', uni=0x023C, hex='023C', c='ȼ', base='c', autoFixComponentPositions=False, accents=['strokecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['creversed'] = GD(name='creversed', uni=0x2184, hex='2184', c='ↄ', l2r='c', r2l='c')
 
     GDS['commaabovecmb'] = GD(name='commaabovecmb', uni=0x0313, hex='0313', c='̓', w=0, srcName='comma', isLower=True, anchors=['_top', 'top'])

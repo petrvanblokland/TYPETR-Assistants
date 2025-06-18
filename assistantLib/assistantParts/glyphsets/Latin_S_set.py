@@ -248,6 +248,7 @@ LATIN_S_SET = GDS = {
     'peso': GD(name='peso', uni=0x20B1, hex='20B1', c='₱', base='P',l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False),
     'hryvnia': GD(name='hryvnia', uni=0x20B4, hex='20B4', c='₴', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False),
     'dong': GD(name='dong', uni=0x20AB, hex='20AB', c='₫', base='d', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=True, gid=1444, comment='₫ vietnamese currency'),
+    'cedi': GD(name='cedi', uni=0x20B5, hex='20B5', c='₵', base='C', l='C', r='C', isLower=True, comment='₵100 means 100 Ghanaian cedis'),
     'currency': GD(name='currency', uni=0x00A4, hex='00A4', c='¤', isLower=True, l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, comment='¤ CURRENCY SIGN'),
 
     # Superior currency
@@ -570,7 +571,6 @@ LATIN_S_SET = GDS = {
     'ccedilla': GD(name='ccedilla', uni=0x00E7, hex='00E7', c='ç', base='c', accents=['cedillacmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ç CEDILLA, LATIN SMALL LETTER C WITH'),
     'ccircumflex': GD(name='ccircumflex', uni=0x0109, hex='0109', c='ĉ', anchorTopY='TopY', base='c', accents=['circumflexcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ĉ C WITH CIRCUMFLEX, LATIN SMALL LETTER'),
     'cdotaccent': GD(name='cdotaccent', uni=0x010B, hex='010B', c='ċ', anchorTopY='TopY', base='c', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top']),
-    'cedi': GD(name='cedi', uni=0x20B5, hex='20B5', c='₵', base='C', l='C', r='C', isLower=True),
     'colonsign': GD(name='colonsign', uni=0x20A1, hex='20A1', c='₡', base='C', l='C', r='C', isLower=True),
     'caron': GD(name='caron', uni=0x02C7, hex='02C7', c='ˇ', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, isLower=True, base='caroncmb', comment='ˇ tone, mandarin chinese third'),
     'cedilla': GD(name='cedilla', uni=0x00B8, hex='00B8', c='¸', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, isLower=True, base='cedillacmb'),
@@ -972,7 +972,7 @@ SC_NAMES = (
         'Abrevetilde', 'Acircumflexacute', 'Acircumflexdotbelow', 'Acircumflexgrave', 'Acircumflexhookabove', 
         'Acircumflextilde', 'Adieresismacron', 'Adotaccentmacron', 'Ahookabove', 'Astroke', 
     'B', 'Bdotbelow', 'Bhook', 'Bdotaccent', 'Blinebelow', 'Bstroke', 
-    'C', 'Cacute', 'Ccaron', 'Ccedilla', 'Ccircumflex', 'Cdotaccent', 'Ccedillaacute', 'Chi_latin',  
+    'C', 'Cacute', 'Ccaron', 'Ccedilla', 'Ccircumflex', 'Cdotaccent', 'Ccedillaacute', 'Chi_latin', 'Cstroke', 'cedi',  
     'D', 'Dcaron', 'Dcroat', 'Ddotbelow', 'Dhook', 'DZcaron', 'Dafrican', 'Dcedilla', 'Dcircumflexbelow', 'Ddotaccent', 'Dlinebelow', 'Dzcaron',  
     'E', 'Eacute', 'Ebreve', 'Ecaron', 'Ecircumflex', 'Edieresis', 'Edotaccent', 'Edotbelow', 'Egrave', 'Emacron', 'Eng', 
         'Eogonek', 'Eopen', 'Ereversed', 'Eth', 'Etilde', 'Ecedilla', 'Ecedillabreve', 'Ecircumflexacute', 'Ecircumflexbelow', 
