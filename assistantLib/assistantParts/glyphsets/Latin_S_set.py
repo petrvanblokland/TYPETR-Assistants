@@ -660,21 +660,27 @@ LATIN_S_SET = GDS = {
 
     # i
 
-    'i': GD(name='i', uni=0x0069, hex='0069', c='i', l='off', w='idotless', anchorTopY='TopY', isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='i'),
-    'iacute': GD(name='iacute', uni=0x00ED, hex='00ED', c='í', w='idotless', bl='idotless', anchorTopY='TopY', base='idotless', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='í I WITH ACUTE, LATIN SMALL LETTER'),
-    'ibreve': GD(name='ibreve', uni=0x012D, hex='012D', c='ĭ', w='idotless', bl='idotless', anchorTopY='TopY', base='idotless', accents=['brevecmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ĭ I WITH BREVE, LATIN SMALL LETTER'),
-    'icaron': GD(name='icaron', uni=0x01D0, hex='01D0', c='ǐ', w='idotless', bl='idotless', anchorTopY='TopY', base='idotless', accents=['caroncmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top']),
-    'icircumflex': GD(name='icircumflex', uni=0x00EE, hex='00EE', c='î', w='idotless', bl='idotless', anchorTopY='TopY', base='idotless', accents=['circumflexcmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='î I WITH CIRCUMFLEX, LATIN SMALL LETTER'),
-    'idieresis': GD(name='idieresis', uni=0x00EF, hex='00EF', c='ï', w='idotless', bl='idotless', anchorTopY='TopY', base='idotless', accents=['dieresiscmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ï I WITH DIAERESIS, LATIN SMALL LETTER'),
-    'idotbelow': GD(name='idotbelow', uni=0x1ECB, hex='1ECB', c='ị', w='idotless', bl='idotless', anchorTopY='TopY', base='i', accents=['dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ị I WITH DOT BELOW, LATIN SMALL LETTER'),
-    'idotless': GD(name='idotless', uni=0x0131, hex='0131', c='ı', l='off', r='off', anchorTopY='TopY', isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top']),
-    'igrave': GD(name='igrave', uni=0x00EC, hex='00EC', c='ì', w='idotless', bl='idotless', anchorTopY='TopY', base='idotless', accents=['gravecmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ì I WITH GRAVE, LATIN SMALL LETTER'),
-    'imacron': GD(name='imacron', uni=0x012B, hex='012B', c='ī', w='idotless', bl='idotless', anchorTopY='TopY', base='idotless', accents=['macroncmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ī I WITH MACRON, LATIN SMALL LETTER'),
-    'iogonek': GD(name='iogonek', uni=0x012F, hex='012F', c='į', anchorTopY='TopY', base='i', accents=['ogonekcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='į I WITH OGONEK, LATIN SMALL LETTER'),
-    'istroke': GD(name='istroke', uni=0x0268, hex='0268', c='ɨ', l='hyphen', r='hyphen', base='i', isLower=True),
-    'itilde': GD(name='itilde', uni=0x0129, hex='0129', c='ĩ', bl='idotless', anchorTopY='TopY', base='idotless', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ĩ I WITH TILDE, LATIN SMALL LETTER'),
+    'i': GD(name='i', uni=0x0069, hex='0069', c='i', l='off', r='idotless', anchorTopY='TopY', isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='i'),
+    'iacute': GD(name='iacute', uni=0x00ED, hex='00ED', c='í', w='i', bl='idotless', anchorTopY='TopY', base='idotless', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='í I WITH ACUTE, LATIN SMALL LETTER'),
+    'ibreve': GD(name='ibreve', uni=0x012D, hex='012D', c='ĭ', w='i', bl='idotless', anchorTopY='TopY', base='idotless', accents=['brevecmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ĭ I WITH BREVE, LATIN SMALL LETTER'),
+    'icaron': GD(name='icaron', uni=0x01D0, hex='01D0', c='ǐ', w='i', bl='idotless', anchorTopY='TopY', base='idotless', accents=['caroncmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top']),
+    'icircumflex': GD(name='icircumflex', uni=0x00EE, hex='00EE', c='î', w='i', bl='idotless', anchorTopY='TopY', base='idotless', accents=['circumflexcmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='î I WITH CIRCUMFLEX, LATIN SMALL LETTER'),
+    'idieresis': GD(name='idieresis', uni=0x00EF, hex='00EF', c='ï', w='i', bl='idotless', anchorTopY='TopY', base='idotless', accents=['dieresiscmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ï I WITH DIAERESIS, LATIN SMALL LETTER'),
+    'idotbelow': GD(name='idotbelow', uni=0x1ECB, hex='1ECB', c='ị', w='i', bl='idotless', anchorTopY='TopY', base='i', accents=['dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ị I WITH DOT BELOW, LATIN SMALL LETTER'),
+    'igrave': GD(name='igrave', uni=0x00EC, hex='00EC', c='ì', w='i', bl='idotless', anchorTopY='TopY', base='idotless', accents=['gravecmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ì I WITH GRAVE, LATIN SMALL LETTER'),
+    'imacron': GD(name='imacron', uni=0x012B, hex='012B', c='ī', w='i', bl='idotless', anchorTopY='TopY', base='idotless', accents=['macroncmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ī I WITH MACRON, LATIN SMALL LETTER'),
+    'iogonek': GD(name='iogonek', uni=0x012F, hex='012F', c='į', bl='idotless', w='i', anchorTopY='TopY', base='i', accents=['ogonekcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='į I WITH OGONEK, LATIN SMALL LETTER'),
+    'istroke': GD(name='istroke', uni=0x0268, hex='0268', c='ɨ', l='hyphen', r='hyphen', base='i', isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top']),
+    'itilde': GD(name='itilde', uni=0x0129, hex='0129', c='ĩ', w='i', bl='idotless', anchorTopY='TopY', base='idotless', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ĩ I WITH TILDE, LATIN SMALL LETTER'),
     'infinity': GD(name='infinity', uni=0x221E, hex='221E', c='∞', l='o', r='o', isLower=False, comment='∞ INFINITY'),
-    
+    'idotless': GD(name='idotless', uni=0x0131, hex='0131', c='ı', l='off', r='off', anchorTopY='TopY', isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top']),
+    # Needed for floating diacritics: i̊i̋i̍i̓i᷆i᷇j̀j́j̃j̄j̈į̀į́į̂į̃į̄į̌ɨ̀ɨ́ɨ̂ɨ̃ɨ̄ɨ̈ɨ̋ɨ̌ɨ̏ɨ̧̀ɨ̧́ɨ̧̂ɨ̧̌ɨ̱̀ɨ̱́ɨ̱̈і́ḭ̀ḭ́ḭ̄ị̀ị́ị̂ị̃ị̄i̇i̒i᷄i᷅i̛̇i̛̊i̛̋i̛̍i̛̒i̛̓i̛᷄i̛᷅i̛᷆i̛᷇i̠̇i̠̊i̠̋i̠̍i̠̒
+    'idotlessogonek': GD(name='idotlessogonek', l='idotless', w='idotless', base='idotless', accents=['ogonekcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='į I WITH OGONEK, LATIN SMALL LETTER'),
+    'idotlessstroke': GD(name='idotlessstroke', l='istroke', w='istroke', base='idotless', isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top']),
+    'idotlessdotbelow': GD(name='idotlessdotbelow', l='idotbelow', w='idotbelow', base='idotless', accents=['dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ị I WITH DOT BELOW, LATIN SMALL LETTER'),
+    'idotlesstildebelow': GD(name='idotlesstildebelow', bl='idotless', w='itildebelow', base='idotless', accents=['tildebelowcmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ĩ I WITH TILDE, LATIN SMALL LETTER'),
+    'idotlesshorn': GD(name='idotlesshorn', l='idotless', r='uhorn', base='idotless', autoFixComponentPositions=False, accents=['horncmb'], isLower=True),
+
     # j
     'j': GD(name='j', uni=0x006A, hex='006A', c='j', l='off', r='off', isLower=True, anchors=['bottom', 'middle'], comment='j'),
     'jcircumflex': GD(name='jcircumflex', uni=0x0135, hex='0135', c='ĵ', l='j', w='j', base='jdotless', accents=['circumflexcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ĵ J WITH CIRCUMFLEX, LATIN SMALL LETTER'),

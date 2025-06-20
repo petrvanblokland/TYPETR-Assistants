@@ -523,7 +523,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     GDS['fStroke'] = GD(name='fStroke', uni=0xA799, hex='A799', c='ꞙ', base='f', l= 'f', r= 'f', isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['fdotaccent'] = GD(name='fdotaccent', uni=0x1E1F, hex='1E1F', c='ḟ', rightMin='-100', base='f', accents=['dotaccentcmb.uc'], isLower=True, anchors=['bottom', 'middle', 'top'])
-    GDS['fourthtonechinese'] = GD(name='fourthtonechinese', uni=0x02CB, hex='02CB', c='ˋ', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='gravecmb', anchors=['_top', 'top'])
+    GDS['fourthtonechinese'] = GD(name='fourthtonechinese', uni=0x02CB, hex='02CB', c='ˋ', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='gravecmb')
     #GDS['firsttonechinese'] = GD(name='firsttonechinese', uni=0x02C9, hex='02C9', w=0, c='ˉ', base='macroncmb', isLower=True, anchors=['_top', 'top'])
 
     GDS['fsuperior'] = GD(name='fsuperior', isLower=False, isMod=True)
@@ -623,7 +623,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['mu'] = GD(name='mu', uni=0x03BC, hex='03BC', c='μ', l='verticalbar', r='u', isLower=True, comment='mu')
 
     GDS['minusphonetic'] = GD(name='minusphonetic', uni=0x02D7, hex='02D7', c='˗', r2l='minus', r='minus', srcName='minus', isLower=True, isMod=False, comment='Short /minus, spaced as not "mod"')
-    GDS['minusbelowcmb'] = GD(name='minusbelowcmb', uni=0x0320, hex='0320', c='̠', w=0, base='minussuperior', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_bottom', 'bottom'])
+    GDS['minusbelowcmb'] = GD(name='minusbelowcmb', uni=0x0320, hex='0320', c='̠', l=GD.CAT_CENTER, w=0, base='minussuperior', autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_bottom', 'bottom'])
 
     GDS['msuperior'] = GD(name='msuperior', uni=0x1D50, hex='1D50', c='ᵐ', l='nsuperior', r='nsuperior', isLower=False, isMod=True)
     GDS['minferior'] = GD(name='minferior', uni=0x2098, hex='2098', c='ₘ', l='msuperior', r='msuperior', base='msuperior', isLower=True)
@@ -731,7 +731,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['theta'] = GD(name='theta', uni=0x03B8, hex='03B8', c='θ')
     GDS['thook'] = GD(name='thook', uni=0x01AD, hex='01AD', c='ƭ', l='t', w='t', srcName='t', isLower=True)
     GDS['tildebelowcmb'] = GD(name='tildebelowcmb', uni=0x0330, hex='0330', c='̰', w=0, autoFixComponentPositions=False, autoFixMargins=False, base='tildecmb', isLower=True, anchors=['_bottom', 'bottom'])
-    GDS['tildebelow'] = GD(name='tildebelow', uni=0x0330, hex='0330', c='̰', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='tildebelowcmb', anchors=[], isLower=True, gid=1706)
+    GDS['tildebelow'] = GD(name='tildebelow', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='tildebelowcmb', anchors=[], isLower=True, gid=1706)
     GDS['tildeoverlaycmb'] = GD(name='tildeoverlaycmb', uni=0x0334, hex='0334', c='̴', autoFixComponentPositions=False, autoFixMargins=False, w=0, base='tildecmb', isLower=True, anchors=['_middle', 'middle'])
     GDS['tretroflexhook'] = GD(name='tretroflexhook', uni=0x0288, hex='0288', c='ʈ', l='t', r='t', srcName='t', isLower=True)
 
@@ -767,8 +767,8 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['verticallinesuperior'] = GD(name='verticallinesuperior', uni=0x02C8, hex='02C8', r2l='jsuperior', r='jsuperior', c='ˈ', isMod=True)
     GDS['verticallineinferior'] = GD(name='verticallineinferior', base='verticallinesuperior', l='verticallinesuperior', r='verticallinesuperior', isMod=True)
 
-    GDS['verticallineabovecmb'] = GD(name='verticallineabovecmb', uni=0x030D, hex='030D', c='̍', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top'])
-    GDS['verticallinebelowcmb'] = GD(name='verticallinebelowcmb', uni=0x0329, hex='0329', c='̩', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_bottom', 'bottom'])
+    GDS['verticallineabovecmb'] = GD(name='verticallineabovecmb', uni=0x030D, hex='030D', c='̍', l=GD.CAT_CENTER, w=0, isLower=True, anchors=['_top', 'top'])
+    GDS['verticallinebelowcmb'] = GD(name='verticallinebelowcmb', uni=0x0329, hex='0329', c='̩', l=GD.CAT_CENTER, w=0, isLower=True, anchors=['_bottom', 'bottom'])
 
     # w
 

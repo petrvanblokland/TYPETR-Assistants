@@ -211,7 +211,7 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
 
     # b
 
-    GDS['brevebelow'] = GD(name='brevebelow', uni=0x032E, hex='032E', c='̮', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='brevebelowcmb', isLower=True, anchors=['_bottom', 'bottom'], gid=1623)
+    GDS['brevebelow'] = GD(name='brevebelow', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='brevebelowcmb', isLower=True, anchors=[], gid=1623)
 
     # d
 
@@ -257,6 +257,7 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
     GDS['macronbelowcmb'] = GD(name='macronbelowcmb', uni=0x0331, hex='0331', c='̱', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_bottom', 'bottom'], comment='COMBINING MACRON BELOW')
     GDS['mdotaccent'] = GD(name='mdotaccent', uni=0x1E41, hex='1E41', c='ṁ', base='m', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=988)
     GDS['mdotbelow'] = GD(name='mdotbelow', uni=0x1E43, hex='1E43', c='ṃ', base='m', accents=['dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=990)
+    GDS['minusbelowcmb'] = GD(name='minusbelowcmb', uni=0x0320, hex='0320', c='ṃ', base='minus', isLower=True, anchors=['_bottom', 'bottom'])
 
     # n
 
@@ -323,8 +324,8 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
 
     # Accents
 
-    GDS['brevebelowcmb'] = GD(name='brevebelowcmb', base='brevecmb', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, anchors=['bottom', '_bottom'])
-    GDS['horncmb'] = GD(name='horncmb', uni=0x031B, hex='031B', c='̛', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True)
+    GDS['brevebelowcmb'] = GD(name='brevebelowcmb', uni=0x032E, hex='032E', c='̮', base='brevecmb', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, anchors=['bottom', '_bottom'])
+    GDS['horncmb'] = GD(name='horncmb', uni=0x031B, hex='031B', c='̛', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['top', '_top'])
     GDS['horncmb.uc'] = GD(name='horncmb.uc', w=0, isLower=False, autoFixComponentPositions=False, autoFixMargins=False, srcName='horncmb') # No anchors
 
     GDS['hookabovecmb'] = GD(name='hookabovecmb', w=0, isLower=True, autoFixComponentPositions=False, autoFixMargins=False, anchors=['top', '_top'])
