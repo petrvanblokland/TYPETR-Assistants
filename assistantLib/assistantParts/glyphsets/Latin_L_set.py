@@ -524,7 +524,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     GDS['fStroke'] = GD(name='fStroke', uni=0xA799, hex='A799', c='ꞙ', base='f', l= 'f', r= 'f', isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['fdotaccent'] = GD(name='fdotaccent', uni=0x1E1F, hex='1E1F', c='ḟ', rightMin='-100', base='f', accents=['dotaccentcmb.uc'], isLower=True, anchors=['bottom', 'middle', 'top'])
-    GDS['fourthtonechinese'] = GD(name='fourthtonechinese', uni=0x02CB, hex='02CB', c='ˋ', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='gravecmb')
+    GDS['fourthtonechinese'] = GD(name='fourthtonechinese', uni=0x02CB, hex='02CB', c='ˋ', l=GD.CAT_CENTER, w=0, base='gravecmb', anchors=['_top', 'top'])
     #GDS['firsttonechinese'] = GD(name='firsttonechinese', uni=0x02C9, hex='02C9', w=0, c='ˉ', base='macroncmb', isLower=True, anchors=['_top', 'top'])
 
     GDS['fsuperior'] = GD(name='fsuperior', isLower=False, isMod=True)
@@ -841,7 +841,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['strokecmb'] = GD(name='strokecmb', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_middle'])
     GDS['invertedbrevecmb'] = GD(name='invertedbrevecmb', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, anchors=['_top', 'top'], srcName='brevecmb')
     GDS['macronbelowcmb'] = GD(name='macronbelowcmb', uni=0x0331, hex='0331', c='̱', w=0, autoFixComponentPositions=False, autoFixMargins=False, base='macroncmb', isLower=True, anchors=['bottom', '_bottom'], comment='COMBINING MACRON BELOW')
-    GDS['ringbelowcmb'] = GD(name='ringbelowcmb', uni=0x0325, hex='0325', c='̥', l='center', w=0, autoFixComponentPositions=False, autoFixMargins=False, base='ringcmb', isLower=True, anchors=['_bottom', 'bottom'], comment='COMBINING RING BELOW')
+    GDS['ringbelowcmb'] = GD(name='ringbelowcmb', uni=0x0325, hex='0325', c='̥', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, base='ringcmb', isLower=True, anchors=['_bottom', 'bottom'], comment='COMBINING RING BELOW')
 
     GDS['dblgravecmb'] = GD(name='dblgravecmb', uni=0x030F, hex='030F', c='̏', l=GD.CAT_CENTER, w=0, anchorTopX=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, base='gravecmb', accents=['gravecmb'], anchors=['top', '_top'])
     GDS['dblgravecmb.uc'] = GD(name='dblgravecmb.uc', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, srcName='dblgravecmb', isLower=False, anchors=['_top', 'top'])
