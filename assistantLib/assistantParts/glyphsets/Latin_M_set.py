@@ -257,7 +257,6 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
     GDS['macronbelowcmb'] = GD(name='macronbelowcmb', uni=0x0331, hex='0331', c='̱', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_bottom', 'bottom'], comment='COMBINING MACRON BELOW')
     GDS['mdotaccent'] = GD(name='mdotaccent', uni=0x1E41, hex='1E41', c='ṁ', base='m', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=988)
     GDS['mdotbelow'] = GD(name='mdotbelow', uni=0x1E43, hex='1E43', c='ṃ', base='m', accents=['dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=990)
-    GDS['minusbelowcmb'] = GD(name='minusbelowcmb', uni=0x0320, hex='0320', c='ṃ', base='minus', isLower=True, anchors=['_bottom', 'bottom'])
 
     # n
 

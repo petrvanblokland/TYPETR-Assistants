@@ -882,14 +882,18 @@ class AssistantPartSpacer(BaseAssistantPart):
         c.w.fixOverlappedKerningButton = Button((C1, y, CW, L), 'Fix overlapped kerns', callback=self.fixOverlappedKerningCallback)
         c.w.autoSpaceAllTheseGlyphsButton = Button((C2, y, CW, L), 'Fix all these glyphs', callback=self.autoSpaceAllTheseGlyphsCallback)
         y += L + 10
-        c.w.factorKernNetTextBox = EditText((C0, y, 48, L))
-        c.w.factorKernNetTextBox.set('1.2')
-        c.w.calibrateKernNetTextBox = EditText((C1, y, 48, L))
-        c.w.calibrateKernNetTextBox.set('0')
-        c.w.autoKernAllGroupsButton = Button((C2, y, CW, L), 'Auto kern groups', callback=self.autoKernGroupsCallback)
-        c.w.autoKernAllGroupsButton.enable(False)
-        y += L + 10
-        c.w.initilalizeAllScriptScriptKerningButton = Button((C2, y, CW, L), 'Initialize all scripts', callback=self.initilalizeAllScriptScriptKerningCallback)
+        c.w.selectKerningByCharPair = CheckBox((C0, y, CW, L), 'By char kerning pair', value=True, sizeStyle='small', callback=self.updateEditor)
+        c.w.charKerningPairTextBox = EditText((C1, y, CW, L), callback=self.updateEditor)
+        c.w.charKerningPairTextBox.set('AA')
+        # Not much autoKernNet for now: make it more reliable first
+        #c.w.factorKernNetTextBox = EditText((C0, y, 48, L))
+        #c.w.factorKernNetTextBox.set('1.2')
+        #c.w.calibrateKernNetTextBox = EditText((C1, y, 48, L))
+        #c.w.calibrateKernNetTextBox.set('0')
+        #c.w.autoKernAllGroupsButton = Button((C2, y, CW, L), 'Auto kern groups', callback=self.autoKernGroupsCallback)
+        #c.w.autoKernAllGroupsButton.enable(False)
+        #y += L + 10
+        #c.w.initilalizeAllScriptScriptKerningButton = Button((C2, y, CW, L), 'Initialize all scripts', callback=self.initilalizeAllScriptScriptKerningCallback)
         y += L + 10
         c.w.spacerEndLine = HorizontalLine((self.M, y, -self.M, 1))
         c.w.spacerEndLine2 = HorizontalLine((self.M, y, -self.M, 1))
@@ -1024,7 +1028,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             'parenleft', 'parenright', 'percent', 'perthousand',  
             'seven', 'slash', 'tcaron', 'three', 'trademark', 'two', 'uhorn',
         ))
-        # Not checked for overlapping kerning combinations, avoiding a huge of permutated exceptions that are hardly used
+        # Not checked for overlapping kerning combinations, avoiding a huge load of permutated exceptions that are hardly used
         UNCHECKED = set(('Tbar', 'Tcaron', 'Tcedilla', 'Tcommaaccent', 'Tdiagonalstroke', 'Tdotaccent', 'Tdotbelow', 'Thook', 'Tz', 
             'Vdiagonalstroke', 'Vdotbelow', 'Vtilde', 
             'AEacute', 'AEmacron', 'AY', 'Aturned', 'Au', 'Av', 
@@ -1069,7 +1073,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         for script1, script2 in KERN_GROUPS:
             mg1 = km.scriptMatchingGroups1[script1]
             mg2 = km.scriptMatchingGroups2[script2]
-
+            print(mg1, mg2)
             for groupName1 in mg1:
                 for groupName2 in mg2:
                     group1 = f.groups[groupName1]
@@ -1083,10 +1087,12 @@ class AssistantPartSpacer(BaseAssistantPart):
                             if gName1 in checkedGlyphs and gName2 in checkedGlyphs: # Only these combinations
                                 g1 = f[gName1]
                                 g2 = f[gName2]
+                                print(gName1, gName2, km.hasKernedOverlap(g1, g2, minOffset))
                                 if km.hasKernedOverlap(g1, g2, minOffset): # minOffset forces a minimal gap for the overlap
                                     #if gName1 != 'Tcaron' or gName2 != 'idieresis':
                                     #    continue
                                     kk = int(round(km.kernedDistance(g1, g2) / 4)) * 4
+                                    print('DDASADSAD', gName1, gName2, kk)
                                     if abs(-kk + minOffset) < 5000: # Safety, in case the overlap is not matching
                                         print('... Fix overlap', kk, -kk + minOffset, script1, script2, groupName1, groupName2, gName1, gName2)
                                         f.kerning[(gName1, gName2)] = -kk + minOffset

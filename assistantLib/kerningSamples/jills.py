@@ -23,7 +23,7 @@ JILLS_LC = ' '.join(('aaeaoaiauacadahamanarasatabagafalapavawayajakaqaxazaeeoeie
     '/h/a/v/e/space/t/o/space/a/f/t/e/r/space/t/h/a/t/space/t/h/a/n/space/w/h/i/c/h/space/y/o/u/space/a/l/s/o/space/h/a/d/space/e/i/t/h/e/r/space'))
 
     # Capitals
-JILLS_CAPITALS = ' '.join((
+JILLS_CAPITALS = ''.join((
     'TaTbTcTdTeTfTgThTiTjTkTlTmTnToTpTqTrTsTtTuTvTwTxTyTzTœTæTßTfiTflVaVbVcVdVeVfVgVhViVjVkVlVmVnVoVpVqVrVsVtVuVvVwVxVyVzVœVæVßVfiVflWaWb',
     'WcWdWeWfWgWhWiWjWkWlWmWnWoWpWqWrWsWtWuWvWwWxWyWzWœWæWßWfiWflYaYbYcYdYeYfYgYhYiYjYkYlYmYnYoYpYqYrYsYtYuYvYwYxYyYzYœYæYßYfiYflKaKbKcKd',
     'KeKfKgKhKiKjKkKlKmKnKoKpKqKrKsKtKuKvKwKxKyKzRaRbRcRdReRfRgRhRiRjRkRlRmRnRoRpRqRrRsRtRuRvRwRxRyRzJaJbJcJdJeJfJgJhJiJjJkJlJmJnJoJpJqJr',
@@ -167,7 +167,7 @@ JILLS_SC = ' '.join(('/T/A.sc/T/B.sc/T/C.sc/T/D.sc/T/E.sc/T/F.sc/T/G.sc/T/H.sc/T
     '/H.sc/E.sc/R.sc/space/H.sc/A.sc/V.sc/E.sc/space/T.sc/O.sc/space/A.sc/F.sc/T.sc/E.sc/R.sc/space/T.sc/H.sc/A.sc/T.sc/space/T.sc/H.sc/A.sc/N.sc/space',
     '/W.sc/H.sc/I.sc/C.sc/H.sc/space/Y.sc/O.sc/U.sc/space/A.sc/L.sc/S.sc/O.sc/space/H.sc/A.sc/D.sc/space/E.sc/I.sc/T.sc/H.sc/E.sc/R.sc/period'))
 
-JILLS_SYMBOLS = ' '.join((
+JILLS_SYMBOLS = ''.join((
     '010203040506070809000.0,0;0:00<0>0=0+0$000£000¥000ƒ000#000§000¶000000%000‰000¢000ª000º112131415161718191011.1,1;1:1<1>1=1+1$100£100¥',
     '100ƒ100#100§100¶100001%001‰001¢001ª001º212232425262728292022.2,2;2:22<2>2=2+2$200£200¥200ƒ200#200§200¶200002%002‰002¢002ª002º3132334',
     '35363738393033.3,3;3:33<3>3=3+3$300£300¥300ƒ300#300§300¶300003%003‰003¢003ª003º414243445464748494044.4,4;4:44<4>4=4+4$400£400¥400ƒ40',

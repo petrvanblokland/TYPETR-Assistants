@@ -90,7 +90,7 @@ LATIN_S_SET = GDS = {
     'exclamdown': GD(name='exclamdown', uni=0x00A1, hex='00A1', c='¡', l2r='exclam', r2l='exclam', isLower=True, comment='¡ INVERTED EXCLAMATION MARK'),
     'exclamdown.uc': GD(name='exclamdown.uc', c='¡', l='exclamdown', r='exclamdown', base='exclamdown', isLower=False, comment='¡ INVERTED EXCLAMATION MARK'),
 
-    'hyphen': GD(name='hyphen', uni=0x002D, hex='002D', c='-', l2r='self', unicodes=(45, 8208), isLower=True, comment='- minus sign, hyphen'),
+    'hyphen': GD(name='hyphen', uni=0x002D, hex='002D', c='-', l2r='self', isLower=True, comment='- minus sign, hyphen'),
     'hyphen.uc': GD(name='hyphen.uc', l='hyphen', r='hyphen', base='hyphen', isLower=False, comment='- minus sign, hyphen'),
     'endash': GD(name='endash', uni=0x2013, hex='2013', c='–', l=GD.CAT_CENTER, w=GD.CAT_EM_WIDTH2, isLower=True, comment='– EN DASH'),
     'endash.uc': GD(name='endash.uc', isLower=False, l=GD.CAT_CENTER, w=GD.CAT_EM_WIDTH2, base='endash', comment='– EN DASH'),
@@ -674,12 +674,12 @@ LATIN_S_SET = GDS = {
     'itilde': GD(name='itilde', uni=0x0129, hex='0129', c='ĩ', w='i', bl='idotless', anchorTopY='TopY', base='idotless', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ĩ I WITH TILDE, LATIN SMALL LETTER'),
     'infinity': GD(name='infinity', uni=0x221E, hex='221E', c='∞', l='o', r='o', isLower=False, comment='∞ INFINITY'),
     'idotless': GD(name='idotless', uni=0x0131, hex='0131', c='ı', l='off', r='off', anchorTopY='TopY', isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top']),
-    # Needed for floating diacritics: i̊i̋i̍i̓i᷆i᷇j̀j́j̃j̄j̈į̀į́į̂į̃į̄į̌ɨ̀ɨ́ɨ̂ɨ̃ɨ̄ɨ̈ɨ̋ɨ̌ɨ̏ɨ̧̀ɨ̧́ɨ̧̂ɨ̧̌ɨ̱̀ɨ̱́ɨ̱̈і́ḭ̀ḭ́ḭ̄ị̀ị́ị̂ị̃ị̄i̇i̒i᷄i᷅i̛̇i̛̊i̛̋i̛̍i̛̒i̛̓i̛᷄i̛᷅i̛᷆i̛᷇i̠̇i̠̊i̠̋i̠̍i̠̒
+    # Needed for floating diacritics: i̊i̋i̍i̓i᷆i᷇j̀j́j̃j̄j̈į̀į́į̂į̃į̄į̌ɨ̀ɨ́ɨ̂ɨ̃ɨ̄ɨ̈ɨ̋ɨ̌ɨ̏ɨ̧̀ɨ̧́ɨ̧̂ɨ̧̌ɨ̱̀ɨ̱́ɨ̱̈і́ḭ̀ḭ́ḭ̄ị̀ị́ị̂ị̃ị̄i̇i̒i᷄i᷅i̛̇i̛̊i̛̋i̛̍i̛̒i̛̓i̛᷄i̛᷅i̛᷆i̛᷇i̠̇i̠̊i̠̋i̠̍i̠̒i̤̇i̤̊i̤̋i̤̍i̤̒i̤̓i̤᷄i̤᷅i̤᷆i̤᷇i̥̇i̥̊i̥̋i̥̍i̥̒i̥̓i̥᷄i̥᷅i̥᷆i̥᷇
     'idotlessogonek': GD(name='idotlessogonek', l='idotless', w='idotless', base='idotless', accents=['ogonekcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='į I WITH OGONEK, LATIN SMALL LETTER'),
     'idotlessstroke': GD(name='idotlessstroke', l='istroke', w='istroke', base='idotless', isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top']),
     'idotlessdotbelow': GD(name='idotlessdotbelow', l='idotbelow', w='idotbelow', base='idotless', accents=['dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ị I WITH DOT BELOW, LATIN SMALL LETTER'),
     'idotlesstildebelow': GD(name='idotlesstildebelow', bl='idotless', w='itildebelow', base='idotless', accents=['tildebelowcmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ĩ I WITH TILDE, LATIN SMALL LETTER'),
-    'idotlesshorn': GD(name='idotlesshorn', l='idotless', r='uhorn', base='idotless', autoFixComponentPositions=False, accents=['horncmb'], isLower=True),
+    'idotlesshorn': GD(name='idotlesshorn', l='idotless', r='uhorn', base='idotless', anchorTopY='idotless', autoFixComponentPositions=False, accents=['horncmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top']),
 
     # j
     'j': GD(name='j', uni=0x006A, hex='006A', c='j', l='off', r='off', isLower=True, anchors=['bottom', 'middle'], comment='j'),

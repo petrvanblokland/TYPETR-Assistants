@@ -45,7 +45,7 @@ import drawBot
 
 from mojo.subscriber import Subscriber, WindowController, registerGlyphEditorSubscriber, unregisterGlyphEditorSubscriber
 from assistantLib.kerningSamples.fontGoggles import FONT_GOGGLES_SAMPLES
-from assistantLib.tp_kerningManager import KerningManager
+from assistantLib.assistantParts.spacingKerning.kerningManager import KerningManager
 
 # Decide on the type of window for the Assistant.
 WindowClass = Window # Will hide behind other windows, if not needed.
@@ -57,6 +57,8 @@ for path in PATHS:
     if not path in sys.path:
         print('@@@ Append to sys.path', path)
         sys.path.append(path)
+
+KERN_GLYPH_COLOR = (1, 0, 0, 0)
 
 # Global parameters
 W, H = 400, 600
@@ -87,7 +89,8 @@ FUNCTION_KEYS = (
     'Ii', # Increment left margin
     'Oo', # Decrement right margin
     'Pp', # Increment right margin
-    '=', # Set left and right pair kerning to self.predictedKerning. Clear "manualKerning" in font.lib
+    '?', # Guess automated kerning
+    '/', # Set left and right pair kerning to self.predictedKerning. Clear "manualKerning" in font.lib
     'Nn', # Increment left kerning. Set "manualKerning" in font.lib
     'Mm', # Decrement left kerning. Set "manualKerning" in font.lib
     '.<', # Decrement right kerning. Set "manualKerning" in font.lib
@@ -509,9 +512,11 @@ class KernNetAssistant(Subscriber):
     #    A D J U S T  K E R N I N G
     
     def getKerningManager(self, f):
+        return None
         if f.path:
+            md = getMasterData(f)
             if f.path not in self.kerningManagers:
-                self.kerningManagers[f.path] = KerningManager(f, sample=self.kerningSample, simT=0.95 ,simSameCategory=False, simSameScript=False, simClip=150) #  First sample will be initialzed, others will be copied
+                self.kerningManagers[f.path] = KerningManager(f, simT=0.95 , simClip=150) #  First sample will be initialzed, others will be copied
             km = self.kerningManagers[f.path]
             self.kerningSample = km.sample
             return km
