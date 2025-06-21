@@ -211,7 +211,8 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
 
     # b
 
-    GDS['brevebelow'] = GD(name='brevebelow', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='brevebelowcmb', isLower=True, anchors=[], gid=1623)
+    # Should not exist as separate width glyph without unicode. Unicode of /brevebelowcmb is 032E
+    #GDS['brevebelow'] = GD(name='brevebelow', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='brevebelowcmb', isLower=True, anchors=[], gid=1623)
 
     # d
 
@@ -321,7 +322,7 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
 
     GDS['zlinebelow'] = GD(name='zlinebelow', uni=0x1E95, hex='1E95', c='ẕ', base='z', accents=['macronbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1072)
 
-    # Accents
+    # Diacritics
 
     GDS['brevebelowcmb'] = GD(name='brevebelowcmb', uni=0x032E, hex='032E', c='̮', base='brevecmb', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, anchors=['bottom', '_bottom'])
     GDS['horncmb'] = GD(name='horncmb', uni=0x031B, hex='031B', c='̛', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['top', '_top'])

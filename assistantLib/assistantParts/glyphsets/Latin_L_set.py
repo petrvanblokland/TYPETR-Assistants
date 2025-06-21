@@ -149,14 +149,17 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     # D
 
-    GDS['DZ'] = GD(name='DZ', uni=0x01F1, hex='01F1', c='Ǳ', l='D', r='Z', base='Z', accents=['D']) # /Z as base to make anchors go there. /D has negative position on left.
-    GDS['DZcaron'] = GD(name='DZcaron', uni=0x01C4, hex='01C4', c='Ǆ', l='D', r='Z', base='DZ', accents=['caroncmb.uc'], fixAccents=False)
     GDS['Dafrican'] = GD(name='Dafrican', uni=0x0189, hex='0189', c='Ɖ', l='Eth', r='D', base='Eth', comment='Ɖ D, LATIN CAPITAL LETTER AFRICAN')
     GDS['Dcedilla'] = GD(name='Dcedilla', uni=0x1E10, hex='1E10', c='Ḑ', l='D', r='D', base='D', accents=['cedillacmb'], anchors=['bottom', 'middle', 'top'])
     GDS['Dcircumflexbelow'] = GD(name='Dcircumflexbelow', uni=0x1E12, hex='1E12', c='Ḓ', l='D', r='D', base='D', accents=['circumflexbelowcmb'], anchors=['bottom', 'middle', 'top'])
     GDS['Ddotaccent'] = GD(name='Ddotaccent', uni=0x1E0A, hex='1E0A', c='Ḋ', l='D', r='D', base='D', accents=['dotaccentcmb.uc'], anchors=['bottom', 'middle', 'top'])
-    GDS['Dz'] = GD(name='Dz', uni=0x01F2, hex='01F2', c='ǲ', l='D', r='z', base='z', anchorTopY='z', anchorTopX='z', isLower=True, accents=['D']) # /z as base to make anchors go there. /D has negative position on left.
-    GDS['Dzcaron'] = GD(name='Dzcaron', uni=0x01C5, hex='01C5', c='ǅ', l='D', r='z', base='Dz', isLower=True, accents=['caroncmb'], fixAccents=False)
+
+    GDS['DZ'] = GD(name='DZ', uni=0x01F1, hex='01F1', c='Ǳ', l='D', r='Z', base='D', anchorTopY='Z', anchorTopX='Z', accents=['Z'], anchors=['top']) # /Z as base to make anchors go there. /D has negative position on left.
+    GDS['DZcaron'] = GD(name='DZcaron', uni=0x01C4, hex='01C4', c='Ǆ', l='D', r='Z', base='DZ', accents=['caroncmb.uc'], anchors=['top'])
+    GDS['Dz'] = GD(name='Dz', uni=0x01F2, hex='01F2', c='ǲ', l='D', r='z', base='z', anchorTopY='z', anchorTopX='z', isLower=True, accents=['D'], anchors=['top']) # /z as base to make anchors go there. /D has negative position on left.
+    GDS['Dzcaron'] = GD(name='Dzcaron', uni=0x01C5, hex='01C5', c='ǅ', l='D', r='z', base='Dz', isLower=True, accents=['caroncmb'], anchors=['top'])
+    GDS['DZ.sc'] = GD(name='DZ.sc', l='D', r='Z', base='D.sc', anchorTopY='Z.sc', anchorTopX='Z.sc', accents=['Z.sc'], anchors=['top'])
+    GDS['DZcaron.sc'] = GD(name='DZcaron.sc', l='D.sc', r='Z.sc', base='DZ.sc', accents=['caroncmb.uc'], anchors=['top'])
 
     GDS['Dsuperior'] = GD(name='Dsuperior', l='Hsuperior', r='Osuperior', isMod=True)
     GDS['Dinferior'] = GD(name='Dinferior', l='Dsuperior', r='Dsuperior', base='Dsuperior', isLower=True)
@@ -256,7 +259,6 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['Ldot'] = GD(name='Ldot', uni=0x013F, hex='013F', c='Ŀ', l='H', r='L', base='L', accents=['dotmiddlecmb'], anchors=['bottom', 'middle', 'top'], comment='Ŀ')
     GDS['Ldoublebar'] = GD(name='Ldoublebar', uni=0x2C60, hex='2C60', c='Ⱡ', l='Eth', r='L', base='L', anchors=['bottom', 'middle', 'top'])
     GDS['Lj'] = GD(name='Lj', uni=0x01C8, hex='01C8', c='ǈ', l='H', r='j', base='L', accents=['j'], anchors=[])
-    GDS['Lj.sc'] = GD(name='Lj.sc', l='H.sc', r='J.sc', base='L.sc', accents=['J.sc'], anchors=[])
     GDS['Lmiddletilde'] = GD(name='Lmiddletilde', uni=0x2C62, hex='2C62', c='Ɫ', l=GD.CAT_MIN_MARGIN, r='L', base='L', anchors=['bottom', 'middle', 'top'])
 
     GDS['Lsuperior'] = GD(name='Lsuperior', l='Hsuperior', r='L.sc', isMod=True)
@@ -473,7 +475,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     GDS['commaabovecmb'] = GD(name='commaabovecmb', uni=0x0313, hex='0313', c='̓', w=0, srcName='comma', isLower=True, anchors=['_top', 'top'])
     GDS['commaabovecmb.uc'] = GD(name='commaabovecmb.uc', w=0, autoFixComponentPositions=False, autoFixMargins=False, srcName='commaabovecmb', isLower=False, anchors=['_top', 'top'])
-    GDS['commaaboverightcmb'] = GD(name='commaaboverightcmb', uni=0x0315, hex='0315', c='̕', w=0, autoFixComponentPositions=False, autoFixMargins=False, base='psili', isLower=True, anchors=['_top', 'top'])
+    GDS['commaaboverightcmb'] = GD(name='commaaboverightcmb', uni=0x0315, hex='0315', c='̕', w=0, autoFixComponentPositions=False, autoFixMargins=False, base='psili', isLower=True, anchors=['_top', 'top']    )
     GDS['commaaboverightcmb.uc'] = GD(name='commaaboverightcmb.uc', w=0, autoFixComponentPositions=False, autoFixMargins=False, srcName='commaaboverightcmb', isLower=False, anchors=['_top', 'top'])
     GDS['circumflexbelowcmb'] = GD(name='circumflexbelowcmb', uni=0x032D, hex='032D', c='̭', w=0, autoFixComponentPositions=False, autoFixMargins=False, base='circumflexcmb', isLower=True, anchors=['_bottom', 'bottom'])
 
@@ -489,8 +491,8 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['ddotaccent'] = GD(name='ddotaccent', uni=0x1E0B, hex='1E0B', c='ḋ', base='d', accents=['dotaccentcmb.uc'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['dieresisbelowcmb'] = GD(name='dieresisbelowcmb', uni=0x0324, hex='0324', c='̤', w=0, autoFixComponentPositions=False, autoFixMargins=False, base='dieresiscmb',isLower=True, anchors=['_bottom', 'bottom'])
     GDS['dtail'] = GD(name='dtail', uni=0x0256, hex='0256', c='ɖ', l='d', r='off', isLower=True, comment='Glyph unicode 0256 is the lowercase letter "ɖ" in the International Phonetic Alphabet (IPA). It is used to represent a voiced retroflex plosive sound in various languages, including African languages such as Igbo, Yoruba, and Ewe. It is also used in some Native American languages such as Navajo and Tlingit. In linguistics, the IPA is commonly used to transcribe the sounds of human speech, and the glyph unicode 0256 helps to accurately represent this specific sound.')
-    GDS['dz'] = GD(name='dz', uni=0x01F3, hex='01F3', c='ǳ', l='d', r='z', anchorTopY='z', anchorTopX='z', base='z', accents=['d'], isLower=True)
-    GDS['dzcaron'] = GD(name='dzcaron', uni=0x01C6, hex='01C6', c='ǆ', l='d', r='z', base='dz', accents=['caroncmb'], isLower=True)
+    GDS['dz'] = GD(name='dz', uni=0x01F3, hex='01F3', c='ǳ', l='d', r='z', anchorTopY='z', anchorTopX='z', base='d', accents=['z'], isLower=True, anchors=['top'])
+    GDS['dzcaron'] = GD(name='dzcaron', uni=0x01C6, hex='01C6', c='ǆ', l='d', r='z', base='dz', accents=['caroncmb'], isLower=True, anchors=['top'])
 
     GDS['dsuperior'] = GD(name='dsuperior', l='osuperior', r='lsuperior', isLower=False, isMod=True)
     GDS['dinferior'] = GD(name='dinferior', l='dsuperior', r='dsuperior', base='dsuperior', isLower=True)
@@ -732,7 +734,8 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['theta'] = GD(name='theta', uni=0x03B8, hex='03B8', c='θ')
     GDS['thook'] = GD(name='thook', uni=0x01AD, hex='01AD', c='ƭ', l='t', w='t', srcName='t', isLower=True)
     GDS['tildebelowcmb'] = GD(name='tildebelowcmb', uni=0x0330, hex='0330', c='̰', w=0, autoFixComponentPositions=False, autoFixMargins=False, base='tildecmb', isLower=True, anchors=['_bottom', 'bottom'])
-    GDS['tildebelow'] = GD(name='tildebelow', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='tildebelowcmb', anchors=[], isLower=True, gid=1706)
+    # Not separate /tildebelow with spacing without unicide. 
+    #GDS['tildebelow'] = GD(name='tildebelow', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='tildebelowcmb', anchors=[], isLower=True, gid=1706)
     GDS['tildeoverlaycmb'] = GD(name='tildeoverlaycmb', uni=0x0334, hex='0334', c='̴', autoFixComponentPositions=False, autoFixMargins=False, w=0, base='tildecmb', isLower=True, anchors=['_middle', 'middle'])
     GDS['tretroflexhook'] = GD(name='tretroflexhook', uni=0x0288, hex='0288', c='ʈ', l='t', r='t', srcName='t', isLower=True)
 
@@ -766,7 +769,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['vinferior'] = GD(name='vinferior', l='vsuperior', r='vsuperior', base='vsuperior', isMod=True)
  
     GDS['verticallinesuperior'] = GD(name='verticallinesuperior', uni=0x02C8, hex='02C8', r2l='jsuperior', r='jsuperior', c='ˈ', isMod=True)
-    GDS['verticallineinferior'] = GD(name='verticallineinferior', base='verticallinesuperior', l='verticallinesuperior', r='verticallinesuperior', isMod=True)
+    GDS['verticallineinferior'] = GD(name='verticallineinferior', uni=0x02CC, hex='02CC', c='ˌ',base='verticallinesuperior', l='verticallinesuperior', r='verticallinesuperior', isMod=True)
 
     GDS['verticallineabovecmb'] = GD(name='verticallineabovecmb', uni=0x030D, hex='030D', c='̍', l=GD.CAT_CENTER, w=0, isLower=True, anchors=['_top', 'top'])
     GDS['verticallinebelowcmb'] = GD(name='verticallinebelowcmb', uni=0x0329, hex='0329', c='̩', l=GD.CAT_CENTER, w=0, isLower=True, anchors=['_bottom', 'bottom'])
