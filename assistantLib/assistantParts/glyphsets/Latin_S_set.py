@@ -1106,7 +1106,7 @@ ONUM_NAMES = (
 # Make exceptions for Italic glyphs and spacing rules
 LATIN_S_SET_ITALIC = GDSI = deepcopy(LATIN_S_SET)
 GDSI['g'] = GD(name='g', uni=0x0067, hex='0067', c='g', isLower=True, anchors=['bottom', 'middle', 'top'], comment='g')
-GDSI['eogonek'] = GD(name='eogonek', uni=0x0119, hex='0119', c='ę', base='e', accents=['ogonekcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ę E WITH OGONEK, LATIN SMALL LETTER'),
+GDSI['eogonek'] = GD(name='eogonek', uni=0x0119, hex='0119', c='ę', base='e', accents=['ogonekcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ę E WITH OGONEK, LATIN SMALL LETTER')
 
 # Left spacing different from /t in italic. Manual spacing instead.
 
