@@ -611,7 +611,7 @@ LATIN_S_SET = GDS = {
     'egrave': GD(name='egrave', uni=0x00E8, hex='00E8', c='è', w='e', bl='e', anchorTopY='TopY', base='e', accents=['gravecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='è E WITH GRAVE, LATIN SMALL LETTER'),
     'emacron': GD(name='emacron', uni=0x0113, hex='0113', c='ē', base='e', accents=['macroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ē E WITH MACRON, LATIN SMALL LETTER'),
     'eng': GD(name='eng', uni=0x014B, hex='014B', c='ŋ', l='n', r='j', isLower=True, comment='ŋ LATIN SMALL LETTER ENG'),
-    'eogonek': GD(name='eogonek', uni=0x0119, hex='0119', c='ę', base='e', accents=['ogonekcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ę E WITH OGONEK, LATIN SMALL LETTER'),
+    'eogonek': GD(name='eogonek', uni=0x0119, hex='0119', c='ę', base='e', isLower=True, anchors=['bottom', 'middle', 'top'], comment='ę E WITH OGONEK, LATIN SMALL LETTER'),
     'eopen': GD(name='eopen', uni=0x025B, hex='025B', c='ɛ', isLower=True, r2l='B', l2r='three', anchors=['top']),
     'eth': GD(name='eth', uni=0x00F0, hex='00F0', c='ð', l='o', r='o', isLower=True, comment='ð LATIN SMALL LETTER ETH'),
     'etilde': GD(name='etilde', uni=0x1EBD, hex='1EBD', c='ẽ', l='e', r='e', base='e', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ẽ E WITH TILDE, LATIN SMALL LETTER'),
@@ -786,7 +786,7 @@ LATIN_S_SET = GDS = {
     'scedilla': GD(name='scedilla', uni=0x015F, hex='015F', c='ş', l='s', r='s', base='s', accents=['cedillacmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ş S WITH CEDILLA, LATIN SMALL LETTER'),
     'schwa': GD(name='schwa', uni=0x0259, hex='0259', c='ə', anchorTopX='TopX', base='eturned', srcName='uni0259', isLower=True, anchors=['top'], comment='ə SCHWA, LATIN SMALL LETTER'),
     'scircumflex': GD(name='scircumflex', uni=0x015D, hex='015D', c='ŝ', l='s', r='s', base='s', accents=['circumflexcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ŝ S WITH CIRCUMFLEX, LATIN SMALL LETTER'),
-    'scommaaccent': GD(name='scommaaccent', uni=0x0219, hex='0219', c='ș', l='s', r='s', base='s', accents=['cedillacmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ș S WITH COMMA BELOW, LATIN SMALL LETTER'),
+    'scommaaccent': GD(name='scommaaccent', uni=0x0219, hex='0219', c='ș', l='s', r='s', base='s', accents=['commaaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ș S WITH COMMA BELOW, LATIN SMALL LETTER'),
     'sdotbelow': GD(name='sdotbelow', uni=0x1E63, hex='1E63', c='ṣ', l='s', r='s', base='s', accents=['dotbelowcmb'], srcName='uni1E63', isLower=True, anchors=['bottom', 'middle', 'top'], comment='ṣ S WITH DOT BELOW, LATIN SMALL LETTER'),
     
     'strokeshortcmb': GD(name='strokeshortcmb', uni=0x0335, hex='0335', c='̵', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_middle', 'middle']),
@@ -1106,6 +1106,8 @@ ONUM_NAMES = (
 # Make exceptions for Italic glyphs and spacing rules
 LATIN_S_SET_ITALIC = GDSI = deepcopy(LATIN_S_SET)
 GDSI['g'] = GD(name='g', uni=0x0067, hex='0067', c='g', isLower=True, anchors=['bottom', 'middle', 'top'], comment='g')
+GDSI['eogonek'] = GD(name='eogonek', uni=0x0119, hex='0119', c='ę', base='e', accents=['ogonekcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ę E WITH OGONEK, LATIN SMALL LETTER')
+
 # Left spacing different from /t in italic. Manual spacing instead.
 
 GDSI['Schwa'].l = 'off'
