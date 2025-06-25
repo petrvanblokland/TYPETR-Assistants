@@ -486,7 +486,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     # d
 
     GDS['dbdigraph'] = GD(name='dbdigraph', uni=0x0238, hex='0238', c='ȸ', l='d', r='b', isLower=True)
-    GDS['dcedilla'] = GD(name='dcedilla', uni=0x1E11, hex='1E11', c='ḑ', base='d', accents=['cedillacmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
+    GDS['dcedilla'] = GD(name='dcedilla', uni=0x1E11, hex='1E11', c='ḑ', base='d', isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['dcircumflexbelow'] = GD(name='dcircumflexbelow', uni=0x1E13, hex='1E13', c='ḓ', base='d', accents=['circumflexbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['ddotaccent'] = GD(name='ddotaccent', uni=0x1E0B, hex='1E0B', c='ḋ', base='d', accents=['dotaccentcmb.uc'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['dieresisbelowcmb'] = GD(name='dieresisbelowcmb', uni=0x0324, hex='0324', c='̤', w=0, autoFixComponentPositions=False, autoFixMargins=False, base='dieresiscmb',isLower=True, anchors=['_bottom', 'bottom'])
