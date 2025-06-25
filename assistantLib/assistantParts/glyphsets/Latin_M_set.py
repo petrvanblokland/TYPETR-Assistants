@@ -109,7 +109,7 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
     # H
 
     GDS['Hbrevebelow'] = GD(name='Hbrevebelow', uni=0x1E2A, hex='1E2A', c='Ḫ', l='H', r='H', base='H', accents=['brevebelowcmb'], anchors=['bottom', 'middle', 'top'], gid=965)
-    GDS['Hcedilla'] = GD(name='Hcedilla', uni=0x1E28, hex='1E28', c='Ḩ', w='H', base='H', accents=['cedillacmb.noconnect'], fixAccents=False, anchors=['bottom', 'middle', 'top'], gid=963)
+    GDS['Hcedilla'] = GD(name='Hcedilla', uni=0x1E28, hex='1E28', c='Ḩ', w='H', base='H', accents=['commaaccentcmb'], fixAccents=False, anchors=['bottom', 'middle', 'top'], gid=963)
 
     # Separate, because it's sourcefor all other .sc
     GDS['H.sc'] = GD(name='H.sc', fixAccents=False, anchors=['bottom', 'middle', 'top'])
@@ -230,7 +230,7 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
     # h
 
     GDS['hbrevebelow'] = GD(name='hbrevebelow', uni=0x1E2B, hex='1E2B', c='ḫ', base='h', accents=['brevebelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=966)
-    GDS['hcedilla'] = GD(name='hcedilla', uni=0x1E29, hex='1E29', c='ḩ', base='h', accents=['cedillacmb.noconnect'], isLower=True, fixAccents=False, anchors=['bottom', 'middle', 'top'], gid=964)
+    GDS['hcedilla'] = GD(name='hcedilla', uni=0x1E29, hex='1E29', c='ḩ', base='h', accents=['commaaccentcmb'], isLower=True, fixAccents=False, anchors=['bottom', 'middle', 'top'], gid=964)
     GDS['hlinebelow'] = GD(name='hlinebelow', uni=0x1E96, hex='1E96', c='ẖ', base='h', accents=['macronbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], gid=1073)
     # Just smallcaps for /hlinebelow, since there is no unicode for /Hlinebelow
     GDS['Hlinebelow.sc'] = GD(name='Hlinebelow.sc', base='H.sc', accents=['macronbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
