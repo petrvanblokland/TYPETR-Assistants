@@ -419,7 +419,7 @@ LATIN_S_SET = GDS = {
     'Ohungarumlaut': GD(name='Ohungarumlaut', uni=0x0150, hex='0150', c='Ő', base='O', accents=['hungarumlautcmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ő'),
     'Omacron': GD(name='Omacron', uni=0x014C, hex='014C', c='Ō', l='O', r='O', base='O', accents=['macroncmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ō'),
     'Oopen': GD(name='Oopen', uni=0x0186, hex='0186', c='Ɔ', r='O', r2l='C', srcName='O', comment='Ɔ OPEN O, LATIN CAPITAL LETTER'),
-    'Oslash': GD(name='Oslash', uni=0x00D8, hex='00D8', c='Ø', l='O', w='O', base='O', anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ø STROKE, LATIN CAPITAL LETTER O WITH'),
+    'Oslash': GD(name='Oslash', uni=0x00D8, hex='00D8', c='Ø', l='O', w='O', srcName='O', anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ø STROKE, LATIN CAPITAL LETTER O WITH'),
     'Oslash.alt': GD(name='Oslash.alt', l='O', w='O', base='O', anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ø STROKE, LATIN CAPITAL LETTER O WITH'),
     'Otilde': GD(name='Otilde', uni=0x00D5, hex='00D5', c='Õ', l='O', r='O', base='O', accents=['tildecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Õ O WITH TILDE, LATIN CAPITAL LETTER'),
 
@@ -739,7 +739,7 @@ LATIN_S_SET = GDS = {
     'ohungarumlaut': GD(name='ohungarumlaut', uni=0x0151, hex='0151', c='ő', w='o', base='o', accents=['hungarumlautcmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top']),
     'omacron': GD(name='omacron', uni=0x014D, hex='014D', c='ō', l='o', r='o', base='o', accents=['macroncmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ō O WITH MACRON, LATIN SMALL LETTER'),
     'oopen': GD(name='oopen', uni=0x0254, hex='0254', c='ɔ', r2l='c', srcName='o', isLower=True, anchors=['dot'], comment='ɔ OPEN O, LATIN SMALL LETTER'),
-    'oslash': GD(name='oslash', uni=0x00F8, hex='00F8', c='ø', l2r='self', base='o', isLower=True, anchors=['bottom', 'middle', 'top'], comment='ø STROKE, LATIN SMALL LETTER O WITH'),
+    'oslash': GD(name='oslash', uni=0x00F8, hex='00F8', c='ø', l2r='o', srcName='o', isLower=True, anchors=['bottom', 'middle', 'top'], comment='ø STROKE, LATIN SMALL LETTER O WITH'),
     'oslash.alt': GD(name='oslash.alt', base='o', isLower=True, anchors=['bottom', 'middle', 'top'], comment='ø STROKE, LATIN SMALL LETTER O WITH'),
     'otilde': GD(name='otilde', uni=0x00F5, hex='00F5', c='õ', base='o', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='õ O WITH TILDE, LATIN SMALL LETTER'),
     'oogonek': GD(name='oogonek', uni=0x01EB, hex='01EB', c='ǫ', base='o', accents=['ogonekcmb'],  isLower=True, anchors=['top', 'middle', 'bottom']),
