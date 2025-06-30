@@ -638,7 +638,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['ncircumflexbelow'] = GD(name='ncircumflexbelow', uni=0x1E4B, hex='1E4B', c='ṋ', base='n', accents=['circumflexbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['ngrave'] = GD(name='ngrave', uni=0x01F9, hex='01F9', c='ǹ', w='n', bl='n', base='n', accents=['gravecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['nj'] = GD(name='nj', uni=0x01CC, hex='01CC', c='ǌ', base='n', l='n', r='j', accents=['j'], isLower=True)
-    GDS['nlegrightlong'] = GD(name='nlegrightlong', uni=0x019E, hex='019E', c='ƞ', isLower=True)
+    GDS['nlegrightlong'] = GD(name='nlegrightlong', uni=0x019E, hex='019E', c='ƞ', l='n', r='n', isLower=True)
 
     GDS['nsuperior'] = GD(name='nsuperior', uni=0x207F, hex='207F', c='ⁿ', isMod=True)
     GDS['ninferior'] = GD(name='ninferior', uni=0x2099, hex='2099', c='ₙ', l='nsuperior', r='nsuperior', base='nsuperior')
