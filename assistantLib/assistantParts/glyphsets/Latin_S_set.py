@@ -345,6 +345,7 @@ LATIN_S_SET = GDS = {
     'Gcommaaccent': GD(name='Gcommaaccent', uni=0x0122, hex='0122', c='Ģ', l='G', r='G', base='G', accents=['commaaccentcmb'], anchors=['bottom', 'middle', 'top'], comment='Ģ'),
     'Gdotaccent': GD(name='Gdotaccent', uni=0x0120, hex='0120', c='Ġ', l='G', r='G', base='G', accents=['dotaccentcmb.uc'], anchors=['bottom', 'middle', 'top'], comment='Ġ'),
     'Germandbls': GD(name='Germandbls', uni=0x1E9E, hex='1E9E', c='ẞ', l='f', r='s', srcName='uni1E9E'),
+    'Germandbls.alt': GD(name='Germandbls', l='Germandbls', r='Germandbls', srcName='uni1E9E'),
     'Gmacron': GD(name='Gmacron', uni=0x1E20, hex='1E20', c='Ḡ', l='G', r='G', base='G', accents=['macroncmb.uc'], srcName='uni1E20', anchors=['bottom', 'middle', 'top']),
 
     # H
@@ -1128,6 +1129,7 @@ GDSI['germandbls'].l = 'off'
 GDSI['thorn'].r = 'b'
 GDSI['ampersand'].r = 'off'
 GDSI['Germandbls'].l = 'off'
+GDSI['Germandbls.alt'].l = 'off'
 
 
 if __name__ == '__main__':
