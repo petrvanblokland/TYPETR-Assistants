@@ -727,7 +727,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     GDS['tbar'] = GD(name='tbar', uni=0x0167, hex='0167', c='ŧ', l='t', r='t', base='t', isLower=True, comment='ŧ T WITH STROKE, LATIN SMALL LETTER')
     GDS['tcircumflexbelow'] = GD(name='tcircumflexbelow', uni=0x1E71, hex='1E71', c='ṱ', base='t', accents=['circumflexbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
-    GDS['tdiagonalstroke'] = GD(name='tdiagonalstroke', uni=0x2C66, hex='2C66', c='ⱦ', w='t', bl='t', base='t', accents=['strokecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
+    GDS['tdiagonalstroke'] = GD(name='tdiagonalstroke', uni=0x2C66, hex='2C66', c='ⱦ', w='t', bl='t', base='t', isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['tdieresis'] = GD(name='tdieresis', uni=0x1E97, hex='1E97', c='ẗ', w='t', bl='t', base='t', accents=['dieresiscmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['tdotaccent'] = GD(name='tdotaccent', uni=0x1E6B, hex='1E6B', c='ṫ', base='t', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['tesh'] = GD(name='tesh', uni=0x02A7, hex='02A7', c='ʧ', l='t', r='off', base='t', isLower=True)

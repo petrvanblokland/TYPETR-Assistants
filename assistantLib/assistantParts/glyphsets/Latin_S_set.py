@@ -797,7 +797,7 @@ LATIN_S_SET = GDS = {
     # t
 
     't': GD(name='t', uni=0x0074, hex='0074', c='t', l='off', r='off', isLower=True, anchorTopY='TopY', anchors=['bottom', 'middle', 'top', 'vert'], comment='t'),
-    'tcaron': GD(name='tcaron', uni=0x0165, hex='0165', c='ť', anchorTopY='TopY', base='t', accents=['caroncmb.vert'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ť T WITH CARON, LATIN SMALL LETTER'),
+    'tcaron': GD(name='tcaron', uni=0x0165, hex='0165', c='ť', anchorTopY='TopY', l='t', w='t', base='t', accents=['caroncmb.vert'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ť T WITH CARON, LATIN SMALL LETTER'),
     'tcedilla': GD(name='tcedilla', uni=0x0163, hex='0163', c='ţ', anchorTopY='TopY', base='t', accents=['cedillacmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ţ T WITH CEDILLA, LATIN SMALL LETTER'),
     'tcommaaccent': GD(name='tcommaaccent', uni=0x021B, hex='021B', c='ț', anchorTopY='TopY', base='t', accents=['commaaccentcmb'], srcName='uni021B', isLower=True, anchors=['bottom', 'middle', 'top'], comment='ț T WITH COMMA BELOW, LATIN SMALL LETTER'),
     'thorn': GD(name='thorn', uni=0x00FE, hex='00FE', c='þ', r='o', anchorTopY='TopY', isLower=True, comment='þ THORN, LATIN SMALL LETTER'),
