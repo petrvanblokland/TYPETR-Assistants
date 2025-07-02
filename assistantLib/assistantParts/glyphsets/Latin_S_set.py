@@ -588,7 +588,7 @@ LATIN_S_SET = GDS = {
 
     'd': GD(name='d', uni=0x0064, hex='0064', c='d', isLower=True, anchorTopY='TopY', anchors=['bottom', 'middle', 'top', 'vert'], comment='d'),
     'dcaron': GD(name='dcaron', uni=0x010F, hex='010F', c='ď', l='d', r='comma', anchorTopY='TopY', base='d', accents=['caroncmb.vert'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ď D WITH CARON, LATIN SMALL LETTER'),
-    'dcroat': GD(name='dcroat', uni=0x0111, hex='0111', c='đ', l='d', r='hyphen', isLower=True, anchorTopY='TopY', base='d', comment='đ D WITH STROKE, LATIN SMALL LETTER'),
+    'dcroat': GD(name='dcroat', uni=0x0111, hex='0111', c='đ', l='d', r='hyphen', isLower=True, anchorTopY='TopY', comment='đ D WITH STROKE, LATIN SMALL LETTER'),
     'ddotbelow': GD(name='ddotbelow', uni=0x1E0D, hex='1E0D', c='ḍ', base='d', accents=['dotbelowcmb'], srcName='uni1E0D', isLower=True, anchors=['bottom', 'middle', 'top']),
     'dhook': GD(name='dhook', uni=0x0257, hex='0257', c='ɗ', l='d', w='d', anchorTopY='TopY', isLower=True),
     'dagger': GD(name='dagger', uni=0x2020, hex='2020', c='†', l2r='self', isLower=True, comment='† DAGGER'),
@@ -657,7 +657,7 @@ LATIN_S_SET = GDS = {
     # h
 
     'h': GD(name='h', uni=0x0068, hex='0068', c='h', isLower=True, anchorTopY='TopY', anchors=['bottom', 'dot', 'middle', 'top'], comment='h'),
-    'hbar': GD(name='hbar', uni=0x0127, hex='0127', c='ħ', l='h', r='h', base='h', isLower=True, comment='ħ H WITH STROKE, LATIN SMALL LETTER'),
+    'hbar': GD(name='hbar', uni=0x0127, hex='0127', c='ħ', l='hyphen', r='h', base='h', isLower=True, comment='ħ H WITH STROKE, LATIN SMALL LETTER'),
     'hcircumflex': GD(name='hcircumflex', uni=0x0125, hex='0125', c='ĥ', anchorTopY='TopY', base='h', accents=['circumflexcmb.uc'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ĥ H WITH CIRCUMFLEX, LATIN SMALL LETTER'),
     'hdieresis': GD(name='hdieresis', uni=0x1E27, hex='1E27', c='ḧ', anchorTopY='TopY', base='h', accents=['dieresiscmb.uc'], srcName='uni1E27', isLower=True, anchors=['bottom', 'middle', 'top']),
     'hdotbelow': GD(name='hdotbelow', uni=0x1E25, hex='1E25', c='ḥ', anchorTopY='TopY', base='h', accents=['dotbelowcmb'], srcName='uni1E25', isLower=True, anchors=['bottom', 'middle', 'top']),
@@ -1110,7 +1110,8 @@ ONUM_NAMES = (
 LATIN_S_SET_ITALIC = GDSI = deepcopy(LATIN_S_SET)
 GDSI['g'] = GD(name='g', uni=0x0067, hex='0067', c='g', isLower=True, anchors=['bottom', 'middle', 'top'], comment='g')
 GDSI['eogonek'] = GD(name='eogonek', uni=0x0119, hex='0119', c='ę', base='e', accents=['ogonekcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ę E WITH OGONEK, LATIN SMALL LETTER')
-
+GDSI['dcroat'] = GD(name='dcroat', uni=0x0111, hex='0111', c='đ', l='d', r='hyphen', base='d', isLower=True, anchorTopY='TopY', comment='đ D WITH STROKE, LATIN SMALL LETTER')
+ 
 # Left spacing different from /t in italic. Manual spacing instead.
 
 GDSI['Schwa'].l = 'off'
