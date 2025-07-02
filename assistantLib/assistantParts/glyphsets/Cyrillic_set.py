@@ -251,7 +251,7 @@ CYRILLIC_SET = {
    #'dasiapneumatacmb_cy': GD(name='dasiapneumatacmb_cy', uni=0x0485, hex='0485', c='҅', w=0, isLower=True, anchors=['top', '_top'], gid=778),
    'de_cy': GD(name='de_cy', uni=0x0434, hex='0434', c='д', r='tse_cy', isLower=True, gid=697, anchors=['top', 'middle', 'bottom']), # Italic variant has different shape.
    'de_cy.loclBGR': GD(name='de_cy.loclBGR', isLower=True),
-   'dje_cy': GD(name='dje_cy', uni=0x0452, hex='0452', c='ђ', l='hbar', r='j', isLower=True, gid=727),
+   'dje_cy': GD(name='dje_cy', uni=0x0452, hex='0452', c='ђ', l='hbar', r='jdotless', isLower=True, gid=727),
    'dze_cy': GD(name='dze_cy', uni=0x0455, hex='0455', c='ѕ', l='s', r='s', base='s', isLower=True, anchors=['top', 'middle', 'bottom'], gid=730),
    'dzhe_cy': GD(name='dzhe_cy', uni=0x045F, hex='045F', c='џ', l='en_cy', r='en_cy', isLower=True, gid=740),
    'dzeabkh_cy': GD(name='dzeabkh_cy', uni=0x04E1, hex='04E1', c='ӡ', l='ezh', r='ezh', base='ezh', isLower=True, anchors=['top']),

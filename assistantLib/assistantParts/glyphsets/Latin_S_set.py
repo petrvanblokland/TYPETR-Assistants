@@ -657,7 +657,7 @@ LATIN_S_SET = GDS = {
     # h
 
     'h': GD(name='h', uni=0x0068, hex='0068', c='h', isLower=True, anchorTopY='TopY', anchors=['bottom', 'dot', 'middle', 'top'], comment='h'),
-    'hbar': GD(name='hbar', uni=0x0127, hex='0127', c='ħ', l='hyphen', r='h', base='h', isLower=True, comment='ħ H WITH STROKE, LATIN SMALL LETTER'),
+    'hbar': GD(name='hbar', uni=0x0127, hex='0127', c='ħ', l='h', r='h', base='h', isLower=True, comment='ħ H WITH STROKE, LATIN SMALL LETTER'),
     'hcircumflex': GD(name='hcircumflex', uni=0x0125, hex='0125', c='ĥ', anchorTopY='TopY', base='h', accents=['circumflexcmb.uc'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ĥ H WITH CIRCUMFLEX, LATIN SMALL LETTER'),
     'hdieresis': GD(name='hdieresis', uni=0x1E27, hex='1E27', c='ḧ', anchorTopY='TopY', base='h', accents=['dieresiscmb.uc'], srcName='uni1E27', isLower=True, anchors=['bottom', 'middle', 'top']),
     'hdotbelow': GD(name='hdotbelow', uni=0x1E25, hex='1E25', c='ḥ', anchorTopY='TopY', base='h', accents=['dotbelowcmb'], srcName='uni1E25', isLower=True, anchors=['bottom', 'middle', 'top']),
