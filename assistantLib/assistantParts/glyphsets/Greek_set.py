@@ -104,7 +104,7 @@ GREEK_SET = {
    #'epsilonLunateReversedSymbol': GD(name='epsilonLunateReversedSymbol', uni=0x03F6, hex='03F6', c='϶', l2r='c', r2l='c', isLower=True, gid=635),
    #'epsilonLunateSymbol': GD(name='epsilonLunateSymbol', uni=0x03F5, hex='03F5', c='ϵ', l='c', r='c', isLower=True, gid=634),
    'epsilontonos': GD(name='epsilontonos', uni=0x03AD, hex='03AD', c='έ', l='epsilon', r='epsilon', base='epsilon', accents=['tonoscmb'], isLower=True, anchors=['top'], gid=562),
-   'eta': GD(name='eta', uni=0x03B7, hex='03B7', c='η', l='n', r='jdotless', isLower=True, anchors=['bottom', 'top'], gid=572),
+   'eta': GD(name='eta', uni=0x03B7, hex='03B7', c='η', l='off', r='jdotless', isLower=True, anchors=['bottom', 'top'], gid=572),
    'etatonos': GD(name='etatonos', uni=0x03AE, hex='03AE', c='ή', l='eta', r='eta', base='eta', accents=['tonoscmb'], isLower=True, anchors=['bottom', 'top'], gid=563),
    #'fei_coptic': GD(name='fei_coptic', uni=0x03E5, hex='03E5', c='ϥ', l='o', r='q', isLower=True, gid=618),
    'gamma': GD(name='gamma', uni=0x03B3, hex='03B3', c='γ', l='v', r='v', isLower=True, anchors=['bottom', 'top'], gid=568),
