@@ -670,7 +670,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     # p
 
     GDS['pacute'] = GD(name='pacute', uni=0x1E55, hex='1E55', c='ṕ', l='p', w='p', base='p', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
-    GDS['phi_latin'] = GD(name='phi_latin', uni=0x0278, hex='0278', c='ɸ', l='phi', r='phi', isLower=True)
+    GDS['phi_latin'] = GD(name='phi_latin', uni=0x0278, hex='0278', c='ɸ', l='phi', r='phi', base='ef_cy', isLower=True)
     GDS['phook'] = GD(name='phook', uni=0x01A5, hex='01A5', c='ƥ', l='bhook', r='p', isLower=True)
     GDS['pstroke'] = GD(name='pstroke', uni=0x1D7D, hex='1D7D', c='ᵽ', l='hyphen', r='hyphen', base='p', isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['psili'] = GD(name='psili', uni=0x1FBF, hex='1FBF', c='᾿', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, isLower=True)
