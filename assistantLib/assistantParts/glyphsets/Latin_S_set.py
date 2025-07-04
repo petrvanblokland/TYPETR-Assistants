@@ -587,7 +587,8 @@ LATIN_S_SET = GDS = {
     # d
 
     'd': GD(name='d', uni=0x0064, hex='0064', c='d', isLower=True, anchorTopY='TopY', anchors=['bottom', 'middle', 'top', 'vert'], comment='d'),
-    'dcaron': GD(name='dcaron', uni=0x010F, hex='010F', c='ď', l='d', r='comma', anchorTopY='TopY', base='d', accents=['caroncmb.vert'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ď D WITH CARON, LATIN SMALL LETTER'),
+    # Spaced as /d, overlap solved by kerning
+    'dcaron': GD(name='dcaron', uni=0x010F, hex='010F', c='ď', l='d', w='d', anchorTopY='TopY', base='d', accents=['caroncmb.vert'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ď D WITH CARON, LATIN SMALL LETTER'),
     'dcroat': GD(name='dcroat', uni=0x0111, hex='0111', c='đ', l='d', r='hyphen', isLower=True, anchorTopY='TopY', comment='đ D WITH STROKE, LATIN SMALL LETTER'),
     'ddotbelow': GD(name='ddotbelow', uni=0x1E0D, hex='1E0D', c='ḍ', base='d', accents=['dotbelowcmb'], srcName='uni1E0D', isLower=True, anchors=['bottom', 'middle', 'top']),
     'dhook': GD(name='dhook', uni=0x0257, hex='0257', c='ɗ', l='d', w='d', anchorTopY='TopY', isLower=True),
@@ -706,7 +707,8 @@ LATIN_S_SET = GDS = {
 
     'l': GD(name='l', uni=0x006C, hex='006C', c='l', l='h', r='idotless', anchorTopY='TopY', isLower=True, anchors=['bottom', 'dot', 'middle', 'top', 'vert'], comment='l'),
     'lacute': GD(name='lacute', uni=0x013A, hex='013A', c='ĺ', w='l', bl='l', anchorTopY='TopY', base='l', accents=['acutecmb.uc'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ĺ L WITH ACUTE, LATIN SMALL LETTER'),
-    'lcaron': GD(name='lcaron', uni=0x013E, hex='013E', c='ľ', rightMin='minRight', anchorTopY='TopY', base='l', accents=['caroncmb.vert'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ľ L WITH CARON, LATIN SMALL LETTER'),
+    # Spaced as /l, overlap solved by kerning
+    'lcaron': GD(name='lcaron', uni=0x013E, hex='013E', c='ľ', l='off', w='l', anchorTopY='TopY', base='l', accents=['caroncmb.vert'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ľ L WITH CARON, LATIN SMALL LETTER'),
     'lcommaaccent': GD(name='lcommaaccent', uni=0x013C, hex='013C', c='ļ', w='l', anchorTopY='TopY', base='l', accents=['commaaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top']),
     'liraTurkish': GD(name='liraTurkish', uni=0x20BA, hex='20BA', c='₺', srcName='l', isLower=True),
     'lslash': GD(name='lslash', uni=0x0142, hex='0142', c='ł', base='l', l='hyphen', r='hyphen', isLower=True, comment='ł L WITH STROKE, LATIN SMALL LETTER'),
@@ -797,6 +799,7 @@ LATIN_S_SET = GDS = {
     # t
 
     't': GD(name='t', uni=0x0074, hex='0074', c='t', l='off', r='off', isLower=True, anchorTopY='TopY', anchors=['bottom', 'middle', 'top', 'vert'], comment='t'),
+    # Spaced as /t, overlap solved by kerning
     'tcaron': GD(name='tcaron', uni=0x0165, hex='0165', c='ť', anchorTopY='TopY', l='t', w='t', base='t', accents=['caroncmb.vert'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ť T WITH CARON, LATIN SMALL LETTER'),
     'tcedilla': GD(name='tcedilla', uni=0x0163, hex='0163', c='ţ', anchorTopY='TopY', base='t', accents=['cedillacmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ţ T WITH CEDILLA, LATIN SMALL LETTER'),
     'tcommaaccent': GD(name='tcommaaccent', uni=0x021B, hex='021B', c='ț', anchorTopY='TopY', base='t', accents=['commaaccentcmb'], srcName='uni021B', isLower=True, anchors=['bottom', 'middle', 'top'], comment='ț T WITH COMMA BELOW, LATIN SMALL LETTER'),
