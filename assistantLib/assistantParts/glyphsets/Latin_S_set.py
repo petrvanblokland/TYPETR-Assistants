@@ -1023,7 +1023,7 @@ SC_NAMES = (
         'Uring', 'Utilde', 'Ucircumflexbelow', 'Udblgrave', 'Udieresisacute', 'Udieresisbelow', 'Udieresiscaron', 'Udieresisgrave', 
         'Udieresismacron', 'Uhookabove', 'Uhorn', 'Uhornacute', 'Uhorndotbelow', 'Uhorngrave', 'Uhornhookabove', 'Uhorntilde', 
         'Uinvertedbreve', 'Umacrondieresis', 'Utildeacute', 'Utildebelow',  
-    'V', 'Vturned', 'Vdotbelow', 'Vtilde', 
+    'V', 'Vturned', 'Vdotbelow', 'Vtilde', 'Vhook', 
     'W', 'Wacute', 'Wcircumflex', 'Wdieresis', 'Wgrave', 'Wdotaccent', 'Wdotbelow', 'Whook', 'Wring',
     'X', 'Xdieresis', 'Xdotaccent',  
     'Y', 'Yacute', 'Ycircumflex', 'Ydieresis', 'Ygrave', 'Yhook', 'Ymacron', 'Ytilde', 'Ydotaccent', 'Ydotbelow', 'Yhookabove', 'Ystroke', 
