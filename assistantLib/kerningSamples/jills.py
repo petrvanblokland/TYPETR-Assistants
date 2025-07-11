@@ -18,9 +18,9 @@ JILLS_LC = ' '.join(('aaeaoaiauacadahamanarasatabagafalapavawayajakaqaxazaeeoeie
     'yhjhkhqhxhzhmmnmrmsmtmbmgmfmlmpmvmwmymmjmkmqmxmzmnnrnsntnbngnfnlnpnvnwnynjnknqnxnznrrsrrtrbrgrfrlrprvrwryrjrkrrqrxrzrsstsbsgsfslspsv',
     'swsyssjsksqsxszsttbtgtftltptvtwttytjtktqtxtztbbgbfblbpbbvbwbybjbkbqbxbzbggfglgpggvgwgygjgkgqgxgzgfflfpfvffwfyfjfkfqfxfzfllplvlwlyljl',
     'lklqlxlzlppvpwpypjpkpqppxpzpvvwvyvjvkvqvxvzvyywyyyjykyqyxyzyjjkjqjxjzjkkkqkkxkzkqqxqzqxxzxzz',
-    '/h/e/space/i/s/space/b/u/t/space/a/n/space/i/t/space/a/t/space/t/h/e/space/s/h/e/space/d/o/space/o/n/space/h/i/s/space/n/o/t/space/l/i/k/e/space/o/f/space/t/h/e/m/space/a/r/e/space/a/s/space/t/h/e/y/space',
-    '/c/a/n/space/b/o/t/h/space/b/e/space/f/o/r/space/o/r/space/b/e/space/i/n/space/w/i/t/h/space/h/i/s/space/t/o/o/space/i/n/space/f/r/o/m/space/w/e/r/e/space/b/y/space/o/n/l/y/space/s/o/m/e/space/h/e/r/space',
-    '/h/a/v/e/space/t/o/space/a/f/t/e/r/space/t/h/a/t/space/t/h/a/n/space/w/h/i/c/h/space/y/o/u/space/a/l/s/o/space/h/a/d/space/e/i/t/h/e/r/space'))
+    'the he is but an it at the she do on his not like of them are as they ',
+    'can both be for or be in with his too in from were by only some her ',
+    'have to after that than which you also had either '))
 
     # Capitals
 JILLS_CAPITALS = ''.join((
@@ -37,8 +37,8 @@ JILLS_CAPITALS = ''.join((
     'HœHæHßHfiHflIaIbIcIdIeIfIgIhIiIjIkIlImInIoIpIqIrIsItIuIvIwIxIyIzIœIæIßIfiIflJœJæJßJfiJflMaMbMcMdMeMfMgMhMiMjMkMlMmMnMoMpMqMrMsMtMuMv',
     'MwMxMyMzMœMæMßMfiMflUaUbUcUdUeUfUgUhUiUjUkUlUmUnUoUpUqUrUsUtUuUvUwUxUyUzUœUæUßUfiUflXaXbXcXdXeXfXgXhXiXjXkXlXmXnXoXpXqXrXsXtXuXvXwXx',
     'XyXzXœXæXßXfiXflZaZbZcZdZeZfZgZhZiZjZkZlZmZnZoZpZqZrZsZtZuZvZwZxZyZzZœZæZßZfiZfl',
-    'The His She Her It Some Only It’s Also That There Is He She They Any Who Which You What Where To On As At We If Any This In One Are ',
-    'After All How When Many My Do You Their ',
+    'The He His She Her It Some Only It’s Also That There Is He She They Any Who Which You What Where To On As At We If Any This In One Are ',
+    'After All Which You Also How When Many My Do You Their Either ',
     
     'AAEAOAIAUACADAHAMANARASATABAGAFALAPAVAWAYAJAKAQAXAZAEEOEIEUECEDEHEMENERESETEBEGEFELEPEVEWEYEJEKEQEEXEZEOOIOUOCODOHOMONOROSOTOBOGOFOL',
     'OPOVOWOYOJOKOQOXOZOIIUICIDIHIMINIRISITIBIGIFILIPIVIWIYIJIKIQIXIZIUUCUDUHUMUNURUSUTUBUGUFULUPUVUWUYUJUKUQUXUZUCCDCHCMCNCRCSCTCBCGCFCL',
@@ -51,7 +51,7 @@ JILLS_CAPITALS = ''.join((
     'YHJHKHQHXHZHMMNMRMSMTMBMGMFMLMPMVMWMYMMJMKMQMXMZMNNRNSNTNBNGNFNLNPNVNWNYNJNKNQNXNZNRRSRRTRBRGRFRLRPRVRWRYRJRKRRQRXRZRSSTSBSGSFSLSPSV',
     'SWSYSSJSKSQSXSZSTTBTGTFTLTPTVTWTTYTJTKTQTXTZTBBGBFBLBPBBVBWBYBJBKBQBXBZBGGFGLGPGGVGWGYGJGKGQGXGZGFFLFPFVFFWFYFJFKFQFXFZFLLPLVLWLYLJL',
     'LKLQLXLZLPPVPWPYPJPKPQPPXPZPVVWVYVJVKVQVXVZVYYWYYYJYKYQYXYZYJJKJQJXJZJKKKQKKXKZKQQXQZQXXZXZZ',
-    'HE IS BUT AN IT AT THE SHE DO ON HIS NOT LIKE OF THEM ARE AS THEY CAN BOTH BE FOR OR BE IN WITH HIS TOO IN FROM WERE BY ONLY SOME HER ',
+    'THE HE IS BUT AN IT AT THE SHE DO ON HIS NOT LIKE OF THEM ARE AS THEY CAN BOTH BE FOR OR BE IN WITH HIS TOO IN FROM WERE BY ONLY SOME HER ',
     'HAVE TO AFTER THAT THAN WHICH YOU ALSO HAD EITHER.'))
 
     # Smallcaps
