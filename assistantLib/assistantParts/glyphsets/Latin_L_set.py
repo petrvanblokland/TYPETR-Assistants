@@ -121,6 +121,8 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['Astroke'] = GD(name='Astroke', uni=0x023A, hex='023A', c='Ⱥ', l='A', w='A', base='A', accents=['strokecmb.uc'], anchors=['bottom', 'middle', 'top'])
     GDS['Aturned'] = GD(name='Aturned', uni=0x2C6F, hex='2C6F', c='Ɐ', l2r='A', r2l='A', srcName='A')
     GDS['Ahookabove'] = GD(name='Ahookabove', uni=0x1EA2, hex='1EA2', c='Ả', l='A', r='A', base='A', accents=['hookabovecmb.uc'], anchors=['top', 'middle', 'bottom'], comment='Ả LATIN CAPITAL LETTER A WITH HOOK ABOVE')
+    # Seperate definition, since Arighthalfring does not exist as unicode. 
+    #GDS['Arighthalfring'] = GD(name='Arighthalfring', base='A', accents=['ringhalfrightcmb'], isLower=False, anchors=['bottom', 'middle', 'top'])
 
     GDS['Asuperior'] = GD(name='Asuperior', l='A.sc', l2r='Asuperior', isMod=True)
     GDS['Ainferior'] = GD(name='Ainferior', l='Asuperior', r='Asuperior', base='Asuperior', isLower=True)
@@ -430,8 +432,6 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['ainvertedbreve'] = GD(name='ainvertedbreve', uni=0x0203, hex='0203', c='ȃ', base='a', accents=['invertedbrevecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['alpha_latin'] = GD(name='alpha_latin', uni=0x0251, hex='0251', c='ɑ', isLower=True)
     GDS['arighthalfring'] = GD(name='arighthalfring', uni=0x1E9A, hex='1E9A', c='ẚ', base='a', accents=['ringhalfrightcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
-    # Seperate definition, since Arighthalfring does not exist as unicode. Used for [smcp] only.
-    GDS['Arighthalfring.sc'] = GD(name='Arighthalfring.sc', base='A.sc', accents=['ringhalfrightcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['aringacute'] = GD(name='aringacute', uni=0x01FB, hex='01FB', c='ǻ', base='a', accents=['ringacutecmb'], isLower=True, fixAccents=False, anchors=['bottom', 'middle', 'top'], comment='ǻ')
     GDS['aringbelow'] = GD(name='aringbelow', uni=0x1E01, hex='1E01', c='ḁ', base='a', accents=['ringbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['astroke'] = GD(name='astroke', uni=0x2C65, hex='2C65', c='ⱥ', base='a', accents=['strokecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
@@ -524,7 +524,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     # f
 
-    GDS['fStroke'] = GD(name='fStroke', uni=0xA799, hex='A799', c='ꞙ', base='f', l= 'f', r= 'f', isLower=True, anchors=['bottom', 'middle', 'top'])
+    GDS['fstroke'] = GD(name='fstroke', uni=0xA799, hex='A799', c='ꞙ', base='f', l= 'f', r= 'f', isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['fdotaccent'] = GD(name='fdotaccent', uni=0x1E1F, hex='1E1F', c='ḟ', rightMin='-100', base='f', accents=['dotaccentcmb.uc'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['fourthtonechinese'] = GD(name='fourthtonechinese', uni=0x02CB, hex='02CB', c='ˋ', l=GD.CAT_CENTER, w=0, base='gravecmb', anchors=['_top', 'top'])
     #GDS['firsttonechinese'] = GD(name='firsttonechinese', uni=0x02C9, hex='02C9', w=0, c='ˉ', base='macroncmb', isLower=True, anchors=['_top', 'top'])
