@@ -701,7 +701,7 @@ LATIN_S_SET = GDS = {
     'k': GD(name='k', uni=0x006B, hex='006B', c='k', l='h', r='x', anchorTopY='TopY', isLower=True, anchors=['bottom', 'middle', 'top'], comment='k'),
     'kcommaaccent': GD(name='kcommaaccent', uni=0x0137, hex='0137', c='ķ', anchorTopY='TopY', base='k', accents=['commaaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top']),
     # Manuall space from l='k', since the top serif of the /k makes leftmargin different.
-    'khook': GD(name='khook', uni=0x0199, hex='0199', c='ƙ', l='bhook', r='k', anchorTopY='TopY', srcName='uni0199', isLower=True, comment='ƙ K WITH HOOK, LATIN SMALL LETTER'),
+    'khook': GD(name='khook', uni=0x0199, hex='0199', c='ƙ', r='k', anchorTopY='TopY', srcName='uni0199', isLower=True, comment='ƙ K WITH HOOK, LATIN SMALL LETTER'),
 
     # l
 
@@ -1134,6 +1134,8 @@ GDSI['thorn'].r = 'b'
 GDSI['ampersand'].r = 'off'
 GDSI['Germandbls'].l = 'off'
 GDSI['Germandbls.alt'].l = 'off'
+GDSI['khook'].l = 'bhook'
+
 
 
 if __name__ == '__main__':
