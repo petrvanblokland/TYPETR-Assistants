@@ -556,8 +556,8 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['hcaron'] = GD(name='hcaron', uni=0x021F, hex='021F', c='ȟ', base='h', accents=['caroncmb.uc'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['hdotaccent'] = GD(name='hdotaccent', uni=0x1E23, hex='1E23', c='ḣ', base='h', accents=['dotaccentcmb.uc'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['heng'] = GD(name='heng', uni=0xA727, hex='A727', c='ꜧ', l='h', r='j', srcName='h', isLower=True)
-    GDS['henghook'] = GD(name='henghook', uni=0x0267, hex='0267', c='ɧ', l='bhook', w='h', isLower=True) # Not left of /h because missing top serif
-    GDS['hhook'] = GD(name='hhook', uni=0x0266, hex='0266', c='ɦ', l='bhook', r='h', srcName='h', isLower=True) # Not left of /h because missing top serif
+    GDS['henghook'] = GD(name='henghook', uni=0x0267, hex='0267', c='ɧ', l='khook', w='h', isLower=True) # Not left of /h because missing top serif
+    GDS['hhook'] = GD(name='hhook', uni=0x0266, hex='0266', c='ɦ', l='khook', r='h', srcName='h', isLower=True) # Not left of /h because missing top serif
     GDS['hturned'] = GD(name='hturned', uni=0x0265, hex='0265', c='ɥ', l2r='h', r2l='h', srcName='h', isLower=True)
 
     GDS['hsuperior'] = GD(name='hsuperior', uni=0x02B0, hex='02B0', c='ʰ', l='nsuperior', r='nsuperior', isMod=True)
@@ -671,7 +671,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     GDS['pacute'] = GD(name='pacute', uni=0x1E55, hex='1E55', c='ṕ', l='p', w='p', base='p', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['phi_latin'] = GD(name='phi_latin', uni=0x0278, hex='0278', c='ɸ', l='phi', r='phi', base='ef_cy', isLower=True)
-    GDS['phook'] = GD(name='phook', uni=0x01A5, hex='01A5', c='ƥ', l='bhook', r='p', isLower=True)
+    GDS['phook'] = GD(name='phook', uni=0x01A5, hex='01A5', c='ƥ', l='khook', r='p', isLower=True)
     GDS['pstroke'] = GD(name='pstroke', uni=0x1D7D, hex='1D7D', c='ᵽ', l='hyphen', r='hyphen', base='p', isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['psili'] = GD(name='psili', uni=0x1FBF, hex='1FBF', c='᾿', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, isLower=True)
     GDS['product'] = GD(l='H', r='H', uni=0x220f, c='∏', src='H', name='product', isLower=False, height=GD.CAT_CAP_HEIGHT, overshoot=GD.CAT_CAP_OVERSHOOT, comment='∏ PRODUCT, N-ARY')
@@ -893,6 +893,10 @@ GDSI['hturned'].l = 'u'
 GDSI['hturned'].r = 'q'
 GDSI['vhook'].l = GDSI['vhook'].r = 'v'
 GDSI['gstroke'].r = 'hyphen'
+GDSI['phook'].l = 'bhook'
+GDSI['hhook'].l = 'bhook'
+GDSI['henghook'].l = 'bhook'
+
 
 
 if __name__ == '__main__':
