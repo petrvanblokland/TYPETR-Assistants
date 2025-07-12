@@ -280,7 +280,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['NJ'] = GD(name='NJ', uni=0x01CA, hex='01CA', c='Ǌ', l='H', r='J', base='N', accents=['J'])
     GDS['Ncircumflexbelow'] = GD(name='Ncircumflexbelow', uni=0x1E4A, hex='1E4A', c='Ṋ', l='H', r='H', base='N', accents=['circumflexbelowcmb'], anchors=['bottom', 'middle', 'top'])
     GDS['Ngrave'] = GD(name='Ngrave', uni=0x01F8, hex='01F8', c='Ǹ', l='H', r='H', base='N', accents=['gravecmb.uc'], anchors=['bottom', 'middle', 'top'])
-    GDS['Nj'] = GD(name='Nj', uni=0x01CB, hex='01CB', c='ǋ', base='N', accents=['j'])
+    GDS['Nj'] = GD(name='Nj', uni=0x01CB, hex='01CB', c='ǋ', l='N', r='j', base='N', accents=['j'])
     GDS['Nlongrightleg'] = GD(name='Nlongrightleg', uni=0x0220, hex='0220', c='Ƞ', r='H')
 
     GDS['Nsuperior'] = GD(name='Nsuperior', l='N.sc', r='N.sc', isMod=True)
