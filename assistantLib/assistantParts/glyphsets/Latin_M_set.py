@@ -331,6 +331,20 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
     GDS['hookabovecmb'] = GD(name='hookabovecmb', w=0, isLower=True, autoFixComponentPositions=False, autoFixMargins=False, anchors=['top', '_top'])
     GDS['hookabovecmb.uc'] = GD(name='hookabovecmb.uc', srcName='hookabovecmb', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['top', '_top'])
 
+    # Arrows
+
+    GDS['arrowright'] = GD(name='arrowright', uni=0x2192, hex='2192')
+    GDS['arrowleft'] = GD(name='arrowleft', uni=0x2190, hex='2190')
+    GDS['arrowup'] = GD(name='arrowup', uni=0x2191, hex='2191')
+    GDS['arrowdown'] = GD(name='arrowdown', uni=0x2193, hex='2193')
+    GDS['arrowleftright'] = GD(name='arrowleftright', uni=0x2194, hex='2194')
+    GDS['arrowupdown'] = GD(name='arrowupdown', uni=0x2195, hex='2195')    
+    GDS['arrowSE'] = GD(name='arrowSE', uni=0x2198, hex='2198')  
+    GDS['arrowNE'] = GD(name='arrowNE', uni=0x2197, hex='2197') 
+    GDS['arrowNW'] = GD(name='arrowNW', uni=0x2196, hex='2196') 
+    GDS['arrowSW'] = GD(name='arrowSW', uni=0x2199, hex='2199')     
+    
+
 # Make exceptions here for Italic glyphs and spacing rules in LATIN_M_SET_ITALIC
 
 GDSI = LATIN_M_SET_ITALIC
