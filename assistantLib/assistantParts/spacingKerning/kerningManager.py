@@ -1454,7 +1454,7 @@ class KerningManager:
     KERNED_DIASTANCE_TOLERANCE = 2
 
     def kernedDistance(self, g1, g2):
-        """Answer the smallest distance that the kerned pair have to each other. Since there is not direct way to measure this,
+        """Answer the smallest distance that the kerned pair have to each other. Since there is no direct way to measure this,
         we need to use a time-expensive method: place them on kerned distance in a separate temporary glyph, decompse and remove overlap.
         If number of contours changes, then they are too close. Do a binary search for different distances until it falls within a range.
         Then we know how much the right glyph moved. 
@@ -2095,8 +2095,12 @@ class KerningManager:
             for scriptName1, scriptName2 in KERN_GROUPS:
                 pre1, ext1 = GROUP_NAME_PARTS[scriptName1]
                 pre2, ext2 = GROUP_NAME_PARTS[scriptName2]
-                baseGlyphs1 = sorted(GROUP_BASE_GLYPHS[scriptName1])
-                baseGlyphs2 = sorted(GROUP_BASE_GLYPHS[scriptName2])
+                baseGlyphs1 = sorted(GROUP_BASE_GLYPHS.get(scriptName1, [])) # May not be found due to incompatible script names.
+                baseGlyphs2 = sorted(GROUP_BASE_GLYPHS.get(scriptName2, []))
+                if not baseGlyphs1:
+                    print(f"""Cannot find base glyphs for {scriptName1}""")
+                if not baseGlyphs2:
+                    print(f"""Cannot find base glyphs for {scriptName2}""")
                 for gName1 in baseGlyphs1:
                     if gName1 not in self.f: # Skip non-existing glyphs:
                         continue

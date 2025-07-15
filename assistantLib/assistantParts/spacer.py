@@ -41,7 +41,7 @@ ARROW_KEYS = [NSUpArrowFunctionKey, NSDownArrowFunctionKey,
 class KerningLineGlyphPosition:
     """Element that holds position and name of glyphs in the spacer/kerning line. This makes it easier 
     for mouseover to detect clicks on the line"""
-    def __init__(self, glyph, x, y, w, h, k, fillColor, lineIndex, sampleKerningIndex=None):
+    def __init__(self, glyph, x, y, w, h, k, kerningType, fillColor, lineIndex, sampleKerningIndex=None):
         self.glyph = glyph # RGlyph object 
         self.name = glyph.name
         self.x = x
@@ -49,6 +49,7 @@ class KerningLineGlyphPosition:
         self.w = w # Width of the glyph
         self.h = h # Height of the box
         self.k = k # Kerning with previoud glyph
+        self.kerningType = kerningType # Can be None if the caller does not have the info availalbe
         self.fillColor = fillColor
         self.lineIndex = lineIndex
         self.sampleKerningIndex = sampleKerningIndex
@@ -426,6 +427,7 @@ class AssistantPartSpacer(BaseAssistantPart):
 
             if prevName is None:
                 k = 0
+                kerningType = None
             else:
                 k, groupK, kerningType = km.getKerning(prevName, spaceG.name) # Get the kerning from the groups of these glyphs
 
@@ -438,7 +440,7 @@ class AssistantPartSpacer(BaseAssistantPart):
                 x += dw
                 sw += dw
             x += k # Correct start position of this glyph by kerning with the previous glyph
-            self.spacerGlyphPositions.append(KerningLineGlyphPosition(spaceG, x, y, sw, h, k, color, gIndex, km.sampleKerningIndex + gIndex))
+            self.spacerGlyphPositions.append(KerningLineGlyphPosition(spaceG, x, y, sw, h, k, kerningType, color, gIndex, km.sampleKerningIndex + gIndex))
             x += sw
             if not sw: # In case of diacritics on width == 0, add wordspace in front and behind.
                 x += dw
@@ -493,6 +495,7 @@ class AssistantPartSpacer(BaseAssistantPart):
                 kerningLineValue.setFillColor((0.5, 0.5, 0.5, 1))
             else: # gp.k > 0
                 kerningLineValue.setFillColor((0, 0.5, 0, 1))
+
             kerningLineValue.setText(f'{round(gp.k)}')
             kerningLineValue.setPosition((gp.x + offsetX, y + f.info.descender - 12))
             kerningLineValue.setVisible(True)
@@ -560,7 +563,7 @@ class AssistantPartSpacer(BaseAssistantPart):
                 g2 = f[gName2]
                 #print('[1]', gName1, gName2, k)
 
-                self.spacerGlyphGroupPositions1.append(KerningLineGlyphPosition(g1, xx, y, g1.width + k, h, k, self.SPACER_FILL_COLOR, ggIndex1))
+                self.spacerGlyphGroupPositions1.append(KerningLineGlyphPosition(g1, xx, y, g1.width + k, h, k, None, self.SPACER_FILL_COLOR, ggIndex1))
 
                 kgl = self.kerningGroupLine1[ggIndex1]
                 kgl.setPath(g1.getRepresentation("merz.CGPath"))
@@ -568,7 +571,7 @@ class AssistantPartSpacer(BaseAssistantPart):
                 kgl.setVisible(True)
                 xx += g1.width + k
 
-                self.spacerGlyphGroupPositions1.append(KerningLineGlyphPosition(g2, xx, y, g2.width, h, k, self.SPACER_FILL_COLOR, ggIndex1+1))
+                self.spacerGlyphGroupPositions1.append(KerningLineGlyphPosition(g2, xx, y, g2.width, h, k, None, self.SPACER_FILL_COLOR, ggIndex1+1))
 
                 kgl = self.kerningGroupLine1[ggIndex1+1]
                 kgl.setPath(g2.getRepresentation("merz.CGPath"))
@@ -593,7 +596,7 @@ class AssistantPartSpacer(BaseAssistantPart):
                 g2 = f[gName2]
                 #print('[2]', gName1, gName2, k)
 
-                self.spacerGlyphGroupPositions2.append(KerningLineGlyphPosition(g1, xx, y, g1.width + k, h, k, self.SPACER_FILL_COLOR, ggIndex2))
+                self.spacerGlyphGroupPositions2.append(KerningLineGlyphPosition(g1, xx, y, g1.width + k, h, k, None, self.SPACER_FILL_COLOR, ggIndex2))
 
                 kgl = self.kerningGroupLine2[ggIndex2]
                 kgl.setPath(g1.getRepresentation("merz.CGPath"))
@@ -601,7 +604,7 @@ class AssistantPartSpacer(BaseAssistantPart):
                 kgl.setVisible(True)
                 xx += g1.width + k
 
-                self.spacerGlyphGroupPositions2.append(KerningLineGlyphPosition(g2, xx, y, g2.width, h, k, self.SPACER_FILL_COLOR, ggIndex2+1))
+                self.spacerGlyphGroupPositions2.append(KerningLineGlyphPosition(g2, xx, y, g2.width, h, k, None, self.SPACER_FILL_COLOR, ggIndex2+1))
 
                 kgl = self.kerningGroupLine2[ggIndex2+1]
                 kgl.setPath(g2.getRepresentation("merz.CGPath"))
@@ -999,7 +1002,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         """
         print('... fixOverlappedKerningCallback')
         # Alway update the list of kerningTypes. This is an "expensive" operation, so we cache.
-        # It's mostly to get an impressions how the kerning types are distributes in the f.kerning.
+        # It's mostly to get an impressions how the kerning types are distributed in the f.kerning.
         # For a better view on the amounts an update should be done, or we need to do some bookkeeping outselves.
         # kerningTypes is a tuple of 5 kerning dictionaries where the types are split according
         # (group-group, group-glyph, glyph-group, glyph-glyph and bad). The bad dictionary is all kerning pairs
@@ -1010,17 +1013,20 @@ class AssistantPartSpacer(BaseAssistantPart):
         if f is None:
             return
 
+        md = self.getMasterData(f)
+
         # Only check for overlap on kerning for these glyphs
         checkedGlyphs = set((
-            'i', 'itilde', 'icircumflex', 'idieresis', 'igrave', 'iacute', 'icaron', 
-            'E', 'K', 'V', 'T', 'W', 'X', 'Y', 'AE', 'OE',  
+            'E', 'K', 'V', 'T', 'V', 'W', 'X', 'Y', 'Z', 'AE', 'OE',  
             'backslash', 'braceleft', 'braceright', 'bracketleft', 'bracketright', 
             'acircumflexgrave', 'acircumflexhookabove', 'adblgrave', 
             'cacute', 'ccaron', 'ccircumflex', 
             'd', 'dcaron', 'dcedilla', 'ddotaccent', 'ddotbelow', 
             'edblgrave', 'edieresis', 'etilde', 
-            'i', 'iacute', 'ibreve', 'icaron', 'icircumflex', 'idblgrave', 'idieresis', 'idieresisacute', 'igrave', 
-            'ij', 'imacron', 'iogonek', 'itilde', 
+
+            'i', 'igrave', 'iacute', 'icircumflex', 'idieresis', 'itilde', 'imacron', 'ibreve', 'iogonek', 'icaron', 'idblgrave', 
+                'iinvertedbreve', 'itildebelow', 'idieresisacute', 'ihookabove', 'idotbelow', 'idotless', 'ij', 'istroke', 
+                'iota', 'iotadieresistonos', 'iotatonos', 'iotadieresis', 'idotlesshorn'
             'jcaron', 'jcircumflex', 
             'ocircumflexacute', 'ocircumflexgrave', 'ocircumflexhookabove', 'odblgrave', 
             'one', 'question', 'lcaron', 'scaron', 'scircumflex',
@@ -1029,7 +1035,8 @@ class AssistantPartSpacer(BaseAssistantPart):
             'seven', 'slash', 'tcaron', 'three', 'trademark', 'two', 'uhorn',
         ))
         # Not checked for overlapping kerning combinations, avoiding a huge load of permutated exceptions that are hardly used
-        UNCHECKED = set(('Tbar', 'Tcaron', 'Tcedilla', 'Tcommaaccent', 'Tdiagonalstroke', 'Tdotaccent', 'Tdotbelow', 'Thook', 'Tz', 
+        UNCHECKED = set((
+            'Tbar', 'Tcaron', 'Tcedilla', 'Tcommaaccent', 'Tdiagonalstroke', 'Tdotaccent', 'Tdotbelow', 'Thook', 'Tz', 
             'Vdiagonalstroke', 'Vdotbelow', 'Vtilde', 
             'AEacute', 'AEmacron', 'AY', 'Aturned', 'Au', 'Av', 
             'Bhook', 'degree', 'dhook', 'dtopbar', 'eshbaseline',
@@ -1043,7 +1050,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             'Xdieresis', 'Xdotaccent', 
             'Yacute', 'Ycircumflex', 'Ydieresis', 'Ydotaccent', 'Ydotbelow', 'Ygrave', 'Yhook', 'Yhookabove', 'Ymacron', 'Ystroke', 'Ytilde', 
             'bstroke', 
-            'kstroke', 
+            'kstroke',  
             'lhighstroke', 'longs', 'longsdotaccent', 
             'qhook', 
             'hbar', 
@@ -1058,6 +1065,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         
         done = False
         minOffset = 64 # Value to add to touching-kerning for minimal distance
+        minOverlapOffset = 32 # Only take action if distant is less than this.
 
         fixedOverlap = ''
         errorOverlap = ''
@@ -1073,30 +1081,41 @@ class AssistantPartSpacer(BaseAssistantPart):
         for script1, script2 in KERN_GROUPS:
             mg1 = km.scriptMatchingGroups1[script1]
             mg2 = km.scriptMatchingGroups2[script2]
-            print(mg1, mg2)
+            #print(mg1, mg2)
             for groupName1 in mg1:
                 for groupName2 in mg2:
                     group1 = f.groups[groupName1]
                     group2 = f.groups[groupName2]
                     for gName1 in group1:
+                        g1 = f[gName1]
+                        gd1 = self.getGlyphData(g1)
                         for gName2 in group2:
                             #if gName1 in errorNames and gName2 in errorNames:
                             #    continue
                             #if gName1 in errorExceptions and gName2 in errorExceptions:
                             #    continue
                             if gName1 in checkedGlyphs and gName2 in checkedGlyphs: # Only these combinations
-                                g1 = f[gName1]
                                 g2 = f[gName2]
-                                print(gName1, gName2, km.hasKernedOverlap(g1, g2, minOffset))
-                                if km.hasKernedOverlap(g1, g2, minOffset): # minOffset forces a minimal gap for the overlap
+                                gd2 = self.getGlyphData(g2)
+                                #print(gName1, gName2, km.hasKernedOverlap(g1, g2, minOffset))
+                                if km.hasKernedOverlap(g1, g2, minOverlapOffset): # minOffset forces a minimal gap for the overlap
                                     #if gName1 != 'Tcaron' or gName2 != 'idieresis':
                                     #    continue
                                     kk = int(round(km.kernedDistance(g1, g2) / 4)) * 4
-                                    print('DDASADSAD', gName1, gName2, kk)
-                                    if abs(-kk + minOffset) < 5000: # Safety, in case the overlap is not matching
-                                        print('... Fix overlap', kk, -kk + minOffset, script1, script2, groupName1, groupName2, gName1, gName2)
-                                        f.kerning[(gName1, gName2)] = -kk + minOffset
-                                        fixedOverlap += chr(g1.unicode) + chr(g2.unicode) + ' '
+                                    if abs(-kk + minOffset) < 1000: # Safety, in case the overlap is not matching
+                                        if gd1.isLower:
+                                            kern1 = gName1 # g-x
+                                        else:
+                                            kern1 = groupName1 # G-x
+                                        if gd2.isLower:
+                                            kern2 = gName2 # x-g
+                                        else:
+                                            kern2 = groupName2 # x-G
+                                        if (kern1, kern2) not in f.kerning: 
+                                            print('... Fix overlap', kk, -kk + minOffset, script1, script2, groupName1, groupName2, kern1, kern2)
+                                            f.kerning[(kern1, kern2)] = -kk + minOffset
+                                            if g1.unicode and g2.unicode:
+                                                fixedOverlap += chr(g1.unicode) + chr(g2.unicode) + ' '
                                     else:
                                         print('### Error overlap', kk, -kk + minOffset, script1, script2, groupName1, groupName2, gName1, gName2)
                                         if g1.unicode and g2.unicode:

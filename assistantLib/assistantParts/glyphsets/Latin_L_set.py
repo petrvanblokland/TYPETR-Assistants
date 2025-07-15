@@ -201,7 +201,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['Gammaafrican'] = GD(name='Gammaafrican', uni=0x0194, hex='0194', c='Ɣ', comment='Ɣ GAMMA, LATIN CAPITAL LETTER')
     GDS['Ghook'] = GD(name='Ghook', uni=0x0193, hex='0193', c='Ɠ', l='G', w='G', srcName='G')
     GDS['Glottalstop'] = GD(name='Glottalstop', uni=0x0241, hex='0241', c='Ɂ', l='question', r='question')
-    GDS['Gscript'] = GD(name='Gscript', uni=0xA7AC, hex='A7AC', c='Ɡ', l='O', r='J', srcName='g')
+    GDS['Gscript'] = GD(name='Gscript', uni=0xA7AC, hex='A7AC', c='Ɡ', l='O', r='jdotless', srcName='g')
     GDS['Gstroke'] = GD(name='Gstroke', uni=0x01E4, hex='01E4', c='Ǥ', l='G', r='G', base='G')
 
     GDS['Gsuperior'] = GD(name='Gsuperior', l='Osuperior', r='G.sc', isMod=True)
