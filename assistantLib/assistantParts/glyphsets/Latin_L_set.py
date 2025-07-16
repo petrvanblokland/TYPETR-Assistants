@@ -556,7 +556,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['hcaron'] = GD(name='hcaron', uni=0x021F, hex='021F', c='ȟ', base='h', accents=['caroncmb.uc'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['hdotaccent'] = GD(name='hdotaccent', uni=0x1E23, hex='1E23', c='ḣ', base='h', accents=['dotaccentcmb.uc'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['heng'] = GD(name='heng', uni=0xA727, hex='A727', c='ꜧ', l='h', r='j', srcName='h', isLower=True)
-    GDS['henghook'] = GD(name='henghook', uni=0x0267, hex='0267', c='ɧ', l='khook', w='h', isLower=True) # Not left of /h because missing top serif
+    GDS['henghook'] = GD(name='henghook', uni=0x0267, hex='0267', c='ɧ', l='khook', r='jdotless', isLower=True) # Not left of /h because missing top serif
     GDS['hhook'] = GD(name='hhook', uni=0x0266, hex='0266', c='ɦ', l='khook', r='h', srcName='h', isLower=True) # Not left of /h because missing top serif
     GDS['hturned'] = GD(name='hturned', uni=0x0265, hex='0265', c='ɥ', l2r='h', r2l='h', srcName='h', isLower=True)
 
@@ -893,6 +893,8 @@ GDSI['hturned'].l = 'u'
 GDSI['hturned'].r = 'q'
 GDSI['vhook'].l = GDSI['vhook'].r = 'v'
 GDSI['gstroke'].r = 'hyphen'
+GDSI['bhook'].l = None
+GDSI['bhook'].r2l = 'jdotless'
 GDSI['phook'].l = 'bhook'
 GDSI['hhook'].l = 'bhook'
 GDSI['henghook'].l = 'bhook'
