@@ -448,7 +448,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['bdotaccent'] = GD(name='bdotaccent', uni=0x1E03, hex='1E03', c='ḃ', base='b', accents=['dotaccentcmb.uc'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['beta'] = GD(name='beta', uni=0x03B2, hex='03B2', c='β', isLower=True)
     GDS['beta_latin'] = GD(name='beta_latin', uni=0xA7B5, hex='A7B5', c='ꞵ', base='beta', isLower=True)
-    GDS['bilabialclick'] = GD(name='bilabialclick', uni=0x0298, hex='0298', c='ʘ', l='zero', r='zero')
+    GDS['bilabialclick'] = GD(name='bilabialclick', uni=0x0298, hex='0298', c='ʘ', l='zero', r='zero', base='zero',)
     GDS['blinebelow'] = GD(name='blinebelow', uni=0x1E07, hex='1E07', c='ḇ', base='b', accents=['macronbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['bstroke'] = GD(name='bstroke', uni=0x0180, hex='0180', c='ƀ', l='hyphen', r='b', base='b', isLower=True)
 
