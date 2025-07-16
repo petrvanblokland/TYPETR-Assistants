@@ -344,6 +344,17 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
     GDS['arrowNW'] = GD(name='arrowNW', uni=0x2196, hex='2196') 
     GDS['arrowSW'] = GD(name='arrowSW', uni=0x2199, hex='2199')     
     
+    GDS['arrowright.uc'] = GD(name='arrowright.uc', base='arrowright')
+    GDS['arrowleft.uc'] = GD(name='arrowleft.uc', base='arrowleft')
+    GDS['arrowup.uc'] = GD(name='arrowup.uc', base='arrowup')
+    GDS['arrowdown.uc'] = GD(name='arrowdown.uc', base='arrowdown')
+    GDS['arrowleftright.uc'] = GD(name='arrowleftright.uc', base='arrowleftright')
+    GDS['arrowupdown.uc'] = GD(name='arrowupdown.uc', base='arrowupdown')    
+    GDS['arrowSE.uc'] = GD(name='arrowSE.uc', base='arrowSE')  
+    GDS['arrowNE.uc'] = GD(name='arrowNE.uc', base='arrowNE') 
+    GDS['arrowNW.uc'] = GD(name='arrowNW.uc', base='arrowNW') 
+    GDS['arrowSW.uc'] = GD(name='arrowSW.uc', base='arrowSW')     
+    
 
 # Make exceptions here for Italic glyphs and spacing rules in LATIN_M_SET_ITALIC
 
