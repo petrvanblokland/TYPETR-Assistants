@@ -458,8 +458,8 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['invertedbrevedoublecmb'] = GD(name='invertedbrevedoublecmb', uni=0x0361, hex='0361', c='͡', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top'])
     GDS['invertedbrevedoublecmb.uc'] = GD(name='invertedbrevedoublecmb.uc', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['_top', 'top'])
 
-    GDS['bsuperior'] = GD(name='bsuperior', uni=0x1D47, hex='1D47', c='ᵇ', l='hsuperior', r='osuperior', isLower=False, isMod=True)
-    GDS['binferior'] = GD(name='binferior', l='hsuperior', r='asuperior', base='bsuperior', isLower=False, isMod=True)
+    GDS['bsuperior'] = GD(name='bsuperior', uni=0x1D47, hex='1D47', c='ᵇ', l='off', r='osuperior', isLower=False, isMod=True)
+    GDS['binferior'] = GD(name='binferior', l='bsuperior', r='osuperior', base='bsuperior', isLower=False, isMod=True)
 
     # c
 
@@ -536,7 +536,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     GDS['gacute'] = GD(name='gacute', uni=0x01F5, hex='01F5', c='ǵ', base='g', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['gamma_latin'] = GD(name='gamma_latin', uni=0x0263, hex='0263', c='ɣ', isLower=True)
-    GDS['ghook'] = GD(name='ghook', uni=0x0260, hex='0260', c='ɠ', l='g', w='g', isLower=True)
+    GDS['ghook'] = GD(name='ghook', uni=0x0260, hex='0260', c='ɠ', l='g', r='off', isLower=True)
     GDS['glottalstop'] = GD(name='glottalstop', uni=0x0294, hex='0294', c='ʔ', l='question', r='question', isLower=True)
     GDS['glottalstopreversed'] = GD(name='glottalstopreversed', uni=0x0295, hex='0295', c='ʕ', l2r='question', r2l='question', srcName='question')
     GDS['glottalstopsmall'] = GD(name='glottalstopsmall', uni=0x0242, hex='0242', c='ɂ', l='question', r='question', isSc=True)
@@ -893,8 +893,6 @@ GDSI['hturned'].l = 'u'
 GDSI['hturned'].r = 'q'
 GDSI['vhook'].l = GDSI['vhook'].r = 'v'
 GDSI['gstroke'].r = 'hyphen'
-GDSI['bhook'].l = None
-GDSI['bhook'].r2l = 'jdotless'
 GDSI['phook'].l = 'bhook'
 GDSI['hhook'].l = 'bhook'
 GDSI['henghook'].l = 'bhook'

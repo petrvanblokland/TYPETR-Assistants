@@ -2091,6 +2091,7 @@ class KerningManager:
                 'H', 'A', 'M', 'B', 'U', 'R', 'G', 'E', 'F', 'O', 'N', 'T', 'S', 'T', 'I', 'V'
                 ]
             donePairs = set()
+            allBaseGlyphs = set()
             self._kerningSample = initSample.copy()
             for scriptName1, scriptName2 in KERN_GROUPS:
                 pre1, ext1 = GROUP_NAME_PARTS[scriptName1]
@@ -2104,6 +2105,7 @@ class KerningManager:
                 for gName1 in baseGlyphs1:
                     if gName1 not in self.f: # Skip non-existing glyphs:
                         continue
+                    allBaseGlyphs.add(gName1)
                     if self._kerningSampleFilter1 is None or self._kerningSampleFilter1 == gName1:
                         for gName2 in baseGlyphs2:
                             if gName2.endswith('.sc'): # Skip if lc <--> sc. Keep sc <--> sc and keep capital <--> sc
@@ -2118,6 +2120,7 @@ class KerningManager:
                                 continue
                             if  scriptName2 != 'lt' and gName2 in ('exclamdown', 'questiondown'):
                                 continue
+                            allBaseGlyphs.add(gName2)
                             if self._kerningSampleFilter2 is None or self._kerningSampleFilter2 == gName2:
                                 if 'parenleft' in (gName1, gName2) or 'parenright' in (gName1, gName2):
                                     # Some doubling for /parenleft and /parenlright combinations
@@ -2151,6 +2154,7 @@ class KerningManager:
                                     donePairs.add((gName1, gName2))
                                     donePairs.add((gName2, gName1))
             self._kerningSample += exitSample
+            print('All base glyphs', sorted(allBaseGlyphs))
         return self._kerningSample
     kerningSample = property(_get_kerningSample)
 
