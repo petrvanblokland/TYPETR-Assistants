@@ -587,7 +587,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['jstroke'] = GD(name='jstroke', uni=0x0249, hex='0249', c='ɉ', l='j', r='hyphen', base='j', isLower=True, anchors=['bottom', 'middle'])
 
     GDS['jsuperior'] = GD(name='jsuperior', uni=0x02B2, hex='02B2', c='ʲ', isMod=True)
-    GDS['jinferior'] = GD(name='jsuperior', l='jsuperior', r='isuperior', base='jsuperior', isMod=True)
+    GDS['jinferior'] = GD(name='jsuperior', l='jsuperior', r='jsuperior', base='jsuperior', isMod=True)
 
     # k
 
