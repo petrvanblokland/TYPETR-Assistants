@@ -2113,12 +2113,14 @@ class KerningManager:
                                 continue
                             if (gName1, gName2) in donePairs:
                                 continue
+                            # Optimize for non-spanish
                             if gName1 in ('exclamdown', 'questiondown') and scriptName2 != 'lt':
                                 continue
                             if  scriptName2 != 'lt' and gName2 in ('exclamdown', 'questiondown'):
                                 continue
                             if self._kerningSampleFilter2 is None or self._kerningSampleFilter2 == gName2:
                                 if 'parenleft' in (gName1, gName2) or 'parenright' in (gName1, gName2):
+                                    # Some doubling for /parenleft and /parenlright combinations
                                     self._kerningSample.append(gName1)
                                     self._kerningSample.append(gName2)
                                     self._kerningSample.append('parenright')
@@ -2131,6 +2133,7 @@ class KerningManager:
                                     donePairs.add((gName2, 'parenleft'))
                                     donePairs.add((gName2, 'parenright'))
                                 elif 'guillemetleft' in (gName1, gName2) or 'guillemetright' in (gName1, gName2):
+                                    # Some doubling for /guillemetleft and /guillemetright combinations
                                     self._kerningSample.append(gName1)
                                     self._kerningSample.append(gName2)
                                     self._kerningSample.append('guillemetright')
@@ -2142,7 +2145,7 @@ class KerningManager:
                                     donePairs.add(('guillemetright', gName2))
                                     donePairs.add((gName2, 'guillemetleft'))
                                     donePairs.add((gName2, 'guillemetright'))
-                                else:
+                                else: # Regular pair combination
                                     self._kerningSample.append(gName1)
                                     self._kerningSample.append(gName2)
                                     donePairs.add((gName1, gName2))

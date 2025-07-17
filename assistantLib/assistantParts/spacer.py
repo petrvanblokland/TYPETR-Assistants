@@ -1027,7 +1027,7 @@ class AssistantPartSpacer(BaseAssistantPart):
             'i', 'igrave', 'iacute', 'icircumflex', 'idieresis', 'itilde', 'imacron', 'ibreve', 'iogonek', 'icaron', 'idblgrave', 
                 'iinvertedbreve', 'itildebelow', 'idieresisacute', 'ihookabove', 'idotbelow', 'idotless', 'ij', 'istroke', 
                 'iota', 'iotadieresistonos', 'iotatonos', 'iotadieresis', 'idotlesshorn'
-            'jcaron', 'jcircumflex', 
+            'j', 'jcaron', 'jcircumflex', 
             'ocircumflexacute', 'ocircumflexgrave', 'ocircumflexhookabove', 'odblgrave', 
             'one', 'question', 'lcaron', 'scaron', 'scircumflex',
             'racute', 'rcaron', 'rdblgrave', 'rinvertedbreve', 
@@ -1370,6 +1370,8 @@ class AssistantPartSpacer(BaseAssistantPart):
                 inc *= 10
 
         km.sampleKerningIndex = km.sampleKerningIndex + inc # km property will take care of boundaries
+        if km.sampleKerningIndex >= len(km.kerningSample):
+            km.sampleKerningIndex = 0
         nextGlyphName = km.kerningSample[km.sampleKerningIndex]
         if nextGlyphName in g.font:
             nextGlyph = g.font[nextGlyphName]
@@ -1390,6 +1392,8 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         kerningSample = km.kerningSample
         km.sampleKerningIndex = km.sampleKerningIndex - dec # km property will take care of boundaries
+        if km.sampleKerningIndex < 0:
+            km.sampleKerningIndex = len(kerningSample)-1
         prevGlyphName = kerningSample[km.sampleKerningIndex]
         if prevGlyphName in g.font:
             prevGlyph = g.font[prevGlyphName]
