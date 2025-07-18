@@ -453,6 +453,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         gpPrev = gpCurr = gpNext = None # Set for reference of KerningGroupLines
 
         offsetX = g.width/2/self.KERN_SCALE - (gpLast.x - gpFirst.x)/2 + y * tan(radians(-(f.info.italicAngle or 0)))
+        ggIndex1 = ggIndex2 = None
 
         self.spacerWhiteBackground.setPosition((gpFirst.x + offsetX - 2*m, y + f.info.descender - m))
         self.spacerWhiteBackground.setSize((gpLast.x - gpFirst.x + gpLast.w + 4*m, h + 2*m))
@@ -524,11 +525,13 @@ class AssistantPartSpacer(BaseAssistantPart):
             if gpPrev is not None and gpCurr is not None and gpNext is not None:
                 ggIndex1, ggIndex2 = self._fillKerningGroupLines(km, gpPrev, gpCurr, gpNext, gpFirst.x, y)
 
-            for n in range(ggIndex1, len(self.kerningGroupLine1)):
-                self.kerningGroupLine1[ggIndex1].setVisible(False)
+            if ggIndex1 is not None:
+                for n in range(ggIndex1, len(self.kerningGroupLine1)):
+                    self.kerningGroupLine1[n].setVisible(False)
 
-            for n in range(ggIndex2, len(self.kerningGroupLine2)):
-                self.kerningGroupLine2[ggIndex2].setVisible(False)
+            if ggIndex2 is not None:
+                for n in range(ggIndex2, len(self.kerningGroupLine2)):
+                    self.kerningGroupLine2[n].setVisible(False)
 
 
     def _fillKerningGroupLines(self, km, gpPrev, gpCurr, gpNext, x, y):
@@ -840,9 +843,9 @@ class AssistantPartSpacer(BaseAssistantPart):
         personalKey_smaller = self.registerKeyStroke(self.KEY_DEC_KERN2_CAP, 'spacerDecKern2Cap')
         personalKey_comma = self.registerKeyStroke(self.KEY_DEC_KERN2, 'spacerDecKern2')
 
-        personalKey_division = self.registerKeyStroke(self.KEY_SET_KERNNET1, 'spacerSetKernNet1')
-        personalKey_question = self.registerKeyStroke(self.KEY_SET_KERNNET2, 'spacerSetKernNet2')
-        personalKey_slash = self.registerKeyStroke(self.KEY_SET_KERN_0, 'spacerSetKernClear2')
+        personalKey_division = self.registerKeyStroke(self.KEY_SET_KERNNET1, 'spacerSetKernNet1') # spacerSetKernNet1
+        personalKey_question = self.registerKeyStroke(self.KEY_SET_KERNNET2, 'bubbleFixKern1') # spacerSetKernNet2
+        personalKey_slash = self.registerKeyStroke(self.KEY_SET_KERN_0, 'bubbleFixKern2')
 
         # Kerning sample selection
 
@@ -884,10 +887,10 @@ class AssistantPartSpacer(BaseAssistantPart):
         c.w.autoSpaceFontButton = Button((C0, y, CW, L), 'Auto space font', callback=self.autoSpaceFontCallback)
         c.w.fixOverlappedKerningButton = Button((C1, y, CW, L), 'Fix overlapped kerns', callback=self.fixOverlappedKerningCallback)
         c.w.autoSpaceAllTheseGlyphsButton = Button((C2, y, CW, L), 'Fix all these glyphs', callback=self.autoSpaceAllTheseGlyphsCallback)
-        y += L + 10
-        c.w.selectKerningByCharPair = CheckBox((C0, y, CW, L), 'By char kerning pair', value=True, sizeStyle='small', callback=self.updateEditor)
-        c.w.charKerningPairTextBox = EditText((C1, y, CW, L), callback=self.updateEditor)
-        c.w.charKerningPairTextBox.set('AA')
+        #y += L + 10
+        #c.w.selectKerningByCharPair = CheckBox((C0, y, CW, L), 'By char kerning pair', value=True, sizeStyle='small', callback=self.updateEditor)
+        #c.w.charKerningPairTextBox = EditText((C1, y, CW, L), callback=self.updateEditor)
+        #c.w.charKerningPairTextBox.set('AA')
         # Not much autoKernNet for now: make it more reliable first
         #c.w.factorKernNetTextBox = EditText((C0, y, 48, L))
         #c.w.factorKernNetTextBox.set('1.2')
@@ -903,6 +906,26 @@ class AssistantPartSpacer(BaseAssistantPart):
         y += L/5
 
         return y
+
+    def bubbleFixKern2(self, g, c, event):
+        km = self.getKerningManager(g.font)
+        kernGlyphNameLeft = km.kerningSample[km.sampleKerningIndex - 1]
+        k = km.kernedDistance(g.font[kernGlyphNameLeft], g)
+        groupName1 = km.glyphName2GroupName1.get(kernGlyphNameLeft)
+        groupName2 = km.glyphName2GroupName2.get(g.name)
+        g.font.kerning[(groupName1, groupName2)] = int(round(200 - k)/4)*4
+        #g.font.kerning[(groupName1, groupName2)] = -k # This makes them touching
+        print(f'bubbleFixKern2 /{kernGlyphNameLeft} ({groupName1}) + /{g.name} ({groupName2}) -- {k} {g.font.kerning.get((groupName1, groupName2))}')
+
+    def bubbleFixKern1(self, g, c, event):
+        km = self.getKerningManager(g.font)
+        kernGlyphNameRight = km.kerningSample[km.sampleKerningIndex + 1]
+        k = km.kernedDistance(g, g.font[kernGlyphNameRight])
+        groupName1 = km.glyphName2GroupName1.get(g.name)
+        groupName2 = km.glyphName2GroupName2.get(kernGlyphNameRight)
+        g.font.kerning[(groupName1, groupName2)] = int(round(200 - k)/4)*4
+        #g.font.kerning[(groupName1, groupName2)] = -k # This makes them touching
+        print(f'bubbleFixKern1 /{g.name} ({groupName1}) + /{kernGlyphNameRight} ({groupName2}) -- {k} {g.font.kerning.get((groupName1, groupName2))}')
 
     def initilalizeAllScriptScriptKerningCallback(self, sender):
         """Make sure that all script <--> script kerning combinations have at least one placeholder kerning pair."""

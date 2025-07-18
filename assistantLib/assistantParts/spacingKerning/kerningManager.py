@@ -130,7 +130,7 @@ class GroupKerningStatistics:
         hasGroup1 = set()
         hasGroup2 = set()
 
-        for groupName, group in f.groups.items():
+        for groupName, group in sorted(f.groups.items()):
             for gName in group:
 
                 if groupName.startswith(PUBLIC_KERN1):
@@ -147,6 +147,7 @@ class GroupKerningStatistics:
                     hasGroup1.add(gName)
 
                 elif groupName.startswith(PUBLIC_KERN2):
+
                     if gName not in self.f.keys():
                         if gName not in self.missingGroupName2:
                             self.missingGroupName2[gName] = []
@@ -264,23 +265,32 @@ class KerningManager:
         #   all1=(glyphName, ...), # Glyphs that kern with all scripts and with each other.
         #   all2=(glyphName, ...)
         # )
-        if groupBaseGlyphs is None:
-            groupBaseGlyphs = GROUP_BASE_GLYPHS # Use default
-        self.groupBaseGlyphs = groupBaseGlyphs
+
+        self.groupBaseGlyphs = {}
 
         self.scriptMatchingGroups1 = {} # Key is LT1, LT2, ... value is list with matching group names for that script
         self.scriptMatchingGroups2 = {} # Key is LT1, LT2, ... value is list with matching group names for that script
 
-        for script1, script2 in KERN_GROUPS:
-            if not script1 in self.scriptMatchingGroups1:
-                self.scriptMatchingGroups1[script1] = set()
-            if script2 not in self.scriptMatchingGroups2:
-                self.scriptMatchingGroups2[script2] = set()
-            for groupName in f.groups.keys():
-                if groupName.startswith(PUBLIC_KERN1) and (groupName + '1').endswith(script1):
-                    self.scriptMatchingGroups1[script1].add(groupName)
-                if groupName.startswith(PUBLIC_KERN2) and (groupName + '2').endswith(script2):
-                    self.scriptMatchingGroups2[script2].add(groupName)
+        for groupName, group in f.groups.items():
+            if groupName.startswith(PUBLIC_KERN1):
+                scriptName = groupName.split('_')[-1] + '1'
+                if scriptName not in self.scriptMatchingGroups1:
+                    self.scriptMatchingGroups1[scriptName] = set()
+                self.scriptMatchingGroups1[scriptName].add(groupName)
+
+                if scriptName not in self.groupBaseGlyphs:
+                    self.groupBaseGlyphs[scriptName] = set()
+                self.groupBaseGlyphs[scriptName].add(group[0])
+            
+            elif groupName.startswith(PUBLIC_KERN2):
+                scriptName = groupName.split('_')[-1] + '2'
+                if scriptName not in self.scriptMatchingGroups2:
+                    self.scriptMatchingGroups2[scriptName] = set()
+                self.scriptMatchingGroups2[scriptName].add(groupName)
+
+                if scriptName not in self.groupBaseGlyphs:
+                    self.groupBaseGlyphs[scriptName] = set()
+                self.groupBaseGlyphs[scriptName].add(group[0])
 
         # Deprecated, now we have as dictionary of samples, initialized upon property request.
         #if not sample: # Not defined, then construct default
@@ -2094,10 +2104,10 @@ class KerningManager:
             allBaseGlyphs = set()
             self._kerningSample = initSample.copy()
             for scriptName1, scriptName2 in KERN_GROUPS:
-                pre1, ext1 = GROUP_NAME_PARTS[scriptName1]
-                pre2, ext2 = GROUP_NAME_PARTS[scriptName2]
-                baseGlyphs1 = sorted(GROUP_BASE_GLYPHS.get(scriptName1, [])) # May not be found due to incompatible script names.
-                baseGlyphs2 = sorted(GROUP_BASE_GLYPHS.get(scriptName2, []))
+                #pre1, ext1 = GROUP_NAME_PARTS[scriptName1]
+                #pre2, ext2 = GROUP_NAME_PARTS[scriptName2]
+                baseGlyphs1 = sorted(self.groupBaseGlyphs.get(scriptName1, [])) # May not be found due to incompatible script names.
+                baseGlyphs2 = sorted(self.groupBaseGlyphs.get(scriptName2, []))
                 if not baseGlyphs1:
                     print(f"""Cannot find base glyphs for {scriptName1}""")
                 if not baseGlyphs2:
