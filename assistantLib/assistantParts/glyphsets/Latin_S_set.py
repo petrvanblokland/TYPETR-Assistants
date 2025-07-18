@@ -224,7 +224,7 @@ LATIN_S_SET = GDS = {
     'multiply': GD(name='multiply', uni=0x00D7, hex='00D7', c='×', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=True, comment='× product, cartesian'),
     'divide': GD(name='divide', uni=0x00F7, hex='00F7', c='÷', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=True, comment='÷ obelus'),
     'numbersign.tab': GD(name='numbersign.tab', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, base='numbersign', isLower=True, comment='# pound sign tabular'),
-    'equal': GD(name='equal', uni=0x003D, hex='003D', c='=', isLower=True, comment='= EQUALS SIGN'),
+    'equal': GD(name='equal', uni=0x003D, hex='003D', c='=', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=True, comment='= EQUALS SIGN'),
     'notequal': GD(name='notequal', uni=0x2260, hex='2260', c='≠', base='equal', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='≠ NOT EQUAL TO'),
     'greater': GD(name='greater', uni=0x003E, hex='003E', c='>', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='> GREATER-THAN SIGN'),
     'greaterequal': GD(name='greaterequal', uni=0x2265, hex='2265', c='≥', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, comment='≥ GREATER-THAN OR EQUAL TO'),
