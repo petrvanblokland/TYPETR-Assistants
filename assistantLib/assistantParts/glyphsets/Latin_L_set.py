@@ -343,7 +343,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['Scarondotaccent'] = GD(name='Scarondotaccent', uni=0x1E66, hex='1E66', c='Ṧ', l='S', w='S', base='S', accents=['carondotaccentcmb.uc'], anchors=['bottom', 'middle', 'top'])
     GDS['Sdotaccent'] = GD(name='Sdotaccent', uni=0x1E60, hex='1E60', c='Ṡ', l='S', w='S', base='S', accents=['dotaccentcmb.uc'], srcName='S', anchors=['bottom', 'middle', 'top'])
     GDS['Sdotbelowdotaccent'] = GD(name='Sdotbelowdotaccent', uni=0x1E68, hex='1E68', c='Ṩ', l='S', w='S', base='S', accents=['dotaccentcmb.uc', 'dotbelowcmb'], srcName='S', anchors=['bottom', 'middle', 'top'])
-    GDS['Sobliquestroke'] = GD(name='Sobliquestroke', uni=0xA7A8, hex='A7A8', c='Ꞩ', w='S', anchors=['bottom', 'middle', 'top'])
+    GDS['Sobliquestroke'] = GD(name='Sobliquestroke', uni=0xA7A8, hex='A7A8', c='Ꞩ', w='S', srcName='S', anchors=['bottom', 'middle', 'top'])
 
     GDS['Ssuperior'] = GD(name='Ssuperior', l='S.sc', l2r='Ssuperior', isMod=True)
     GDS['Sinferior'] = GD(name='Sinferior', l='Ssuperior', r='Ssuperior', base='Ssuperior', isLower=True)
@@ -710,7 +710,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['scarondotaccent'] = GD(name='scarondotaccent', uni=0x1E67, hex='1E67', c='ṧ', l='s', r='s', base='s', accents=['carondotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['sdotaccent'] = GD(name='sdotaccent', uni=0x1E61, hex='1E61', c='ṡ', l='s', r='s', base='s', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['sdotbelowdotaccent'] = GD(name='sdotbelowdotaccent', uni=0x1E69, hex='1E69', c='ṩ', l='s', r='s', base='sdotaccent', accents=['dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
-    GDS['sobliquestroke'] = GD(name='sobliquestroke', uni=0xA7A9, hex='A7A9', c='ꞩ', isLower=True, anchors=['bottom', 'middle', 'top'])
+    GDS['sobliquestroke'] = GD(name='sobliquestroke', uni=0xA7A9, hex='A7A9', c='ꞩ', srcName='s', isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['secondtonechinese'] = GD(name='secondtonechinese', uni=0x02CA, hex='02CA', c='ˊ', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='acutecmb', isLower=True)
     GDS['summation'] = GD(l='H', r='E', uni=0x2211, c='∑', name='summation', src='E', isLower=False, height=GD.CAT_CAP_HEIGHT, overshoot=GD.CAT_CAP_OVERSHOOT, comment='∑ SUMMATION, N-ARY')
 
