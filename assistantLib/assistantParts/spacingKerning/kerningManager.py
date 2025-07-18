@@ -2094,12 +2094,7 @@ class KerningManager:
                 'H', 'a', 'm', 'b', 'u', 'r', 'g',
                 'H', 'A', 'M', 'B', 'U', 'R', 'G', 'E', 'F', 'O', 'N', 'T', 'S', 'T', 'I', 'V'
                 ] * 2
-            exitSample = [
-                'H', 'O', 'H', 'H', 'O', 'H', 'n', 'o', 'O', 'o', 'O', 'o', 'O',
-                'H', 'a', 'm', 'b', 'u', 'r', 'g', 'e', 'f', 'o', 'n', 't', 's', 't', 'i', 'v',
-                'H', 'a', 'm', 'b', 'u', 'r', 'g',
-                'H', 'A', 'M', 'B', 'U', 'R', 'G', 'E', 'F', 'O', 'N', 'T', 'S', 'T', 'I', 'V'
-                ]
+            exitSample = []
             donePairs = set()
             allBaseGlyphs = set()
             self._kerningSample = initSample.copy()
@@ -2123,7 +2118,7 @@ class KerningManager:
                                     continue 
                             if gName2 not in self.f: # Skip non-existing glyphs:
                                 continue
-                            if (gName1, gName2) in donePairs:
+                            if (gName1, gName2) in donePairs or (gName2, gName1) in donePairs:
                                 continue
                             # Optimize for non-spanish
                             if gName1 in ('exclamdown', 'questiondown') and scriptName2 != 'lt':

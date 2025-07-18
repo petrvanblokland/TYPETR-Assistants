@@ -566,7 +566,7 @@ class AssistantPartSpacer(BaseAssistantPart):
                 g2 = f[gName2]
                 #print('[1]', gName1, gName2, k)
 
-                self.spacerGlyphGroupPositions1.append(KerningLineGlyphPosition(g1, xx, y, g1.width + k, h, k, None, self.SPACER_FILL_COLOR, ggIndex1))
+                self.spacerGlyphGroupPositions1.append(KerningLineGlyphPosition(g1, xx, y, g1.width, h, k, None, self.SPACER_FILL_COLOR, ggIndex1))
 
                 kgl = self.kerningGroupLine1[ggIndex1]
                 kgl.setPath(g1.getRepresentation("merz.CGPath"))
@@ -599,7 +599,7 @@ class AssistantPartSpacer(BaseAssistantPart):
                 g2 = f[gName2]
                 #print('[2]', gName1, gName2, k)
 
-                self.spacerGlyphGroupPositions2.append(KerningLineGlyphPosition(g1, xx, y, g1.width + k, h, k, None, self.SPACER_FILL_COLOR, ggIndex2))
+                self.spacerGlyphGroupPositions2.append(KerningLineGlyphPosition(g1, xx, y, g1.width, h, k, None, self.SPACER_FILL_COLOR, ggIndex2))
 
                 kgl = self.kerningGroupLine2[ggIndex2]
                 kgl.setPath(g1.getRepresentation("merz.CGPath"))
@@ -916,6 +916,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         g.font.kerning[(groupName1, groupName2)] = int(round(200 - k)/4)*4
         #g.font.kerning[(groupName1, groupName2)] = -k # This makes them touching
         print(f'bubbleFixKern2 /{kernGlyphNameLeft} ({groupName1}) + /{g.name} ({groupName2}) -- {k} {g.font.kerning.get((groupName1, groupName2))}')
+        g.changed()
 
     def bubbleFixKern1(self, g, c, event):
         km = self.getKerningManager(g.font)
@@ -926,6 +927,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         g.font.kerning[(groupName1, groupName2)] = int(round(200 - k)/4)*4
         #g.font.kerning[(groupName1, groupName2)] = -k # This makes them touching
         print(f'bubbleFixKern1 /{g.name} ({groupName1}) + /{kernGlyphNameRight} ({groupName2}) -- {k} {g.font.kerning.get((groupName1, groupName2))}')
+        g.changed()
 
     def initilalizeAllScriptScriptKerningCallback(self, sender):
         """Make sure that all script <--> script kerning combinations have at least one placeholder kerning pair."""
