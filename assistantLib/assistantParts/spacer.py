@@ -32,7 +32,7 @@ for path in PATHS:
 from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart
 from assistantLib.assistantParts.data import * # Import anchors names
 
-from assistantLib.assistantParts.glyphsets.groupBaseGlyphs import KERN_GROUPS
+from assistantLib.assistantParts.glyphsets.groupBaseGlyphs import KERN_GROUPS, NOK1, NOK2
 
 ARROW_KEYS = [NSUpArrowFunctionKey, NSDownArrowFunctionKey,
         NSLeftArrowFunctionKey, NSRightArrowFunctionKey, NSPageUpFunctionKey,
@@ -708,7 +708,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         kLeft, groupKLeft, kerningTypeLeft = km.getKerning(gNameLeft, g.name)
         kRight, groupKRight, kerningTypeRight = km.getKerning(g.name, gNameRight)
 
-        # Recaclulate KernNet, since this the spacing or shape may have changed from last time
+        # Recaclulate KernNet, since this spacing or shape may have changed from last time
         knLeft = km.getKernNetKerning(gLeft, g) or 0
         knRight = km.getKernNetKerning(g, gRight) or 0
 
@@ -1393,6 +1393,8 @@ class AssistantPartSpacer(BaseAssistantPart):
             inc *= 10
             if event['optionDown']:
                 inc *= 10
+
+        print('#@@#@##@#@#', km.kerningSample)
 
         km.sampleKerningIndex = km.sampleKerningIndex + inc # km property will take care of boundaries
         if km.sampleKerningIndex >= len(km.kerningSample):

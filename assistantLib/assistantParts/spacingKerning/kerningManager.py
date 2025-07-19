@@ -266,31 +266,24 @@ class KerningManager:
         #   all2=(glyphName, ...)
         # )
 
-        self.groupBaseGlyphs = {}
-
         self.scriptMatchingGroups1 = {} # Key is LT1, LT2, ... value is list with matching group names for that script
         self.scriptMatchingGroups2 = {} # Key is LT1, LT2, ... value is list with matching group names for that script
 
         for groupName, group in f.groups.items():
-            if groupName.startswith(PUBLIC_KERN1):
-                scriptName = groupName.split('_')[-1] + '1'
+            baseGlyph, scriptName = self.groupName2baseGlyphScript(groupName)
+            if scriptName is None:
+                continue
+            if scriptName in (NOK1, NOK2):
+                continue
+            if scriptName.endswith('1'):
                 if scriptName not in self.scriptMatchingGroups1:
                     self.scriptMatchingGroups1[scriptName] = set()
                 self.scriptMatchingGroups1[scriptName].add(groupName)
-
-                if scriptName not in self.groupBaseGlyphs:
-                    self.groupBaseGlyphs[scriptName] = set()
-                self.groupBaseGlyphs[scriptName].add(group[0])
             
-            elif groupName.startswith(PUBLIC_KERN2):
-                scriptName = groupName.split('_')[-1] + '2'
+            elif scriptName.endswith('2'):
                 if scriptName not in self.scriptMatchingGroups2:
                     self.scriptMatchingGroups2[scriptName] = set()
                 self.scriptMatchingGroups2[scriptName].add(groupName)
-
-                if scriptName not in self.groupBaseGlyphs:
-                    self.groupBaseGlyphs[scriptName] = set()
-                self.groupBaseGlyphs[scriptName].add(group[0])
 
         # Deprecated, now we have as dictionary of samples, initialized upon property request.
         #if not sample: # Not defined, then construct default
@@ -476,14 +469,12 @@ class KerningManager:
                 return True
         return False
 
-    def initializeGroups(self, fixKerning=False):
+    def XXXinitializeGroups(self, fixKerning=False):
         """This (dangerous) method does clear the self.f.groups and builds them according to what is in self.groupBaseGlyphs.
         If the fixKerning flag is set, then clean the kerning, removing all pairs with group names that no longer exist.
         Note that there may be base group glyphs that are so similar that they still should not have separate groups.
         """
         self.f.groups.clear() # Clear the current set of groups in this font
-        # Then make groups for each of the glyphs in self.groupBaseGlyphs
-        assert self.groupBaseGlyphs is not None # Make sure it is defined, if using this group inization process
         used1 = set() # Check that glyphs don't get in groups on their side more than once.
         used2 = set()
         noGroup1 = set()
@@ -491,7 +482,7 @@ class KerningManager:
         baseGlyph2GroupName1 = {} # Key is base group glyph name, value is the groupName
         baseGlyph2GroupName2 = {} # Key is base group glyph name, value is the groupName
         # First make small groups for every base group glyph
-        for scriptName, baseGlyphNames in self.groupBaseGlyphs.items(): # Script by script
+        for scriptName, baseGlyphNames in self.XXXgroupBaseGlyphs.items(): # Script by script
             s1, s2 = GROUP_NAME_PARTS[scriptName] # Construct the group name for this script and this base group glyph name.
             for baseGlyphName in baseGlyphNames: # For each of the base group glyph names of this script.
                 groupName = s1 + baseGlyphName + s2
@@ -648,8 +639,33 @@ class KerningManager:
     
     #   S P A C I N G  B Y  G R O U P S
 
+    def groupName2baseGlyphScript(self, groupName):
+        """Anwser the base glyph name and and script name extracted from the group name.
+        public.kern1.A_lt --> ('A', 'lt1'')
+        public.kern1.A_sc_lt --> ('A.sc', 'lt1')
+        public.kern2.A_lt --> ('A', 'lt2'')
+        """
+        if groupName.startswith(PUBLIC_KERN1):
+            nameParts = groupName.split('_')
+            gName = nameParts[0].replace(PUBLIC_KERN1, '')
+            scriptName = nameParts[-1] + '1'
+            if gName.endswith('.sc'):
+                scriptName = 'sc' + scriptName
+
+        elif groupName.startswith(PUBLIC_KERN2):
+            nameParts = groupName.split('_')
+            gName = nameParts[0].replace(PUBLIC_KERN2, '')
+            scriptName = nameParts[-1] + '2'
+            if gName.endswith('.sc'):
+                scriptName = 'sc' + scriptName
+
+        else:
+            gName = scriptName = None
+
+        return gName, scriptName
+
     #   Spacing by groups, answers the base glyph for the group of g (left or right side). 
-    def getLeftMarginGroupBaseGlyph(self, g):
+    def XXXgetLeftMarginGroupBaseGlyph(self, g):
         """Answer the angled left margin source glyph, according to the base glyph of group2"""
         groupName = self.glyphName2GroupName2.get(g.name)
         if groupName is None:
@@ -657,16 +673,16 @@ class KerningManager:
         baseGlyphName = groupName.replace(PUBLIC_KERN2, '')
         if baseGlyphName.endswith('_lt'):
             baseGlyphName = baseGlyphName.replace('_lt', '')
-        elif baseGlyphName.endswith('_lt'):
+        elif baseGlyphName.endswith('_cy'):
             baseGlyphName = baseGlyphName.replace('_cy', '')
-        elif baseGlyphName.endswith('_lt'):
+        elif baseGlyphName.endswith('_gr'):
             baseGlyphName = baseGlyphName.replace('_gr', '')
         if baseGlyphName not in self.f:
             print(f'### /{baseGlyphName} not in font.')
             return None
         return self.f[baseGlyphName]
         
-    def getRightMarginGroupBaseGlyph(self, g):
+    def XXXgetRightMarginGroupBaseGlyph(self, g):
         """Answer the angled right margin source glyph, according to the base glyph of group1"""
         groupName = self.glyphName2GroupName1.get(g.name)
         if groupName is None:
@@ -674,9 +690,9 @@ class KerningManager:
         baseGlyphName = groupName.replace(PUBLIC_KERN1, '')
         if baseGlyphName.endswith('_lt'):
             baseGlyphName = baseGlyphName.replace('_lt', '')
-        elif baseGlyphName.endswith('_lt'):
+        elif baseGlyphName.endswith('_cy'):
             baseGlyphName = baseGlyphName.replace('_cy', '')
-        elif baseGlyphName.endswith('_lt'):
+        elif baseGlyphName.endswith('_gr'):
             baseGlyphName = baseGlyphName.replace('_gr', '')
         if baseGlyphName not in self.f:
             print(f'### /{baseGlyphName} not in font')
@@ -1385,7 +1401,7 @@ class KerningManager:
 
     #   K E R N I N G
 
-    def kernGroups(self, factor=1, calibrate=0, verbose=False):
+    def XXXkernGroups(self, factor=1, calibrate=0, verbose=False):
         """This kerns all group pairs in KERN_GROUPS after clearing f.kerning first."""
         self.f.kerning.clear()
         for scriptName1, scriptName2 in KERN_GROUPS:
@@ -1393,8 +1409,8 @@ class KerningManager:
             sLeft1, sRight1 = GROUP_NAME_PARTS[scriptName1] # Construct the group name for this script and this base group glyph name.
             sLeft2, sRight2 = GROUP_NAME_PARTS[scriptName2] # Construct the group name for this script and this base group glyph name.
 
-            baseGlyphNames1 = self.groupBaseGlyphs[scriptName1]
-            baseGlyphNames2 = self.groupBaseGlyphs[scriptName2]
+            baseGlyphNames1 = self.XXXgroupBaseGlyphs[scriptName1]
+            baseGlyphNames2 = self.XXXgroupBaseGlyphs[scriptName2]
 
             for baseGlyphName1 in baseGlyphNames1: # For each of the base group glyph names of this script.
                 #if not baseGlyphName1 in ('V', 'A', 'T', 'period', 'n', 'o'):
@@ -1417,14 +1433,14 @@ class KerningManager:
 
         print(f'... Groups: {len(self.f.groups)} Kerning pairs {len(self.f.kerning)}')
 
-    def initializeKernGroups(self):
+    def XXXinitializeKernGroups(self):
         """Check all script <--> script combinations to ensure that there is at least on kerning pair in that combination.
         This is necessary to make all [kern] lookups being generated, in case on of the combinations does not have any pairs.
         """
         gName = '.notdef' # This will never be kerned, so not overwriting something.
         for scriptName1, scriptName2 in KERN_GROUPS:
-            baseGlyphNames1 = self.groupBaseGlyphs[scriptName1]
-            baseGlyphNames2 = self.groupBaseGlyphs[scriptName2]
+            baseGlyphNames1 = self.XXXgroupBaseGlyphs[scriptName1]
+            baseGlyphNames2 = self.XXXgroupBaseGlyphs[scriptName2]
 
             if (baseGlyphNames1[0], gName) not in self.f.kerning: # The place holder pair does not exist.
                 print(f"... Initialize placeholder pair {baseGlyphNames1[0], gName} in {self.f.path.split('/')[-1]}")
@@ -2096,26 +2112,32 @@ class KerningManager:
                 ] * 2
             exitSample = []
             donePairs = set()
-            allBaseGlyphs = set()
             self._kerningSample = initSample.copy()
+            print('+++#+#+# _kerningSample')
             for scriptName1, scriptName2 in KERN_GROUPS:
                 #pre1, ext1 = GROUP_NAME_PARTS[scriptName1]
                 #pre2, ext2 = GROUP_NAME_PARTS[scriptName2]
-                baseGlyphs1 = sorted(self.groupBaseGlyphs.get(scriptName1, [])) # May not be found due to incompatible script names.
-                baseGlyphs2 = sorted(self.groupBaseGlyphs.get(scriptName2, []))
-                if not baseGlyphs1:
-                    print(f"""Cannot find base glyphs for {scriptName1}""")
-                if not baseGlyphs2:
-                    print(f"""Cannot find base glyphs for {scriptName2}""")
-                for gName1 in baseGlyphs1:
+                groupNames1 = self.scriptMatchingGroups1.get(scriptName1, [])
+                groupNames2 = self.scriptMatchingGroups2.get(scriptName2, [])
+
+                for groupName1 in groupNames1:
+                    gName1, _ = self.groupName2baseGlyphScript(groupName1)
                     if gName1 not in self.f: # Skip non-existing glyphs:
                         continue
-                    allBaseGlyphs.add(gName1)
-                    if self._kerningSampleFilter1 is None or self._kerningSampleFilter1 == gName1:
-                        for gName2 in baseGlyphs2:
-                            if gName2.endswith('.sc'): # Skip if lc <--> sc. Keep sc <--> sc and keep capital <--> sc
-                                if gName1[0].upper() != gName1[0] and not gName1.endswith('.sc'):
+                    for groupName2 in groupNames2:
+                        gName2, _ = self.groupName2baseGlyphScript(groupName2)
+                        if gName2 not in self.f: # Skip non-existing glyphs:
+                            continue
+
+                        if self._kerningSampleFilter1 is None or self._kerningSampleFilter1 == gName1:
+                            if gName1.endswith('.sc'): # Skip if sc <--> lc. Keep sc <--> sc and keep capital <--> sc
+                                if gName2[0].upper() != gName2[0] or not gName1.endswith('.sc'):
                                     continue 
+                            if gName2.endswith('.sc'): # Skip if lc <--> sc. Keep sc <--> sc and keep capital <--> sc
+                                if gName1[0].upper() != gName1[0] or not gName1.endswith('.sc'):
+                                    continue 
+                            if ('superior' in gName1 and 'inferior' in gName2) or ('inferior' in gName1 and 'superior' in gName2):
+                                continue
                             if gName2 not in self.f: # Skip non-existing glyphs:
                                 continue
                             if (gName1, gName2) in donePairs or (gName2, gName1) in donePairs:
@@ -2125,7 +2147,7 @@ class KerningManager:
                                 continue
                             if  scriptName2 != 'lt' and gName2 in ('exclamdown', 'questiondown'):
                                 continue
-                            allBaseGlyphs.add(gName2)
+
                             if self._kerningSampleFilter2 is None or self._kerningSampleFilter2 == gName2:
                                 if 'parenleft' in (gName1, gName2) or 'parenright' in (gName1, gName2):
                                     # Some doubling for /parenleft and /parenlright combinations
@@ -2158,21 +2180,22 @@ class KerningManager:
                                     self._kerningSample.append(gName2)
                                     donePairs.add((gName1, gName2))
                                     donePairs.add((gName2, gName1))
+
             self._kerningSample += exitSample
-            print('All base glyphs', sorted(allBaseGlyphs))
+
         return self._kerningSample
     kerningSample = property(_get_kerningSample)
 
     def _get_sampleGlyphSetIndex(self):
         return self._sampleGlyphSetIndex
     def _set_sampleGlyphSetIndex(self, i):
-        self._sampleGlyphSetIndex = min(max(i, 0), len(self._kerningSample))
+        self._sampleGlyphSetIndex = min(max(i, 0), len(self.kerningSample))
     sampleGlyphSetIndex = property(_get_sampleGlyphSetIndex, _set_sampleGlyphSetIndex)
     
     def _get_sampleSimilarityIndex(self):
         return self._sampleSimilarityIndex
     def _set_sampleSimilarityIndex(self, i):
-        self._sampleSimilarityIndex = min(max(i, 0), len(self._kerningSample))
+        self._sampleSimilarityIndex = min(max(i, 0), len(self.kerningSample))
     sampleSimilarityIndex = property(_get_sampleSimilarityIndex, _set_sampleSimilarityIndex)
     
     def _get_sampleGroupIndex(self):

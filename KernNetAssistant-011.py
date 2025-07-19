@@ -517,8 +517,9 @@ class KernNetAssistant(Subscriber):
             md = getMasterData(f)
             if f.path not in self.kerningManagers:
                 self.kerningManagers[f.path] = KerningManager(f, simT=0.95 , simClip=150) #  First sample will be initialzed, others will be copied
-            km = self.kerningManagers[f.path]
-            self.kerningSample = km.sample
+            #km = self.kerningManagers[f.path]
+            self.kerningSample = km.sample 
+            #self.kerningSample = km.kerningSample
             return km
         return None
 

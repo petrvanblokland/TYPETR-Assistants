@@ -301,7 +301,9 @@ class BaseAssistant:
         if not f.path in self.kerningManagers:
             md = self.getMasterData(f)
             simClip = self.SIM_CLIP * f.info.unitsPerEm / 1000 # Correct for other em-squares.
-            kerningGlyphSample = (SAMPLES + CYRILLIC_KERNING + GREEK_KERNING).replace(' ', '')
+            # #############################
+            #kerningGlyphSample = (SAMPLES + CYRILLIC_KERNING + GREEK_KERNING).replace(' ', '')
+            kerningGlyphSample = None
             self.kerningManagers[f.path] = KerningManager(f, md, simClip=simClip, kerningCharSample=kerningGlyphSample)
         return self.kerningManagers[f.path]
 
