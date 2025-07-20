@@ -2159,6 +2159,13 @@ class KerningManager:
                             elif gName1 == 'ldot':
                                 gName2 = 'l'
 
+                            # Otherwise test on special .uc versions of glyphs in combination with capitals.
+                            elif gName1 + '.uc' in self.f and gName2[0].upper() == gName2[0]:
+                                gName1 += '.uc'
+                            elif gName2 + '.uc' in self.f and gName1[0].upper() == gName1[0]:
+                                gName2 += '.uc'
+
+                            # Skip if the pair is already in the sample.
                             if (gName1, gName2) in donePairs or (gName2, gName1) in donePairs:
                                 continue
 

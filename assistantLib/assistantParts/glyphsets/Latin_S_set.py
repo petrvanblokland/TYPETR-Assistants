@@ -83,7 +83,9 @@ LATIN_S_SET = GDS = {
     'cent.alt': GD(name='cent.alt', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=True, comment='¢ CENT SIGN'),
     'comma': GD(name='comma', uni=0x002C, hex='002C', c=',', l='off', isLower=True, comment=', separator, decimal'),
     'copyright': GD(name='copyright', uni=0x00A9, hex='00A9', c='©', l='O', r='O', isLower=True, base='largecircle', comment='© COPYRIGHT SIGN'),
+    'copyright.uc': GD(name='copyright.uc', l='copyright', r='copyright', base='copyright', isLower=False, comment='© COPYRIGHT SIGN'),
     'copyrightsound': GD(l='copyright', r='copyright', uni=0x2117, base='largecircle', name='copyrightsound'),
+    'copyrightsound.uc': GD(l='copyright', r='copyright', base='copyrightsound', name='copyrightsound.uc'),
     'largecircle': GD(l='O', r='O', uni=0x25ef, c='◯', name='largecircle', comment='circle for ® trade mark sign, registered', useSkewRotate=True, addItalicExtremePoints=True),
 
     'exclam': GD(name='exclam', uni=0x0021, hex='0021', c='!', l2r='self', isLower=True, comment='! factorial'),
@@ -96,8 +98,8 @@ LATIN_S_SET = GDS = {
     'endash.uc': GD(name='endash.uc', isLower=False, l=GD.CAT_CENTER, w=GD.CAT_EM_WIDTH2, base='endash', comment='– EN DASH'),
     'emdash': GD(g2='hyphen', g1='hyphen', l=GD.CAT_CENTER, w=GD.CAT_EM_WIDTH, uni=0x2014, c='—', name='emdash', comment='— EM DASH', anchors=[]),
     'emdash.uc': GD(g2='hyphen', g1='hyphen', l=GD.CAT_CENTER, w=GD.CAT_EM_WIDTH, name='emdash.uc', base='emdash', isLower=False, comment='— EM DASH Uppercase', anchors=[]),
-    'horizontalbar': GD(g2='hyphen', g1='hyphen', l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, uni=0x2015, c='―', name='horizontalbar', srcName='emdash', anchors=[]),
-    'horizontalbar.uc': GD(g2='hyphen', g1='hyphen', l='horizontalbar', r='horizontalbar', name='horizontalbar.uc', isLower=False, comment='Horizontal base Uppercase', anchors=[]),
+    'horizontalbar': GD(l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, uni=0x2015, c='―', name='horizontalbar', srcName='emdash', anchors=[]),
+    'horizontalbar.uc': GD(l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, name='horizontalbar.uc', base='horizontalbar', isLower=False, comment='Horizontal base Uppercase', anchors=[]),
 
     'hungarumlaut': GD(name='hungarumlaut', uni=0x02DD, hex='02DD', c='˝', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='hungarumlautcmb', isLower=True, comment='˝ DOUBLE ACUTE ACCENT'),
 
@@ -126,6 +128,7 @@ LATIN_S_SET = GDS = {
     'questiondown.uc': GD(name='questiondown.uc', l='questiondown', r='questiondown', base='questiondown', isLower=False, comment='¿ turned question mark'),
 
     'registered': GD(name='registered', uni=0x00AE, hex='00AE', c='®', l='copyright', r='copyright', base='largecircle', isLower=True, comment='® trade mark sign, registered'),
+    'registered.uc': GD(name='registered.uc', l='copyright', r='copyright', base='registered', isLower=False, comment='® trade mark sign, registered'),
 
     'section': GD(name='section', uni=0x00A7, hex='00A7', c='§', l='s', r='s', isLower=True, comment='§ SECTION SIGN'),
     'semicolon': GD(name='semicolon', uni=0x003B, hex='003B', c=';', l='comma', r='comma', isLower=True, comment='; SEMICOLON'),
@@ -212,6 +215,7 @@ LATIN_S_SET = GDS = {
     # Math not on math-width
         
     'numbersign': GD(name='numbersign', uni=0x0023, hex='0023', c='#', l2r='self', isLower=True, comment='# pound sign'),
+    'numbersign.uc': GD(name='numbersign.uc', l='numbersigh', r='numbersign', base='numbersign', isLower=False, comment='# pound sign for capitals'),
     'degree': GD(name='degree', uni=0x00B0, hex='00B0', c='°', isLower=True, comment='° DEGREE SIGN'),
     'ordfeminine': GD(name='ordfeminine', uni=0x00AA, hex='00AA', c='ª', isLower=True, comment='ª ORDINAL INDICATOR, FEMININE'),
     'ordmasculine': GD(name='ordmasculine', uni=0x00BA, hex='00BA', c='º', isLower=True, comment='º ORDINAL INDICATOR, MASCULINE'),
@@ -535,8 +539,11 @@ LATIN_S_SET = GDS = {
     'ampersand': GD(name='ampersand', uni=0x0026, hex='0026', c='&', r2l='B', r='t', isLower=False, comment='& AMPERSAND'), # For italic shape
     'asciicircum': GD(name='asciicircum', uni=0x005E, hex='005E', c='^', l2r='self', isLower=True, comment='^ spacing circumflex accent'),
     'asciitilde': GD(name='asciitilde', uni=0x007E, hex='007E', c='~', l2r='asciitilde', isLower=True, comment='~ tilde, spacing'),
+    'asciitilde.uc': GD(name='asciitilde.uc', l='asciitilde', r='asciitilde', base='asciitilde', isLower=False, comment='~ tilde, spacing, for capitals'),
     'asterisk': GD(name='asterisk', uni=0x002A, hex='002A', c='*', l2r='self', isLower=True, comment='* star'),
+    'asterisk.uc': GD(name='asterisk.uc', l='asterisk', r='asterisk', base='asterisk', isLower=False, comment='* star, for capitals'),
     'at': GD(name='at', uni=0x0040, hex='0040', c='@', l2r='self', l='O', isLower=True, comment='@ COMMERCIAL AT'),
+    'at.uc': GD(name='at.uc', l='at', w='at', isLower=False, base='at', comment='@ COMMERCIAL AT, for capitals'),
 
     'acute': GD(name='acute', uni=0x00B4, hex='00B4', c='´', l=GD.CAT_CENTER, w=GD.CAT_ACCENT_WIDTH, base='acutecmb', isLower=True, comment='´ spacing acute accent'),
 
@@ -713,7 +720,7 @@ LATIN_S_SET = GDS = {
     'lcaron': GD(name='lcaron', uni=0x013E, hex='013E', c='ľ', l='off', w='l', anchorTopY='TopY', base='l', accents=['caroncmb.vert'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ľ L WITH CARON, LATIN SMALL LETTER'),
     'lcommaaccent': GD(name='lcommaaccent', uni=0x013C, hex='013C', c='ļ', w='l', anchorTopY='TopY', base='l', accents=['commaaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top']),
     'liraTurkish': GD(name='liraTurkish', uni=0x20BA, hex='20BA', c='₺', srcName='l', isLower=True),
-    'lslash': GD(name='lslash', uni=0x0142, hex='0142', c='ł', base='l', l='hyphen', r='hyphen', isLower=True, comment='ł L WITH STROKE, LATIN SMALL LETTER'),
+    'lslash': GD(name='lslash', uni=0x0142, hex='0142', c='ł', base='l', l='off', l2r='self', isLower=True, comment='ł L WITH STROKE, LATIN SMALL LETTER'),
 
     # m
 

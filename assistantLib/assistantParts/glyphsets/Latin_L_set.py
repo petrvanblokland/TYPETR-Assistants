@@ -510,7 +510,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['emacrongrave'] = GD(name='emacrongrave', uni=0x1E15, hex='1E15', c='ḕ', bl='e', base='e', accents=['macrongravecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['epsilon'] = GD(name='epsilon', uni=0x03B5, hex='03B5', c='ε', isLower=True, anchors=['top'], comment='ε')
     GDS['esh'] = GD(name='esh', uni=0x0283, hex='0283', c='ʃ', r='f', isLower=True)
-    GDS['eshreversedloop'] = GD(name='eshreversedloop', uni=0x01AA, hex='01AA', c='ƪ', isLower=True)
+    GDS['eshreversedloop'] = GD(name='eshreversedloop', uni=0x01AA, hex='01AA', c='ƪ', r='off', isLower=True)
     GDS['estroke'] = GD(name='estroke', uni=0x0247, hex='0247', c='ɇ', base='e', accents=['strokecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['etildebelow'] = GD(name='etildebelow', uni=0x1E1B, hex='1E1B', c='ḛ', l='e', r='e', base='e', accents=['tildebelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['ezh'] = GD(name='ezh', uni=0x0292, hex='0292', c='ʒ', l='three', r='three', isLower=True, anchors=['top'])
