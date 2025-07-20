@@ -60,6 +60,7 @@ class GlyphData:
     CAT_EN_WIDTH = 'enWidth'
     CAT_SPACE_WIDTH = 'spaceWidth' # Word space
     CAT_HAIR_WIDTH = 'hairWidth'
+    CAT_ARROW_WIDTH = 'arrowWidth'
     # Categories of margins
     CAT_MIN_MARGIN = 'minMargin'
     CAT_MOD_MIN_MARGIN = 'modMinMargin'
@@ -93,7 +94,7 @@ class GlyphData:
         CAT_SUPS_BASELINE, CAT_DNOM_BASELINE)
     CAT_HEIGHTS = (None, CAT_XHEIGHT, CAT_CAP_HEIGHT, CAT_SC_HEIGHT, CAT_SUPERIOR_HEIGHT)
     CAT_WIDTHS = (None, CAT_ACCENT_WIDTH, CAT_TAB_WIDTH, CAT_MATH_WIDTH, CAT_FIGURE_WIDTH, 
-            CAT_EM_WIDTH, CAT_EM_WIDTH2, CAT_EN_WIDTH, CAT_SPACE_WIDTH, CAT_SPACE_WIDTH)
+            CAT_EM_WIDTH, CAT_EM_WIDTH2, CAT_EN_WIDTH, CAT_SPACE_WIDTH, CAT_SPACE_WIDTH, CAT_ARROW_WIDTH)
 
     def __init__(self, uni=None, c=None, gid=None, name=None, srcName=None, hex=None, composites=None,
             unicodes=None, 

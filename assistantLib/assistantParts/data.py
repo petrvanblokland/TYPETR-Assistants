@@ -77,6 +77,7 @@ class MasterData:
             figureWidth=None,
             mathWidth=None,
             fractionWidth=None,
+            arrowWidth=None,
             # Margins
             centerWidth=None,
             minMargin=None,
@@ -398,6 +399,9 @@ class MasterData:
         if spaceWidth is None:
             spaceWidth = int(round(unitsPerEm/5))
         self.spaceWidth = spaceWidth
+        if arrowWidth is None:
+            arrowWidth = emWidth
+        self.arrowWidth = arrowWidth
 
         # Margin
         if minMargin is None:
@@ -418,6 +422,7 @@ class MasterData:
             GD.CAT_EN_WIDTH: enWidth,
             GD.CAT_SPACE_WIDTH: spaceWidth, # Word space
             GD.CAT_HAIR_WIDTH: hairWidth,
+            GD.CAT_ARROW_WIDTH: arrowWidth,
             # Margin
             GD.CAT_MIN_MARGIN: minMargin,
             GD.CAT_MOD_MIN_MARGIN: modMinMargin,
