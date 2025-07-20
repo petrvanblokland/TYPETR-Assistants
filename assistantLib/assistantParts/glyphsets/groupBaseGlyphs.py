@@ -47,10 +47,15 @@ FIG2 = 'fig2'
 SC_FIG1 = SC + FIG1
 SC_FIG2 = SC + FIG2
 
-SUPS1 = 'sups1'
+SUPS1 = 'sups1' # Superior figures
 SUPS2 = 'sups2'
-SINF1 = 'sinf1'
+SINF1 = 'sinf1' # Inferior figures
 SINF2 = 'sinf2'
+TSUPS1= 'tsups1' # Latin text superiors
+TSUPS2= 'tsups2'
+TSINF1= 'tsinf1' # Latin text inferiors
+TSINF2= 'tsinf2'
+
 DNOM1 = 'dnom1'
 DNOM2 = 'dnom2'
 NUMR1 = 'numr1'
@@ -135,9 +140,9 @@ KERN_GROUPS = (
     (FIG1, FIG2),
     
     (LT1, SUPS2),
+    (LT1, TSUPS2),
     (LT1, SINF2),
-    (SUPS1, SUPS2),
-    (SINF1, SINF2),
+    (LT1, TSINF2),
     
     (LT1, NUMR2),
     (LT1, DNOM2),

@@ -321,7 +321,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     # Q
 
-    GDS['Qhooktail'] = GD(name='Qhooktail', uni=0x024A, hex='024A', c='Ɋ', l='O', r='t')
+    GDS['Qhooktail'] = GD(name='Qhooktail', uni=0x024A, hex='024A', c='Ɋ', l='O', r='off')
 
     GDS['Qsuperior'] = GD(name='Qsuperior', l='Osuperior', r='Osuperior', isMod=True)
     GDS['Qinferior'] = GD(name='Qinferior', l='Oinferior', r='Oinferior', base='Qsuperior', isLower=True)

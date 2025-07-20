@@ -647,14 +647,14 @@ class KerningManager:
         """
         if groupName.startswith(PUBLIC_KERN1):
             nameParts = groupName.split('_')
-            gName = nameParts[0].replace(PUBLIC_KERN1, '')
+            gName = '_'.join(nameParts[:-1]).replace(PUBLIC_KERN1, '')
             scriptName = nameParts[-1] + '1'
             if gName.endswith('.sc'):
                 scriptName = 'sc' + scriptName
 
         elif groupName.startswith(PUBLIC_KERN2):
             nameParts = groupName.split('_')
-            gName = nameParts[0].replace(PUBLIC_KERN2, '')
+            gName = '_'.join(nameParts[:-1]).replace(PUBLIC_KERN2, '')
             scriptName = nameParts[-1] + '2'
             if gName.endswith('.sc'):
                 scriptName = 'sc' + scriptName
@@ -2113,22 +2113,28 @@ class KerningManager:
             exitSample = []
             donePairs = set()
             self._kerningSample = initSample.copy()
-            print('+++#+#+# _kerningSample')
+
             for scriptName1, scriptName2 in KERN_GROUPS:
                 #pre1, ext1 = GROUP_NAME_PARTS[scriptName1]
                 #pre2, ext2 = GROUP_NAME_PARTS[scriptName2]
                 groupNames1 = self.scriptMatchingGroups1.get(scriptName1, [])
                 groupNames2 = self.scriptMatchingGroups2.get(scriptName2, [])
 
-                for groupName1 in groupNames1:
+                #for groupName1 in groupNames1:
+                #    gName1, _ = self.groupName2baseGlyphScript(groupName1)
+                #    print(f'@#&^%#@&^%@#^& /{gName1} --> {groupName1}')
+                #for groupName2 in groupNames2:
+                #    gName2, _ = self.groupName2baseGlyphScript(groupName2)
+                #    print(f'============== /{gName2} --> {groupName2}')
+
+                for groupName1 in sorted(groupNames1):
                     gName1, _ = self.groupName2baseGlyphScript(groupName1)
                     if gName1 not in self.f: # Skip non-existing glyphs:
                         continue
-                    for groupName2 in groupNames2:
+                    for groupName2 in sorted(groupNames2):
                         gName2, _ = self.groupName2baseGlyphScript(groupName2)
                         if gName2 not in self.f: # Skip non-existing glyphs:
                             continue
-
                         if self._kerningSampleFilter1 is None or self._kerningSampleFilter1 == gName1:
                             if gName1.endswith('.sc'): # Skip if sc <--> lc. Keep sc <--> sc and keep capital <--> sc
                                 if gName2[0].upper() != gName2[0] or not gName1.endswith('.sc'):
@@ -2140,13 +2146,24 @@ class KerningManager:
                                 continue
                             if gName2 not in self.f: # Skip non-existing glyphs:
                                 continue
-                            if (gName1, gName2) in donePairs or (gName2, gName1) in donePairs:
-                                continue
                             # Optimize for non-spanish
                             if gName1 in ('exclamdown', 'questiondown') and scriptName2 != 'lt':
                                 continue
                             if  scriptName2 != 'lt' and gName2 in ('exclamdown', 'questiondown'):
                                 continue
+
+                            if gName1 == 'Ldot':
+                                gName2 = 'L'
+                            elif gName1 == 'Ldot.sc':
+                                gName2 = 'L.sc'
+                            elif gName1 == 'ldot':
+                                gName2 = 'l'
+
+                            if (gName1, gName2) in donePairs or (gName2, gName1) in donePairs:
+                                continue
+
+                            donePairs.add((gName1, gName2))
+                            donePairs.add((gName2, gName1))
 
                             if self._kerningSampleFilter2 is None or self._kerningSampleFilter2 == gName2:
                                 if 'parenleft' in (gName1, gName2) or 'parenright' in (gName1, gName2):
@@ -2178,8 +2195,6 @@ class KerningManager:
                                 else: # Regular pair combination
                                     self._kerningSample.append(gName1)
                                     self._kerningSample.append(gName2)
-                                    donePairs.add((gName1, gName2))
-                                    donePairs.add((gName2, gName1))
 
             self._kerningSample += exitSample
 
