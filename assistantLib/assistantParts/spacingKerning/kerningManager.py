@@ -2110,7 +2110,7 @@ class KerningManager:
                 'H', 'a', 'm', 'b', 'u', 'r', 'g',
                 'H', 'A', 'M', 'B', 'U', 'R', 'G', 'E', 'F', 'O', 'N', 'T', 'S', 'T', 'I', 'V'
                 ] * 2
-            exitSample = []
+            exitSample = initSample
             donePairs = set()
             self._kerningSample = initSample.copy()
 
@@ -2127,83 +2127,106 @@ class KerningManager:
                 #    gName2, _ = self.groupName2baseGlyphScript(groupName2)
                 #    print(f'============== /{gName2} --> {groupName2}')
 
-                for groupName1 in sorted(groupNames1):
-                    gName1, _ = self.groupName2baseGlyphScript(groupName1)
-                    if gName1 not in self.f: # Skip non-existing glyphs:
-                        continue
-                    for groupName2 in sorted(groupNames2):
-                        gName2, _ = self.groupName2baseGlyphScript(groupName2)
-                        if gName2 not in self.f: # Skip non-existing glyphs:
+                for sc1 in ('', '.sc'):
+                    for groupName1 in sorted(groupNames1):
+                        gName1, sName1 = self.groupName2baseGlyphScript(groupName1)
+                        if gName1.endswith('.uc'):
                             continue
-                        if self._kerningSampleFilter1 is None or self._kerningSampleFilter1 == gName1:
-                            if gName1.endswith('.sc'): # Skip if sc <--> lc. Keep sc <--> sc and keep capital <--> sc
-                                if gName2[0].upper() != gName2[0] or not gName1.endswith('.sc'):
-                                    continue 
-                            if gName2.endswith('.sc'): # Skip if lc <--> sc. Keep sc <--> sc and keep capital <--> sc
-                                if gName1[0].upper() != gName1[0] or not gName1.endswith('.sc'):
-                                    continue 
-                            if ('superior' in gName1 and 'inferior' in gName2) or ('inferior' in gName1 and 'superior' in gName2):
-                                continue
-                            if gName2 not in self.f: # Skip non-existing glyphs:
-                                continue
-                            # Optimize for non-spanish
-                            if gName1 in ('exclamdown', 'questiondown') and scriptName2 != 'lt':
-                                continue
-                            if  scriptName2 != 'lt' and gName2 in ('exclamdown', 'questiondown'):
+                        if gName1.endswith('.sc'):
                                 continue
 
-                            if gName1 == 'Ldot':
-                                gName2 = 'L'
-                            elif gName1 == 'Ldot.sc':
-                                gName2 = 'L.sc'
-                            elif gName1 == 'ldot':
-                                gName2 = 'l'
+                        gName1 += sc1
+                        if gName1 not in self.f: # Skip non-existing glyphs:
+                            continue
 
-                            # Otherwise test on special .uc versions of glyphs in combination with capitals.
-                            elif gName1 + '.uc' in self.f and gName2[0].upper() == gName2[0]:
-                                gName1 += '.uc'
-                            elif gName2 + '.uc' in self.f and gName1[0].upper() == gName1[0]:
-                                gName2 += '.uc'
+                        for sc2 in ('', '.sc'):
+                            for groupName2 in sorted(groupNames2):
+                                gName2, sName2 = self.groupName2baseGlyphScript(groupName2)
+                                if gName2.endswith('.uc'):
+                                    continue
+                                if gName2.endswith('.sc'):
+                                    continue
 
-                            # Skip if the pair is already in the sample.
-                            if (gName1, gName2) in donePairs or (gName2, gName1) in donePairs:
-                                continue
+                                if not (sName1, sName2) in KERN_GROUPS_SET:
+                                    continue
+                                    
+                                gName2 += sc2
+                                if gName2 not in self.f: # Skip non-existing glyphs:
+                                    continue
 
-                            donePairs.add((gName1, gName2))
-                            donePairs.add((gName2, gName1))
+                                if self._kerningSampleFilter1 is None or self._kerningSampleFilter1 == gName1:
 
-                            if self._kerningSampleFilter2 is None or self._kerningSampleFilter2 == gName2:
-                                if 'parenleft' in (gName1, gName2) or 'parenright' in (gName1, gName2):
-                                    # Some doubling for /parenleft and /parenlright combinations
-                                    self._kerningSample.append(gName1)
-                                    self._kerningSample.append(gName2)
-                                    self._kerningSample.append('parenright')
-                                    donePairs.add(('parenleft', gName1))
-                                    donePairs.add(('parenright', gName1))
-                                    donePairs.add((gName1, 'parenleft'))
-                                    donePairs.add((gName1, 'parenright'))
-                                    donePairs.add(('parenleft', gName2))
-                                    donePairs.add(('parenright', gName2))
-                                    donePairs.add((gName2, 'parenleft'))
-                                    donePairs.add((gName2, 'parenright'))
-                                elif 'guillemetleft' in (gName1, gName2) or 'guillemetright' in (gName1, gName2):
-                                    # Some doubling for /guillemetleft and /guillemetright combinations
-                                    self._kerningSample.append(gName1)
-                                    self._kerningSample.append(gName2)
-                                    self._kerningSample.append('guillemetright')
-                                    donePairs.add(('guillemetleft', gName1))
-                                    donePairs.add(('guillemetright', gName1))
-                                    donePairs.add((gName1, 'guillemetleft'))
-                                    donePairs.add((gName1, 'guillemetright'))
-                                    donePairs.add(('guillemetleft', gName2))
-                                    donePairs.add(('guillemetright', gName2))
-                                    donePairs.add((gName2, 'guillemetleft'))
-                                    donePairs.add((gName2, 'guillemetright'))
-                                else: # Regular pair combination
-                                    self._kerningSample.append(gName1)
-                                    self._kerningSample.append(gName2)
+                                    # Skip if the pair is already in the sample.
+                                    if (gName1, gName2) in donePairs or (gName2, gName1) in donePairs:
+                                        continue
 
-            self._kerningSample += exitSample
+                                    donePairs.add((gName1, gName2))
+                                    donePairs.add((gName2, gName1))
+                                      
+                                    if gName1.endswith('.sc'): # Skip if sc <--> lc. Keep sc <--> sc and keep capital <--> sc
+                                        if gName2[0].upper() != gName2[0] or not gName1.endswith('.sc'):
+                                            continue 
+                                    if gName2.endswith('.sc'): # Skip if lc <--> sc. Keep sc <--> sc and keep capital <--> sc
+                                        if gName1[0].upper() != gName1[0] or not gName1.endswith('.sc'):
+                                            continue 
+                                    
+                                    if ('superior' in gName1 and 'inferior' in gName2) or ('inferior' in gName1 and 'superior' in gName2):
+                                        continue
+                                    
+                                    if gName2 not in self.f: # Skip non-existing glyphs:
+                                        continue
+                                    
+                                    # Optimize for non-spanish
+                                    if gName1 in ('exclamdown', 'questiondown') and scriptName2 != 'lt':
+                                        continue
+                                    if  scriptName1 != 'lt' and gName2 in ('exclamdown', 'questiondown'):
+                                        continue
+
+                                    if gName1 == 'Ldot':
+                                        gName2 = 'L'
+                                    elif gName1 == 'Ldot.sc':
+                                        gName2 = 'L.sc'
+                                    elif gName1 == 'ldot':
+                                        gName2 = 'l'
+
+                                    # Otherwise test on special .uc versions of glyphs in combination with capitals.
+                                    elif gName1 + '.uc' in self.f and gName2[0].upper() == gName2[0]:
+                                        gName1 += '.uc'
+                                    elif gName2 + '.uc' in self.f and gName1[0].upper() == gName1[0]:
+                                        gName2 += '.uc'
+
+                                    if self._kerningSampleFilter2 is None or self._kerningSampleFilter2 == gName2:
+                                        if 0: #'parenleft' in (gName1, gName2) or 'parenright' in (gName1, gName2):
+                                            # Some doubling for /parenleft and /parenlright combinations
+                                            self._kerningSample.append(gName1)
+                                            self._kerningSample.append(gName2)
+                                            self._kerningSample.append('parenright')
+                                            donePairs.add(('parenleft', gName1))
+                                            donePairs.add(('parenright', gName1))
+                                            donePairs.add((gName1, 'parenleft'))
+                                            donePairs.add((gName1, 'parenright'))
+                                            donePairs.add(('parenleft', gName2))
+                                            donePairs.add(('parenright', gName2))
+                                            donePairs.add((gName2, 'parenleft'))
+                                            donePairs.add((gName2, 'parenright'))
+                                        elif 0: #'guillemetleft' in (gName1, gName2) or 'guillemetright' in (gName1, gName2):
+                                            # Some doubling for /guillemetleft and /guillemetright combinations
+                                            self._kerningSample.append(gName1)
+                                            self._kerningSample.append(gName2)
+                                            self._kerningSample.append('guillemetright')
+                                            donePairs.add(('guillemetleft', gName1))
+                                            donePairs.add(('guillemetright', gName1))
+                                            donePairs.add((gName1, 'guillemetleft'))
+                                            donePairs.add((gName1, 'guillemetright'))
+                                            donePairs.add(('guillemetleft', gName2))
+                                            donePairs.add(('guillemetright', gName2))
+                                            donePairs.add((gName2, 'guillemetleft'))
+                                            donePairs.add((gName2, 'guillemetright'))
+                                        else: # Regular pair combination
+                                            self._kerningSample.append(gName1)
+                                            self._kerningSample.append(gName2)
+
+            self._kerningSample += exitSample.copy()
 
         return self._kerningSample
     kerningSample = property(_get_kerningSample)
@@ -2247,6 +2270,7 @@ class KerningManager:
         return self._kerningSampleFilter1
     def _set_kerningSampleFilter1(self, s):
         self._kerningSampleFilter1 = s # Select kerning pairs in sample if None or if pattern is in the group base glyph name
+        self._sampleKerningIndex = 0
         self._kerningSample = None # Force reset upon usage
     kerningSampleFilter1 = property(_get_kerningSampleFilter1, _set_kerningSampleFilter1)
     
@@ -2254,6 +2278,7 @@ class KerningManager:
         return self._kerningFilterValue
     def _set_kerningFilterValue(self, k):
         self._kerningFilterValue = k # Select kerning pairs in sample if None or if pattern is in the group base glyph name
+        self._sampleKerningIndex = 0
         self._kerningSample = None # Force reset upon usage
     kerningSampleValue = property(_get_kerningFilterValue, _set_kerningFilterValue)
 
@@ -2261,6 +2286,7 @@ class KerningManager:
         return self._kerningSampleFilter2
     def _set_kerningSampleFilter2(self, s):
         self._kerningSampleFilter2 = s # Select kerning pairs in sample if None or if pattern is in the group base glyph name
+        self._sampleKerningIndex = 0
         self._kerningSample = None # Force reset upon usage
     kerningSampleFilter2 = property(_get_kerningSampleFilter2, _set_kerningSampleFilter2)
     

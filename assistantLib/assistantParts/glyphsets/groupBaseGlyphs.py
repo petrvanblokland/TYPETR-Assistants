@@ -129,7 +129,7 @@ XXX_BASE_SCRIPTS2 = (
 KERN_GROUPS = (
     # Latin
     (LT1, LT2),
-    (LT1, SC_LT1),
+    (LT1, SC_LT2),
     (SC_LT1, SC_LT2),
 
     (LT1, ASC2),
@@ -148,12 +148,12 @@ KERN_GROUPS = (
     (LT1, DNOM2),
     (NUMR1, NUMR2),
     
-    (LT1, ONUM1),
+    (LT1, ONUM2),
     (ONUM1, ONUM2),
 
     # Cyrillic
     (CY1, CY2),
-    (CY1, SC_CY1),
+    (CY1, SC_CY2),
     (SC_CY1, SC_CY2),
 
     (CY1, ASC2),
@@ -170,7 +170,7 @@ KERN_GROUPS = (
 
     # Greek
     (GR1, GR2),
-    (GR1, SC_GR1),
+    (GR1, SC_GR2),
     (SC_GR1, SC_GR2),
 
     (GR1, ASC2),
@@ -186,7 +186,7 @@ KERN_GROUPS = (
     (GR1, ONUM2),
 
 )
-
+KERN_GROUPS_SET = set(KERN_GROUPS)
 
 GROUP_IGNORE = ('tnum', 'cmb', 'comb', 'mod', 'component',) # Always ignore glyphs that include these patterns
 

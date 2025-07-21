@@ -471,7 +471,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['clicklateral'] = GD(name='clicklateral', uni=0x01C1, hex='01C1', c='ǁ', l='bar', r='bar', base='bar', accents=['bar'], isLower=True)
     GDS['clickretroflex'] = GD(name='clickretroflex', uni=0x01C3, hex='01C3', c='ǃ', base='exclam', isLower=True)
     GDS['cstroke'] = GD(name='cstroke', uni=0x023C, hex='023C', c='ȼ', base='c', autoFixComponentPositions=False, accents=['strokecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
-    GDS['creversed'] = GD(name='creversed', uni=0x2184, hex='2184', c='ↄ', l2r='c', r2l='c', srcName='c')
+    GDS['creversed'] = GD(name='creversed', uni=0x2184, hex='2184', c='ↄ', l2r='c', r2l='C', srcName='c')
 
     GDS['commaabovecmb'] = GD(name='commaabovecmb', uni=0x0313, hex='0313', c='̓', w=0, srcName='comma', isLower=True, anchors=['_top', 'top'])
     GDS['commaabovecmb.uc'] = GD(name='commaabovecmb.uc', w=0, autoFixComponentPositions=False, autoFixMargins=False, srcName='commaabovecmb', isLower=False, anchors=['_top', 'top'])
