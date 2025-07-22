@@ -215,7 +215,7 @@ LATIN_S_SET = GDS = {
     # Math not on math-width
         
     'numbersign': GD(name='numbersign', uni=0x0023, hex='0023', c='#', l2r='self', isLower=True, comment='# pound sign'),
-    'numbersign.uc': GD(name='numbersign.uc', l='numbersigh', r='numbersign', base='numbersign', isLower=False, comment='# pound sign for capitals'),
+    'numbersign.uc': GD(name='numbersign.uc', l='numbersign', r='numbersign', base='numbersign', isLower=False, comment='# pound sign for capitals'),
     'degree': GD(name='degree', uni=0x00B0, hex='00B0', c='°', isLower=True, comment='° DEGREE SIGN'),
     'ordfeminine': GD(name='ordfeminine', uni=0x00AA, hex='00AA', c='ª', isLower=True, comment='ª ORDINAL INDICATOR, FEMININE'),
     'ordmasculine': GD(name='ordmasculine', uni=0x00BA, hex='00BA', c='º', isLower=True, comment='º ORDINAL INDICATOR, MASCULINE'),
