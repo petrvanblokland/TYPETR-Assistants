@@ -2157,11 +2157,10 @@ class KerningManager:
                                 if self._kerningSampleFilter1 is None or self._kerningSampleFilter1 == gName1:
 
                                     # Skip if the pair is already in the sample.
-                                    if (gName1, gName2) in donePairs or (gName2, gName1) in donePairs:
+                                    if (gName1, gName2) in donePairs:
                                         continue
 
                                     donePairs.add((gName1, gName2))
-                                    donePairs.add((gName2, gName1))
                                       
                                     if gName1.endswith('.sc'): # Skip if sc <--> lc. Keep sc <--> sc and keep capital <--> sc
                                         if gName2[0].upper() != gName2[0] or not gName1.endswith('.sc'):
@@ -2173,6 +2172,11 @@ class KerningManager:
                                     if ('superior' in gName1 and 'inferior' in gName2) or ('inferior' in gName1 and 'superior' in gName2):
                                         continue
                                     
+                                    if gName1 == 'fraction' and scriptName2 != 'dnom':
+                                        continue
+                                    if gName2 == 'fraction' and scriptName1 != 'numr':
+                                        continue
+
                                     if gName2 not in self.f: # Skip non-existing glyphs:
                                         continue
                                     
