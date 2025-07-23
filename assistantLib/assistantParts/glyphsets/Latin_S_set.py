@@ -558,7 +558,7 @@ LATIN_S_SET = GDS = {
     'bdotbelow': GD(name='bdotbelow', uni=0x1E05, hex='1E05', c='ḅ', base='b', accents=['dotbelowcmb'], srcName='uni1E05', isLower=True, anchors=['bottom', 'middle', 'top']),
     'bhook': GD(name='bhook', uni=0x0253, hex='0253', c='ɓ', r2l='jdotless', r='b', isLower=True),
     'backslash': GD(name='backslash', uni=0x005C, hex='005C', c="\\" , l2r='self', isLower=True, comment='\\ SOLIDUS, REVERSE'),
-    'bar': GD(name='bar', uni=0x007C, hex='007C', c='|', l='H', r='H', isLower=True, comment='| VERTICAL LINE'),
+    'bar': GD(name='bar', uni=0x007C, hex='007C', c='|', l='bracketleft', r='bracketright', isLower=True, comment='| VERTICAL LINE'),
     'braceleft': GD(name='braceleft', uni=0x007B, hex='007B', c='{', isLower=True, comment='{ opening curly bracket'),
     #'braceleft.uc': GD(name='bracelef.uct', srcName='braceleft', l='braceleft', r='braceleft', isLower=False, comment='{ opening curly bracket'),
     'braceright': GD(name='braceright', uni=0x007D, hex='007D', c='}', l2r='braceleft', r2l='braceleft', isLower=True, comment='} RIGHT CURLY BRACKET'),
