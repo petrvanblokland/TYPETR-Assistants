@@ -2159,31 +2159,36 @@ class KerningManager:
                                     # Skip if the pair is already in the sample.
                                     if (gName1, gName2) in donePairs:
                                         continue
-
-                                    donePairs.add((gName1, gName2))
                                       
                                     if gName1.endswith('.sc'): # Skip if sc <--> lc. Keep sc <--> sc and keep capital <--> sc
                                         if gName2[0].upper() != gName2[0] or not gName1.endswith('.sc'):
+                                            donePairs.add((gName1, gName2))
                                             continue 
                                     if gName2.endswith('.sc'): # Skip if lc <--> sc. Keep sc <--> sc and keep capital <--> sc
                                         if gName1[0].upper() != gName1[0] or not gName1.endswith('.sc'):
+                                            donePairs.add((gName1, gName2))
                                             continue 
                                     
                                     if ('superior' in gName1 and 'inferior' in gName2) or ('inferior' in gName1 and 'superior' in gName2):
                                         continue
                                     
                                     if gName1 == 'fraction' and scriptName2 != 'dnom':
+                                        donePairs.add((gName1, gName2))
                                         continue
                                     if gName2 == 'fraction' and scriptName1 != 'numr':
+                                        donePairs.add((gName1, gName2))
                                         continue
 
                                     if gName2 not in self.f: # Skip non-existing glyphs:
+                                        donePairs.add((gName1, gName2))
                                         continue
                                     
                                     # Optimize for non-spanish
                                     if gName1 in ('exclamdown', 'questiondown') and scriptName2 != 'lt':
+                                        donePairs.add((gName1, gName2))
                                         continue
                                     if  scriptName1 != 'lt' and gName2 in ('exclamdown', 'questiondown'):
+                                        donePairs.add((gName1, gName2))
                                         continue
 
                                     if gName1 == 'Ldot':
@@ -2194,10 +2199,16 @@ class KerningManager:
                                         gName2 = 'l'
 
                                     # Otherwise test on special .uc versions of glyphs in combination with capitals.
+                                    elif gName1.endswith('.uc') and gName2[0].upper() != gName2[0]:
+                                        gName1 = gName1.replace('.uc', '')
+                                    elif gName2.endswith('.uc') and gName1[0].upper() != gName1[0]:
+                                        gName2 = gName2.replace('.uc', '')
                                     elif gName1 + '.uc' in self.f and gName2[0].upper() == gName2[0]:
                                         gName1 += '.uc'
                                     elif gName2 + '.uc' in self.f and gName1[0].upper() == gName1[0]:
                                         gName2 += '.uc'
+
+                                    donePairs.add((gName1, gName2))
 
                                     if self._kerningSampleFilter2 is None or self._kerningSampleFilter2 == gName2:
                                         if 0: #'parenleft' in (gName1, gName2) or 'parenright' in (gName1, gName2):
