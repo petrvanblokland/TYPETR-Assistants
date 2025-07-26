@@ -130,60 +130,84 @@ KERN_GROUPS = (
     # Latin
     (LT1, LT2),
     (LT1, SC_LT2),
+    (SC_LT1, LT2),
     (SC_LT1, SC_LT2),
 
     (LT1, ASC2),
+    (ASC1, LT2),
     (SC_LT1, ASC2),
+    (ASC1, SC_LT2),
     (ASC1, ASC2),
 
     (LT1, FIG2),
+    (FIG1, LT2),
     (FIG1, FIG2),
     
     (LT1, SUPS2),
+    (SUPS1, LT2),
     (LT1, TSUPS2),
+    (TSUPS1, LT2),
     (LT1, SINF2),
+    (SINF1, LT2),
     (LT1, TSINF2),
+    (TSINF1, LT2),
     
     (LT1, NUMR2),
     (LT1, DNOM2),
+    (NUMR1, LT2),
+    (DNOM1, LT2),
     (NUMR1, NUMR2),
     
     (LT1, ONUM2),
+    (ONUM1, LT2),
     (ONUM1, ONUM2),
 
     # Cyrillic
     (CY1, CY2),
     (CY1, SC_CY2),
+    (SC_CY1, CY2),
     (SC_CY1, SC_CY2),
 
     (CY1, ASC2),
+    (ASC1, CY2),
     (SC_CY1, ASC2),
 
     (CY1, FIG2),
     (FIG1, CY2),
+    (FIG1, CY2),
     
     (CY1, SUPS2),
+    (SUPS1, CY2),
     (CY1, SINF2),
     
     (CY1, NUMR2),
+    (NUMR1, CY2),
     (CY1, DNOM2),
 
     # Greek
     (GR1, GR2),
     (GR1, SC_GR2),
+    (SC_GR1, GR2),
     (SC_GR1, SC_GR2),
 
     (GR1, ASC2),
+    (ASC1, GR2),
     (SC_GR1, ASC2),
 
     (GR1, FIG2),
+    (FIG1, GR2),
     
     (GR1, SUPS2),
+    (SUPS1, GR2),
     (GR1, SINF2),
+    (SINF1, GR2),
     
     (GR1, NUMR2),
-    (GR1, DNOM2),    
+    (NUMR1, GR2),
+    (GR1, DNOM2),
+    (DNOM1, GR2),    
     (GR1, ONUM2),
+    (ONUM1, GR2),
 
 )
 KERN_GROUPS_SET = set(KERN_GROUPS)
