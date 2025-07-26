@@ -696,7 +696,7 @@ LATIN_S_SET = GDS = {
     'idotlessstroke': GD(name='idotlessstroke', l='istroke', w='istroke', base='idotless', isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top']),
     'idotlessdotbelow': GD(name='idotlessdotbelow', l='idotbelow', w='idotbelow', base='idotless', accents=['dotbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ị I WITH DOT BELOW, LATIN SMALL LETTER'),
     'idotlesstildebelow': GD(name='idotlesstildebelow', bl='idotless', w='itildebelow', base='idotless', accents=['tildebelowcmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ĩ I WITH TILDE, LATIN SMALL LETTER'),
-    'idotlesshorn': GD(name='idotlesshorn', l='idotless', r='uhorn', base='idotless', anchorTopY='idotless', autoFixComponentPositions=False, accents=['horncmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top']),
+    'idotlesshorn': GD(name='idotlesshorn', l='idotless', r='uhorn', base='idotless', anchorTopY='idotless', autoFixComponentPositions=False, isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top']),
     'idotlessdieresisbelow': GD(name='idotlessdieresisbelow', bl='idotless', w='idotless', base='idotless', accents=['dieresisbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='Dotless /i with dieresis below'),
     'idotlessringbelow': GD(name='idotlessringbelow', bl='idotless', w='idotless', base='idotless', accents=['ringbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='Dotless /i with ring below'),
 
