@@ -752,7 +752,7 @@ LATIN_S_SET = GDS = {
     'ograve': GD(name='ograve', uni=0x00F2, hex='00F2', c='ò', l='o', r='o', base='o', accents=['gravecmb'], isLower=True, anchors=['bottom', 'middle','ogonek', 'top'], comment='ò O WITH GRAVE, LATIN SMALL LETTER'),
     'ohungarumlaut': GD(name='ohungarumlaut', uni=0x0151, hex='0151', c='ő', w='o', base='o', accents=['hungarumlautcmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top']),
     'omacron': GD(name='omacron', uni=0x014D, hex='014D', c='ō', l='o', r='o', base='o', accents=['macroncmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ō O WITH MACRON, LATIN SMALL LETTER'),
-    'oopen': GD(name='oopen', uni=0x0254, hex='0254', c='ɔ', r2l='c', srcName='o', isLower=True, anchors=['dot'], comment='ɔ OPEN O, LATIN SMALL LETTER'),
+    'oopen': GD(name='oopen', uni=0x0254, hex='0254', c='ɔ', l='off', l2r='o', srcName='o', isLower=True, anchors=['dot'], comment='ɔ OPEN O, LATIN SMALL LETTER'),
     'oslash': GD(name='oslash', uni=0x00F8, hex='00F8', c='ø', l2r='o', srcName='o', isLower=True, anchors=['bottom', 'middle', 'top'], comment='ø STROKE, LATIN SMALL LETTER O WITH'),
     'oslash.alt': GD(name='oslash.alt', base='o', isLower=True, anchors=['bottom', 'middle', 'top'], comment='ø STROKE, LATIN SMALL LETTER O WITH'),
     'otilde': GD(name='otilde', uni=0x00F5, hex='00F5', c='õ', base='o', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='õ O WITH TILDE, LATIN SMALL LETTER'),
@@ -1055,7 +1055,8 @@ SC_NAMES = (
     'Pedescender_cy', 'Pedescender_cy.component', 'Pemiddlehook_cy', 'Schwa_cy', 'Schwadieresis_cy', 'Semisoftsign_cy', 'Sha_cy', 'Shcha_cy', 
     'Shha_cy', 'Softsign_cy', 'Te_cy', 'Tedescender_cy', 'Tetse_cy', 'Tse_cy', 'Tshe_cy', 'U_cy', 'Udieresis_cy', 'Uhungarumlaut_cy', 'Umacron_cy', 
     'Ushort_cy', 'Ustrait_cy', 'Ustraitstroke_cy', 'Ve_cy', 'Yeru_cy', 'Yerudieresis_cy', 'Yi_cy',
-    'Ze_cy', 'Zedescender_cy', 'Zedieresis_cy', 'Zhe_cy', 'Zhebreve_cy', 'Zhedescender_cy', 'Zhedieresis_cy', 'tail.component_cy.case',
+    'Ze_cy', 'Zedescender_cy', 'Zedieresis_cy', 'Zhe_cy', 'Zhebreve_cy', 'Zhedescender_cy', 'Zhedieresis_cy', 
+    #'tail.component_cy.case',
     'Dzeabkh_cy', 
 
     # In case GREEK_SET is included, these need to be come smallcaps too
