@@ -116,7 +116,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['Adotaccentmacron'] = GD(name='Adotaccentmacron', uni=0x01E0, hex='01E0', c='Ǡ', l='A', r='A', base='A', accents=['dotaccentmacroncmb.uc'], anchors=['bottom', 'middle', 'top'])
     GDS['Ainvertedbreve'] = GD(name='Ainvertedbreve', uni=0x0202, hex='0202', c='Ȃ', l='A', r='A', base='A', accents=['invertedbrevecmb.uc'], anchors=['bottom', 'middle', 'top'])
     GDS['Alpha_latin'] = GD(name='Alpha_latin', uni=0x2C6D, hex='2C6D', c='Ɑ', l='O', r='off')
-    GDS['Aringacute'] = GD(name='Aringacute', uni=0x01FA, hex='01FA', c='Ǻ', l='A', r='A', base='A', accents=['ringacutecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ǻ LATIN CAPITAL LETTER A WITH RING ABOVE AND ACUTE')
+    GDS['Aringacute'] = GD(name='Aringacute', uni=0x01FA, hex='01FA', c='Ǻ', l='A', r='A', base='Aring', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ǻ LATIN CAPITAL LETTER A WITH RING ABOVE AND ACUTE')
     GDS['Aringbelow'] = GD(name='Aringbelow', uni=0x1E00, hex='1E00', c='Ḁ', l='A', r='A', base='A', accents=['ringbelowcmb'], anchors=['bottom', 'middle', 'top'])
     GDS['Astroke'] = GD(name='Astroke', uni=0x023A, hex='023A', c='Ⱥ', l='A', w='A', base='A', accents=['strokecmb.uc'], anchors=['bottom', 'middle', 'top'])
     GDS['Aturned'] = GD(name='Aturned', uni=0x2C6F, hex='2C6F', c='Ɐ', l2r='A', r2l='A', srcName='A')
