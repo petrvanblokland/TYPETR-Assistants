@@ -1031,7 +1031,7 @@ SC_NAMES = (
     'U', 'Uacute', 'Ubreve', 'Ucaron', 'Ucircumflex', 'Udieresis', 'Udotbelow', 'Ugrave', 'Uhungarumlaut', 'Umacron', 'Uogonek', 
         'Uring', 'Utilde', 'Ucircumflexbelow', 'Udblgrave', 'Udieresisacute', 'Udieresisbelow', 'Udieresiscaron', 'Udieresisgrave', 
         'Udieresismacron', 'Uhookabove', 'Uhorn', 'Uhornacute', 'Uhorndotbelow', 'Uhorngrave', 'Uhornhookabove', 'Uhorntilde', 
-        'Uinvertedbreve', 'Umacrondieresis', 'Utildeacute', 'Utildebelow',  
+        'Uinvertedbreve', 'Umacrondieresis', 'Utildeacute', 'Utildebelow', 'Ustroke',   
     'V', 'Vturned', 'Vdotbelow', 'Vtilde', 'Vhook', 
     'W', 'Wacute', 'Wcircumflex', 'Wdieresis', 'Wgrave', 'Wdotaccent', 'Wdotbelow', 'Whook', 'Wring',
     'X', 'Xdieresis', 'Xdotaccent',  
@@ -1128,7 +1128,8 @@ GDSI['dcroat'] = GD(name='dcroat', uni=0x0111, hex='0111', c='đ', l='d', r='hyp
 # Left spacing different from /t in italic. Manual spacing instead.
 
 GDSI['Schwa'].l = 'off'
-GDSI['b'].r = 'off'
+GDSI['b'].r = None
+GDSI['b'].l2r = 'a'
 GDSI['d'].l = 'a'
 GDSI['e'].l = 'c'
 GDSI['f'].l = GDSI['f'].r ='off'

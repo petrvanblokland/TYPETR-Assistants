@@ -366,7 +366,6 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     # U
 
-    GDS['Ubar'] = GD(name='Ubar', uni=0x0244, hex='0244', c='Ʉ', l='Eth', l2r='Eth', base='U', anchors=['bottom', 'middle', 'ogonek', 'top'])
     GDS['Ucircumflexbelow'] = GD(name='Ucircumflexbelow', uni=0x1E76, hex='1E76', c='Ṷ', l='U', r='U', base='U', accents=['circumflexbelowcmb'], anchors=['bottom', 'middle', 'ogonek', 'top'])
     GDS['Udblgrave'] = GD(name='Udblgrave', uni=0x0214, hex='0214', c='Ȕ', base='U', accents=['dblgravecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'])
     GDS['Udieresisbelow'] = GD(name='Udieresisbelow', uni=0x1E72, hex='1E72', c='Ṳ', l='U', r='U', base='U', accents=['dieresisbelowcmb'], anchors=['bottom', 'middle', 'top'])
@@ -375,6 +374,10 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['Upsilonafrican'] = GD(name='Upsilonafrican', uni=0x01B1, hex='01B1', c='Ʊ', l='Omega', r='Omega')
     GDS['Utildeacute'] = GD(name='Utildeacute', uni=0x1E78, hex='1E78', c='Ṹ', l='U', r='U', base='U', accents=['tildeacutecmb.uc'], anchors=['bottom', 'middle', 'top'])
     GDS['Utildebelow'] = GD(name='Utildebelow', uni=0x1E74, hex='1E74', c='Ṵ', l='U', r='U', base='U', accents=['tildebelowcmb'], anchors=['bottom', 'middle', 'top'])
+    # Changed to /Ustroke, /Ustroke.sc and /ustroke
+    #GDS['Ubar'] = GD(name='Ubar', uni=0x0244, hex='0244', c='Ʉ', l='Eth', l2r='Eth', base='U', anchors=['bottom', 'middle', 'ogonek', 'top'])
+    GDS['Ustroke'] = GD(name='Ustroke', uni=0x0244, hex='0244', c='Ʉ', l='U', r='U', base='U', isLower=False, anchors=['bottom', 'middle', 'top'], comment="LATIN CAPITAL LETTER U BAR")
+    GDS['Ustroke.sc'] = GD(name='Ustroke.sc', uni=0x1D7e, hex='1D7e', c='ᵾ', l='U.sc', r='U.sc', base='U.sc', isLower=False, anchors=['bottom', 'middle', 'top'], comment="LATIN SMALL CAPITAL LETTER U WITH STROKE")
 
     GDS['Usuperior'] = GD(name='Usuperior', l='U.sc', r='U.sc', isMod=True)
     GDS['Uinferior'] = GD(name='Uinferior', l='Usuperior', r='Usuperior', base='Usuperior', isLower=True)
@@ -744,7 +747,6 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     # u
 
-    GDS['ubar'] = GD(name='ubar', uni=0x0289, hex='0289', c='ʉ', l='hyphen', r='hyphen', base='u', isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['ucircumflexbelow'] = GD(name='ucircumflexbelow', uni=0x1E77, hex='1E77', c='ṷ', l='u', r='u', base='u', accents=['circumflexbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['udblgrave'] = GD(name='udblgrave', uni=0x0215, hex='0215', c='ȕ', w='u', bl='u', base='u', accents=['dblgravecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['udieresisbelow'] = GD(name='udieresisbelow', uni=0x1E73, hex='1E73', c='ṳ', l='u', r='u', base='u', accents=['dieresisbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
@@ -754,7 +756,8 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['upsilon_latin'] = GD(name='upsilon_latin', uni=0x028A, hex='028A', c='ʊ', l='o', r='o', isLower=True)
     GDS['utildeacute'] = GD(name='utildeacute', uni=0x1E79, hex='1E79', c='ṹ', base='u', accents=['tildeacutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['utildebelow'] = GD(name='utildebelow', uni=0x1E75, hex='1E75', c='ṵ', base='u', accents=['tildebelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
-    GDS['ustroke'] = GD(name='ustroke', uni=0x1D7E, hex='1D7E', c='ᵾ', l='hyphen', r='hyphen', isLower=True)
+    # Change from /ubar
+    GDS['ustroke'] = GD(name='ustroke', uni=0x0289, hex='0289', c='ʉ', l='u', r='u', base='u', isLower=True, anchors=['bottom', 'middle', 'top'], comment="LATIN SMALL LETTER U BAR")
 
     GDS['usuperior'] = GD(name='usuperior', uni=0x1D58, hex='1D58', c='ᵘ', l2r='nsuperior', r2l='nsuperior', isMod=True)
     GDS['uinferior'] = GD(name='uinferior', l='usuperior', r='usuperior', base='usuperior', isMod=True)

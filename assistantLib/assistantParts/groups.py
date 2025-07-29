@@ -44,6 +44,7 @@ class AssistantPartGroups(BaseAssistantPart):
             )
         self.groupsListLeft = container.appendTextLineSublayer(
                 name='groupsListLeft',
+                size=(800, 1000),
                 position=(0, 0),
                 text='',
                 font=self.GROUPS_LIST_FONT,
@@ -63,6 +64,7 @@ class AssistantPartGroups(BaseAssistantPart):
             )
         self.groupsListRight = container.appendTextLineSublayer(
                 name='groupsListRight',
+                size=(800, 1000),
                 position=(0, 0),
                 text='',
                 font=self.GROUPS_LIST_FONT,
@@ -89,14 +91,14 @@ class AssistantPartGroups(BaseAssistantPart):
         self.groupsListLeftName.setPosition((x, y))        
         self.groupsListLeft.setText('\n'.join(group2))
         self.groupsListLeft.setPosition((x, y - 3*self.GROUPS_LIST_NAME_SIZE))
-        self.groupsListLeft.setSize((300, 1000))
+        self.groupsListLeft.setSize((800, 1000))
 
         x = g.width * 2.5
         self.groupsListRightName.setText(groupName1)
         self.groupsListRightName.setPosition((x, y))        
         self.groupsListRight.setText('\n'.join(group1))
         self.groupsListRight.setPosition((x, y - 3*self.GROUPS_LIST_NAME_SIZE))
-        self.groupsListRight.setSize((300, 1000))
+        self.groupsListRight.setSize((800, 1000))
         return False
 
     def checkFixGroups(self, g):

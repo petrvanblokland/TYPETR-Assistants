@@ -320,6 +320,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         )
         self.leftSpaceSourceLabel = container.appendTextLineSublayer(name="leftSpaceSourceLabel",
             position=(0, -self.SPACER_MARKER_R*2),
+            size=(200, 400),
             text=' '*40,
             font='Verdana',
             pointSize=self.SPACER_LABEL_SIZE,
@@ -338,6 +339,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         )
         self.rightSpaceSourceLabel = container.appendTextLineSublayer(name="rightSpaceSourceLabel",
             position=(0, -self.SPACER_MARKER_R*2),
+            size=(200, 400),
             text=' '*40,
             font='Verdana',
             pointSize=self.SPACER_LABEL_SIZE,
@@ -1619,6 +1621,8 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         md = self.getMasterData(g.font)
         gd = md.glyphSet[g.name]
+        # Get roman/italic equivalent to compare glyph sides.
+        rif = self.getFont(md.romanItalicUFOPath)
 
         if c.w.autoSpace.get() and gd is not None and gd.autoFixMargins:
             if km is None:
@@ -1638,7 +1642,7 @@ class AssistantPartSpacer(BaseAssistantPart):
                 src = self.getFont(md.spacingSrcUFOPath)
                 if g.name in src:
                     lm = src[g.name].angledLeftMargin + md.spacingOffset
-                    label = f'Src {self.path2UfoName(md.spacingSrcUFOPath)} {int(round(src[g.name].angledLeftMargin))}+{md.spacingOffset}={int(round(lm))}'
+                    label = f'Src {self.path2UfoName(md.spacingSrcUFOPath)}\n{int(round(src[g.name].angledLeftMargin))}+{md.spacingOffset}={int(round(lm))}'
                     changed = km.fixLeftMargin(g, lm, label)
                 else:
                     print(f'### Glyph /{g.name} does not exist in spacing ref {md.spacingSrcUFOPath}')
@@ -1650,7 +1654,7 @@ class AssistantPartSpacer(BaseAssistantPart):
                 referenceLabel = gd.leftSpaceSourceLabel # Test the existence of a reference label to know if there is one.
                 if referenceLabel: # Strategy #1, check with the referenced left margin
                     changed |= km.fixLeftMarginByGlyphSetReference(g) # Fix the left margin if different to what the reference has.
-                    label = f'Ref {referenceLabel} {int(round(g.angledLeftMargin))}' # Show the fixed value in the label
+                    label = f'Ref {referenceLabel}\n{int(round(g.angledLeftMargin))}' # Show the fixed value in the label
                     fillColor = 0, 1, 0, 0.5
                     strokeColor = None
                 else: # Strategy #2, see if there is a similar glyph to copy the left margin from.
@@ -1658,11 +1662,11 @@ class AssistantPartSpacer(BaseAssistantPart):
                     if similarName2 is not None:
                         srcG2 = g.font[similarName2]
                         if similarName2 == g.name:
-                            label = f'Sim base /{srcG2.name} {int(round(srcG2.angledLeftMargin))}'
+                            label = f'Sim base /{srcG2.name}\n{int(round(srcG2.angledLeftMargin))}'
                             fillColor = None
                             strokeColor = 0, 0, 0, 0.5
                         else:
-                            label = f'Sim /{srcG2.name} {int(round(srcG2.angledLeftMargin))}'
+                            label = f'Sim /{srcG2.name}\n{int(round(srcG2.angledLeftMargin))}'
                             fillColor = 1, 0, 0, 0.5
                             strokeColor = None
                         changed |= km.fixLeftMargin(g, srcG2.angledLeftMargin, label)
@@ -1675,6 +1679,9 @@ class AssistantPartSpacer(BaseAssistantPart):
             label = str(int(round(g.angledLeftMargin)))
             fillColor = None
             strokeColor = 0, 0, 0, 0.5
+
+        if rif is not None and g.name in rif: # If there is a roman/italic equivalent, then show the right margin as reference
+            label += f' @{int(round(rif[g.name].angledLeftMargin))}'
 
         if updateMerz:
             self.fixedSpaceMarkerLeft.setPosition((-self.SPACER_MARKER_R, -self.SPACER_MARKER_R))
@@ -1705,6 +1712,9 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         md = self.getMasterData(g.font)
         gd = md.glyphSet[g.name]
+        # Get roman/italic equivalent to compare glyph sides.
+        rif = self.getFont(md.romanItalicUFOPath)
+
         if gd is None:
             print(f'### checkFixGlyphRightMargin: Cannot find GlyphData for /{g.name}')
             label = ''
@@ -1741,7 +1751,7 @@ class AssistantPartSpacer(BaseAssistantPart):
                 src = self.getFont(md.spacingSrcUFOPath)
                 if g.name in src:
                     rm = src[g.name].angledRightMargin + md.spacingOffset
-                    label = f'Src {self.path2UfoName(md.spacingSrcUFOPath)} {int(round(src[g.name].angledRightMargin))}+{md.spacingOffset}={int(round(rm))}'
+                    label = f'Src {self.path2UfoName(md.spacingSrcUFOPath)}\n{int(round(src[g.name].angledRightMargin))}+{md.spacingOffset}={int(round(rm))}'
                     changed = km.fixRightMargin(g, rm, label)
                 else:
                     print(f'### Glyph /{g.name} does not exist in spacing ref {md.spacingSrcUFOPath}')
@@ -1753,7 +1763,7 @@ class AssistantPartSpacer(BaseAssistantPart):
                 referenceLabel = gd.rightSpaceSourceLabel # Test the existence of a reference label to know if there is one.
                 if referenceLabel: # Strategy #1, check with the referenced left margin
                     changed |= km.fixRightMarginByGlyphSetReference(g) # Fix the right margin if different to what the reference has.
-                    label = f'Ref {referenceLabel} {int(round(g.angledRightMargin))}' # Show the fixed value in the label
+                    label = f'Ref {referenceLabel}\n{int(round(g.angledRightMargin))}' # Show the fixed value in the label
                     fillColor = 0, 1, 0, 0.5
                     strokeColor = None
                 else:
@@ -1761,11 +1771,11 @@ class AssistantPartSpacer(BaseAssistantPart):
                     if similarName1 is not None:
                         srcG1 = g.font[similarName1]
                         if similarName1 == g.name:
-                            label = f'Sim base /{srcG1.name} {int(round(srcG1.angledRightMargin))}'
+                            label = f'Sim base /{srcG1.name}\n{int(round(srcG1.angledRightMargin))}'
                             fillColor = None
                             strokeColor = 0, 0, 0, 0.5
                         else:
-                            label = f'Sim /{srcG1.name} {int(round(srcG1.angledRightMargin))}'
+                            label = f'Sim /{srcG1.name}\n{int(round(srcG1.angledRightMargin))}'
                             fillColor = 1, 0, 0, 0.5
                             strokeColor = None
                         changed |= km.fixRightMargin(g, srcG1.angledRightMargin, label)
@@ -1778,6 +1788,10 @@ class AssistantPartSpacer(BaseAssistantPart):
             label = str(int(round(g.angledRightMargin)))
             fillColor = None
             strokeColor = 0, 0, 0, 0.5
+
+        if rif is not None and g.name in rif: # If there is a roman/italic equivalent, then show the right margin as reference
+            label += f' @{int(round(rif[g.name].angledRightMargin))}'
+
         label += f'\n(w={g.width})'
 
         if updateMerz:
