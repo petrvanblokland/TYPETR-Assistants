@@ -608,7 +608,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['lambda'] = GD(name='lambda', uni=0x03BB, hex='03BB', c='λ', l='v', r='v', isLower=True)
     GDS['lambdastroke'] = GD(name='lambdastroke', uni=0x019B, hex='019B', c='ƛ', l='lambda', w='lambda', base='lambda', isLower=True)
     GDS['lbar'] = GD(name='lbar', uni=0x019A, hex='019A', c='ƚ', l='hyphen', r='hyphen', base='l', isLower=True)
-    GDS['lbelt'] = GD(name='lbelt', uni=0x026C, hex='026C', c='ɬ', l='osuperior', r='hyphen', base='l', isLower=True)
+    GDS['lbelt'] = GD(name='lbelt', uni=0x026C, hex='026C', c='ɬ', l='osuperior', r='off', base='l', isLower=True)
     GDS['lcircumflexbelow'] = GD(name='lcircumflexbelow', uni=0x1E3D, hex='1E3D', c='ḽ', w='l', bl='l', base='l', accents=['circumflexbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['ldot'] = GD(name='ldot', uni=0x0140, hex='0140', c='ŀ', l='l', r='off', base='l', accents=['dotmiddlecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ŀ MIDDLE DOT, LATIN SMALL LETTER L WITH')
     GDS['ldoublebar'] = GD(name='ldoublebar', uni=0x2C61, hex='2C61', c='ⱡ', base='l', l='hyphen', r='hyphen', isLower=True)
