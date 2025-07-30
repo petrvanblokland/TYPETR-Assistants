@@ -677,7 +677,9 @@ LATIN_S_SET = GDS = {
 
     # i
 
-    'i': GD(name='i', uni=0x0069, hex='0069', c='i', l='off', r='idotless', anchorTopY='TopY', isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='i'),
+    # For serif stems
+    'i': GD(name='i', uni=0x0069, hex='0069', c='i', l='n', r='idotless', anchorTopY='TopY', isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='i'),
+    'idotless': GD(name='idotless', uni=0x0131, hex='0131', c='ı', l='n', r='off', anchorTopY='TopY', isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top']),
     'iacute': GD(name='iacute', uni=0x00ED, hex='00ED', c='í', w='i', bl='idotless', anchorTopY='TopY', base='idotless', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='í I WITH ACUTE, LATIN SMALL LETTER'),
     'ibreve': GD(name='ibreve', uni=0x012D, hex='012D', c='ĭ', w='i', bl='idotless', anchorTopY='TopY', base='idotless', accents=['brevecmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ĭ I WITH BREVE, LATIN SMALL LETTER'),
     'icaron': GD(name='icaron', uni=0x01D0, hex='01D0', c='ǐ', w='i', bl='idotless', anchorTopY='TopY', base='idotless', accents=['caroncmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top']),
@@ -690,7 +692,6 @@ LATIN_S_SET = GDS = {
     'istroke': GD(name='istroke', uni=0x0268, hex='0268', c='ɨ', l='hyphen', r='hyphen', base='i', isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top']),
     'itilde': GD(name='itilde', uni=0x0129, hex='0129', c='ĩ', w='i', bl='idotless', anchorTopY='TopY', base='idotless', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ĩ I WITH TILDE, LATIN SMALL LETTER'),
     'infinity': GD(name='infinity', uni=0x221E, hex='221E', c='∞', l='o', r='o', isLower=False, comment='∞ INFINITY'),
-    'idotless': GD(name='idotless', uni=0x0131, hex='0131', c='ı', l='off', r='off', anchorTopY='TopY', isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top']),
     # Needed for floating diacritics: i̊i̋i̍i̓i᷆i᷇j̀j́j̃j̄j̈į̀į́į̂į̃į̄į̌ɨ̀ɨ́ɨ̂ɨ̃ɨ̄ɨ̈ɨ̋ɨ̌ɨ̏ɨ̧̀ɨ̧́ɨ̧̂ɨ̧̌ɨ̱̀ɨ̱́ɨ̱̈і́ḭ̀ḭ́ḭ̄ị̀ị́ị̂ị̃ị̄i̇i̒i᷄i᷅i̛̇i̛̊i̛̋i̛̍i̛̒i̛̓i̛᷄i̛᷅i̛᷆i̛᷇i̠̇i̠̊i̠̋i̠̍i̠̒i̤̇i̤̊i̤̋i̤̍i̤̒i̤̓i̤᷄i̤᷅i̤᷆i̤᷇i̥̇i̥̊i̥̋i̥̍i̥̒i̥̓i̥᷄i̥᷅i̥᷆i̥᷇
     'idotlessogonek': GD(name='idotlessogonek', l='idotless', w='idotless', base='idotless', accents=['ogonekcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='į I WITH OGONEK, LATIN SMALL LETTER'),
     'idotlessstroke': GD(name='idotlessstroke', l='istroke', w='istroke', base='idotless', isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top']),
