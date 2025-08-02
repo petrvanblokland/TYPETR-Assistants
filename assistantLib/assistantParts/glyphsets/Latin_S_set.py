@@ -536,7 +536,7 @@ LATIN_S_SET = GDS = {
     'aring': GD(name='aring', uni=0x00E5, hex='00E5', c='å', base='a', anchorTopY='TopY', accents=['ringcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='å RING ABOVE, LATIN SMALL LETTER A WITH'),
     'atilde': GD(name='atilde', uni=0x00E3, hex='00E3', c='ã', base='a', anchorTopY='TopY', accents=['tildecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ã A WITH TILDE, LATIN SMALL LETTER'),
 
-    'ampersand': GD(name='ampersand', uni=0x0026, hex='0026', c='&', r2l='B', r='t', isLower=False, comment='& AMPERSAND'), # For italic shape
+    'ampersand': GD(name='ampersand', uni=0x0026, hex='0026', c='&', l='off', r='t', isLower=False, comment='& AMPERSAND'), # For italic shape
     'asciicircum': GD(name='asciicircum', uni=0x005E, hex='005E', c='^', l2r='self', isLower=True, comment='^ spacing circumflex accent'),
     'asciitilde': GD(name='asciitilde', uni=0x007E, hex='007E', c='~', l2r='asciitilde', isLower=True, comment='~ tilde, spacing'),
     'asciitilde.uc': GD(name='asciitilde.uc', l='asciitilde', r='asciitilde', base='asciitilde', isLower=False, comment='~ tilde, spacing, for capitals'),
