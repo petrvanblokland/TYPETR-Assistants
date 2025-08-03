@@ -431,7 +431,7 @@ CYRILLIC_SET = {
    #'yat_cy': GD(name='yat_cy', uni=0x0463, hex='0463', c='ѣ', r='softsign_cy', isLower=True, gid=744),
    'yeru_cy': GD(name='yeru_cy', uni=0x044B, hex='044B', c='ы', l='en_cy', r='en_cy', isLower=True, anchors=['top'], gid=720),
    'yerudieresis_cy': GD(name='yerudieresis_cy', uni=0x04F9, hex='04F9', c='ӹ', l='en_cy', r='en_cy', base='yeru_cy', accents=['dieresiscmb'], isLower=True, anchors=['top'], gid=894),
-   'yi_cy': GD(name='yi_cy', uni=0x0457, hex='0457', c='ї', w='idotless', l='idotless', base='idotless', accents=['dieresiscmb'], isLower=True, anchors=['top'], gid=732),
+   'yi_cy': GD(name='yi_cy', uni=0x0457, hex='0457', c='ї', l='off', l2r='self', base='idotless', accents=['dieresiscmb'], isLower=True, anchors=['top'], gid=732),
    #'yusbig_cy': GD(name='yusbig_cy', uni=0x046B, hex='046B', c='ѫ', l2r='yusbig_cy', isLower=True, gid=752),
    #'yusbigiotified_cy': GD(name='yusbigiotified_cy', uni=0x046D, hex='046D', c='ѭ', l='en_cy', r='yusbig_cy', isLower=True, gid=754),
    #'yuslittle_cy': GD(name='yuslittle_cy', uni=0x0467, hex='0467', c='ѧ', l2r='yuslittle_cy', isLower=True, gid=748),

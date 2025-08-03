@@ -783,7 +783,7 @@ LATIN_S_SET = GDS = {
     'quotesingle': GD(name='quotesingle', uni=0x0027, hex='0027', c="'" , l2r='self', isLower=True, comment='" single quotation mark, neutral'),
 
     'minute': GD(name='minute', uni=0x2032, hex='2032', c='′', l='quotesingle', r='quotesingle', isLower=True, comment='′ PRIME'),
-    'second': GD(name='second', uni=0x2033, hex='2033', c='″', l='quotesingle', r='quotesingle', isLower=True, comment='″ seconds'),
+    'second': GD(name='second', uni=0x2033, hex='2033', c='″', l='quotesingle', r='quotesingle', base='minute', accents=['minute'], isLower=True, comment='″ seconds'),
 
     # r
 
