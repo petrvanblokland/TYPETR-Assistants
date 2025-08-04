@@ -454,7 +454,8 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['beta_latin'] = GD(name='beta_latin', uni=0xA7B5, hex='A7B5', c='ꞵ', base='beta', isLower=True)
     GDS['bilabialclick'] = GD(name='bilabialclick', uni=0x0298, hex='0298', c='ʘ', l='zero', r='zero', base='zero',)
     GDS['blinebelow'] = GD(name='blinebelow', uni=0x1E07, hex='1E07', c='ḇ', base='b', accents=['macronbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
-    GDS['bstroke'] = GD(name='bstroke', uni=0x0180, hex='0180', c='ƀ', l='hyphen', r='b', base='b', isLower=True)
+    # For Serif type. For Sans use l='hyphen' instead.
+    GDS['bstroke'] = GD(name='bstroke', uni=0x0180, hex='0180', c='ƀ', l='b', r='b', base='b', isLower=True)
 
     GDS['invertedbrevebelowcmb'] = GD(name='invertedbrevebelowcmb', uni=0x032F, hex='032F', c='̯', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, base='invertedbrevecmb', isLower=True, anchors=['_bottom', 'bottom'])
     GDS['invertedbrevecmb'] = GD(name='invertedbrevecmb', uni=0x0311, hex='0311', c='̑', l=GD.CAT_CENTER, w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_top', 'top'])
