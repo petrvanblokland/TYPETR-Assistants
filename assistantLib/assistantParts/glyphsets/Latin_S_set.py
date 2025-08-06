@@ -245,7 +245,7 @@ LATIN_S_SET = GDS = {
     'bitcoin': GD(uni=0x20bf, c='₿', name='bitcoin', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='B', height=GD.CAT_CAP_HEIGHT, overshoot=GD.CAT_CAP_OVERSHOOT),
     'bitcoin.alt': GD(l=GD.CAT_CENTER, w=GD.CAT_TAB_WIDTH, name='bitcoin.alt', base='B', height=GD.CAT_CAP_HEIGHT, overshoot=GD.CAT_CAP_OVERSHOOT),
     'won': GD(name='won', uni=0x20A9, hex='20A9', c='₩', l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, isLower=False, srcName='W', comment="South Korean Won"),
-    'yen': GD(name='yen', uni=0x00A5, hex='00A5', c='¥', isLower=True, l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, base='Y', comment='¥ yuan sign'),
+    'yen': GD(name='yen', uni=0x00A5, hex='00A5', c='¥', isLower=True, l=GD.CAT_CENTER, w=GD.CAT_MATH_WIDTH, comment='¥ yuan sign'),
     #/Fhook/florin (Ƒƒ)
     # In African languages, lowercase f with hook is an actual letter, even if it shares the codepoint with the Florin currency.    
     'florin': GD(name='florin', uni=0x0192, hex='0192', l='off', r='f', comment='ƒ script f, latin small letter, same as African fhook'),
