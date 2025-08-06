@@ -92,7 +92,7 @@ CYRILLIC_SET = {
     #   H
 
    'Ha_cy': GD(name='Ha_cy', uni=0x0425, hex='0425', c='Х', l='X', r='X', base='X', anchors=['top', 'middle', 'bottom'], gid=682),
-   'Haabkhasian_cy': GD(name='Haabkhasian_cy', uni=0x04A8, hex='04A8', c='Ҩ', l='o', r='c', gid=813),
+   'Haabkhasian_cy': GD(name='Haabkhasian_cy', uni=0x04A8, hex='04A8', c='Ҩ', l='O', r='O', gid=813),
    'Hadescender_cy': GD(name='Hadescender_cy', uni=0x04B2, hex='04B2', c='Ҳ', l='X', r='Kadescender_cy', gid=823),
    'Hahook_cy': GD(name='Hahook_cy', uni=0x04FC, hex='04FC', c='Ӽ', l='X', r='X', gid=897),
    'Hardsign_cy': GD(name='Hardsign_cy', uni=0x042A, hex='042A', c='Ъ', l='T', r='Softsign_cy', gid=687),

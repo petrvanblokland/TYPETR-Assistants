@@ -21,6 +21,7 @@ from assistantLib.similarity.cosineSimilarity import cosineSimilarity, SimilarGl
 from assistantLib.kerningSamples import SAMPLES, CYRILLIC_KERNING, GREEK_KERNING 
 # Seed relation between glyphs as start for similarity groups
 from assistantLib.assistantParts.glyphsets.groupBaseGlyphs import *
+from assistantLib.assistantParts.outliner import calculateOutline
 
 FORCE_GROUP1 = {}
 FORCE_GROUP2 = {}
@@ -1456,7 +1457,7 @@ class KerningManager:
 
     #   K E R N I N G  M E A S U R E
 
-    def getTmpGlyph(self, g, tmpName):
+    def getTmpGlyph(self, g, tmpName, bubble=0):
         f = g.font
         if not tmpName in f:
             g.font.newGlyph(tmpName)
@@ -1469,6 +1470,8 @@ class KerningManager:
         tmp.width = g.width
         tmp.decompose()
         q2b.curvesQ2B(tmp) # Remove overlap on quadratics does not work outside RoboFont
+        if bubble:
+            tmp = calculateOutline(tmp, thickness=bubble)
         tmp.removeOverlap()
         tmp.removeOverlap() # Just to be sure, sometimes one is not ernouh
         return tmp
@@ -1477,9 +1480,9 @@ class KerningManager:
     TMPNAME1 = 'TMP1'
     TMPNAME2 = 'TMP2'
 
-    KERNED_DIASTANCE_TOLERANCE = 2
+    KERNED_DISTANCE_TOLERANCE = 2
 
-    def kernedDistance(self, g1, g2):
+    def kernedDistance(self, g1, g2, bubbleLeft=0, bubbleRight=0):
         """Answer the smallest distance that the kerned pair have to each other. Since there is no direct way to measure this,
         we need to use a time-expensive method: place them on kerned distance in a separate temporary glyph, decompse and remove overlap.
         If number of contours changes, then they are too close. Do a binary search for different distances until it falls within a range.
@@ -1497,15 +1500,18 @@ class KerningManager:
         If there is no overlap, /TMP2 is too far out still. Move it to the left, half the distance of last time.
         Repeat the above until the moving distance gets below a certain threshold.
         """
-        tmp1 = self.getTmpGlyph(g1, self.TMPNAME1) # Could even be glyphs from another font than self.f. It does decompose and remove overlap 
-        tmp2 = self.getTmpGlyph(g2, self.TMPNAME2)
+        # Could even be glyphs from another font than self.f. It does decompose, bubble outline and remove overlap 
+        tmp1 = self.getTmpGlyph(g1, self.TMPNAME1, bubble=bubbleLeft) 
+        tmp2 = self.getTmpGlyph(g2, self.TMPNAME2, bubble=bubbleRight)
+        self.f[self.TMPNAME1] = tmp1
+        self.f[self.TMPNAME2] = tmp2
         #print('AAA1', tmp1.hasOverlap())
         #print('AAA2', tmp2.hasOverlap())
         # Ignore the current kerning. We just want to compare the shapes.
         # It is up to the caller to decide if the current kerning should be changed.
         #k = self.getKerning(g1.name, g2.name)[0] # Answered (kerning, groupK, kerningType)
         step = -g1.width/2
-        dist = g1.width
+        dist = g1.width*2
         newDist = dist + step # Prevent "overkill" of large kerning or too large minOffset
         # Make sure that the /TMP exists
         if self.TMPNAME not in self.f:
@@ -1513,6 +1519,7 @@ class KerningManager:
         tmp = self.f[self.TMPNAME]
 
         for n in range(0, 100): # Max number of iterations in the binary search
+            print(newDist)
             tmp.clear()
             tmp.appendComponent(self.TMPNAME1) # Components from tmp1 have no nested components and no overlap.
             tmp.appendComponent(self.TMPNAME2, offset=(newDist, 0)) # Components from tmp1 have no nested components and no overlap.
@@ -1534,7 +1541,98 @@ class KerningManager:
  
             newDist += step # Keep new positiion
 
-            if abs(step) < self.KERNED_DIASTANCE_TOLERANCE:
+            if abs(step) < self.KERNED_DISTANCE_TOLERANCE:
+                break
+
+            break
+            
+        tmp.changed()
+        return dist - newDist # The difference is the new needed kerning to make the glyphs just touch
+
+    def hasKernedOverlap(self, g1, g2, minOffset=0):
+        """Answer the boolean if the spaced/kerned combination of g1, g2 has overlapping outlines. 
+        This is used to determine if kerning should be altered.
+        The optional offset allows to add a forced extra kerning, in order to create a minimal distance for not overlapping.
+        """
+        k = self.getKerning(g1.name, g2.name)[0] # Answered (kerning, groupK, kerningType)
+        # Offset for the second glyph. The minOffset forces to make a minimal gap of this distance.
+        dist = max(g1.width/2, g1.width + k - minOffset)
+
+        tmp1 = self.getTmpGlyph(g1, self.TMPNAME1) # Could theoretically even be glyphs from another font than self.f 
+        tmp2 = self.getTmpGlyph(g2, self.TMPNAME2)
+        # Make sure that the /TMP exists
+        if self.TMPNAME not in self.f:
+            self.f.newGlyph(self.TMPNAME)
+        tmp = self.f[self.TMPNAME]
+        tmp.clear()
+        tmp.appendComponent(self.TMPNAME1)
+        tmp.appendComponent(self.TMPNAME2, offset=(dist, 0))
+        tmp.decompose()
+        tmp.decompose() # Sometimes one time it not enought
+        tmp.angledRightMargin = g2.angledRightMargin # Not really needed, but useful for debugging.
+        return tmp.hasOverlap()
+
+
+    def XXXkernedDistance(self, g1, g2, bubbleLeft=0, bubbleRight=0):
+        """Answer the smallest distance that the kerned pair have to each other. Since there is no direct way to measure this,
+        we need to use a time-expensive method: place them on kerned distance in a separate temporary glyph, decompse and remove overlap.
+        If number of contours changes, then they are too close. Do a binary search for different distances until it falls within a range.
+        Then we know how much the right glyph moved. 
+        In order to make this happen we need to do a sequence of steps:
+        - Copy g1 to /TMP1 glyph
+        - Copy g2 to /TMP2 glyph
+        - Decompose both
+        - Convert to cubic, in case there are quadratic curves
+        - Remove overlap in both temp glyphs. Now we have a reliable contour count in both.
+        - Copy the glyph outlines of /TMP1 and /TMP2 as components to a combine TMP glyph, spaced by g1.width and (g1, g2) kerning.
+        - Decompose the glyph
+        - Test if there is new overlap from the two glyphs
+        Now if there is overlap, /TMP2 is too close and needs to move to the right (half the distance of last time)
+        If there is no overlap, /TMP2 is too far out still. Move it to the left, half the distance of last time.
+        Repeat the above until the moving distance gets below a certain threshold.
+        """
+        # Could even be glyphs from another font than self.f. It does decompose, bubble outline and remove overlap 
+        tmp1 = self.getTmpGlyph(g1, self.TMPNAME1, bubble=bubbleLeft) 
+        tmp2 = self.getTmpGlyph(g2, self.TMPNAME2, bubble=bubbleRight)
+        self.f[self.TMPNAME1] = tmp1
+        self.f[self.TMPNAME2] = tmp2
+        #print('AAA1', tmp1.hasOverlap())
+        #print('AAA2', tmp2.hasOverlap())
+        # Ignore the current kerning. We just want to compare the shapes.
+        # It is up to the caller to decide if the current kerning should be changed.
+        #k = self.getKerning(g1.name, g2.name)[0] # Answered (kerning, groupK, kerningType)
+        step = -g1.width/2
+        dist = g1.width*2
+        newDist = dist + step # Prevent "overkill" of large kerning or too large minOffset
+        # Make sure that the /TMP exists
+        if self.TMPNAME not in self.f:
+            self.f.newGlyph(self.TMPNAME)
+        tmp = self.f[self.TMPNAME]
+
+        for n in range(0, 100): # Max number of iterations in the binary search
+            print(newDist)
+            tmp.clear()
+            tmp.appendComponent(self.TMPNAME1) # Components from tmp1 have no nested components and no overlap.
+            tmp.appendComponent(self.TMPNAME2, offset=(newDist, 0)) # Components from tmp1 have no nested components and no overlap.
+            tmp.decompose()
+
+            #print(n, dist, newDist, step, tmp.hasOverlap())
+            if tmp.hasOverlap():
+                #print('Overlap', dist, newDist, dist - newDist, step, len(tmp.contours), len(tmp1.contours), len(tmp2.contours))
+                # Overlap, go right
+                if step < 0:
+                    step = -step * 0.5 # Reverse direction in slower speed
+                # Otherwise step again with the same amount
+            else:
+                # No overlap, go left
+                #print('No overlap', dist, newDist, dist - newDist, step, len(tmp.contours), len(tmp1.contours), len(tmp2.contours))
+                if step >= 0: 
+                    step = -step * 0.5 # Reverse direction in slower speed
+                # Otherwise step again with the same amount
+ 
+            newDist += step # Keep new positiion
+
+            if abs(step) < self.KERNED_DISTANCE_TOLERANCE:
                 break
 
         tmp.changed()

@@ -909,26 +909,30 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         return y
 
-    def bubbleFixKern2(self, g, c, event):
-        km = self.getKerningManager(g.font)
-        kernGlyphNameLeft = km.kerningSample[km.sampleKerningIndex - 1]
-        k = km.kernedDistance(g.font[kernGlyphNameLeft], g)
-        groupName1 = km.glyphName2GroupName1.get(kernGlyphNameLeft)
-        groupName2 = km.glyphName2GroupName2.get(g.name)
-        g.font.kerning[(groupName1, groupName2)] = int(round(200 - k)/4)*4
-        #g.font.kerning[(groupName1, groupName2)] = -k # This makes them touching
-        print(f'bubbleFixKern2 /{kernGlyphNameLeft} ({groupName1}) + /{g.name} ({groupName2}) -- {k} {g.font.kerning.get((groupName1, groupName2))}')
-        g.changed()
+    def bubbleFixKern1(self, g, c, event, bubble=400):
+        return # We need dto find a better method
 
-    def bubbleFixKern1(self, g, c, event):
         km = self.getKerningManager(g.font)
         kernGlyphNameRight = km.kerningSample[km.sampleKerningIndex + 1]
-        k = km.kernedDistance(g, g.font[kernGlyphNameRight])
+        k = km.kernedDistance(g, g.font[kernGlyphNameRight], bubbleRight=bubble)
         groupName1 = km.glyphName2GroupName1.get(g.name)
         groupName2 = km.glyphName2GroupName2.get(kernGlyphNameRight)
         g.font.kerning[(groupName1, groupName2)] = int(round(200 - k)/4)*4
-        #g.font.kerning[(groupName1, groupName2)] = -k # This makes them touching
+        #g.font.kerning[(groupName1, groupName2)] = -k # This makes them touching + bubble
         print(f'bubbleFixKern1 /{g.name} ({groupName1}) + /{kernGlyphNameRight} ({groupName2}) -- {k} {g.font.kerning.get((groupName1, groupName2))}')
+        g.changed()
+
+    def bubbleFixKern2(self, g, c, event, bubble=400):
+        return # We need dto find a better method
+
+        km = self.getKerningManager(g.font)
+        kernGlyphNameLeft = km.kerningSample[km.sampleKerningIndex - 1]
+        k = km.kernedDistance(g.font[kernGlyphNameLeft], g, bubbleLeft=bubble)
+        groupName1 = km.glyphName2GroupName1.get(kernGlyphNameLeft)
+        groupName2 = km.glyphName2GroupName2.get(g.name)
+        g.font.kerning[(groupName1, groupName2)] = int(round(200 - k)/4)*4
+        #g.font.kerning[(groupName1, groupName2)] = -k # This makes them touching + bubble
+        print(f'bubbleFixKern2 /{kernGlyphNameLeft} ({groupName1}) + /{g.name} ({groupName2}) -- {k} {g.font.kerning.get((groupName1, groupName2))}')
         g.changed()
 
     def initilalizeAllScriptScriptKerningCallback(self, sender):
@@ -1395,8 +1399,6 @@ class AssistantPartSpacer(BaseAssistantPart):
             inc *= 10
             if event['optionDown']:
                 inc *= 10
-
-        print('#@@#@##@#@#', km.kerningSample)
 
         km.sampleKerningIndex = km.sampleKerningIndex + inc # km property will take care of boundaries
         if km.sampleKerningIndex >= len(km.kerningSample):
