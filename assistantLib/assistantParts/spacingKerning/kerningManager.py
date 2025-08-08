@@ -2308,9 +2308,15 @@ class KerningManager:
                                     if (gName1, gName2) in donePairs:
                                         continue
 
+
                                     donePairs.add((prevGlyphName, gName1))
                                     donePairs.add((gName1, gName2))
                                     prevGlyphName = gName1
+
+                                    # Also add all glyph combinations that are in these groups:
+                                    for ggName1 in self.f.groups[groupName1]:
+                                        for ggName2 in self.f.groups[groupName2]:
+                                            donePairs.add((ggName1, ggName2))
 
                                     if self._kerningSampleFilter2 is None or self._kerningSampleFilter2 == gName2:
                                         if 0: #'parenleft' in (gName1, gName2) or 'parenright' in (gName1, gName2):
