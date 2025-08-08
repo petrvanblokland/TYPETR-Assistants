@@ -331,7 +331,7 @@ LATIN_S_SET = GDS = {
     'Emacron': GD(name='Emacron', uni=0x0112, hex='0112', c='Ē', l='H', r='E', base='E', accents=['macroncmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ē'),
     'Eng': GD(name='Eng', uni=0x014A, hex='014A', c='Ŋ', l='N', r='N', comment='Ŋ'),
     'Eogonek': GD(name='Eogonek', uni=0x0118, hex='0118', c='Ę', l='E', w='E', base='E', accents=['ogonekcmb'], anchors=['bottom', 'middle', 'top'], comment='Ę'),
-    'Eopen': GD(name='Eopen', uni=0x0190, hex='0190', c='Ɛ', r='C', r2l='B', srcName='uni0190', comment='Ɛ OPEN E, LATIN CAPITAL LETTER'),
+    'Eopen': GD(name='Eopen', uni=0x0190, hex='0190', c='Ɛ', r='off', r2l='B', srcName='uni0190', comment='Ɛ OPEN E, LATIN CAPITAL LETTER'),
     'Ereversed': GD(name='Ereversed', uni=0x018E, hex='018E', c='Ǝ', r2l='E', l2r='E', srcName='E', comment='Ǝ turned e, latin capital letter'),
     'Eth': GD(name='Eth', uni=0x00D0, hex='00D0', c='Ð', r='D', base='D', comment='Ð ETH, LATIN CAPITAL LETTER'),
     'Etilde': GD(name='Etilde', uni=0x1EBC, hex='1EBC', c='Ẽ', l='E', r='E', base='E', accents=['tildecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ẽ LATIN CAPITAL LETTER E WITH TILDE'),
@@ -468,7 +468,7 @@ LATIN_S_SET = GDS = {
 
     # U
 
-    'U': GD(name='U', uni=0x0055, hex='0055', c='U', l2r='self', anchors=['bottom', 'middle', 'ogonek', 'top'], comment='U'),
+    'U': GD(name='U', uni=0x0055, hex='0055', c='U', l='off', l2r='self', anchors=['bottom', 'middle', 'ogonek', 'top'], comment='U'),
     'Uacute': GD(name='Uacute', uni=0x00DA, hex='00DA', c='Ú', l='U', r='U', base='U', accents=['acutecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ú U WITH ACUTE, LATIN CAPITAL LETTER'),
     'Ubreve': GD(name='Ubreve', uni=0x016C, hex='016C', c='Ŭ', l='U', r='U', base='U', accents=['brevecmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top'], comment='Ŭ'),
     'Ucaron': GD(name='Ucaron', uni=0x01D3, hex='01D3', c='Ǔ', l='U', r='U', base='U', accents=['caroncmb.uc'], anchors=['bottom', 'middle', 'ogonek', 'top']),
@@ -485,7 +485,7 @@ LATIN_S_SET = GDS = {
 
     # V
 
-    'V': GD(name='V', uni=0x0056, hex='0056', c='V', l2r='self', anchors=['bottom', 'middle', 'top'], comment='V'),
+    'V': GD(name='V', uni=0x0056, hex='0056', c='V', l='A', r='A', anchors=['bottom', 'middle', 'top'], comment='V'),
     'Vturned': GD(name='Vturned', uni=0x0245, hex='0245', c='Ʌ', l2r='V', r2l='V'),
 
     # W

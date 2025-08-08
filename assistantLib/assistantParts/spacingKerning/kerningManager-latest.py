@@ -1545,7 +1545,7 @@ class KerningManager:
                 break
 
             break
-            
+
         tmp.changed()
         return dist - newDist # The difference is the new needed kerning to make the glyphs just touch
 
@@ -2212,8 +2212,6 @@ class KerningManager:
             donePairs = set()
             self._kerningSample = initSample.copy()
 
-            prevGlyphName = None
-
             for scriptName1, scriptName2 in KERN_GROUPS:
                 #pre1, ext1 = GROUP_NAME_PARTS[scriptName1]
                 #pre2, ext2 = GROUP_NAME_PARTS[scriptName2]
@@ -2256,6 +2254,10 @@ class KerningManager:
 
                                 if self._kerningSampleFilter1 is None or self._kerningSampleFilter1 == gName1:
 
+                                    # Skip if the pair is already in the sample.
+                                    if (gName1, gName2) in donePairs:
+                                        continue
+                                      
                                     if gName1.endswith('.sc'): # Skip if sc <--> lc. Keep sc <--> sc and keep capital <--> sc
                                         if gName2[0].upper() != gName2[0] or not gName1.endswith('.sc'):
                                             donePairs.add((gName1, gName2))
@@ -2308,9 +2310,11 @@ class KerningManager:
                                     if (gName1, gName2) in donePairs:
                                         continue
 
-                                    donePairs.add((prevGlyphName, gName1))
+                                    # Permutate all glyphs in the groups, now we have had one combinations of them
+                                    #for doneGlyph1 in self.f.groups.get(gName1, []):
+                                    #    for doneGlyph2 in self.f.groups.get(gName2, []):
+                                    #        donePairs.add((doneGlyph1, doneGlyph2))
                                     donePairs.add((gName1, gName2))
-                                    prevGlyphName = gName1
 
                                     if self._kerningSampleFilter2 is None or self._kerningSampleFilter2 == gName2:
                                         if 0: #'parenleft' in (gName1, gName2) or 'parenright' in (gName1, gName2):
@@ -2343,6 +2347,8 @@ class KerningManager:
                                             self._kerningSample.append(gName1)
                                             self._kerningSample.append(gName2)
 
+            self._kerningSample += exitSample.copy()
+
         # Check for duplicate pairs that are still there. Why is the code above not filtering those out?
         newSample = []
         found = set()
@@ -2356,8 +2362,6 @@ class KerningManager:
 
         #print(newSample)
         self._kerningSample = newSample
-
-        #self._kerningSample += exitSample.copy()
 
         return self._kerningSample
     kerningSample = property(_get_kerningSample)
