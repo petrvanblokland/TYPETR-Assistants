@@ -88,7 +88,7 @@ GREEK_SET = {
    'Xi': GD(name='Xi', uni=0x039E, hex='039E', c='Ξ', r2l='E', r='E', gid=548),
    #'Yot': GD(name='Yot', uni=0x037F, hex='037F', c='Ϳ', l='J', r='J', base='J', anchors=['bottom', 'middle', 'top'], gid=523),
    'Zeta': GD(name='Zeta', uni=0x0396, hex='0396', c='Ζ', l='Z', r='Z', base='Z', anchors=['bottom', 'top'], gid=540),
-   'alpha': GD(name='alpha', uni=0x03B1, hex='03B1', c='α', l='o', r='t', isLower=True, anchors=['bottom', 'top'], gid=566),
+   'alpha': GD(name='alpha', uni=0x03B1, hex='03B1', c='α', l='o', r='off', isLower=True, anchors=['bottom', 'top'], gid=566),
    'alphatonos': GD(name='alphatonos', uni=0x03AC, hex='03AC', c='ά', l='alpha', r='alpha', base='alpha', accents=['tonoscmb'], isLower=True, anchors=['bottom', 'top'], gid=561),
    'anoteleia': GD(name='anoteleia', uni=0x0387, hex='0387', c='·', l='period', r='period', isLower=True, gid=527),
    #'archaicsampi': GD(name='archaicsampi', uni=0x0373, hex='0373', c='ͳ', r='E', r2l='E', isLower=True, gid=513),
