@@ -35,7 +35,7 @@ CYRILLIC_SET = {
     #   C
 
    'Che_cy': GD(name='Che_cy', uni=0x0427, hex='0427', c='Ч', r='H', anchors=['top'], gid=684),
-   'Cheabkhasian_cy': GD(name='Cheabkhasian_cy', uni=0x04BC, hex='04BC', c='Ҽ', l='o', r='O', gid=833),
+   'Cheabkhasian_cy': GD(name='Cheabkhasian_cy', uni=0x04BC, hex='04BC', c='Ҽ', l='off', r='off', gid=833),
    'Chedescender_cy': GD(name='Chedescender_cy', uni=0x04B6, hex='04B6', c='Ҷ', l='Che_cy', r='Tse_cy', gid=827),
    'Chedescenderabkhasian_cy': GD(name='Chedescenderabkhasian_cy', uni=0x04BE, hex='04BE', c='Ҿ', l='Cheabkhasian_cy', r='Cheabkhasian_cy', base='Cheabkhasian_cy', gid=835),
    #'Chedescenderabkhasian_cy.component': GD(name='Chedescenderabkhasian_cy.component', gid=1599),
