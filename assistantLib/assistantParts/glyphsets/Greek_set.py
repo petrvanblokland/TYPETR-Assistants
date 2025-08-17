@@ -49,7 +49,7 @@ GREEK_SET = {
    #'Khei_coptic': GD(name='Khei_coptic', uni=0x03E6, hex='03E6', c='Ϧ', l='off', r='n', gid=619),
    #'Koppa': GD(name='Koppa', uni=0x03DE, hex='03DE', c='Ϟ', l='off', l2r='Koppa', gid=611),
    #'KoppaArchaic': GD(name='KoppaArchaic', uni=0x03D8, hex='03D8', c='Ϙ', l='O', r='O', gid=605),
-   'Lambda': GD(name='Lambda', uni=0x039B, hex='039B', c='Λ', l='A', r='A', gid=545, comment='Λ', anchors=['bottom', 'top']),
+   'Lambda': GD(name='Lambda', uni=0x039B, hex='039B', c='Λ', l='A', r='A', base='Vturned', gid=545, comment='Λ', anchors=['bottom', 'top']),
    'Mu': GD(name='Mu', uni=0x039C, hex='039C', c='Μ', l='H', r='H', base='M', anchors=['bottom', 'top'], gid=546),
    'Nu': GD(name='Nu', uni=0x039D, hex='039D', c='Ν', l='H', r='N', base='N', anchors=['bottom', 'top'], gid=547),
    'Omega': GD(name='Omega', uni=0x03A9, hex='03A9', c='Ω', l='off', l2r='self', anchors=['bottom', 'topleft', 'top'], gid=558),

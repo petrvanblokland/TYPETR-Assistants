@@ -60,7 +60,7 @@ CYRILLIC_SET = {
    'Ef_cy': GD(name='Ef_cy', uni=0x0424, hex='0424', c='Ф', l='O', l2r='Ef_cy', gid=681),
    #'Eiotified_cy': GD(name='Eiotified_cy', uni=0x0464, hex='0464', c='Ѥ', l='H', r='C', gid=745),
    'El_cy': GD(name='El_cy', uni=0x041B, hex='041B', c='Л', r='H', gid=672),
-   'El_cy.loclBGR': GD(name='El_cy.loclBGR', l='A', r='A', base='Lambda'),
+   'El_cy.loclBGR': GD(name='El_cy.loclBGR', l='A', r='A', base='Vturned'),
    'Eltail_cy': GD(name='Eltail_cy', uni=0x04C5, hex='04C5', c='Ӆ', l='El_cy', r='Iishorttail_cy', srcName='El_cy', anchorBottomY='El_cy', gid=842),
    'Em_cy': GD(name='Em_cy', uni=0x041C, hex='041C', c='М', l='H', r='H', base='M', anchors=['top', 'middle', 'bottom'], gid=673),
    'Emtail_cy': GD(name='Emtail_cy', uni=0x04CD, hex='04CD', c='Ӎ', l='H', r='Iishorttail_cy', srcName='M', anchorBottomY='M', anchors=['top', 'middle', 'bottom'], gid=850),
