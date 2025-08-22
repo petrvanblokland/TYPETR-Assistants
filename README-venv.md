@@ -32,7 +32,7 @@ pip install git+https://github.com/typemytype/drawbot
 * ttx -d _ttf/ttx/ _ttf/*.ttf
 * fontmake -o otf --output-dir ../_otf/ -u ../_instances/Presti*.ufo
 
-# Run this parallel to assistants that use spacer.py part.
+# Run this parallel to assistants that uses the spacer.py part.
 cd assistantLib/kernnet7
 python kernNetServer-007.py
 
