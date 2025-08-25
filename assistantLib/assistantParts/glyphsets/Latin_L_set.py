@@ -541,7 +541,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     GDS['gacute'] = GD(name='gacute', uni=0x01F5, hex='01F5', c='ǵ', base='g', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['gamma_latin'] = GD(name='gamma_latin', uni=0x0263, hex='0263', c='ɣ', isLower=True)
-    GDS['ghook'] = GD(name='ghook', uni=0x0260, hex='0260', c='ɠ', l='g', r='off', isLower=True)
+    GDS['ghook'] = GD(name='ghook', uni=0x0260, hex='0260', c='ɠ', l='o', r='off', isLower=True) # Italic-shaped roman better spaces as /o on the left.
     GDS['glottalstop'] = GD(name='glottalstop', uni=0x0294, hex='0294', c='ʔ', r2l='C', r='O', isLower=True)
     GDS['glottalstopreversed'] = GD(name='glottalstopreversed', uni=0x0295, hex='0295', c='ʕ', l2r='glottalstop', r2l='glottalstop', srcName='question')
     GDS['gravemacroncmb'] = GD(name='gravemacroncmb', uni=0x1DC5, hex='1DC5', c='᷅', w=0, autoFixComponentPositions=False, autoFixMargins=False, srcName='gravecmb', isLower=True, anchors=['_top', 'top'])
