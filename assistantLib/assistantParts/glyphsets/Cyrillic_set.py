@@ -498,3 +498,6 @@ for gName in [
     if gName in CYRILLIC_SET_ITALIC:
         del CYRILLIC_SET_ITALIC[gName]
 
+CHECK_FOR_OVERLAPPING_CYRILLIC_KERNING = set(list(CYRILLIC_SET.keys()) + list(CSI.keys()))
+#print(sorted(CHECK_FOR_OVERLAPPING_CYRILLIC_KERNING))
+

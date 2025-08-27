@@ -615,8 +615,8 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['ldoublebar'] = GD(name='ldoublebar', uni=0x2C61, hex='2C61', c='ⱡ', base='l', l='hyphen', r='hyphen', isLower=True)
     GDS['lj'] = GD(name='lj', uni=0x01C9, hex='01C9', c='ǉ', l='l', r='j', base='l', accents=['j'], isLower=True)
     GDS['lmiddletilde'] = GD(name='lmiddletilde', uni=0x026B, hex='026B', c='ɫ', l='asciitilde', r='asciitilde', base='l', isLower=True)
-    GDS['longs'] = GD(name='longs', uni=0x017F, hex='017F', c='ſ', r2l='f',  anchorTopX='TopX', anchorTopY='TopY', isLower=True, fixAccents=False, anchors=['top'], comment='ſ S, LATIN SMALL LETTER LONG')
-    GDS['longsdotaccent'] = GD(name='longsdotaccent', uni=0x1E9B, hex='1E9B', c='ẛ', w='longs', bl='longs', base='longs', accents=['dotaccentcmb.uc'], isLower=True, anchors=['top'])
+    GDS['longs'] = GD(name='longs', uni=0x017F, hex='017F', c='ſ', l='f', w='f', anchorTopX='TopX', anchorTopY='TopY', isLower=True, fixAccents=False, anchors=['top'], comment='ſ S, LATIN SMALL LETTER LONG')
+    GDS['longsdotaccent'] = GD(name='longsdotaccent', uni=0x1E9B, hex='1E9B', c='ẛ', w='longs', l='longs', base='longs', accents=['dotaccentcmb.uc'], isLower=True, anchors=['top'])
     GDS['lowlinecmb'] = GD(name='lowlinecmb', uni=0x0332, hex='0332', c='̲', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['_bottom', 'bottom'])
 
     GDS['lsuperior'] = GD(name='lsuperior', uni=0x02E1, hex='02E1', c='ˡ', l='hsuperior', r='nsuperior', isMod=True)

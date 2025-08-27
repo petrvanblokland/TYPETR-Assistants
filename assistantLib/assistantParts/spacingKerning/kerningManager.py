@@ -1499,12 +1499,18 @@ class KerningManager:
         Now if there is overlap, /TMP2 is too close and needs to move to the right (half the distance of last time)
         If there is no overlap, /TMP2 is too far out still. Move it to the left, half the distance of last time.
         Repeat the above until the moving distance gets below a certain threshold.
+        Answer the value of additional space to make the two glyphs just touch.
+        It is up to the caller to add a minimum value for the actual spacing.
         """
         # Could even be glyphs from another font than self.f. It does decompose, bubble outline and remove overlap 
-        tmp1 = self.getTmpGlyph(g1, self.TMPNAME1, bubble=bubbleLeft) 
-        tmp2 = self.getTmpGlyph(g2, self.TMPNAME2, bubble=bubbleRight)
-        self.f[self.TMPNAME1] = tmp1
-        self.f[self.TMPNAME2] = tmp2
+        #tmp1 = self.getTmpGlyph(g1, self.TMPNAME1, bubble=bubbleLeft) 
+        #tmp2 = self.getTmpGlyph(g2, self.TMPNAME2, bubble=bubbleRight)
+        #self.f[self.TMPNAME1] = tmp1
+        #self.f[self.TMPNAME2] = tmp2
+        self.f[self.TMPNAME1] = g1
+        self.f[self.TMPNAME1].unicode = None # Avoid duplicate unicodes
+        self.f[self.TMPNAME2] = g2
+        self.f[self.TMPNAME2].unicode = None # Avoid duplicate unicodes
         #print('AAA1', tmp1.hasOverlap())
         #print('AAA2', tmp2.hasOverlap())
         # Ignore the current kerning. We just want to compare the shapes.
@@ -1512,14 +1518,13 @@ class KerningManager:
         #k = self.getKerning(g1.name, g2.name)[0] # Answered (kerning, groupK, kerningType)
         step = -g1.width/2
         dist = g1.width*2
-        newDist = dist + step # Prevent "overkill" of large kerning or too large minOffset
+        newDist = dist # Prevent "overkill" of large kerning or too large minOffset
         # Make sure that the /TMP exists
         if self.TMPNAME not in self.f:
             self.f.newGlyph(self.TMPNAME)
         tmp = self.f[self.TMPNAME]
 
         for n in range(0, 100): # Max number of iterations in the binary search
-            print(newDist)
             tmp.clear()
             tmp.appendComponent(self.TMPNAME1) # Components from tmp1 have no nested components and no overlap.
             tmp.appendComponent(self.TMPNAME2, offset=(newDist, 0)) # Components from tmp1 have no nested components and no overlap.
@@ -1541,13 +1546,11 @@ class KerningManager:
  
             newDist += step # Keep new positiion
 
-            if abs(step) < self.KERNED_DISTANCE_TOLERANCE:
+            if abs(step) < self.KERNED_DISTANCE_TOLERANCE: # If step is within tolerance, then we are finished.
                 break
 
-            break
-            
         tmp.changed()
-        return dist - newDist # The difference is the new needed kerning to make the glyphs just touch
+        return int(round(newDist - g1.width)) # The difference is the new needed kerning to make the glyphs just touch
 
     def hasKernedOverlap(self, g1, g2, minOffset=0):
         """Answer the boolean if the spaced/kerned combination of g1, g2 has overlapping outlines. 
@@ -1601,8 +1604,8 @@ class KerningManager:
         # Ignore the current kerning. We just want to compare the shapes.
         # It is up to the caller to decide if the current kerning should be changed.
         #k = self.getKerning(g1.name, g2.name)[0] # Answered (kerning, groupK, kerningType)
-        step = -g1.width/2
-        dist = g1.width*2
+        step = -20
+        dist = g1.width
         newDist = dist + step # Prevent "overkill" of large kerning or too large minOffset
         # Make sure that the /TMP exists
         if self.TMPNAME not in self.f:

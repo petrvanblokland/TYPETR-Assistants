@@ -177,3 +177,8 @@ GREEK_SET = {
 GREEK_SET_ITALIC = deepcopy(GREEK_SET)
 
 # Exceptions on the Greek italic set go here.
+
+CHECK_FOR_OVERLAPPING_GREEK_KERNING = set(list(GREEK_SET.keys()) + list(GREEK_SET_ITALIC.keys()))
+#print(sorted(CHECK_FOR_OVERLAPPING_GREEK_KERNING))
+
+

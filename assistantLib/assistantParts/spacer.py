@@ -33,6 +33,8 @@ from assistantLib.assistantParts.baseAssistantPart import BaseAssistantPart
 from assistantLib.assistantParts.data import * # Import anchors names
 
 from assistantLib.assistantParts.glyphsets.groupBaseGlyphs import KERN_GROUPS, NOK1, NOK2
+from assistantLib.assistantParts.glyphsets.Greek_set import CHECK_FOR_OVERLAPPING_GREEK_KERNING
+from assistantLib.assistantParts.glyphsets.Cyrillic_set import CHECK_FOR_OVERLAPPING_CYRILLIC_KERNING
 
 ARROW_KEYS = [NSUpArrowFunctionKey, NSDownArrowFunctionKey,
         NSLeftArrowFunctionKey, NSRightArrowFunctionKey, NSPageUpFunctionKey,
@@ -1048,7 +1050,8 @@ class AssistantPartSpacer(BaseAssistantPart):
 
         # Only check for overlap on kerning for these glyphs
         checkedGlyphs = set((
-            'E', 'K', 'V', 'T', 'V', 'W', 'X', 'Y', 'Z', 'AE', 'OE',  
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+            'AE', 'OE',  
             'backslash', 'braceleft', 'braceright', 'bracketleft', 'bracketright', 
             'acircumflexgrave', 'acircumflexhookabove', 'adblgrave', 
             'cacute', 'ccaron', 'ccircumflex', 
@@ -1064,9 +1067,9 @@ class AssistantPartSpacer(BaseAssistantPart):
             'racute', 'rcaron', 'rdblgrave', 'rinvertedbreve', 
             'parenleft', 'parenright', 'percent', 'perthousand',  
             'seven', 'slash', 'tcaron', 'three', 'trademark', 'two', 'uhorn',
-        ))
-        # Not checked for overlapping kerning combinations, avoiding a huge load of permutated exceptions that are hardly used
-        UNCHECKED = set((
+
+
+
             'Tbar', 'Tcaron', 'Tcedilla', 'Tcommaaccent', 'Tdiagonalstroke', 'Tdotaccent', 'Tdotbelow', 'Thook', 'Tz', 
             'Vdiagonalstroke', 'Vdotbelow', 'Vtilde', 
             'AEacute', 'AEmacron', 'AY', 'Aturned', 'Au', 'Av', 
@@ -1088,17 +1091,30 @@ class AssistantPartSpacer(BaseAssistantPart):
             'rlonglegturned',  
             'tesh', 'thook', 'thornstroke', 'turnedrtail', 
             'ohorn', 'ohornacute', 'ohorndotbelow', 'ohorngrave', 'ohornhookabove', 'ohorntilde', 
-            'uhornacute', 'uhorndotbelow', 'uhorngrave', 'uhornhookabove', 'uhorntilde', 'uniA7AE'))
+            'uhornacute', 'uhorndotbelow', 'uhorngrave', 'uhornhookabove', 'uhorntilde', 'uniA7AE'
+
+
+        )).union(CHECK_FOR_OVERLAPPING_GREEK_KERNING).union(CHECK_FOR_OVERLAPPING_CYRILLIC_KERNING)
+
+        # Not checked for overlapping kerning combinations, avoiding a huge load of permutated exceptions that are hardly used
+        UNCHECKED = set((
+
+        ))
 
         # Result of checked combinations for Segoe Black Italic
         # ốV ổV ốř ốȑ ổȑ ốT ổT ốồ ốȅ ốȍ ốȁ ốầ ổồ ổȅ ổầ ốǐ ốì ốȉ ốĭ ốï ổǐ ổì ổȉ ổĭ ổï ốǰ ổǰ ốW ổW ốY ổY ḯi ïV ḯV ïȑ ḯȑ ïT ḯT ïồ ḯồ ḯầ ïǐ ïì ïȉ ïĭ ïï ïĩ ïî ïī ḯǐ ḯì ḯȉ ḯĭ ḯï ḯĩ ḯî ḯī ïǰ ïĵ ḯǰ ḯĵ ḯŝ ḯW ïĳ ïį ḯĳ ḯį ïY ḯY ẽȉ ëY ẽY íȑ ǐř ǐȑ íồ íȅ íȍ íầ ǐồ ǐȅ ǐȍ ǐȁ ǐầ íǐ íì íȉ íĭ íï ǐǐ ǐì ǐȉ ǐĭ ǐï ȉȉ ȉï ȉĩ ȉî ȉī īȉ īĭ īï īĩ īî īī íǰ ǐǰ ȉĵ īĵ ưȑ ưȉ ưï ưĩ ưî ưĵ ưŝ šȑ ŝT šồ šầ šǐ šì šȉ ŝî šǰ ŝĵ šY įǰ įĵ ďř ďȑ ďȓ ľř ľȑ ľȓ ľX ďč ďồ ďȅ ďȍ ďë ďḋ ďȁ ďầ ľč ľồ ľȅ ľȍ ľë ľḋ ľȁ ľầ ďì ďȉ ďĭ ľǐ ľì ľȉ ľĭ ľï ďǰ ďĵ ľǰ ľĵ ďš ďŝ ľš ľŝ ľÆ ďĳ ďį ľĳ ľį Æȉ Æï Eȉ Eï Œȉ Œï Vȑ Vồ Vầ Vȉ Vĭ Vï Vĩ Kȑ Kồ Kầ Kȉ Kĭ Kï Kǰ Yȑ Yồ Yȅ Yȍ Yȁ Yầ Yȉ Yǰ Yĵ YW Yĳ Yį ťȑ ťồ ťầ ťǐ ťì ťȉ ťĭ ťï ťǰ ŕť řť ȑť ȓť ŕȑ řȑ ŕồ ŕầ řồ řầ ŕǐ ŕì ŕȉ řǐ řì řȉ řĭ ȑî ȓȉ ȓï ȓĩ ȓî ŕǰ řǰ ȑĵ ȓĵ řY Wȑ Wồ Wȉ Wï Wĵ Xȑ Xồ Xầ Xȉ Xĭ Xï Xĩ Xǰ dȑ ḑȑ ḋȑ ḍȑ dồ ḑồ ḋồ ḍồ dì dȉ dĭ dï dĩ dî ḑì ḑȉ ḑĭ ḑï ḑĩ ḑî ḋì ḋȉ ḋĭ ḋï ḋĩ ḋî ḍì ḍȉ ḍĭ ḍï ḍĩ ḍî dĵ ḑĵ ḋĵ ḍĵ ǰV ĵV ǰř ǰȑ ĵT ǰồ ǰȅ ǰȍ ǰȁ ǰầ ĳȉ ĳï ǰǐ ǰì ǰȉ ǰĭ ǰï ǰĩ ĵȉ ĵï ĵĩ ĵî ĵī ǰǰ ĵĵ Tȑ Tồ Tầ Tȉ Tĵ ćȑ čȑ ćồ čồ čầ ćì ćȉ čǐ čì čȉ ĉĩ ĉî čǰ ĉĵ ẩȑ ẩT ẩồ ẩȅ ẩȍ ẩầ ẩǐ ẩì ẩȉ ẩĭ ẩï ẩǰ ẩY ĭȑ ĩȑ îT ĭồ ĭầ ĩồ ĩầ ĭǐ ĭì ĭȉ ĭĭ ĭï ĭĩ ĭī îȉ îï îĩ îî îī ĩǐ ĩì ĩȉ ĩĭ ĩï ĩĩ ĩî ĩī ĭǰ îĵ ĩǰ ĩĵ 1ȉ 7ȑ 7ồ 7ȉ 7ĭ 7ï 7ĩ 7î 7ĵ ố7 ï1 ḯ1 ï2 ḯ3 ḯ2 ï7 ḯ7 ȉ1 ī1 ư1 ĵ1 ĵ3 ĵ2 ĵ7 î1 î2 ]ȉ ™ȉ (ȑ [ȑ (ồ (ȅ (ầ {ồ [ồ [ȅ [ầ (ȉ (ĭ (ï {ȉ {ï [ì [ȉ [ĭ [ï [ĩ [î [ī (ǰ (ĵ {ǰ {ĵ [ǰ [ĵ (ĳ (į [ĳ [į /V /ȑ /T /ồ /ȅ /ȍ /ầ /ǐ /ì /ȉ /ĭ /ï /ĩ /î /ī /ǰ /ĵ /W /Y ố\ ổ\ ố™ ổ™ ï\ ḯ\ ï™ ḯ™ ï? ḯ? ï] ḯ} ḯ] ï% ï‰ ḯ% ḯ‰ ë\ ẽ\ í\ ǐ\ ī\ í™ ǐ™ ȉ™ ī™ ȉ? ī? ư? ư] š\ ŝ\ ŝ? i\ į\ i™ į™ ď\ ľ\ V\ K\ Y\ ť\ ŕ% ŕ‰ ř% ř‰ ȑ% ȑ‰ ȓ% ȓ‰ W\ X\ ǰ\ ĵ\ ĵ? ĵ] ĵ% ĵ‰ ĉ? ẩ\ ĭ\ î\ ĩ\ î? î% î‰ 
         # ['AE', 'E', 'K', 'OE', 'T', 'V', 'W', 'X', 'Y', 'acircumflexgrave', 'acircumflexhookabove', 'adblgrave', 'backslash', 'braceleft', 'braceright', 'bracketleft', 'bracketright', 'cacute', 'ccaron', 'ccircumflex', 'd', 'dcaron', 'dcedilla', 'ddotaccent', 'ddotbelow', 'edblgrave', 'edieresis', 'etilde', 'i', 'iacute', 'ibreve', 'icaron', 'icircumflex', 'idblgrave', 'idieresis', 'idieresisacute', 'igrave', 'ij', 'imacron', 'iogonek', 'itilde', 'jcaron', 'jcircumflex', 'lcaron', 'ocircumflexacute', 'ocircumflexgrave', 'ocircumflexhookabove', 'odblgrave', 'one', 'parenleft', 'parenright', 'percent', 'perthousand', 'question', 'racute', 'rcaron', 'rdblgrave', 'rinvertedbreve', 'scaron', 'scircumflex', 'seven', 'slash', 'tcaron', 'three', 'trademark', 'two', 'uhorn']
         
         done = False
-        minOffset = 64 # Value to add to touching-kerning for minimal distance
-        minOverlapOffset = 32 # Only take action if distant is less than this.
+        #minOffset = 64 # Value to add to touching-kerning for minimal distance
+        #minOverlapOffset = 32 # Only take action if distant is less than this.
+        
+        # Proforma Pro settings
+        minOffset = 48 # Value to add to touching-kerning for minimal distance
+        minOverlapOffset = 48 # Only take action if distant is less than this.
 
         fixedOverlap = ''
+        fixedOverlapPairs = {} # Key is kerning pair, value is kerning
         errorOverlap = ''
         errorNames = set()
         errorExceptions = set()
@@ -1126,27 +1142,32 @@ class AssistantPartSpacer(BaseAssistantPart):
                             #if gName1 in errorExceptions and gName2 in errorExceptions:
                             #    continue
                             if gName1 in checkedGlyphs and gName2 in checkedGlyphs: # Only these combinations
+                                if gName1 != 'F' or gName2 != 'idblgrave':
+                                    continue
                                 g2 = f[gName2]
                                 gd2 = self.getGlyphData(g2)
                                 #print(gName1, gName2, km.hasKernedOverlap(g1, g2, minOffset))
                                 if km.hasKernedOverlap(g1, g2, minOverlapOffset): # minOffset forces a minimal gap for the overlap
-                                    #if gName1 != 'Tcaron' or gName2 != 'idieresis':
-                                    #    continue
                                     kk = int(round(km.kernedDistance(g1, g2) / 4)) * 4
-                                    if abs(-kk + minOffset) < 1000: # Safety, in case the overlap is not matching
-                                        if gd1.isLower:
-                                            kern1 = gName1 # g-x
-                                        else:
-                                            kern1 = groupName1 # G-x
-                                        if gd2.isLower:
-                                            kern2 = gName2 # x-g
-                                        else:
-                                            kern2 = groupName2 # x-G
+                                    print('sdffdsfdsfdfd', kk)
+                                    if abs(-kk + minOffset) < 20000: # Safety, in case the overlap is not matching
+                                        #if gd1.isLower:
+                                        #    kern1 = gName1 # g-x
+                                        #else:
+                                        #    kern1 = groupName1 # G-x
+                                        #if gd2.isLower:
+                                        #    kern2 = gName2 # x-g
+                                        #else:
+                                        #    kern2 = groupName2 # x-G
+                                        kern1 = gName1
+                                        kern2 = gName2
+                                        print('###34242343243 Fix', kern1, kern2, -kk + minOffset)
                                         if (kern1, kern2) not in f.kerning: 
                                             print('... Fix overlap', kk, -kk + minOffset, script1, script2, groupName1, groupName2, kern1, kern2)
                                             f.kerning[(kern1, kern2)] = -kk + minOffset
                                             if g1.unicode and g2.unicode:
                                                 fixedOverlap += chr(g1.unicode) + chr(g2.unicode) + ' '
+                                            fixedOverlapPairs[(kern1, kern2)] = -kk + minOffset
                                     else:
                                         print('### Error overlap', kk, -kk + minOffset, script1, script2, groupName1, groupName2, gName1, gName2)
                                         if g1.unicode and g2.unicode:
@@ -1164,6 +1185,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         if errorOverlap or errorNames or errorExceptions:
             print('### Could not fix overlap for', errorOverlap)
             print('### Fixed overlap', fixedOverlap)
+            print('### Fixed Overlap pairs', sorted(fixedOverlapPairs.items()))
             print(sorted(errorNames))
             print(sorted(errorExceptions))
 
