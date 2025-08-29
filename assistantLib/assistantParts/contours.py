@@ -63,7 +63,8 @@ class AssistantPartContours(BaseAssistantPart):
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
 
         c = self.getController()
-        c.w.autoCopyContourFromSrc = CheckBox((C2, y, CW, L), f'Auto copy from source', value=True)
+        c.w.autoCopyContourFromSrc = CheckBox((C0, y, CW, L), f'Auto copy from source', value=True)
+        c.w.setStartPointForAllGlyphs = CheckBox((C1, y, CW, L), f'All glyphs', value=False)
         c.w.setStartPointButton = Button((C2, y, CW, L), f'Set start [{personalKey_E}{personalKey_e}]', callback=self.contoursSetStartPointCallback)
         y += L + L/5
         c.w.contoursEndLine = HorizontalLine((self.M, y, -self.M, 1))
@@ -76,7 +77,14 @@ class AssistantPartContours(BaseAssistantPart):
 
     def contoursSetStartPointCallback(self, sender):
         g = self.getCurrentGlyph()
-        if g is not None:
+        c = self.getController()
+        if c.w.setStartPointForAllGlyphs.get():
+            glyphs = self.getCurrentFont()
+        elif g is not None:
+            glyphs = [g]
+        else:
+            glyphs = []
+        for g in glyphs:
             self.contoursSetStartPoint(g)
 
     def contoursSetAllStartPoints(self, g, c=None, event=None):
