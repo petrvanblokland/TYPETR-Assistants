@@ -184,6 +184,9 @@ KERN_GROUPS = (
     (NUMR1, CY2),
     (CY1, DNOM2),
 
+    (CY1, ONUM2),
+    (ONUM1, CY2),
+
     # Greek
     (GR1, GR2),
     (GR1, SC_GR2),
@@ -206,6 +209,7 @@ KERN_GROUPS = (
     (NUMR1, GR2),
     (GR1, DNOM2),
     (DNOM1, GR2),    
+
     (GR1, ONUM2),
     (ONUM1, GR2),
 

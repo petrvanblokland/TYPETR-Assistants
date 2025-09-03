@@ -21,7 +21,7 @@ from assistantLib.similarity.cosineSimilarity import cosineSimilarity, SimilarGl
 from assistantLib.kerningSamples import SAMPLES, CYRILLIC_KERNING, GREEK_KERNING 
 # Seed relation between glyphs as start for similarity groups
 from assistantLib.assistantParts.glyphsets.groupBaseGlyphs import *
-from assistantLib.assistantParts.outliner import calculateOutline
+#from assistantLib.assistantParts.outliner import calculateOutline
 
 FORCE_GROUP1 = {}
 FORCE_GROUP2 = {}
