@@ -1715,7 +1715,7 @@ class KerningManager:
         Answer the KernNet predicted kerning for @g1 amd @g2. This assumes the KernNet server to be running on localhost:8080"""
         
         # In case the KernNet server is not running, just return kerning 0 here
-        #return 0
+        return 0
         
         if step is None:
             step = self.KERNNET_UNIT

@@ -1128,12 +1128,14 @@ GDSI['dcroat'] = GD(name='dcroat', uni=0x0111, hex='0111', c='đ', l='d', r='hyp
 # Left spacing different from /t in italic. Manual spacing instead.
 
 GDSI['Schwa'].l = 'off'
+GDSI['a'].l = 'off'
 GDSI['b'].r = None
 GDSI['b'].l2r = 'a'
 GDSI['d'].l = 'a'
 GDSI['e'].l = 'c'
 GDSI['f'].l = GDSI['f'].r ='off'
-GDSI['g'].l = 'a'
+GDSI['g'].l = 'a' 
+GDSI['g'].r ='off'
 GDSI['i'].l = 'n' 
 GDSI['i'].r = 'u'
 GDSI['p'].r = 'b'
