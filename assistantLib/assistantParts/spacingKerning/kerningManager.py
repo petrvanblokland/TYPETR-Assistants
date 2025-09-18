@@ -1664,6 +1664,18 @@ class KerningManager:
         tmp.angledRightMargin = g2.angledRightMargin # Not really needed, but useful for debugging.
         return tmp.hasOverlap()
 
+    def clearSuperiorInferiorKerning(self):
+        """Clear all superior/inferior/dnom/numr kerning, since these will be 
+        calculated automatic by bubble kerning. 
+        """
+        for (p1, p2), k in self.f.kerning.items():
+            if 'superior' in p1 or 'inferior' in p1 or 'dnom' in p1 or 'numr' in p1:
+                print(f'... Clear superior/inferior kerning ({k}) for /{p1} -- /{p2} ')
+                del self.f.kerning[(p1, p2)]
+            elif 'superior' in p2 or 'inferior' in p2 or 'dnom' in p2 or 'numr' in p2:
+                print(f'... Clear superior/inferior kerning ({k}) for /{p1} -- /{p2} ')
+                del self.f.kerning[(p1, p2)]
+
     def clearGlyphGlyphKerning(self):
         for (p1, p2), k in sorted(self.f.kerning.items()):
             if p1 in self.f and p2 in self.f:

@@ -9,13 +9,13 @@
 #
 import sys
 from math import *
-from vanilla import *
+#from vanilla import *
 from AppKit import *
 
 from fontTools.pens.basePen import BasePen
 from fontTools.pens.reverseContourPen import ReverseContourPen
 from fontTools.pens.pointPen import ReverseContourPointPen, AbstractPointPen, PointToSegmentPen
-from mojo.roboFont import OpenWindow, CurrentGlyph, RGlyph # Used in Outliner
+#from mojo.roboFont import OpenWindow, CurrentGlyph, RGlyph # Used in Outliner
 
 OL_ROUND = 'round'
 OL_SQUARE = 'square'
@@ -237,7 +237,7 @@ class OutlinePen(BasePen):
 
         self.closeOpenPaths = closeOpenPaths
         
-        self.glyph = CurrentGlyph()
+        self.glyph = glyphSet['A']
         self.points = {}
         for contour in self.glyph.contours:
             for point in contour.points:
@@ -246,16 +246,16 @@ class OutlinePen(BasePen):
         self.connectionCallback = getattr(self, "connection%s" % (connection.title()))
         self.capCallback = getattr(self, "cap%s" % (cap.title()))
 
-        self.originalGlyph = RGlyph()
+        self.originalGlyph = self.getTmpGlyph(glyphSet, 'TMP_ORG')
         self.originalPen = self.originalGlyph.getPen()
 
-        self.outerGlyph = RGlyph()
+        self.outerGlyph = self.getTmpGlyph(glyphSet, 'TMP_OUTER')
         self.outerPen = self.outerGlyph.getPen()
         self.outerCurrentPoint = None
         self.outerFirstPoint = None
         self.outerPrevPoint = None
 
-        self.innerGlyph = RGlyph()
+        self.innerGlyph = self.getTmpGlyph(glyphSet, 'TMP_INNER')
         self.innerPen = self.innerGlyph.getPen()
         self.innerCurrentPoint = None
         self.innerFirstPoint = None
@@ -273,15 +273,22 @@ class OutlinePen(BasePen):
 
         self.drawSettings()
 
+    def getTmpGlyph(self, f, gName):
+        if not gName in f:
+            f.newGlyph(gName)
+        f[gName].clear()
+        return f[gName]
+
     def getOffset(self, thickFactor=1):
         return self.offset * thickFactor
         
     def getThickFactor(self, x, y):
         p = self.points.get((x, y))
-        if p is not None:
-            for label in p.labels:
-                if label.startswith('F'):
-                    return float(label[1:])/100    
+        if 0: ####
+            if p is not None:
+                for label in p.labels:
+                    if label.startswith('F'):
+                        return float(label[1:])/100    
         return 1
 
     def _moveTo(self, p):
@@ -682,8 +689,12 @@ class OutlinePen(BasePen):
         pointPen = PointToSegmentPen(pen)
         self.drawPoints(pointPen)
 
-    def getGlyph(self):
-        glyph = RGlyph()
+    def getGlyph(self, f):
+        tmpGlyphName = 'TMP_O'
+        if tmpGlyphName not in f:
+            f.newGlyph(tmpGlyphName)
+        glyph = f[tmpGlyphName]
+        glyph.clear()
         pointPen = glyph.getPointPen()
         self.drawPoints(pointPen)
         return glyph
@@ -718,9 +729,14 @@ def calculateOutline(g, thickness=20, contrast=0, contrastAngle=0, miterLimit=14
 
     g.clear()
 
-    outlineG = pen.getGlyph()
+    outlineG = pen.getGlyph(g.font)
     pen = g.getPen()
     outlineG.draw(pen)
+
+    #f = g.font
+    #f.removeGlyph('TMP_ORG')
+    #f.removeGlyph('TMP_OUTER')
+    #f.removeGlyph('TMP_INNER')
 
     return g
 

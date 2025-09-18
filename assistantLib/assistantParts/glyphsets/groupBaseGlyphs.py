@@ -47,6 +47,9 @@ FIG2 = 'fig2'
 SC_FIG1 = SC + FIG1
 SC_FIG2 = SC + FIG2
 
+FRAC1 = 'frac1'
+FRAC2 = 'frac2'
+
 SUPS1 = 'sups1' # Superior figures
 SUPS2 = 'sups2'
 SINF1 = 'sinf1' # Inferior figures
@@ -60,8 +63,6 @@ DNOM1 = 'dnom1'
 DNOM2 = 'dnom2'
 NUMR1 = 'numr1'
 NUMR2 = 'numr2'
-DNOM1 = 'dnom1'
-DNOM2 = 'dnom2'
 ONUM1 = 'onum1'
 ONUM2 = 'onum2'
 
@@ -126,6 +127,8 @@ XXX_BASE_SCRIPTS2 = (
 # In general this gets solved automatically if all kerning exists, but during 
 # development not all kerning may have been filled in.
 
+# superior/inferior is assumed to be automated.
+
 KERN_GROUPS = (
     # Latin
     (LT1, LT2),
@@ -142,26 +145,48 @@ KERN_GROUPS = (
     (LT1, FIG2),
     (FIG1, LT2),
     (FIG1, FIG2),
-    
-    (LT1, SUPS2),
-    (SUPS1, LT2),
-    (LT1, TSUPS2),
-    (TSUPS1, LT2),
-    (LT1, SINF2),
-    (SINF1, LT2),
-    (LT1, TSINF2),
-    (TSINF1, LT2),
-    
-    (LT1, NUMR2),
-    (LT1, DNOM2),
-    (NUMR1, LT2),
-    (DNOM1, LT2),
-    (NUMR1, NUMR2),
+      
+    # These groups will not appear in the kerning assistant. 
+    # They exist as group and need to be made automatic using bubble kerning.
+    #(LT1, NUMR2),
+    #(LT1, DNOM2),
+    #(NUMR1, LT2),
+    #(DNOM1, LT2),
+    #(NUMR1, NUMR2),
     
     (LT1, ONUM2),
     (ONUM1, LT2),
     (ONUM1, ONUM2),
 
+    # These groups will not appear in the kerning assistant. 
+    # They exist as group and need to be made automatic using bubble kerning.
+    #(LT1, SUPS2),
+    #(SUPS1, LT2),
+    #(LT1, TSUPS2),
+    #(TSUPS1, LT2),
+    #(LT1, SINF2),
+    #(SINF1, LT2),
+    #(LT1, TSINF2),
+    #(TSINF1, LT2),
+ 
+    # These are too automatic calculated but bubblekern.
+    # But keep these in the manual sample for visual adjustments as well
+    # The bubblekern is sometimes too wide for "normal" text as with /Asuperior /Vsuperior
+    (SINF1, SINF2), 
+    (TSINF1, SINF2), 
+    (SINF1, TSINF2),
+    (TSINF1, TSINF2),
+
+    (SUPS1, SUPS2),
+    (TSUPS1, SUPS2),
+    (SUPS1, TSUPS2),
+    (TSUPS1, TSUPS2),
+
+    (DNOM1, DNOM2),
+    (NUMR1, NUMR2),
+    (NUMR1, FRAC2),
+    (FRAC1, NUMR2),
+ 
     # Cyrillic
     (CY1, CY2),
     (CY1, SC_CY2),
@@ -176,13 +201,17 @@ KERN_GROUPS = (
     (FIG1, CY2),
     (FIG1, CY2),
     
-    (CY1, SUPS2),
-    (SUPS1, CY2),
-    (CY1, SINF2),
-    
-    (CY1, NUMR2),
-    (NUMR1, CY2),
-    (CY1, DNOM2),
+    # These groups will not appear in the kerning assistant. 
+    # They exist as group and need to be made automatic using bubble kerning.
+    #(CY1, SUPS2),
+    #(SUPS1, CY2),
+    #(CY1, SINF2),
+    #(SINF1, CY2),
+
+    #(CY1, NUMR2),
+    #(NUMR1, CY2),
+    #(CY1, DNOM2),
+    #(DNOM1, CY2),
 
     (CY1, ONUM2),
     (ONUM1, CY2),
@@ -200,15 +229,17 @@ KERN_GROUPS = (
     (GR1, FIG2),
     (FIG1, GR2),
     
-    (GR1, SUPS2),
-    (SUPS1, GR2),
-    (GR1, SINF2),
-    (SINF1, GR2),
+    # These groups will not appear in the kerning assistant. 
+    # They exist as group and need to be made automatic using bubble kerning.
+    #(GR1, SUPS2),
+    #(SUPS1, GR2),
+    #(GR1, SINF2),
+    #(SINF1, GR2),
     
-    (GR1, NUMR2),
-    (NUMR1, GR2),
-    (GR1, DNOM2),
-    (DNOM1, GR2),    
+    #(GR1, NUMR2),
+    #(NUMR1, GR2),
+    #(GR1, DNOM2),
+    #(DNOM1, GR2),    
 
     (GR1, ONUM2),
     (ONUM1, GR2),
@@ -216,5 +247,54 @@ KERN_GROUPS = (
 )
 KERN_GROUPS_SET = set(KERN_GROUPS)
 
+# These groups will not appear in the kerning assistant. 
+# They exist as group and need to be made automatic using bubble kerning.
+AUTO_KERN_GROUPS = (
+
+    (LT1, SUPS2),
+    (SUPS1, LT2),
+    (LT1, TSUPS2),
+    (TSUPS1, LT2),
+    (LT1, SINF2),
+    (SINF1, LT2),
+    (LT1, TSINF2),
+    (TSINF1, LT2),
+ 
+    (SINF1, SINF2),
+    (TSINF1, SINF2),
+    (SINF1, TSINF2),
+    (TSINF1, TSINF2),
+
+    (SUPS1, SUPS2),
+    (TSUPS1, SUPS2),
+    (SUPS1, TSUPS2),
+    (TSUPS1, TSUPS2),
+
+    (DNOM1, DNOM2),
+    (NUMR1, NUMR2),
+    (NUMR1, FRAC2),
+    (FRAC1, NUMR2),
+
+    (CY1, SUPS2),
+    (SUPS1, CY2),
+    (CY1, SINF2),
+    (SINF1, CY2),
+
+    (CY1, NUMR2),
+    (NUMR1, CY2),
+    (CY1, DNOM2),
+    (DNOM1, CY2),
+
+    (GR1, SUPS2),
+    (SUPS1, GR2),
+    (GR1, SINF2),
+    (SINF1, GR2),
+
+    (GR1, NUMR2),
+    (NUMR1, GR2),
+    (GR1, DNOM2),
+    (DNOM1, GR2),    
+
+)
 GROUP_IGNORE = ('tnum', 'cmb', 'comb', 'mod', 'component',) # Always ignore glyphs that include these patterns
 
