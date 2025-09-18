@@ -172,20 +172,20 @@ KERN_GROUPS = (
     # These are too automatic calculated but bubblekern.
     # But keep these in the manual sample for visual adjustments as well
     # The bubblekern is sometimes too wide for "normal" text as with /Asuperior /Vsuperior
-    (SINF1, SINF2), 
-    (TSINF1, SINF2), 
-    (SINF1, TSINF2),
-    (TSINF1, TSINF2),
+    #(SINF1, SINF2), 
+    #(TSINF1, SINF2), 
+    #(SINF1, TSINF2),
+    #(TSINF1, TSINF2),
 
-    (SUPS1, SUPS2),
-    (TSUPS1, SUPS2),
-    (SUPS1, TSUPS2),
-    (TSUPS1, TSUPS2),
+    #(SUPS1, SUPS2),
+    #(TSUPS1, SUPS2),
+    #(SUPS1, TSUPS2),
+    #(TSUPS1, TSUPS2),
 
-    (DNOM1, DNOM2),
-    (NUMR1, NUMR2),
-    (NUMR1, FRAC2),
-    (FRAC1, NUMR2),
+    #(DNOM1, DNOM2),
+    #(NUMR1, NUMR2),
+    #(NUMR1, FRAC2),
+    #(FRAC1, NUMR2),
  
     # Cyrillic
     (CY1, CY2),
