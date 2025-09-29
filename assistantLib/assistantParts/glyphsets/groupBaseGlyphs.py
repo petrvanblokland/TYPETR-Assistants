@@ -69,6 +69,30 @@ ONUM2 = 'onum2'
 NOK1 = 'nok1' # No kerning necessary (leave out of sample)
 NOK2 = 'nok2'
 
+CSS_OT_FEATURES = { # Used for translating the group code to OpenType features, if a relation exists.
+    SUPS1: 'sups',
+    SUPS2: 'sups',
+    SINF1: 'sinf',
+    SINF2: 'sinf',
+    TSUPS1: 'sups',
+    TSUPS2: 'sups',
+    TSINF1: 'sinf', 
+    TSINF2: 'sinf',
+    DNOM1: 'dnom',
+    DNOM2: 'dnom',
+    NUMR1: 'numr',
+    NUMR2: 'numr',
+    FRAC1: 'frac',
+    FRAC2: 'frac',
+    SC_FIG1: 'smcp',
+    SC_FIG2: 'smcp',
+    SC_GR1: 'smcp',
+    SC_GR2: 'smcp',
+    SC_CY1: 'smcp',
+    SC_CY2: 'smcp',
+    ONUM1: 'onum',
+    ONUM2: 'onum',
+}
 XXX_GROUP_NAME_PARTS = {
     LT1:    (PUBLIC_KERN1, '_lt'), 
     LT2:    (PUBLIC_KERN2, '_lt'),
@@ -196,9 +220,9 @@ KERN_GROUPS = (
     (CY1, ASC2),
     (ASC1, CY2),
     (SC_CY1, ASC2),
+    (ASC1, SC_CY2),
 
     (CY1, FIG2),
-    (FIG1, CY2),
     (FIG1, CY2),
     
     # These groups will not appear in the kerning assistant. 
@@ -225,6 +249,7 @@ KERN_GROUPS = (
     (GR1, ASC2),
     (ASC1, GR2),
     (SC_GR1, ASC2),
+    (ASC1, SC_GR2),
 
     (GR1, FIG2),
     (FIG1, GR2),
@@ -255,6 +280,7 @@ AUTO_KERN_GROUPS = (
     (SUPS1, LT2),
     (LT1, TSUPS2),
     (TSUPS1, LT2),
+
     (LT1, SINF2),
     (SINF1, LT2),
     (LT1, TSINF2),
