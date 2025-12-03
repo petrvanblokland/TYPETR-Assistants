@@ -36,5 +36,10 @@ pip install git+https://github.com/typemytype/drawbot
 cd assistantLib/kernnet7
 python kernNetServer-007.py
 
+cd assistantLib/kernnet8
+python kernNetServer-008.py
+
+python KernNetModelTraining.py
+
 Testing the server
 http://localhost:8080/A/O/test.png

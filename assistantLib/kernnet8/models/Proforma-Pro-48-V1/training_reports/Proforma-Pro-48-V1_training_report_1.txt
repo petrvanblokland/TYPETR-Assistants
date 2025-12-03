@@ -1,0 +1,142 @@
+Proforma-Pro-48-V1 training report 1
+
+Trained Epochs: 45
+
+Best validation loss: 0.000709613132305283
+
+Training Data root: _imageTrain-/
+
+Training Data:
+
+ 
+_imageTrain-Proforma_Pro-Thin_MA16_48_48 
+    public.kern1.Bsuperior_tsups 
+    public.kern1.A.sc_lt 
+    public.kern1.Be_cy_cy 
+    public.kern1.Alpha_gr 
+    public.kern1.Asuperior_tsups 
+    public.kern1.C.sc_lt 
+    public.kern1.Cheabkhasian_cy.sc_cy 
+    public.kern1.B_lt 
+    R 
+    U 
+    I 
+    public.kern1.Chi.sc_gr 
+    public.kern1.B.sc_lt 
+    N 
+    G 
+    public.kern1.Cheabkhasian_cy_cy 
+    Z 
+    public.kern1.Chi_gr 
+    T 
+    S 
+    A 
+    public.kern1.C_lt 
+    F 
+    O 
+    H 
+    public.kern1.A_cy_cy 
+    public.kern1.Be_cy.sc_cy 
+    public.kern1.A_cy.sc_cy 
+    public.kern1.A_lt 
+    public.kern1.Binferior_tsinf 
+    public.kern1.Alpha.sc_gr 
+    public.kern1.Beta_gr 
+    M 
+    J 
+    C 
+    D 
+    V 
+    Q 
+    X 
+    E 
+    B 
+    K 
+    L 
+    Y 
+    P 
+    W 
+    public.kern1.Ainferior_tsinf 
+_imageTrain-Proforma_Pro-Bold_MA150_48_48 
+    R 
+    U 
+    I 
+    N 
+    G 
+    Z 
+    T 
+    S 
+    A 
+    F 
+    O 
+    H 
+    M 
+    J 
+    C 
+    D 
+    V 
+    Q 
+    X 
+    E 
+    B 
+    K 
+    L 
+    Y 
+    P 
+    W 
+_imageTrain-Proforma_Pro-Black_MA220_48_48 
+    R 
+    U 
+    I 
+    N 
+    G 
+    Z 
+    T 
+    S 
+    A 
+    F 
+    O 
+    H 
+    M 
+    J 
+    C 
+    D 
+    V 
+    Q 
+    X 
+    E 
+    B 
+    K 
+    L 
+    Y 
+    P 
+    W 
+_imageTrain-Proforma_Pro-Regular_MA76_48_48 
+    public.kern1.A.sc_lt 
+    R 
+    U 
+    I 
+    N 
+    G 
+    Z 
+    T 
+    S 
+    A 
+    F 
+    O 
+    H 
+    public.kern1.A_cy.sc_cy 
+    M 
+    J 
+    C 
+    D 
+    V 
+    Q 
+    X 
+    E 
+    B 
+    K 
+    L 
+    Y 
+    P 
+    W 

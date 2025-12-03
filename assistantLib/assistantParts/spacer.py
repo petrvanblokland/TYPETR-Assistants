@@ -1110,8 +1110,8 @@ class AssistantPartSpacer(BaseAssistantPart):
         #minOverlapOffset = 32 # Only take action if distant is less than this.
         
         # Proforma Pro settings
-        minOffset = 48 # Value to add to touching-kerning for minimal distance
-        minOverlapOffset = 48 # Only take action if distant is less than this.
+        minOffset = 32 # Value to add to touching-kerning for minimal distance
+        minOverlapOffset = 32 # Only take action if distant is less than this.
 
         fixedOverlap = ''
         fixedOverlapPairs = {} # Key is kerning pair, value is kerning
@@ -1142,15 +1142,15 @@ class AssistantPartSpacer(BaseAssistantPart):
                             #if gName1 in errorExceptions and gName2 in errorExceptions:
                             #    continue
                             if gName1 in checkedGlyphs and gName2 in checkedGlyphs: # Only these combinations
-                                if gName1 != 'F' or gName2 != 'idblgrave':
-                                    continue
+                                #if gName1 != 'T' or gName2 != 'idblgrave':
+                                #    continue
                                 g2 = f[gName2]
                                 gd2 = self.getGlyphData(g2)
                                 #print(gName1, gName2, km.hasKernedOverlap(g1, g2, minOffset))
                                 if km.hasKernedOverlap(g1, g2, minOverlapOffset): # minOffset forces a minimal gap for the overlap
                                     kk = int(round(km.kernedDistance(g1, g2) / 4)) * 4
-                                    print('sdffdsfdsfdfd', kk)
-                                    if abs(-kk + minOffset) < 20000: # Safety, in case the overlap is not matching
+                                    #print('sdffdsfdsfdfd', kk)
+                                    if abs(-kk + minOffset) < 500: # Safety, in case the overlap is not matching
                                         #if gd1.isLower:
                                         #    kern1 = gName1 # g-x
                                         #else:
@@ -1161,13 +1161,13 @@ class AssistantPartSpacer(BaseAssistantPart):
                                         #    kern2 = groupName2 # x-G
                                         kern1 = gName1
                                         kern2 = gName2
-                                        print('###34242343243 Fix', kern1, kern2, -kk + minOffset)
+                                        #print('###34242343243 Fix', kern1, kern2, -kk + minOffset)
                                         if (kern1, kern2) not in f.kerning: 
                                             print('... Fix overlap', kk, -kk + minOffset, script1, script2, groupName1, groupName2, kern1, kern2)
-                                            f.kerning[(kern1, kern2)] = -kk + minOffset
+                                            f.kerning[(kern1, kern2)] = kk + minOffset
                                             if g1.unicode and g2.unicode:
                                                 fixedOverlap += chr(g1.unicode) + chr(g2.unicode) + ' '
-                                            fixedOverlapPairs[(kern1, kern2)] = -kk + minOffset
+                                            fixedOverlapPairs[(kern1, kern2)] = kk + minOffset
                                     else:
                                         print('### Error overlap', kk, -kk + minOffset, script1, script2, groupName1, groupName2, gName1, gName2)
                                         if g1.unicode and g2.unicode:

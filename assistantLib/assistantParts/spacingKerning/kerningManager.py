@@ -673,11 +673,11 @@ class KerningManager:
             return None
         baseGlyphName = groupName.replace(PUBLIC_KERN2, '')
         if baseGlyphName.endswith('_lt'):
-            baseGlyphName = baseGlyphName.replace('_lt', '')
+            baseGlyphName = baseGlyphName[:-3]
         elif baseGlyphName.endswith('_cy'):
-            baseGlyphName = baseGlyphName.replace('_cy', '')
+            baseGlyphName = baseGlyphName[:-3]
         elif baseGlyphName.endswith('_gr'):
-            baseGlyphName = baseGlyphName.replace('_gr', '')
+            baseGlyphName = baseGlyphName[:-3]
         if baseGlyphName not in self.f:
             print(f'### /{baseGlyphName} not in font.')
             return None
@@ -690,11 +690,11 @@ class KerningManager:
             return None
         baseGlyphName = groupName.replace(PUBLIC_KERN1, '')
         if baseGlyphName.endswith('_lt'):
-            baseGlyphName = baseGlyphName.replace('_lt', '')
+            baseGlyphName = baseGlyphName[:-3]
         elif baseGlyphName.endswith('_cy'):
-            baseGlyphName = baseGlyphName.replace('_cy', '')
+            baseGlyphName = baseGlyphName[:-3]
         elif baseGlyphName.endswith('_gr'):
-            baseGlyphName = baseGlyphName.replace('_gr', '')
+            baseGlyphName = baseGlyphName[:-3]
         if baseGlyphName not in self.f:
             print(f'### /{baseGlyphName} not in font')
             return None
@@ -825,8 +825,11 @@ class KerningManager:
 
         # Try to figure out the rules for left margin in this glyph.
         if gd.r and gd.w: # Special case, left margin depends on combination of width and right margin
-            changed |= self.fixGlyphWidth(g, gd.w, f"w={gd.w}")
-            changed |= self.fixRightMargin(g, gd.r, f"r={gd.r}")
+            if gd.r == 'off':
+                return False
+            else:
+                changed |= self.fixGlyphWidth(g, gd.w, f'(w={gd.w})')
+                changed |= self.fixRightMargin(g, gd.r, f'(r={gd.r})')
         elif gd.l is not None: # Plain angled left margin
             if gd.l == 'off': # No automatic spacing, do manually
                 return False
@@ -1493,7 +1496,7 @@ class KerningManager:
         - Decompose both
         - Convert to cubic, in case there are quadratic curves
         - Remove overlap in both temp glyphs. Now we have a reliable contour count in both.
-        - Copy the glyph outlines of /TMP1 and /TMP2 as components to a combine TMP glyph, spaced by g1.width and (g1, g2) kerning.
+        - Copy the glyph outlines of /TMP1 and /TMP2 as components to a combine TMP glyph, spaced by g1.width. Ignore current (g1, g2) kerning.
         - Decompose the glyph
         - Test if there is new overlap from the two glyphs
         Now if there is overlap, /TMP2 is too close and needs to move to the right (half the distance of last time)
@@ -1509,8 +1512,16 @@ class KerningManager:
         #self.f[self.TMPNAME2] = tmp2
         self.f[self.TMPNAME1] = g1
         self.f[self.TMPNAME1].unicode = None # Avoid duplicate unicodes
+        self.f[self.TMPNAME1].decompose()
+        self.f[self.TMPNAME1].removeOverlap()
+        self.f[self.TMPNAME1].removeOverlap() # Just to be sure
+
         self.f[self.TMPNAME2] = g2
         self.f[self.TMPNAME2].unicode = None # Avoid duplicate unicodes
+        self.f[self.TMPNAME2].decompose()
+        self.f[self.TMPNAME2].removeOverlap()
+        self.f[self.TMPNAME2].removeOverlap() # Just to be sure
+
         #print('AAA1', tmp1.hasOverlap())
         #print('AAA2', tmp2.hasOverlap())
         # Ignore the current kerning. We just want to compare the shapes.
@@ -1727,7 +1738,7 @@ class KerningManager:
         Answer the KernNet predicted kerning for @g1 amd @g2. This assumes the KernNet server to be running on localhost:8080"""
         
         # In case the KernNet server is not running, just return kerning 0 here
-        return 0
+        #return 0
         
         if step is None:
             step = self.KERNNET_UNIT
@@ -1737,7 +1748,7 @@ class KerningManager:
         if not os.path.exists(tmpPath):
             os.makedirs(tmpPath, mode=0o777, exist_ok=False)
         kernImagePath = tmpPath + imageName
-        iw = ih = 32
+        iw = ih = 48 # 32
         scale = ih/f.info.unitsPerEm
         y = -f.info.descender 
 
