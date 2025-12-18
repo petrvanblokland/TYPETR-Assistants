@@ -494,7 +494,6 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     GDS['dcedilla'] = GD(name='dcedilla', uni=0x1E11, hex='1E11', c='ḑ', base='d', accents=['cedillacmb'], autoFixComponentPositions=False, isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['dcircumflexbelow'] = GD(name='dcircumflexbelow', uni=0x1E13, hex='1E13', c='ḓ', base='d', accents=['circumflexbelowcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['ddotaccent'] = GD(name='ddotaccent', uni=0x1E0B, hex='1E0B', c='ḋ', base='d', accents=['dotaccentcmb.uc'], isLower=True, anchors=['bottom', 'middle', 'top'])
-    GDS['dieresisbelowcmb'] = GD(name='dieresisbelowcmb', uni=0x0324, hex='0324', c='̤', w=0, autoFixComponentPositions=False, autoFixMargins=False, base='dieresiscmb',isLower=True, anchors=['_bottom', 'bottom'])
     GDS['dtail'] = GD(name='dtail', uni=0x0256, hex='0256', c='ɖ', l='d', r='off', isLower=True, comment='Glyph unicode 0256 is the lowercase letter "ɖ" in the International Phonetic Alphabet (IPA). It is used to represent a voiced retroflex plosive sound in various languages, including African languages such as Igbo, Yoruba, and Ewe. It is also used in some Native American languages such as Navajo and Tlingit. In linguistics, the IPA is commonly used to transcribe the sounds of human speech, and the glyph unicode 0256 helps to accurately represent this specific sound.')
     GDS['dz'] = GD(name='dz', uni=0x01F3, hex='01F3', c='ǳ', l='d', r='z', anchorTopY='z', anchorTopX='z', base='d', accents=['z'], isLower=True, anchors=['top'])
     GDS['dzcaron'] = GD(name='dzcaron', uni=0x01C6, hex='01C6', c='ǆ', l='d', r='z', base='dz', accents=['caroncmb'], isLower=True, anchors=['top'])
@@ -572,6 +571,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
     # i
 
     GDS['idblgrave'] = GD(name='idblgrave', uni=0x0209, hex='0209', c='ȉ', w='idotless', bl='idotless', base='idotless', accents=['dblgravecmb'], isLower=True, anchors=['top'])
+    GDS['idblgrave_short'] = GD(name='idblgrave_short', w='i', bl='idotless', anchorTopY='TopY', base='idotless', isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ì I WITH DOUBLE GRAVE, LATIN SMALL LETTER, combination with /f')
     GDS['idieresisacute'] = GD(name='idieresisacute', uni=0x1E2F, hex='1E2F', c='ḯ', w='idotless', bl='idotless', base='idieresis', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['iinvertedbreve'] = GD(name='iinvertedbreve', uni=0x020B, hex='020B', c='ȋ', w='idotless', bl='idotless', base='idotless', accents=['invertedbrevecmb'], isLower=True, anchors=['top'])
     GDS['ij'] = GD(name='ij', uni=0x0133, hex='0133', c='ĳ', l='i', r='j', base='i', accents=['j'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ĳ SMALL LIGATURE IJ, LATIN')

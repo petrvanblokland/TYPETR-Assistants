@@ -1112,7 +1112,8 @@ class AssistantPartAnchors(BaseAssistantPart):
             # Hack, this should become an optioncal construction method
             elif g.name == 'J': # Special case, can't use the width. Find the top-left most corner point
                 p1, p2 = self.getXBounds(g, y1=g.font.info.capHeight)
-                ax = self.italicX(g, p1.x + (p2.x - p1.x)/2, ay, baseY=g.font.info.capHeight) # Half stem of /J
+                if None not in (p1, p2):
+                    ax = self.italicX(g, p1.x + (p2.x - p1.x)/2, ay, baseY=g.font.info.capHeight) # Half stem of /J
 
             else: # No construction glyph or method name defined, then try to figure out from the glyph shape
                 # Try to guess horizontal

@@ -14,6 +14,7 @@ from assistantLib.assistantParts.glyphsets.glyphData import *
 from assistantLib.assistantParts.glyphsets.anchorData import AD 
 
 # Different sizes of standard glyph set
+from assistantLib.assistantParts.glyphsets.Latin_A_set import (LATIN_A_SET_NAME, LATIN_A_SET, LATIN_A_SET_NAME_ITALIC, LATIN_A_SET_ITALIC) 
 from assistantLib.assistantParts.glyphsets.Latin_S_set import (LATIN_S_SET_NAME, LATIN_S_SET, LATIN_S_SET_NAME_ITALIC, LATIN_S_SET_ITALIC, 
     SC_NAMES, 
     # SUPS_SINF_NAMES, Deprecated, these are in the GlyphSet tables now. 
@@ -27,6 +28,8 @@ from assistantLib.assistantParts.glyphsets.Cyrillic_set import CYRILLIC_SET_NAME
 #from assistantLib.assistantParts.glyphsets.TYPETR_full_set import TYPETR_FULL_SET_NAME, TYPETR_FULL_SET
 
 STANDARD_GLYPH_SETS = {
+    LATIN_A_SET_NAME: LATIN_A_SET,
+    LATIN_A_SET_NAME_ITALIC: LATIN_A_SET_ITALIC,
     LATIN_S_SET_NAME: LATIN_S_SET,
     LATIN_S_SET_NAME_ITALIC: LATIN_S_SET_ITALIC,
     LATIN_M_SET_NAME: LATIN_M_SET,

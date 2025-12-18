@@ -84,6 +84,7 @@ class MasterData:
             modMinMargin=None,
             # Vertical metrics
             unitsPerEm=UNITS_PER_EM, 
+            moreGuidelines=None, # Additional guidelines dictionary for design specifics. Key is guide name, value is vertical position.
             baseline=0, stemOvershoot=STEM_OVERSHOOT, baseOvershoot=None, capOvershoot=None, 
                 scOvershoot=None, onumOvershoot=None, superiorOvershoot=None,
                 diacriticsOvershoot=None,
@@ -169,7 +170,6 @@ class MasterData:
         self.spacingSrcUFOPath = spacingSrcUFOPath # If defined, used as spacing reference, overwriting all spacing rules. Goes with spacingOffset
         self.spacingOffset = spacingOffset # Value to add to margins of self.spacingSrcUFOPath (if defined)
 
-
         # Standard interpolation factors (e.g. for scalarpolations). This overwrites the corrections directly derived from comparing the stems.
         if iFactor is None:
             iFactor = 0.5
@@ -227,6 +227,10 @@ class MasterData:
         
         # Vertical metrics. Do some guessing for missing values. 
         # This may not be matching the current font, as we don't have it available as open RFont here.
+
+        if moreGuidelines is None: # Additional guidelines dictionary for design specifics. Key is guide name, value is vertical position.
+            moreGuidelines = {}
+        self.moreGuidelines = moreGuidelines
 
         #self.capStackedDiacriticsVKerning = capStackedDiacriticsVKerning or 0 # Optional offset for stacked diacritics on capitals
         #self.stackedDiacriticsVKerning = stackedDiacriticsVKerning or 0 # Optional offset for stacked diacritics

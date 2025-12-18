@@ -229,7 +229,9 @@ class AssistantPartOverlay(BaseAssistantPart):
                 og = of[g.name] # The overlay glyph
                 glyphPath = og.getRepresentation("merz.CGPath") 
                 self.someUFOPathOverlay.setPath(glyphPath)
-                self.someUFOPathOverlay.setPosition((0, 0)) 
+                self.someUFOPathOverlay.setStrokeColor(None)
+                self.someUFOPathOverlay.setFillColor((0.5, 0.5, 0.5, 0.5))
+                self.someUFOPathOverlay.setPosition((max(g.font.info.unitsPerEm, g.width), 0)) 
                 self.someUFOPathOverlay.setVisible(True)
                 drawn = True
         if not drawn:
@@ -241,7 +243,6 @@ class AssistantPartOverlay(BaseAssistantPart):
             #print('ffdfdf', md.orgUFOPath, of)
             if of is not None and g.name in of:
                 og = of[g.name] # The overlay glyph
-                print('dadasaddagfdgfdgf', og.name)
                 glyphPath = og.getRepresentation("merz.CGPath") 
                 self.orgUFOPathOverlay.setPath(glyphPath)
                 self.orgUFOPathOverlay.setPosition((0, 0)) 
@@ -407,6 +408,7 @@ class AssistantPartOverlay(BaseAssistantPart):
         c.w.kerningSrcUFOPathOverlay = CheckBox((C0, y, CW, L), 'Kerning overlay', value=False, sizeStyle='small', callback=self.updateEditor)
         c.w.romanItalicUFOPathOverlay = CheckBox((C1, y, CW, L), 'Roman/italic', value=True, sizeStyle='small', callback=self.updateEditor)
         y += L
+        c.w.copyFromOverlayButton = Button((C1, y, CW, L), 'Copy from overlay', callback=self.copyFromOverlayCallback)
         c.w.snapOnBackgroundButton = Button((C2, y, CW, L), f'Snap on BG [{personalKey}]', callback=self.overlaySnap2OverlayCallback)
         y += L + L/5
         c.w.overlayEndLine = HorizontalLine((self.M, y, -self.M, 1))
@@ -432,3 +434,19 @@ class AssistantPartOverlay(BaseAssistantPart):
         self.w.overlayAlignment.set(align)
         self.updateEditor(sender)
 
+    def copyFromOverlayCallback(self, sender=None):
+        """Copy the glyph from roman to alter it manually, instead of interpolating or italicizing."""
+        c = self.getController()
+        g = self.getCurrentGlyph()
+        if g is None:
+            return
+        f = g.font
+        md = self.getMasterData(f)
+        if md.someUFOPath is not None:
+            rf = self.getFont(md.someUFOPath)
+            if g.name in rf:
+                g.prepareUndo()
+                if c.w.decomposeCopiedInterpolatedGlyph.get():
+                    rf[g.name].decompose() # Make sure not to save this one.
+                f[g.name] = rf[g.name]
+                f[g.name].changed()

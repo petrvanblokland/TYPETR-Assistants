@@ -453,13 +453,13 @@ class GlyphData:
         if self.descender is not None: 
             out += ', descender=%d' % self.descender
         if self.overshoot is not None: # Allows overwriting per glyph
-            out += ', overshoot=%d' % self.overshoot
+            out += f', overshoot="{self.overshoot}"'
         if self.height is not None: 
-            out += ', height=%d' % self.height
+            out += f', height="{self.height}"'
         if self.baseline is not None: # Allows overwriting per glyph
-            out += ', baseline=%d' % self.baseline
+            out += f', baseline="{self.baseline}"'
         if self.width is not None: # Allows overwriting per glyph
-            out += ', width=%d' % self.width
+            out += f', width="{self.width}"'
         
         if self.gid: # Glyph ID
             out += ", gid=%d" % self.gid

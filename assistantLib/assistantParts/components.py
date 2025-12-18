@@ -162,7 +162,9 @@ class AssistantPartComponents(BaseAssistantPart):
         elif not g.components and gd.componentNames: # Create missing components
             for componentName in gd.componentNames:
                 if componentName == g.name:
-                    print(f'### Component can not refer to itself {componentName}')
+                    print(f'### Component can not refer to itself /{componentName}')
+                elif componentName not in g.font:
+                    print(f'### Component /{componentName} for /{g.name} does not exist.')
                 else:
                     print(f'... Append missing component /{componentName} to /{g.name}')
                     g.appendComponent(componentName)
@@ -189,6 +191,8 @@ class AssistantPartComponents(BaseAssistantPart):
             for componentName in gd.componentNames[len(g.components):]:
                 if componentName == g.name:
                     print(f'### Glyph {g.name} cannot contain a component with the same name')
+                elif componentName not in g.name:
+                    print(f'### Component /{componentName} for /{g.name} does not exist.')
                 else:
                     print(f'... Append component /{componentName} to /{g.name}')
                     g.appendComponent(componentName)
@@ -255,6 +259,9 @@ class AssistantPartComponents(BaseAssistantPart):
                 for component in g.components:
                     if component.baseGlyph == gd.base: # Skip the base component, after getting its offset
                         tx, ty = component.transformation[-2:]
+                        continue
+                    if component.baseGlyph not in g.font:
+                        print(f'### Component /{component.baseGlyph} for /{g.name} does not exist.')
                         continue
                     componentGlyph = g.font[component.baseGlyph]
                     for a in componentGlyph.anchors:

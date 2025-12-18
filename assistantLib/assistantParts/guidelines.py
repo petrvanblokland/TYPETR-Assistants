@@ -120,6 +120,12 @@ class AssistantPartGuidelines(BaseAssistantPart):
         guidelines.append((x + tg * xHeight, xHeight, 0, f'xHeight {xHeight}'))
         guidelines.append((x + tg * capHeight, capHeight, 0, f'capHeight {capHeight}'))
  
+        # Any addional guidelines defined for this design, then add them.
+        for moreGuidelineName, guidelineY in md.moreGuidelines.items():
+            if not gd.isLower and 'cap' in moreGuidelineName:
+                guidelines.append((x + tg * guidelineY, guidelineY, 0, f'{moreGuidelineName} {guidelineY}')) 
+            else:     
+                guidelines.append((x + tg * guidelineY, guidelineY, 0, f'{moreGuidelineName} {guidelineY}')) 
 
         if gd is None:
             print(f'### Cannot find /{g.name} in GlyphData {md.glyphSet.__class__.__name__}')

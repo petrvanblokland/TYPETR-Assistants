@@ -329,9 +329,6 @@ for GDS in (LATIN_M_SET, LATIN_M_SET_ITALIC):
     GDS['horncmb'] = GD(name='horncmb', uni=0x031B, hex='031B', c='̛', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=True, anchors=['top', '_top'])
     GDS['horncmb.uc'] = GD(name='horncmb.uc', w=0, isLower=False, autoFixComponentPositions=False, autoFixMargins=False, srcName='horncmb') # No anchors
 
-    GDS['hookabovecmb'] = GD(name='hookabovecmb', w=0, isLower=True, autoFixComponentPositions=False, autoFixMargins=False, anchors=['top', '_top'])
-    GDS['hookabovecmb.uc'] = GD(name='hookabovecmb.uc', srcName='hookabovecmb', w=0, autoFixComponentPositions=False, autoFixMargins=False, isLower=False, anchors=['top', '_top'])
-
     # Arrows
 
     GDS['arrowright'] = GD(name='arrowright', uni=0x2192, hex='2192', l=GD.CAT_CENTER, w=GD.CAT_ARROW_WIDTH)
