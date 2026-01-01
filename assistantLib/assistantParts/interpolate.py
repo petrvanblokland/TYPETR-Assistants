@@ -107,37 +107,87 @@ class AssistantPartInterpolate(BaseAssistantPart):
             self.interpolationPath.setPosition((g.width*2, 0))
             self.interpolationPath.setVisible(True)
 
-            points = []
-            for contour in refG.contours:
-                points += contour.points
-            refPoints = []
-            for contour in g.contours:
-                refPoints += contour.points
 
-            for n in range(min(self.MAX_POINT_MARKERS, len(points), len(refPoints))):
-                #print(points[n].x, points[n].y, refPoints[n].x + g.width*2, refPoints[n].y)
-                p0 = points[n]
-                p1 = refPoints[n]
-                if p0.type != p1.type:
-                    self.interpolationLineMarkers[epIndex].setVisible(True)
-                    self.interpolationLineMarkers[epIndex].setStrokeColor(self.INTERPOLATION_LINE_MARKERS_COLORS[epIndex])
-                    pen = self.interpolationLineMarkers[epIndex].getPen()
-                    px0, py0 = p0.x + g.width*2, p0.y
-                    px1, py1 = p1.x, p1.y
-                    pen.moveTo((px0, py0))
-                    #pen.lineTo((refPoints[n].x + g.width*2, refPoints[n].y+300))
-                    pen.curveTo(
-                        (px0 + (px1 - px0)/2, py0 + (py1 - py0)/2 + D),
-                        (px0 + (px1 - px0)/2, py0 + (py1 - py0)/2 - D),
-                        (px1, py1)
-                    )
-                    pen.curveTo(
-                        (px0 + (px1 - px0)/2, py0 + (py1 - py0)/2 - D),
-                        (px0 + (px1 - px0)/2, py0 + (py1 - py0)/2 + D),
-                        (px0, py0)
-                    )
-                    pen.closePath()
-                    epIndex += 1
+            for cIndex, contour in enumerate(g.contours):
+                errorInContour = False
+                if not refG.contours:
+                    refContour = None
+                    errorInContour = True
+                elif cIndex >= len(refG.contours): # Not compatible amount of contours in the reference
+                    refContour = refG.contours[0] 
+                else:
+                    refContour = refG.contours[cIndex]
+
+                if refContour is not None:
+                    # Now can we compare the points in this contour
+                    for pIndex, point in enumerate(contour.points):
+                        if pIndex >= len(refContour.points):
+                            refPoint = refContour.points[0]
+                            if point.type != refPoint.type:
+                                errorInContour = True
+                                break
+
+                    if len(contour.points) == len(refContour.points):
+                        # Just show the lines for start points of contours that contain one or more incompatible points
+
+                        if errorInContour and epIndex < self.MAX_POINT_MARKERS:
+                            self.interpolationLineMarkers[epIndex].setStrokeColor(self.INTERPOLATION_LINE_MARKERS_COLORS[epIndex])
+                            self.interpolationLineMarkers[epIndex].setVisible(True)
+                            pen = self.interpolationLineMarkers[epIndex].getPen()
+                            p0 = contour.points[0]
+                            p1 = refContour.points[0]
+                            px0, py0 = p0.x + g.width*2, p0.y
+                            px1, py1 = p1.x, p1.y
+                            pen.moveTo((px0, py0))
+                            #pen.lineTo((refPoints[n].x + g.width*2, refPoints[n].y+300))
+                            pen.curveTo(
+                                (px0 + (px1 - px0)/2, py0 + (py1 - py0)/2 + D),
+                                (px0 + (px1 - px0)/2, py0 + (py1 - py0)/2 - D),
+                                (px1, py1)
+                            )
+                            pen.curveTo(
+                                (px0 + (px1 - px0)/2, py0 + (py1 - py0)/2 - D),
+                                (px0 + (px1 - px0)/2, py0 + (py1 - py0)/2 + D),
+                                (px0, py0)
+                            )
+                            pen.closePath()
+                            epIndex += 1
+
+                    elif errorInContour:
+                        # Draw lines for all different point types. Looks nice, but also too much information to be practical
+                        points = []
+                        startPoints = []
+                        for contour in refG.contours:
+                            points += contour.points
+                        refPoints = []
+                        startRefPoints = []
+                        for contour in g.contours:
+                            refPoints += contour.points
+
+                        for n in range(min(self.MAX_POINT_MARKERS, len(points), len(refPoints))):
+                            #print(points[n].x, points[n].y, refPoints[n].x + g.width*2, refPoints[n].y)
+                            p0 = points[n]
+                            p1 = refPoints[n]
+                            if p0.type != p1.type:
+                                self.interpolationLineMarkers[epIndex].setVisible(True)
+                                self.interpolationLineMarkers[epIndex].setStrokeColor(self.INTERPOLATION_LINE_MARKERS_COLORS[epIndex])
+                                pen = self.interpolationLineMarkers[epIndex].getPen()
+                                px0, py0 = p0.x + g.width*2, p0.y
+                                px1, py1 = p1.x, p1.y
+                                pen.moveTo((px0, py0))
+                                #pen.lineTo((refPoints[n].x + g.width*2, refPoints[n].y+300))
+                                pen.curveTo(
+                                    (px0 + (px1 - px0)/2, py0 + (py1 - py0)/2 + D),
+                                    (px0 + (px1 - px0)/2, py0 + (py1 - py0)/2 - D),
+                                    (px1, py1)
+                                )
+                                pen.curveTo(
+                                    (px0 + (px1 - px0)/2, py0 + (py1 - py0)/2 - D),
+                                    (px0 + (px1 - px0)/2, py0 + (py1 - py0)/2 + D),
+                                    (px0, py0)
+                                )
+                                pen.closePath()
+                                epIndex += 1
         else:
             self.interpolationPath.setVisible(False)
 
