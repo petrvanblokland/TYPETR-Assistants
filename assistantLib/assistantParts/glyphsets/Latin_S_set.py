@@ -521,7 +521,7 @@ LATIN_S_SET = GDS = {
 
     # a
 
-    'a': GD(name='a', uni=0x0061, hex='0061', c='a', isLower=True, anchorTopX='TopX', anchors=['bottom', 'middle', 'ogonek', 'top'], comment='a Small Letters, Latin'),
+    'a': GD(name='a', uni=0x0061, hex='0061', c='a', l='o', l2r='n', isLower=True, anchorTopX='TopX', anchors=['bottom', 'middle', 'ogonek', 'top'], comment='a Small Letters, Latin'),
     'aacute': GD(name='aacute', uni=0x00E1, hex='00E1', c='á', w='a', bl='a', base='a', anchorTopY='TopY',accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='á A WITH ACUTE, LATIN SMALL LETTER'),
     'abreve': GD(name='abreve', uni=0x0103, hex='0103', c='ă', w='a', bl='a', base='a', anchorTopY='TopY',accents=['brevecmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ă A WITH BREVE, LATIN SMALL LETTER'),
     'acaron': GD(name='acaron', uni=0x01CE, hex='01CE', c='ǎ', w='a', bl='a', base='a', anchorTopY='TopY',accents=['caroncmb'], srcName='uni01CE', isLower=True, anchors=['bottom', 'middle', 'top']),
@@ -678,8 +678,8 @@ LATIN_S_SET = GDS = {
     # i
 
     # For serif stems
-    'i': GD(name='i', uni=0x0069, hex='0069', c='i', l='n', r='idotless', anchorTopY='TopY', isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='i'),
-    'idotless': GD(name='idotless', uni=0x0131, hex='0131', c='ı', l='n', r='off', anchorTopY='TopY', isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top']),
+    'i': GD(name='i', uni=0x0069, hex='0069', c='i', l='n', r='n', anchorTopY='TopY', isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='i'),
+    'idotless': GD(name='idotless', uni=0x0131, hex='0131', c='ı', l='n', r='n', anchorTopY='TopY', isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top']),
     'iacute': GD(name='iacute', uni=0x00ED, hex='00ED', c='í', w='i', bl='idotless', anchorTopY='TopY', base='idotless', accents=['acutecmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='í I WITH ACUTE, LATIN SMALL LETTER'),
     'ibreve': GD(name='ibreve', uni=0x012D, hex='012D', c='ĭ', w='i', bl='idotless', anchorTopY='TopY', base='idotless', accents=['brevecmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top'], comment='ĭ I WITH BREVE, LATIN SMALL LETTER'),
     'icaron': GD(name='icaron', uni=0x01D0, hex='01D0', c='ǐ', w='i', bl='idotless', anchorTopY='TopY', base='idotless', accents=['caroncmb'], isLower=True, anchors=['bottom', 'middle', 'ogonek', 'top']),
@@ -704,7 +704,7 @@ LATIN_S_SET = GDS = {
 
     # j
     'j': GD(name='j', uni=0x006A, hex='006A', c='j', l='off', r='off', isLower=True, anchors=['bottom', 'middle'], comment='j'),
-    'jcircumflex': GD(name='jcircumflex', uni=0x0135, hex='0135', c='ĵ', l='j', w='j', base='jdotless', accents=['circumflexcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ĵ J WITH CIRCUMFLEX, LATIN SMALL LETTER'),
+    'jcircumflex': GD(name='jcircumflex', uni=0x0135, hex='0135', c='ĵ', bl='j', w='j', base='jdotless', accents=['circumflexcmb'], isLower=True, anchors=['bottom', 'middle', 'top'], comment='ĵ J WITH CIRCUMFLEX, LATIN SMALL LETTER'),
     'jdotless': GD(name='jdotless', uni=0x0237, hex='0237', c='ȷ', l='j', r='j', isLower=True, anchors=['bottom', 'middle', 'top']),
 
     # k

@@ -43,7 +43,7 @@ from assistantLib.assistantParts.glyphsets.anchorData import AD
 LATIN_AX_SET_NAME = 'Latin AX'
 LATIN_AX_SET_NAME_ITALIC = 'Latin AX Italic'
 
-# The "c" attribtes are redundant, if the @uni or @hex are defined, but they are offer easy searching in the source by char.
+# The "c" attributes are redundant, if the @uni or @hex are defined, but they are offer easy searching in the source by char.
 LATIN_AX_SET = GDS = {
 
     '.notdef': GD(name='.notdef'),
@@ -71,7 +71,7 @@ LATIN_AX_SET = GDS = {
     'emdash': GD(name='emdash', uni=0x2014, hex='2014', c='—', l='center', w='emWidth', g1='hyphen', g2='hyphen', isLower=True, comment='— EM DASH'),
     'parenleft': GD(name='parenleft', uni=0x0028, hex='0028', c='(', isLower=True, comment='( parenthesis, opening'),
     'parenright': GD(name='parenright', uni=0x0029, hex='0029', c=')', l2r='parenleft', r2l='parenleft', isLower=True, comment=') RIGHT PARENTHESIS'),
-    'percent': GD(name='percent', uni=0x0025, hex='0025', c='%', l='zerosuperior', r='zerosuperior', isLower=True, overshoot="superiorOvershoot", height="supsHeight", baseline="numrBaseline", comment='% PERCENT SIGN'),
+    'percent': GD(name='percent', uni=0x0025, hex='0025', c='%', l='off', l2r='self', isLower=True, overshoot="superiorOvershoot", height="supsHeight", baseline="numrBaseline", comment='% PERCENT SIGN'),
     'period': GD(name='period', uni=0x002E, hex='002E', c='.', l2r='self', isLower=True, fixSpacing=False, comment='. point, decimal'),
     'ellipsis': GD(name='ellipsis', uni=0x2026, hex='2026', c='…', l='period', r='period', isLower=True, comment='… three dot leader'),
     'question': GD(name='question', uni=0x003F, hex='003F', c='?', isLower=True, comment='? QUESTION MARK'),
@@ -82,9 +82,9 @@ LATIN_AX_SET = GDS = {
     'slash': GD(name='slash', uni=0x002F, hex='002F', c='/', l2r='self', comment='/ virgule'),
     'sterling': GD(name='sterling', uni=0x00A3, hex='00A3', c='£', l='center', w='mathWidth', isLower=True, comment='£ sterling, pound'),
     'underscore': GD(name='underscore', uni=0x005F, hex='005F', c='_', isLower=True, comment='_ underscore, spacing'),
-    'onesuperior': GD(name='onesuperior', uni=0x00B9, hex='00B9', c='¹', l='plussuperior', r='plussuperior', isLower=True, comment='¹ SUPERSCRIPT ONE'),
-    'twosuperior': GD(name='twosuperior', uni=0x00B2, hex='00B2', c='²', l='plussuperior', r='plussuperior', comment='² TWO, SUPERSCRIPT'),
-    'threesuperior': GD(name='threesuperior', uni=0x00B3, hex='00B3', c='³', l='plussuperior', r='plussuperior', comment='³ THREE, SUPERSCRIPT'),
+    'onesuperior': GD(name='onesuperior', uni=0x00B9, hex='00B9', c='¹', l='percent', r='percent', isLower=True, comment='¹ SUPERSCRIPT ONE'),
+    'twosuperior': GD(name='twosuperior', uni=0x00B2, hex='00B2', c='²', l='percent', r='percent', comment='² TWO, SUPERSCRIPT'),
+    'threesuperior': GD(name='threesuperior', uni=0x00B3, hex='00B3', c='³', l='percent', r='percent', comment='³ THREE, SUPERSCRIPT'),
     'numbersign': GD(name='numbersign', uni=0x0023, hex='0023', c='#', l2r='self', isLower=True, comment='# pound sign'),
     'degree': GD(name='degree', uni=0x00B0, hex='00B0', c='°', isLower=True, comment='° DEGREE SIGN'),
     'ordfeminine': GD(name='ordfeminine', uni=0x00AA, hex='00AA', c='ª', isLower=True, comment='ª ORDINAL INDICATOR, FEMININE'),

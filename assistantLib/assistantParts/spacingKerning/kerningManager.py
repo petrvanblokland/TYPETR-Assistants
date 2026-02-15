@@ -18,10 +18,15 @@ import drawBot as db # Used to generate KernNet sample kerning image test.png
 import assistantLib.similarity.cosineSimilarity
 from assistantLib.similarity.cosineSimilarity import cosineSimilarity, SimilarGlyphsKey
 
-from assistantLib.kerningSamples import SAMPLES, CYRILLIC_KERNING, GREEK_KERNING 
+from assistantLib.kerningSamples import SAMPLES, SAMPLES_AZ, CYRILLIC_KERNING, GREEK_KERNING 
 # Seed relation between glyphs as start for similarity groups
 from assistantLib.assistantParts.glyphsets.groupBaseGlyphs import *
 #from assistantLib.assistantParts.outliner import calculateOutline
+from assistantLib.assistantParts.glyphsets.Latin_A_set import LATIN_A_SET
+
+# @@@@@@@@@@@
+SAMPLES = SAMPLES_AZ # For now, final kerning testing.
+print('===== SAMPLES ======', SAMPLES)
 
 FORCE_GROUP1 = {}
 FORCE_GROUP2 = {}
@@ -2210,17 +2215,37 @@ class KerningManager:
         return sample
 
     def getSpacingSample_GroupKerning(self, g, length, index=None, initialize=False):
-        """Build sample from permutating the groups. Now this depends on the hard coded lists of base glyphs per script. 
+        """Sample mode 4/ Build sample from permutating the groups. Now this depends on the hard coded lists of 
+        base glyphs per script. 
         This should become more generic, depending on the actual glyphset."""
         if index is None:
             index = self.sampleKerningIndex
         self.sampleKerningIndex = index # Store this new index
         if initialize:
             self._kerningSample = None # Force initialization
+
         # Property will initialize the cached kerning sample if required, then slice it.
         return self.kerningSample[index - int(length / 2) : max(len(self.kerningSample), index + int(length / 2))]
 
     def _get_kerningSample(self):
+        kerningSample = [
+            'H', 'O', 'H', 'H', 'O', 'H', 'n', 'o', 'O', 'o', 'O', 'o', 'O',
+            'H', 'a', 'm', 'b', 'u', 'r', 'g', 'e', 'f', 'o', 'n', 't', 's', 't', 'i', 'v',
+            'H', 'a', 'm', 'b', 'u', 'r', 'g',
+            'H', 'A', 'M', 'B', 'U', 'R', 'G', 'E', 'F', 'O', 'N', 'T', 'S', 'T', 'I', 'V'
+            ] * 2
+        done = set()
+        prev = None
+        for c1 in SAMPLES:
+            for c2 in SAMPLES:
+                if (c1, c2) not in done:
+                    kerningSample.append(c1)
+                    kerningSample.append(c2)
+                    done.add((c1, c2))
+                    done.add((c2, c1))
+        return kerningSample
+
+    def XXX_get_kerningSample(self):
         """Properly way to get the initialize cached kerning sample line.
         Initialize the kerning sample. There are various flavours possible for different stages in the process.
         For now we just initialize from the base glyphs of each group.

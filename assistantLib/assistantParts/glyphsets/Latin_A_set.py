@@ -43,7 +43,7 @@ from assistantLib.assistantParts.glyphsets.anchorData import AD
 LATIN_A_SET_NAME = 'Latin A'
 LATIN_A_SET_NAME_ITALIC = 'Latin A Italic'
 
-# The "c" attribtes are redundant, if the @uni or @hex are defined, but they are offer easy searching in the source by char.
+# The "c" attributes are redundant, if the @uni or @hex are defined, but they are offer easy searching in the source by char.
 LATIN_A_SET = GDS = {
 
     '.notdef': GD(name='.notdef'),

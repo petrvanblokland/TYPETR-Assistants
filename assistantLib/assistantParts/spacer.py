@@ -412,6 +412,7 @@ class AssistantPartSpacer(BaseAssistantPart):
         # 2    By group mode context
         # 3    By spacing mode context
         # 4    By kerning mode context
+
         # Get a spacing sample for the right amount of glyphs for the selected context
         sample = km.getSpacingSample(g, context=sampleContext, length=len(self.kerningLine)) 
 

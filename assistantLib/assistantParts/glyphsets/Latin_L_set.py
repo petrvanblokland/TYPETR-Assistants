@@ -428,7 +428,7 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     # a
 
-    GDS['adblgrave'] = GD(name='adblgrave', uni=0x0201, hex='0201', c='ȁ', l='a', w='a', base='a', accents=['dblgravecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
+    GDS['adblgrave'] = GD(name='adblgrave', uni=0x0201, hex='0201', c='ȁ', bl='a', w='a', base='a', accents=['dblgravecmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['adieresismacron'] = GD(name='adieresismacron', uni=0x01DF, hex='01DF', c='ǟ', w='a', bl='a', base='a', accents=['dieresismacroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['adotaccent'] = GD(name='adotaccent', uni=0x0227, hex='0227', c='ȧ', w='a', bl='a', base='a', accents=['dotaccentcmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['adotaccentmacron'] = GD(name='adotmacron', uni=0x01E1, hex='01E1', c='ǡ', w='a', bl='a', base='a', accents=['dotaccentmacroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
@@ -584,11 +584,11 @@ for GDS in (LATIN_L_SET, LATIN_L_SET_ITALIC):
 
     # j
 
-    GDS['jcaron'] = GD(name='jcaron', uni=0x01F0, hex='01F0', c='ǰ', l='j', w='j', base='jdotless', accents=['caroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
+    GDS['jcaron'] = GD(name='jcaron', uni=0x01F0, hex='01F0', c='ǰ', bl='j', w='j', base='jdotless', accents=['caroncmb'], isLower=True, anchors=['bottom', 'middle', 'top'])
     GDS['jcrossedtail'] = GD(name='jcrossedtail', uni=0x029D, hex='029D', c='ʝ', rightMin='minRight', isLower=True)
     GDS['jdotlessstroke'] = GD(name='jdotlessstroke', uni=0x025F, hex='025F', c='ɟ', l='jdotless', base='jdotless', r='hyphen', isLower=True)
     GDS['jdotlessstrokehook'] = GD(name='jdotlessstrokehook', uni=0x0284, hex='0284', c='ʄ', l='jdotless',  base='jdotless', accents=['hookabovecmb'], isLower=True)
-    GDS['jstroke'] = GD(name='jstroke', uni=0x0249, hex='0249', c='ɉ', l='j', r='hyphen', base='j', isLower=True, anchors=['bottom', 'middle'])
+    GDS['jstroke'] = GD(name='jstroke', uni=0x0249, hex='0249', c='ɉ', bl='j', r='hyphen', base='j', isLower=True, anchors=['bottom', 'middle'])
 
     GDS['jsuperior'] = GD(name='jsuperior', uni=0x02B2, hex='02B2', c='ʲ', isMod=True)
     GDS['jinferior'] = GD(name='jsuperior', uni=0x2C7C, hex='2C7C', l='jsuperior', r='jsuperior', base='jsuperior', isMod=True)
