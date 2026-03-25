@@ -264,6 +264,24 @@ class AssistantPartOverlay(BaseAssistantPart):
         if not drawn:
             self.romanItalicUFOPathOverlay.setVisible(False) 
 
+    def getOverlayGlyph(self, f, gName):
+        """Answer the glyph that is most likely to be used as overlay."""
+        c = self.getController()
+        srcF = None
+        md = self.getMasterData(f)
+
+        if c.w.srcUFOPathOverlay.get():
+            srcF = self.getFont(md.srcUFOPath)
+        elif c.w.someUFOPathOverlay.get():
+            srcF = self.getFont(md.someUFOPath)
+        elif c.w.orgUFOPathOverlay.get(): 
+            srcF = self.getFont(md.orgUFOPath)
+
+        print('ASASASA', srcF, gName)
+        if gName and srcF is not None and gName in srcF:
+            return srcF[gName] # Use current font as overlay
+        return None # Could not find this glyph
+
     def overlaySnap2Overlay(self, g, c, event):     
         """Snap the selected points of the current glyph onto points that are within range on the background glyph."""
         self.snapSelectionToNearestPoint(g)
@@ -283,8 +301,10 @@ class AssistantPartOverlay(BaseAssistantPart):
         for gName in overlayText.split('/'):
             #print('---', gName, f.path)
             gName = gName.strip()
-            if gName and f is not None and gName in f:
-                og = f[gName] # Use current font as overlay
+            if not gName:
+                gName = g.name
+            og = self.getOverlayGlyph(f, gName) #  Find the glyph best fitting for overlay/snapping
+            if og is not None:
                 offsetX = c.w.overlayPositionSlider.get() / self.MAX_OVERLAY_SLIDER * (g.width - og.width)
                 snapped = snapped or self.snapGlyphPoints(g, og, offsetX)
         
@@ -398,6 +418,7 @@ class AssistantPartOverlay(BaseAssistantPart):
         c.w.overlayAlignment = RadioGroup((C1, y, CW, L), ('L', 'C', 'R'), isVertical=False, sizeStyle='small', callback=self.updateOverlayPositionCallback)
         c.w.overlayAlignment.set(0)
         y += L
+        # TODO: Add MIN_OVERLAY_SLIDER
         c.w.overlayPositionSlider = Slider((C1, y, CW, L), minValue=0, maxValue=self.MAX_OVERLAY_SLIDER, value=0, 
             sizeStyle='small', continuous=True, callback=self.updateOverlayPositionSliderCallback)
         y += L

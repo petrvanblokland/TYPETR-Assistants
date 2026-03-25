@@ -87,14 +87,14 @@ class BaseAssistant:
     # Select the color by user
     VISITED_MARKERS = [
         #('/Users/petr/Desktop/TYPETR-git', (40/255, 120/255, 255/255, 0.6), keys), # "Final" marker Blue (Petr))    
-        ('/Users/petr/Desktop/TYPETR-git', (50/255, 70/255, 230/255, 0.8), {'§':'§'}), # "Final" marker Blue (Petr))    
+        #('/Users/petr/Desktop/TYPETR-git', (50/255, 70/255, 230/255, 0.8), {'§':'§'}), # "Final" marker Blue (Petr))    
         ('/Users/edwarddzulaj/Documents', (92/255, 149/255, 190/255, 1), {}), # Edward
         ('/Users/graemeswank/Documents', (255/255, 83/255, 73/255, 1), {}),
         ('/Users/graeme/Documents', (255/255, 83/255, 73/255, 1), {}),
         ('/Users/caterinasantullo/Desktop', (226/255, 69/255, 0/255, 1), {}),
         ('/Users/til/Documents', (0.9, 0.75, 1.0, 1.0), {'g':'z'}),
-        ('/Users/anna/Downloads', (57/255, 163/255, 160/255, 1), {}),
-        ('/Users/annakhorash/Documents/GitHub', (57/255, 163/255, 160/255, 1), {}),
+        #('/Users/anna/Downloads', (57/255, 163/255, 160/255, 1), {}),
+        #('/Users/annakhorash/Documents/GitHub', (57/255, 163/255, 160/255, 1), {}),
         ('/Users/lenalepommelet/Documents', (138/255, 43/255,  226/255, 1), {}),
         ('/Users/Marte/Documents', (255/255, 222/255,  0/255, .8), {}),
         ('/Users/iv/Documents/', (0/255, 130/255,  100/255, 1), {}),
