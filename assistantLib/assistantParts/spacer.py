@@ -63,6 +63,8 @@ class AssistantPartSpacer(BaseAssistantPart):
     The assistant part gives feedback about where the automated values came from, so it's easier to debug.
     """
 
+    USE_KERNNET = True # To be redefined by an inheriting class for no-Kernnet
+
     KERN_LINE_LENGTH = 48 # Number of glyphs on kerning line
     KERN_SCALE = 0.12 #0.2 Scaler for glyphs on kerning line
 
@@ -714,9 +716,12 @@ class AssistantPartSpacer(BaseAssistantPart):
         kRight, groupKRight, kerningTypeRight = km.getKerning(g.name, gNameRight)
 
         # Recaclulate KernNet, since this spacing or shape may have changed from last time
-        knLeft = km.getKernNetKerning(gLeft, g) or 0
-        knRight = km.getKernNetKerning(g, gRight) or 0
-
+        if self.USE_KERNNET:
+            knLeft = km.getKernNetKerning(gLeft, g) or 0
+            knRight = km.getKernNetKerning(g, gRight) or 0
+        else:
+            knLeft = knRight = 0
+            
         #print(f'--- ({knLeft}) {kLeft} {groupKLeft} {kerningTypeLeft} <--> ({knRight}) {kRight} {groupKRight} {kerningTypeRight}')
 
         y1 = g.font.info.descender - 60

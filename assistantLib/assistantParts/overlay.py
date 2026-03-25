@@ -277,7 +277,6 @@ class AssistantPartOverlay(BaseAssistantPart):
         elif c.w.orgUFOPathOverlay.get(): 
             srcF = self.getFont(md.orgUFOPath)
 
-        print('ASASASA', srcF, gName)
         if gName and srcF is not None and gName in srcF:
             return srcF[gName] # Use current font as overlay
         return None # Could not find this glyph
