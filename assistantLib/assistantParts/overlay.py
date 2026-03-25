@@ -276,6 +276,8 @@ class AssistantPartOverlay(BaseAssistantPart):
             srcF = self.getFont(md.someUFOPath)
         elif c.w.orgUFOPathOverlay.get(): 
             srcF = self.getFont(md.orgUFOPath)
+        else:
+            srcF = f
 
         if gName and srcF is not None and gName in srcF:
             return srcF[gName] # Use current font as overlay
