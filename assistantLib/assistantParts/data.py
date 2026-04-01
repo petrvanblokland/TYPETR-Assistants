@@ -89,7 +89,7 @@ class MasterData:
                 scOvershoot=None, onumOvershoot=None, superiorOvershoot=None,
                 diacriticsOvershoot=None,
             ascender=None, descender=None,
-            xHeight=None, capHeight=None, scHeight=None, onumHeight=None, 
+            xHeight=None, capHeight=None, scHeight=None, onumHeight=None, figureHeight=None,
             superiorHeight=None, superiorCapHeight=None, superiorAscender=None, superiorDescender=None,
             modHeight=None,
             numrBaseline=None, supsBaseline=None, sinfBaseline=None, dnomBaseline=None, modBaseline=None,
@@ -296,6 +296,9 @@ class MasterData:
         if capHeight is None:
             capHeight = self.CAPHEIGHT
         self.capHeight = capHeight
+        if figureHeight is None:
+            figureHeight = self.capHeight
+        self.figureHeight = figureHeight
         if scHeight is None:
             scHeight = xHeight
         self.scHeight = scHeight

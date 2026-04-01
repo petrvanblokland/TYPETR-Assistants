@@ -131,7 +131,12 @@ class AssistantPartGuidelines(BaseAssistantPart):
             print(f'### Cannot find /{g.name} in GlyphData {md.glyphSet.__class__.__name__}')
 
         else:
-            if gd.isLower:
+            if gd.isFigure:
+                guidelines.append((xo + tg * (md.ascender + overshoot), md.figureHeight + overshoot, 0, f"{md.figureHeight + overshoot} ({overshoot})"))
+                guidelines.append((x + tg * md.ascender, md.figureHeight, 0, f'Figure height {md.figureHeight}'))
+                guidelines.append((xo + tg * (-overshoot), -overshoot, 0, f'({overshoot})'))
+
+            elif gd.isLower:
                 guidelines.append((xo + tg * (md.ascender + overshoot), md.ascender + overshoot, 0, f"{md.ascender + overshoot} ({overshoot})"))
                 guidelines.append((x + tg * md.ascender, md.ascender, 0, f'Ascender {md.ascender}'))
                 guidelines.append((xo + tg * (md.descender - overshoot), md.descender - overshoot, 0, f'{md.descender - overshoot} ({overshoot})'))

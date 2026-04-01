@@ -267,6 +267,11 @@ class GlyphData:
         self._isLower = isLower
     isLower = property(_get_isLower, _set_isLower)
 
+    def _get_isFigure(self):
+        """Answer the boolean flag if this glyph is a plain figure. """
+        return self.name in ('one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'zero', 'zeroslash')
+    isFigure = property(_get_isFigure)
+    
     def _get_isMod(self):
         """Answer the boolean flag if this glyph is a modifier. If the flag is undefined in self._isMod
         then take a guess.

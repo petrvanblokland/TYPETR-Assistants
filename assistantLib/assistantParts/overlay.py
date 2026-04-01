@@ -464,11 +464,10 @@ class AssistantPartOverlay(BaseAssistantPart):
             return
         f = g.font
         md = self.getMasterData(f)
-        if md.someUFOPath is not None:
-            rf = self.getFont(md.someUFOPath)
-            if g.name in rf:
-                g.prepareUndo()
-                if c.w.decomposeCopiedInterpolatedGlyph.get():
-                    rf[g.name].decompose() # Make sure not to save this one.
-                f[g.name] = rf[g.name]
-                f[g.name].changed()
+        og = self.getOverlayGlyph(f, g.name) #  Find the glyph best fitting for overlay/snapping
+        if og is not None:
+            g.prepareUndo()
+            if c.w.decomposeCopiedInterpolatedGlyph.get():
+                og.decompose() # Make sure not to save this one.
+            f[g.name] = og
+            f[g.name].changed()
