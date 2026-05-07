@@ -57,6 +57,7 @@ class MasterData:
             spacingSrcUFOPath=None, # If defined, used as spacing reference, overwriting all spacing rules. Goes with spacingOffset
             spacingOffset=0, # Value to add to margins of self.spacingSrcUFOPath (if defined)
             italicAngle=0, italicSkew=None, italicRotation=None, isItalic=False,
+            italicExtension=None, # '.ita' In case set and glyph exists, then use this as roman/italic glyph background
             dsPosition=None,
             m0=None, # Origin of the design space
             m1=None, m2=None, # Used for interpolating spacing, outlines, anchor positions, component positions
@@ -155,6 +156,7 @@ class MasterData:
             italicRotation = italicAngle * 0.5
         self.italicRotation = italicRotation 
         self.isItalic = bool(italicAngle) or isItalic or 'Italic' in name
+        self.italicExtension = italicExtension # If this glyph exists, then use it as roman/italic background
 
         # Used by Neon for tube thickness and minimal tube distance. Overwritten if GlyphData.thickness is not None
         self.thickness = thickness

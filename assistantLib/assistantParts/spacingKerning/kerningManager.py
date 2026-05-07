@@ -2243,6 +2243,18 @@ class KerningManager:
                     kerningSample.append(c2)
                     done.add((c1, c2))
                     done.add((c2, c1))
+        # @@@ For now, adding for MS Segoe Serif Explore project
+        if 0:
+            for c1 in SAMPLES:
+                c1 += '.ita'
+                for c2 in SAMPLES:
+                    c2 += '.ita'
+                    if (c1, c2) not in done:
+                        kerningSample.append(c1)
+                        kerningSample.append(c2)
+                        done.add((c1, c2))
+                        done.add((c2, c1))
+
         return kerningSample
 
     def XXX_get_kerningSample(self):

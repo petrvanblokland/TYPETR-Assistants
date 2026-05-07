@@ -200,22 +200,24 @@ class AssistantPartInterpolate(BaseAssistantPart):
         return changed
 
     KEY_INTERPOLATE = '§'
+    KEY_COPY_FROM_SOURCE = 'w'
 
     def buildInterpolate(self, y):
-        personalKey = self.registerKeyStroke(self.KEY_INTERPOLATE, 'interpolateGlyphKey')
+        personalKey1 = self.registerKeyStroke(self.KEY_INTERPOLATE, 'interpolateGlyphKey')
+        personalKey2 = self.registerKeyStroke(self.KEY_COPY_FROM_SOURCE, 'copyFromSourceGlyphKey')
 
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         LL = L/2
         c = self.getController()
         c.w.glyphIsLower = CheckBox((C0, y, CW, L), 'Glyph is lowercase', value=False, sizeStyle='small', callback=self.glyphIsLowerCallback) # Stored in glyph.lib, overwrites the GlyphData.isLower flag.
         c.w.interpolateAllSelectedGlyphs = CheckBox((C1, y, CW, L), 'Interpolate selected', value=False, sizeStyle='small')
-        c.w.interpolateButton = Button((C2, y, CW, L), f'Interpolate [{personalKey}]', callback=self.interpolateGlyphCallback)
+        c.w.interpolateButton = Button((C2, y, CW, L), f'Interpolate [{personalKey1}]', callback=self.interpolateGlyphCallback)
         y += L
         c.w.showInterpolationLines = CheckBox((C0, y, CW, L), f'Show interpolation lines', callback=self.showInterpolationLinesCallback, sizeStyle='small')
         y += L
         c.w.decomposeCopiedInterpolatedGlyph = CheckBox((C0, y, CW, L), 'Decompose copy', value=False, sizeStyle='small')
         c.w.copyFromRomanButton = Button((C1, y, CW, L), 'Copy from Roman', callback=self.copyFromRomanCallback)
-        c.w.copyFromSourceButton = Button((C2, y, CW, L), 'Copy from source', callback=self.copyFromSourceCallback)
+        c.w.copyFromSourceButton = Button((C2, y, CW, L), f'Copy source [{personalKey2}]', callback=self.copyFromSourceCallback)
         y += L + L/5
         c.w.interpolateEndLine = HorizontalLine((self.M, y, -self.M, 1))
         c.w.interpolateEndLine2 = HorizontalLine((self.M, y, -self.M, 1))
@@ -281,6 +283,19 @@ class AssistantPartInterpolate(BaseAssistantPart):
                 f[g.name] = rf[g.name]
                 f[g.name].changed()
 
+    def copyFromSourceGlyphKey(self, g, c, event):
+        gName = g.name
+        f = g.font
+        g.prepareUndo()
+        print(f'... Copy from source glyph /{gName}')
+        md = self.getMasterData(f)
+        if md.srcUFOPath is not None:
+            rf = self.getFont(md.srcUFOPath)
+            g.prepareUndo()
+            if g.name in rf:
+                f[g.name] = rf[g.name]
+                f[g.name].changed()
+
     def copyFromSourceCallback(self, sender=None):
         """Copy the glyph from roman to alter it manually, instead of interpolating or italicizing."""
         c = self.getController()
@@ -331,8 +346,10 @@ class AssistantPartInterpolate(BaseAssistantPart):
 
         isLower = self.getLib(g, 'glyphIsLower', gd.isLower) # In case it does not exists, using the flag in GlyphData.isLower as default
 
+        print('SAASSAS', gd.scalerpolate, g.name.endswith('superior'))
+
         # Change to glyphData.height, so scalerpolation will also work for small caps.
-        if g.name.endswith('.sc'):
+        if gd.scalerpolate and g.name.endswith('.sc'):
             iScaleY = (md.scHeight - 1.5*md.scOutline) / f.info.capHeight # Also correct for increased height from outline
             iScaleX = iScaleY * md.scWidthFactor
             gName = g.name
@@ -352,7 +369,7 @@ class AssistantPartInterpolate(BaseAssistantPart):
             #f.removeGlyph(tmpName)
             changed = True
 
-        elif g.name.endswith('superior'):
+        elif gd.scalerpolate and g.name.endswith('superior'):
             iScaleY = (md.superiorHeight - 2*md.superiorOutline) / f.info.xHeight # Also correct for increased height from outline
             iScaleX = iScaleY * md.superiorWidthFactor
             gName = g.name
@@ -372,12 +389,12 @@ class AssistantPartInterpolate(BaseAssistantPart):
             #f.removeGlyph(tmpName)
             changed = True
 
-        elif g.name.endswith('inferior'):
+        elif gd.scalerpolate and g.name.endswith('inferior'):
             # Assume that the superior component is already there.
             self.resetComponentPositions(g)
             self.offsetGlyph(g, dx=0, dy=-md.supsBaseline + md.sinfBaseline)
 
-        elif isLower and f1.info.xHeight != f.info.xHeight: # Test if scalerpolation on the xHeight is needed?
+        elif gd.scalerpolate and isLower and f1.info.xHeight != f.info.xHeight: # Test if scalerpolation on the xHeight is needed?
             iScale = f.info.xHeight / f1.info.xHeight # Now the stems get thicker. Compensate that in the interpolation factor
             iFactor /= iScale 
             print(iScale, iFactor)

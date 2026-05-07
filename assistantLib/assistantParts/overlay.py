@@ -261,6 +261,22 @@ class AssistantPartOverlay(BaseAssistantPart):
                 self.romanItalicUFOPathOverlay.setPosition((0, 0)) 
                 self.romanItalicUFOPathOverlay.setVisible(True)
                 drawn = True
+        
+        elif md.italicExtension is not None and c.w.romanItalicUFOPathOverlay.get():
+            og = None
+            if g.name.endswith(md.italicExtension):
+                ogName = g.name.replace(md.italicExtension, '')
+                if ogName in f:
+                    og = f[ogName]
+            elif g.name + md.italicExtension in f:
+                og = f[g.name + md.italicExtension]
+            if og is not None:
+                glyphPath = og.getRepresentation("merz.CGPath") 
+                self.romanItalicUFOPathOverlay.setPath(glyphPath)
+                self.romanItalicUFOPathOverlay.setPosition((0, 0)) 
+                self.romanItalicUFOPathOverlay.setVisible(True)
+                drawn = True
+
         if not drawn:
             self.romanItalicUFOPathOverlay.setVisible(False) 
 

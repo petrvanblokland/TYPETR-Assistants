@@ -50,8 +50,10 @@ class AssistantPartContours(BaseAssistantPart):
                 else:
                     srcG = f[gd.srcName]
                     if not g.contours and not g.components:
+                        uni = g.unicode # Save the original unicode
                         f[gName] = srcG
                         f[gName].decompose()
+                        f[gName].unicode = uni # Restore the original unicode
                         changed = True
         return changed
 

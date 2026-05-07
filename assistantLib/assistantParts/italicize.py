@@ -94,17 +94,27 @@ class AssistantPartItalicize(BaseAssistantPart):
         skipComponents = c.w.skipItalicizedComponents.get()
         addExtremes = c.w.addItalicizedExtremes.get()
 
-        srcF = self.getFont(md.romanItalicUFOPath)
-        if srcF is None:
-            print(f'### Cannot find italic source {md.romanItalicUFOPath}.')
-            return False # Nothing changed
-        if gName not in srcF:
-            print(f'### Italic source glyph {gName} does not exist.')
-            return False # Nothing changed
+        srcG = None # In case not found
+        if md.romanItalicUFOPath is not None: # Copy from another master
+            srcF = self.getFont(md.romanItalicUFOPath)
+            if srcF is None:
+                print(f'### Cannot find italic source {md.romanItalicUFOPath}.')
+                return False # Nothing changed
+            if gName not in srcF:
+                print(f'### Italic source glyph {gName} does not exist.')
+                return False # Nothing changed
 
-        # Get the glyph in the editing layer. Normally this is the foreground layer, but this method can be redefined
-        # e.g. for masters that mainly draw in the background, such as TYPETR Responder and TYPETR Upgrade Neon.
-        srcG = srcF[gName].getLayer(self.EDIT_LAYER)
+            # Get the glyph in the editing layer. Normally this is the foreground layer, but this method can be redefined
+            # e.g. for masters that mainly draw in the background, such as TYPETR Responder and TYPETR Upgrade Neon.
+            srcG = srcF[gName].getLayer(self.EDIT_LAYER)
+        
+        elif md.italicExtension is not None and g.name.endswith(md.italicExtension):
+            srcName = g.name.replace(md.italicExtension, '')
+            if srcName in f:
+                srcG = f[srcName]
+
+        if srcG is None:
+            return
 
         # Glyphs like /O better use skew+rotate to italicize, just look at the checkbox, not at the GLYPH_DATA flags.
         # self.isCurved is inherited from the italicize Assistant part
@@ -134,71 +144,70 @@ class AssistantPartItalicize(BaseAssistantPart):
         #    if contour.open:
         #        dstG.removeContour(contour)
 
-        if skew == 0 and rotation == 0:
-            return
+        if skew or rotation:
 
-        for contour in dstG:
-            for bPoint in contour.bPoints:
-                bcpIn = bPoint.bcpIn
-                bcpOut = bPoint.bcpOut
-                if bcpIn == (0, 0):
-                    continue
-                if bcpOut == (0, 0):
-                    continue
-                if bcpIn[0] == bcpOut[0] and bcpIn[1] != bcpOut[1]:
-                    bPoint.anchorLabels = ["extremePoint"]
-                if rotation and bcpIn[0] != bcpOut[0] and bcpIn[1] == bcpOut[1]:
-                    bPoint.anchorLabels = ["extremePoint"]
+            for contour in dstG:
+                for bPoint in contour.bPoints:
+                    bcpIn = bPoint.bcpIn
+                    bcpOut = bPoint.bcpOut
+                    if bcpIn == (0, 0):
+                        continue
+                    if bcpOut == (0, 0):
+                        continue
+                    if bcpIn[0] == bcpOut[0] and bcpIn[1] != bcpOut[1]:
+                        bPoint.anchorLabels = ["extremePoint"]
+                    if rotation and bcpIn[0] != bcpOut[0] and bcpIn[1] == bcpOut[1]:
+                        bPoint.anchorLabels = ["extremePoint"]
 
-        cx, cy = 0, 0
-        box = srcG.bounds
-        if box:
-            cx = box[0] + (box[2] - box[0]) * .5
-            cy = box[1] + (box[3] - box[1]) * .5
+            cx, cy = 0, 0
+            box = srcG.bounds
+            if box:
+                cx = box[0] + (box[2] - box[0]) * .5
+                cy = box[1] + (box[3] - box[1]) * .5
 
-        t = Transform()
-        t = t.skew(skew)
-        t = t.translate(cx, cy).rotate(rotation).translate(-cx, -cy)
+            t = Transform()
+            t = t.skew(skew)
+            t = t.translate(cx, cy).rotate(rotation).translate(-cx, -cy)
 
-        if not skipComponents:
-            dstG.transformBy(tuple(t))
-        else:
-            for contour in dstG.contours:
-                contour.transformBy(tuple(t))
+            if not skipComponents:
+                dstG.transformBy(tuple(t))
+            else:
+                for contour in dstG.contours:
+                    contour.transformBy(tuple(t))
 
-            # this seems to work !!!
-            for component in dstG.components:
-                # get component center
-                _box = srcG.layer[component.baseGlyph].bounds
-                if not _box:
-                    continue
-                _cx = _box[0] + (_box[2] - _box[0]) * .5
-                _cy = _box[1] + (_box[3] - _box[1]) * .5
-                # calculate origin in relation to base glyph
-                dx = cx - _cx
-                dy = cy - _cy
-                # create transformation matrix
-                tt = Transform()
-                tt = tt.skew(skew)
-                tt = tt.translate(dx, dy).rotate(rotation).translate(-dx, -dy)
-                # apply transformation matrix to component offset
-                P = RPoint()
-                P.position = component.offset
-                P.transformBy(tuple(tt))
-                # set component offset position
-                component.offset = P.position
+                # this seems to work !!!
+                for component in dstG.components:
+                    # get component center
+                    _box = srcG.layer[component.baseGlyph].bounds
+                    if not _box:
+                        continue
+                    _cx = _box[0] + (_box[2] - _box[0]) * .5
+                    _cy = _box[1] + (_box[3] - _box[1]) * .5
+                    # calculate origin in relation to base glyph
+                    dx = cx - _cx
+                    dy = cy - _cy
+                    # create transformation matrix
+                    tt = Transform()
+                    tt = tt.skew(skew)
+                    tt = tt.translate(dx, dy).rotate(rotation).translate(-dx, -dy)
+                    # apply transformation matrix to component offset
+                    P = RPoint()
+                    P.position = component.offset
+                    P.transformBy(tuple(tt))
+                    # set component offset position
+                    component.offset = P.position
 
-        for anchor in dstG.anchors:
-            anchor.x += int(round(tan(radians(skew or 0)) * anchor.y)) # Correct for italic angle offset in x
+            for anchor in dstG.anchors:
+                anchor.x += int(round(tan(radians(skew or 0)) * anchor.y)) # Correct for italic angle offset in x
 
-        # check if "add extremes" is set to True
-        if gd.addItalicExtremePoints or addExtremes:
-            self.addExtremePoints(dstG, doSelect=True)
+            # check if "add extremes" is set to True
+            if gd.addItalicExtremePoints or addExtremes:
+                self.addExtremePoints(dstG, doSelect=True)
 
         dstG.round()
-        dstG.angledLeftMargin = srcG.angledLeftMargin
-        dstG.angledRightMargin = srcG.angledRightMargin
-        
+        dstG.angledLeftMargin = srcG.leftMargin # Use unangled margin from the roman, it may be in the same font
+        dstG.angledRightMargin = srcG.rightMargin
+
         dstG.copyToLayer('background', dstG)
 
         if c.w.decomposeItalicized.get():

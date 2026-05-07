@@ -121,6 +121,7 @@ class GlyphData:
             # Type of glyph. Guess if undefined as None.
             isLower=None, isMod=None, isSc=None, isOnum=None, hasDiacritics=None, isDiacritic=None,
             isSups=None, isSinf=None, isNumr=None, isDnom=None,
+            scalerpolate=True, # Flag that allows superior and .sc scalerpolation
             # Italicize forcing conversion behavior
             useSkewRotate=False, addItalicExtremePoints=True, 
             # Glyphs to copy from, initially before editing starts
@@ -186,6 +187,7 @@ class GlyphData:
         self._isDnom = isDnom # The glyph is a dnom or it contains a dnom component
         self._isSups = isSups # The glyph is a sups or it contains a sups component
         self._isSinf = isSinf # The glyph is a sinf or it contains a sinf component
+        self.scalerpolate = scalerpolate
         # Flag indicating that the glyphs in accents are diacritics or not (makes difference in positioning the anchors)
         self._hasDiacritics = hasDiacritics # Glyph contains one or more diacritics
         self._isDiacritic = isDiacritic
@@ -418,7 +420,10 @@ class GlyphData:
         for spaceType in ('l', 'r', 'w', 'bl', 'br', 'l2r', 'r2l', 'bl2r', 'br2l', 'l2br', 'r2bl', 'bl2br', 'br2bl', ):
             v = getattr(self, spaceType)
             if v is not None:
-                out += ", %s='%s'" % (spaceType, v)
+                if isinstance(v, (int, float)):
+                    out += ", %s=%d" % (spaceType, v)
+                else:
+                    out += ", %s='%s'" % (spaceType, v)
         if self.rightMin:
             out += f", rightMin='%s'" % self.rightMin
         if self.g1 and self.g1 != self.name:
@@ -459,13 +464,13 @@ class GlyphData:
             out += ', descender=%d' % self.descender
         if self.overshoot is not None: # Allows overwriting per glyph
             out += f', overshoot="{self.overshoot}"'
-        if self.height is not None: 
+        if self.height is not None: # Allows overwriting per glyph
             out += f', height="{self.height}"'
         if self.baseline is not None: # Allows overwriting per glyph
             out += f', baseline="{self.baseline}"'
-        if self.width is not None: # Allows overwriting per glyph
+        if self.width is not None: # Allows overwriting width category per glyph
             out += f', width="{self.width}"'
-        
+               
         if self.gid: # Glyph ID
             out += ", gid=%d" % self.gid
         if self.comment: 
