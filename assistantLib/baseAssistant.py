@@ -107,8 +107,8 @@ class BaseAssistant:
     
     VISITED_MARKER = None
     for path, color, keys in VISITED_MARKERS:
-        #if __file__.startswith(path):
-        if 'andrea' in path:
+        if __file__.startswith(path):
+        #if 'anna' in path:
             VISITED_MARKER = color
             print(f'User color for {path}, {color}')
             TRANSLATE_KEYS = keys
