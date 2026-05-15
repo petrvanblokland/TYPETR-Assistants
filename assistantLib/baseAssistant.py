@@ -98,6 +98,8 @@ class BaseAssistant:
         ('/Users/lenalepommelet/Documents', (138/255, 43/255,  226/255, 1), {}),
         ('/Users/Marte/Documents', (255/255, 222/255,  0/255, .8), {}),
         ('/Users/iv/Documents/', (0/255, 130/255,  100/255, 1), {}),
+        ('/Users/malin/GitHub', (0.8, 0.55, 1, 1), {}),
+        ('/Users/andreahayek/Desktop', (0.4, 0.8, 0.6, 1), {}),
     ]
     
     # Key translations from personalized key strokes are handled by the BaseAssistant.glyphEditorDidKeyDown
@@ -105,7 +107,8 @@ class BaseAssistant:
     
     VISITED_MARKER = None
     for path, color, keys in VISITED_MARKERS:
-        if __file__.startswith(path):
+        #if __file__.startswith(path):
+        if 'andrea' in path:
             VISITED_MARKER = color
             print(f'User color for {path}, {color}')
             TRANSLATE_KEYS = keys
@@ -214,6 +217,7 @@ class BaseAssistant:
         """Using the class value PROJECT_PATH to construct the full path. If path is None,
         then we can't make a full path. Then just answer None."""
         if path is not None:
+            #print('dsadadsadsdsasad', path)
             if path.startswith('/'):
                 return path
             fullDirPath = self.PROJECT_PATH
