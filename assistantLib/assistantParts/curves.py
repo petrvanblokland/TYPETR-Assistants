@@ -35,7 +35,11 @@ class AssistantPartCurves(BaseAssistantPart):
             
         g = info['glyph']
         q2bEnable = b2qEnable = False
-        if g is not None:
+        if c.w.Q2B2QAllGlyphs.get(): # If doing all glyphs, then both buttons should be enabled
+            q2bEnable = True
+            b2qEnable = True
+
+        elif g is not None:
             if self.isQuadratic(g):
                 q2bEnable = True
                 b2qEnable = False
@@ -54,6 +58,7 @@ class AssistantPartCurves(BaseAssistantPart):
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
 
         c = self.getController()
+        c.w.Q2B2QAllGlyphs = CheckBox((C0, y, CW, L), 'All glyphs', value=False, sizeStyle='small', callback=self.Q2B2QCallback)
         c.w.Q2BButton = Button((C1, y, CW, L), f'Q --> B [{personalKey_b}]', callback=self.Q2BCallback)
         c.w.B2QButton = Button((C2, y, CW, L), f'B --> Q [{personalKey_q}]', callback=self.B2QCallback)
         y += L + L/5
@@ -65,11 +70,25 @@ class AssistantPartCurves(BaseAssistantPart):
 
     #    Q U A D R A T I C --> B E Z I E R
 
-    def Q2BCallback(self, sender):
-        """Callback from button"""
+    def Q2B2QCallback(self, sender):
+        """Checkbox changed"""
         g = self.getCurrentGlyph()
         if g is not None:
-            self.curvesConvert(g, self.POINTTYPE_QUADRATIC, self.POINTTYPE_BEZIER, FACTOR)
+            g.changed() # Force update enabled buttons
+            
+    def Q2BCallback(self, sender):
+        """Callback from button"""
+        glyphs = []
+        c = self.getController()
+        if c.w.Q2B2QAllGlyphs.get(): # If set, then do all glyphs of the current font
+            glyphs = self.getCurrentFont()
+        else:
+            g = self.getCurrentGlyph()
+            if g is not None:
+                glyphs = [g]
+        for gg in glyphs:
+            print(f'... /{gg.name} convert from Quadratics to Bezier')
+            self.curvesConvert(gg, self.POINTTYPE_QUADRATIC, self.POINTTYPE_BEZIER, FACTOR)
 
     def curvesQ2BGlyphKey(self, g, c, event):
         """Callback for registered event on key stroke"""
@@ -87,9 +106,17 @@ class AssistantPartCurves(BaseAssistantPart):
         
     def B2QCallback(self, sender):
         """Callback from button"""
-        g = self.getCurrentGlyph()
-        if g is not None:
-            self.curvesConvert(g, self.POINTTYPE_BEZIER, self.POINTTYPE_QUADRATIC, 1/FACTOR)
+        glyphs = []
+        c = self.getController()
+        if c.w.Q2B2QAllGlyphs.get(): # If set, then do all glyphs of the current font
+            glyphs = self.getCurrentFont()
+        else:
+            g = self.getCurrentGlyph()
+            if g is not None:
+                glyphs = [g]
+        for gg in glyphs:
+            print(f'... /{gg.name} convert from Bezier to Quadratics')
+            self.curvesConvert(gg, self.POINTTYPE_QUADRATIC, self.POINTTYPE_BEZIER, 1/FACTOR)
 
     def curvesB2QGlyphKey(self, g, c, event):
         """Callback for registered event on key stroke"""
