@@ -64,6 +64,7 @@ class MasterData:
             m3=None, # Rsource for interpolation "Copy" button"
             sm1=None, sm2=None, # Scalerpolate masters for condensed and extended making
             osm1=None, osm2=None, # Previous and next master on the same optical size level
+            dsMasters=None, # List of master UFO names that belong to the same design space
             tripletData1=None, tripletData2=None, featurePath=None, 
             # GlyphSet instance, describing the glyph set and GlyphData characteristics. This attribute must be defined
             glyphSet=None, 
@@ -212,7 +213,10 @@ class MasterData:
         self.sm2 = sm2
         self.osm1 = osm1 # If defined, lighter master on same optical size level
         self.osm2 = osm2 # If defined, bolder master on same optical size level
-
+        if dsMasters is None:
+            dsMasters = []
+        self.dsMasters = dsMasters # List of master UFO names that belong to the same design space.
+        
         # Design space position (matching .designspace) to calculate triplet kerning.
         # This can be different from HStem (with m1, m2) interpolation.
         self.dsPosition = dsPosition 
