@@ -65,6 +65,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                 text='',
                 font=self.FAMILY_LABEL_FONT,
                 pointSize=self.FAMILY_LABEL_SIZE,
+                size=(100, 300),
                 fillColor=self.FAMILY_DEFAULT_FILL_COLOR, # Can be set to FAMILY_INTERPOLATION_ERROR_FILL_COLOR
                 visible=False,
             )
@@ -117,6 +118,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
                 if fIndex < len(self.familyOverviewGlyphs):
                     ufo = self.getFont(pth)
                     if ufo is not None and g.name in ufo:
+                        md = self.getMasterData(ufo) # For stem/bar metrics of this font.
                         ufoG = ufo[g.name] # Show the foreground layer.
                         if not self.isCurrentGlyph(ufoG) or not c.w.showFamilyInterpolation.get() or self.doesInterpolate(ufoG):
                             fillColor = self.FAMILY_DEFAULT_FILL_COLOR
@@ -126,12 +128,13 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
 
                         x = startPos + totalFamilyOverviewSingleWidth*nIndex
                         glyphPath = ufoG.getRepresentation("merz.CGPath")
+                        styleInfo = f'{ufo.info.styleName}\nH {md.HStem}/{md.HThin}\nO {md.OStem}/{md.OThin}\nn {md.nStem}\no {md.oStem}/{md.oThin}'
                         #print('Updating family glyph path', pth, g.name)
                         self.familyOverviewGlyphs[fIndex].setPath(glyphPath)
                         self.familyOverviewGlyphs[fIndex].setPosition((x, y))
                         self.familyOverviewGlyphs[fIndex].setFillColor(fillColor)
                         self.familyOverviewGlyphs[fIndex].setVisible(True)
-                        self.familyOverviewStyleName[fIndex].setText(ufo.info.styleName)
+                        self.familyOverviewStyleName[fIndex].setText(styleInfo)
                         self.familyOverviewStyleName[fIndex].setPosition((x+ufoG.width/2, y+ufo.info.descender))
                         self.familyOverviewStyleName[fIndex].setVisible(True)
 
