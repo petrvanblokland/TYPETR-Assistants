@@ -128,7 +128,7 @@ class AssistantPartFamilyOverview(BaseAssistantPart):
 
                         x = startPos + totalFamilyOverviewSingleWidth*nIndex
                         glyphPath = ufoG.getRepresentation("merz.CGPath")
-                        styleInfo = f'{ufo.info.styleName}\nH {md.HStem}/{md.HThin}\nO {md.OStem}/{md.OThin}\nn {md.nStem}/{md.hyphenThin}\no {md.oStem}/{md.oThin}'
+                        styleInfo = f'{ufo.info.styleName}\nH {md.HStem}/{md.HThin}\nO {md.OStem}/{md.OThin}\nn {md.nStem}/{md.hyphenThin}\no {md.oStem}/{md.oThin}\nS {md.capSerifEnd}/{md.capTerminalEnd}\ns {md.serifEnd}/{md.terminalEnd}'
                         #print('Updating family glyph path', pth, g.name)
                         self.familyOverviewGlyphs[fIndex].setPath(glyphPath)
                         self.familyOverviewGlyphs[fIndex].setPosition((x, y))
