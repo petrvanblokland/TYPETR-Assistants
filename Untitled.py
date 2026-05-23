@@ -1,0 +1,1 @@
+BOWLS = ('a•tl', 'a.br', 'c•tr')

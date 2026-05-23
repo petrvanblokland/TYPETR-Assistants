@@ -217,7 +217,6 @@ class BaseAssistant:
         """Using the class value PROJECT_PATH to construct the full path. If path is None,
         then we can't make a full path. Then just answer None."""
         if path is not None:
-            #print('dsadadsadsdsasad', path)
             if path.startswith('/'):
                 return path
             fullDirPath = self.PROJECT_PATH

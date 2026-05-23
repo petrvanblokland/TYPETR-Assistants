@@ -116,7 +116,7 @@ class MasterData:
             diagonalTolerance=0, # ± Tolerance for italic diagonals to be marked as off-limit
             HStem=None, HThin=None, OStem=None, OThin=None,
             HscStem=None, HscThin=None, OscStem=None, OscThin=None,
-            nStem=None, oStem=None, oThin=None, UThin=None, VThin=None, eThin=None,
+            nStem=None, hyphenThin=None, oStem=None, oThin=None, UThin=None, VThin=None, eThin=None,
             modStem=None, # Used for special factor to interpolate/extrapolate "mod" glyphs, e.g. extrapolating Black from Regular + Bold
             thickness=10, distance=16, # Used for Neon tubes, can be overwritten from GlyphData.thickness
             iFactor=None, 
@@ -216,7 +216,7 @@ class MasterData:
         if dsMasters is None:
             dsMasters = []
         self.dsMasters = dsMasters # List of master UFO names that belong to the same design space.
-        
+
         # Design space position (matching .designspace) to calculate triplet kerning.
         # This can be different from HStem (with m1, m2) interpolation.
         self.dsPosition = dsPosition 
@@ -452,6 +452,7 @@ class MasterData:
         self.OscStem = OscStem
         self.OscThin = OscThin
         self.nStem = nStem
+        self.hyphenThin = hyphenThin
         self.oStem = oStem
         self.oThin = oThin
         self.UThin = UThin
