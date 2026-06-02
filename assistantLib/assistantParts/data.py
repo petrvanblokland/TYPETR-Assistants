@@ -51,7 +51,9 @@ class MasterData:
 
     def __init__(self, name=None, ufoPath=None, 
             srcUFOPath=None, someUFOPath=None, orgUFOPath=None, 
-            groupSrcUFOPath=None, # Optioncal copy groups from here, otherwise use orgUFOPath
+            leftUFOPath=None, # Optional UFO to show on left side
+            rightUFOPath=None, # Optional UFO to show on right side
+            groupSrcUFOPath=None, # Optional copy groups from here, otherwise use orgUFOPath
             kerningSrcUFOPath=None, # Optional copy kerning from here, otherwise use orgUFOPath
             romanItalicUFOPath=None, # Path of corresponding master for roman <--> italic
             spacingSrcUFOPath=None, # If defined, used as spacing reference, overwriting all spacing rules. Goes with spacingOffset
@@ -168,6 +170,8 @@ class MasterData:
         self.srcUFOPath = srcUFOPath # "Original" master of this font, copy from here
         self.someUFOPath = someUFOPath # Show this outline on the background
         self.orgUFOPath = orgUFOPath # "Original" master of this font for overlay reference
+        self.leftUFOPath = leftUFOPath # Optional glyph to show on the left overlay side.
+        self.rightUFOPath = rightUFOPath # Optional glyph to show on the right overlay side.
         self.romanItalicUFOPath = romanItalicUFOPath # Roman <---> Italic master reference
         self.groupSrcUFOPath = groupSrcUFOPath or orgUFOPath # Used as groups reference to copy from
         self.kerningSrcUFOPath = kerningSrcUFOPath or orgUFOPath # Used as kerning reference.
