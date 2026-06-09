@@ -430,7 +430,10 @@ class AssistantPartSpacer(BaseAssistantPart):
         for gIndex, kerningGlyphLayer in enumerate(self.kerningLine): # List of kerned glyph images
             if gIndex >= len(sample):
                 break
-            spaceG = f[sample[gIndex]]
+            gName = sample[gIndex]
+            #if gName not in f:
+            #    gName = 'a' # Sample glyphs does not exist in the font.
+            spaceG = f[gName]
 
             if prevName is None:
                 k = 0
@@ -1664,7 +1667,7 @@ class AssistantPartSpacer(BaseAssistantPart):
                 print(f'### checkFixGlyphLeftMargin: Cannot find GlyphData for /{g.name}')
             
             elif gd.l == 'off':
-                label = f'Auto-spacing is off'
+                label = f'Auto-spacing is off {int(round(g.angledLeftMargin))}'
                 #print(f'... checkFixGlyphLeftMargin: /{g.name} auto-spacing is off')
 
             # First check if there is a masterData spacing source defined, that overwrites all other spacing rules
@@ -1774,7 +1777,7 @@ class AssistantPartSpacer(BaseAssistantPart):
                     changed = True
 
             elif gd.r == 'off':
-                label = f'Auto-spacing is off'
+                label = f'Auto-spacing is off {int(round(g.angledRightMargin))}'
                 #print(f'... checkFixGlyphRightMargin: /{g.name} auto-spacing is off')
 
             elif md.spacingSrcUFOPath is not None and gd.w and g.width: # Only if defined and if the glyph has width

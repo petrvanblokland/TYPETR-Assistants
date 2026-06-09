@@ -25,7 +25,7 @@ from assistantLib.assistantParts.glyphsets.groupBaseGlyphs import *
 from assistantLib.assistantParts.glyphsets.Latin_A_set import LATIN_A_SET
 
 # @@@@@@@@@@@
-SAMPLES = SAMPLES_AZ # For now, final kerning testing.
+SAMPLES = SAMPLES_AZ # For now, final kerning testing for Segoe Serif 200
 print('===== SAMPLES ======', SAMPLES)
 
 FORCE_GROUP1 = {}
@@ -198,6 +198,7 @@ class KerningManager:
     for a specific glyph.
 
     """
+    samples = SAMPLES
 
     def __init__(self, f, md, features=None, 
             #sample=None, sampleCAPS=None, sampleC2SC=None, # List of (kerning) glyph names
@@ -2236,8 +2237,8 @@ class KerningManager:
             ] * 2
         done = set()
         prev = None
-        for c1 in SAMPLES:
-            for c2 in SAMPLES:
+        for c1 in self.samples:
+            for c2 in self.samples:
                 if (c1, c2) not in done:
                     kerningSample.append(c1)
                     kerningSample.append(c2)
@@ -2245,9 +2246,9 @@ class KerningManager:
                     done.add((c2, c1))
         # @@@ For now, adding for MS Segoe Serif Explore project
         if 0:
-            for c1 in SAMPLES:
+            for c1 in self.samples:
                 c1 += '.ita'
-                for c2 in SAMPLES:
+                for c2 in self.samples:
                     c2 += '.ita'
                     if (c1, c2) not in done:
                         kerningSample.append(c1)

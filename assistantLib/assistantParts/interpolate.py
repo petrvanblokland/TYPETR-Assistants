@@ -346,7 +346,7 @@ class AssistantPartInterpolate(BaseAssistantPart):
 
         isLower = self.getLib(g, 'glyphIsLower', gd.isLower) # In case it does not exists, using the flag in GlyphData.isLower as default
 
-        print('SAASSAS', gd.scalerpolate, g.name.endswith('superior'))
+        #print('SAASSAS', gd.scalerpolate, g.name.endswith('superior'))
 
         # Change to glyphData.height, so scalerpolation will also work for small caps.
         if gd.scalerpolate and g.name.endswith('.sc'):
