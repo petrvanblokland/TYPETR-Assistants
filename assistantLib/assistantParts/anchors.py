@@ -78,6 +78,15 @@ class AssistantPartAnchors(BaseAssistantPart):
                 fillColor=(0, 0, 0.5, 0.2),
                 visible=False,
             ))
+        self.anchorsBaseDiacriticsCloud = [] # Storage of base-below-diacritics images
+        for dIndex in range(10): #len(AD.BASE_EXAMPLE_DIACRITICS)): # Max number of base diacritics in a glyph. @@@ If too low, some diacritics don't show
+            self.anchorsBaseDiacriticsCloud.append(self.backgroundContainer.appendPathSublayer(
+                name=f'base-diacritics-{dIndex}',
+                position=(0, 0),
+                fillColor=(0, 0, 0.5, 0.2),
+                visible=False,
+            ))
+
         self.guessedAnchorPositionsMarkers = [] # Storage of guessed anchor positions and their labels, showing as two concentric circles
         self.guessedAnchorLabels = []
         for aIndex in range(self.MAX_GUESSED_ANCHORS): # Max number of guessed anchor positions to show
@@ -100,7 +109,9 @@ class AssistantPartAnchors(BaseAssistantPart):
             ))
         
     def updateMerzAnchors(self, info):
-        """Update the diacritics cloud, depending on the existing anchors"""
+        """Update the diacritics cloud, depending on the existing anchors
+        Change AD.EXAMPLE_DIACRITICS for other cloud pattern selections
+        """
         changed = False
         g = info['glyph']
         md = self.getMasterData(g.font)
@@ -129,7 +140,29 @@ class AssistantPartAnchors(BaseAssistantPart):
 
             for n in range(dIndex, len(self.anchorsDiacriticsCloud)):
                 self.anchorsDiacriticsCloud[n].setVisible(False)
-        
+
+        # Show base glyphs (typically /O and /H below the diacritics, centered on their width)
+        dIndex = 0 # Index into showing diacritics Merz layers
+        if 'cmb' in g.name:
+            for baseName, baseNameUc in AD.BASE_EXAMPLE_DIACRITICS:
+                if not gd.isLower:
+                    baseName = baseNameUc
+                if baseName in g.font:
+                    baseG = g.font[baseName]
+                    dAnchor = self.getAnchor(baseG, 'top')
+                    if dAnchor is not None:
+                        baseDiacriticsLayer = self.anchorsBaseDiacriticsCloud[dIndex] # Get layer for this diacritics glyph
+                        baseDiacriticsLayer.setPath(baseG.getRepresentation("merz.CGPath"))
+                        ax = -baseG.width/2 # -dAnchor.x
+                        #print(dName, ax, ay, a.name, a.x, a.y, dAnchor.name, dAnchor.x, dAnchor.y)
+                        baseDiacriticsLayer.setPosition((ax, 0))
+                        baseDiacriticsLayer.setVisible(True)
+                        dIndex += 1
+
+        for n in range(dIndex, len(self.anchorsBaseDiacriticsCloud)):
+            self.anchorsBaseDiacriticsCloud[n].setVisible(False)
+
+       
     def updateAnchors(self, info):
         """If the checkbox is set, then try to check and fix automated margins and width."""
         changed = False

@@ -433,6 +433,9 @@ class AssistantPartSpacer(BaseAssistantPart):
             gName = sample[gIndex]
             #if gName not in f:
             #    gName = 'a' # Sample glyphs does not exist in the font.
+            if gName not in f:
+                print('ASDSDAASDDASDSDSDDDS', gName) # Solve this bug later
+
             spaceG = f[gName]
 
             if prevName is None:

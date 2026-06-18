@@ -187,20 +187,22 @@ class AnchorData:
     ]
     # Diacritics to show a subset-cloud by the contours part.
     EXAMPLE_DIACRITICS = {
-        #TOP_: ('gravecomb', 'acutecomb', 'circumflexcomb', 'macroncomb', 'dotaccentcomb', 'dieresiscomb', 'tildecomb',
-        #       'gravecmb', 'acutecmb', 'circumflexcmb', 'macroncmb', 'dotaccentcmb', 'dieresiscmb', 'tildecmb', 'ringcmb',
-        #        'gravecomb.uc', 'acutecomb.uc', 'circumflexcomb.uc', 'macroncomb.uc', 'dotaccentcomb.uc', 'dieresiscomb.uc', 'tildecomb.uc',
-        #       'gravecmb.uc', 'acutecmb.uc', 'circumflexcmb.uc', 'macroncmb.uc', 'dotaccentcmb.uc', 'dieresiscmb.uc', 'tildecmb.uc', 'ringcmb.uc'),
-        TOP_: ('testcmb',), # 'testcmb.uc' is replaced automatic
-        #BOTTOM_: ('plusbelowcomb', 'ringbelowcomb', 'cedillacomb', 
-        #          'plusbelowcmb', 'ringbelowcmb', 'cedillacmb'),
-        BOTTOM_: ('testbelowcmb',),
+        TOP_: ('gravecomb', 'acutecomb', 'circumflexcomb', 'macroncomb', 'dotaccentcomb', 'dieresiscomb', 'tildecomb',
+               'gravecmb', 'acutecmb', 'circumflexcmb', 'macroncmb', 'dotaccentcmb', 'dieresiscmb', 'tildecmb', 'ringcmb',
+                'gravecomb.uc', 'acutecomb.uc', 'circumflexcomb.uc', 'macroncomb.uc', 'dotaccentcomb.uc', 'dieresiscomb.uc', 'tildecomb.uc',
+               'gravecmb.uc', 'acutecmb.uc', 'circumflexcmb.uc', 'macroncmb.uc', 'dotaccentcmb.uc', 'dieresiscmb.uc', 'tildecmb.uc', 'ringcmb.uc'),
+        #TOP_: ('testcmb',), # 'testcmb.uc' is replaced automatic
+        BOTTOM_: ('plusbelowcomb', 'ringbelowcomb', 'cedillacomb', 
+                  'plusbelowcmb', 'ringbelowcmb', 'cedillacmb'),
+        #BOTTOM_: ('testbelowcmb',),
         MIDDLE_: ('slashshortcomb', 'slashshortcmb'),
         OGONEK_: ('ogonekcomb', 'ogonekcmb'),
         TOPLEFT_: ('tonoscomb', 'tonoscmb', 'tonos-uc', 'tonoscmb.uc'),
         VERT_: ('caronvert.component', 'caroncmb.vert',),
         DOT_: ('dotmiddle.component', 'dotmiddlecmb', ),
     }
+    # Used to show base glyphs below accents
+    BASE_EXAMPLE_DIACRITICS = (('o','O'), ('n', 'H'))
 
     ACCENT_DATA = {
         'testcmb': _TOP, # Triangle for testing automatic positions of anchors

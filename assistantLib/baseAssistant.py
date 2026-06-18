@@ -299,7 +299,7 @@ class BaseAssistant:
 
     SIM_CLIP = 300 # Default range to look "into" glyph sides for 1000 em. Will be corrected for actual f.info.unitsPerEm
     kerningManagers = GLOBAL_KERNING_MANAGERS # Key is font path, value is the related KerningManager instance.
-
+        
     def getKerningManager(self, f):
         if not f.path in self.kerningManagers:
             md = self.getMasterData(f)

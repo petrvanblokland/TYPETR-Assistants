@@ -37,4 +37,12 @@ SAMPLES = PRE + LC + LC_ACCENTS + LC_PUNCTUATIONS + CAPS + CAPS_LC_ACCENTS + CAP
 
 SAMPLES += CYRILLIC_KERNING + GREEK_KERNING
 
-SAMPLES_AZ = """ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.,:;-””“™'?!/\\«»‹›"""
+SAMPLES_AZ = ['T', 'e'] + list("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz") + [
+	'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'zero',
+	'period', 'comma', 'colon', 'semicolon', 'hyphen', 'hyphen.uc', 'question', 
+	'exclam', 'slash', 'backslash',
+	'guilsinglleft', 'guilsinglright', 'guillemotleft', 'guillemotright', 
+	'guilsinglleft.uc', 'guilsinglright.uc', 'guillemotleft.uc', 'guillemotright.uc',
+	'quotesingle', 'quoteright', 'quoteleft', 'quotedbl', 'quotedblleft', 'quotedblright',
+	] 
+

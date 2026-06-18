@@ -196,6 +196,8 @@ class AnchorData:
         VERT_: ('caronvert.component',),
         DOT_: ('dotmiddle.component',),
     }
+    # Used to show base glyphs below accents
+    BASE_EXAMPLE_DIACRITICS = (('o','O'), ('n', 'H'))
 
     ACCENT_DATA = {
         'acutecmb': _TOP,
