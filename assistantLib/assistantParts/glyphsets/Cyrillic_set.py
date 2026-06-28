@@ -17,7 +17,13 @@ from assistantLib.assistantParts.glyphsets.glyphData import * #GD, TOP, TOP_, _B
 CYRILLIC_SET_NAME = 'Cyrillic'
 CYRILLIC_SET_NAME_ITALIC = 'Cyrillic Italic'
 
-# The "c" attribtes are redundant, if the @uni or @hex are defined, but they offer easy searching in the source by char.
+CYRILLIC_SET_LANGUAGES = (
+    'Russian', 'Ukrainian', 'Belarusian', 'Bulgarian', 'Macedonian', 'Serbian',
+    'Rusyn', 'Montenegrin', 'Kazakh', 'Kyrgyz', 'Tajik', 'Mongolian', 'Buryat', 'Yakut',
+    'Tuvan', 'Chechen', 'Avar', 'Ossetian'
+)
+
+# The "c" attributes are redundant, if the @uni or @hex are defined, but they offer easy searching in the source by char.
 
 CYRILLIC_SET = {
 

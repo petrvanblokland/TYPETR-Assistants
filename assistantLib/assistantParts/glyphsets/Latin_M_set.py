@@ -52,12 +52,18 @@ if __name__ == '__main__': # Used for doc tests to find assistantLib
         sys.path.append(PATH)
 
 from assistantLib.assistantParts.glyphsets.glyphData import * #GD, TOP, TOP_, _BOTTOM, BOTTOM_ etc.
-from assistantLib.assistantParts.glyphsets.Latin_S_set import LATIN_S_SET, LATIN_S_SET_ITALIC
+from assistantLib.assistantParts.glyphsets.Latin_S_set import (
+    LATIN_S_SET_LANGUAGES, LATIN_S_SET, LATIN_S_SET_ITALIC)
 
 LATIN_M_SET_NAME = 'Latin M'
 LATIN_M_SET_NAME_ITALIC = 'Latin M Italic'
 
-# The "c" attribtes are redundant, if the @uni or @hex are defined, but they offer easy searching in the source by char.
+LATIN_M_SET_LANGUAGES = (
+    'Asturian', 'Falam Chin', 'Hakha Chin', 'Madurese', 'Mezquital Otomi', 'Mizo', 
+    'Secoya', 'Siona', 'Totontepec Mixe', 'Vietnamese',
+) 
+
+# The "c" attributes are redundant, if the @uni or @hex are defined, but they offer easy searching in the source by char.
 
 LATIN_M_SET = deepcopy(LATIN_S_SET)
 LATIN_M_SET_ITALIC = deepcopy(LATIN_S_SET_ITALIC)

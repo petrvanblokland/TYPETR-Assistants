@@ -63,12 +63,85 @@ if __name__ == '__main__': # Used for doc tests to find assistantLib
         sys.path.append(PATH)
 
 from assistantLib.assistantParts.glyphsets.glyphData import * #GD, TOP, TOP_, _BOTTOM, BOTTOM_ etc.
-from assistantLib.assistantParts.glyphsets.Latin_M_set import LATIN_M_SET, LATIN_M_SET_ITALIC
+from assistantLib.assistantParts.glyphsets.Latin_M_set import (
+    LATIN_M_SET_LANGUAGES, LATIN_M_SET, LATIN_M_SET_ITALIC)
 
 LATIN_L_SET_NAME = 'Latin L'
 LATIN_L_SET_NAME_ITALIC = 'Latin L Italic'
 
-# The "c" attribtes are redundant, if the @uni or @hex are defined, but they offer easy searching in the source by char.
+LATIN_L_SET_LANGUAGES = (
+    'Abron', 'Acheron', 'Achinese', 'Achuar-Shiwiar', 'Adamawa Fulfulde', 'Adangme', 
+    'Afar', 'Afrikaans', 'Aghem', 'Aguaruna', 'Aja (Benin)', 'Amahuaca', 'Amarakaeri', 
+    'Amis', 'Andaandi', 'Anii', 'Anuta', 'Ao Naga', 'Apinayé', 'Arabela', 'Aragonese', 
+    'Arbëreshë Albanian', 'Arvanitika Albanian', 'Asháninka', 'Ashéninka Perené', 
+    'Asu (Tanzania)', 'Atayal', 'Awa-Cuaiquer', 'Awetí', 'Baatonum', 'Bafia', 
+    'Bagirmi Fulfulde', 'Balinese', 'Balkan Romani', 'Bambara', 'Baoulé', 'Bari', 
+    'Basa (Cameroon)', 'Basque', 'Batak Dairi', 'Batak Karo', 'Batak Mandailing', 
+    'Batak Simalungun', 'Batak Toba', 'Bemba (Zambia)', 'Bena (Tanzania)', 'Biali', 
+    'Bikol', 'Bini', 'Bislama', 'Boko (Benin)', 'Bora', 'Borana-Arsi-Guji Oromo', 
+    'Borgu Fulfulde', 'Bosnian', 'Bouna Kulango', 'Breton', 'Buginese', 'Bushi', 
+    'Candoshi-Shapra', 'Caquinte', 'Caribbean Hindustani', 'Cashibo-Cacataibo', 'Cashinahua', 
+    'Catalan', 'Cebuano', 'Central Alaskan Yupik', 'Central Atlas Tamazight', 'Central Aymara', 
+    'Central Kurdish', 'Central Mazahua', 'Central Nahuatl', 'Central-Eastern Niger Fulfulde', 
+    'Chachi', 'Chamorro', 'Chavacano', 'Chayahuita', 'Chickasaw', 'Chiga', 'Chiltepec Chinantec', 
+    'Chokwe', 'Chuukese', 'Cimbrian', 'Cofán', 'Congo Swahili', 'Cook Islands Māori', 'Cornish', 
+    'Corsican', 'Creek', 'Crimean Tatar', 'Croatian', 'Czech', 'Dagbani', 'Danish', 'Dehu', 
+    'Dendi (Benin)', 'Dimli', 'Dinka', 'Ditammari', 'Dongolawi', 'Duala', 'Dutch', 'Dyula', 
+    'Eastern Abnaki', 'Eastern Arrernte', 'Eastern Maninkakan', 'Eastern Oromo', 'Embu', 
+    'English', 'Ese Ejja', 'Ewe', 'Ewondo', 'Fanti', 'Faroese', 'Fijian', 'Filipino', 'Finnish', 
+    'Fon', 'Foodo', 'French', 'Friulian', 'Ga', 'Gagauz', 'Galician', 'Ganda', 'Garifuna', 
+    'Ga’anda', 'Gen', 'German', 'Gheg Albanian', 'Gilbertese', 'Gonja', 'Gooniyandi', 
+    'Guadeloupean Creole French', 'Guinea Kpelle', 'Gusii', 'Gwichʼin', 'Haitian', 'Hani', 
+    'Hausa', 'Hawaiian', 'Hiligaynon', 'Ho-Chunk', 'Hopi', 'Huastec', 'Hungarian', 'Hän', 
+    'Ibibio', 'Icelandic', 'Igbo', 'Iloko', 'Inari Sami', 'Indonesian', 'Irish', 'Istro Romanian', 
+    'Italian', 'Ixcatlán Mazatec', 'Jamaican Creole English', 'Japanese', 'Javanese', 'Jola-Fonyi', 
+    "K'iche'", 'Kabiyè', 'Kabuverdianu', 'Kabyle', 'Kaingang', 'Kako', 'Kala Lagaw Ya', 
+    'Kalaallisut', 'Kalenjin', 'Kamba (Kenya)', 'Kanuri', 'Kaonde', 'Kaqchikel', 'Kara-Kalpak', 
+    'Karelian', 'Karo', 'Kasem', 'Kashubian', 'Kekchí', 'Kenzi', 'Khasi', 'Khoekhoe', 'Kikuyu', 
+    'Kimbundu', 'Kinyarwanda', 'Kirmanjki', 'Kituba (DRC)', 'Kongo', 'Konzo', 
+    'Koyra Chiini Songhay', 'Koyraboro Senni Songhai', 'Krio', 'Kuanyama', 'Kven Finnish', 
+    'Kwasio', 'Kölsch', 'Ladin', 'Ladino', 'Lakota', "Lamnso'", 'Langi', 'Latgalian', 'Latin', 
+    'Ligurian', 'Lingala', 'Lithuanian', 'Lobi', 'Lombard', 'Low German', 'Lower Sorbian', 'Lozi', 
+    'Luba-Katanga', 'Luba-Lulua', 'Lukpa', 'Lule Sami', 'Luo (Kenya and Tanzania)', 'Luxembourgish', 
+    'Maasina Fulfulde', 'Macedo-Romanian', 'Makhuwa', 'Makhuwa-Meetto', 'Makonde', 'Makwe', 
+    'Malagasy', 'Malaysian', 'Maltese', 'Mam', 'Manx', 'Maore Comorian', 'Maori', 'Mapudungun', 
+    'Marshallese', 'Masai', 'Matsés', 'Mattokki', 'Mauritian Creole', 'Mbelime', 'Megleno Romanian', 
+    'Mende (Sierra Leone)', 'Meriam Mir', 'Meru', 'Meta’', 'Metlatónoc Mixtec', "Mi'kmaq", 
+    'Minangkabau', 'Mirandese', 'Miyobe', 'Moba', 'Mohawk', 'Montagnais', 'Montenegrin', 'Mossi', 
+    'Mundang', 'Munsee', 'Murrinh-Patha', 'Murui Huitoto', 'Muslim Tat', 'Mwani', 'Mískito', 'Naga Pidgin', 
+    'Nateni', 'Navajo', 'Ndonga', 'Neapolitan', 'Ngazidja Comorian', 'Ngiemboon', 'Ngomba', 'Nigerian Fulfulde', 
+    'Niuean', 'Nobiin', 'Nomatsiguenga', 'North Azerbaijani', 'North Marquesan', 'North Ndebele', 
+    'Northeastern Dinka', 'Northern Kissi', 'Northern Kurdish', 'Northern Qiandong Miao', 
+    'Northern Sami', 'Northern Uzbek', 'Norwegian', 'Nuer', 'Nyamwezi', 'Nyanja', 'Nyankole', 
+    'Nyemba', 'Nzima', 'Occitan', 'Ojitlán Chinantec', 'Orma', 'Oroqen', 'Otuho', 'Palauan', 
+    'Paluan', 'Pampanga', 'Papantla Totonac', 'Papiamento', 'Paraguayan Guaraní', 'Pedi', 
+    'Picard', 'Pichis Ashéninka', 'Piemontese', 'Pijin', 'Pintupi-Luritja', 'Pipil', 'Pite Sami', 
+    'Pohnpeian', 'Polish', 'Portuguese', 'Potawatomi', 'Prussian', 'Pulaar', 'Pular', 'Purepecha', 
+    'Páez', 'Quechua', 'Romanian', 'Romansh', 'Rotokas', 'Rundi', 'Rwa', 'Samburu', 'Samoan', 
+    'Sango', 'Sangu (Tanzania)', 'Saramaccan', 'Sardinian', 'Scots', 'Scottish Gaelic', 'Sena', 
+    'Serbian', 'Serer', 'Seri', 'Seselwa Creole French', 'Shambala', 'Sharanahua', 'Shawnee', 
+    'Shilluk', 'Shipibo-Conibo', 'Shona', 'Shuar', 'Sicilian', 'Silesian', 'Skolt Sami', 'Slovak', 
+    'Slovenian', 'Soga', 'Somali', 'Soninke', 'South Azerbaijani', 'South Marquesan', 
+    'South Ndebele', 'Southern Aymara', 'Southern Dagaare', 'Southern Qiandong Miao', 
+    'Southern Sami', 'Southern Sotho', 'Spanish', 'Sranan Tongo', 'Standard Estonian', 
+    'Standard Latvian', 'Standard Malay', 'Sukuma', 'Sundanese', 'Susu', 'Swahili', 'Swati', 
+    'Swedish', 'Swiss German', 'Tachelhit', 'Tagalog', 'Tahitian', 'Taita', 'Talysh', 
+    'Tasawaq', 'Tedim Chin', 'Tem', 'Teso', 'Tetum', 'Tetun Dili', 'Ticuna', 'Timne', 
+    'Tiv', 'Toba', 'Tojolabal', 'Tok Pisin', 'Tokelau', 'Tonga (Tonga Islands)', 
+    'Tonga (Zambia)', 'Tosk Albanian', 'Tsafiki', 'Tsakhur', 'Tsonga', 'Tswana', 'Tumbuka', 
+    'Turkish', 'Turkmen', 'Tuvalu', 'Twi', 'Tzeltal', 'Tzotzil', 'Uab Meto', 'Umbundu', 
+    'Ume Sami', 'Upper Guinea Crioulo', 'Upper Sorbian', 'Urarina', 'Venda', 'Venetian', 
+    'Veps', 'Vlax Romani', 'Võro', 'Waama', 'Waci Gbe', 'Wallisian', 'Walloon', 'Walser', 
+    'Wangaaybuwan-Ngiyambaa', 'Waorani', 'Waray (Philippines)', 'Warlpiri', 'Wasa', 'Wayuu', 
+    'Welsh', 'West Central Oromo', 'West-Central Limba', 'Western Abnaki', 'Western Frisian', 
+    'Western Niger Fulfulde', 'Wik-Mungkan', 'Wiradjuri', 'Wolof', 'Xavánte', 'Xhosa', 
+    'Xwela Gbe', 'Yagua', "Yanesha'", 'Yangben', 'Yanomamö', 'Yao', 'Yapese', 'Yindjibarndi', 
+    'Yom', 'Yoruba', 'Yucateco', 'Zapotec', 'Zarma', 'Zulu', 'Zuni', 'Záparo', 
+)
+
+print(set(LATIN_M_SET_LANGUAGES).difference(set(LATIN_L_SET_LANGUAGES)))
+
+# The "c" attributes are redundant, if the @uni or @hex are defined, but they offer easy searching in the source by char.
 
 LATIN_L_SET = deepcopy(LATIN_M_SET)
 LATIN_L_SET_ITALIC = deepcopy(LATIN_M_SET_ITALIC)

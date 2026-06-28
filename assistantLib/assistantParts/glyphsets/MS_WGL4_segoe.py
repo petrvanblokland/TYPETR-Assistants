@@ -4,7 +4,7 @@
 #     Usage by MIT License
 # ..............................................................................
 #
-#   MS_WGL3_segoe.py
+#   MS_WGL4_segoe.py
 #
 
 from assistantLib.assistantParts.glyphsets.glyphData import *

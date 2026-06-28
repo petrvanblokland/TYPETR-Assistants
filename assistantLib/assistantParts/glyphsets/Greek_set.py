@@ -17,6 +17,10 @@ from assistantLib.assistantParts.glyphsets.glyphData import * #GD, TOP, TOP_, _B
 GREEK_SET_NAME = 'Greek'
 GREEK_SET_NAME_ITALIC = 'Greek Italic'
 
+GREEK_SET_LANGUAGES = (
+    'Greek', 'Cypriot Greek', 'Tsakonian', 'Minority', 'Pontic Greek', 'Cappadocian Greek'
+)
+
 # The "c" attributes are redundant, if the @uni or @hex are defined, but they offer easy searching in the source by char.
 
 TONOS_LEFT = 'quotesingle' # Copy tonos glyphs leftmargin from here.
