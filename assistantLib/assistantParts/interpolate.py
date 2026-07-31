@@ -201,10 +201,12 @@ class AssistantPartInterpolate(BaseAssistantPart):
 
     KEY_INTERPOLATE = '§'
     KEY_COPY_FROM_SOURCE = 'w'
+    KEY_COPY_FROM_ORIGINAL = 'W'
 
     def buildInterpolate(self, y):
         personalKey1 = self.registerKeyStroke(self.KEY_INTERPOLATE, 'interpolateGlyphKey')
         personalKey2 = self.registerKeyStroke(self.KEY_COPY_FROM_SOURCE, 'copyFromSourceGlyphKey')
+        personalKey3 = self.registerKeyStroke(self.KEY_COPY_FROM_ORIGINAL, 'copyFromOriginalGlyphKey')
 
         C0, C1, C2, CW, L = self.C0, self.C1, self.C2, self.CW, self.L
         LL = L/2
@@ -214,6 +216,7 @@ class AssistantPartInterpolate(BaseAssistantPart):
         c.w.interpolateButton = Button((C2, y, CW, L), f'Interpolate [{personalKey1}]', callback=self.interpolateGlyphCallback)
         y += L
         c.w.showInterpolationLines = CheckBox((C0, y, CW, L), f'Show interpolation lines', callback=self.showInterpolationLinesCallback, sizeStyle='small')
+        c.w.copyFromOriginalButton = Button((C2, y, CW, L), f'Copy original [{personalKey3}]', callback=self.copyFromOriginalCallback)
         y += L
         c.w.decomposeCopiedInterpolatedGlyph = CheckBox((C0, y, CW, L), 'Decompose copy', value=False, sizeStyle='small')
         c.w.copyFromRomanButton = Button((C1, y, CW, L), 'Copy from Roman', callback=self.copyFromRomanCallback)
@@ -310,6 +313,35 @@ class AssistantPartInterpolate(BaseAssistantPart):
             if g.name in rf:
                 f[g.name] = rf[g.name]
                 f[g.name].changed()
+
+    def copyFromOriginalGlyphKey(self, g, c, event):
+        gName = g.name
+        f = g.font
+        g.prepareUndo()
+        print(f'... Copy from original glyph /{gName}')
+        md = self.getMasterData(f)
+        if md.orgUFOPath is not None:
+            rf = self.getFont(md.orgUFOPath)
+            g.prepareUndo()
+            if g.name in rf:
+                f[g.name] = rf[g.name]
+                f[g.name].changed()
+
+    def copyFromOriginalCallback(self, sender=None):
+        """Copy the glyph from original to alter it manually, instead of interpolating or italicizing."""
+        c = self.getController()
+        g = self.getCurrentGlyph()
+        if g is None:
+            return
+        f = g.font
+        md = self.getMasterData(f)
+        if md.orgUFOPath is not None:
+            rf = self.getFont(md.orgUFOPath)
+            g.prepareUndo()
+            if g.name in rf:
+                f[g.name] = rf[g.name]
+                f[g.name].changed()
+
 
     def interpolateGlyph(self, g):
         """Interpolate the g from the settings in MasterData. This could be a plain interpolation, or it can be scalerpolation if
