@@ -50,7 +50,9 @@ class MasterData:
     UFO_PATH = 'ufo/'
 
     def __init__(self, name=None, ufoPath=None, 
-            srcUFOPath=None, someUFOPath=None, orgUFOPath=None, 
+            srcUFOPath=None, srcUFOScale=None,
+            someUFOPath=None, someUFOScale=None,
+            orgUFOPath=None, orgUFOScale=None, # Optional UFO to show the source of this glyph. Optional scaling glyphs on opening the UFO 
             leftUFOPath=None, # Optional UFO to show on left side
             rightUFOPath=None, # Optional UFO to show on right side
             groupSrcUFOPath=None, # Optional copy groups from here, otherwise use orgUFOPath
@@ -178,6 +180,11 @@ class MasterData:
         self.spacingSrcUFOPath = spacingSrcUFOPath # If defined, used as spacing reference, overwriting all spacing rules. Goes with spacingOffset
         self.spacingOffset = spacingOffset # Value to add to margins of self.spacingSrcUFOPath (if defined)
 
+        # Optional scales for template fonts. The fonts get scaled on opening if the scale is not None. Make sure not to save them
+        self.srcUFOScale = srcUFOScale
+        self.someUFOScale = someUFOScale
+        self.orgUFOScale = orgUFOScale
+        
         # Standard interpolation factors (e.g. for scalarpolations). This overwrites the corrections directly derived from comparing the stems.
         if iFactor is None:
             iFactor = 0.5

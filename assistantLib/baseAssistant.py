@@ -225,7 +225,7 @@ class BaseAssistant:
             return fullDirPath + path
         return None # Can't make a full path.
 
-    def getFont(self, filePath, showInterface=False):
+    def getFont(self, filePath, showInterface=False, scale=None):
         """Answer the RFont if it is already open. Otherwise open it for read-only and store it into 
         the class variable self.bgFonts[filePath]"""
         if filePath is None:
@@ -255,6 +255,10 @@ class BaseAssistant:
         
         # Otherwise just open it in the background and cache it
         f = OpenFont(fullPath, showInterface=False)
+        if scale is not None: 
+            # Scale the glyphs on first time opening. Only to be done with background fonts, such as source and original
+            for g in f:
+                self.scaleGlyph(g, scale, scale)
         self.bgFonts[fullPath] = f
         return f
     

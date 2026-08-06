@@ -211,7 +211,7 @@ class AssistantPartOverlay(BaseAssistantPart):
         # If there is not an path md defined for each type of overlay, then disable their checkboxes.
         drawn = False
         if md.srcUFOPath is not None and c.w.srcUFOPathOverlay.get():
-            of = self.getFont(md.srcUFOPath)
+            of = self.getFont(md.srcUFOPath, scale=md.srcUFOScale) # Optionally scale the font once, upon first opening
             if of is not None and g.name in of:
                 og = of[g.name] # The overlay glyph
                 glyphPath = og.getRepresentation("merz.CGPath") 
@@ -224,7 +224,7 @@ class AssistantPartOverlay(BaseAssistantPart):
 
         drawn = False
         if md.someUFOPath is not None and c.w.someUFOPathOverlay.get():
-            of = self.getFont(md.someUFOPath)
+            of = self.getFont(md.someUFOPath, scale=md.someUFOScale) # Optionally scale the font once, upon first opening
             if of is not None and g.name in of:
                 og = of[g.name] # The overlay glyph
                 glyphPath = og.getRepresentation("merz.CGPath") 
@@ -239,7 +239,7 @@ class AssistantPartOverlay(BaseAssistantPart):
 
         drawn = False
         if md.orgUFOPath is not None and c.w.orgUFOPathOverlay.get():
-            of = self.getFont(md.orgUFOPath)
+            of = self.getFont(md.orgUFOPath, scale=md.orgUFOScale) # Optionally scale the font, upon first opening
             #print('ffdfdf', md.orgUFOPath, of)
             if of is not None and g.name in of:
                 og = of[g.name] # The overlay glyph
